@@ -1,0 +1,11 @@
+void flagwkclr();
+void actsetchk();
+void actsetinit();
+void actset();
+int tm_setchk(unsigned char cnt, unsigned short* pIndex);
+int actnoset(unsigned char cnt, unsigned short* pIndex);
+int actwkchk(act_info** ppActwk);
+int actwkchk2(act_info* pActwk, act_info** ppNewActwk);
+int frameout_s(act_info* pActwk);
+int frameout_s00(act_info* pActwk, short xposi);
+int frameout_s0(act_info* pActwk);

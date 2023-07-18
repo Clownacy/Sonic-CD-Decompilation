@@ -1,0 +1,18 @@
+short ride_on_clr(act_info* pActwk, act_info* pPlayerwk);
+short ride_on_set(act_info* pActwk, act_info* pPlayerwk);
+short hitchk_u(act_info* pActwk, act_info* pPlayerwk);
+short ridechk(act_info* pActwk, act_info* pPlayerwk);
+short ride_on_chk(act_info* pActwk, act_info* pPlayerwk);
+short hitchk(act_info* pActwk, act_info* pPlayerwk);
+short hit_v(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iHitHs);
+short hit_x(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iD5);
+short push_set(act_info* pActwk, act_info* pPlayerwk);
+short push_clr(act_info* pActwk, act_info* pPlayerwk);
+short hit_y(act_info* pActwk, act_info* pPlayerwk, short iHitYs);
+short hit_yu(act_info* pActwk, act_info* pPlayerwk, short iHitYs);
+short hit_yu1(act_info* pActwk, act_info* pPlayerwk, short iHitYs);
+short hit_yu0(act_info* pActwk, act_info* pPlayerwk, short iHitYs);
+short hit_e(act_info* pActwk, act_info* pPlayerwk);
+void side_coli(act_info* pActwk, act_info* pPlayerwk);
+void hit_set(act_info* pActwk, act_info* pPlayerwk);
+void hit_clr(act_info* pActwk, act_info* pPlayerwk);

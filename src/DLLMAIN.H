@@ -1,0 +1,2 @@
+int LibMain();
+int WEP();

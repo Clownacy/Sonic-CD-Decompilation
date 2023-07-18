@@ -1,0 +1,17 @@
+void over(act_info* pAct);
+void over_init(act_info* pAct);
+void over_move(act_info* pAct);
+void title(act_info* pAct);
+void title_init(act_info* pAct);
+void title_move0(act_info* pAct);
+void title_move1(act_info* pAct);
+void title_back0(act_info* pAct);
+void title_back1(act_info* pAct);
+void title_wait(act_info* pAct);
+void clear(act_info* pAct);
+void clear_init0(act_info* pAct);
+void clear_init(act_info* pAct);
+void clear_move0(act_info* pAct);
+void clear_move1(act_info* pAct);
+void clear_move2(act_info* pAct);
+void clear_wait(act_info* pAct);

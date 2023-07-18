@@ -1,0 +1,13 @@
+void ring(act_info* pActwk);
+void ringinit(act_info* pActwk);
+void ringmove(act_info* pActwk);
+void ringget(act_info* pActwk);
+void ringgetsub();
+void ringdie(act_info* pActwk);
+void ringerase(act_info* pActwk);
+void flyring(act_info* pActwk);
+void flyringinit(act_info* pActwk);
+void flyringmove(act_info* pActwk);
+void flyringget(act_info* pActwk);
+void flyringdie(act_info* pActwk);
+void flyringerase(act_info* pActwk);

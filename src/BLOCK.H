@@ -1,0 +1,10 @@
+void block(act_info* pActwk);
+void block_init(act_info* pActwk);
+void block_move(act_info* pActwk);
+void block_move2(act_info* pActwk);
+void block_move3(act_info* pActwk);
+void block_move4(act_info* pActwk);
+void block_move5(act_info* pActwk);
+void block_move6(act_info* pActwk);
+void block_ride(act_info* pActwk);
+void ride_on_chk_b(act_info* pActwk, act_info* pPlaywk);
