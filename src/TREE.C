@@ -1,66 +1,63 @@
-// Addresses correspond to R13*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "TREE.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "PLAYSUB.H"
 
-void(*hoshi_tbl)(act_info*, act_info*)[2] = { &hoshi_init, &hoshi_move };
-void(*k0_tbl)(act_info*, act_info*)[2] = { &k0_init, &k0_move };
-void(*kasoku_tbl)(act_info*, act_info*)[2] = { &kasoku_init, &kasoku_move };
+void(*hoshi_tbl[2])(act_info*, act_info*) = { &hoshi_init, &hoshi_move };
+void(*k0_tbl[2])(act_info*, act_info*) = { &k0_init, &k0_move };
+void(*kasoku_tbl[2])(act_info*, act_info*) = { &kasoku_init, &kasoku_move };
 spr_array hoshipat0 = {
-  .cnt = 1, .spra = { { -24, -20, 0, 392 } }
+  1, { { -24, -20, 0, 392 } }
 };
 spr_array hoshipat1 = {
-  .cnt = 1, .spra = { { -12, -12, 0, 393 } }
+  1, { { -12, -12, 0, 393 } }
 };
 spr_array* hoshipat[2] = { &hoshipat0, &hoshipat1 };
-unsigned char kasokuchg0[12] = { 0, 4, 4, 3, 3, 3, 5, 5, 2, 2, 2, -1 };
-unsigned char kasokuchg1[6] = { 2, 4, 7, 5, 6, -1 };
-unsigned char kasokuchg2[6] = { 2, 8, 0, 9, 0, -1 };
+unsigned char kasokuchg0[12] = { 0, 4, 4, 3, 3, 3, 5, 5, 2, 2, 2, 255 };
+unsigned char kasokuchg1[6] = { 2, 4, 7, 5, 6, 255 };
+unsigned char kasokuchg2[6] = { 2, 8, 0, 9, 0, 255 };
 unsigned char* kasokuchg[3] = { kasokuchg0, kasokuchg1, kasokuchg2 };
 spr_array kasokupat_a = {
-  .cnt = 1, .spra = { { -24, -24, 0, 382 } }
+  1, { { -24, -24, 0, 382 } }
 };
 spr_array kasokupat_b = {
-  .cnt = 1, .spra = { { -35, -24, 0, 383 } }
+  1, { { -35, -24, 0, 383 } }
 };
 spr_array kasokupat_c = {
-  .cnt = 1, .spra = { { -40, -24, 0, 384 } }
+  1, { { -40, -24, 0, 384 } }
 };
 spr_array kasokupat_d = {
-  .cnt = 1, .spra = { { -43, -24, 0, 385 } }
+  1, { { -43, -24, 0, 385 } }
 };
 spr_array kasokupat_e = {
-  .cnt = 1, .spra = { { -40, -24, 0, 386 } }
+  1, { { -40, -24, 0, 386 } }
 };
 spr_array kasokupat_f = {
-  .cnt = 1, .spra = { { -40, -24, 0, 387 } }
+  1, { { -40, -24, 0, 387 } }
 };
 spr_array kasokupat_g = {
-  .cnt = 1, .spra = { { -40, -24, 0, 387 } }
+  1, { { -40, -24, 0, 387 } }
 };
 spr_array kasokupat_h = {
-  .cnt = 1, .spra = { { -40, -24, 0, 388 } }
+  1, { { -40, -24, 0, 388 } }
 };
 spr_array kasokupat_i = {
-  .cnt = 1, .spra = { { -28, -24, 0, 389 } }
+  1, { { -28, -24, 0, 389 } }
 };
 spr_array kasokupat_j = {
-  .cnt = 1, .spra = { { -28, -24, 0, 390 } }
+  1, { { -28, -24, 0, 390 } }
 };
 spr_array* kasokupat[10] = { &kasokupat_a, &kasokupat_b, &kasokupat_c, &kasokupat_d, &kasokupat_e, &kasokupat_f, &kasokupat_g, &kasokupat_h, &kasokupat_i, &kasokupat_j };
-
-
 
 void hoshi(act_info* pActwk) { /* Line 53, Address: 0x101ae10 */
   short iXposi;
 
-  hoshi_tbl[actwk[0].r_no0 / 2](pActwk); /* Line 56, Address: 0x101ae20 */
+  hoshi_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 56, Address: 0x101ae20 */
   actionsub(pActwk); /* Line 57, Address: 0x101ae6c */
   iXposi = *(short*)&pActwk->actfree[0]; /* Line 58, Address: 0x101ae78 */
   frameout_s00(pActwk, iXposi); /* Line 59, Address: 0x101ae88 */
 } /* Line 60, Address: 0x101ae98 */
-
-
-
 
 
 
@@ -98,8 +95,8 @@ void hoshi_init(act_info* pActwk, act_info* pPlaywk) { /* Line 81, Address: 0x10
 
   iOffset = 0; /* Line 99, Address: 0x101afdc */
 
-  for (i = 0; i < iLp; ++i, ++iOffset) { /* Line 101, Address: 0x101afe0 */
-
+  for (i = 0; i < iLp; ++i, ++iOffset) /* Line 101, Address: 0x101afe0 */
+  {
     if (i > 0) /* Line 103, Address: 0x101afec */
       actwkchk(&pActfree); /* Line 104, Address: 0x101affc */
     pActfree->r_no0 += 2; /* Line 105, Address: 0x101b008 */
@@ -119,8 +116,8 @@ void hoshi_init(act_info* pActwk, act_info* pPlaywk) { /* Line 81, Address: 0x10
   iLp = 3; /* Line 119, Address: 0x101b0fc */
   iOffset = 0; /* Line 120, Address: 0x101b108 */
 
-  for (i = 0; i < iLp; ++i, ++iOffset) { /* Line 122, Address: 0x101b10c */
-
+  for (i = 0; i < iLp; ++i, ++iOffset) /* Line 122, Address: 0x101b10c */
+  {
     actwkchk(&pActfree); /* Line 124, Address: 0x101b118 */
     pActfree->r_no0 += 2; /* Line 125, Address: 0x101b124 */
     pActfree->actno = 44; /* Line 126, Address: 0x101b134 */
@@ -156,23 +153,23 @@ void hoshi_move(act_info* pActwk, act_info* pPlaywk) { /* Line 155, Address: 0x1
   short iXwork = 0; /* Line 156, Address: 0x101b260 */
 
   if (pActwk->userflag.b.h != 0) return; /* Line 158, Address: 0x101b264 */
-  if (pPlaywk->actfree[2] & 2) { /* Line 159, Address: 0x101b27c */
-
+  if (pPlaywk->actfree[2] & 2) /* Line 159, Address: 0x101b27c */
+  {
     iXwork = pPlaywk->xposi.w.h; /* Line 161, Address: 0x101b294 */
     iXwork %= 256; /* Line 162, Address: 0x101b2a4 */
-    if (pPlaywk->xposi.w.h < *(short*)&pActwk->actfree[0]) { /* Line 163, Address: 0x101b2b0 */
+    if (pPlaywk->xposi.w.h < *(short*)&pActwk->actfree[0]) /* Line 163, Address: 0x101b2b0 */
       iXwork = 255 - iXwork; /* Line 164, Address: 0x101b2dc */
-    }
-    if (iXwork >= 192) { /* Line 166, Address: 0x101b2fc */
 
+    if (iXwork >= 192) /* Line 166, Address: 0x101b2fc */
+    {
       if (iXwork >= 240) iXwork = 0; /* Line 168, Address: 0x101b310 */
       else iXwork = 191; /* Line 169, Address: 0x101b330 */
     }
 
     iXwork = iXwork >> 1; /* Line 172, Address: 0x101b33c */
-    if (pPlaywk->xposi.w.h < *(short*)&pActwk->actfree[0]) { /* Line 173, Address: 0x101b348 */
+    if (pPlaywk->xposi.w.h < *(short*)&pActwk->actfree[0]) /* Line 173, Address: 0x101b348 */
       iXwork = -iXwork; /* Line 174, Address: 0x101b374 */
-    }
+
   }
   iXwork += *(short*)&pActwk->actfree[2]; /* Line 177, Address: 0x101b380 */
   pActwk->xposi.w.h = iXwork; /* Line 178, Address: 0x101b39c */
@@ -190,7 +187,7 @@ void hoshi_move(act_info* pActwk, act_info* pPlaywk) { /* Line 155, Address: 0x1
 
 
 void kasoku0(act_info* pActwk) { /* Line 192, Address: 0x101b3c0 */
-  k0_tbl[actwk[0].r_no0 / 2](pActwk); /* Line 193, Address: 0x101b3cc */
+  k0_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 193, Address: 0x101b3cc */
   frameout_s(pActwk); /* Line 194, Address: 0x101b418 */
 } /* Line 195, Address: 0x101b424 */
 
@@ -277,8 +274,8 @@ void k0_move(act_info* pActwk, act_info* pPlaywk) { /* Line 236, Address: 0x101b
 void kasoku(act_info* pActwk) { /* Line 277, Address: 0x101b640 */
   short iXwork;
 
-  if (pActwk->userflag.b.l != 0) { /* Line 280, Address: 0x101b650 */
-
+  if (pActwk->userflag.b.l != 0) /* Line 280, Address: 0x101b650 */
+  {
     kasoku0(pActwk); /* Line 282, Address: 0x101b668 */
     return; /* Line 283, Address: 0x101b674 */
   }
@@ -316,8 +313,8 @@ void kasoku_init(act_info* pActwk, act_info* pPlaywk) { /* Line 310, Address: 0x
   pActwk->sprhsize = 32; /* Line 316, Address: 0x101b768 */
   pActwk->sprvsize = 32; /* Line 317, Address: 0x101b774 */
   *(short*)&pActwk->actfree[0] = pActwk->xposi.w.h; /* Line 318, Address: 0x101b780 */
-  if (pActwk->userflag.b.h != 0) { /* Line 319, Address: 0x101b790 */
-
+  if (pActwk->userflag.b.h != 0) /* Line 319, Address: 0x101b790 */
+  {
     pActwk->actflg |= 1; /* Line 321, Address: 0x101b7a8 */
     pActwk->cddat |= 1; /* Line 322, Address: 0x101b7b8 */
   }
@@ -342,33 +339,33 @@ void kasoku_move(act_info* pActwk, act_info* pPlaywk) { /* Line 340, Address: 0x
   int lD0wk;
 
 
-  if (pActwk->actfree[4] != 0) { /* Line 345, Address: 0x101b810 */
-
+  if (pActwk->actfree[4] != 0) /* Line 345, Address: 0x101b810 */
+  {
     pActwk->mstno.b.h = 1; /* Line 347, Address: 0x101b824 */
-    if ((pPlaywk->actfree[2] & 2) == 0) { /* Line 348, Address: 0x101b830 */
+    if ((pPlaywk->actfree[2] & 2) == 0) /* Line 348, Address: 0x101b830 */
       ++pActwk->mstno.b.h; /* Line 349, Address: 0x101b848 */
-    }
+
     patchg(pActwk, kasokuchg); /* Line 351, Address: 0x101b858 */
   } /* Line 352, Address: 0x101b86c */
-  else {
-
+  else
+  {
     pActwk->patno = 0; /* Line 355, Address: 0x101b874 */
     iD1 = 0; /* Line 356, Address: 0x101b87c */
     if ((pPlaywk->actfree[2] & 2) == 0) goto label1; /* Line 357, Address: 0x101b880 */
   }
 
   iD0 = pPlaywk->xposi.w.h; /* Line 360, Address: 0x101b898 */
-  if (pActwk->userflag.b.h != 0) { /* Line 361, Address: 0x101b8bc */
+  if (pActwk->userflag.b.h != 0) /* Line 361, Address: 0x101b8bc */
     iD0 = 255 - iD0; /* Line 362, Address: 0x101b8d4 */
-  }
-  if (iD0 >= 192) { /* Line 364, Address: 0x101b8f4 */
+
+  if (iD0 >= 192) /* Line 364, Address: 0x101b8f4 */
     if (iD0 >= 240) iD0 = 0; /* Line 365, Address: 0x101b908 */
     else iD0 = 191; /* Line 366, Address: 0x101b928 */
-  }
+
   lD0wk = iD0; /* Line 368, Address: 0x101b934 */
   iD1 = iD0; /* Line 369, Address: 0x101b93c */
-  if (pActwk->actfree[4] == 0) { /* Line 370, Address: 0x101b944 */
-
+  if (pActwk->actfree[4] == 0) /* Line 370, Address: 0x101b944 */
+  {
     lD0wk /= 48; /* Line 372, Address: 0x101b958 */
     pActwk->patno = lD0wk; /* Line 373, Address: 0x101b970 */
   }
@@ -380,9 +377,9 @@ void kasoku_move(act_info* pActwk, act_info* pPlaywk) { /* Line 340, Address: 0x
 label1:
   pActwk->xposi.w.h = *(short*)&pActwk->actfree[0] + iD1; /* Line 381, Address: 0x101b9d8 */
 
-  if (pActwk->actfree[4] != 0) { /* Line 383, Address: 0x101ba04 */
+  if (pActwk->actfree[4] != 0) /* Line 383, Address: 0x101ba04 */
     --pActwk->actfree[4]; /* Line 384, Address: 0x101ba18 */
-  }
+
 
 
 
@@ -399,17 +396,17 @@ label1:
   if (iD0 < 0) return; /* Line 399, Address: 0x101bb08 */
   iD1 += iD1; /* Line 400, Address: 0x101bb18 */
   if (iD0 >= iD1) return; /* Line 401, Address: 0x101bb24 */
-  if (pPlaywk->mstno.b.h == 43) { /* Line 402, Address: 0x101bb40 */
+  if (pPlaywk->mstno.b.h == 43) return; /* Line 402, Address: 0x101bb40 */
 
-  if (pActwk->actfree[4] == 0) { /* Line 404, Address: 0x101bb5c */
+  if (pActwk->actfree[4] == 0) /* Line 404, Address: 0x101bb5c */
     pActwk->actfree[4] = 60; /* Line 405, Address: 0x101bb70 */
-  }
-  if (pPlaywk->yspeed.w < 0) { /* Line 407, Address: 0x101bb7c */
 
+  if (pPlaywk->yspeed.w < 0) /* Line 407, Address: 0x101bb7c */
+  {
     pPlaywk->yspeed.w = -3072; /* Line 409, Address: 0x101bb94 */
   } /* Line 410, Address: 0x101bba0 */
-  else {
-
+  else
+  {
     pPlaywk->yspeed.w = 3072; /* Line 413, Address: 0x101bba8 */
   }
 }
