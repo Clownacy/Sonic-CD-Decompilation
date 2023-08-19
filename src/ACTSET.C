@@ -1,16 +1,16 @@
-#include "EQU.C"
-#include "ACSET.H"
+#include "EQU.H"
+#include "ACTSET.H"
+#include "ACTION.H"
 
+extern void(*sMemSet)(void*, unsigned char, int);
 aset_info* pAsetadr_w;
 asetz_info* pAsetadrz_w;
-asetz_info asettblz[1] = {
-  { -1, 0, 0, 0 }
-};
-aset_info asettbl[1] {
-  { 420, 944, 153, 02, 224, 0 }
-};
+extern asetz_info asettblz[1];
+extern aset_info asettbl[1];
 aset_info* pAsetadr_dummy;
-unsigned char dummyarea[0];
+extern unsigned char dummyarea[0];
+
+
 
 
 
@@ -60,7 +60,7 @@ void actsetinit() { /* Line 56, Address: 0x10000a0 */
   actset_rno.w += 2; /* Line 60, Address: 0x10000b0 */
 
 
-  pAsetadr_dummy = dummyarea; /* Line 63, Address: 0x10000c4 */
+  pAsetadr_dummy = (aset_info*)dummyarea; /* Line 63, Address: 0x10000c4 */
   asetadr = asetadr2 = pAsetadr_w = asettbl; /* Line 64, Address: 0x10000d4 */
   asetadrz2 = pAsetadrz_w = asettblz; /* Line 65, Address: 0x10000f4 */
 
@@ -446,18 +446,18 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
 
   if (pActwk->actflg & 128) { /* Line 447, Address: 0x1000c50 */
 
-    if (time_flag & 128) == 0) return 0; /* Line 449, Address: 0x1000c68 */
+    if ((time_flag & 128) == 0) return 0; /* Line 449, Address: 0x1000c68 */
   }
   else {
 
     xposi &= -128; /* Line 453, Address: 0x1000c8c */
-    scra_h = scra_h_posit->w.h; /* Line 454, Address: 0x1000c9c */
+    scra_h = scra_h_posit.w.h; /* Line 454, Address: 0x1000c9c */
     scra_h -= 128; /* Line 455, Address: 0x1000cac */
     scra_h &= -128; /* Line 456, Address: 0x1000cb8 */
     xposi -= scra_h; /* Line 457, Address: 0x1000cc8 */
     if (xposi < 641) { /* Line 458, Address: 0x1000cd4 */
 
-      if (time_flag & 128) == 0) return 0; /* Line 460, Address: 0x1000cec */
+      if ((time_flag & 128) == 0) return 0; /* Line 460, Address: 0x1000cec */
     }
   }
 
