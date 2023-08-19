@@ -1,8 +1,13 @@
-// Addresses correspond to R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "LOADER2.H"
 
 unsigned int SE_DashReq;
+extern void(*sOutputDebugString)(char*);
+extern void(*sPrintf)(char*, const char*, ...);
+extern void(*sCloseFile)(int);
+extern int(*sReadFile)(int, void*, int);
+extern int(*sOpenFile)(char*);
+extern void(*sMemSet)(void*, unsigned char, int);
 unsigned char SeToWavTbl[80] = {
    0,  1,  2,  3,  4,  5,  6,  7,
    8,  9, 10, 11, 11, 12, 13, 14,
@@ -15,13 +20,8 @@ unsigned char SeToWavTbl[80] = {
   71, 71, 72, 73, 74, 32, 33, 34,
   35, 36, 37, 38, 39, 40, 41, 42
 };
-
-
-
-
-
-
-
+extern void(*WaveRequest)(short);
+extern void(*CDPlay)(short);
 
 
 
@@ -47,7 +47,7 @@ void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /
       *buf++ = 65; /* Line 47, Address: 0x10137a8 */
       break; /* Line 48, Address: 0x10137bc */
     case 2:
-      if (generate_flag != 0) *buf++ = 67 /* Line 50, Address: 0x10137c4 */
+      if (generate_flag != 0) *buf++ = 67; /* Line 50, Address: 0x10137c4 */
       else *buf++ = 68; /* Line 51, Address: 0x10137f0 */
   }
 
@@ -183,7 +183,7 @@ void sub_sync(short ReqNo) { /* Line 177, Address: 0x1013bd0 */
     WaveRequest(ReqNo + -43); /* Line 183, Address: 0x1013c30 */
     return; /* Line 184, Address: 0x1013c58 */
   }
-  if ((ReqNo >= 15 && ReqNo < 35) || (ReqNo >= 48 && ReqNo < 55) { /* Line 186, Address: 0x1013c60 */
+  if ((ReqNo >= 15 && ReqNo < 35) || (ReqNo >= 48 && ReqNo < 55)) { /* Line 186, Address: 0x1013c60 */
     CDPlay(ReqNo + -12); /* Line 187, Address: 0x1013cc0 */
   } /* Line 188, Address: 0x1013ce8 */
   else if (ReqNo >= 102 && ReqNo < 113) { /* Line 189, Address: 0x1013cf0 */
@@ -193,7 +193,7 @@ void sub_sync(short ReqNo) { /* Line 177, Address: 0x1013bd0 */
     CDPlay(2); /* Line 193, Address: 0x1013d68 */
   } /* Line 194, Address: 0x1013d7c */
   else if (ReqNo >= 114 && ReqNo < 116) { /* Line 195, Address: 0x1013d84 */
-    CDPlay(Req + -80); /* Line 196, Address: 0x1013db4 */
+    CDPlay(ReqNo + -80); /* Line 196, Address: 0x1013db4 */
   } else if (ReqNo == 146) { /* Line 197, Address: 0x1013ddc */
     WaveRequest(85); /* Line 198, Address: 0x1013dfc */
   }
