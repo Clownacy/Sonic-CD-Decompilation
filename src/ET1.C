@@ -1,65 +1,75 @@
-// Addresses correspond to R13D.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "ET1.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "PLAYSUB.H"
+#include "RIDECHK.H"
+#include "SCORE.H"
+
+extern void soundset(short ReqNo);
 
 spr_array tpat00 = {
-  .cnt = 1,
-  .spra = {
-    { -40, 16, 0, 481 }
-  }
+  1,
+  { { -40, 16, 0, 481 } }
 };
 spr_array tpat01 = {
-  .cnt = 1,
-  .spra = {
-    { -40, 16, 0, 482 }
-  }
+  1,
+  { { -40, 16, 0, 482 } }
 };
 spr_array tpat07 = {
-  .cnt = 1,
-  .spra = {
-    { 0, 0, 0, 0 }
-  }
+  1,
+  { { 0, 0, 0, 0 } }
 };
 spr_array tpat02 = {
-  .cnt = 2,
-  .spra = {
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+  2,
+  {
+    {
+      { -24, -32, 0, 488 },
+      { -40, -32, 0, 489 }
+    }
   }
 };
 spr_array tpat03 = {
-  .cnt = 3,
-  .spra = {
-    { -22, -8, 0, 490 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+  3,
+  {
+    {
+      { -22, -8, 0, 490 },
+      { -24, -32, 0, 488 },
+      { -40, -32, 0, 489 }
+    }
   }
 };
 spr_array tpat04 = {
-  .cnt = 4,
-  .spra = {
-    { -22, -8, 0, 491 },
-    { -24, -32, 0, 494 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+  4,
+  {
+    {
+      { -22, -8, 0, 491 },
+      { -24, -32, 0, 494 },
+      { -24, -32, 0, 488 },
+      { -40, -32, 0, 489 }
+    }
   }
 };
 spr_array tpat05 = {
-  .cnt = 4,
-  .spra = {
-    { -22, -8, 0, 492 },
-    { -24, -32, 0, 494 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+  4,
+  {
+    {
+      { -22, -8, 0, 492 },
+      { -24, -32, 0, 494 },
+      { -24, -32, 0, 488 },
+      { -40, -32, 0, 489 }
+    }
   }
 };
 spr_array tpat06 = {
-  .cnt = 4,
-  .spra = {
-    { -22, -8, 0, 493 },
-    { -24, -32, 0, 496 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+  4,
+  {
+    {
+      { -22, -8, 0, 493 },
+      { -24, -32, 0, 496 },
+      { -24, -32, 0, 488 },
+      { -40, -32, 0, 489 }
+    }
   }
 };
 spr_array* pat_et[8] = {
@@ -97,16 +107,6 @@ char tbl0[64] = {
 };
 char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
 char* pchg[1] = { pchg0 };
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,7 +223,7 @@ void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
     return; /* Line 223, Address: 0x102131c */
   }
   hitchk(actionwk, &actwk[0]); /* Line 225, Address: 0x1021324 */
-  patchg(actionwk, pchg); /* Line 226, Address: 0x1021338 */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 226, Address: 0x1021338 */
 } /* Line 227, Address: 0x102134c */
 
 void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
