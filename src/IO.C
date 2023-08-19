@@ -1,6 +1,6 @@
-// Addresses correspond to WARP.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "IO.H"
+
 
 
 
@@ -63,4 +63,3 @@ void scrinit() {
   vscroll.l = 0; /* Line 63, Address: 0x1002480 */
   hscroll.l = 0; /* Line 64, Address: 0x1002488 */
 } /* Line 65, Address: 0x1002490 */
-
