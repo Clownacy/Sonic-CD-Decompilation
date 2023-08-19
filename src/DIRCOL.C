@@ -1,6 +1,6 @@
-#include "EQU.C"
+#include "EQU.H"
 #include "DIRCOL.H"
-
+#include "FCOL.H"
 
 
 
@@ -67,13 +67,13 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
   bDirSave = *cpDirec; /* Line 67, Address: 0x100dbec */
   dirstk[0] = bDirwk; /* Line 68, Address: 0x100dbf0 */
   dirstk[2] = bDirwk; /* Line 69, Address: 0x100dbf8 */
-  if ((bDirwk + 32) < 0) { /* Line 70, Address: 0x100dc00 */
-
+  if ((bDirwk + 32) < 0) /* Line 70, Address: 0x100dc00 */
+  {
     if (bDirwk < 0) --bDirwk; /* Line 72, Address: 0x100dc20 */
     bDirwk += 32; /* Line 73, Address: 0x100dc40 */
   } /* Line 74, Address: 0x100dc48 */
-  else {
-
+  else
+  {
     if (bDirwk < 0) ++bDirwk; /* Line 77, Address: 0x100dc50 */
     bDirwk += 31; /* Line 78, Address: 0x100dc70 */
   }
@@ -115,8 +115,8 @@ short dircol2(act_info* pActwk, char* cpDirec) { /* Line 107, Address: 0x100dd60
   *cpDirec &= 192; /* Line 115, Address: 0x100ddbc */
   bDirwk = *cpDirec; /* Line 116, Address: 0x100dde0 */
 
-  switch (bDirwk) { /* Line 118, Address: 0x100ddec */
-
+  switch (bDirwk) /* Line 118, Address: 0x100ddec */
+  {
     case 64:
       iDirect = dircol_l(pActwk, &iD0, &iD1, &iD3); /* Line 121, Address: 0x100de1c */
       break; /* Line 122, Address: 0x100de3c */
@@ -229,6 +229,7 @@ short dircol_r(act_info* pActwk, short* ipD0, short* ipD1, short* ipD3) { /* Lin
   iXwork = pActwk->xposi.w.h + pActwk->sprvsize; /* Line 229, Address: 0x100e200 */
   cpDirStk = &dirstk[2]; /* Line 230, Address: 0x100e238 */
   *ipD1 = scdchk_r(pActwk, iXwork, iYwork, 16, 0, 14, cpDirStk); /* Line 231, Address: 0x100e240 */
+
   cDirect = -64; /* Line 233, Address: 0x100e26c */
   return dircolchk(ipD0, ipD1, ipD3, &cDirect); /* Line 234, Address: 0x100e274 */
 } /* Line 235, Address: 0x100e28c */
@@ -243,11 +244,10 @@ short dircol_r(act_info* pActwk, short* ipD0, short* ipD1, short* ipD3) { /* Lin
 
 
 
-
-
 short dircol_r2(act_info* pActwk) { /* Line 247, Address: 0x100e2b0 */
-  return dircol_r3(pActwk->xposi.w.h, pActwk->yposi.w.h); /* Line 248, Address: 0x100e2bc */
+  return dircol_r3(pActwk, pActwk->xposi.w.h, pActwk->yposi.w.h); /* Line 248, Address: 0x100e2bc */
 } /* Line 249, Address: 0x100e2d8 */
+
 
 
 
@@ -300,17 +300,17 @@ short dircol_l(act_info* pActwk, short* ipD0, short* ipD1, short* ipD3) { /* Lin
   iYwork = pActwk->yposi.w.h - pActwk->sprhs; /* Line 300, Address: 0x100e3a4 */
   iXwork = (pActwk->xposi.w.h - pActwk->sprvsize) ^ 15; /* Line 301, Address: 0x100e3dc */
   cpDirstk = &dirstk[0]; /* Line 302, Address: 0x100e418 */
-  ipD0 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 303, Address: 0x100e420 */
+  *ipD0 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 303, Address: 0x100e420 */
 
 
   iYwork = pActwk->yposi.w.h + pActwk->sprhs; /* Line 306, Address: 0x100e44c */
   iXwork = (pActwk->xposi.w.h - pActwk->sprvsize) ^ 15; /* Line 307, Address: 0x100e484 */
   cpDirstk = &dirstk[2]; /* Line 308, Address: 0x100e4c0 */
-  ipD1 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 309, Address: 0x100e4c8 */
+  *ipD1 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 309, Address: 0x100e4c8 */
+
   cDirect = 64; /* Line 311, Address: 0x100e4f4 */
   return dircolchk(ipD0, ipD1, ipD3, &cDirect); /* Line 312, Address: 0x100e4fc */
 } /* Line 313, Address: 0x100e514 */
-
 
 
 
@@ -377,17 +377,17 @@ short dircol_u(act_info* pActwk, short* ipD0, short* ipD1, short* ipD3) { /* Lin
   iYwork = (pActwk->yposi.w.h - pActwk->sprvsize) ^ 15; /* Line 377, Address: 0x100e634 */
   iXwork = pActwk->xposi.w.h + pActwk->sprhs; /* Line 378, Address: 0x100e670 */
   cpDirStk = &dirstk[0]; /* Line 379, Address: 0x100e6a8 */
-  ipD0 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 380, Address: 0x100e6b0 */
+  *ipD0 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 380, Address: 0x100e6b0 */
 
 
   iYwork = (pActwk->yposi.w.h - pActwk->sprvsize) ^ 15; /* Line 383, Address: 0x100e6dc */
   iXwork = pActwk->xposi.w.h - pActwk->sprhs; /* Line 384, Address: 0x100e718 */
   cpDirStk = &dirstk[2]; /* Line 385, Address: 0x100e750 */
-  ipD1 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 386, Address: 0x100e758 */
+  *ipD1 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 386, Address: 0x100e758 */
+
   cDirect = -128; /* Line 388, Address: 0x100e784 */
   return dircolchk(ipD0, ipD1, ipD3, &cDirect); /* Line 389, Address: 0x100e78c */
 } /* Line 390, Address: 0x100e7a4 */
-
 
 
 
@@ -444,7 +444,7 @@ short emycol_u(act_info* pActwk) { /* Line 441, Address: 0x100e8a0 */
 
   iYwork = (pActwk->yposi.w.h - pActwk->sprvsize) ^ 15; /* Line 445, Address: 0x100e8c4 */
   iXwork = pActwk->xposi.w.h; /* Line 446, Address: 0x100e8f8 */
-  iScd = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk; /* Line 447, Address: 0x100e908 */
+  iScd = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 447, Address: 0x100e908 */
 
 
   return iScd; /* Line 450, Address: 0x100e934 */
@@ -541,10 +541,10 @@ short emycol_l3(act_info* pActwk, short iXposi, short iYposi) { /* Line 538, Add
 
   *cpDirStk = 0; /* Line 542, Address: 0x100eb34 */
   iScd = scdchk_r(pActwk, iXposi, iYposi, -16, 2048, 14, cpDirStk); /* Line 543, Address: 0x100eb38 */
+
+
   return iScd; /* Line 546, Address: 0x100eb64 */
 } /* Line 547, Address: 0x100eb68 */
-
-
 
 
 
@@ -608,19 +608,19 @@ short dircolchk(short* ipD0, short* ipD1, short* ipD3, char* cpDirec) { /* Line 
   short iWork;
 
 
-  if (*ipD0 < *ipD1) { /* Line 611, Address: 0x100ec98 */
-
+  if (*ipD0 < *ipD1) /* Line 611, Address: 0x100ec98 */
+  {
     iWork = *ipD1; /* Line 613, Address: 0x100ecc4 */
     *ipD1 = *ipD0; /* Line 614, Address: 0x100ecd4 */
     *ipD0 = iWork; /* Line 615, Address: 0x100ece4 */
     *ipD3 = dirstk[0]; /* Line 616, Address: 0x100ecec */
   } /* Line 617, Address: 0x100ed04 */
-  else {
+  else
     *ipD3 = dirstk[2]; /* Line 619, Address: 0x100ed0c */
-  }
+
   if (*ipD3 & 1) /* Line 621, Address: 0x100ed24 */
     *ipD3 = *cpDirec; /* Line 622, Address: 0x100ed40 */
-  return ipD1; /* Line 623, Address: 0x100ed58 */
+  return *ipD1; /* Line 623, Address: 0x100ed58 */
 } /* Line 624, Address: 0x100ed60 */
 
 
