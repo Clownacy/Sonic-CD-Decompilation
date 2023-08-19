@@ -1,15 +1,3 @@
-#ifndef BMP_C
-#define BMP_C
+#include "TYPES.H"
 
-typedef struct Bmp;
-
-struct Bmp
-{
-  unsigned char xs;
-  unsigned char ys;
-  unsigned char ofs;
-};
-
-Bmp SprBmp[700];
-
-#endif
+bmp_info SprBmp[700];
