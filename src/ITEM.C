@@ -1,164 +1,164 @@
-// Addresses correspond to R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "ITEM.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DIRCOL.H"
+#include "PLAYSUB.H"
+#include "RIDECHK.H"
 
-unsigned char itemchg0[11] = { 1, 16, 0, 0, 8, 0, 0, 9, 0, 0, -1 };
-unsigned char itemchg1[11] = { 1, 16, 1, 1, 8, 1, 1, 9, 1, 1, -1 };
-unsigned char itemchg2[11] = { 1, 16, 2, 2, 8, 2, 2, 9, 2, 2, -1 };
-unsigned char itemchg3[11] = { 1, 16, 3, 3, 8, 3, 3, 9, 3, 3, -1 };
-unsigned char itemchg4[11] = { 1, 16, 4, 4, 8, 4, 4, 9, 4, 4, -1 };
-unsigned char itemchg5[11] = { 1, 16, 5, 5, 8, 5, 5, 9, 5, 5, -1 };
-unsigned char itemchg6[11] = { 1, 16, 6, 6, 8, 6, 6, 9, 6, 6, -1 };
-unsigned char itemchg7[11] = { 1, 16, 7, 7, 8, 7, 7, 9, 7, 7, -1 };
-unsigned char itemchg8[10] = { 1, 10, 14, 15, 14, 11, 14, 15, 14, -1 };
-unsigned char itemchg9[10] = { 1, 12, 14, 15, 14, 13, 14, 15, 14, -1 };
+extern void sub_sync(short ReqNo);
+extern void soundset(short ReqNo);
+
+unsigned char itemchg0[11] = { 1, 16, 0, 0, 8, 0, 0, 9, 0, 0, 255 };
+unsigned char itemchg1[11] = { 1, 16, 1, 1, 8, 1, 1, 9, 1, 1, 255 };
+unsigned char itemchg2[11] = { 1, 16, 2, 2, 8, 2, 2, 9, 2, 2, 255 };
+unsigned char itemchg3[11] = { 1, 16, 3, 3, 8, 3, 3, 9, 3, 3, 255 };
+unsigned char itemchg4[11] = { 1, 16, 4, 4, 8, 4, 4, 9, 4, 4, 255 };
+unsigned char itemchg5[11] = { 1, 16, 5, 5, 8, 5, 5, 9, 5, 5, 255 };
+unsigned char itemchg6[11] = { 1, 16, 6, 6, 8, 6, 6, 9, 6, 6, 255 };
+unsigned char itemchg7[11] = { 1, 16, 7, 7, 8, 7, 7, 9, 7, 7, 255 };
+unsigned char itemchg8[10] = { 1, 10, 14, 15, 14, 11, 14, 15, 14, 255 };
+unsigned char itemchg9[10] = { 1, 12, 14, 15, 14, 13, 14, 15, 14, 255 };
 unsigned char* itemchg[10] = { itemchg0, itemchg1, itemchg2, itemchg3, itemchg4, itemchg5, itemchg6, itemchg7, itemchg8, itemchg9 };
 spr_array ite00 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 272 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 272 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite01 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 273 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 273 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite02 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 274 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 274 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite03 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 275 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 275 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite04 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 276 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 276 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite05 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 277 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 277 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite06 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 278 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 278 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite07 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 279 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 0, 279 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite08 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 0, 280 }, { -16, -16, 0, 286 } }
+  2,
+  {{ { -8, -10, 0, 280 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite09 = {
-  .cnt = 2,
-  .spra = { { -8, -10, 8, 280 }, { -16, -16, 0, 286 } }
+  2,
+  { { { -8, -10, 8, 280 }, { -16, -16, 0, 286 } } }
 };
 spr_array ite0a = {
-  .cnt = 2,
-  .spra = { { -16, -40, 0, 281 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -16, -40, 0, 281 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite0b = {
-  .cnt = 2,
-  .spra = { { -16, -40, 8, 281 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -16, -40, 8, 281 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite0c = {
-  .cnt = 2,
-  .spra = { { -16, -40, 0, 282 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -16, -40, 0, 282 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite0d = {
-  .cnt = 2,
-  .spra = { { -16, -40, 8, 282 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -16, -40, 8, 282 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite0e = {
-  .cnt = 2,
-  .spra = { { -16, -40, 8, 283 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -16, -40, 8, 283 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite0f = {
-  .cnt = 2,
-  .spra = { { -4, -40, 8, 284 }, { -8, -24, 0, 285 } }
+  2,
+  { { { -4, -40, 8, 284 }, { -8, -24, 0, 285 } } }
 };
 spr_array ite10 = {
-  .cnt = 1,
-  .spra = { { -16, -16, 0, 286 } }
+  1, { { -16, -16, 0, 286 } }
 };
 spr_array ite11 = {
-  .cnt = 1,
-  .spra = { { -16, 0, 0, 287 } }
+  1, { { -16, 0, 0, 287 } }
 };
 spr_array ite12 = {
-  .cnt = 1,
-  .spra = { { -16, -8, 0, 281 } }
+  1, { { -16, -8, 0, 281 } }
 };
 spr_array ite13 = {
-  .cnt = 1,
-  .spra = { { -16, -8, 0, 282 } }
+  1, { { -16, -8, 0, 282 } }
 };
 spr_array* itempat[20] = { &ite00, &ite01, &ite02, &ite03, &ite04, &ite05, &ite06, &ite07, &ite08, &ite09, &ite0a, &ite0b, &ite0c, &ite0d, &ite0e, &ite0f, &ite10, &ite11, &ite12, &ite13 };
 spr_array cor00 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 272 } }
+  1, { { -8, -16, 0, 272 } }
 };
 spr_array cor01 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 273 } }
+  1, { { -8, -16, 0, 273 } }
 };
 spr_array cor02 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 274 } }
+  1, { { -8, -16, 0, 274 } }
 };
 spr_array cor03 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 275 } }
+  1, { { -8, -16, 0, 275 } }
 };
 spr_array cor04 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 276 } }
+  1, { { -8, -16, 0, 276 } }
 };
 spr_array cor05 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 277 } }
+  1, { { -8, -16, 0, 277 } }
 };
 spr_array cor06 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 278 } }
+  1, { { -8, -16, 0, 278 } }
 };
 spr_array cor07 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 279 } }
+  1, { { -8, -16, 0, 279 } }
 };
 spr_array cor08 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 0, 280 } }
+  1, { { -8, -16, 0, 280 } }
 };
 spr_array cor09 = {
-  .cnt = 1,
-  .spra = { { -8, -16, 8, 280 } }
+  1, { { -8, -16, 8, 280 } }
 };
 spr_array cor0a = {
-  .cnt = 1,
-  .spra = { { -16, -40, 0, 281 } }
+  1, { { -16, -40, 0, 281 } }
 };
 spr_array cor0b = {
-  .cnt = 1,
-  .spra = { { -16, -40, 8, 281 } }
+  1, { { -16, -40, 8, 281 } }
 };
 spr_array cor0c = {
-  .cnt = 1,
-  .spra = { { -16, -40, 0, 282 } }
+  1, { { -16, -40, 0, 282 } }
 };
 spr_array cor0d = {
-  .cnt = 1,
-  .spra = { { -16, -40, 8, 282 } }
+  1, { { -16, -40, 8, 282 } }
 };
 spr_array cor0e = {
-  .cnt = 1,
-  .spra = { { -16, -40, 0, 283 } }
+  1, { { -16, -40, 0, 283 } }
 };
 spr_array cor0f = {
-  .cnt = 1,
-  .spra = { { -4, -40, 0, 284 } }
+  1, { { -4, -40, 0, 284 } }
 };
 spr_array* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,12 +172,12 @@ void timedisp(act_info* timewk) { /* Line 167, Address: 0x1010de0 */
     case 2:
       td_move(timewk); /* Line 173, Address: 0x1010e28 */
       break;
-    default:
   }
 
+
   if (time_item == 0) return; /* Line 178, Address: 0x1010e34 */
-  if (backto_cnt < 90) actionsub(pActwk) /* Line 179, Address: 0x1010e4c */
-  else if ((gametimer.b.l & 2) == 0) actionsub(pActwk); /* Line 180, Address: 0x1010e7c */
+  if (backto_cnt < 90) actionsub(timewk); /* Line 179, Address: 0x1010e4c */
+  else if ((gametimer.b.l & 2) == 0) actionsub(timewk); /* Line 180, Address: 0x1010e7c */
 } /* Line 181, Address: 0x1010ea4 */
 
 
@@ -203,8 +203,8 @@ void td_move(act_info* timewk) { /* Line 194, Address: 0x1010f30 */
 
 
 void t_item(act_info* t_itemwk) { /* Line 205, Address: 0x1010f80 */
-  if (ta_flag != 0) frameout(t_itemwk), return; /* Line 206, Address: 0x1010f8c */
-  if (t_itemwk->userflag.b.h == 10) timedisp(t_itemwk), return; /* Line 207, Address: 0x1010fb4 */
+  if (ta_flag != 0) { frameout(t_itemwk); return; } /* Line 206, Address: 0x1010f8c */
+  if (t_itemwk->userflag.b.h == 10) { timedisp(t_itemwk); return; } /* Line 207, Address: 0x1010fb4 */
   switch (t_itemwk->r_no0) { /* Line 208, Address: 0x1010fe4 */
     case 0:
       t_item_init(t_itemwk); /* Line 210, Address: 0x1011024 */
@@ -218,8 +218,8 @@ void t_item(act_info* t_itemwk) { /* Line 205, Address: 0x1010f80 */
     case 6:
       t_item_move2(t_itemwk); /* Line 219, Address: 0x1011060 */
       break;
-    default:
   }
+
 
   actionsub(t_itemwk); /* Line 224, Address: 0x101106c */
   frameout_s(t_itemwk); /* Line 225, Address: 0x1011078 */
@@ -317,7 +317,7 @@ short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
 
   flag_no = t_itemwk->cdsts * 3; /* Line 318, Address: 0x1011484 */
   t_flag = time_flag; /* Line 319, Address: 0x10114a8 */
-  if ((t_flag & 128) == 0) return flag_no + t_flag /* Line 320, Address: 0x10114bc */
+  if ((t_flag & 128) == 0) return flag_no + t_flag; /* Line 320, Address: 0x10114bc */
   t_flag &= -129; /* Line 321, Address: 0x10114e8 */
   t_item = time_item; /* Line 322, Address: 0x10114f8 */
   t_item = -t_item; /* Line 323, Address: 0x1011510 */
@@ -353,7 +353,7 @@ void ride_on_chk_i(act_info* itemwk) { /* Line 334, Address: 0x10115a0 */
 
 void item(act_info* itemwk) { /* Line 354, Address: 0x1011640 */
   if (itemwk->userflag.b.h == 0 && ta_flag != 0) { /* Line 355, Address: 0x101164c */
-    frameout_s(itemwk), return; /* Line 356, Address: 0x1011678 */
+    frameout_s(itemwk); return; /* Line 356, Address: 0x1011678 */
   }
   if (itemwk->userflag.b.h >= 8) t_item(itemwk); /* Line 358, Address: 0x101168c */
   switch (itemwk->r_no0) { /* Line 359, Address: 0x10116bc */
@@ -372,8 +372,8 @@ void item(act_info* itemwk) { /* Line 354, Address: 0x1011640 */
     case 8:
       itemmove3(itemwk); /* Line 373, Address: 0x1011758 */
       break;
-    default:
   }
+
 
 } /* Line 378, Address: 0x1011764 */
 
@@ -412,9 +412,9 @@ void itemmove(act_info* itemwk) { /* Line 410, Address: 0x1011910 */
 
 
   if (itemwk->patbase != itempat) { /* Line 414, Address: 0x1011920 */
-    error_item(itemwk), return; /* Line 415, Address: 0x1011938 */
+    error_item(itemwk); return; /* Line 415, Address: 0x1011938 */
   }
-  if (itemwk->actflg >= 0) itemmove3(itemwk), return; /* Line 417, Address: 0x101194c */
+  if (itemwk->actflg >= 0) { itemmove3(itemwk); return; } /* Line 417, Address: 0x101194c */
   if (itemwk->r_no1 != 0) { /* Line 418, Address: 0x1011980 */
     speedset(itemwk); /* Line 419, Address: 0x1011994 */
     if ((col_ofs = emycol_d(itemwk)) < 0) { /* Line 420, Address: 0x10119a0 */
@@ -500,8 +500,8 @@ void item2(act_info* itemwk) { /* Line 492, Address: 0x1011c70 */
     case 4:
       item2die(itemwk); /* Line 501, Address: 0x1011cd8 */
       break;
-    default:
   }
+
 
   actionsub(itemwk); /* Line 506, Address: 0x1011ce4 */
 } /* Line 507, Address: 0x1011cf0 */
@@ -539,7 +539,7 @@ void item2move(act_info* itemwk) { /* Line 524, Address: 0x1011da0 */
       plring_f |= 1; /* Line 539, Address: 0x1011e8c */
       if ((plring >= 100 && (plring_f2 & 2) == 0) || (plring >= 200 && (plring_f2 & 4) == 0)) { /* Line 540, Address: 0x1011ea0 */
 
-        if (plring < 200) plring_f2 |= 2 /* Line 542, Address: 0x1011f08 */
+        if (plring < 200) plring_f2 |= 2; /* Line 542, Address: 0x1011f08 */
         else plring_f2 |= 4; /* Line 543, Address: 0x1011f40 */
         ++pl_suu, ++pl_suu_f; /* Line 544, Address: 0x1011f54 */
         sub_sync(122); /* Line 545, Address: 0x1011f7c */
@@ -575,7 +575,7 @@ void item2move(act_info* itemwk) { /* Line 524, Address: 0x1011da0 */
       break; /* Line 575, Address: 0x10120d4 */
     case 4:
       plpower_s = 1; /* Line 577, Address: 0x10120dc */
-      actwk[0].actfree[10] = 1320; /* Line 578, Address: 0x10120e8 */
+      *(short*)&actwk[0].actfree[10] = 1320; /* Line 578, Address: 0x10120e8 */
       plmaxspdwk = 3072; /* Line 579, Address: 0x10120f4 */
       pladdspdwk = 24; /* Line 580, Address: 0x1012100 */
       plretspdwk = 128; /* Line 581, Address: 0x101210c */
@@ -631,7 +631,7 @@ void error_item(act_info* itemwk) { /* Line 627, Address: 0x1012300 */
 
 
 
-  (itemwk->patno ^ corepat) < 1; /* Line 634, Address: 0x1012308 */
+  ((int)itemwk->patbase ^ (int)corepat) < 1; /* Line 634, Address: 0x1012308 */
 
 
 
