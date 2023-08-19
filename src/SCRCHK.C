@@ -1,6 +1,6 @@
-// Addresses correspond to R7*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "SCRCHK.H"
+
 
 
 
@@ -57,8 +57,8 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
       zone7chk(); break; /* Line 57, Address: 0x1017aa4 */
     case 6:
       zone8chk(); break; /* Line 59, Address: 0x1017ab4 */
-    default:
   }
+
 
   if (actwk[0].mstno.b.h == 43) { /* Line 63, Address: 0x1017abc */
     scralim_down = scra_v_posit.w.h; /* Line 64, Address: 0x1017ad8 */
@@ -96,15 +96,15 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
 
 
 void zone1chk() { /* Line 98, Address: 0x1017c70 */
-  switch (stageno.b.l == 2) { /* Line 99, Address: 0x1017c78 */
+  switch (stageno.b.l) { /* Line 99, Address: 0x1017c78 */
     case 0:
       zone11chk(); break; /* Line 101, Address: 0x1017cb0 */
     case 1:
       zone12chk(); break; /* Line 103, Address: 0x1017cc0 */
     case 2:
       zone13chk(); break; /* Line 105, Address: 0x1017cd0 */
-    default:
   }
+
 
 } /* Line 109, Address: 0x1017cd8 */
 
@@ -162,8 +162,8 @@ void zone3chk() { /* Line 157, Address: 0x1017ea0 */
       zone31chk(); break; /* Line 162, Address: 0x1017ef0 */
     case 2:
       zone33chk(); break; /* Line 164, Address: 0x1017f00 */
-    default:
   }
+
 
 } /* Line 168, Address: 0x1017f08 */
 
@@ -232,8 +232,8 @@ void zone5chk() { /* Line 227, Address: 0x10180d0 */
       zone51chk(); break; /* Line 232, Address: 0x1018120 */
     case 2:
       zone53chk(); break; /* Line 234, Address: 0x1018130 */
-    default:
   }
+
 
 } /* Line 238, Address: 0x1018138 */
 
@@ -269,8 +269,8 @@ void zone8chk() { /* Line 264, Address: 0x10181e0 */
       zone81chk(); break; /* Line 269, Address: 0x1018230 */
     case 2:
       zone83chk(); break; /* Line 271, Address: 0x1018240 */
-    default:
   }
+
 
 } /* Line 275, Address: 0x1018248 */
 
@@ -304,8 +304,8 @@ void zone4chk() { /* Line 299, Address: 0x10182f0 */
       zone42chk(); break; /* Line 304, Address: 0x1018340 */
     case 2:
       zone43chk(); break; /* Line 306, Address: 0x1018350 */
-    default:
   }
+
 
 } /* Line 310, Address: 0x1018358 */
 
@@ -357,8 +357,8 @@ void zone7chk() { /* Line 352, Address: 0x10184a0 */
       zone72chk(); break; /* Line 357, Address: 0x10184f0 */
     case 2:
       zone73chk(); break; /* Line 359, Address: 0x1018500 */
-    default:
   }
+
 
 } /* Line 363, Address: 0x1018508 */
 
