@@ -1,11 +1,11 @@
 // Addresses correspond to WARP.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "ACTION.H"
-#include "BMP.C"
 
-void(*act_tbl)(act_info*)[1] = { &sonic_act };
-
-
+extern void(*act_tbl[1])(act_info*);
+extern void(*sMemSet)(void*, unsigned char, int);
+extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
+extern bmp_info SprBmp[700];
 
 
 
@@ -118,10 +118,10 @@ void speedset2(act_info* pActwk) { /* Line 97, Address: 0x1001450 */
     }
   }
   spd = spd << 8; /* Line 120, Address: 0x1001540 */
-  xpos += spd; /* Line 121, Address: 0x1001544 */
-  spd = pActwk->yspeed; /* Line 122, Address: 0x1001550 */
+  xpos.l += spd; /* Line 121, Address: 0x1001544 */
+  spd = pActwk->yspeed.w; /* Line 122, Address: 0x1001550 */
   spd = spd << 8; /* Line 123, Address: 0x1001560 */
-  ypos += spd; /* Line 124, Address: 0x1001564 */
+  ypos.l += spd; /* Line 124, Address: 0x1001564 */
   pActwk->xposi = xpos; /* Line 125, Address: 0x1001570 */
   pActwk->yposi = ypos; /* Line 126, Address: 0x100157c */
 } /* Line 127, Address: 0x1001588 */
@@ -207,7 +207,8 @@ void patset() { /* Line 198, Address: 0x1001860 */
   spr_array** patbase;
   spr_info* sprdat;
   int_union *pScrHposi, *pScrVposi;
-  int_union* patsettbl[8] = { /* Line 210, Address: 0x100188c */
+  int_union* patsettbl[8] = /* Line 210, Address: 0x100188c */
+  {
     0,
     &scra_h_posit,
     &scrb_h_posit,
@@ -217,7 +218,6 @@ void patset() { /* Line 198, Address: 0x1001860 */
     &scrb_v_posit,
     &scrc_v_posit
   };
-
 
   if (*((int*)&lpKeepWork->play_start) != 0) return; /* Line 222, Address: 0x10018c0 */
 
@@ -237,18 +237,18 @@ void patset() { /* Line 198, Address: 0x1001860 */
           pScrHposi = patsettbl[flag]; /* Line 237, Address: 0x1001978 */
           pScrVposi = patsettbl[flag + 1]; /* Line 238, Address: 0x100198c */
           xposi = pActwk->xposi.w.h; /* Line 239, Address: 0x10019a0 */
-          xposi -= pScrHposi.w.h; /* Line 240, Address: 0x10019ac */
+          xposi -= pScrHposi->w.h; /* Line 240, Address: 0x10019ac */
           xposi += 128; /* Line 241, Address: 0x10019c0 */
           yposi = pActwk->yposi.w.h; /* Line 242, Address: 0x10019cc */
-          if (pScrVposi.w.h < 256) { /* Line 243, Address: 0x10019d8 */
+          if (pScrVposi->w.h < 256) { /* Line 243, Address: 0x10019d8 */
 
             if (yposi >= 2048) yposi -= 2048; /* Line 245, Address: 0x10019f0 */
           } /* Line 246, Address: 0x1001a10 */
-          else if (pScrVposi.w.h >= 1792) { /* Line 247, Address: 0x1001a18 */
+          else if (pScrVposi->w.h >= 1792) { /* Line 247, Address: 0x1001a18 */
 
             if (yposi < 256) yposi += 2048; /* Line 249, Address: 0x1001a30 */
           }
-          yposi -= pScrVposi.w.h; /* Line 251, Address: 0x1001a50 */
+          yposi -= pScrVposi->w.h; /* Line 251, Address: 0x1001a50 */
           yposi += 128; /* Line 252, Address: 0x1001a60 */
         } /* Line 253, Address: 0x1001a6c */
         else {
@@ -261,7 +261,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
         patno = pActwk->patno; /* Line 261, Address: 0x1001a94 */
         patadr = patbase[patno]; /* Line 262, Address: 0x1001aa0 */
         cnt = patadr->cnt; /* Line 263, Address: 0x1001abc */
-        sprdat = &patadr->spr; /* Line 264, Address: 0x1001acc */
+        sprdat = &patadr->spra[0]; /* Line 264, Address: 0x1001acc */
         if (pActwk->actflg & 32) { /* Line 265, Address: 0x1001ad4 */
           cnt = 1; /* Line 266, Address: 0x1001ae8 */
         }
@@ -271,8 +271,8 @@ void patset() { /* Line 198, Address: 0x1001860 */
         pActwk->actflg |= 128; /* Line 271, Address: 0x1001b20 */
       }
       ++act; /* Line 273, Address: 0x1001b2c */
-    } while (--pbuffer[i].cnt > 0); /* Line 274, Address: 0x1001b38 */
-
+    } /* Line 274, Address: 0x1001b38 */
+    while (--pbuffer[i].cnt > 0);
   } /* Line 276, Address: 0x1001b64 */
 
   for (i = linkdata; i < 80; ++i) { /* Line 278, Address: 0x1001b84 */
@@ -353,7 +353,7 @@ int scronchk(act_info* pActwk) { /* Line 348, Address: 0x10020e0 */
   if (xposi < 0 || xposi >= 320) return -1; /* Line 353, Address: 0x1002114 */
   yposi = pActwk->yposi.w.h; /* Line 354, Address: 0x1002144 */
   yposi -= scra_v_posit.w.h; /* Line 355, Address: 0x1002154 */
-  if (ypos < 0 || yposi >= 224) return -1; /* Line 356, Address: 0x1002168 */
+  if (yposi < 0 || yposi >= 224) return -1; /* Line 356, Address: 0x1002168 */
   return 0; /* Line 357, Address: 0x1002198 */
 } /* Line 358, Address: 0x100219c */
 
