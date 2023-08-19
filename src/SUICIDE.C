@@ -1,9 +1,9 @@
-// Addresses correspond to R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "SUICIDE.H"
+#include "ACTION.H"
+#include "ACTSET.H"
 
-
-
+extern void soundset(short ReqNo);
 
 
 
@@ -37,8 +37,8 @@ short enemy_suicide(act_info* pActwk) { /* Line 35, Address: 0x1013ea0 */
 
   if (generate_flag == 0) /* Line 38, Address: 0x1013eb4 */
     return 0; /* Line 39, Address: 0x1013ec8 */
-  if (time_flag == 1) { /* Line 40, Address: 0x1013ed4 */
-
+  if (time_flag == 1) /* Line 40, Address: 0x1013ed4 */
+  {
     if (pActwk->userflag.b.h == 0) /* Line 42, Address: 0x1013eec */
       return 0; /* Line 43, Address: 0x1013f04 */
   }
@@ -66,8 +66,8 @@ short enemy_suicide(act_info* pActwk) { /* Line 35, Address: 0x1013ea0 */
 short friend_suicide(act_info* pActwk) { /* Line 66, Address: 0x1013fa0 */
   if (pActwk->userflag.b.h < 0) /* Line 67, Address: 0x1013fac */
     return 0; /* Line 68, Address: 0x1013fc4 */
-  if (time_flag < 2) { /* Line 69, Address: 0x1013fd0 */
-
+  if (time_flag < 2) /* Line 69, Address: 0x1013fd0 */
+  {
     if (projector_flag != 0) /* Line 71, Address: 0x1013fe8 */
       return 0; /* Line 72, Address: 0x1013ff8 */
     frameout_s(pActwk); /* Line 73, Address: 0x1014004 */
