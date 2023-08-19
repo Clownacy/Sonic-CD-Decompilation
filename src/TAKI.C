@@ -1,27 +1,26 @@
-// Addresses correspond to R11*.ELF (except R11A.ELF), R12*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "TAKI.H"
+#include "ACTION.H"
+#include "PLAYSUB.H"
+
+extern void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned short yOffs);
 
 char shibukichg0[4] = { 4, 0, 1, -1 };
-unsigned char* shibukichg = { shibukichg0 };
+unsigned char* shibukichg = { (unsigned char*)shibukichg0 };
 spr_array shibuki0 = {
-  .cnt = 1,
-  .spra = {
-    { 160, -16, 0, 448 }
-  }
+  1,
+  { { -96, -16, 0, 448 } }
 };
 spr_array shibuki1 = {
-  .cnt = 1,
-  .spra = {
-    { 160, -16, 0, 449 }
-  }
+  1,
+  { { -96, -16, 0, 449 } }
 };
 spr_array* shibukipat[2] = {
   &shibuki0,
   &shibuki1
 };
-void(*taki_move_tbl)(act_info*)[2] = {
-  &taki_init
+void(*taki_move_tbl[2])(act_info*) = {
+  &taki_init,
   &taki_move
 };
 
@@ -98,9 +97,10 @@ void(*taki_move_tbl)(act_info*)[2] = {
 
 
 
+
 void taki(act_info* pActwk) { /* Line 101, Address: 0x101d6e0 */
   taki_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 102, Address: 0x101d6ec */
-  patchg(pActwk, shibukichg); /* Line 103, Address: 0x101d730 */
+  patchg(pActwk, (unsigned char**)shibukichg); /* Line 103, Address: 0x101d730 */
   actionsub(pActwk); /* Line 104, Address: 0x101d744 */
 } /* Line 105, Address: 0x101d750 */
 
