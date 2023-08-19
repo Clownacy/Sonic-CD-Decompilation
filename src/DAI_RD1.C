@@ -1,29 +1,41 @@
-#include "EQU.C"
+#include "EQU.H"
 #include "DAI_RD1.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DIRCOL.H"
+#include "DUMMY.H"
+#include "ETC.H"
+#include "RIDECHK.H"
+
+extern void soundset(short ReqNo);
 
 spr_array dai11a_pat1 = {
-  .cnt = 1,
-  .spra = { { -16, -16, 0, 488 } }
+  1,
+  { { -16, -16, 0, 488 } }
 };
 spr_array dai11a_pat2 = {
-  .cnt = 1,
-  .spra = { { -32, -16, 0, 489 } }
+  1,
+  { { -32, -16, 0, 489 } }
 };
 spr_array dai11a_pat3 = {
-  .cnt = 1,
-  .spra = { { -48, -16, 0, 490 } }
+  1,
+  { { -48, -16, 0, 490 } }
 };
-spr_array* dai11a_pattbl[3] = { &dai11a_pat1, &dai11a_pat2, &dai11a_pat3 };
-void(*dodai_acttbl)(act_info*)[2] = {
-  &dodai_init
+spr_array* dai11a_pattbl[3] = {
+  &dai11a_pat1,
+  &dai11a_pat2,
+  &dai11a_pat3
+};
+void(*dodai_acttbl[2])(act_info*) = {
+  &dodai_init,
   &dodai_move
 };
-void(*dodai_mtype)(act_info*)[10] = {
+void(*dodai_mtype[10])(act_info*) = {
   &dodai_ud,
   &dodai_lr,
   &dodai_nA,
   &dodai_nB,
-  &dodai_fix,
+  (void(*)(act_info*))&dodai_fix,
   &dodai_fal,
   &dodai_up,
   &dodai_upx,
@@ -31,34 +43,22 @@ void(*dodai_mtype)(act_info*)[10] = {
   &dodai_lm
 };
 spr_array vfuta_pat0 = {
-  .cnt = 1,
-  .spra = { { -4, -24, 0, 524 } }
+  1,
+  { { -4, -24, 0, 524 } }
 };
 spr_array vfuta_pat1 = {
-  .cnt = 1,
-  .spra = { { -4, -24, 0, 525 } }
+  1,
+  { { -4, -24, 0, 525 } }
 };
-spr_array* vfutapat[2] = { &vfuta_pat0, &vfuta_pat1 };
-void(*vfuta_tbl)(act_info*)[3] = {
+spr_array* vfutapat[2] = {
+  &vfuta_pat0,
+  &vfuta_pat1
+};
+void(*vfuta_tbl[3])(act_info*) = {
   &vfuta_init,
   &vfuta_move1,
   &vfuta_move2
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -246,7 +246,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
   dodai_mtype[mtype](pActwk); /* Line 246, Address: 0x10023e0 */
 
   xlen = *(short*)&pActwk->actfree[14] & 65408; /* Line 248, Address: 0x1002404 */
-  xlen -= (scra_h_posit.w.h + -128) & -128 /* Line 249, Address: 0x100241c */
+  xlen -= (scra_h_posit.w.h + -128) & -128; /* Line 249, Address: 0x100241c */
   if (xlen >= 641) { /* Line 250, Address: 0x1002444 */
     ride_on_clr(pActwk, &actwk[0]); /* Line 251, Address: 0x1002454 */
     dai_fout(pActwk); /* Line 252, Address: 0x1002468 */
@@ -257,7 +257,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
 
 void dodai_ud(act_info* pActwk) { /* Line 258, Address: 0x1002490 */
   ++pActwk->actfree[0]; /* Line 259, Address: 0x100249c */
-  pActfree->yposi.w.h = *(short*)pActwk->actfree[16] + dodai_sub(pActwk); /* Line 260, Address: 0x10024ac */
+  pActwk->yposi.w.h = *(short*)&pActwk->actfree[16] + dodai_sub(pActwk); /* Line 260, Address: 0x10024ac */
 
   ridechk(pActwk, &actwk[0]); /* Line 262, Address: 0x10024e4 */
 } /* Line 263, Address: 0x10024f8 */
@@ -281,7 +281,7 @@ void dodai_lr(act_info* pActwk) { /* Line 267, Address: 0x1002510 */
 
 
 unsigned char dodai_ride1(act_info* pActwk, int xpos) { /* Line 283, Address: 0x10025e0 */
-  pActwk->xspeed.w = (pActwk->xposi - xpos) >> 8; /* Line 284, Address: 0x10025f0 */
+  pActwk->xspeed.w = (pActwk->xposi.l - xpos) >> 8; /* Line 284, Address: 0x10025f0 */
   dodai_ride2(pActwk); /* Line 285, Address: 0x1002614 */
 } /* Line 286, Address: 0x1002620 */
 
@@ -360,7 +360,7 @@ void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
 
 
   ridechk(pActwk, &actwk[0]); /* Line 362, Address: 0x1002930 */
-  pActwk->yposi.l += pActwk->yspeed << 8; /* Line 363, Address: 0x1002944 */
+  pActwk->yposi.l += pActwk->yspeed.w << 8; /* Line 363, Address: 0x1002944 */
 
   if (pActwk->yspeed.w < 1024) { /* Line 365, Address: 0x1002968 */
     pActwk->yspeed.w += 64; /* Line 366, Address: 0x1002984 */
@@ -424,7 +424,7 @@ void dodai_upx(act_info* pActwk) { /* Line 408, Address: 0x1002b20 */
       }
 
       speedset2(pActwk); /* Line 426, Address: 0x1002bc8 */
-      pActwk->yspeed -= 8; /* Line 427, Address: 0x1002bd4 */
+      pActwk->yspeed.w -= 8; /* Line 427, Address: 0x1002bd4 */
 
       if ((coli = emycol_u(pActwk)) >= 0) { /* Line 429, Address: 0x1002be4 */
         dodai_ride2(pActwk); /* Line 430, Address: 0x1002c10 */
@@ -690,4 +690,3 @@ void vfuta_move2(act_info* pActwk) { /* Line 681, Address: 0x1003370 */
     pActwk->patno = 0; /* Line 690, Address: 0x10033d0 */
   }
 } /* Line 692, Address: 0x10033d8 */
-
