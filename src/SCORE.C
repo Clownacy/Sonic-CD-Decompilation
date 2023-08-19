@@ -1,49 +1,60 @@
-// Addresses correspond to R4*.ELF (except R42B.ELF), R5*.ELF, R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "SCORE.H"
+#include "ACTION.H"
+
+extern void sub_sync(short ReqNo);
+extern short playdieset(act_info* pActwk);
 
 unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
 unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
 spr_array tenpat0 = {
-  .cnt = 2,
-  .spra = {
-    { -8, 0, 0, 334 },
-    { 0, 0, 0, 337 }
+  2,
+  {
+    {
+      { -8, 0, 0, 334 },
+      { 0, 0, 0, 337 }
+    }
   }
 };
 spr_array tenpat1 = {
-  .cnt = 2,
-  .spra = {
-    { -8, 0, 0, 335 },
-    { 0, 0, 0, 337 }
+  2,
+  {
+    {
+      { -8, 0, 0, 335 },
+      { 0, 0, 0, 337 }
+    }
   }
 };
 spr_array tenpat2 = {
-  .cnt = 2,
-  .spra = {
-    { -8, 0, 0, 336 },
-    { 0, 0, 0, 337 }
+  2,
+  {
+    {
+      { -8, 0, 0, 336 },
+      { 0, 0, 0, 337 }
+    }
   }
 };
 spr_array tenpat3 = {
-  .cnt = 2,
-  .spra = {
-    { -8, 0, 0, 338 },
-    { 0, 0, 0, 337 }
+  2,
+  {
+    {
+      { -8, 0, 0, 338 },
+      { 0, 0, 0, 337 }
+    }
   }
 };
 spr_array tenpat4 = {
-  .cnt = 1,
-  .spra = {
-    { -4, 0, 0, 338 }
-  }
+  1,
+  { { -4, 0, 0, 338 } }
 };
 spr_array tenpat5 = {
-  .cnt = 3,
-  .spra = {
-    { -12, 0, 0, 334 },
-    { -4, 0, 0, 337 },
-    { 4, 0, 0, 337 }
+  3,
+  {
+    {
+      { -12, 0, 0, 334 },
+      { -4, 0, 0, 337 },
+      { 4, 0, 0, 337 }
+    }
   }
 };
 spr_array* tenpat[6] = {
@@ -55,62 +66,66 @@ spr_array* tenpat[6] = {
   &tenpat5
 };
 spr_array scorepat0 = {
-  .cnt = 19,
-  .spra = {
-    { 0, 0, 0, 339 },
-    { 40, 0, 0, 0 },
-    { 48, 0, 0, 0 },
-    { 56, 0, 0, 0 },
-    { 64, 0, 0, 0 },
-    { 72, 0, 0, 0 },
-    { 80, 0, 0, 0 },
-    { 88, 0, 0, 318 },
-    { 0, 16, 0, 340 },
-    { 40, 16, 0, 318 },
-    { 48, 16, 0, 341 },
-    { 56, 16, 0, 318 },
-    { 64, 16, 0, 318 },
-    { 72, 16, 0, 342 },
-    { 80, 16, 0, 318 },
-    { 88, 16, 0, 318 },
-    { 48, 32, 0, 0 },
-    { 56, 32, 0, 0 },
-    { 64, 32, 0, 318 }
+  19,
+  {
+    {
+      { 0, 0, 0, 339 },
+      { 40, 0, 0, 0 },
+      { 48, 0, 0, 0 },
+      { 56, 0, 0, 0 },
+      { 64, 0, 0, 0 },
+      { 72, 0, 0, 0 },
+      { 80, 0, 0, 0 },
+      { 88, 0, 0, 318 },
+      { 0, 16, 0, 340 },
+      { 40, 16, 0, 318 },
+      { 48, 16, 0, 341 },
+      { 56, 16, 0, 318 },
+      { 64, 16, 0, 318 },
+      { 72, 16, 0, 342 },
+      { 80, 16, 0, 318 },
+      { 88, 16, 0, 318 },
+      { 48, 32, 0, 0 },
+      { 56, 32, 0, 0 },
+      { 64, 32, 0, 318 }
+    }
   }
 };
 spr_array scorepat1 = {
-  .cnt = 3,
-  .spra = {
-    { 0, 0, 0, 347 },
-    { 16, 8, 0, 343 },
-    { 24, 4, 0, 318 }
+  3,
+  {
+    {
+      { 0, 0, 0, 347 },
+      { 16, 8, 0, 343 },
+      { 24, 4, 0, 318 }
+    }
   }
 };
 spr_array scorepat2 = {
-  .cnt = 15,
-  .spra = {
-    { 0, 0, 0, 339 },
-    { 40, 0, 0, 0 },
-    { 48, 0, 0, 0 },
-    { 56, 0, 0, 0 },
-    { 64, 0, 0, 0 },
-    { 72, 0, 0, 0 },
-    { 80, 0, 0, 318 },
-    { 0, 16, 0, 340 },
-    { 56, 16, 0, 0 },
-    { 64, 16, 0, 0 },
-    { 72, 16, 0, 0 },
-    { 80, 16, 0, 318 },
-    { 48, 32, 0, 0 },
-    { 56, 32, 0, 0 },
-    { 64, 32, 0, 318 }
+  15,
+  {
+    {
+      { 0, 0, 0, 339 },
+      { 40, 0, 0, 0 },
+      { 48, 0, 0, 0 },
+      { 56, 0, 0, 0 },
+      { 64, 0, 0, 0 },
+      { 72, 0, 0, 0 },
+      { 80, 0, 0, 318 },
+      { 0, 16, 0, 340 },
+      { 56, 16, 0, 0 },
+      { 64, 16, 0, 0 },
+      { 72, 16, 0, 0 },
+      { 80, 16, 0, 318 },
+      { 48, 32, 0, 0 },
+      { 56, 32, 0, 0 },
+      { 64, 32, 0, 318 }
+    }
   }
 };
 spr_array scorepat3 = {
-  .cnt = 1,
-  .spra = {
-    { 0, 32, 0, 344 }
-  }
+  1,
+  { { 0, 32, 0, 344 } }
 };
 spr_array* scorepat[4] = {
   &scorepat0,
@@ -118,74 +133,59 @@ spr_array* scorepat[4] = {
   &scorepat2,
   &scorepat3
 };
+extern void(*WaveAllStop)();
 spr_array bonuspat = {
-  .cnt = 18,
-  .spra = {
-    { -44, -32, 0, 391 },
-    { 72, -32, 0, 0 },
-    { 80, -32, 0, 0 },
-    { 88, -32, 0, 0 },
-    { 96, -32, 0, 0 },
-    { 104, -32, 0, 0 },
-    { 112, -32, 0, 0 },
-    { 120, -32, 0, 0 },
-    { 88, -8, 0, 0 },
-    { 96, -8, 0, 0 },
-    { 104, -8, 0, 0 },
-    { 112, -8, 0, 0 },
-    { 120, -8, 0, 0 },
-    { 88, 16, 0, 0 },
-    { 96, 16, 0, 0 },
-    { 104, 16, 0, 0 },
-    { 112, 16, 0, 0 },
-    { 120, 16, 0, 0 }
+  18,
+  {
+    {
+      { -44, -32, 0, 391 },
+      { 72, -32, 0, 0 },
+      { 80, -32, 0, 0 },
+      { 88, -32, 0, 0 },
+      { 96, -32, 0, 0 },
+      { 104, -32, 0, 0 },
+      { 112, -32, 0, 0 },
+      { 120, -32, 0, 0 },
+      { 88, -8, 0, 0 },
+      { 96, -8, 0, 0 },
+      { 104, -8, 0, 0 },
+      { 112, -8, 0, 0 },
+      { 120, -8, 0, 0 },
+      { 88, 16, 0, 0 },
+      { 96, 16, 0, 0 },
+      { 104, 16, 0, 0 },
+      { 112, 16, 0, 0 },
+      { 120, 16, 0, 0 }
+    }
   }
 };
 spr_array bonuspat0 = {
-  .cnt = 18,
-  .spra = {
-    { -44, -32, 0, 392 },
-    { 72, -32, 0, 0 },
-    { 80, -32, 0, 0 },
-    { 88, -32, 0, 0 },
-    { 96, -32, 0, 0 },
-    { 104, -32, 0, 0 },
-    { 112, -32, 0, 0 },
-    { 120, -32, 0, 0 },
-    { 88, -8, 0, 0 },
-    { 96, -8, 0, 0 },
-    { 104, -8, 0, 0 },
-    { 112, -8, 0, 0 },
-    { 120, -8, 0, 0 },
-    { 88, 16, 0, 0 },
-    { 96, 16, 0, 0 },
-    { 104, 16, 0, 0 },
-    { 112, 16, 0, 0 },
-    { 120, 16, 0, 0 }
+  18,
+  {
+    {
+      { -44, -32, 0, 392 },
+      { 72, -32, 0, 0 },
+      { 80, -32, 0, 0 },
+      { 88, -32, 0, 0 },
+      { 96, -32, 0, 0 },
+      { 104, -32, 0, 0 },
+      { 112, -32, 0, 0 },
+      { 120, -32, 0, 0 },
+      { 88, -8, 0, 0 },
+      { 96, -8, 0, 0 },
+      { 104, -8, 0, 0 },
+      { 112, -8, 0, 0 },
+      { 120, -8, 0, 0 },
+      { 88, 16, 0, 0 },
+      { 96, 16, 0, 0 },
+      { 104, 16, 0, 0 },
+      { 112, 16, 0, 0 },
+      { 120, 16, 0, 0 }
+    }
   }
 };
-unsigned char scoreinittbl[7] = { -1, -1, -1, -1, -1, -1, 0 };
-unsigned char ringinittbl[3] = { -1, -1, 0 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+unsigned char scoreinittbl[7] = { 255, 255, 255, 255, 255, 255, 0 };
+unsigned char ringinittbl[3] = { 255, 255, 0 };
 
 
 
@@ -329,7 +329,7 @@ void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
     tensuu(pAct); /* Line 329, Address: 0x10051f8 */
     return; /* Line 330, Address: 0x1005204 */
   }
-  if (pAct->r_no0 == 0) score_init(pAct) /* Line 332, Address: 0x100520c */
+  if (pAct->r_no0 == 0) score_init(pAct); /* Line 332, Address: 0x100520c */
   else score_move(pAct); /* Line 333, Address: 0x1005228 */
 
 } /* Line 335, Address: 0x1005234 */
@@ -382,7 +382,7 @@ void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
 
         if ((systemtimer.b.b4 % 16) == 0) { /* Line 383, Address: 0x10053cc */
           if (scorepat3.spra[0].index == 344) /* Line 384, Address: 0x10053e8 */
-            scorepat3.spra[0].index = 345 /* Line 385, Address: 0x1005400 */
+            scorepat3.spra[0].index = 345; /* Line 385, Address: 0x1005400 */
           else
             scorepat3.spra[0].index = 344; /* Line 387, Address: 0x1005414 */
         }
@@ -438,7 +438,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     posiwrt(); /* Line 438, Address: 0x1005578 */
 
     pSprdat = &scorepat2.spra[12]; /* Line 440, Address: 0x1005580 */
-    timewrt0(pSprdat, blkno % 2048, subtbl[3], 2); /* Line 441, Address: 0x1005588 */
+    timewrt0(pSprdat, blkno % 2048, &subtbl[3], 2); /* Line 441, Address: 0x1005588 */
   } /* Line 442, Address: 0x10055b4 */
   else {
 
@@ -479,7 +479,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
       }
       return; /* Line 480, Address: 0x1005720 */
     }
-    if (pltime.l != (9 | 15163) { /* Line 482, Address: 0x1005728 */
+    if (pltime.l != (9 | 15163)) { /* Line 482, Address: 0x1005728 */
       if (plautoflag == 0) { /* Line 483, Address: 0x1005740 */
 
         ++pltime.b.b4; /* Line 485, Address: 0x1005750 */
@@ -521,12 +521,12 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
 
   if (bonus_f != 0) { /* Line 522, Address: 0x10058f0 */
     bonus_f = 0; /* Line 523, Address: 0x1005900 */
-    if (stageno.w == 1282) pSprpat = bonuspat0 /* Line 524, Address: 0x1005908 */
-    else pSprpat = bonuspat; /* Line 525, Address: 0x1005934 */
-    bonuswrt(&pSprpat.spra[8], ringbonus); /* Line 526, Address: 0x100593c */
-    bonuswrt(&pSprpat.spra[13], timebonus); /* Line 527, Address: 0x1005958 */
-    scorewrt(&pSprpat.spra[1], plscore); /* Line 528, Address: 0x1005974 */
-    pSprpat.spra[7].index = 318; /* Line 529, Address: 0x1005988 */
+    if (stageno.w == 1282) pSprpat = &bonuspat0; /* Line 524, Address: 0x1005908 */
+    else pSprpat = &bonuspat; /* Line 525, Address: 0x1005934 */
+    bonuswrt(&pSprpat->spra[8], ringbonus); /* Line 526, Address: 0x100593c */
+    bonuswrt(&pSprpat->spra[13], timebonus); /* Line 527, Address: 0x1005958 */
+    scorewrt(&pSprpat->spra[1], plscore); /* Line 528, Address: 0x1005974 */
+    pSprpat->spra[7].index = 318; /* Line 529, Address: 0x1005988 */
   }
 
 
@@ -579,18 +579,18 @@ void posiwrt() { /* Line 565, Address: 0x1005a00 */
 
 
 void bonuswrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 581, Address: 0x1005a70 */
-  scorewrt2(pSprdat, lDispVal, subtbl[1], 4, 1); /* Line 582, Address: 0x1005a80 */
+  scorewrt2(pSprdat, lDispVal, &subtbl[1], 4, 1); /* Line 582, Address: 0x1005a80 */
 
 } /* Line 584, Address: 0x1005aa0 */
 
 void ringwrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 586, Address: 0x1005ab0 */
-  scorewrt2(pSprdat, lDispVal, subtbl[3], 2, 1); /* Line 587, Address: 0x1005ac0 */
+  scorewrt2(pSprdat, lDispVal, &subtbl[3], 2, 1); /* Line 587, Address: 0x1005ac0 */
 
 } /* Line 589, Address: 0x1005ae0 */
 
 
 void scorewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 592, Address: 0x1005af0 */
-  scorewrt2(pSprdat, lDispVal, subtbl[0], 5, 0); /* Line 593, Address: 0x1005b00 */
+  scorewrt2(pSprdat, lDispVal, &subtbl[0], 5, 0); /* Line 593, Address: 0x1005b00 */
 
 } /* Line 595, Address: 0x1005b20 */
 
@@ -599,8 +599,8 @@ void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, s
   int wrt = 0; /* Line 599, Address: 0x1005b50 */
 
   do {
-    lDisp1 = lDispVal / subval; /* Line 602, Address: 0x1005b54 */
-    lDispVal -= lDisp1 * subval; /* Line 603, Address: 0x1005b74 */
+    lDisp1 = lDispVal / *subval; /* Line 602, Address: 0x1005b54 */
+    lDispVal -= lDisp1 * *subval; /* Line 603, Address: 0x1005b74 */
     ++subval; /* Line 604, Address: 0x1005b8c */
     if (lDisp1 != 0) { /* Line 605, Address: 0x1005b98 */
       wrt = 1; /* Line 606, Address: 0x1005ba0 */
@@ -622,7 +622,7 @@ void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, s
 
 
 void posiwrt0(spr_info* pSprdat, unsigned int lDispVal) { /* Line 624, Address: 0x1005c40 */
-  timewrt0(pSprdat, lDispVal, subtblh4[0], 3); /* Line 625, Address: 0x1005c50 */
+  timewrt0(pSprdat, lDispVal, &subtblh4[0], 3); /* Line 625, Address: 0x1005c50 */
 
 } /* Line 627, Address: 0x1005c6c */
 
@@ -635,19 +635,19 @@ void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
   else
     lDispVal = pl_suu; /* Line 636, Address: 0x1005cb4 */
 
-  timewrt0(pSprdat, lDispVal, subtbl[5], 0); /* Line 638, Address: 0x1005cc0 */
+  timewrt0(pSprdat, lDispVal, &subtbl[5], 0); /* Line 638, Address: 0x1005cc0 */
 
 } /* Line 640, Address: 0x1005cdc */
 
 
 
 void timewrt1(spr_info* pSprdat, unsigned int lDispVal) { /* Line 644, Address: 0x1005cf0 */
-  timewrt0(pSprdat, lDispVal, subtbl[5], 0); /* Line 645, Address: 0x1005d00 */
+  timewrt0(pSprdat, lDispVal, &subtbl[5], 0); /* Line 645, Address: 0x1005d00 */
 
 } /* Line 647, Address: 0x1005d1c */
 
 void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0x1005d30 */
-  timewrt0(pSprdat, lDispVal, subtbl[4], 1); /* Line 650, Address: 0x1005d40 */
+  timewrt0(pSprdat, lDispVal, &subtbl[4], 1); /* Line 650, Address: 0x1005d40 */
 
 } /* Line 652, Address: 0x1005d5c */
 
