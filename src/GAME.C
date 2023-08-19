@@ -1,28 +1,28 @@
-// Addresses correspond to R8*.ELF
-#include "EQU.C"
-#include "BMP.C"
+#include "EQU.H"
 #include "GAME.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "FCOL.H"
+#include "IO.H"
+#include "LOADER2.H"
+#include "SCORE.H"
 
-typedef struct dlink_export;
-
-struct dlink_export
-{
-  void(*game_init)();
-  void(*game)();
-  void(*dll_meminit)(char***, void**);
-  void(*dll_memfree)();
-  void(*SWdataSet)(short, short);
-  int(*Get_vscroll)();
-  int(*Get_scra_h_posiw)();
-  int(*Get_scrb_h_posiw)();
-  int(*FadeProc)();
-  void(*SetDebugFlag)(unsigned int);
-  void(*GetRoundStr)(unsigned short, unsigned char, char*);
-  void(*Special_block_chg)(unsigned short*, unsigned short*, unsigned short*, unsigned short*);
-};
+extern void sub_sync(short ReqNo);
+extern void scroll();
+extern void clchgctr();
+extern void scrollwrt();
+extern void cg_change();
+extern void colorset2(int ColorNo);
+extern void colorset(int ColorNo);
+extern void scr_set();
+extern void mapinit();
+extern void mapwrt();
+extern void flashin();
+extern void fadein0();
 
 short Interupt_Counter;
 unsigned int PauseIcon;
+extern bmp_info SprBmp[700];
 void(*sMemCpy)(void*, void*, int);
 unsigned int* lpghWnd;
 void(*sCloseFile)(int);
@@ -40,7 +40,7 @@ void(*WaveRequest)(short);
 void(*ClrSpriteDebug)();
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
-unsigned char zone1scd[0];
+extern unsigned char zone1scd[0];
 dlink_export ExportedFunctions;
 int(*sGetFileSize)(int);
 
@@ -195,32 +195,32 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
 
 
-  SetGrid = pFuncTbl++; /* Line 198, Address: 0x1017a20 */
-  EAsprset = pFuncTbl++; /* Line 199, Address: 0x1017a38 */
-  ClrSpriteDebug = pFuncTbl++; /* Line 200, Address: 0x1017a50 */
-  WaveRequest = pFuncTbl++; /* Line 201, Address: 0x1017a68 */
-  CDPlay = pFuncTbl++; /* Line 202, Address: 0x1017a80 */
-  CDPause = pFuncTbl++; /* Line 203, Address: 0x1017a98 */
-  ChangeTileBmp = pFuncTbl++; /* Line 204, Address: 0x1017ab0 */
+  SetGrid = (int(*)(int, int, int, int))pFuncTbl++; /* Line 198, Address: 0x1017a20 */
+  EAsprset = (void(*)(short, short, unsigned short, unsigned short, unsigned short))pFuncTbl++; /* Line 199, Address: 0x1017a38 */
+  ClrSpriteDebug = (void(*)())pFuncTbl++; /* Line 200, Address: 0x1017a50 */
+  WaveRequest = (void(*)(short))pFuncTbl++; /* Line 201, Address: 0x1017a68 */
+  CDPlay = (void(*)(short))pFuncTbl++; /* Line 202, Address: 0x1017a80 */
+  CDPause = (void(*)(short))pFuncTbl++; /* Line 203, Address: 0x1017a98 */
+  ChangeTileBmp = (void(*)(int, int))pFuncTbl++; /* Line 204, Address: 0x1017ab0 */
   ++pFuncTbl; /* Line 205, Address: 0x1017ac8 */
   ++pFuncTbl; /* Line 206, Address: 0x1017ad4 */
   ++pFuncTbl; /* Line 207, Address: 0x1017ae0 */
-  WaveAllStop = pFuncTbl++; /* Line 208, Address: 0x1017aec */
+  WaveAllStop = (void(*)())pFuncTbl++; /* Line 208, Address: 0x1017aec */
 
   ++pFuncTbl; /* Line 210, Address: 0x1017b04 */
   ++pFuncTbl; /* Line 211, Address: 0x1017b10 */
-  sMemSet = pFuncTbl++; /* Line 212, Address: 0x1017b1c */
-  sMemCpy = pFuncTbl++; /* Line 213, Address: 0x1017b34 */
+  sMemSet = (void(*)(void*, unsigned char, int))pFuncTbl++; /* Line 212, Address: 0x1017b1c */
+  sMemCpy = (void(*)(void*, void*, int))pFuncTbl++; /* Line 213, Address: 0x1017b34 */
   ++pFuncTbl; /* Line 214, Address: 0x1017b4c */
-  sRandom = pFuncTbl++; /* Line 215, Address: 0x1017b58 */
+  sRandom = (int(*)())pFuncTbl++; /* Line 215, Address: 0x1017b58 */
   ++pFuncTbl; /* Line 216, Address: 0x1017b70 */
   ++pFuncTbl; /* Line 217, Address: 0x1017b7c */
   ++pFuncTbl; /* Line 218, Address: 0x1017b88 */
-  sPrintf = pFuncTbl++; /* Line 219, Address: 0x1017b94 */
-  sOutputDebugString = pFuncTbl++; /* Line 220, Address: 0x1017bac */
-  sOpenFile = pFuncTbl++; /* Line 221, Address: 0x1017bc4 */
-  sReadFile = pFuncTbl++; /* Line 222, Address: 0x1017bdc */
-  sCloseFile = pFuncTbl++; /* Line 223, Address: 0x1017bf4 */
+  sPrintf = (void(*)(char*, char*))pFuncTbl++; /* Line 219, Address: 0x1017b94 */
+  sOutputDebugString = (void(*)(char*))pFuncTbl++; /* Line 220, Address: 0x1017bac */
+  sOpenFile = (int(*)(char*))pFuncTbl++; /* Line 221, Address: 0x1017bc4 */
+  sReadFile = (int(*)(int, void*, int))pFuncTbl++; /* Line 222, Address: 0x1017bdc */
+  sCloseFile = (void(*)(int))pFuncTbl++; /* Line 223, Address: 0x1017bf4 */
   ++pFuncTbl; /* Line 224, Address: 0x1017c0c */
 
 
@@ -307,13 +307,13 @@ int Get_scra_h_posiw() {
 } /* Line 307, Address: 0x1017ef8 */
 
 int Get_scrb_h_posiw() {
-  return scrb_h_posiw; /* Line 310, Address: 0x1017f00 */
+  return scrb_h_posiw.l; /* Line 310, Address: 0x1017f00 */
 } /* Line 311, Address: 0x1017f08 */
 
 
 void SetDebugFlag(unsigned int NewVal) { /* Line 314, Address: 0x1017f10 */
-  if (NewVal == 1) debugflag |= 256 /* Line 315, Address: 0x1017f18 */
-  else debugflag &= -257; /* Line 316, Address: 0x1017f44 */
+  if (NewVal == 1) debugflag.w |= 256; /* Line 315, Address: 0x1017f18 */
+  else debugflag.w &= -257; /* Line 316, Address: 0x1017f44 */
 
 } /* Line 318, Address: 0x1017f5c */
 
@@ -436,7 +436,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
 
 
   patset(); /* Line 438, Address: 0x101847c */
-  if (time_stop.w == 0) { /* Line 439, Address: 0x1018484 */
+  if (time_stop == 0) { /* Line 439, Address: 0x1018484 */
     clchgctr(); /* Line 440, Address: 0x1018494 */
   }
 
@@ -779,7 +779,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
 void play_act_set() {
   actwk[0].actno = 1; /* Line 780, Address: 0x1019000 */
   if (plflag != 0) { /* Line 781, Address: 0x101900c */
-    *(short*)actwk[0].actfree[6] = 120; /* Line 782, Address: 0x101901c */
+    *(short*)&actwk[0].actfree[6] = 120; /* Line 782, Address: 0x101901c */
   }
 } /* Line 784, Address: 0x1019028 */
 
@@ -797,8 +797,8 @@ void flow_act_set() { /* Line 787, Address: 0x1019030 */
     do {
       pAct->actno = 31; /* Line 798, Address: 0x1019080 */
 
-      pAct->xposi.w.h = flowerposi[i + (time * 64)]; /* Line 800, Address: 0x1019088 */
-      pAct->yposi.w.h = flowerposi[i + (time * 64)]; /* Line 801, Address: 0x10190a8 */
+      pAct->xposi.w.h = flowerposi[i + (time * 64)].w.h; /* Line 800, Address: 0x1019088 */
+      pAct->yposi.w.h = flowerposi[i + (time * 64)].w.l; /* Line 801, Address: 0x10190a8 */
       --fcnt; /* Line 802, Address: 0x10190c8 */
       ++pAct; /* Line 803, Address: 0x10190cc */
       ++i; /* Line 804, Address: 0x10190d0 */
@@ -909,15 +909,15 @@ void sdfdin() { /* Line 888, Address: 0x10193f0 */
 
 void da_set() { /* Line 910, Address: 0x1019490 */
   unsigned short wD0;
-  static unsigned char da_tbl[4][7] = {
-    48, 15, 17, 16, 49, 18, 20,
-    19, 50, 21, 23, 22, 51, 24,
-    26, 25, 52, 27, 29, 28, 53,
-    30, 32, 31, 54, 33, 102, 34
+  static unsigned char da_tbl[7][4] = {
+    { 48, 15, 17, 16 },
+    { 49, 18, 20, 19 },
+    { 50, 21, 23, 22 },
+    { 51, 24, 26, 25 },
+    { 52, 27, 29, 28 },
+    { 53, 30, 32, 31 },
+    { 54, 33, 102, 34 }
   };
-
-
-
 
   wD0 = time_flag % 128; /* Line 922, Address: 0x101949c */
   if (ta_flag == 0) { /* Line 923, Address: 0x10194b4 */
@@ -926,7 +926,7 @@ void da_set() { /* Line 910, Address: 0x1019490 */
     }
   }
 
-  sub_sync(da_tbl[wD0 + (stageno.b.h * 4)]); /* Line 929, Address: 0x10194e8 */
+  sub_sync(da_tbl[stageno.b.h][wD0]); /* Line 929, Address: 0x10194e8 */
 
 
 } /* Line 932, Address: 0x1019528 */
