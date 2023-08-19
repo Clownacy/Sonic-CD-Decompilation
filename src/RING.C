@@ -1,54 +1,45 @@
-// Addresses correspond to R4*.ELF (except R42B.ELF), R5*.ELF, R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "RING.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DIRCOL.H"
+#include "ETC.H"
+#include "PLAYSUB.H"
+
+extern void soundset(short ReqNo);
+extern void sub_sync(short ReqNo);
 
 spr_array ringsp0 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 310 }
-  }
+  1,
+  { { -8, -8, 0, 310 } }
 };
 spr_array ringsp1 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 311 }
-  }
+  1,
+  { { -8, -8, 0, 311 } }
 };
 spr_array ringsp2 = {
-  .cnt = 1,
-  .spra = {
-    { -4, -8, 0, 312 }
-  }
+  1,
+  { { -4, -8, 0, 312 } }
 };
 spr_array ringsp3 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 313 }
-  }
+  1,
+  { { -8, -8, 0, 313 } }
 };
 spr_array ringsp4 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 314 }
-  }
+  1,
+  { { -8, -8, 0, 314 } }
 };
 spr_array ringsp5 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 315 }
-  }
+  1,
+  { { -8, -8, 0, 315 } }
 };
 spr_array ringsp6 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 316 }
-  }
+  1,
+  { { -8, -8, 0, 316 } }
 };
 spr_array ringsp7 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 317 }
-  }
+  1,
+  { { -8, -8, 0, 317 } }
 };
 spr_array ringsp8;
 spr_array* ringpat[9] = {
@@ -62,9 +53,9 @@ spr_array* ringpat[9] = {
   &ringsp7,
   &ringsp8
 };
-unsigned char ringchg0[6] = { 5, 4, 5, 6, 7, -4 };
-unsigned char ringchg1[6] = { 7, 0, 1, 2, 3, -1 };
-unsigned char ringchg2[6] = { 7, 0, 1, 2, 3, -1 };
+unsigned char ringchg0[6] = { 5, 4, 5, 6, 7, 252 };
+unsigned char ringchg1[6] = { 7, 0, 1, 2, 3, 255 };
+unsigned char ringchg2[6] = { 7, 0, 1, 2, 3, 255 };
 unsigned char* ringchg[3] = {
   ringchg0,
   ringchg1,
@@ -129,8 +120,17 @@ unsigned char* ringchg[3] = {
 
 
 
+
+
+
+
+
+
+
+
+
 void ring(act_info* pActwk) { /* Line 132, Address: 0x10062a0 */
-  void(*ring_move_tbl)(act_info*)[5] = { /* Line 133, Address: 0x10062ac */
+  void(*ring_move_tbl[5])(act_info*) = { /* Line 133, Address: 0x10062ac */
     &ringinit,
     &ringmove,
     &ringget,
@@ -138,7 +138,7 @@ void ring(act_info* pActwk) { /* Line 132, Address: 0x10062a0 */
     &ringerase
   };
 
-  ring_move_tbl[pActwk->r_no0 / 2)](pActwk); /* Line 141, Address: 0x10062d8 */
+  ring_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 141, Address: 0x10062d8 */
 } /* Line 142, Address: 0x1006314 */
 
 
@@ -147,29 +147,29 @@ void ring(act_info* pActwk) { /* Line 132, Address: 0x10062a0 */
 
 void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
   char ringtbl[32] = { /* Line 149, Address: 0x1006360 */
-     16,   0,  24,   0,
-     32,   0,   0,  16,
-      0,  24,   0,  32,
-     16,  16,  24,  24,
-     32,  32, 240,  16,
-    232,  24, 224,  32,
-     16,   8,  24,  16,
-    240,   8, 232,  16
+     16,   0,
+     24,   0,
+     32,   0,
+      0,  16,
+      0,  24,
+      0,  32,
+     16,  16,
+     24,  24,
+     32,  32,
+    -16,  16,
+    -24,  24,
+    -32,  32,
+     16,   8,
+     24,  16,
+    -16,   8,
+    -24,  16
   };
   int fw_index;
   int i;
   char ring_counter;
-  short d0;
-  short d1;
-  short d2;
-  short d3;
-  short d5;
-  short d6;
+  short d0, d1, d2, d3, d5, d6;
   char d4;
   act_info* new_actwk;
-
-
-
 
   d1 = time_flag % 128; /* Line 174, Address: 0x1006394 */
   if ((d0 = time_flag) & 128) { /* Line 175, Address: 0x10063b4 */
@@ -257,7 +257,7 @@ label3:
   i = fw_index + 1; /* Line 257, Address: 0x1006994 */
   do {
     if (flagwork[--i] & 1) { /* Line 259, Address: 0x1006998 */
-      d1 = frameout(pActwk); /* Line 260, Address: 0x10069c0 */
+      frameout(pActwk); /* Line 260, Address: 0x10069c0 */
       return; /* Line 261, Address: 0x10069d0 */
     }
   } while (--d0 != -1); /* Line 263, Address: 0x10069d8 */
@@ -322,13 +322,13 @@ void ringgetsub() { /* Line 318, Address: 0x1006cc0 */
     if (plring_f2 & 2) { /* Line 322, Address: 0x1006d0c */
       if (plring >= 200) { /* Line 323, Address: 0x1006d24 */
         soundset(149); /* Line 324, Address: 0x1006d40 */
-      } /* Line 325, Address: 0x1006d4c */
-      else {
-        if (plring_f2 & 4) /* Line 327, Address: 0x1006d54 */
-          soundset(149); /* Line 328, Address: 0x1006d6c */
-      } /* Line 329, Address: 0x1006d78 */
-      else
-        plring_f2 |= 4; /* Line 331, Address: 0x1006d80 */
+        return; /* Line 325, Address: 0x1006d4c */
+      }
+      if (plring_f2 & 4) { /* Line 327, Address: 0x1006d54 */
+        soundset(149); /* Line 328, Address: 0x1006d6c */
+        return; /* Line 329, Address: 0x1006d78 */
+      }
+      plring_f2 |= 4; /* Line 331, Address: 0x1006d80 */
     }
     plring_f2 |= 2; /* Line 333, Address: 0x1006d94 */
     ++pl_suu; /* Line 334, Address: 0x1006da8 */
@@ -366,7 +366,7 @@ void ringerase(act_info* pActwk) { /* Line 357, Address: 0x1006e40 */
 
 
 void flyring(act_info* pActwk) { /* Line 368, Address: 0x1006e70 */
-  void(*flyring_move_tbl)(act_info*)[5] = { /* Line 369, Address: 0x1006e7c */
+  void(*flyring_move_tbl[5])(act_info*) = { /* Line 369, Address: 0x1006e7c */
     &flyringinit,
     &flyringmove,
     &flyringget,
@@ -374,7 +374,7 @@ void flyring(act_info* pActwk) { /* Line 368, Address: 0x1006e70 */
     &flyringerase
   };
 
-  flrying_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 377, Address: 0x1006ea8 */
+  flyring_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 377, Address: 0x1006ea8 */
 } /* Line 378, Address: 0x1006ee4 */
 
 
@@ -391,47 +391,47 @@ void flyringinit(act_info* pActwk) { /* Line 384, Address: 0x1006f00 */
   if ((d5 = plring) >= 33) d5 = 32; /* Line 391, Address: 0x1006f20 */
   --d5; /* Line 392, Address: 0x1006f50 */
   d4.w = 648; /* Line 393, Address: 0x1006f5c */
-  goto label2; /* Line 394, Address: 0x1006f64 */
+  goto label1; /* Line 394, Address: 0x1006f64 */
 
+  do {
+    if (actwkchk(&new_actwk) != 0) break; /* Line 397, Address: 0x1006f6c */
 label1:
-  if (actwkchk(&new_actwk) != 0) break; /* Line 397, Address: 0x1006f6c */
-label2:
-  new_actwk->actno = 17; /* Line 399, Address: 0x1006f80 */
-  new_actwk->r_no0 += 2; /* Line 400, Address: 0x1006f8c */
-  new_actwk->sprvsize = 8; /* Line 401, Address: 0x1006f9c */
-  new_actwk->sprhs = 8; /* Line 402, Address: 0x1006fa8 */
-  new_actwk->xposi.w.h = pActwk->xposi.w.h; /* Line 403, Address: 0x1006fb4 */
-  new_actwk->yposi.w.h = pActwk->yposi.w.h; /* Line 404, Address: 0x1006fc4 */
-  new_actwk->patbase = ringpat; /* Line 405, Address: 0x1006fd4 */
-  new_actwk->userflag.b.l = pActwk->userflag.b.l; /* Line 406, Address: 0x1006fe4 */
-  new_actwk->sproffset = 42926; /* Line 407, Address: 0x1006ff4 */
-  new_actwk->sprpri = 3; /* Line 408, Address: 0x1007000 */
-  if (stageno.b.h == 6) { /* Line 409, Address: 0x100700c */
-    new_actwk->sprpri = 0; /* Line 410, Address: 0x1007028 */
-    if (pActwk->userflag.b.l != 0) { /* Line 411, Address: 0x1007030 */
-      new_actwk->sprpri = 3; /* Line 412, Address: 0x1007040 */
-      new_actwk->sproffset %= 128; /* Line 413, Address: 0x100704c */
+    new_actwk->actno = 17; /* Line 399, Address: 0x1006f80 */
+    new_actwk->r_no0 += 2; /* Line 400, Address: 0x1006f8c */
+    new_actwk->sprvsize = 8; /* Line 401, Address: 0x1006f9c */
+    new_actwk->sprhs = 8; /* Line 402, Address: 0x1006fa8 */
+    new_actwk->xposi.w.h = pActwk->xposi.w.h; /* Line 403, Address: 0x1006fb4 */
+    new_actwk->yposi.w.h = pActwk->yposi.w.h; /* Line 404, Address: 0x1006fc4 */
+    new_actwk->patbase = ringpat; /* Line 405, Address: 0x1006fd4 */
+    new_actwk->userflag.b.l = pActwk->userflag.b.l; /* Line 406, Address: 0x1006fe4 */
+    new_actwk->sproffset = 42926; /* Line 407, Address: 0x1006ff4 */
+    new_actwk->sprpri = 3; /* Line 408, Address: 0x1007000 */
+    if (stageno.b.h == 6) { /* Line 409, Address: 0x100700c */
+      new_actwk->sprpri = 0; /* Line 410, Address: 0x1007028 */
+      if (pActwk->userflag.b.l != 0) { /* Line 411, Address: 0x1007030 */
+        new_actwk->sprpri = 3; /* Line 412, Address: 0x1007040 */
+        new_actwk->sproffset %= 128; /* Line 413, Address: 0x100704c */
+      }
     }
-  }
-  new_actwk->actflg = 4; /* Line 416, Address: 0x100705c */
-  new_actwk->colino = 71; /* Line 417, Address: 0x1007068 */
-  new_actwk->sprhsize = 8; /* Line 418, Address: 0x1007074 */
-  new_actwk->sprvsize = 8; /* Line 419, Address: 0x1007080 */
-  sys_pattim4 = 255; /* Line 420, Address: 0x100708c */
-  new_actwk->mstno.b.h = 2; /* Line 421, Address: 0x1007098 */
+    new_actwk->actflg = 4; /* Line 416, Address: 0x100705c */
+    new_actwk->colino = 71; /* Line 417, Address: 0x1007068 */
+    new_actwk->sprhsize = 8; /* Line 418, Address: 0x1007074 */
+    new_actwk->sprvsize = 8; /* Line 419, Address: 0x1007080 */
+    sys_pattim4 = 255; /* Line 420, Address: 0x100708c */
+    new_actwk->mstno.b.h = 2; /* Line 421, Address: 0x1007098 */
 
-  if (d4.w >= 0) { /* Line 423, Address: 0x10070a4 */
-    sinset(d4.b.l, &d0, &d1); /* Line 424, Address: 0x10070b8 */
-    d2 = d0 << (d4.w >> 8); /* Line 425, Address: 0x10070d0 */
-    d3 = d1 << (d4.w >> 8); /* Line 426, Address: 0x10070fc */
-    if ((d4.b.l += 16) > 0) /* Line 427, Address: 0x1007128 */
-      if ((d4.w -= 128) < 0) d4.w = 648; /* Line 428, Address: 0x100714c */
-  }
-  new_actwk->xspeed.w = d2; /* Line 430, Address: 0x1007178 */
-  new_actwk$>yspeed.w = d3; /* Line 431, Address: 0x1007180 */
-  d2 = -d2; /* Line 432, Address: 0x1007188 */
-  d4.w = -d4.w; /* Line 433, Address: 0x1007194 */
-  if (--d5 != -1) goto label1; /* Line 434, Address: 0x10071a0 */
+    if (d4.w >= 0) { /* Line 423, Address: 0x10070a4 */
+      sinset(d4.b.l, (short*)&d0, (short*)&d1); /* Line 424, Address: 0x10070b8 */
+      d2 = d0 << (d4.w >> 8); /* Line 425, Address: 0x10070d0 */
+      d3 = d1 << (d4.w >> 8); /* Line 426, Address: 0x10070fc */
+      if ((d4.b.l += 16) > 0) /* Line 427, Address: 0x1007128 */
+        if ((d4.w -= 128) < 0) d4.w = 648; /* Line 428, Address: 0x100714c */
+    }
+    new_actwk->xspeed.w = d2; /* Line 430, Address: 0x1007178 */
+    new_actwk->yspeed.w = d3; /* Line 431, Address: 0x1007180 */
+    d2 = -d2; /* Line 432, Address: 0x1007188 */
+    d4.w = -d4.w; /* Line 433, Address: 0x1007194 */
+  } while (--d5 != -1); /* Line 434, Address: 0x10071a0 */
 
   if (lpKeepWork->User & 1) { /* Line 436, Address: 0x10071c8 */
 
@@ -468,11 +468,11 @@ void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
   }
   if (sys_pattim4 != 0) { /* Line 469, Address: 0x10073a0 */
     if (pActwk->yposi.w.h < scralim_down + 224) { /* Line 470, Address: 0x10073b0 */
-    patchg(pActwk, ringchg); /* Line 471, Address: 0x10073e0 */
-    actionsub(pActwk); /* Line 472, Address: 0x10073f4 */
-    return; /* Line 473, Address: 0x1007400 */
+      patchg(pActwk, ringchg); /* Line 471, Address: 0x10073e0 */
+      actionsub(pActwk); /* Line 472, Address: 0x10073f4 */
+      return; /* Line 473, Address: 0x1007400 */
+    }
   }
-
   flyringerase(pActwk); /* Line 476, Address: 0x1007408 */
 } /* Line 477, Address: 0x1007414 */
 
