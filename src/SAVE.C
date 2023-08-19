@@ -1,6 +1,6 @@
-// Addresses correspond to R4*.ELF (except R42B.ELF), R5*.ELF, R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "SAVE.H"
+
 
 
 
@@ -24,7 +24,7 @@ void playloadb() { /* Line 14, Address: 0x1005e30 */
 
   plring = lpKeepWork->plring_s; /* Line 25, Address: 0x1005ea0 */
   plring_s = lpKeepWork->plring_s; /* Line 26, Address: 0x1005eb4 */
-  plring_f2 = lpKeepWork->plring_f2; /* Line 27, Address: 0x1005ec8 */
+  plring_f2 = lpKeepWork->plring_f2_s; /* Line 27, Address: 0x1005ec8 */
   plring_f2_s = lpKeepWork->plring_f2_s; /* Line 28, Address: 0x1005edc */
 
   pltime.l = lpKeepWork->pltime_sb; /* Line 30, Address: 0x1005ef0 */
@@ -67,8 +67,8 @@ void playload() { /* Line 54, Address: 0x1006070 */
     plring = 0; /* Line 67, Address: 0x10060d4 */
     plring_f2 = 0; /* Line 68, Address: 0x10060dc */
     pltime.l = pltime_s; /* Line 69, Address: 0x10060e4 */
-    pltime.b4 = 59; /* Line 70, Address: 0x10060f4 */
-    --pltime.b3; /* Line 71, Address: 0x1006100 */
+    pltime.b.b4 = 59; /* Line 70, Address: 0x10060f4 */
+    --pltime.b.b3; /* Line 71, Address: 0x1006100 */
     water_flag = water_flag_s; /* Line 72, Address: 0x1006114 */
     scralim_down = scralim_down_s; /* Line 73, Address: 0x1006124 */
     scralim_n_down = scralim_down_s; /* Line 74, Address: 0x1006134 */
