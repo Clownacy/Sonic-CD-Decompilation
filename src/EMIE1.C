@@ -1,17 +1,22 @@
-// Addresses correspond to R11A.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "EMIE1.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DIRCOL.H"
+#include "ETC.H"
 
-void(*em1_tbl)(act_info*)[5] = {
+extern void sub_sync(short ReqNo);
+
+void(*em1_tbl[5])(act_info*) = {
   &emie1_init,
   &emie1_matu,
   &emie1_dakii,
   &emie1_tobii,
   &emie1_tobim
 };
-tagPALETTEENTRY zone1colora[0];
-char* em_pchg[0];
-spr_array* emie1pat[0];
+extern tagPALETTEENTRY zone1colora[0];
+extern char* em_pchg[0];
+extern spr_array* emie1pat[0];
 tagPALETTEENTRY emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },
@@ -30,10 +35,105 @@ tagPALETTEENTRY emie1_clr[16] = {
   {  96,   0, 128, 1 },
   { 224,   0,   0, 1 }
 };
-void(*ht1_tbl)(act_info*)[2] = {
+void(*ht1_tbl[2])(act_info*) = {
   &heart1_init,
   &heart1_move
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -93,7 +193,7 @@ void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
   }
 
   pActwk->mstno.b.h = 5; /* Line 195, Address: 0x10054e0 */
-  empatchg(pActwk, &em_pchg); /* Line 196, Address: 0x10054ec */
+  empatchg(pActwk, em_pchg); /* Line 196, Address: 0x10054ec */
 } /* Line 197, Address: 0x1005500 */
 
 
@@ -124,7 +224,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
         pActwk->xspeed.w = 0; /* Line 224, Address: 0x1005614 */
         pActwk->yposi.w.h += emycol_d(pActwk); /* Line 225, Address: 0x100561c */
         pActwk->mstno.b.h = 1; /* Line 226, Address: 0x1005638 */
-        empatchg(pActwk, &em_pchg); /* Line 227, Address: 0x1005644 */
+        empatchg(pActwk, em_pchg); /* Line 227, Address: 0x1005644 */
         return; /* Line 228, Address: 0x1005658 */
       }
 
@@ -162,7 +262,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
           dakicheck(pActwk); /* Line 262, Address: 0x10057a8 */
 
           pActwk->mstno.b.h = 2; /* Line 264, Address: 0x10057b4 */
-          empatchg(pActwk, &em_pchg); /* Line 265, Address: 0x10057c0 */
+          empatchg(pActwk, em_pchg); /* Line 265, Address: 0x10057c0 */
           return; /* Line 266, Address: 0x10057d4 */
         }
       }
@@ -180,7 +280,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
           dakicheck(pActwk); /* Line 280, Address: 0x1005864 */
 
           pActwk->mstno.b.h = 2; /* Line 282, Address: 0x1005870 */
-          empatchg(pActwk, &em_pchg); /* Line 283, Address: 0x100587c */
+          empatchg(pActwk, em_pchg); /* Line 283, Address: 0x100587c */
           return; /* Line 284, Address: 0x1005890 */
         }
       }
@@ -244,7 +344,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
   else {
     pActwk->yposi.w.h += emycol_d(pActwk); /* Line 345, Address: 0x1005a64 */
     pActwk->mstno.b.h = 1; /* Line 346, Address: 0x1005a80 */
-    empatchg(pActwk, &em_pchg); /* Line 347, Address: 0x1005a8c */
+    empatchg(pActwk, em_pchg); /* Line 347, Address: 0x1005a8c */
   }
 
 
@@ -280,14 +380,14 @@ void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
 
     pActwk->actfree[20] &= 254; /* Line 381, Address: 0x1005bc4 */
     pActwk->r_no0 = 6; /* Line 382, Address: 0x1005bd4 */
-  } else if (pltime >= (9 | 12800)) { /* Line 383, Address: 0x1005be0 */
+  } else if (pltime.l >= (9 | 12800)) { /* Line 383, Address: 0x1005be0 */
 
     pljumpset(); /* Line 385, Address: 0x1005c04 */
     pActwk->actfree[20] &= 254; /* Line 386, Address: 0x1005c0c */
     pActwk->r_no0 = 2; /* Line 387, Address: 0x1005c1c */
   } else { /* Line 388, Address: 0x1005c28 */
     pActwk->mstno.b.h = 3; /* Line 389, Address: 0x1005c30 */
-    empatchg(pActwk, &em_pchg); /* Line 390, Address: 0x1005c3c */
+    empatchg(pActwk, em_pchg); /* Line 390, Address: 0x1005c3c */
   }
 } /* Line 392, Address: 0x1005c50 */
 
@@ -460,11 +560,11 @@ void pljumpset() { /* Line 559, Address: 0x10060e0 */
   short sinwk, coswk;
 
   actwk[0].actfree[2] = 0; /* Line 562, Address: 0x10060e8 */
-  sinset(pActwk->direc.b.h + -64, &sinwk, &coswk); /* Line 563, Address: 0x10060f0 */
+  sinset(actwk[0].direc.b.h + -64, &sinwk, &coswk); /* Line 563, Address: 0x10060f0 */
   coswk = (coswk * 1664) >> 8; /* Line 564, Address: 0x1006118 */
   actwk[0].xspeed.w += coswk; /* Line 565, Address: 0x1006148 */
   sinwk = (sinwk * 1664) >> 8; /* Line 566, Address: 0x1006160 */
-  actwk[0].yspeed += sinwk; /* Line 567, Address: 0x1006190 */
+  actwk[0].yspeed.w += sinwk; /* Line 567, Address: 0x1006190 */
 
   actwk[0].cddat |= 2; /* Line 569, Address: 0x10061a8 */
   actwk[0].cddat &= 223; /* Line 570, Address: 0x10061bc */
@@ -518,7 +618,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
 
 
-  if (pltime >= (9 | 12800)) return; /* Line 621, Address: 0x1006320 */
+  if (pltime.l >= (9 | 12800)) return; /* Line 621, Address: 0x1006320 */
 
 
 
@@ -778,7 +878,7 @@ void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
     ++pActwk->patno; /* Line 878, Address: 0x1006b94 */
   } else if (pActwk->actfree[16] == 110) { /* Line 879, Address: 0x1006ba4 */
      ++pActwk->patno; /* Line 880, Address: 0x1006bc4 */
-    pActwk->xspeed = pActwk->yspeed = 0; /* Line 881, Address: 0x1006bd4 */
+    pActwk->xspeed.w = pActwk->yspeed.w = 0; /* Line 881, Address: 0x1006bd4 */
     pActwk->actfree[18] = 1; /* Line 882, Address: 0x1006bec */
   } else if (pActwk->actfree[16] == 120) { /* Line 883, Address: 0x1006bf8 */
     frameout(pActwk); /* Line 884, Address: 0x1006c18 */
