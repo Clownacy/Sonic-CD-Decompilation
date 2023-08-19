@@ -1,22 +1,33 @@
-#include "EQU.C"
+#include "EQU.H"
 #include "DAI_K.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "ETC.H"
+#include "PLAYSUB.H"
+#include "RIDECHK.H"
+
+extern void soundset(short ReqNo);
 
 spr_array k_daipat0 = {
-  .cnt = 1,
-  .spra = { { -16, -8, 0, 478 } }
+  1,
+  { { -16, -8, 0, 478 } }
 };
 spr_array k_daipat1 = {
-  .cnt = 1,
-  .spra = { { -16, -8, 0, 479 } }
+  1,
+  { { -16, -8, 0, 479 } }
 };
 spr_array k_daipat2 = {
-  .cnt = 1,
-  .spra = { { -16, -8, 0, 480 } }
+  1,
+  { { -16, -8, 0, 480 } }
 };
-spr_array* k_daipat[3] = { &k_daipat0, &k_daipat1, &k_daipat2 };
+spr_array* k_daipat[3] = {
+  &k_daipat0,
+  &k_daipat1,
+  &k_daipat2
+};
 char k_daichg0[5] = { 1, 0, 1, 2, -1 };
 char* k_daichg = k_daichg0;
-void(*dai_k_move_tbl)(act_info*)[2] = {
+void(*dai_k_move_tbl[2])(act_info*) = {
   &dai_k_init,
   &dai_k_move
 };
@@ -113,22 +124,11 @@ void(*dai_k_move_tbl)(act_info*)[2] = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 void dai_k(act_info* pActwk) { /* Line 127, Address: 0x1002090, Func Offset */
-  dai_k_move_tbl[pActwk->rno0 / 2](pActwk); /* Line 128, Address: 0x100209c, Func Offset */
+  dai_k_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 128, Address: 0x100209c, Func Offset */
 
   if (time_stop == 0) { /* Line 130, Address: 0x10020e0, Func Offset */
-    patchg(pActwk, k_daichg); /* Line 131, Address: 0x10020f0, Func Offset */
+    patchg(pActwk, (unsigned char**)&k_daichg); /* Line 131, Address: 0x10020f0, Func Offset */
   }
 
   actionsub(pActwk); /* Line 134, Address: 0x1002104, Func Offset */
@@ -271,7 +271,7 @@ void jumpchk_d(act_info* pActwk, act_info* pSonicwk) { /* Line 259, Address: 0x1
     jumpwk = 1664; /* Line 271, Address: 0x1002570 */
   }
 
-  sinset(pSonicwk->direc.b.h + -64, sinwk, coswk); /* Line 274, Address: 0x100257c */
+  sinset(pSonicwk->direc.b.h + -64, &sinwk, &coswk); /* Line 274, Address: 0x100257c */
   pSonicwk->xspeed.w += (coswk * jumpwk) >> 8; /* Line 275, Address: 0x10025a4 */
   pSonicwk->yspeed.w += (sinwk * jumpwk) >> 8; /* Line 276, Address: 0x10025d8 */
 
