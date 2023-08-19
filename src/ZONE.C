@@ -1,131 +1,117 @@
-// Addresses correspond to R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "ZONE.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DUMMY.H"
+#include "SCORE.H"
+
+extern void sub_sync(short ReqNo);
+extern void soundset(short ReqNo);
 
 spr_array game0 = {
-  .cnt = 1,
-  .spra = {
-    { -72, -8, 0, 379 }
-  }
+  1,
+  { { -72, -8, 0, 379 } }
 };
 spr_array game1 = {
-  .cnt = 1,
-  .spra = {
-    { 8, -8, 0, 380 }
-  }
+  1,
+  { { 8, -8, 0, 380 } }
 };
 spr_array* gamepat[2] = {
   &game0,
   &game1
 };
 spr_array time0 = {
-  .cnt = 1,
-  .spra = {
-    { -68, -8, 0, 381 }
-  }
+  1,
+  { { -68, -8, 0, 381 } }
 };
 spr_array time1 = {
-  .cnt = 1,
-  .spra = {
-    { 4, -8, 0, 382 }
-  }
+  1,
+  { { 4, -8, 0, 382 } }
 };
 spr_array* timepat[2] = {
   &time0,
   &time1
 };
 spr_array gotpat0 = {
-  .cnt = 1,
-  .spra = {
-    { -68, -20, 0, 383 }
-  }
+  1,
+  { { -68, -20, 0, 383 } }
 };
 spr_array gotpat1 = {
-  .cnt = 1,
-  .spra = {
-    { -100, 4, 0, 384 }
-  }
+  1,
+  { { -100, 4, 0, 384 } }
 };
 spr_array gotpat2 = {
-  .cnt = 1,
-  .spra = {
-    { -100, 4, 0, 385 }
-  }
+  1,
+  { { -100, 4, 0, 385 } }
 };
 spr_array gotpat3 = {
-  .cnt = 1,
-  .spra = {
-    { -100, 4, 0, 386 }
-  }
+  1,
+  { { -100, 4, 0, 386 } }
 };
 spr_array madepat0 = {
-  .cnt = 1,
-  .spra = {
-    { -128, -20, 0, 387 }
-  }
+  1,
+  { { -128, -20, 0, 387 } }
 };
 spr_array madepat1 = {
-  .cnt = 1,
-  .spra = {
-    { -112, 4, 0, 388 }
-  }
+  1,
+  { { -112, 4, 0, 388 } }
 };
 spr_array madepat2 = {
-  .cnt = 1,
-  .spra = {
-    { -112, 4, 0, 389 }
-  }
+  1,
+  { { -112, 4, 0, 389 } }
 };
 spr_array madepat3 = {
-  .cnt = 1,
-  .spra = {
-    { -112, 4, 0, 390 }
-  }
+  1,
+  { { -112, 4, 0, 390 } }
 };
 spr_array bonuspat = {
-  .cnt = 18,
-  .spra = {
-    { -44, -32, 0, 391 },
-    { 72, -32, 0, 0 },
-    { 80, -32, 0, 0 },
-    { 88, -32, 0, 0 },
-    { 96, -32, 0, 0 },
-    { 104, -32, 0, 0 },
-    { 112, -32, 0, 0 },
-    { 120, -32, 0, 0 },
-    { 88, -8, 0, 0 },
-    { 96, -8, 0, 0 },
-    { 104, -8, 0, 0 },
-    { 112, -8, 0, 0 },
-    { 120, -8, 0, 0 },
-    { 88, 16, 0, 0 },
-    { 96, 16, 0, 0 },
-    { 104, 16, 0, 0 },
-    { 112, 16, 0, 0 },
-    { 120, 16, 0, 0 }
+  18,
+  {
+    {
+      { -44, -32, 0, 391 },
+      { 72, -32, 0, 0 },
+      { 80, -32, 0, 0 },
+      { 88, -32, 0, 0 },
+      { 96, -32, 0, 0 },
+      { 104, -32, 0, 0 },
+      { 112, -32, 0, 0 },
+      { 120, -32, 0, 0 },
+      { 88, -8, 0, 0 },
+      { 96, -8, 0, 0 },
+      { 104, -8, 0, 0 },
+      { 112, -8, 0, 0 },
+      { 120, -8, 0, 0 },
+      { 88, 16, 0, 0 },
+      { 96, 16, 0, 0 },
+      { 104, 16, 0, 0 },
+      { 112, 16, 0, 0 },
+      { 120, 16, 0, 0 }
+    }
   }
 };
 spr_array bonuspat0 = {
-  .cnt = 18,
-  .spra = {
-    { -44, -32, 0, 392 },
-    { 72, -32, 0, 0 },
-    { 80, -32, 0, 0 },
-    { 88, -32, 0, 0 },
-    { 96, -32, 0, 0 },
-    { 104, -32, 0, 0 },
-    { 112, -32, 0, 0 },
-    { 120, -32, 0, 0 },
-    { 88, -8, 0, 0 },
-    { 96, -8, 0, 0 },
-    { 104, -8, 0, 0 },
-    { 112, -8, 0, 0 },
-    { 120, -8, 0, 0 },
-    { 88, 16, 0, 0 },
-    { 96, 16, 0, 0 },
-    { 104, 16, 0, 0 },
-    { 112, 16, 0, 0 },
-    { 120, 16, 0, 0 }
+  18,
+  {
+    {
+      { -44, -32, 0, 392 },
+      { 72, -32, 0, 0 },
+      { 80, -32, 0, 0 },
+      { 88, -32, 0, 0 },
+      { 96, -32, 0, 0 },
+      { 104, -32, 0, 0 },
+      { 112, -32, 0, 0 },
+      { 120, -32, 0, 0 },
+      { 88, -8, 0, 0 },
+      { 96, -8, 0, 0 },
+      { 104, -8, 0, 0 },
+      { 112, -8, 0, 0 },
+      { 120, -8, 0, 0 },
+      { 88, 16, 0, 0 },
+      { 96, 16, 0, 0 },
+      { 104, 16, 0, 0 },
+      { 112, 16, 0, 0 },
+      { 120, 16, 0, 0 }
+    }
   }
 };
 spr_array* gotpat[5] = {
@@ -165,6 +151,20 @@ unsigned short cleartbl[12] = {
   272, 512, 240,   1,
   204,   0, 288,   2
 };
+extern void(*WaveAllStop)();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -391,7 +391,7 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
 
   wp = title_tbl; /* Line 392, Address: 0x10127d4 */
   for (i = 0; i < 8; ++i) { /* Line 393, Address: 0x10127dc */
-    actwkchk(pTmpAct); /* Line 394, Address: 0x10127e8 */
+    actwkchk(&pTmpAct); /* Line 394, Address: 0x10127e8 */
     pTmpAct->actno = 60; /* Line 395, Address: 0x10127f4 */
     pTmpAct->r_no0 = 4; /* Line 396, Address: 0x1012800 */
     pTmpAct->sproffset = 32768; /* Line 397, Address: 0x101280c */
@@ -584,7 +584,7 @@ void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
 
       pTmpAct->yposi.w.h = *wp++; /* Line 585, Address: 0x101300c */
       pTmpAct->xposi.w.h = *wp++; /* Line 586, Address: 0x1013020 */
-      *(short)&pTmpAct->actfree[0] = *wp++; /* Line 587, Address: 0x1013034 */
+      *(short*)&pTmpAct->actfree[0] = *wp++; /* Line 587, Address: 0x1013034 */
       pTmpAct->patno = *wp++; /* Line 588, Address: 0x1013048 */
 
       if (i == 2) {  /* Line 590, Address: 0x1013068 */
