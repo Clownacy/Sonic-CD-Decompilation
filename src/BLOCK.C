@@ -1,6 +1,12 @@
-#include "EQU.C"
+#include "EQU.H"
+#include "BLOCK.H"
+#include "ACTION.H"
+#include "DUMMY.H"
+#include "PLAYSUB.H"
+#include "RIDECHK.H"
 
-void(*block_tbl)(act_info*)[7] = {
+void(*block_tbl[7])(act_info*) =
+{
   &block_init,
   &block_move,
   &block_move2,
@@ -9,47 +15,41 @@ void(*block_tbl)(act_info*)[7] = {
   &block_move5,
   &block_move6
 };
-unsigned char blockchg0[3] = { 2, 5, -1 };
+unsigned char blockchg0[3] = { 2, 5, 255 };
 unsigned char blockchg1[10] = { 2, 1, 5, 2, 5, 3, 5, 4, 5, 252 };
 unsigned char blockchg2[10] = { 2, 1, 0, 2, 0, 3, 0, 4, 0, 252 };
-unsigned char* blockchg[3] = { &blockchg0, &blockchg1, &blockchg2 };
-spr_array block0 = {
-  .cnt = 0,
-  .spra = { { 244, 244, 0, 403 } }
+unsigned char* blockchg[3] = { blockchg0, blockchg1, blockchg2 };
+spr_array block0 =
+{
+  0,
+  { { -12, -12, 0, 403 } }
 };
-spr_array block1 = {
-  .cnt = 1,
-  .spra = { { 244, 244, 0, 403 } }
+spr_array block1 =
+{
+  1,
+  { { -12, -12, 0, 403 } }
 };
-spr_array block2 = {
-  .cnt = 1,
-  .spra = { { 244, 244, 0, 404 } }
+spr_array block2 =
+{
+  1,
+  { { -12, -12, 0, 404 } }
 };
-spr_array block3 = {
-  .cnt = 1,
-  .spra = { { 244, 244, 0, 405 } }
+spr_array block3 =
+{
+  1,
+  { { -12, -12, 0, 405 } }
 };
-spr_array block4 = {
-  .cnt = 1,
-  .spra = { { 244, 244, 0, 406 } }
+spr_array block4 =
+{
+  1,
+  { { -12, -12, 0, 406 } }
 };
-spr_array block5 = {
-  .cnt = 1,
-  .spra = { { 244, 244, 0, 407 } }
+spr_array block5 =
+{
+  1,
+  { { -12, -12, 0, 407 } }
 };
 spr_array* blockpat[6] { &block0, &block1, &block2, &block3, &block4, &block5 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
   short iD0, iD1;
@@ -99,22 +99,22 @@ void block_init(act_info* pActwk) { /* Line 76, Address: 0x10151b0 */
 
 void block_move(act_info* pActwk) { /* Line 100, Address: 0x1015250 */
   block_ride(pActwk); /* Line 101, Address: 0x101525c */
-  if (time_flag != 0) { /* Line 102, Address: 0x1015268 */
-    if (time_flag == 2) { /* Line 103, Address: 0x101527c */
-
+  if (time_flag != 0) /* Line 102, Address: 0x1015268 */
+    if (time_flag == 2) /* Line 103, Address: 0x101527c */
+    {
       if (pActwk->cddat & 8) goto label1; /* Line 105, Address: 0x1015294 */
     } /* Line 106, Address: 0x10152ac */
-    else {
-
+    else
+    {
 
       pActwk->patno = 0; /* Line 110, Address: 0x10152b4 */
-      if (pActwk->cddat & 8) { /* Line 111, Address: 0x10152bc */
-
+      if (pActwk->cddat & 8) /* Line 111, Address: 0x10152bc */
+      {
         pActwk->r_no0 = 6; /* Line 113, Address: 0x10152d4 */
         pActwk->mstno.b.h = 1; /* Line 114, Address: 0x10152e0 */
       }
     }
-  }
+
   actionsub(pActwk); /* Line 118, Address: 0x10152ec */
   return; /* Line 119, Address: 0x10152f8 */
 label1:
@@ -139,11 +139,11 @@ void block_move2(act_info* pActwk) { /* Line 135, Address: 0x1015330 */
   pActwk->yposi.w.h += 2; /* Line 139, Address: 0x101534c */
   iD0 = scra_v_posit.w.h; /* Line 140, Address: 0x101535c */
   iD0 += 224; /* Line 141, Address: 0x101536c */
-  if (iD0 < pActwk->yposi.w.h) { /* Line 142, Address: 0x1015378 */
-
+  if (iD0 < pActwk->yposi.w.h) /* Line 142, Address: 0x1015378 */
+  {
     frameout(pActwk); /* Line 144, Address: 0x101539c */
-  } /* Line 145, Address: 0x10153a8 */
-  else {
+  } else /* Line 145, Address: 0x10153a8 */
+  {
     actionsub(pActwk); /* Line 147, Address: 0x10153b0 */
   }
 } /* Line 149, Address: 0x10153bc */
@@ -160,9 +160,9 @@ void block_move2(act_info* pActwk) { /* Line 135, Address: 0x1015330 */
 
 void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
   block_ride(pActwk); /* Line 162, Address: 0x10153dc */
-  if ((pActwk->cddat & 8) == 0) { /* Line 163, Address: 0x10153e8 */
-
-    pActwk->r_n0 = 2; /* Line 165, Address: 0x1015400 */
+  if ((pActwk->cddat & 8) == 0) /* Line 163, Address: 0x10153e8 */
+  {
+    pActwk->r_no0 = 2; /* Line 165, Address: 0x1015400 */
     return; /* Line 166, Address: 0x101540c */
   }
 
@@ -183,9 +183,9 @@ void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
 void block_move4(act_info* pActwk) { /* Line 183, Address: 0x1015450 */
   pActwk->mstno.b.h = 0; /* Line 184, Address: 0x101545c */
   block_ride(pActwk); /* Line 185, Address: 0x1015464 */
-  if ((pActwk->cddat & 8) == 0) { /* Line 186, Address: 0x1015470 */
-
-    pActwk->r_n0 += 2; /* Line 188, Address: 0x1015488 */
+  if ((pActwk->cddat & 8) == 0) /* Line 186, Address: 0x1015470 */
+  {
+    pActwk->r_no0 += 2; /* Line 188, Address: 0x1015488 */
     pActwk->mstno.b.h = 2; /* Line 189, Address: 0x1015498 */
     return; /* Line 190, Address: 0x10154a4 */
   }
@@ -221,7 +221,7 @@ void block_move5(act_info* pActwk) { /* Line 207, Address: 0x10154e0 */
 
 
 void block_move6(act_info* pActwk) { /* Line 223, Address: 0x1015530 */
-  pActwk->r_n0 = 2; /* Line 224, Address: 0x1015538 */
+  pActwk->r_no0 = 2; /* Line 224, Address: 0x1015538 */
 } /* Line 225, Address: 0x1015544 */
 
 
