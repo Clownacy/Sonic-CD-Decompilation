@@ -1,9 +1,9 @@
-// Addresses correspond to R8*.ELF (except R81B.ELF)
-#include "EQU.C"
+#include "EQU.H"
 #include "RIDECHK.H"
+#include "DIRCOL.H"
 
-
-
+extern void soundset(short ReqNo);
+extern short playdieset(act_info* pActwk);
 
 
 
@@ -114,8 +114,8 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   unsigned short wActwkNo;
   act_info* pRideAct;
 
-  if (pPlayerwk->r_no0 == 4) { /* Line 117, Address: 0x101970c */
-
+  if (pPlayerwk->r_no0 == 4) /* Line 117, Address: 0x101970c */
+  {
     pPlayerwk->r_no0 -= 2; /* Line 119, Address: 0x1019724 */
     *(short*)&pPlayerwk->actfree[6] = 120; /* Line 120, Address: 0x1019734 */
   }
@@ -126,10 +126,10 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   if ((pActwk->cddat & 8) == 0) byCCR = 0; /* Line 126, Address: 0x1019750 */
   else byCCR = 1; /* Line 127, Address: 0x1019774 */
   pActwk->cddat |= 8; /* Line 128, Address: 0x101977c */
-  if (byCCR == 0) { /* Line 129, Address: 0x101978c */
-
-    if (pPlayerwk->mstno.b.h == 43) { /* Line 131, Address: 0x1019798 */
-
+  if (byCCR == 0) /* Line 129, Address: 0x101978c */
+  {
+    if (pPlayerwk->mstno.b.h == 43) /* Line 131, Address: 0x1019798 */
+    {
       pActwk->cddat &= 247; /* Line 133, Address: 0x10197b4 */
       return ride_on_clr(pActwk, pPlayerwk); /* Line 134, Address: 0x10197c4 */
     }
@@ -140,16 +140,16 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
     if ((pPlayerwk->cddat & 4) == 0) byCCR = 0; /* Line 140, Address: 0x10197ec */
     else byCCR = 1; /* Line 141, Address: 0x1019810 */
     pPlayerwk->cddat &= 251; /* Line 142, Address: 0x1019818 */
-    if (byCCR == 1) { /* Line 143, Address: 0x1019828 */
-
-      if (chibi_flag != 0) { /* Line 145, Address: 0x1019838 */
-
+    if (byCCR == 1) /* Line 143, Address: 0x1019828 */
+    {
+      if (chibi_flag != 0) /* Line 145, Address: 0x1019838 */
+      {
         pPlayerwk->sprvsize = 10; /* Line 147, Address: 0x101984c */
         pPlayerwk->sprhs = 5; /* Line 148, Address: 0x1019858 */
         pPlayerwk->yposi.w.h -= 2; /* Line 149, Address: 0x1019864 */
       } /* Line 150, Address: 0x1019874 */
-      else {
-
+      else
+      {
 
         pPlayerwk->sprvsize = 19; /* Line 154, Address: 0x101987c */
         pPlayerwk->sprhs = 9; /* Line 155, Address: 0x1019888 */
@@ -164,8 +164,8 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   if ((pPlayerwk->cddat & 8) == 0) byCCR = 0; /* Line 164, Address: 0x10198ac */
   else byCCR = 1; /* Line 165, Address: 0x10198d0 */
   pPlayerwk->cddat |= 8; /* Line 166, Address: 0x10198d8 */
-  if (byCCR == 1) { /* Line 167, Address: 0x10198e8 */
-
+  if (byCCR == 1) /* Line 167, Address: 0x10198e8 */
+  {
     wActwkNo = pPlayerwk->actfree[19]; /* Line 169, Address: 0x10198f8 */
     if ((pActwk - actwk) / 68 == wActwkNo) /* Line 170, Address: 0x1019908 */
       return -1; /* Line 171, Address: 0x1019944 */
@@ -177,9 +177,9 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   pPlayerwk->direc.w = 0; /* Line 177, Address: 0x10199ac */
   pPlayerwk->yspeed.w = 0; /* Line 178, Address: 0x10199b4 */
 
-  if (pActwk->actno != 10 || pActwk->r_no0 != 2) { /* Line 180, Address: 0x10199bc */
+  if (pActwk->actno != 10 || pActwk->r_no0 != 2) /* Line 180, Address: 0x10199bc */
     pPlayerwk->mspeed = pPlayerwk->xspeed; /* Line 181, Address: 0x10199ec */
-  }
+
   pPlayerwk->cddat &= 253; /* Line 183, Address: 0x10199fc */
   return 0; /* Line 184, Address: 0x1019a0c */
 } /* Line 185, Address: 0x1019a10 */
@@ -257,18 +257,20 @@ short hitchk(act_info* pActwk, act_info* pPlayerwk) { /* Line 243, Address: 0x10
     return hit_e(pActwk, pPlayerwk); /* Line 257, Address: 0x1019bdc */
   if (editmode.b.h != 0) /* Line 258, Address: 0x1019bf4 */
     return hit_e(pActwk, pPlayerwk); /* Line 259, Address: 0x1019c0c */
+
   iD1 = pActwk->sprhsize + 10; /* Line 261, Address: 0x1019c24 */
   iD0 = pPlayerwk->xposi.w.h - pActwk->xposi.w.h; /* Line 262, Address: 0x1019c4c */
   iD0 += iD1; /* Line 263, Address: 0x1019c80 */
   if (iD0 < 0) /* Line 264, Address: 0x1019c8c */
     return hit_e(pActwk, pPlayerwk); /* Line 265, Address: 0x1019c9c */
+
   iD2 = iD1; /* Line 267, Address: 0x1019cb4 */
   iD2 += iD2; /* Line 268, Address: 0x1019cbc */
   if (iD0 >= iD2) /* Line 269, Address: 0x1019cc8 */
     return hit_e(pActwk, pPlayerwk); /* Line 270, Address: 0x1019ce4 */
 
-  if (pPlayerwk->mstno.b.h == 43) { /* Line 272, Address: 0x1019cfc */
-
+  if (pPlayerwk->mstno.b.h == 43) /* Line 272, Address: 0x1019cfc */
+  {
     if (pActwk->cddat & 8) /* Line 274, Address: 0x1019d18 */
       return hit_v(pActwk, pPlayerwk, iD0, iD1); /* Line 275, Address: 0x1019d30 */
     else
@@ -325,12 +327,12 @@ short hit_v(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iHitHs) {
   if (iHitYs < 0) /* Line 327, Address: 0x1019f44 */
     return hit_e(pActwk, pPlayerwk); /* Line 328, Address: 0x1019f54 */
   iD4 = iHitVs + iHitVs; /* Line 329, Address: 0x1019f6c */
-  if (iHitYs >= iD4) { /* Line 330, Address: 0x1019f90 */
+  if (iHitYs >= iD4) /* Line 330, Address: 0x1019f90 */
     return hit_e(pActwk, pPlayerwk); /* Line 331, Address: 0x1019fac */
 
   iD4 = iHitXs; /* Line 333, Address: 0x1019fc4 */
-  if (iHitHs < iHitXs) { /* Line 334, Address: 0x1019fd0 */
-
+  if (iHitHs < iHitXs) /* Line 334, Address: 0x1019fd0 */
+  {
     iHitHs += iHitHs; /* Line 336, Address: 0x1019ff4 */
     iHitXs += iHitHs; /* Line 337, Address: 0x101a004 */
     iD4 = -iHitXs; /* Line 338, Address: 0x101a014 */
@@ -338,8 +340,8 @@ short hit_v(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iHitHs) {
 
 
   iD5 = iHitYs; /* Line 342, Address: 0x101a034 */
-  if (iHitVs < iHitYs) { /* Line 343, Address: 0x101a03c */
-
+  if (iHitVs < iHitYs) /* Line 343, Address: 0x101a03c */
+  {
     iHitVs += iHitVs; /* Line 345, Address: 0x101a058 */
     iHitYs -= iHitVs; /* Line 346, Address: 0x101a064 */
     iD5 = -iHitYs; /* Line 347, Address: 0x101a070 */
@@ -381,8 +383,8 @@ short hit_x(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iD5) { /*
   ride_on_clr(pActwk, pPlayerwk); /* Line 383, Address: 0x101a1d0 */
   pActwk->r_no1 = 0; /* Line 384, Address: 0x101a1e0 */
   pPlayerwk->xposi.w.h -= iHitXs; /* Line 385, Address: 0x101a1e8 */
-  if (iHitXs >= 0) { /* Line 386, Address: 0x101a1fc */
-
+  if (iHitXs >= 0) /* Line 386, Address: 0x101a1fc */
+  {
 
     if (pPlayerwk->xspeed.w > 0) /* Line 389, Address: 0x101a210 */
       return push_set(pActwk, pPlayerwk); /* Line 390, Address: 0x101a228 */
@@ -414,8 +416,8 @@ short hit_x(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iD5) { /*
 
 short push_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 417, Address: 0x101a2b0 */
   side_coli(pActwk, pPlayerwk); /* Line 418, Address: 0x101a2c0 */
-  if ((pPlayerwk->cddat & 2) == 0) { /* Line 419, Address: 0x101a2d0 */
-
+  if ((pPlayerwk->cddat & 2) == 0) /* Line 419, Address: 0x101a2d0 */
+  {
     pActwk->cddat |= 32; /* Line 421, Address: 0x101a2e8 */
     pPlayerwk->cddat |= 32; /* Line 422, Address: 0x101a2f8 */
     pPlayerwk->mspeed.w = 0; /* Line 423, Address: 0x101a308 */
@@ -472,8 +474,8 @@ short hit_y(act_info* pActwk, act_info* pPlayerwk, short iHitYs) { /* Line 467, 
   if (pActwk->actno == 25 && pPlayerwk->cddat & 4) /* Line 474, Address: 0x101a3c4 */
     return hit_e(pActwk, pPlayerwk); /* Line 475, Address: 0x101a3f4 */
 
-  s2 = pActwk->sprvsize; /* Line 477, Address: 0x101a40c */
-  s2 += pPlayerwk->sprvsize; /* Line 478, Address: 0x101a420 */
+  iSprVchk = pActwk->sprvsize; /* Line 477, Address: 0x101a40c */
+  iSprVchk += pPlayerwk->sprvsize; /* Line 478, Address: 0x101a420 */
 
   if (iHitYs != 0) /* Line 480, Address: 0x101a438 */
     if (iHitYs < 0) /* Line 481, Address: 0x101a44c */
@@ -486,20 +488,21 @@ short hit_y(act_info* pActwk, act_info* pPlayerwk, short iHitYs) { /* Line 467, 
       if (pPlayerwk->yspeed.w < 0) return hit_e(pActwk, pPlayerwk); /* Line 488, Address: 0x101a4b0 */
 
   pPlayerwk->yposi.w.h = pActwk->yposi.w.h; /* Line 490, Address: 0x101a4e0 */
-  pPlayerwk->yposi.w.h -= s2; /* Line 491, Address: 0x101a4f0 */
+  pPlayerwk->yposi.w.h -= iSprVchk; /* Line 491, Address: 0x101a4f0 */
   lXspeed = pActwk->xspeed.w; /* Line 492, Address: 0x101a500 */
   lXspeed = lXspeed << 8; /* Line 493, Address: 0x101a510 */
   pPlayerwk->xposi.l += lXspeed; /* Line 494, Address: 0x101a514 */
+
   cDirec = -64; /* Line 496, Address: 0x101a524 */
   if (pActwk->xspeed.w < 0) /* Line 497, Address: 0x101a52c */
     cDirec = -cDirec; /* Line 498, Address: 0x101a544 */
-  if (pActwk->xspeed.w != 0) { /* Line 499, Address: 0x101a560 */
-
+  if (pActwk->xspeed.w != 0) /* Line 499, Address: 0x101a560 */
+  {
 
 
     iDirCol = dircolm(pPlayerwk, &cDirec); /* Line 503, Address: 0x101a578 */
-    if (iDirCol < 0) { /* Line 504, Address: 0x101a590 */
-
+    if (iDirCol < 0) /* Line 504, Address: 0x101a590 */
+    {
       if (pActwk->xspeed.w < 0) /* Line 506, Address: 0x101a5a0 */
         iDirCol = -iDirCol; /* Line 507, Address: 0x101a5b8 */
       pPlayerwk->xposi.w.h += iDirCol; /* Line 508, Address: 0x101a5c4 */
@@ -511,23 +514,23 @@ short hit_y(act_info* pActwk, act_info* pPlayerwk, short iHitYs) { /* Line 467, 
   lYspeed = pActwk->yspeed.w << 8; /* Line 514, Address: 0x101a5d4 */
   pPlayerwk->yposi.l += lYspeed; /* Line 515, Address: 0x101a5e8 */
 
-  if (pActwk->actno != 10) { /* Line 517, Address: 0x101a5f8 */
-
-    if (pActwk->yspeed.w >= 0) { /* Line 519, Address: 0x101a610 */
-
+  if (pActwk->actno != 10) /* Line 517, Address: 0x101a5f8 */
+  {
+    if (pActwk->yspeed.w >= 0) /* Line 519, Address: 0x101a610 */
+    {
       iDirCol = dircol_d(pPlayerwk, &iD0, &iD1, &iD3); /* Line 521, Address: 0x101a628 */
-      if (iDirCol < 0) { /* Line 522, Address: 0x101a648 */
-
+      if (iDirCol < 0) /* Line 522, Address: 0x101a648 */
+      {
         pPlayerwk->yposi.w.h += iDirCol; /* Line 524, Address: 0x101a658 */
         return hit_e(pActwk, pPlayerwk); /* Line 525, Address: 0x101a668 */
       }
     }
 
-    if (pActwk->yspeed.w < 0) { /* Line 529, Address: 0x101a680 */
-
+    if (pActwk->yspeed.w < 0) /* Line 529, Address: 0x101a680 */
+    {
       iDirCol = dircol_u2(pPlayerwk); /* Line 531, Address: 0x101a698 */
-      if (iDirCol < 0) { /* Line 532, Address: 0x101a6ac */
-
+      if (iDirCol < 0) /* Line 532, Address: 0x101a6ac */
+      {
         playdieset(pPlayerwk); /* Line 534, Address: 0x101a6bc */
         return hit_e(pActwk, pPlayerwk); /* Line 535, Address: 0x101a6c8 */
       }
@@ -654,9 +657,9 @@ void side_coli(act_info* pActwk, act_info* pPlayerwk) { /* Line 652, Address: 0x
 
   if (pActwk->actno == 10) return; /* Line 658, Address: 0x101a9f4 */
 
-  if (pActwk->xspeed.w < 0) { /* Line 660, Address: 0x101aa0c */
+  if (pActwk->xspeed.w < 0) /* Line 660, Address: 0x101aa0c */
     cDirect = -cDirect; /* Line 661, Address: 0x101aa24 */
-  }
+
   iDirCol = dircol(pPlayerwk, &cDirect); /* Line 663, Address: 0x101aa40 */
   if (iDirCol >= 0) return; /* Line 664, Address: 0x101aa58 */
 
@@ -680,15 +683,15 @@ void hit_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 682, Address: 0x10
   short iHitActno;
   act_info* pHitAct;
 
-  if (pActwk->actno == 10) { /* Line 686, Address: 0x101aaa8 */
-
+  if (pActwk->actno == 10) /* Line 686, Address: 0x101aaa8 */
+  {
     pPlayerwk->colino = 0; /* Line 688, Address: 0x101aac0 */
     return; /* Line 689, Address: 0x101aac8 */
   }
 
   iHitActno = pPlayerwk->colino; /* Line 692, Address: 0x101aad0 */
-  if (iHitActno != 0) { /* Line 693, Address: 0x101aaec */
-
+  if (iHitActno != 0) /* Line 693, Address: 0x101aaec */
+  {
     pHitAct = &actwk[iHitActno]; /* Line 695, Address: 0x101aafc */
     if (pHitAct == pActwk) return; /* Line 696, Address: 0x101ab1c */
 
