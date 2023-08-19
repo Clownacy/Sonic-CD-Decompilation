@@ -1,132 +1,98 @@
-// Addresses correspond to R4*.ELF (except R42B.ELF), R5*.ELF, R7*.ELF, R8*.ELF
-#include "EQU.C"
+#include "EQU.H"
 #include "SPRING.H"
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DIRCOL.H"
+#include "DUMMY.H"
+#include "ETC.H"
+#include "PLAYSUB.H"
+#include "RIDECHK.H"
+
+extern void soundset(short ReqNo);
 
 spr_array spat00 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -8, 0, 358 }
-  }
+  1,
+  { { -16, -8, 0, 358 } }
 };
 spr_array spat01 = {
-  .cnt = 1,
-  .spra = {
-    { -16, 0, 0, 359 }
-  }
+  1,
+  { { -16, 0, 0, 359 } }
 };
 spr_array spat02 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -32, 0, 360 }
-  }
+  1,
+  { { -16, -32, 0, 360 } }
 };
 spr_array spat03 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 361 }
-  }
+  1,
+  { { -8, -16, 0, 361 } }
 };
 spr_array spat04 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 362 }
-  }
+  1,
+  { { -8, -16, 0, 362 } }
 };
 spr_array spat05 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 363 }
-  }
+  1,
+  { { -8, -16, 0, 363 } }
 };
 spr_array spat06 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -16, 0, 364 }
-  }
+  1,
+  { { -16, -16, 0, 364 } }
 };
 spr_array spat07 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -16, 0, 365 }
-  }
+  1,
+  { { -16, -16, 0, 365 } }
 };
 spr_array spat08 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -32, 0, 366 }
-  }
+  1,
+  { { -16, -32, 0, 366 } }
 };
 spr_array kpat00 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 367 }
-  }
+  1,
+  { { -8, -8, 0, 367 } }
 };
 spr_array kpat01 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -8, 0, 368 }
-  }
+  1,
+  { { -8, -8, 0, 368 } }
 };
 spr_array ipat00 = {
-  .cnt = 1,
-  .spra = {
-    { -20, -16, 0, 369 }
-  }
+  1,
+  { { -20, -16, 0, 369 } }
 };
 spr_array spat10 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -8, 0, 370 }
-  }
+  1,
+  { { -16, -8, 0, 370 } }
 };
 spr_array spat11 = {
-  .cnt = 1,
-  .spra = {
-    { -16, 0, 0, 371 }
-  }
+  1,
+  { { -16, 0, 0, 371 } }
 };
 spr_array spat12 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -32, 0, 372 }
-  }
+  1,
+  { { -16, -32, 0, 372 } }
 };
 spr_array spat13 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 373 }
-  }
+  1,
+  { { -8, -16, 0, 373 } }
 };
 spr_array spat14 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 374 }
-  }
+  1,
+  { { -8, -16, 0, 374 } }
 };
 spr_array spat15 = {
-  .cnt = 1,
-  .spra = {
-    { -8, -16, 0, 375 }
-  }
+  1,
+  { { -8, -16, 0, 375 } }
 };
 spr_array spat16 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -16, 0, 376 }
-  }
+  1,
+  { { -16, -16, 0, 376 } }
 };
 spr_array spat17 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -16, 0, 377 }
-  }
+  1,
+  { { -16, -16, 0, 377 } }
 };
 spr_array spat18 = {
-  .cnt = 1,
-  .spra = {
-    { -16, -32, 0, 378 }
-  }
+  1,
+  { { -16, -32, 0, 378 } }
 };
 spr_array* springpat[3] = {
   &spat00,
@@ -171,14 +137,14 @@ char springchg0[12] = {
 char* springchg[1] = { springchg0 };
 char komachg0[4] = { 8, 0, 1, -1 };
 char* komachg[1] = { komachg0 };
-void(*sjump_move_tbl)(act_info*)[13] = {
-  &sjump_init,
-  &sjump_move,
-  &sjump_move2
-  &sjump_move3,
-  &sdush_move,
-  &sdush_move2
-  &sdush_move3,
+void(*sjump_move_tbl[13])(act_info*) = {
+  &sjumpinit,
+  &sjumpmove,
+  &sjumpmove2,
+  &sjumpmove3,
+  &sdushmove,
+  &sdushmove2,
+  &sdushmove3,
   &sjump2move,
   &sjump2move2,
   &sjump2move3,
@@ -186,6 +152,40 @@ void(*sjump_move_tbl)(act_info*)[13] = {
   &sjump3move2,
   &sjump3move3
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -288,7 +288,7 @@ void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
   actionwk->xspeed.w = 384; /* Line 288, Address: 0x10040cc */
 
   pa_set(); /* Line 290, Address: 0x10040d8 */
-  patchg(actionwk, komachg); /* Line 291, Address: 0x10040e0 */
+  patchg(actionwk, (unsigned char**)komachg); /* Line 291, Address: 0x10040e0 */
 
   if (actwkchk(&a1) != 0) { /* Line 293, Address: 0x10040f4 */
 
@@ -329,7 +329,7 @@ void koma_move2(act_info* actionwk) { /* Line 322, Address: 0x1004270 */
     d0 -= actionwk->yposi.w.h; /* Line 329, Address: 0x10042c8 */
     if (d0 >= 12) actionwk->xspeed.w = -actionwk->xspeed.w; /* Line 330, Address: 0x10042dc */
     speedset2(actionwk); /* Line 331, Address: 0x1004314 */
-    patchg(actionwk, komachg); /* Line 332, Address: 0x1004320 */
+    patchg(actionwk, (unsigned char**)komachg); /* Line 332, Address: 0x1004320 */
   }
   actionsub(actionwk); /* Line 334, Address: 0x1004334 */
 } /* Line 335, Address: 0x1004340 */
@@ -416,13 +416,13 @@ void spring(act_info* actionwk) { /* Line 385, Address: 0x10044d0 */
   d0 &= -128; /* Line 416, Address: 0x1004620 */
   d1 = (scra_h_posit.w.h + -128) & -128; /* Line 417, Address: 0x1004628 */
   d0 += d1; /* Line 418, Address: 0x1004650 */
-  if (d0 >= 641) frameout(actionw); /* Line 419, Address: 0x1004658 */
+  if (d0 >= 641) frameout(actionwk); /* Line 419, Address: 0x1004658 */
 } /* Line 420, Address: 0x1004674 */
 
 void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
-  short sjumptbl[2] = { 61440, /* Line 423, Address: 0x10046a0 */
-                        62976 };
+  short sjumptbl[2] = { -4096, -2560 }; /* Line 423, Address: 0x10046a0 */
   unsigned char d0;
+
 
   actionwk->r_no0 += 2; /* Line 427, Address: 0x10046bc */
   if (actionwk->userflag.b.h & 2) /* Line 428, Address: 0x10046cc */
@@ -484,7 +484,7 @@ void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
 
   actionwk->r_no0 = 4; /* Line 485, Address: 0x1004998 */
   a1->yposi.w.h += 8; /* Line 486, Address: 0x10049a4 */
-  a1->yspeed.w = *(short*)actionwk->actfree[6]; /* Line 487, Address: 0x10049b0 */
+  a1->yspeed.w = *(short*)&actionwk->actfree[6]; /* Line 487, Address: 0x10049b0 */
   a1->cddat |= 2; /* Line 488, Address: 0x10049bc */
   a1->cddat %= 8; /* Line 489, Address: 0x10049c8 */
   a1->mstno.b.h = 16; /* Line 490, Address: 0x10049d4 */
@@ -493,7 +493,7 @@ void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
 } /* Line 493, Address: 0x10049f8 */
 
 void sjumpmove2(act_info* actionwk) { /* Line 495, Address: 0x1004a10 */
-  patchg(actionwk, springchg); /* Line 496, Address: 0x1004a1c */
+  patchg(actionwk, (unsigned char**)springchg); /* Line 496, Address: 0x1004a1c */
 } /* Line 497, Address: 0x1004a30 */
 
 void sjumpmove3(act_info* actionwk) { /* Line 499, Address: 0x1004a40 */
@@ -538,7 +538,7 @@ void sdushmove(act_info* actionwk) { /* Line 511, Address: 0x1004ad0 */
 } /* Line 538, Address: 0x1004bf8 */
 
 void sdushmove2(act_info* actionwk) { /* Line 540, Address: 0x1004c10 */
-  patchg(actionwk, springchg); /* Line 541, Address: 0x1004c1c */
+  patchg(actionwk, (unsigned char**)springchg); /* Line 541, Address: 0x1004c1c */
 } /* Line 542, Address: 0x1004c30 */
 
 void sdushmove3(act_info* actionwk) { /* Line 544, Address: 0x1004c40 */
@@ -570,7 +570,7 @@ void sjump2move(act_info* actionwk) { /* Line 554, Address: 0x1004cc0 */
 } /* Line 570, Address: 0x1004d7c */
 
 void sjump2move2(act_info* actionwk) { /* Line 572, Address: 0x1004d90 */
-  patchg(actionwk, springchg); /* Line 573, Address: 0x1004d9c */
+  patchg(actionwk, (unsigned char**)springchg); /* Line 573, Address: 0x1004d9c */
 } /* Line 574, Address: 0x1004db0 */
 
 void sjump2move3(act_info* actionwk) { /* Line 576, Address: 0x1004dc0 */
@@ -594,7 +594,7 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
 
   actionwk->r_no0 = 22; /* Line 595, Address: 0x1004e70 */
   d0 = 224; /* Line 596, Address: 0x1004e7c */
-  sinset(d0, &sin, &cos); /* Line 597, Address: 0x1004e84 */
+  sinset(d0, (short*)&sin, (short*)&cos); /* Line 597, Address: 0x1004e84 */
   d2 = actionwk->actfree[6]; /* Line 598, Address: 0x1004e98 */
   d2 = -d2; /* Line 599, Address: 0x1004ea8 */
   sinl = sin * d2; /* Line 600, Address: 0x1004ec4 */
@@ -609,7 +609,7 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
     a1->yspeed.w = -a1->yspeed.w; /* Line 609, Address: 0x1004f3c */
   }
   a1->cddat &= 254; /* Line 611, Address: 0x1004f58 */
-  s1->xposi.w.h -= 8; /* Line 612, Address: 0x1004f64 */
+  a1->xposi.w.h -= 8; /* Line 612, Address: 0x1004f64 */
   if (actionwk->cddat & 1) { /* Line 613, Address: 0x1004f70 */
     a1->xposi.w.h += 16; /* Line 614, Address: 0x1004f88 */
     a1->cddat |= 1; /* Line 615, Address: 0x1004f94 */
@@ -625,7 +625,7 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
 } /* Line 625, Address: 0x1005018 */
 
 void sjump3move2(act_info* actionwk) { /* Line 627, Address: 0x1005040 */
-  patchg(actionwk, springchg); /* Line 628, Address: 0x100504c */
+  patchg(actionwk, (unsigned char**)springchg); /* Line 628, Address: 0x100504c */
 } /* Line 629, Address: 0x1005060 */
 
 void sjump3move3(act_info* actionwk) { /* Line 631, Address: 0x1005070 */
