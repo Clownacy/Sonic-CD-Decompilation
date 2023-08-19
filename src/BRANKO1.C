@@ -1,30 +1,29 @@
-#include "EQU.C"
+#include "EQU.H"
 #include "BRANKO1.H"
-
-typedef struct brankodata;
-
-struct brankodata
-{
-  short angle;
-  short accel;
-  short area1;
-  short area2;
-};
+#include "ACTION.H"
+#include "ACTSET.H"
+#include "DUMMY.H"
+#include "ETC.H"
+#include "RIDECHK.H"
 
 spr_array pat0 = {
-  .cnt = 1,
-  .spra = { { -8, -8, 0, 515 } }
+  1,
+  { { -8, -8, 0, 515 } }
 };
 spr_array pat1 = {
-  .cnt = 1,
-  .spra = { { -8, -8, 0, 516 } }
+  1,
+  { { -8, -8, 0, 516 } }
 };
 spr_array pat2 = {
-  .cnt = 1,
-  .spra = { { -8, -8, 0, 517 } }
+  1,
+  { { -8, -8, 0, 517 } }
 };
-spr_array* branko1pat[3] = { &pat0, &pat1, &pat2 };
-void(*branko1_move_tbl)(act_info*)[2] = {
+spr_array* branko1pat[3] = {
+  &pat0,
+  &pat1,
+  &pat2
+};
+void(*branko1_move_tbl[2])(act_info*) = {
   &branko1_init,
   &branko1_move
 };
@@ -38,6 +37,7 @@ brankodata branko1_initbl[8] = {
   { -32768, -1, -256,    0 },
   { -32768,  1,  256,    0 }
 };
+
 
 
 
@@ -159,7 +159,7 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
 
         pNewact->userflag.b.h = pActwk->userflag.b.h; /* Line 160, Address: 0x1028714 */
         pNewact->actfree[5] = pActwk->actfree[5]; /* Line 161, Address: 0x1028724 */
-        pNewAct->actfree[18] = i; /* Line 162, Address: 0x1028734 */
+        pNewact->actfree[18] = i; /* Line 162, Address: 0x1028734 */
 
         if (pActwk->actfree[5] == i) { /* Line 164, Address: 0x102873c */
 
