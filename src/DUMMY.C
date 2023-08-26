@@ -7,7 +7,7 @@
 
 
 
-void pa_set(act_info* pActwk = 0, char value = 0) {} /* Line 10, Address: 0x1013e20 */
+void pa_set(...) {} /* Line 10, Address: 0x1013e20 */
 
 
 
