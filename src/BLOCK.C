@@ -49,7 +49,7 @@ spr_array block5 =
   1,
   { { -12, -12, 0, 407 } }
 };
-spr_array* blockpat[6] { &block0, &block1, &block2, &block3, &block4, &block5 };
+spr_array* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
 
 void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
   short iD0, iD1;

@@ -39,8 +39,8 @@ void(*mosugu_tbl[3])(act_info*, act_info*) = {
   &mosug_move0,
   &mosug_move1
 };
-void(*goal_tbl[5])(act_info*) {
 extern spr_array* goalpat[];
+void(*goal_tbl[5])(act_info*) = {
   &goal_init,
   &goal_move0,
   &goal_move1,
