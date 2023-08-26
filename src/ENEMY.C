@@ -611,7 +611,7 @@ void ari_move(act_info* pActwk) { /* Line 583, Address: 0x1004e60 */
     *(int*)&pActwk->actfree[0] = -spd_x; /* Line 611, Address: 0x1004fb0 */
     pActwk->actflg ^= 1; /* Line 612, Address: 0x1004fc0 */
     pActwk->cddat ^= 1; /* Line 613, Address: 0x1004fdc */
-  } while (true); /* Line 614, Address: 0x1004ff8 */
+  } while (1); /* Line 614, Address: 0x1004ff8 */
 } /* Line 615, Address: 0x1005000 */
 
 
@@ -822,7 +822,7 @@ void ka_move(act_info* pActwk) { /* Line 792, Address: 0x10055a0 */
     *(int*)&pActwk->actfree[2] = -*(int*)&pActwk->actfree[2]; /* Line 822, Address: 0x10056e4 */
     pActwk->actflg ^= 1; /* Line 823, Address: 0x10056f4 */
     pActwk->cddat ^= 1; /* Line 824, Address: 0x1005710 */
-  } while (true); /* Line 825, Address: 0x100572c */
+  } while (1); /* Line 825, Address: 0x100572c */
   patchg(pActwk, *(unsigned char***)&pActwk->actfree[6]); /* Line 826, Address: 0x1005734 */
 } /* Line 827, Address: 0x1005748 */
 
@@ -1004,7 +1004,7 @@ void kamemusi_move(act_info* pActwk) { /* Line 967, Address: 0x1005b20 */
     *(int*)&pActwk->actfree[2] = -*(int*)&pActwk->actfree[2]; /* Line 1004, Address: 0x1005c8c */
     pActwk->actflg ^= 1; /* Line 1005, Address: 0x1005c9c */
     pActwk->cddat ^= 1; /* Line 1006, Address: 0x1005cac */
-  } while (true); /* Line 1007, Address: 0x1005cbc */
+  } while (1); /* Line 1007, Address: 0x1005cbc */
 } /* Line 1008, Address: 0x1005cc4 */
 
 short area(act_info* pActwk) { /* Line 1010, Address: 0x1005ce0 */

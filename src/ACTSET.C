@@ -284,7 +284,7 @@ int tm_setchk(unsigned char cnt, unsigned short* pIndex) { /* Line 272, Address:
     case 2: return (time & 4) != 0; /* Line 284, Address: 0x1000848 */
   }
 
-  while (true); /* Line 287, Address: 0x1000874 */
+  while (1); /* Line 287, Address: 0x1000874 */
 
 } /* Line 289, Address: 0x1000890 */
 
