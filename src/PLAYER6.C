@@ -12,7 +12,7 @@ extern void sub_sync(short ReqNo); extern short playdamageset(act_info* pActwk, 
 
 unsigned int WaveClear;
 unsigned char Brake_Sw, Brake_Req;
-extern spr_array* sncpat[0];
+extern spr_array* sncpat[];
 extern unsigned char mapwka[8][64];
 short tate[2] = { 426, -1 }, yoko[2] = { 449, -1 }, naname[9] = { 444, 475, 468, 465, 419, 409, 408, 418, -1 };
 extern void(*WaveAllStop)();
@@ -812,7 +812,7 @@ label2:
     }
   }
 
-  if (scr_cnt % 16) ++scr_cnt &= 207; /* Line 815, Address: 0x10231a0 */
+  if (scr_cnt % 16) ++scr_cnt, scr_cnt &= 207; /* Line 815, Address: 0x10231a0 */
   if (scr_cnt & 128) goto label3; /* Line 816, Address: 0x10231e0 */
   if ((scr_cnt & 64) || (swdata.b.h & 2)) goto label4; /* Line 817, Address: 0x10231f8 */
   if ((scr_cnt %= 16) == 0) { /* Line 818, Address: 0x1023228 */
@@ -1641,7 +1641,7 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
 
       if (actwk[0].yspeed.w) break; /* Line 1642, Address: 0x1025d98 */
       dircol_d(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1643, Address: 0x1025db0 */
-      tmp_d3 = chk_d3; /* Line 1644, Address: 0x1025dcc */
+      chk_d3 = tmp_d3; /* Line 1644, Address: 0x1025dcc */
 
       if (chk_d1 >= 0) break; /* Line 1646, Address: 0x1025de0 */
       actwk[0].yposi.w.h += chk_d1; /* Line 1647, Address: 0x1025df4 */

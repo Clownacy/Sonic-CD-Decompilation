@@ -681,7 +681,7 @@ label3:
 
 
 label4:
-  if (scr_cnt % 16) ++scr_cnt &= 207; /* Line 684, Address: 0x1009424 */
+  if (scr_cnt % 16) ++scr_cnt, scr_cnt &= 207; /* Line 684, Address: 0x1009424 */
   if (scr_cnt & 128) goto label7; /* Line 685, Address: 0x1009464 */
   if ((scr_cnt & 64) || (swdata.b.h & 2)) goto label8; /* Line 686, Address: 0x100947c */
   if ((scr_cnt %= 16) == 0) { /* Line 687, Address: 0x10094ac */
@@ -1503,7 +1503,7 @@ void jumpcolchk() { /* Line 1380, Address: 0x100b9f0 */
 
       if (actwk[0].yspeed.w) break; /* Line 1504, Address: 0x100c0c8 */
       dircol_d(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1505, Address: 0x100c0e0 */
-      tmp_d3 = chk_d3; /* Line 1506, Address: 0x100c0fc */
+      chk_d3 = tmp_d3; /* Line 1506, Address: 0x100c0fc */
       if (chk_d1 >= 0) break; /* Line 1507, Address: 0x100c110 */
       actwk[0].yposi.w.h += chk_d1; /* Line 1508, Address: 0x100c124 */
       actwk[0].direc.b.h = chk_d3; /* Line 1509, Address: 0x100c13c */
