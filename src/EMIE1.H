@@ -14,7 +14,7 @@ void pljumpset();
 void dakicheck(act_info* pActwk);
 void empatchg(act_info* pActwk, char** pPattbl);
 void emie1clrset();
-void emie1clrsetx(tagPALETTEENTRY* pPalet);
+void emie1clrsetx(palette_entry* pPalet);
 void heartset(act_info* pActwk);
 void heart1(act_info* pActwk);
 void heart1_init(act_info* pActwk);

@@ -14,10 +14,10 @@ void(*em1_tbl[5])(act_info*) = {
   &emie1_tobii,
   &emie1_tobim
 };
-extern tagPALETTEENTRY zone1colora[];
+extern palette_entry zone1colora[];
 extern char* em_pchg[];
 extern spr_array* emie1pat[];
-tagPALETTEENTRY emie1_clr[16] = {
+palette_entry emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },
   { 128,  32,  96, 1 },
@@ -755,8 +755,8 @@ void emie1clrset() { /* Line 744, Address: 0x1006770 */
 
 
 
-void emie1clrsetx(tagPALETTEENTRY* pPalet) { /* Line 758, Address: 0x10067a0 */
-  tagPALETTEENTRY* pColorwk;
+void emie1clrsetx(palette_entry* pPalet) { /* Line 758, Address: 0x10067a0 */
+  palette_entry* pColorwk;
   short i;
 
 
