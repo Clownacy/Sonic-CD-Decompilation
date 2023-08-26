@@ -160,7 +160,7 @@ void dai_k_init(act_info* pActwk) { /* Line 143, Address: 0x1002130 */
 
 void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
   short lenwk, sinwk, coswk;
-  unsigned char pattbl[16];
+  static unsigned char pattbl[16] = { 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5 };
 
   if ((pActwk->actflg & 128) == 0) return; /* Line 165, Address: 0x10021c0 */
 
