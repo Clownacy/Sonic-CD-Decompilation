@@ -217,7 +217,7 @@ struct brankodata {
   short area2;
 };
 
-struct dlink_export {
+typedef struct dlink_export {
   void(*game_init)();
   void(*game)();
   void(*dll_meminit)(char***, void**);
@@ -230,7 +230,8 @@ struct dlink_export {
   void(*SetDebugFlag)(unsigned int);
   void(*GetRoundStr)(unsigned short, unsigned char, char*);
   void(*Special_block_chg)(unsigned short*, unsigned short*, unsigned short*, unsigned short*);
-};
+}
+dlink_export;
 
 typedef struct {
   unsigned char actno;
@@ -265,14 +266,23 @@ typedef struct {
 }
 map_info;
 
-struct tagPALETTEENTRY {
+typedef struct tagPALETTEENTRY {
   unsigned char peRed;
   unsigned char peGreen;
   unsigned char peBlue;
   unsigned char peFlags;
-};
+}
+palette_entry;
 
-struct tagPOINT {
+typedef struct {
+  palette_entry* PeSrc;
+  short offset;
+  short cnt;
+}
+palette_part;
+
+typedef struct tagPOINT {
   int x;
   int y;
-};
+}
+point;
