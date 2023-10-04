@@ -315,9 +315,9 @@ void t_item_move2(act_info* t_itemwk) { /* Line 309, Address: 0x1011440 */
 short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
   short flag_no, t_flag, t_item;
 
-  flag_no = t_itemwk->cdsts * 3; /* Line 318, Address: 0x1011484 */
+  flag_no = t_itemwk->cdsts, flag_no *= 3; /* Line 318, Address: 0x1011484 */
   t_flag = time_flag; /* Line 319, Address: 0x10114a8 */
-  if ((t_flag & 128) == 0) return flag_no + t_flag; /* Line 320, Address: 0x10114bc */
+  if ((t_flag & 128) == 0) return flag_no += t_flag; /* Line 320, Address: 0x10114bc */
   t_flag &= -129; /* Line 321, Address: 0x10114e8 */
   t_item = time_item; /* Line 322, Address: 0x10114f8 */
   t_item = -t_item; /* Line 323, Address: 0x1011510 */
@@ -355,7 +355,7 @@ void item(act_info* itemwk) { /* Line 354, Address: 0x1011640 */
   if (itemwk->userflag.b.h == 0 && ta_flag != 0) { /* Line 355, Address: 0x101164c */
     frameout_s(itemwk); return; /* Line 356, Address: 0x1011678 */
   }
-  if (itemwk->userflag.b.h >= 8) t_item(itemwk); /* Line 358, Address: 0x101168c */
+  if (itemwk->userflag.b.h >= 8) { t_item(itemwk); return; } /* Line 358, Address: 0x101168c */
   switch (itemwk->r_no0) { /* Line 359, Address: 0x10116bc */
     case 0:
       iteminit(itemwk); /* Line 361, Address: 0x1011708 */
@@ -631,7 +631,7 @@ void error_item(act_info* itemwk) { /* Line 627, Address: 0x1012300 */
 
 
 
-  ((int)itemwk->patbase ^ (int)corepat) < 1; /* Line 634, Address: 0x1012308 */
+  ((int)itemwk->patbase ^ (int)corepat) < 1U; /* Line 634, Address: 0x1012308 */
 
 
 

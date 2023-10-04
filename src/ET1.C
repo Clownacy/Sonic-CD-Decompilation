@@ -178,7 +178,7 @@ void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
   actionwk->sprvsize = 32; /* Line 178, Address: 0x10210f4 */
 
   a1 = tbl0sproffset; /* Line 180, Address: 0x1021100 */
-  d0 = (stageno.w + 1) * 4 + time_flag; /* Line 181, Address: 0x1021108 */
+  d0 = (stageno.w + 1 << 2) + (time_flag & 65535); /* Line 181, Address: 0x1021108 */
   actionwk->sproffset = a1[d0]; /* Line 182, Address: 0x102113c */
 
 
@@ -241,16 +241,16 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
   }
   ++actionwk->actfree[0]; /* Line 242, Address: 0x1021400 */
   if (actionwk->actfree[0] != d0) return; /* Line 243, Address: 0x1021410 */
-  d6 = tbl0[a6++]; /* Line 244, Address: 0x1021430 */
-  d5 = tbl0[a6++]; /* Line 245, Address: 0x1021468 */
   *(short*)&actionwk->actfree[2] = a6; /* Line 246, Address: 0x10214a0 */
+  d5 = tbl0[a6++]; /* Line 244, Address: 0x1021430 */
+  d6 = tbl0[a6++]; /* Line 245, Address: 0x1021468 */
   if (actwkchk(&a1) != 0) return; /* Line 247, Address: 0x10214a8 */
   a1->actno = 24; /* Line 248, Address: 0x10214bc */
   a1->r_no1 = 1; /* Line 249, Address: 0x10214c8 */
   a1->xposi = actionwk->xposi; /* Line 250, Address: 0x10214d4 */
   a1->yposi = actionwk->yposi; /* Line 251, Address: 0x10214ec */
-  a1->xposi.w.h += d6; /* Line 252, Address: 0x1021504 */
-  a1->yposi.w.h += d5; /* Line 253, Address: 0x1021514 */
+  a1->xposi.w.h += d5; /* Line 252, Address: 0x1021504 */
+  a1->yposi.w.h += d6; /* Line 253, Address: 0x1021514 */
   baku_init(a1); /* Line 254, Address: 0x1021524 */
   soundset(158); /* Line 255, Address: 0x1021530 */
 } /* Line 256, Address: 0x102153c */

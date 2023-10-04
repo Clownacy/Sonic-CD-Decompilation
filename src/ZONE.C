@@ -338,7 +338,7 @@ void over_move(act_info* pAct) { /* Line 337, Address: 0x10125a0 */
   if (pAct->xposi.w.h < *(short*)&pAct->actfree[0]) { /* Line 338, Address: 0x10125ac */
     pAct->xposi.w.h += 8; /* Line 339, Address: 0x10125e0 */
   } /* Line 340, Address: 0x10125f0 */
-  else if (*(short*)&pAct->actfree[0] < pAct->xposi.w.h) { /* Line 341, Address: 0x10125f8 */
+  else if (pAct->xposi.w.h > (short)((unsigned short*)pAct)[23]) { /* Line 341, Address: 0x10125f8 */
     pAct->xposi.w.h -= 8; /* Line 342, Address: 0x101262c */
   }
   actionsub(pAct); /* Line 344, Address: 0x101263c */
@@ -403,7 +403,7 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
     *(short*)&pTmpAct->actfree[0] = *wp++; /* Line 403, Address: 0x101285c */
     pTmpAct->patno = (*wp & -256) >> 8; /* Line 404, Address: 0x1012870 */
     if (i == 5) { /* Line 405, Address: 0x101288c */
-      pTmpAct->patno += stageno.b.l; /* Line 406, Address: 0x1012898 */
+      pTmpAct->patno = pTmpAct->patno + (unsigned char)stageno.b.l; /* Line 406, Address: 0x1012898 */
     }
     pTmpAct->pattim = *wp++; /* Line 408, Address: 0x10128c4 */
   } /* Line 409, Address: 0x10128e4 */
@@ -554,12 +554,12 @@ void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
   unsigned short* wp;
   int i;
 
-  if (stageno.w == 1282 /* Line 557, Address: 0x1012ed4 */
-      || actwk[0].xposi.w.h < scra_h_posit.w.h) { /* Line 558, Address: 0x1012ef0 */
+  if (stageno.w == 1282) goto label1; /* Line 557, Address: 0x1012ed4 */
+  if (actwk[0].xposi.w.h > (short)(scra_h_posit.w.h + 336)) { /* Line 558, Address: 0x1012ef0 */
 
 
 
-
+label1:
     pTmpAct = pAct; /* Line 563, Address: 0x1012f30 */
     wp = cleartbl; /* Line 564, Address: 0x1012f38 */
     for (i = 0; i < 3; ++i) { /* Line 565, Address: 0x1012f40 */
@@ -588,7 +588,7 @@ void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
       pTmpAct->patno = *wp++; /* Line 588, Address: 0x1013048 */
 
       if (i == 2) {  /* Line 590, Address: 0x1013068 */
-        pTmpAct->patno += stageno.b.l; /* Line 591, Address: 0x1013074 */
+        pTmpAct->patno = pTmpAct->patno + stageno.b.l; /* Line 591, Address: 0x1013074 */
       }
       actwkchk(&pTmpAct); /* Line 593, Address: 0x10130a0 */
     } /* Line 594, Address: 0x10130ac */
@@ -598,8 +598,8 @@ void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
 
 
 void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
-  if (*(short*)&pAct->actfree[8] != 0) { /* Line 601, Address: 0x10130ec */
     --*(short*)&pAct->actfree[8]; /* Line 602, Address: 0x10130fc */
+  if (((unsigned short*)pAct)[27]) { /* Line 601, Address: 0x10130ec */
   }
 
   if (pAct->xposi.w.h == *(short*)&pAct->actfree[0]) { /* Line 605, Address: 0x101310c */
@@ -608,7 +608,7 @@ void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
       pAct->r_no0 += 2; /* Line 608, Address: 0x101314c */
     }
   } /* Line 610, Address: 0x101315c */
-  else if (pAct->xposi.w.h < *(short*)&pAct->actfree[0]) { /* Line 611, Address: 0x1013164 */
+  else if (pAct->xposi.w.h > (short)((unsigned short*)pAct)[23]) { /* Line 611, Address: 0x1013164 */
     pAct->xposi.w.h -= 8; /* Line 612, Address: 0x1013198 */
   } /* Line 613, Address: 0x10131a8 */
   else {
@@ -669,11 +669,11 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
   } // Line 669, Address: 0x10133cc
   else {
 
-    if (*(short*)&pAct->actfree[8] != 0) { // Line 672, Address: 0x10133d4
       --*(short*)&pAct->actfree[8]; // Line 673, Address: 0x10133e4
+    if (((unsigned short*)pAct)[27]) { // Line 672, Address: 0x10133d4
     }
 
-    if ((*(short*)&pAct->actfree[8] & 1) == 0) { // Line 676, Address: 0x10133f4
+    if ((pAct->actfree[8] % 2) == 0) { // Line 676, Address: 0x10133f4
       soundset(189); // Line 677, Address: 0x1013424
     }
   }
@@ -730,7 +730,7 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
       if (generate_flag == 0) return; // Line 730, Address: 0x10135e0
       generate_flag = 0; // Line 731, Address: 0x10135f0
 
-      gf_flag |= 1 << (stageno.b.l + -1); // Line 733, Address: 0x10135f8
+      gf_flag |= 1 << stageno.b.l - 1; // Line 733, Address: 0x10135f8
       if (gf_flag != 3) return; // Line 734, Address: 0x101362c
     }
 

@@ -24,8 +24,8 @@
 
 
 unsigned int swap(int lSrc) { /* Line 26, Address: 0x100dab0 */
-  unsigned short iHi = (-1 & lSrc) >> 16; /* Line 27, Address: 0x100dac0 */
-  unsigned short iLow = lSrc; /* Line 28, Address: 0x100dad8 */
+  unsigned short iLow, iHi = (unsigned int)(lSrc & -65536) >> 16; /* Line 27, Address: 0x100dac0 */
+  iLow = lSrc; /* Line 28, Address: 0x100dad8 */
   return (iHi << 16) | iLow; /* Line 29, Address: 0x100dae8 */
 } /* Line 30, Address: 0x100daf8 */
 
@@ -64,7 +64,7 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
   iYposi = lYposi.w.h; /* Line 64, Address: 0x100dbd4 */
 
   bDirwk = *cpDirec; /* Line 66, Address: 0x100dbe0 */
-  bDirSave = *cpDirec; /* Line 67, Address: 0x100dbec */
+  bDirSave = bDirwk; /* Line 67, Address: 0x100dbec */
   dirstk[0] = bDirwk; /* Line 68, Address: 0x100dbf0 */
   dirstk[2] = bDirwk; /* Line 69, Address: 0x100dbf8 */
   if ((bDirwk + 32) < 0) /* Line 70, Address: 0x100dc00 */
@@ -81,7 +81,7 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
 
   bDirwk &= 12; /* Line 82, Address: 0x100dc78 */
 
-  if (bDirwk != 0) /* Line 84, Address: 0x100dc88 */
+  if (bDirwk == 0) /* Line 84, Address: 0x100dc88 */
     return dircol_d3(pActwk, iXposi, iYposi); /* Line 85, Address: 0x100dc94 */
   if (bDirwk == 128) /* Line 86, Address: 0x100dcb0 */
     return dircol_u3(pActwk, iXposi, iYposi); /* Line 87, Address: 0x100dcc0 */
@@ -112,7 +112,7 @@ short dircol2(act_info* pActwk, char* cpDirec) { /* Line 107, Address: 0x100dd60
   dirstk[0] = *cpDirec; /* Line 112, Address: 0x100dd78 */
   dirstk[2] = *cpDirec; /* Line 113, Address: 0x100dd88 */
   *cpDirec += 32; /* Line 114, Address: 0x100dd98 */
-  *cpDirec &= 192; /* Line 115, Address: 0x100ddbc */
+  *cpDirec = *cpDirec & 192; /* Line 115, Address: 0x100ddbc */
   bDirwk = *cpDirec; /* Line 116, Address: 0x100dde0 */
 
   switch (bDirwk) /* Line 118, Address: 0x100ddec */
@@ -608,7 +608,7 @@ short dircolchk(short* ipD0, short* ipD1, short* ipD3, char* cpDirec) { /* Line 
   short iWork;
 
 
-  if (*ipD0 < *ipD1) /* Line 611, Address: 0x100ec98 */
+  if (*ipD1 < *ipD0) /* Line 611, Address: 0x100ec98 */
   {
     iWork = *ipD1; /* Line 613, Address: 0x100ecc4 */
     *ipD1 = *ipD0; /* Line 614, Address: 0x100ecd4 */

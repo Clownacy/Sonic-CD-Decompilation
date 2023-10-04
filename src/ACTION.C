@@ -139,7 +139,7 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
   short xpos, ypos;
   unsigned char pri;
 
-  if (*(int*)&lpKeepWork->play_start != 0) return; /* Line 142, Address: 0x10015c4 */
+  if (lpKeepWork->GamePass != 0) return; /* Line 142, Address: 0x10015c4 */
 
   pActwk->actflg %= 128; /* Line 144, Address: 0x10015d8 */
   flag = pActwk->actflg; /* Line 145, Address: 0x10015e8 */
@@ -219,7 +219,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
     &scrc_v_posit
   };
 
-  if (*((int*)&lpKeepWork->play_start) != 0) return; /* Line 222, Address: 0x10018c0 */
+  if (lpKeepWork->GamePass != 0) return; /* Line 222, Address: 0x10018c0 */
 
   linkdata = 0; /* Line 224, Address: 0x10018d4 */
   for (i = 0; i < 8; ++i) { /* Line 225, Address: 0x10018dc */
@@ -235,7 +235,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
         if (flag != 0) { /* Line 235, Address: 0x1001970 */
 
           pScrHposi = patsettbl[flag]; /* Line 237, Address: 0x1001978 */
-          pScrVposi = patsettbl[flag + 1]; /* Line 238, Address: 0x100198c */
+          pScrVposi = patsettbl[flag + 4]; /* Line 238, Address: 0x100198c */
           xposi = pActwk->xposi.w.h; /* Line 239, Address: 0x10019a0 */
           xposi -= pScrHposi->w.h; /* Line 240, Address: 0x10019ac */
           xposi += 128; /* Line 241, Address: 0x10019c0 */
@@ -306,26 +306,26 @@ void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short
           y = yposi + sprdat->yoff; /* Line 306, Address: 0x1001d00 */
           break; /* Line 307, Address: 0x1001d38 */
         case 1:
-          x = xposi + -(sprdat->xoff) - SprBmp[sprdat->index].xs; /* Line 309, Address: 0x1001d40 */
+          x = xposi + (-(sprdat->xoff) - (short)(unsigned short)SprBmp[sprdat->index].xs); /* Line 309, Address: 0x1001d40 */
           y = yposi + sprdat->yoff; /* Line 310, Address: 0x1001db8 */
           break; /* Line 311, Address: 0x1001df0 */
         case 2:
           x = xposi + sprdat->xoff; /* Line 313, Address: 0x1001df8 */
-          y = yposi + -(sprdat->yoff) - SprBmp[sprdat->index].ys; /* Line 314, Address: 0x1001e30 */
+          y = yposi + (-(sprdat->yoff) - (short)(unsigned short)SprBmp[sprdat->index].ys); /* Line 314, Address: 0x1001e30 */
           break; /* Line 315, Address: 0x1001ea8 */
         case 3:
-          x = xposi + -(sprdat->xoff) - SprBmp[sprdat->index].xs; /* Line 317, Address: 0x1001eb0 */
-          y = yposi + -(sprdat->yoff) - SprBmp[sprdat->index].ys; /* Line 318, Address: 0x1001f28 */
+          x = xposi + (-(sprdat->xoff) - (short)(unsigned short)SprBmp[sprdat->index].xs); /* Line 317, Address: 0x1001eb0 */
+          y = yposi + (-(sprdat->yoff) - (short)(unsigned short)SprBmp[sprdat->index].ys); /* Line 318, Address: 0x1001f28 */
           break;
       }
       reverse = 0; /* Line 321, Address: 0x1001fa0 */
       if (pActwk->sproffset & 32768 || (sprdat->etc & 128) != 0) { /* Line 322, Address: 0x1001fa4 */
         reverse |= 32768; /* Line 323, Address: 0x1001fd4 */
       }
-      if (0 < (sprdat->etc & 8) != 0 < (flag & 1)) { /* Line 325, Address: 0x1001fdc */
+      if (((flag & 1) != 0) ^ ((sprdat->etc & 8) != 0)) { /* Line 325, Address: 0x1001fdc */
         ++reverse; /* Line 326, Address: 0x1002008 */
       }
-      if (0 < (sprdat->etc & 16) != 0 < (flag & 2)) { /* Line 328, Address: 0x1002010 */
+      if (((flag & 2) != 0) ^ ((sprdat->etc & 16) != 0)) { /* Line 328, Address: 0x1002010 */
         reverse += 2; /* Line 329, Address: 0x100203c */
       }
 

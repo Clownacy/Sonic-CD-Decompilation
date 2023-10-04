@@ -63,7 +63,7 @@ short fcol(act_info* pActwk) { /* Line 50, Address: 0x1001350 */
   dirstk[2] = 3; /* Line 63, Address: 0x10013a8 */
 
   cDirecWork = pActwk->direc.b.h; /* Line 65, Address: 0x10013b4 */
-  if ((pActwk->direc.b.h + 32) < 0) { /* Line 66, Address: 0x10013c4 */
+  if ((char)(cDirecWork + 32) < 0) { /* Line 66, Address: 0x10013c4 */
 
     if (cDirecWork < 0) { /* Line 68, Address: 0x10013e8 */
       --cDirecWork; /* Line 69, Address: 0x10013f8 */
@@ -368,7 +368,7 @@ short scdend(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
   iYposi += iOffset; /* Line 368, Address: 0x1002068 */
   iScd = scdchk2(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirStk); /* Line 369, Address: 0x1002078 */
   iYposi -= iOffset; /* Line 370, Address: 0x10020a4 */
-  return iScd; /* Line 371, Address: 0x10020b4 */
+  return iScd + 16; /* Line 371, Address: 0x10020b4 */
 } /* Line 372, Address: 0x10020c8 */
 
 
@@ -508,7 +508,7 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 509, Address: 0x1002568 */
   iBlkOffset = iBlkNo % 1024; /* Line 510, Address: 0x1002584 */
-  if (iBlkOffset == 0 || (1 << iRideon) & iBlkNo) { /* Line 511, Address: 0x10025a0 */
+  if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 511, Address: 0x10025a0 */
 
 
     return 15 - (iYposi % 16); /* Line 514, Address: 0x10025d8 */
@@ -565,7 +565,7 @@ label1:
   }
 
   iScd = iYposi % 16; /* Line 567, Address: 0x1002844 */
-  if ((iScd + iScdData) > 0) { /* Line 568, Address: 0x1002864 */
+  if (iScd + iScdData > 0) { /* Line 568, Address: 0x1002864 */
     return 15 - iScd; /* Line 569, Address: 0x1002880 */
   }
   return ~iScd; /* Line 571, Address: 0x10028a0 */
@@ -850,7 +850,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
     lpw = pmapwk; /* Line 850, Address: 0x1003470 */
     lpw += iXwork; /* Line 851, Address: 0x1003478 */
     lpw += iYwork << 4; /* Line 852, Address: 0x1003488 */
-    lpw += (iBlkNo + -1) << 8; /* Line 853, Address: 0x100349c */
+    lpw += (iBlkNo + -1 << 4) << 4; /* Line 853, Address: 0x100349c */
     iMapNo = *lpw; /* Line 854, Address: 0x10034b8 */
     return iMapNo; /* Line 855, Address: 0x10034c4 */
   }
@@ -878,7 +878,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
   lpw = pmapwk; /* Line 878, Address: 0x1003624 */
   lpw += iXwork; /* Line 879, Address: 0x100362c */
   lpw += iYwork << 4; /* Line 880, Address: 0x100363c */
-  lpw += (iBlkNo + -1) << 8; /* Line 881, Address: 0x1003650 */
+  lpw += (iBlkNo + -1 << 4) << 4; /* Line 881, Address: 0x1003650 */
   return *lpw; /* Line 882, Address: 0x100366c */
 
 } /* Line 884, Address: 0x1003678 */
@@ -901,7 +901,7 @@ short dirchk(act_info* pActwk, short scd0, short scd1) { /* Line 900, Address: 0
   unsigned char cDirectWk;
 
   cDirectWk = dirstk[2]; /* Line 903, Address: 0x10036b4 */
-  if (scd0 < scd1) { /* Line 904, Address: 0x10036c0 */
+  if (scd1 > scd0) { /* Line 904, Address: 0x10036c0 */
 
     cDirectWk = dirstk[0]; /* Line 906, Address: 0x10036e4 */
     scd1 = scd0; /* Line 907, Address: 0x10036f0 */
@@ -982,7 +982,7 @@ short st_elseDataChk(short iBlkNo, act_info* pActwk) { /* Line 962, Address: 0x1
 
 
 short st_wackyDataChk(short iBlkNo, act_info* pActwk) { /* Line 984, Address: 0x10037e0 */
-  if (pActwk->actflg | 64) { /* Line 985, Address: 0x10037ec */
+  if (pActwk->actflg & 64) { /* Line 985, Address: 0x10037ec */
 
 
     switch (iBlkNo) { /* Line 988, Address: 0x1003804 */

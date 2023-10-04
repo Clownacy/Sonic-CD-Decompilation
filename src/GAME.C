@@ -325,11 +325,11 @@ int game() { /* Line 323, Address: 0x1017f70 */
   if (swdata1.b.l & 128) { /* Line 325, Address: 0x1017f78 */
     if (pauseflag.b.h != 0) { /* Line 326, Address: 0x1017f90 */
       if (swdata2.w & 32896) { /* Line 327, Address: 0x1017fa0 */
-        if (PauseIcon != 0) PauseIcon = pauseflag.b.h = 0; /* Line 328, Address: 0x1017fb8 */
+        if (PauseIcon) pauseflag.b.h = 0, PauseIcon = 0; /* Line 328, Address: 0x1017fb8 */
       } else pauseflag.b.h = 0; /* Line 329, Address: 0x1017fd8 */
       CDPause(1); /* Line 330, Address: 0x1017fe8 */
     } else { /* Line 331, Address: 0x1017ffc */
-      if (swdata2.w & 32896) PauseIcon = pauseflag.b.h = 1; /* Line 332, Address: 0x1018004 */
+      if (swdata2.w & 32896) pauseflag.b.h = 1, PauseIcon = 1; /* Line 332, Address: 0x1018004 */
       else pauseflag.b.h = 1; /* Line 333, Address: 0x101803c */
       CDPause(0); /* Line 334, Address: 0x1018048 */
     }
@@ -382,7 +382,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
     actsetchk(); /* Line 382, Address: 0x1018180 */
     action(); /* Line 383, Address: 0x1018188 */
   }
-  (demo_cnt ^ 2048) < 1; /* Line 385, Address: 0x1018190 */
+  (demo_cnt ^ 2048) < 1U; /* Line 385, Address: 0x1018190 */
 
 
   if (gameflag.w != 0) { /* Line 388, Address: 0x10181a8 */
@@ -413,9 +413,9 @@ int game() { /* Line 323, Address: 0x1017f70 */
 
     if (gameflag.w == 2) { /* Line 414, Address: 0x1018344 */
 
-      lpKeepWork->ta_time = pltime.b.b4 + pltime.b.b3 * 60 + pltime.b.b2 * 3600; /* Line 416, Address: 0x1018360 */
+      lpKeepWork->ta_time = pltime.b.b3 * 60 + pltime.b.b2 * 60 * 60 + pltime.b.b4; /* Line 416, Address: 0x1018360 */
     } /* Line 417, Address: 0x10183c8 */
-    else if (gameflag.w != 1) { /* Line 418, Address: 0x10183d0 */
+    else if (gameflag.w == 1) { /* Line 418, Address: 0x10183d0 */
       lpKeepWork->ta_time = -1; /* Line 419, Address: 0x10183ec */
     }
     return gameflag.w; /* Line 421, Address: 0x10183fc */
@@ -458,7 +458,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
   scrollwrt(); /* Line 458, Address: 0x1018564 */
   scoreset(); /* Line 459, Address: 0x101856c */
 
-  cg_change(); /* Line 461, Address: 0x1018574 */
+  /*cg_change(); */ /* Line 461, Address: 0x1018574 */
 
 
   if (pauseflag.b.h == 0) { /* Line 464, Address: 0x101857c */
@@ -746,7 +746,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   startcolor = 32; /* Line 746, Address: 0x1018f34 */
   colorcnt = 47; /* Line 747, Address: 0x1018f40 */
 
-  cg_change(); /* Line 749, Address: 0x1018f4c */
+  /* cg_change(); */ /* Line 749, Address: 0x1018f4c */
 
   tv_flag = 1; /* Line 751, Address: 0x1018f54 */
 

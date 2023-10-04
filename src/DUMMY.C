@@ -7,7 +7,7 @@
 
 
 
-void pa_set(...) {} /* Line 10, Address: 0x1013e20 */
+void pa_set() {} /* Line 10, Address: 0x1013e20 */
 
 
 

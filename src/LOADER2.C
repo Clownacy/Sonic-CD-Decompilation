@@ -35,7 +35,7 @@ void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /
 
   round = (StageNo >> 8) + 1; /* Line 36, Address: 0x10136c8 */
   if (round >= 2) ++round; /* Line 37, Address: 0x10136e0 */
-  stage = (unsigned char)StageNo + 1; /* Line 38, Address: 0x10136f8 */
+  stage = (char)StageNo + 1; /* Line 38, Address: 0x10136f8 */
 
   *buf++ = round + 48; /* Line 40, Address: 0x1013710 */
   *buf++ = stage + 48; /* Line 41, Address: 0x1013734 */
@@ -91,7 +91,7 @@ void ReadBlockMap() { /* Line 59, Address: 0x1013830 */
 } /* Line 91, Address: 0x1013974 */
 
 
-/* Line 116: Shouldn't it use p instead of pmapwk? */
+
 void ReadScrolMap() { /* Line 95, Address: 0x1013990 */
   int hf;
   unsigned short* p;

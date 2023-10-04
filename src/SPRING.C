@@ -268,7 +268,7 @@ void koma(act_info* actionwk) { /* Line 255, Address: 0x1003f60 */
   }
   d0 = *(short*)&actionwk->actfree[12]; /* Line 269, Address: 0x1003fd4 */
   d0 &= -128; /* Line 270, Address: 0x1003fe0 */
-  d1 = (scra_h_posit.w.h + -128) & -128; /* Line 271, Address: 0x1003fe8 */
+  d1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 271, Address: 0x1003fe8 */
   d0 -= d1; /* Line 272, Address: 0x1004010 */
   if (d0 >= 641) frameout(actionwk); /* Line 273, Address: 0x1004018 */
 } /* Line 274, Address: 0x1004034 */
@@ -284,7 +284,7 @@ void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
   actionwk->sproffset = 848; /* Line 284, Address: 0x1004098 */
   actionwk->sprhsize = 8; /* Line 285, Address: 0x10040a4 */
   actionwk->sprvsize = 7; /* Line 286, Address: 0x10040b0 */
-  *(short*)&actionwk->actfree[12] = actionwk->xposi.w.h; /* Line 287, Address: 0x10040bc */
+  ((short*)actionwk)[27] = actionwk->xposi.w.h; /* Line 287, Address: 0x10040bc */
   actionwk->xspeed.w = 384; /* Line 288, Address: 0x10040cc */
 
   pa_set(); /* Line 290, Address: 0x10040d8 */
@@ -300,8 +300,8 @@ void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
   a1->yposi.w.h = actionwk->yposi.w.h; /* Line 300, Address: 0x1004138 */
   a1->yposi.w.h -= 16; /* Line 301, Address: 0x1004148 */
   a1->actfree[15] = -16; /* Line 302, Address: 0x1004158 */
-  a1->actfree[10] = (a1 - actwk) / 68; /* Line 303, Address: 0x1004164 */
-  a1->userflag = actwk[a1->actfree[10]].userflag; /* Line 304, Address: 0x1004198 */
+  ((unsigned short*)a1)[28] = actionwk - actwk; /* Line 303, Address: 0x1004164 */
+  a1->userflag.w = actwk[((unsigned short*)a1)[28]].userflag.w; /* Line 304, Address: 0x1004198 */
 } /* Line 305, Address: 0x10041c8 */
 
 void koma_move(act_info* actionwk) { /* Line 307, Address: 0x10041e0 */
@@ -397,7 +397,7 @@ void spring(act_info* actionwk) { /* Line 385, Address: 0x10044d0 */
     spring_d(actionwk); /* Line 397, Address: 0x1004500 */
   }
   if (actionwk->r_no0 == 0 /* Line 399, Address: 0x100450c */
-      || actionwk->actno & 128) { /* Line 400, Address: 0x1004520 */
+      || actionwk->actflg & 128) { /* Line 400, Address: 0x1004520 */
 
     sjump_move_tbl[actionwk->r_no0 / 2](actionwk); /* Line 402, Address: 0x1004538 */
   }
@@ -414,7 +414,7 @@ void spring(act_info* actionwk) { /* Line 385, Address: 0x10044d0 */
 
   d0 = *(short*)&actionwk->actfree[12]; /* Line 415, Address: 0x1004614 */
   d0 &= -128; /* Line 416, Address: 0x1004620 */
-  d1 = (scra_h_posit.w.h + -128) & -128; /* Line 417, Address: 0x1004628 */
+  d1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 417, Address: 0x1004628 */
   d0 += d1; /* Line 418, Address: 0x1004650 */
   if (d0 >= 641) frameout(actionwk); /* Line 419, Address: 0x1004658 */
 } /* Line 420, Address: 0x1004674 */
@@ -446,7 +446,7 @@ void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
       actionwk->patbase = spring90pat; /* Line 446, Address: 0x10047bc */
     else
       actionwk->patbase = spring90pat2; /* Line 448, Address: 0x10047d4 */
-    return; /* Line 449, Address: 0x10047e4 */
+    goto label1; /* Line 449, Address: 0x10047e4 */
   }
   if (d0 & 8) { /* Line 451, Address: 0x10047ec */
     actionwk->r_no0 = 20; /* Line 452, Address: 0x10047fc */
@@ -456,14 +456,14 @@ void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
       actionwk->patbase = spring45pat; /* Line 456, Address: 0x100483c */
     else
       actionwk->patbase = spring45pat2; /* Line 458, Address: 0x1004854 */
-    pa_set(); /* Line 459, Address: 0x1004864 */
+    pa_set(); goto label1; /* Line 459, Address: 0x1004864 */
   } /* Line 460, Address: 0x100486c */
   else {
     if (actionwk->actflg & 2) { /* Line 462, Address: 0x1004874 */
       actionwk->r_no0 = 14; /* Line 463, Address: 0x100488c */
       actionwk->cddat |= 1; /* Line 464, Address: 0x1004898 */
     }
-    if (d0 & 2) /* Line 466, Address: 0x10048a8 */
+label1:  if (d0 & 2) /* Line 466, Address: 0x10048a8 */
       actionwk->sproffset |= 8192; /* Line 467, Address: 0x10048b8 */
 
     *(short*)&actionwk->actfree[6] = sjumptbl[(d0 & 2) / 2]; /* Line 469, Address: 0x10048c8 */
@@ -486,9 +486,9 @@ void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
   a1->yposi.w.h += 8; /* Line 486, Address: 0x10049a4 */
   a1->yspeed.w = *(short*)&actionwk->actfree[6]; /* Line 487, Address: 0x10049b0 */
   a1->cddat |= 2; /* Line 488, Address: 0x10049bc */
-  a1->cddat %= 8; /* Line 489, Address: 0x10049c8 */
+  a1->cddat &= -9; /* Line 489, Address: 0x10049c8 */
   a1->mstno.b.h = 16; /* Line 490, Address: 0x10049d4 */
-  actionwk->cddat %= 8; /* Line 491, Address: 0x10049dc */
+  actionwk->cddat &= -9; /* Line 491, Address: 0x10049dc */
   soundset(152); /* Line 492, Address: 0x10049ec */
 } /* Line 493, Address: 0x10049f8 */
 
@@ -599,8 +599,8 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
   d2 = -d2; /* Line 599, Address: 0x1004ea8 */
   sinl = sin * d2; /* Line 600, Address: 0x1004ec4 */
   cosl = cos * d2; /* Line 601, Address: 0x1004ed8 */
-  sinl = sinl >> 8; /* Line 602, Address: 0x1004eec */
-  cosl = cosl >> 8; /* Line 603, Address: 0x1004ef0 */
+  sinl >>= 8; /* Line 602, Address: 0x1004eec */
+  cosl >>= 8; /* Line 603, Address: 0x1004ef0 */
   a1->yspeed.w = sinl; /* Line 604, Address: 0x1004ef4 */
   a1->xspeed.w = cosl; /* Line 605, Address: 0x1004f00 */
   a1->yposi.w.h += 8; /* Line 606, Address: 0x1004f0c */

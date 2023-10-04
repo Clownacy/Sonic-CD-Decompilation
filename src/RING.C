@@ -172,27 +172,27 @@ void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
   act_info* new_actwk;
 
   d1 = time_flag % 128; /* Line 174, Address: 0x1006394 */
-  if ((d0 = time_flag) & 128) { /* Line 175, Address: 0x10063b4 */
-    d1 = -time_item; /* Line 176, Address: 0x10063cc */
+  if (time_flag & 128) { /* Line 175, Address: 0x10063b4 */
+    d1 += -time_item; /* Line 176, Address: 0x10063cc */
     if (d1 < 0) d1 = 0; /* Line 177, Address: 0x10063f4 */
     else if (d1 >= 3) d1 = 2; /* Line 178, Address: 0x1006410 */
   }
-  fw_index = pActwk->cdsts * 3; /* Line 180, Address: 0x1006430 */
+  fw_index = d1 + pActwk->cdsts * 3; /* Line 180, Address: 0x1006430 */
 
   d4 = flagwork[fw_index]; /* Line 182, Address: 0x1006450 */
   d1 = pActwk->userflag.b.h % 8; /* Line 183, Address: 0x1006464 */
   if (d1 == 7) d1 = 6; /* Line 184, Address: 0x1006488 */
   ring_counter = 1; /* Line 185, Address: 0x10064a8 */
-  d0 = (pActwk->userflag.b.h >> 4) << 1; /* Line 186, Address: 0x10064b4 */
-  d3 = ringtbl[0]; /* Line 187, Address: 0x10064dc */
-  d2 = ringtbl[d0 + 1]; /* Line 188, Address: 0x10064fc */
+  d0 = ((unsigned char)pActwk->userflag.b.h >> 4) * 2; /* Line 186, Address: 0x10064b4 */
+  d5 = ringtbl[d0]; /* Line 187, Address: 0x10064dc */
+  d6 = ringtbl[d0 + 1]; /* Line 188, Address: 0x10064fc */
   new_actwk = pActwk; /* Line 189, Address: 0x1006520 */
-  d6 = pActwk->xposi.w.h; /* Line 190, Address: 0x1006528 */
-  d5 = pActwk->yposi.w.h; /* Line 191, Address: 0x1006538 */
+  d2 = pActwk->xposi.w.h; /* Line 190, Address: 0x1006528 */
+  d3 = pActwk->yposi.w.h; /* Line 191, Address: 0x1006538 */
 
   d0 = time_flag % 128; /* Line 193, Address: 0x1006548 */
   if (time_flag & 128) { /* Line 194, Address: 0x1006568 */
-    d0 -= time_item; /* Line 195, Address: 0x1006580 */
+    d0 += -time_item; /* Line 195, Address: 0x1006580 */
     if (d0 < 0) d0 = 0; /* Line 196, Address: 0x10065a8 */
     else if (d0 >= 3) d0 = 2; /* Line 197, Address: 0x10065c4 */
   }
@@ -207,7 +207,7 @@ void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
 label1:
   d0 = time_flag % 128; /* Line 208, Address: 0x1006668 */
   if (time_flag & 128) { /* Line 209, Address: 0x1006688 */
-    d0 -= time_item; /* Line 210, Address: 0x10066a0 */
+    d0 += -time_item; /* Line 210, Address: 0x10066a0 */
     if (d0 < 0) d0 = 0; /* Line 211, Address: 0x10066c8 */
     else if (d0 >= 3) d0 = 2; /* Line 212, Address: 0x10066e4 */
   }
@@ -244,20 +244,20 @@ label2:
     new_actwk->mstno.b.h = 1; /* Line 244, Address: 0x10068a0 */
 label3:
     ++ring_counter; /* Line 246, Address: 0x10068ac */
-    d6 += d3; /* Line 247, Address: 0x10068b8 */
-    d5 += d2; /* Line 248, Address: 0x10068c4 */
+    d2 += d5; /* Line 247, Address: 0x10068b8 */
+    d3 += d6; /* Line 248, Address: 0x10068c4 */
     if (--d1 != -1) goto label1; /* Line 249, Address: 0x10068d0 */
   }
   d0 = time_flag % 128; /* Line 251, Address: 0x10068f8 */
   if (time_flag & 128) { /* Line 252, Address: 0x1006918 */
-    d0 = -time_item; /* Line 253, Address: 0x1006930 */
+    d0 += -time_item; /* Line 253, Address: 0x1006930 */
     if (d0 < 0) d0 = 0; /* Line 254, Address: 0x1006958 */
     else if ((i = d0) >= 3) d0 = 2; /* Line 255, Address: 0x1006974 */
   }
   i = fw_index + 1; /* Line 257, Address: 0x1006994 */
   do {
-    if (flagwork[--i] & 1) { /* Line 259, Address: 0x1006998 */
-      frameout(pActwk); /* Line 260, Address: 0x10069c0 */
+    if (flagwork[i--] & 1) { /* Line 259, Address: 0x1006998 */
+      frameout(pActwk); d1 = 0; /* Line 260, Address: 0x10069c0 */
       return; /* Line 261, Address: 0x10069d0 */
     }
   } while (--d0 != -1); /* Line 263, Address: 0x10069d8 */
@@ -273,15 +273,15 @@ void ringmove(act_info* pActwk) { /* Line 272, Address: 0x1006a40 */
   unsigned short d0;
 
   if (pActwk->actflg >= 0) { /* Line 275, Address: 0x1006a50 */
-    d0 = (*(short*)&pActwk->actfree[8] & -128) - (scra_h_posit.w.h + -128) & -128; /* Line 276, Address: 0x1006a64 */
+    d0 = (((unsigned short*)pActwk)[27] & 65408) - (scra_h_posit.w.h + -128 & 65408); /* Line 276, Address: 0x1006a64 */
     if (d0 >= 641) { /* Line 277, Address: 0x1006a94 */
       ringerase(pActwk); /* Line 278, Address: 0x1006aa4 */
       return; /* Line 279, Address: 0x1006ab0 */
     }
   }
 
-  pActwk->patcnt = ((systemtimer.b.b4 >> 3) % 4) + 1; /* Line 283, Address: 0x1006ab8 */
   pActwk->pattim = systemtimer.b.b4 % 8; /* Line 284, Address: 0x1006ae8 */
+  pActwk->patcnt = (unsigned char)((systemtimer.b.b4 >> 3) & 3) + 1; /* Line 283, Address: 0x1006ab8 */
   patchg(pActwk, ringchg); /* Line 285, Address: 0x1006b08 */
   actionsub(pActwk); /* Line 286, Address: 0x1006b1c */
 } /* Line 287, Address: 0x1006b28 */
@@ -302,11 +302,11 @@ void ringget(act_info* pActwk) { /* Line 293, Address: 0x1006b40 */
   d0 = pActwk->cdsts * 3; /* Line 302, Address: 0x1006b88 */
   d1 = time_flag % 128; /* Line 303, Address: 0x1006bac */
   if (time_flag & 128) { /* Line 304, Address: 0x1006bcc */
-    d1 -= time_item; /* Line 305, Address: 0x1006be4 */
+    d1 += -time_item; /* Line 305, Address: 0x1006be4 */
     if (d1 < 0) d1 = 0; /* Line 306, Address: 0x1006c0c */
     else if (d1 >= 3) d1 = 2; /* Line 307, Address: 0x1006c28 */
   }
-  flagwork[d0 + d1] = 1 << (pActwk->actfree[10] + -1); /* Line 310, Address: 0x1006c48 */
+  flagwork[d0 + d1] |= 1 << (pActwk->actfree[10] + -1); /* Line 310, Address: 0x1006c48 */
   ringdie(pActwk); /* Line 311, Address: 0x1006c90 */
 } /* Line 312, Address: 0x1006c9c */
 
@@ -450,7 +450,7 @@ label1:
 
 
 
-/* TODO: Line: Why divide by the size of act_info twice? */
+
 void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
   short d1;
 
@@ -458,11 +458,11 @@ void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
 
   speedset2(pActwk); /* Line 459, Address: 0x1007280 */
   if ((pActwk->yspeed.w += 24) >= 0) { /* Line 460, Address: 0x100728c */
-    if (((systemtimer.b.b4 + ((pActwk - actwk) / 68 / 68)) & 3) == 0) { /* Line 461, Address: 0x10072b4 */
+    if (((systemtimer.b.b4 + ((pActwk - actwk) / 68U)) & 3) == 0) { /* Line 461, Address: 0x10072b4 */
       if ((d1 = emycol_d(pActwk)) < 0) { /* Line 462, Address: 0x1007314 */
         pActwk->yposi.w.h += d1; /* Line 463, Address: 0x1007340 */
-        pActwk->yspeed.w -= pActwk->yspeed.w >> 2; /* Line 464, Address: 0x1007350 */
-        pActwk->yspeed.w = -pActwk->yspeed.w; /* Line 465, Address: 0x1007390 */
+        pActwk->yspeed.w -= pActwk->yspeed.w / 4; /* Line 464, Address: 0x1007350 */
+        pActwk->yspeed.w *= -1; /* Line 465, Address: 0x1007390 */
       }
     }
   }

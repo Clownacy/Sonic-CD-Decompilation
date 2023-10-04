@@ -38,7 +38,7 @@ void frameoutchk(act_info* pActwk) { /* Line 23, Address: 0x1000fe0 */
   else
   {
     index = pActwk->cdsts; /* Line 40, Address: 0x1001078 */
-    if (index != 0) flagwork[index] %= 128; /* Line 41, Address: 0x1001084 */
+    if (index) flagwork[index] &= 127; /* Line 41, Address: 0x1001084 */
     frameout(pActwk); /* Line 42, Address: 0x10010a8 */
   }
 } /* Line 44, Address: 0x10010b4 */

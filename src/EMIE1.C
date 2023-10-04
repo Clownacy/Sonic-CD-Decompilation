@@ -199,7 +199,7 @@ void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
 
 
 
-/* TODO: Reverify flow. Each else block usually causes a branch. Lots of whitespace at the end, too. */
+
 void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
   short lenwk;
   unsigned char dakiflgwk;
@@ -212,7 +212,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
 
   dakiflgwk = pActwk->actfree[20]; /* Line 213, Address: 0x10055b0 */
 
-  if ((dakiflgwk & 4) || actwk[0].xspeed.w == 0 || lenwk >= 16) { /* Line 215, Address: 0x10055bc */
+  if ((dakiflgwk & 4) || actwk[0].xspeed.w || lenwk >= 16) { /* Line 215, Address: 0x10055bc */
 
 
 
@@ -228,7 +228,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
         return; /* Line 228, Address: 0x1005658 */
       }
 
-      pActwk->actfree[20] = pActwk->actfree[20] & 251; /* Line 231, Address: 0x1005660 */
+      pActwk->actfree[20] &= 251; /* Line 231, Address: 0x1005660 */
     }
 
 
@@ -250,7 +250,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
 
     if (pActwk->xspeed.w >= 0) { /* Line 251, Address: 0x1005708 */
 
-      if (pActwk->xposi.w.h < *(short*)&pActwk->actfree[12] + 144) { /* Line 253, Address: 0x1005720 */
+      if (((short*)pActwk)[29] + 144 > pActwk->xposi.w.h) { /* Line 253, Address: 0x1005720 */
 
 
 
@@ -285,7 +285,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
         }
       }
     }
-  } else if (dakiflgwk & 64) { /* Line 289, Address: 0x1005898 */
+  } else if ((dakiflgwk & 64) == 0) { /* Line 289, Address: 0x1005898 */
 
 
       pActwk->actfree[20] |= 4; /* Line 291, Address: 0x10058a8 */
@@ -428,9 +428,9 @@ void emie1_tobii(act_info* pActwk) { /* Line 398, Address: 0x1005c60 */
 
 void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
   speedset(pActwk); /* Line 430, Address: 0x1005d8c */
-  pActwk->yspeed.w += 64; /* Line 431, Address: 0x1005d98 */
-  if (pActwk->yspeed.w < 0) pActwk->patno = 7; /* Line 432, Address: 0x1005dc0 */
-
+  if ((pActwk->yspeed.w += 64) >= 0) { /* Line 431, Address: 0x1005d98 */
+    pActwk->patno = 7; /* Line 432, Address: 0x1005dc0 */
+  }
 
   if (emycol_d(pActwk) >= 0) return; /* Line 435, Address: 0x1005dcc */
 
@@ -604,7 +604,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
   if (pActwk->xspeed.w >= 0) { /* Line 605, Address: 0x10062a0 */
 
-    if (pActwk->xposi.w.h >= (*(short*)&pActwk->actfree[12] + 144)) return; /* Line 607, Address: 0x10062b8 */
+    if (((short*)pActwk)[29] + 144 <= pActwk->xposi.w.h) return; /* Line 607, Address: 0x10062b8 */
 
 
 
@@ -626,7 +626,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
 
 
-  if (pActwk->cddat & 1) { /* Line 629, Address: 0x100634c */
+  if (actwk[0].cddat & 1) { /* Line 629, Address: 0x100634c */
 
     if ((lenwk = pActwk->xposi.w.h - actwk[0].xposi.w.h) < 0) return; /* Line 631, Address: 0x1006364 */
 
@@ -869,7 +869,7 @@ void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
 
   if (pActwk->actfree[18] == 0) { /* Line 870, Address: 0x1006b0c */
     sinset(pActwk->actfree[16] * 3, &sinwk, &coswk); /* Line 871, Address: 0x1006b1c */
-    pActwk->xspeed.w = sinwk * 4; /* Line 872, Address: 0x1006b44 */
+    pActwk->xspeed.w = sinwk >> 2; /* Line 872, Address: 0x1006b44 */
   }
 
 
@@ -884,4 +884,3 @@ void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
     frameout(pActwk); /* Line 884, Address: 0x1006c18 */
   }
 } /* Line 886, Address: 0x1006c24 */
-

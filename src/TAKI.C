@@ -161,7 +161,7 @@ void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
 
 
 void jisin_set(act_info* pActwk) { /* Line 163, Address: 0x101d930 */
-  return; /* Line 164, Address: 0x101d938 */
+  pActwk = pActwk; /* Line 164, Address: 0x101d938 */
 
 } /* Line 166, Address: 0x101d940 */
 
@@ -178,6 +178,6 @@ void jisin_set(act_info* pActwk) { /* Line 163, Address: 0x101d930 */
 
 
 void jisin(act_info* pActwk) { /* Line 180, Address: 0x101d950 */
-  return; /* Line 181, Address: 0x101d958 */
+  pActwk = pActwk; /* Line 181, Address: 0x101d958 */
 
 } /* Line 183, Address: 0x101d960 */

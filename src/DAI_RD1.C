@@ -200,7 +200,7 @@ void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
 
 
 
-      *(short*)&pNewact->actfree[10] = (pActwk - actwk) / 68; /* Line 203, Address: 0x10022bc */
+      *(short*)&pNewact->actfree[10] = pActwk - actwk; /* Line 203, Address: 0x10022bc */
 
 
       pNewact->userflag.b.h = pActwk->userflag.b.l & 2; /* Line 206, Address: 0x10022f0 */
@@ -653,14 +653,14 @@ void vfuta_init(act_info* pActwk) { /* Line 637, Address: 0x1003180 */
 void vfuta_move1(act_info* pActwk) { /* Line 653, Address: 0x1003210 */
   short wk;
 
-  if ((wk = pActwk->xposi.w.h - actwk[0].xposi.w.h) < 0) {; /* Line 656, Address: 0x1003220 */
+  if ((wk = pActwk->yposi.w.h - actwk[0].yposi.w.h) < 0) {; /* Line 656, Address: 0x1003220 */
     wk = -wk; /* Line 657, Address: 0x100326c */
   }
 
   if (wk < 32) { /* Line 660, Address: 0x1003288 */
     wk = pActwk->xposi.w.h - actwk[0].xposi.w.h; /* Line 661, Address: 0x100329c */
 
-    if (wk >= 0 && wk < 49) { /* Line 663, Address: 0x10032d0 */
+    if (0 <= wk && wk < 49) { /* Line 663, Address: 0x10032d0 */
       pActwk->actfree[16] = pActwk->actfree[17] = 0; /* Line 664, Address: 0x10032f8 */
       pActwk->r_no0 = 4; /* Line 665, Address: 0x100330c */
 

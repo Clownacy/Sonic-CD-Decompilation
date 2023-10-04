@@ -36,14 +36,14 @@ void patchg(act_info* patchgwk, unsigned char** pat_dat) { /* Line 24, Address: 
 
   search_end = 0; /* Line 37, Address: 0x1015188 */
   while (sprpat_adr[search_end++] < 250); /* Line 38, Address: 0x101518c */
-  patchgwk->pattim = sprpat_adr[search_end - 1] != 252 && sprpat_adr[search_end] <= 0 ? 1 : *sprpat_adr; /* Line 39, Address: 0x10151bc */
+  patchgwk->pattim = sprpat_adr[search_end - 1] != 252 && *sprpat_adr <= 0 ? 1 : *sprpat_adr; /* Line 39, Address: 0x10151bc */
 
 
 
   if ((pat_no = sprpat_adr[patchgwk->patcnt + 1]) < 128) { /* Line 43, Address: 0x1015220 */
 label1:
-    patchgwk->patno = pat_no; /* Line 45, Address: 0x101524c */
-    pat_no = pat_no >> 5; /* Line 46, Address: 0x1015260 */
+    patchgwk->patno = pat_no & 31; /* Line 45, Address: 0x101524c */
+    pat_no >>= 5; /* Line 46, Address: 0x1015260 */
 
     pat_no ^= patchgwk->cddat; /* Line 48, Address: 0x1015268 */
     pat_no &= 3; /* Line 49, Address: 0x1015278 */
@@ -155,9 +155,9 @@ void marker_init(act_info* markerwk) { /* Line 141, Address: 0x1015600 */
   else
     markerwk->colino = 227; /* Line 156, Address: 0x10156ac */
   if (actwkchk(&new_actwk) != 0) { frameout(markerwk); return; } /* Line 157, Address: 0x10156b8 */
-  markerwk->actno = 19; /* Line 158, Address: 0x10156e0 */
-  markerwk->r_no0 += 4; /* Line 159, Address: 0x10156ec */
-  if (markerwk->actfree[4] != 0) markerwk->r_no0 += 2; /* Line 160, Address: 0x10156fc */
+  new_actwk->actno = 19; /* Line 158, Address: 0x10156e0 */
+  new_actwk->r_no0 += 4; /* Line 159, Address: 0x10156ec */
+  if (markerwk->actfree[4] != 0) new_actwk->r_no0 += 2; /* Line 160, Address: 0x10156fc */
   new_actwk->patbase = markerpat; /* Line 161, Address: 0x1015720 */
   new_actwk->sproffset = 1739; /* Line 162, Address: 0x1015730 */
   new_actwk->actflg = 4; /* Line 163, Address: 0x101573c */
@@ -269,8 +269,8 @@ void test_init(act_info* testwk) { /* Line 255, Address: 0x1015ac0 */
 void test_move(act_info* testwk) { /* Line 269, Address: 0x1015b90 */
   unsigned short cal0, cal1;
 
-  cal0 = *(short*)&testwk->actfree[6] & -128; /* Line 272, Address: 0x1015ba4 */
-  cal1 = scra_h_posit.w.h + -128; /* Line 273, Address: 0x1015bbc */
+  cal0 = ((unsigned short*)testwk)[26] & 65408; /* Line 272, Address: 0x1015ba4 */
+  cal1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 273, Address: 0x1015bbc */
   if ((cal0 - cal1) >= 641) { frameout(testwk); return; } /* Line 274, Address: 0x1015be4 */
 
   patchg(testwk, bariachg); /* Line 276, Address: 0x1015c10 */
@@ -483,7 +483,7 @@ void flow_move1(act_info* flowerwk) { /* Line 478, Address: 0x10162e0 */
 unsigned char* flow_sub(act_info* flowerwk) { /* Line 483, Address: 0x1016310 */
   short index;
 
-  index = (time_flag % 128) + flowerwk->cdsts * 3; /* Line 486, Address: 0x101631c */
+  index = (short)(time_flag & 127) + flowerwk->cdsts * 3; /* Line 486, Address: 0x101631c */
   return &flagwork[index]; /* Line 487, Address: 0x1016364 */
 } /* Line 488, Address: 0x1016378 */
 
@@ -491,7 +491,7 @@ unsigned char* flow_sub(act_info* flowerwk) { /* Line 483, Address: 0x1016310 */
 short flow_sub1(unsigned char fl_counter) { /* Line 491, Address: 0x1016390 */
   short flower_index;
 
-  flower_index = ((fl_counter % 64) + (time_flag % 128)) * 64; /* Line 494, Address: 0x101639c */
+  flower_index = (unsigned short)(time_flag & 127) * 64 + ((unsigned short)fl_counter & 63); /* Line 494, Address: 0x101639c */
 
 
   return flower_index; /* Line 497, Address: 0x10163dc */
@@ -540,7 +540,7 @@ void mizuki_init(act_info* mizukiwk) { /* Line 538, Address: 0x1016500 */
   mizukiwk->actflg |= 4; /* Line 540, Address: 0x101651c */
   mizukiwk->patbase = mizukipat; /* Line 541, Address: 0x101652c */
   mizukiwk->sproffset = 996; /* Line 542, Address: 0x101653c */
-  if ((time_flag % 256) == 0) mizukiwk->sproffset = 926; /* Line 543, Address: 0x1016548 */
+  if (time_flag == 0) mizukiwk->sproffset = 926; /* Line 543, Address: 0x1016548 */
   mizukiwk->sprpri = 1; /* Line 544, Address: 0x1016568 */
   mizuki_move(mizukiwk); /* Line 545, Address: 0x1016574 */
 } /* Line 546, Address: 0x1016580 */
@@ -804,7 +804,7 @@ void muteki_sub(act_info* bariawk) { /* Line 786, Address: 0x1017070 */
   bariawk->actfree[6] = cal_no; /* Line 804, Address: 0x1017188 */
 
   bariawk->xposi.w.h = playposiwk[ppw_offset.w / 2]; /* Line 806, Address: 0x1017190 */
-  bariawk->yposi.w.h = playposiwk[ppw_offset.w / 2]; /* Line 807, Address: 0x10171cc */
+  bariawk->yposi.w.h = playposiwk[ppw_offset.w / 2 + 1]; /* Line 807, Address: 0x10171cc */
 
   bariawk->cddat = actwk[0].cddat; /* Line 809, Address: 0x101720c */
   patchg(bariawk, bariachg); /* Line 810, Address: 0x101721c */
@@ -814,7 +814,7 @@ void muteki_sub(act_info* bariawk) { /* Line 786, Address: 0x1017070 */
 
 
 void actionsub0(act_info* bariawk) { /* Line 816, Address: 0x1017250 */
-  if (plsubchg_flag >= 8) return; /* Line 817, Address: 0x101725c */
+  if ((plsubchg_flag & 15) >= 8) return; /* Line 817, Address: 0x101725c */
 
   if (bariawk->r_no0 != 0) plsubchg_flag = bariawk->r_no0 | 128; /* Line 819, Address: 0x1017278 */
   actionsub(bariawk); /* Line 820, Address: 0x10172a8 */
@@ -909,7 +909,7 @@ void ball_rd7(act_info* ballwk) { /* Line 902, Address: 0x10176f0 */
     else
       if (actwk[0].yspeed.w < 0) { ball_ball(); return; } /* Line 910, Address: 0x1017760 */
     cal_speed0 = 3328; /* Line 911, Address: 0x1017788 */
-    if (swdata1.b.h == 0) { /* Line 912, Address: 0x1017794 */
+    if ((swdata1.b.h & 8) == 0) { /* Line 912, Address: 0x1017794 */
       if ((swdata1.b.h & 4) == 0) { ball_ball(); return; } /* Line 913, Address: 0x10177ac */
       else cal_speed0 = -cal_speed0; /* Line 914, Address: 0x10177d4 */
     }

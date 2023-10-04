@@ -182,7 +182,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
       lenwk = -lenwk; /* Line 182, Address: 0x100228c */
     }
 
-    actwk[0].actfree[15] = lenwk % 256; /* Line 185, Address: 0x10022a8 */
+    actwk[0].actfree[15] = (unsigned short)lenwk; /* Line 185, Address: 0x10022a8 */
   }
 
 
@@ -193,7 +193,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
   actwk[0].actfree[1] += 8; /* Line 194, Address: 0x10022cc */
   sinset(actwk[0].actfree[1], &sinwk, &coswk); /* Line 195, Address: 0x10022e0 */
-  actwk[0].xposi.w.h = pActwk->xposi.w.h + (actwk[0].actfree[15] * coswk) >> 8; /* Line 196, Address: 0x10022f8 */
+  actwk[0].xposi.w.h = pActwk->xposi.w.h + ((unsigned int)(actwk[0].actfree[15] * coswk) >> 8); /* Line 196, Address: 0x10022f8 */
 
 
 

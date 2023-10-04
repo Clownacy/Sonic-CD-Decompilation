@@ -82,10 +82,10 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
     return; /* Line 82, Address: 0x1017bd4 */
   }
 
-  if (scra_v_posit.w.h + 8 >= scralim_down) { /* Line 85, Address: 0x1017bdc */
+  if ((unsigned short)(scra_v_posit.w.h + 8) >= (unsigned short)scralim_down) { /* Line 85, Address: 0x1017bdc */
 
     if (actwk[0].cddat & 2) { /* Line 87, Address: 0x1017c14 */
-      sD1 = sD1 << 2; /* Line 88, Address: 0x1017c2c */
+      sD1 *= 4; /* Line 88, Address: 0x1017c2c */
     }
   }
 
@@ -420,15 +420,15 @@ int bossclr_scrset(unsigned short wD1) { /* Line 419, Address: 0x10186d0 */
   unsigned short wD0;
 
   scralim_n_down = wD1; /* Line 422, Address: 0x10186dc */
-  wD1 += scralim_down; /* Line 423, Address: 0x10186e8 */
   if (wD1 < 0) { /* Line 424, Address: 0x1018700 */
+  wD1 -= scralim_down; /* Line 423, Address: 0x10186e8 */
     wD1 = -wD1; /* Line 425, Address: 0x101871c */
   }
   if (wD1 < 4) { /* Line 427, Address: 0x101873c */
     scralim_down = scralim_n_down; /* Line 428, Address: 0x1018750 */
   }
   wD0 = actwk[0].xposi.w.h + -160; /* Line 430, Address: 0x1018760 */
-  if (wD0 < scralim_left) { /* Line 431, Address: 0x101877c */
+  if (scralim_left > (short)wD0) { /* Line 431, Address: 0x101877c */
     return 1; /* Line 432, Address: 0x10187a8 */
   }
   if (scralim_right < wD0) { /* Line 434, Address: 0x10187b4 */
