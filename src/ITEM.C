@@ -177,7 +177,7 @@ void timedisp(act_info* timewk) { /* Line 167, Address: 0x1010de0 */
 
   if (time_item == 0) return; /* Line 178, Address: 0x1010e34 */
   if (backto_cnt < 90) actionsub(timewk); /* Line 179, Address: 0x1010e4c */
-  else if ((gametimer.b.l & 2) == 0) actionsub(timewk); /* Line 180, Address: 0x1010e7c */
+  else if (!(gametimer.b.l & 2)) actionsub(timewk); /* Line 180, Address: 0x1010e7c */
 } /* Line 181, Address: 0x1010ea4 */
 
 
@@ -317,7 +317,7 @@ short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
 
   flag_no = t_itemwk->cdsts, flag_no *= 3; /* Line 318, Address: 0x1011484 */
   t_flag = time_flag; /* Line 319, Address: 0x10114a8 */
-  if ((t_flag & 128) == 0) { flag_no += t_flag; return flag_no; } /* Line 320, Address: 0x10114bc */
+  if (!(t_flag & 128)) { flag_no += t_flag; return flag_no; } /* Line 320, Address: 0x10114bc */
   t_flag &= -129; /* Line 321, Address: 0x10114e8 */
   t_item = time_item; /* Line 322, Address: 0x10114f8 */
   t_item = -t_item; /* Line 323, Address: 0x1011510 */
@@ -537,7 +537,7 @@ void item2move(act_info* itemwk) { /* Line 524, Address: 0x1011da0 */
     case 1:
       plring += 10; /* Line 538, Address: 0x1011e78 */
       plring_f |= 1; /* Line 539, Address: 0x1011e8c */
-      if ((plring >= 100 && (plring_f2 & 2) == 0) || (plring >= 200 && (plring_f2 & 4) == 0)) { /* Line 540, Address: 0x1011ea0 */
+      if ((plring >= 100 && !(plring_f2 & 2)) || (plring >= 200 && !(plring_f2 & 4))) { /* Line 540, Address: 0x1011ea0 */
 
         if (plring < 200) plring_f2 |= 2; /* Line 542, Address: 0x1011f08 */
         else plring_f2 |= 4; /* Line 543, Address: 0x1011f40 */

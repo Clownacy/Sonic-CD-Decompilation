@@ -407,7 +407,7 @@ short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 407, Address: 0x1002124 */
 
   iBlkOffset = iBlkNo & 1023; /* Line 409, Address: 0x1002140 */
-  if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 410, Address: 0x100215c */
+  if (iBlkOffset == 0 || !((1 << iRideon) & iBlkNo)) { /* Line 410, Address: 0x100215c */
 
     return scdend(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirStk); /* Line 412, Address: 0x1002194 */
   }
@@ -470,7 +470,7 @@ label1:
   iYposi -= iOffset; /* Line 470, Address: 0x100248c */
   iScdData = scdchk2(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirStk); /* Line 471, Address: 0x100249c */
   iYposi += iOffset; /* Line 472, Address: 0x10024c8 */
-  return iScdData + -16; /* Line 473, Address: 0x10024d8 */
+  return iScdData - 16; /* Line 473, Address: 0x10024d8 */
 } /* Line 474, Address: 0x10024ec */
 
 
@@ -508,7 +508,7 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 509, Address: 0x1002568 */
   iBlkOffset = iBlkNo & 1023; /* Line 510, Address: 0x1002584 */
-  if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 511, Address: 0x10025a0 */
+  if (iBlkOffset == 0 || !((1 << iRideon) & iBlkNo)) { /* Line 511, Address: 0x10025a0 */
 
 
     return 15 - (iYposi & 15); /* Line 514, Address: 0x10025d8 */
@@ -624,7 +624,7 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 625, Address: 0x10029d8 */
   iBlkOffset = iBlkNo & 1023; /* Line 626, Address: 0x10029f4 */
-  if (iBlkOffset == 0 || (iBlkNo & (1 << iRideon)) == 0) { /* Line 627, Address: 0x1002a10 */
+  if (iBlkOffset == 0 || !(iBlkNo & (1 << iRideon))) { /* Line 627, Address: 0x1002a10 */
 
     return scdend_r(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirstk); /* Line 629, Address: 0x1002a48 */
   }
@@ -678,7 +678,7 @@ label1:
   iXposi -= iOffset; /* Line 678, Address: 0x1002d08 */
   iScdData = scdchk2_r(pActwk, iXposi, iYposi, iBlkMsk, iRideon, cpDirstk); /* Line 679, Address: 0x1002d18 */
   iXposi += iOffset; /* Line 680, Address: 0x1002d40 */
-  return iScdData + -16; /* Line 681, Address: 0x1002d50 */
+  return iScdData - 16; /* Line 681, Address: 0x1002d50 */
 } /* Line 682, Address: 0x1002d64 */
 
 
@@ -714,7 +714,7 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 715, Address: 0x1002de4 */
   iBlkOffset = iBlkNo & 1023; /* Line 716, Address: 0x1002e00 */
-  if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 717, Address: 0x1002e1c */
+  if (iBlkOffset == 0 || !((1 << iRideon) & iBlkNo)) { /* Line 717, Address: 0x1002e1c */
 
 
     return 15 - (iXposi & 15); /* Line 720, Address: 0x1002e54 */
@@ -960,7 +960,7 @@ short scdcnv() {
 
 
 short st_elseDataChk(short iBlkNo, act_info* pActwk) { /* Line 962, Address: 0x1003760 */
-  if ((pActwk->actflg & 64) == 0) /* Line 963, Address: 0x100376c */
+  if (!(pActwk->actflg & 64)) /* Line 963, Address: 0x100376c */
     return iBlkNo; /* Line 964, Address: 0x1003784 */
   if (++iBlkNo == 41) /* Line 965, Address: 0x1003790 */
     return 81; /* Line 966, Address: 0x10037b8 */

@@ -489,7 +489,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   main_play = 0; /* Line 489, Address: 0x1018638 */
   pauseflag.b.h = 0; /* Line 490, Address: 0x1018640 */
 
-  if ((play_start & 1) == 0) { /* Line 492, Address: 0x1018648 */
+  if (!(play_start & 1)) { /* Line 492, Address: 0x1018648 */
     play_start |= 1; /* Line 493, Address: 0x1018660 */
     start_flag = 0; /* Line 494, Address: 0x1018674 */
     markerno = 0; /* Line 495, Address: 0x101867c */
@@ -713,7 +713,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   actwk[31].actno = 25; /* Line 713, Address: 0x1018dbc */
   actwk[31].userflag.b.h = 10; /* Line 714, Address: 0x1018dc8 */
 
-  if ((play_start & 2) == 0) { /* Line 716, Address: 0x1018dd4 */
+  if (!(play_start & 2)) { /* Line 716, Address: 0x1018dd4 */
     play_start |= 2; /* Line 717, Address: 0x1018dec */
     actwk[4].actno = 60; /* Line 718, Address: 0x1018e00 */
     plautoflag = 1; /* Line 719, Address: 0x1018e0c */
@@ -868,11 +868,11 @@ void bye_cnt() {
 
 void sdfdout() { /* Line 869, Address: 0x1019340 */
   soundset(171); /* Line 870, Address: 0x1019348 */
-  if ((pauseflag.b.h | 128) == 0) { /* Line 871, Address: 0x1019354 */
+  if (!(pauseflag.b.h | 128)) { /* Line 871, Address: 0x1019354 */
 
 
     pauseflag.b.h |= 128; /* Line 874, Address: 0x101936c */
-    if ((time_flag & 127) == 0) { /* Line 875, Address: 0x1019380 */
+    if (!(time_flag & 127)) { /* Line 875, Address: 0x1019380 */
 
       if (plpower_m || plpower_s) { /* Line 877, Address: 0x1019398 */
         sub_sync(144); /* Line 878, Address: 0x10193b8 */
@@ -886,11 +886,11 @@ void sdfdout() { /* Line 869, Address: 0x1019340 */
 
 
 void sdfdin() { /* Line 888, Address: 0x10193f0 */
-  if ((pauseflag.b.h & 128) != 0) { /* Line 889, Address: 0x10193f8 */
+  if ((pauseflag.b.h & 128)) { /* Line 889, Address: 0x10193f8 */
 
 
     pauseflag.b.h &= 127; /* Line 892, Address: 0x1019410 */
-    if ((time_flag & 127) == 0) { /* Line 893, Address: 0x1019424 */
+    if (!(time_flag & 127)) { /* Line 893, Address: 0x1019424 */
 
       if (plpower_m || plpower_s) { /* Line 895, Address: 0x101943c */
         sub_sync(145); /* Line 896, Address: 0x101945c */

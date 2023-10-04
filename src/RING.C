@@ -213,7 +213,7 @@ label1:
   }
   i = fw_index + 1; /* Line 214, Address: 0x1006704 */
   do {
-    if (flagwork[--i] & (1 << (ring_counter + -1))) goto label3; /* Line 216, Address: 0x1006708 */
+    if (flagwork[--i] & (1 << (ring_counter - 1))) goto label3; /* Line 216, Address: 0x1006708 */
   } while (--d0 != -1); /* Line 217, Address: 0x1006740 */
 
   flagwork[fw_index] &= 127; /* Line 219, Address: 0x1006768 */
@@ -458,7 +458,7 @@ void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
 
   speedset2(pActwk); /* Line 459, Address: 0x1007280 */
   if ((pActwk->yspeed.w += 24) >= 0) { /* Line 460, Address: 0x100728c */
-    if (((systemtimer.b.b4 + ((pActwk - actwk) / 68U)) & 3) == 0) { /* Line 461, Address: 0x10072b4 */
+    if (!((systemtimer.b.b4 + ((pActwk - actwk) / 68U)) & 3)) { /* Line 461, Address: 0x10072b4 */
       if ((d1 = emycol_d(pActwk)) < 0) { /* Line 462, Address: 0x1007314 */
         pActwk->yposi.w.h += d1; /* Line 463, Address: 0x1007340 */
         pActwk->yspeed.w -= pActwk->yspeed.w / 4; /* Line 464, Address: 0x1007350 */

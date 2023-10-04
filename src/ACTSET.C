@@ -446,7 +446,7 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
 
   if (pActwk->actflg & 128) { /* Line 447, Address: 0x1000c50 */
 
-    if ((time_flag & 128) == 0) return 0; /* Line 449, Address: 0x1000c68 */
+    if (!(time_flag & 128)) return 0; /* Line 449, Address: 0x1000c68 */
   }
   else {
 
@@ -457,7 +457,7 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
     xposi -= scra_h; /* Line 457, Address: 0x1000cc8 */
     if ((unsigned short)xposi < 641) { /* Line 458, Address: 0x1000cd4 */
 
-      if ((time_flag & 128) == 0) return 0; /* Line 460, Address: 0x1000cec */
+      if (!(time_flag & 128)) return 0; /* Line 460, Address: 0x1000cec */
     }
   }
 

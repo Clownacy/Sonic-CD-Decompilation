@@ -302,7 +302,7 @@ void kira_move(act_info* pActwk) { /* Line 276, Address: 0x100f8e0 */
 short gene_coli(act_info* pActwk, act_info* pPlaywk) { /* Line 302, Address: 0x100f970 */
   short iD0, iD1;
 
-  if ((pPlaywk->cddat & 4) == 0) return 0; /* Line 305, Address: 0x100f984 */
+  if (!(pPlaywk->cddat & 4)) return 0; /* Line 305, Address: 0x100f984 */
   iD1 = pPlaywk->sprhs; /* Line 306, Address: 0x100f9a8 */
   iD1 += 32; /* Line 307, Address: 0x100f9bc */
   iD0 = pPlaywk->xposi.w.h - pActwk->xposi.w.h; /* Line 308, Address: 0x100f9c8 */
@@ -621,7 +621,7 @@ void mosug_move0(act_info* pActwk, act_info* pPlaywk) { /* Line 616, Address: 0x
   iD1 = pActwk->xposi.w.h - pActwk->sprhsize; /* Line 621, Address: 0x1010344 */
   if (iD0 >= iD1) { /* Line 622, Address: 0x1010374 */
 
-    if ((pPlaywk->sproffset & 32768) == 0) { /* Line 624, Address: 0x1010390 */
+    if (!(pPlaywk->sproffset & 32768)) { /* Line 624, Address: 0x1010390 */
       pPlaywk->sproffset |= 32768; /* Line 625, Address: 0x10103a8 */
     }
   }

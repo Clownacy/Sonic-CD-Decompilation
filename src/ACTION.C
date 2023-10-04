@@ -73,7 +73,7 @@ void speedset(act_info* pActwk) { /* Line 65, Address: 0x10012f0 */
   spd.w = pActwk->yspeed.w; /* Line 73, Address: 0x1001338 */
   if (pActwk->actfree[2] & 8) goto label2; /* Line 74, Address: 0x1001344 */
   if (spd.w >= 0) goto label1; /* Line 75, Address: 0x100135c */
-  if ((pActwk->actfree[2] & 2) == 0) goto label1; /* Line 76, Address: 0x1001370 */
+  if (!(pActwk->actfree[2] & 2)) goto label1; /* Line 76, Address: 0x1001370 */
   if (pActwk->yspeed.w < -2048) goto label2; /* Line 77, Address: 0x1001388 */
 label1:
   if (pActwk->actfree[2] & 4) goto label2; /* Line 79, Address: 0x10013a4 */

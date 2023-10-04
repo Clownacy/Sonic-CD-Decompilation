@@ -673,7 +673,7 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
       --((unsigned short*)pAct)[27]; // Line 673, Address: 0x10133e4
     }
 
-    if ((pAct->actfree[8] % 2) == 0) { // Line 676, Address: 0x10133f4
+    if (pAct->actfree[8] % 2 == 0) { // Line 676, Address: 0x10133f4
       soundset(189); // Line 677, Address: 0x1013424
     }
   }

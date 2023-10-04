@@ -188,7 +188,7 @@ void zone33chk() { /* Line 177, Address: 0x1017f40 */
 void zone6chk() { /* Line 188, Address: 0x1017f90 */
   unsigned short wD0, wD1;
 
-  if ((bossflag & 16) == 0) { /* Line 191, Address: 0x1017fa0 */
+  if (!(bossflag & 16)) { /* Line 191, Address: 0x1017fa0 */
     scralim_n_down = 1808; /* Line 192, Address: 0x1017fb8 */
     return; /* Line 193, Address: 0x1017fc4 */
   }

@@ -935,7 +935,7 @@ void kamemusi_init(act_info* pActwk) { /* Line 927, Address: 0x1005990 */
   ((short*)pActwk)[23] = pActwk->xposi.w.h; /* Line 935, Address: 0x10059f8 */
   pa_set(pActwk, 4); /* Line 936, Address: 0x1005a08 */
 
-  if ((pActwk->userflag).b.h == 0) /* Line 938, Address: 0x1005a18 */
+  if (pActwk->userflag.b.h == 0) /* Line 938, Address: 0x1005a18 */
   {
     pActwk->patbase = e_kamem_pat; /* Line 940, Address: 0x1005a30 */
     ((unsigned char***)pActwk)[13] = e_kamem_pchg; /* Line 941, Address: 0x1005a40 */
@@ -1167,7 +1167,7 @@ void tama_init(act_info* pActwk) { /* Line 1140, Address: 0x1006070 */
 void tama_move(act_info* pActwk) { /* Line 1167, Address: 0x1006170 */
   short d1;
 
-  if ((pActwk->actflg & 128) == 0) /* Line 1170, Address: 0x1006180 */
+  if (!(pActwk->actflg & 128)) /* Line 1170, Address: 0x1006180 */
   {
     frameout(pActwk); /* Line 1172, Address: 0x1006198 */
     return; /* Line 1173, Address: 0x10061a4 */

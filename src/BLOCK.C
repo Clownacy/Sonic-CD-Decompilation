@@ -160,7 +160,7 @@ void block_move2(act_info* pActwk) { /* Line 135, Address: 0x1015330 */
 
 void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
   block_ride(pActwk); /* Line 162, Address: 0x10153dc */
-  if ((pActwk->cddat & 8) == 0) /* Line 163, Address: 0x10153e8 */
+  if (!(pActwk->cddat & 8)) /* Line 163, Address: 0x10153e8 */
   {
     pActwk->r_no0 = 2; /* Line 165, Address: 0x1015400 */
     return; /* Line 166, Address: 0x101540c */
@@ -183,7 +183,7 @@ void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
 void block_move4(act_info* pActwk) { /* Line 183, Address: 0x1015450 */
   pActwk->mstno.b.h = 0; /* Line 184, Address: 0x101545c */
   block_ride(pActwk); /* Line 185, Address: 0x1015464 */
-  if ((pActwk->cddat & 8) == 0) /* Line 186, Address: 0x1015470 */
+  if (!(pActwk->cddat & 8)) /* Line 186, Address: 0x1015470 */
   {
     pActwk->r_no0 += 2; /* Line 188, Address: 0x1015488 */
     pActwk->mstno.b.h = 2; /* Line 189, Address: 0x1015498 */

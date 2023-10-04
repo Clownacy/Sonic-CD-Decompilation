@@ -162,7 +162,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
   short lenwk, sinwk, coswk;
   static unsigned char pattbl[16] = { 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5 };
 
-  if ((pActwk->actflg & 128) == 0) return; /* Line 165, Address: 0x10021c0 */
+  if (!(pActwk->actflg & 128)) return; /* Line 165, Address: 0x10021c0 */
 
 
 
@@ -170,7 +170,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
 
 
-  if ((actwk[0].actfree[2] & 1) == 0) { /* Line 173, Address: 0x10021f4 */
+  if (!(actwk[0].actfree[2] & 1)) { /* Line 173, Address: 0x10021f4 */
     actwk[0].actfree[2] |= 1; /* Line 174, Address: 0x100220c */
     actwk[0].mstno.b.h = 45; /* Line 175, Address: 0x1002220 */
     lenwk = actwk[0].xposi.w.h - pActwk->xposi.w.h; /* Line 176, Address: 0x100222c */
@@ -199,7 +199,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
   actwk[0].patcnt = pattbl[actwk[0].actfree[1] >> 4]; /* Line 200, Address: 0x100233c */
 
-  if ((actwk[0].actfree[1] & 63) == 0) { /* Line 202, Address: 0x1002364 */
+  if (!(actwk[0].actfree[1] & 63)) { /* Line 202, Address: 0x1002364 */
     ++actwk[0].actfree[15]; /* Line 203, Address: 0x100237c */
   }
 
@@ -259,7 +259,7 @@ void k_move(act_info* pActwk, act_info* pSonicwk) { /* Line 223, Address: 0x1002
 void jumpchk_d(act_info* pActwk, act_info* pSonicwk) { /* Line 259, Address: 0x1002510 */
   short jumpwk, sinwk, coswk;
 
-  if ((swdata.b.l & 112) == 0) return; /* Line 262, Address: 0x1002524 */
+  if (!(swdata.b.l & 112)) return; /* Line 262, Address: 0x1002524 */
 
 
 

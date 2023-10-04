@@ -380,7 +380,7 @@ void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
       } /* Line 380, Address: 0x10053c4 */
       else {
 
-        if ((systemtimer.b.b4 & 15) == 0) { /* Line 383, Address: 0x10053cc */
+        if (!(systemtimer.b.b4 & 15)) { /* Line 383, Address: 0x10053cc */
           if (scorepat3.spra[0].index == 334) /* Line 384, Address: 0x10053e8 */
             scorepat3.spra[0].index = 335; /* Line 385, Address: 0x1005400 */
           else

@@ -67,9 +67,9 @@ short ride_on_clr(act_info* pActwk, act_info* pPlayerwk) { /* Line 66, Address: 
   unsigned short wActwkNo;
   unsigned char byPlwk;
 
-  if ((pActwk->cddat & 8) == 0) /* Line 70, Address: 0x1019558 */
+  if (!(pActwk->cddat & 8)) /* Line 70, Address: 0x1019558 */
     return -1; /* Line 71, Address: 0x1019570 */
-  if ((pPlayerwk->cddat & 8) == 0) /* Line 72, Address: 0x101957c */
+  if (!(pPlayerwk->cddat & 8)) /* Line 72, Address: 0x101957c */
     return -1; /* Line 73, Address: 0x1019594 */
 
   wActwkNo = pPlayerwk->actfree[19]; /* Line 75, Address: 0x10195a0 */
@@ -85,7 +85,7 @@ short ride_on_clr(act_info* pActwk, act_info* pPlayerwk) { /* Line 66, Address: 
   pPlayerwk->cddat &= 247; /* Line 85, Address: 0x1019630 */
   pActwk->cddat &= 247; /* Line 86, Address: 0x1019640 */
   byPlwk = pPlayerwk->actfree[2]; /* Line 87, Address: 0x1019650 */
-  if ((byPlwk & 64) == 0) /* Line 88, Address: 0x101965c */
+  if (!(byPlwk & 64)) /* Line 88, Address: 0x101965c */
     if (pPlayerwk->mstno.b.h != 23) /* Line 89, Address: 0x101966c */
       byPlwk &= 254; /* Line 90, Address: 0x1019688 */
 
@@ -123,7 +123,7 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   pActwk->r_no1 = 0; /* Line 123, Address: 0x1019740 */
   pPlayerwk->actfree[18] = 0; /* Line 124, Address: 0x1019748 */
 
-  if ((pActwk->cddat & 8) == 0) byCCR = 0; /* Line 126, Address: 0x1019750 */
+  if (!(pActwk->cddat & 8)) byCCR = 0; /* Line 126, Address: 0x1019750 */
   else byCCR = 1; /* Line 127, Address: 0x1019774 */
   pActwk->cddat |= 8; /* Line 128, Address: 0x101977c */
   if (byCCR == 0) /* Line 129, Address: 0x101978c */
@@ -137,7 +137,7 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
 
 
     pPlayerwk->cddat &= 239; /* Line 139, Address: 0x10197dc */
-    if ((pPlayerwk->cddat & 4) == 0) byCCR = 0; /* Line 140, Address: 0x10197ec */
+    if (!(pPlayerwk->cddat & 4)) byCCR = 0; /* Line 140, Address: 0x10197ec */
     else byCCR = 1; /* Line 141, Address: 0x1019810 */
     pPlayerwk->cddat &= 251; /* Line 142, Address: 0x1019818 */
     if (byCCR == 1) /* Line 143, Address: 0x1019828 */
@@ -161,7 +161,7 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   }
 
 
-  if ((pPlayerwk->cddat & 8) == 0) byCCR = 0; /* Line 164, Address: 0x10198ac */
+  if (!(pPlayerwk->cddat & 8)) byCCR = 0; /* Line 164, Address: 0x10198ac */
   else byCCR = 1; /* Line 165, Address: 0x10198d0 */
   pPlayerwk->cddat |= 8; /* Line 166, Address: 0x10198d8 */
   if (byCCR == 1) /* Line 167, Address: 0x10198e8 */
@@ -253,7 +253,7 @@ short hitchk(act_info* pActwk, act_info* pPlayerwk) { /* Line 243, Address: 0x10
     return hit_e(pActwk, pPlayerwk); /* Line 253, Address: 0x1019b80 */
   if (pPlayerwk->actno == 0) /* Line 254, Address: 0x1019b98 */
     return hit_e(pActwk, pPlayerwk); /* Line 255, Address: 0x1019bac */
-  if ((pActwk->actflg & 128) == 0) /* Line 256, Address: 0x1019bc4 */
+  if (!(pActwk->actflg & 128)) /* Line 256, Address: 0x1019bc4 */
     return hit_e(pActwk, pPlayerwk); /* Line 257, Address: 0x1019bdc */
   if (editmode.b.h != 0) /* Line 258, Address: 0x1019bf4 */
     return hit_e(pActwk, pPlayerwk); /* Line 259, Address: 0x1019c0c */
@@ -416,7 +416,7 @@ short hit_x(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iD5) { /*
 
 short push_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 417, Address: 0x101a2b0 */
   side_coli(pActwk, pPlayerwk); /* Line 418, Address: 0x101a2c0 */
-  if ((pPlayerwk->cddat & 2) == 0) /* Line 419, Address: 0x101a2d0 */
+  if (!(pPlayerwk->cddat & 2)) /* Line 419, Address: 0x101a2d0 */
   {
     pActwk->cddat |= 32; /* Line 421, Address: 0x101a2e8 */
     pPlayerwk->cddat |= 32; /* Line 422, Address: 0x101a2f8 */

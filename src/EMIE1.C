@@ -286,7 +286,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
       }
     }
   }
-  else if ((dakiflgwk & 64) == 0) { /* Line 289, Address: 0x1005898 */
+  else if (!(dakiflgwk & 64)) { /* Line 289, Address: 0x1005898 */
 
       pActwk->actfree[20] |= 4; /* Line 291, Address: 0x10058a8 */
       pActwk->xspeed.w = 0; /* Line 292, Address: 0x10058b8 */
@@ -305,7 +305,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
   if (dakiflgwk & 128) { /* Line 305, Address: 0x100590c */
 
 
-    if ((dakiflgwk & 64) == 0) { /* Line 308, Address: 0x100591c */
+    if (!(dakiflgwk & 64)) { /* Line 308, Address: 0x100591c */
       if (pActwk->actfree[21] >= 3) { /* Line 309, Address: 0x100592c */
 
         if (((short)pActwk->actfree[16] + 4) >= 256) { /* Line 311, Address: 0x1005944 */
@@ -376,7 +376,7 @@ void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
 
   swdata = swdata1; /* Line 377, Address: 0x1005b8c */
   jumpchk_d(); /* Line 378, Address: 0x1005ba4 */
-  if ((actwk[0].actfree[2] & 1) == 0) { /* Line 379, Address: 0x1005bac */
+  if (!(actwk[0].actfree[2] & 1)) { /* Line 379, Address: 0x1005bac */
 
     pActwk->actfree[20] &= 254; /* Line 381, Address: 0x1005bc4 */
     pActwk->r_no0 = 6; /* Line 382, Address: 0x1005bd4 */
@@ -547,7 +547,7 @@ void speedsety(act_info* pActwk) { /* Line 533, Address: 0x1006060 */
 
 void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
 
-  if ((swdata.b.h & 112) == 0) return; /* Line 550, Address: 0x10060a8 */
+  if (!(swdata.b.h & 112)) return; /* Line 550, Address: 0x10060a8 */
 
 
 

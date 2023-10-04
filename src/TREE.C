@@ -345,7 +345,7 @@ void kasoku_move(act_info* pActwk, act_info* pPlaywk) { /* Line 340, Address: 0x
   if (pActwk->actfree[4] != 0) /* Line 345, Address: 0x101b810 */
   {
     pActwk->mstno.b.h = 1; /* Line 347, Address: 0x101b824 */
-    if ((pPlaywk->actfree[2] & 2) == 0) /* Line 348, Address: 0x101b830 */
+    if (!(pPlaywk->actfree[2] & 2)) /* Line 348, Address: 0x101b830 */
       ++pActwk->mstno.b.h; /* Line 349, Address: 0x101b848 */
 
     patchg(pActwk, kasokuchg); /* Line 351, Address: 0x101b858 */
@@ -354,7 +354,7 @@ void kasoku_move(act_info* pActwk, act_info* pPlaywk) { /* Line 340, Address: 0x
   {
     pActwk->patno = 0; /* Line 355, Address: 0x101b874 */
     iD1 = 0; /* Line 356, Address: 0x101b87c */
-    if ((pPlaywk->actfree[2] & 2) == 0) goto label1; /* Line 357, Address: 0x101b880 */
+    if (!(pPlaywk->actfree[2] & 2)) goto label1; /* Line 357, Address: 0x101b880 */
   }
 
   iD0 = pPlaywk->xposi.w.h & 255; /* Line 360, Address: 0x101b898 */
