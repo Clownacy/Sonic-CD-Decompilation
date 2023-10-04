@@ -75,6 +75,9 @@ void hoshi(act_info* pActwk) { /* Line 53, Address: 0x101ae10 */
 
 
 
+
+
+
 void hoshi_init(act_info* pActwk, act_info* pPlaywk) { /* Line 81, Address: 0x101aeb0 */
   act_info* pActfree;
   short i, iXwork, iLp, iOffset;
@@ -406,7 +409,6 @@ label1:
     pPlaywk->yspeed.w = -3072; /* Line 409, Address: 0x101bb94 */
   } /* Line 410, Address: 0x101bba0 */
   else
-  {
+
     pPlaywk->yspeed.w = 3072; /* Line 413, Address: 0x101bba8 */
-  }
 }

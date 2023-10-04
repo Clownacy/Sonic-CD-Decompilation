@@ -538,8 +538,8 @@ void clear_init0(act_info* pAct) { /* Line 534, Address: 0x1012e50 */
     clear_init(pAct); /* Line 538, Address: 0x1012e88 */
   }
 
-  WaitCount = 1; /* Line 541, Address: 0x1012e94 */
-  pAct->r_no0 = 12;
+  WaitCount = 1; pAct->r_no0 = 12; /* Line 541, Address: 0x1012e94 */
+
 } /* Line 543, Address: 0x1012eac */
 
 

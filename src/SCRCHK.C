@@ -280,9 +280,9 @@ void zone81chk() {
 
 } /* Line 281, Address: 0x101826c */
 
+void zone83chk() {
+  if (bossflag) { /* Line 284, Address: 0x1018280 */
 
-void zone83chk() { /* Line 284, Address: 0x1018280 */
-  if (bossflag) {
     scralim_up = scralim_n_up = scralim_down = scralim_n_down = 268; /* Line 286, Address: 0x1018290 */
 
 

@@ -176,9 +176,9 @@ void marker_init(act_info* markerwk) { /* Line 141, Address: 0x1015600 */
 
 
 void marker_move0(act_info* markerwk) { /* Line 178, Address: 0x1015810 */
+
+
   if (markerwk->actfree[4] != 0) return; /* Line 181, Address: 0x101581c */
-
-
 
 
 
@@ -340,11 +340,11 @@ void baku_init(act_info* bakuhawk) { /* Line 326, Address: 0x1015de0 */
   baku_move(bakuhawk); /* Line 340, Address: 0x1015eac */
 } /* Line 341, Address: 0x1015eb8 */
 
+
 void baku_move(act_info* bakuhawk) { /* Line 344, Address: 0x1015ed0 */
   patchg(bakuhawk, bakuchg); /* Line 345, Address: 0x1015edc */
   actionsub(bakuhawk); /* Line 346, Address: 0x1015ef0 */
 } /* Line 347, Address: 0x1015efc */
-
 
 
 void baku_die(act_info* bakuhawk) { /* Line 350, Address: 0x1015f10 */

@@ -312,9 +312,9 @@ void dodai_nA(act_info* pActwk) { /* Line 307, Address: 0x10026c0 */
   pActwk->yposi.w.h = ((short*)pActwk)[31] + dodai_sub(pActwk); /* Line 312, Address: 0x10026e8 */
 
   pActwk->xposi.w.h = ((short*)pActwk)[30] + dodai_sub(pActwk); /* Line 314, Address: 0x1002720 */
+
   dodai_ride1(pActwk, xsav); /* Line 316, Address: 0x1002758 */
 } /* Line 317, Address: 0x1002768 */
-
 
 
 

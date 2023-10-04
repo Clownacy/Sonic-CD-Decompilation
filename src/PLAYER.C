@@ -1245,6 +1245,7 @@ label1:
 
   actwk[0].actfree[18] = 1; /* Line 1246, Address: 0x100b3ec */
   actwk[0].actfree[14] = 0; /* Line 1247, Address: 0x100b3f8 */
+
   scr_cnt = 0; /* Line 1249, Address: 0x100b400 */
   soundset(146); /* Line 1250, Address: 0x100b408 */
 
@@ -1252,7 +1253,6 @@ label1:
     actwk[0].cddat |= 16; /* Line 1253, Address: 0x100b42c */
     return ret_flag; /* Line 1254, Address: 0x100b440 */
   }
-
   if (chibi_flag != 0) { /* Line 1256, Address: 0x100b44c */
     actwk[0].sprvsize = 8; /* Line 1257, Address: 0x100b460 */
     actwk[0].sprhs = 5; /* Line 1258, Address: 0x100b46c */
@@ -1343,10 +1343,10 @@ void keispd2() { /* Line 1316, Address: 0x100b700 */
 void fallchk() {
   if (actwk[0].actfree[14] != 0) return; /* Line 1344, Address: 0x100b850 */
   if (((unsigned short*)actwk)[33] == 0) { /* Line 1345, Address: 0x100b864 */
+
     if (((unsigned char)actwk[0].direc.b.h + 32 & 192) == 0) return; /* Line 1347, Address: 0x100b878 */
-    if (actwk[0].mspeed.w < 641 || actwk[0].mspeed.w >= -640) { /* Line 1348, Address: 0x100b898 */
+    if (actwk[0].mspeed.w < 641 || actwk[0].mspeed.w >= -640) /* Line 1348, Address: 0x100b898 */
       return; /* Line 1349, Address: 0x100b8d0 */
-    }
     actwk[0].mspeed.w = 0; /* Line 1350, Address: 0x100b8d8 */
     actwk[0].cddat |= 2; /* Line 1351, Address: 0x100b8e0 */
     ((short*)actwk)[33] = 30; /* Line 1352, Address: 0x100b8f4 */

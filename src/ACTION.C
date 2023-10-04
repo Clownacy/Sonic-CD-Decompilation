@@ -296,7 +296,7 @@ void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short
 
   flag = pActwk->actflg; /* Line 297, Address: 0x1001c4c */
   flag &= 3; /* Line 298, Address: 0x1001c58 */
-  while (cnt > 0) { /* Line 299, Address: 0x1001c60 */
+  for ( ; cnt > 0; --cnt) { /* Line 299, Address: 0x1001c60 */
     if (sprdat->index) { /* Line 300, Address: 0x1001c68 */
       if (linkdata >= 80) return; /* Line 301, Address: 0x1001c78 */
 
@@ -333,8 +333,8 @@ void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short
       ++linkdata; /* Line 333, Address: 0x1002074 */
     }
     ++sprdat; /* Line 335, Address: 0x1002088 */
-    --cnt; /* Line 336, Address: 0x1002094 */
-  }
+  } /* Line 336, Address: 0x1002094 */
+
 } /* Line 338, Address: 0x10020b4 */
 
 

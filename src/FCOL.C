@@ -907,17 +907,15 @@ short dirchk(act_info* pActwk, short scd0, short scd1) { /* Line 900, Address: 0
     scd1 = scd0; /* Line 907, Address: 0x10036f0 */
   }
 
-  if ((cDirectWk & 1) == 0) { /* Line 910, Address: 0x10036f8 */
-    pActwk->direc.b.h = cDirectWk; /* Line 911, Address: 0x1003708 */
-  }
-  else {
+  if (cDirectWk & 1) goto label1; /* Line 910, Address: 0x10036f8 */
+  pActwk->direc.b.h = cDirectWk; goto label2; /* Line 911, Address: 0x1003708 */
 
-    cDirectWk = pActwk->direc.b.h; /* Line 915, Address: 0x1003718 */
-    cDirectWk += 32; /* Line 916, Address: 0x1003724 */
-    cDirectWk &= 192; /* Line 917, Address: 0x100372c */
-    pActwk->direc.b.h = cDirectWk; /* Line 918, Address: 0x1003734 */
-  }
 
+label1:
+  cDirectWk = pActwk->direc.b.h; /* Line 915, Address: 0x1003718 */
+  cDirectWk += 32; /* Line 916, Address: 0x1003724 */
+  cDirectWk &= 192; /* Line 917, Address: 0x100372c */
+  pActwk->direc.b.h = cDirectWk; /* Line 918, Address: 0x1003734 */
 
 
 
@@ -926,6 +924,8 @@ short dirchk(act_info* pActwk, short scd0, short scd1) { /* Line 900, Address: 0
 
 
 
+
+label2:
   return scd1; /* Line 929, Address: 0x100373c */
 } /* Line 930, Address: 0x1003740 */
 

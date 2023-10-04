@@ -127,9 +127,9 @@ void ReadScrolMap() { /* Line 95, Address: 0x1013990 */
   else {
     p = pmapwk; /* Line 128, Address: 0x1013a9c */
     for (i = 0; i < 128; ++i) { /* Line 129, Address: 0x1013aa4 */
+
+
       if (sReadFile(hf, p, 512) == -1) break; /* Line 132, Address: 0x1013ab0 */
-
-
 
 
       p += 256; /* Line 135, Address: 0x1013ad8 */

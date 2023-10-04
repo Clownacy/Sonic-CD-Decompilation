@@ -306,10 +306,10 @@ void ringget(act_info* pActwk) { /* Line 293, Address: 0x1006b40 */
     if (d1 < 0) d1 = 0; /* Line 306, Address: 0x1006c0c */
     else if (d1 >= 3) d1 = 2; /* Line 307, Address: 0x1006c28 */
   }
+
   flagwork[d0 + d1] |= 1 << (pActwk->actfree[10] + -1); /* Line 310, Address: 0x1006c48 */
   ringdie(pActwk); /* Line 311, Address: 0x1006c90 */
 } /* Line 312, Address: 0x1006c9c */
-
 
 
 

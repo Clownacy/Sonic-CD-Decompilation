@@ -219,13 +219,13 @@ void gene_move1(act_info* pActwk) { /* Line 183, Address: 0x100f570 */
     pActfree->xposi.w.h += iD0; /* Line 219, Address: 0x100f6dc */
     iD0 = tbl[wOff + 1]; /* Line 220, Address: 0x100f6ec */
     pActfree->yposi.w.h += iD0; /* Line 221, Address: 0x100f70c */
-  } /* Line 222, Address: 0x100f71c */
-  else {
-    kira_set(pActwk); /* Line 224, Address: 0x100f724 */
-    pActwk->r_no0 += 2; /* Line 225, Address: 0x100f730 */
-    pActwk->actfree[0] = 60; /* Line 226, Address: 0x100f740 */
-  } /* Line 227, Address: 0x100f74c */
-}
+    return; /* Line 222, Address: 0x100f71c */
+  }
+  kira_set(pActwk); /* Line 224, Address: 0x100f724 */
+  pActwk->r_no0 += 2; /* Line 225, Address: 0x100f730 */
+  pActwk->actfree[0] = 60; /* Line 226, Address: 0x100f740 */
+} /* Line 227, Address: 0x100f74c */
+
 
 
 
@@ -896,11 +896,11 @@ void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
 
 
 
+
 void goal_move3(act_info* pActwk) { /* Line 900, Address: 0x1010ce0 */
 
   pActwk->xposi.w.h = pActwk->xposi.w.h; /* Line 902, Address: 0x1010ce8 */
 } /* Line 903, Address: 0x1010cf8 */
-
 
 
 

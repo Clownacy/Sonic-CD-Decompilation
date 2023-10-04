@@ -396,9 +396,9 @@ void spring(act_info* actionwk) { /* Line 385, Address: 0x10044d0 */
 
     spring_d(actionwk); /* Line 397, Address: 0x1004500 */
   }
-  if (actionwk->r_no0 == 0 /* Line 399, Address: 0x100450c */
-      || actionwk->actflg & 128) { /* Line 400, Address: 0x1004520 */
-
+  if (actionwk->r_no0 == 0) goto label1; /* Line 399, Address: 0x100450c */
+  if (actionwk->actflg & 128) { /* Line 400, Address: 0x1004520 */
+label1:
     sjump_move_tbl[actionwk->r_no0 / 2](actionwk); /* Line 402, Address: 0x1004538 */
   }
   actionsub(actionwk); /* Line 404, Address: 0x100457c */
@@ -446,8 +446,8 @@ void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
       actionwk->patbase = spring90pat; /* Line 446, Address: 0x10047bc */
     else
       actionwk->patbase = spring90pat2; /* Line 448, Address: 0x10047d4 */
-    goto label1; /* Line 449, Address: 0x10047e4 */
-  }
+  } /* Line 449, Address: 0x10047e4 */
+  else
   if (d0 & 8) { /* Line 451, Address: 0x10047ec */
     actionwk->r_no0 = 20; /* Line 452, Address: 0x10047fc */
     actionwk->sprhsize = 24; /* Line 453, Address: 0x1004808 */
@@ -456,18 +456,18 @@ void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
       actionwk->patbase = spring45pat; /* Line 456, Address: 0x100483c */
     else
       actionwk->patbase = spring45pat2; /* Line 458, Address: 0x1004854 */
-    pa_set(); goto label1; /* Line 459, Address: 0x1004864 */
+    pa_set(); /* Line 459, Address: 0x1004864 */
   } /* Line 460, Address: 0x100486c */
-  else {
-    if (actionwk->actflg & 2) { /* Line 462, Address: 0x1004874 */
-      actionwk->r_no0 = 14; /* Line 463, Address: 0x100488c */
-      actionwk->cddat |= 1; /* Line 464, Address: 0x1004898 */
-    }
-label1:  if (d0 & 2) /* Line 466, Address: 0x10048a8 */
-      actionwk->sproffset |= 8192; /* Line 467, Address: 0x10048b8 */
-
-    ((short*)actionwk)[26] = sjumptbl[(d0 & 2) / 2]; /* Line 469, Address: 0x10048c8 */
+  else
+  if (actionwk->actflg & 2) { /* Line 462, Address: 0x1004874 */
+    actionwk->r_no0 = 14; /* Line 463, Address: 0x100488c */
+    actionwk->cddat |= 1; /* Line 464, Address: 0x1004898 */
   }
+  if (d0 & 2) /* Line 466, Address: 0x10048a8 */
+    actionwk->sproffset |= 8192; /* Line 467, Address: 0x10048b8 */
+
+  ((short*)actionwk)[26] = sjumptbl[(d0 & 2) / 2]; /* Line 469, Address: 0x10048c8 */
+
 } /* Line 471, Address: 0x10048fc */
 
 int ride_on_chk_s(act_info* actionwk, act_info* a1) { /* Line 473, Address: 0x1004910 */

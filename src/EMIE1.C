@@ -234,10 +234,10 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
 
 
 
-    if (pActwk->cddat & 1) /* Line 237, Address: 0x1005670 */
+    if (pActwk->cddat & 1) { /* Line 237, Address: 0x1005670 */
       pActwk->xspeed.w -= 16; /* Line 238, Address: 0x1005688 */
-    else /* Line 239, Address: 0x1005698 */
-      pActwk->xspeed.w += 16; /* Line 240, Address: 0x10056a0 */
+    } /* Line 239, Address: 0x1005698 */
+    else pActwk->xspeed.w += 16; /* Line 240, Address: 0x10056a0 */
 
 
     if (pActwk->xspeed.w >= 513) /* Line 243, Address: 0x10056b0 */
@@ -285,8 +285,8 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
         }
       }
     }
-  } else if ((dakiflgwk & 64) == 0) { /* Line 289, Address: 0x1005898 */
-
+  }
+  else if ((dakiflgwk & 64) == 0) { /* Line 289, Address: 0x1005898 */
 
       pActwk->actfree[20] |= 4; /* Line 291, Address: 0x10058a8 */
       pActwk->xspeed.w = 0; /* Line 292, Address: 0x10058b8 */
@@ -318,11 +318,11 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
         empatchg(pActwk, em_pchg); /* Line 318, Address: 0x100598c */
         return; /* Line 319, Address: 0x10059a0 */
       }
+
+
       pActwk->yspeed.w = -768; /* Line 323, Address: 0x10059a8 */
       pActwk->actfree[20] |= 64; /* Line 324, Address: 0x10059b4 */
     }
-
-
 
 
     speedsety(pActwk); /* Line 328, Address: 0x10059c4 */
@@ -572,11 +572,12 @@ void pljumpset() { /* Line 559, Address: 0x10060e0 */
   actwk[0].actfree[14] = 0; /* Line 572, Address: 0x10061dc */
 
   if (actwk[0].cddat & 4) { /* Line 574, Address: 0x10061e4 */
+
+
     actwk[0].sprvsize = 19; /* Line 577, Address: 0x10061fc */
     actwk[0].sprhs = 9; /* Line 578, Address: 0x1006208 */
     actwk[0].cddat |= 16; /* Line 579, Address: 0x1006214 */
-  } /* Line 580, Address: 0x1006228 */
-  else {
+  } else { /* Line 580, Address: 0x1006228 */
     actwk[0].sprvsize = 14; /* Line 581, Address: 0x1006230 */
     actwk[0].sprhs = 7; /* Line 582, Address: 0x100623c */
     actwk[0].yposi.w.h += 5; /* Line 583, Address: 0x1006248 */
@@ -584,7 +585,6 @@ void pljumpset() { /* Line 559, Address: 0x10060e0 */
     actwk[0].mstno.b.h = 2; /* Line 585, Address: 0x1006270 */
   }
 } /* Line 587, Address: 0x100627c */
-
 
 
 
