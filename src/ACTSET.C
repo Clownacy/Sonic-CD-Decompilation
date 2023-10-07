@@ -72,11 +72,11 @@ void actsetinit() { /* Line 56, Address: 0x10000a0 */
   else scra_h = 0; /* Line 72, Address: 0x1000168 */
   scra_h &= -128; /* Line 73, Address: 0x100016c */
 
-  while (1) {
-
+  while (1)
+  {
     if (pAsetadr_w->x >= (unsigned short)scra_h) break; /* Line 77, Address: 0x100017c */
-    if (pAsetadr_w->a & 128) { /* Line 78, Address: 0x10001a0 */
-
+    if (pAsetadr_w->a & 128) /* Line 78, Address: 0x10001a0 */
+    {
       cnt = flagworkcnt; /* Line 80, Address: 0x10001bc */
       ++flagworkcnt; /* Line 81, Address: 0x10001c8 */
     }
@@ -85,14 +85,14 @@ void actsetinit() { /* Line 56, Address: 0x10000a0 */
   asetadr = pAsetadr_w; /* Line 85, Address: 0x10001f8 */
 
   pAsetadr_w = asetadr2; /* Line 87, Address: 0x1000208 */
-  if (scra_h >= 128) { /* Line 88, Address: 0x1000218 */
-
+  if (scra_h >= 128) /* Line 88, Address: 0x1000218 */
+  {
     scra_h -= 128; /* Line 90, Address: 0x100022c */
-    while (1) {
-
+    while (1)
+    {
       if (pAsetadr_w->x >= (unsigned short)scra_h) break; /* Line 93, Address: 0x1000238 */
-      if (pAsetadr_w->a & 128) { /* Line 94, Address: 0x100025c */
-
+      if (pAsetadr_w->a & 128) /* Line 94, Address: 0x100025c */
+      {
         ++flagworkcnt2; /* Line 96, Address: 0x1000278 */
       }
       ++pAsetadr_w; /* Line 98, Address: 0x100028c */
@@ -119,8 +119,8 @@ void actset() { /* Line 111, Address: 0x10002f0 */
   if (asetposi == scra_h) return; /* Line 119, Address: 0x100032c */
 
 
-  if (asetposi > scra_h) { /* Line 122, Address: 0x100034c */
-
+  if (asetposi > scra_h) /* Line 122, Address: 0x100034c */
+  {
     asetposi = scra_h; /* Line 124, Address: 0x1000370 */
     pAsetadr_w = asetadr2; /* Line 125, Address: 0x1000378 */
     scra_h -= 128; /* Line 126, Address: 0x1000388 */
@@ -143,12 +143,12 @@ void actset() { /* Line 111, Address: 0x10002f0 */
 
 
 
-    while (1) {
-
+    while (1)
+    {
       if (!((short)((pAsetadr_w - 1)->x) > scra_h)) goto label1; /* Line 148, Address: 0x10003a4 */
       --pAsetadr_w; /* Line 149, Address: 0x10003d4 */
-      if (pAsetadr_w->a & 128) { /* Line 150, Address: 0x10003e8 */
-
+      if (pAsetadr_w->a & 128) /* Line 150, Address: 0x10003e8 */
+      {
         --flagworkcnt2; /* Line 152, Address: 0x1000404 */
         cnt = flagworkcnt2; /* Line 153, Address: 0x1000418 */
       }
@@ -161,8 +161,8 @@ void actset() { /* Line 111, Address: 0x10002f0 */
 
       --pAsetadr_w; /* Line 162, Address: 0x100043c */
     } /* Line 163, Address: 0x1000450 */
-    if (pAsetadr_w->a & 128) { /* Line 164, Address: 0x1000458 */
-
+    if (pAsetadr_w->a & 128) /* Line 164, Address: 0x1000458 */
+    {
       ++flagworkcnt2; /* Line 166, Address: 0x1000474 */
       flagwork[index] &= 127; /* Line 167, Address: 0x1000488 */
     }
@@ -182,20 +182,20 @@ label1:
 
 
 
-    while (1) {
-
+    while (1)
+    {
       if ((short)((pAsetadr_w - 1)->x) < scra_h) break; /* Line 187, Address: 0x10004e8 */
-      if ((pAsetadr_w - 1)->a & 128) { /* Line 188, Address: 0x1000518 */
-
+      if ((pAsetadr_w - 1)->a & 128) /* Line 188, Address: 0x1000518 */
+      {
         --flagworkcnt; /* Line 190, Address: 0x1000534 */
       }
       --pAsetadr_w; /* Line 192, Address: 0x1000548 */
     } /* Line 193, Address: 0x100055c */
     asetadr = pAsetadr_w; /* Line 194, Address: 0x1000564 */
   } /* Line 195, Address: 0x1000574 */
+  else
+  {
 
-
-  else {
     asetposi = scra_h; /* Line 199, Address: 0x100057c */
     pAsetadr_w = asetadr; /* Line 200, Address: 0x1000584 */
     scra_h += 640; /* Line 201, Address: 0x1000594 */
@@ -209,11 +209,11 @@ label1:
 
 
 
-    do {
-
+    do
+    {
       if (!(pAsetadr_w->x < (unsigned short)scra_h)) goto label2; /* Line 214, Address: 0x10005a0 */
-      if (pAsetadr_w->a & 128) { /* Line 215, Address: 0x10005c4 */
-
+      if (pAsetadr_w->a & 128) /* Line 215, Address: 0x10005c4 */
+      {
         cnt = flagworkcnt; /* Line 217, Address: 0x10005e0 */
         ++flagworkcnt; /* Line 218, Address: 0x10005ec */
       }
@@ -225,8 +225,8 @@ label1:
 
 
 
-    if (pAsetadr_w->a & 128) { /* Line 228, Address: 0x1000618 */
-
+    if (pAsetadr_w->a & 128) /* Line 228, Address: 0x1000618 */
+    {
       --flagworkcnt; /* Line 230, Address: 0x1000634 */
       flagwork[index] &= 127; /* Line 231, Address: 0x1000648 */
     }
@@ -235,7 +235,8 @@ label2:
 
     pAsetadr_w = asetadr2; /* Line 236, Address: 0x1000678 */
     scra_h -= 768; /* Line 237, Address: 0x1000688 */
-    if (scra_h >= 0) { /* Line 238, Address: 0x1000694 */
+    if (scra_h >= 0) /* Line 238, Address: 0x1000694 */
+    {
 
 
 
@@ -246,12 +247,11 @@ label2:
 
 
 
-
-      while (1) {
-
+      while (1)
+      {
         if (pAsetadr_w->x >= (unsigned short)scra_h) break; /* Line 252, Address: 0x10006a4 */
-        if (pAsetadr_w->a & 128) { /* Line 253, Address: 0x10006c8 */
-
+        if (pAsetadr_w->a & 128) /* Line 253, Address: 0x10006c8 */
+        {
           ++flagworkcnt2; /* Line 255, Address: 0x10006e4 */
         }
         ++pAsetadr_w; /* Line 257, Address: 0x10006f8 */
@@ -277,8 +277,8 @@ int tm_setchk(unsigned char cnt, unsigned short* pIndex) { /* Line 272, Address:
   *pIndex = tflag + (unsigned short)cnt * 3; /* Line 277, Address: 0x1000778 */
   time = pAsetadr_w->c; /* Line 278, Address: 0x10007a0 */
   time = (time >> 5) & 7; /* Line 279, Address: 0x10007b0 */
-  switch (tflag) { /* Line 280, Address: 0x10007c4 */
-
+  switch (tflag) /* Line 280, Address: 0x10007c4 */
+  {
     case 0: return time & 1 ? 1 : 0; /* Line 282, Address: 0x10007f0 */
     case 1: return time & 2 ? 1 : 0; /* Line 283, Address: 0x100081c */
     case 2: return time & 4 ? 1 : 0; /* Line 284, Address: 0x1000848 */
@@ -301,21 +301,21 @@ int actnoset(unsigned char cnt, unsigned short* pIndex) { /* Line 298, Address: 
   unsigned char revflg;
   unsigned char an;
 
-  if (tm_setchk(cnt, pIndex) != 0) { /* Line 304, Address: 0x10008d0 */
-
-    if (pAsetadr_w->a & 128) { /* Line 306, Address: 0x10008e8 */
-
+  if (tm_setchk(cnt, pIndex) != 0) /* Line 304, Address: 0x10008d0 */
+  {
+    if (pAsetadr_w->a & 128) /* Line 306, Address: 0x10008e8 */
+    {
       zflag = flagwork[*pIndex] & 128 ? 0 : 1; /* Line 308, Address: 0x1000904 */
       flagwork[*pIndex] |= 128; /* Line 309, Address: 0x1000950 */
-      if (zflag == 0) { /* Line 310, Address: 0x1000974 */
-
+      if (zflag == 0) /* Line 310, Address: 0x1000974 */
+      {
         ++pAsetadr_w; /* Line 312, Address: 0x1000984 */
         return 0; /* Line 313, Address: 0x1000998 */
       }
     }
   }
-  else {
-
+  else
+  {
     ++pAsetadr_w; /* Line 319, Address: 0x10009a4 */
     return 0; /* Line 320, Address: 0x10009b8 */
   }
@@ -328,8 +328,8 @@ int actnoset(unsigned char cnt, unsigned short* pIndex) { /* Line 298, Address: 
   pActwk->actflg = revflg; /* Line 328, Address: 0x1000a44 */
   pActwk->cddat = revflg; /* Line 329, Address: 0x1000a4c */
   an = pAsetadr_w->a; /* Line 330, Address: 0x1000a54 */
-  if (an & 128) { /* Line 331, Address: 0x1000a64 */
-
+  if (an & 128) /* Line 331, Address: 0x1000a64 */
+  {
     an &= 127; /* Line 333, Address: 0x1000a74 */
     pActwk->cdsts = cnt; /* Line 334, Address: 0x1000a7c */
   }
@@ -382,11 +382,11 @@ int actwkchk(act_info** ppActwk) { /* Line 380, Address: 0x1000af0 */
   act_info* pActwk;
 
   pActwk = &actwk[32]; /* Line 384, Address: 0x1000b00 */
-  for (i = 0; i < 96; ++i, ++pActwk) { /* Line 385, Address: 0x1000b08 */
+  for (i = 0; i < 96; ++i, ++pActwk) /* Line 385, Address: 0x1000b08 */
+  {
 
-
-    if (pActwk->actno == 0) { /* Line 388, Address: 0x1000b14 */
-
+    if (pActwk->actno == 0) /* Line 388, Address: 0x1000b14 */
+    {
       *ppActwk = pActwk; /* Line 390, Address: 0x1000b24 */
       return 0; /* Line 391, Address: 0x1000b2c */
     }
@@ -408,11 +408,11 @@ int actwkchk2(act_info* pActwk, act_info** ppNewActwk) { /* Line 403, Address: 0
   pNextActwk = pActwk + 1; /* Line 408, Address: 0x1000b94 */
   pLastActwk = &actwk[127]; /* Line 409, Address: 0x1000b9c */
 
-  while (1) {
-
+  while (1)
+  {
     if (pLastActwk < pNextActwk) break; /* Line 413, Address: 0x1000ba4 */
-    if (pNextActwk->actno == 0) { /* Line 414, Address: 0x1000bb0 */
-
+    if (pNextActwk->actno == 0) /* Line 414, Address: 0x1000bb0 */
+    {
       *ppNewActwk = pNextActwk; /* Line 416, Address: 0x1000bc0 */
       return 0; /* Line 417, Address: 0x1000bc8 */
     }
@@ -444,33 +444,33 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
   short_union tflag;
   short zflag;
 
-  if (pActwk->actflg & 128) { /* Line 447, Address: 0x1000c50 */
-
+  if (pActwk->actflg & 128) /* Line 447, Address: 0x1000c50 */
+  {
     if (!(time_flag & 128)) return 0; /* Line 449, Address: 0x1000c68 */
   }
-  else {
-
+  else
+  {
     xposi &= -128; /* Line 453, Address: 0x1000c8c */
     scra_h = scra_h_posit.w.h; /* Line 454, Address: 0x1000c9c */
     scra_h -= 128; /* Line 455, Address: 0x1000cac */
     scra_h &= -128; /* Line 456, Address: 0x1000cb8 */
     xposi -= scra_h; /* Line 457, Address: 0x1000cc8 */
-    if ((unsigned short)xposi < 641) { /* Line 458, Address: 0x1000cd4 */
-
+    if ((unsigned short)xposi < 641) /* Line 458, Address: 0x1000cd4 */
+    {
       if (!(time_flag & 128)) return 0; /* Line 460, Address: 0x1000cec */
     }
   }
 
   index = pActwk->cdsts; /* Line 464, Address: 0x1000d10 */
-  if (index) { /* Line 465, Address: 0x1000d20 */
-
+  if (index) /* Line 465, Address: 0x1000d20 */
+  {
     index *= 3; /* Line 467, Address: 0x1000d28 */
     tflag.b.h = 0; /* Line 468, Address: 0x1000d34 */
     tflag.b.l = time_flag; /* Line 469, Address: 0x1000d38 */
     zflag = (tflag.b.l & 128) ? 0 : 1; /* Line 470, Address: 0x1000d44 */
     tflag.w &= -129; /* Line 471, Address: 0x1000d7c */
-    if (zflag == 0) { /* Line 472, Address: 0x1000d8c */
-
+    if (zflag == 0) /* Line 472, Address: 0x1000d8c */
+    {
       tflag.w += -time_item; /* Line 474, Address: 0x1000d9c */
       if (tflag.w < 0) tflag.w = 0; /* Line 475, Address: 0x1000dcc */
       else if (tflag.w >= 3) tflag.w = 2; /* Line 476, Address: 0x1000dec */
@@ -494,15 +494,15 @@ int frameout_s0(act_info* pActwk) { /* Line 491, Address: 0x1000e70 */
   short zflag;
 
   index = pActwk->cdsts; /* Line 496, Address: 0x1000e88 */
-  if (index) { /* Line 497, Address: 0x1000e98 */
-
+  if (index) /* Line 497, Address: 0x1000e98 */
+  {
     index *= 3; /* Line 499, Address: 0x1000ea0 */
     tflag.b.h = 0; /* Line 500, Address: 0x1000eac */
     tflag.b.l = time_flag; /* Line 501, Address: 0x1000eb0 */
     zflag = (tflag.b.l & 128) ? 0 : 1; /* Line 502, Address: 0x1000ebc */
     tflag.w &= -129; /* Line 503, Address: 0x1000ef4 */
-    if (zflag == 0) { /* Line 504, Address: 0x1000f04 */
-
+    if (zflag == 0) /* Line 504, Address: 0x1000f04 */
+    {
       tflag.w += -time_item; /* Line 506, Address: 0x1000f14 */
       if (tflag.w < 0) tflag.w = 0; /* Line 507, Address: 0x1000f44 */
       else if (tflag.w >= 3) tflag.w = 2; /* Line 508, Address: 0x1000f64 */
