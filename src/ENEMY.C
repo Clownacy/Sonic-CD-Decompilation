@@ -3,6 +3,7 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DIRCOL.H"
+#include "DUMMY.H"
 #include "ETC.H"
 #include "PLAYSUB.H"
 #include "SUICIDE.H"
