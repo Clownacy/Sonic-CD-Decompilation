@@ -8,11 +8,11 @@
 extern void sub_sync(short ReqNo);
 extern void soundset(short ReqNo);
 
-spr_array game0 = {
+static spr_array game0 = {
   1,
   { { -72, -8, 0, 379 } }
 };
-spr_array game1 = {
+static spr_array game1 = {
   1,
   { { 8, -8, 0, 380 } }
 };
@@ -20,11 +20,11 @@ spr_array* gamepat[2] = {
   &game0,
   &game1
 };
-spr_array time0 = {
+static spr_array time0 = {
   1,
   { { -68, -8, 0, 381 } }
 };
-spr_array time1 = {
+static spr_array time1 = {
   1,
   { { 4, -8, 0, 382 } }
 };
@@ -32,35 +32,35 @@ spr_array* timepat[2] = {
   &time0,
   &time1
 };
-spr_array gotpat0 = {
+static spr_array gotpat0 = {
   1,
   { { -68, -20, 0, 383 } }
 };
-spr_array gotpat1 = {
+static spr_array gotpat1 = {
   1,
   { { -100, 4, 0, 384 } }
 };
-spr_array gotpat2 = {
+static spr_array gotpat2 = {
   1,
   { { -100, 4, 0, 385 } }
 };
-spr_array gotpat3 = {
+static spr_array gotpat3 = {
   1,
   { { -100, 4, 0, 386 } }
 };
-spr_array madepat0 = {
+static spr_array madepat0 = {
   1,
   { { -128, -20, 0, 387 } }
 };
-spr_array madepat1 = {
+static spr_array madepat1 = {
   1,
   { { -112, 4, 0, 388 } }
 };
-spr_array madepat2 = {
+static spr_array madepat2 = {
   1,
   { { -112, 4, 0, 389 } }
 };
-spr_array madepat3 = {
+static spr_array madepat3 = {
   1,
   { { -112, 4, 0, 390 } }
 };
@@ -140,9 +140,9 @@ spr_array* madepat_0[5] = {
 };
 extern spr_array* title_pat[];
 extern unsigned short title_tbl[];
-unsigned short ClearSountWait;
-short WaitCount;
-unsigned short cleartbl[12] = {
+static unsigned short ClearSountWait;
+static short WaitCount;
+static unsigned short cleartbl[12] = {
   204,   0, 288,   0,
   272, 512, 240,   1,
   204,   0, 288,   2
@@ -281,7 +281,7 @@ void over(act_info* pAct) { /* Line 271, Address: 0x1012340 */
 } /* Line 281, Address: 0x1012394 */
 
 
-void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
+static void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   act_info* pTmpAct;
 
   sub_sync(130); /* Line 287, Address: 0x10123bc */
@@ -334,7 +334,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
 } /* Line 334, Address: 0x1012590 */
 
 
-void over_move(act_info* pAct) { /* Line 337, Address: 0x10125a0 */
+static void over_move(act_info* pAct) { /* Line 337, Address: 0x10125a0 */
   if (pAct->xposi.w.h < (short)((unsigned short*)pAct)[23]) { /* Line 338, Address: 0x10125ac */
     pAct->xposi.w.h += 8; /* Line 339, Address: 0x10125e0 */
   } /* Line 340, Address: 0x10125f0 */
@@ -372,7 +372,7 @@ void title(act_info* pAct) { /* Line 350, Address: 0x1012660 */
 } /* Line 372, Address: 0x1012734 */
 
 
-void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
+static void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
   act_info* pTmpAct;
   unsigned short* wp;
   int i;
@@ -412,7 +412,7 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
 
 
 
-void title_move0(act_info* pAct) { /* Line 415, Address: 0x1012910 */
+static void title_move0(act_info* pAct) { /* Line 415, Address: 0x1012910 */
   if (pAct->yposi.w.h == (short)((unsigned short*)pAct)[25]) { /* Line 416, Address: 0x101291c */
     pAct->r_no0 += 4; /* Line 417, Address: 0x101294c */
   } /* Line 418, Address: 0x101295c */
@@ -427,7 +427,7 @@ void title_move0(act_info* pAct) { /* Line 415, Address: 0x1012910 */
 } /* Line 427, Address: 0x10129cc */
 
 
-void title_move1(act_info* pAct) { /* Line 430, Address: 0x10129e0 */
+static void title_move1(act_info* pAct) { /* Line 430, Address: 0x10129e0 */
   if (pAct->xposi.w.h == (short)((unsigned short*)pAct)[23]) { /* Line 431, Address: 0x10129ec */
     pAct->r_no0 += 4; /* Line 432, Address: 0x1012a1c */
   } /* Line 433, Address: 0x1012a2c */
@@ -443,7 +443,7 @@ void title_move1(act_info* pAct) { /* Line 430, Address: 0x10129e0 */
 } /* Line 443, Address: 0x1012a9c */
 
 
-void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
+static void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
   if (pAct->pattim) { /* Line 447, Address: 0x1012abc */
     --pAct->pattim; /* Line 448, Address: 0x1012acc */
   } /* Line 449, Address: 0x1012adc */
@@ -465,7 +465,7 @@ void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
 } /* Line 465, Address: 0x1012ba0 */
 
 
-void title_back1(act_info* pAct) { /* Line 468, Address: 0x1012bb0 */
+static void title_back1(act_info* pAct) { /* Line 468, Address: 0x1012bb0 */
   if (pAct->pattim) { /* Line 469, Address: 0x1012bbc */
     --pAct->pattim; /* Line 470, Address: 0x1012bcc */
   } /* Line 471, Address: 0x1012bdc */
@@ -486,7 +486,7 @@ void title_back1(act_info* pAct) { /* Line 468, Address: 0x1012bb0 */
 } /* Line 486, Address: 0x1012c90 */
 
 
-void title_wait(act_info* pAct) { /* Line 489, Address: 0x1012ca0 */
+static void title_wait(act_info* pAct) { /* Line 489, Address: 0x1012ca0 */
   scroll_start.b.h = 0; /* Line 490, Address: 0x1012cac */
   plautoflag = 0; /* Line 491, Address: 0x1012cb4 */
   frameout(pAct); /* Line 492, Address: 0x1012cbc */
@@ -531,7 +531,7 @@ void clear(act_info* pAct) { /* Line 501, Address: 0x1012ce0 */
 
 } /* Line 532, Address: 0x1012e38 */
 
-void clear_init0(act_info* pAct) { /* Line 534, Address: 0x1012e50 */
+static void clear_init0(act_info* pAct) { /* Line 534, Address: 0x1012e50 */
   --pAct->actfree[8]; /* Line 535, Address: 0x1012e5c */
   if (!pAct->actfree[8]) { /* Line 536, Address: 0x1012e6c */
     pAct->r_no0 = 2; /* Line 537, Address: 0x1012e7c */
@@ -549,7 +549,7 @@ void clear_init0(act_info* pAct) { /* Line 534, Address: 0x1012e50 */
 
 
 
-void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
+static void clear_init(act_info* pAct) { /* Line 552, Address: 0x1012ec0 */
   act_info* pTmpAct;
   unsigned short* wp;
   int i;
@@ -597,7 +597,7 @@ label1:
 
 
 
-void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
+static void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
   if (((unsigned short*)pAct)[27]) { /* Line 601, Address: 0x10130ec */
     --((unsigned short*)pAct)[27]; /* Line 602, Address: 0x10130fc */
   }
@@ -624,7 +624,7 @@ void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
 
 
 
-void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
+static void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
   int_union lD0;
 
   lD0.l = 0; // Line 630, Address: 0x101320c
@@ -684,7 +684,7 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
 } // Line 684, Address: 0x1013448
 
 
-void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
+static void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
   short_union wD0;
 
   gameflag.w = 2; // Line 690, Address: 0x101346c
@@ -740,6 +740,6 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
 } // Line 740, Address: 0x1013650
 
 
-void clear_wait(act_info* pAct) { /* Line 743, Address: 0x1013660 */
+static void clear_wait(act_info* pAct) { /* Line 743, Address: 0x1013660 */
   if (!--WaitCount) pAct->r_no0 = 2; /* Line 744, Address: 0x1013668 */
 } /* Line 745, Address: 0x1013698 */

@@ -10,87 +10,87 @@
 
 extern void soundset(short ReqNo);
 
-spr_array spat00 = {
+static spr_array spat00 = {
   1,
   { { -16, -8, 0, 358 } }
 };
-spr_array spat01 = {
+static spr_array spat01 = {
   1,
   { { -16, 0, 0, 359 } }
 };
-spr_array spat02 = {
+static spr_array spat02 = {
   1,
   { { -16, -32, 0, 360 } }
 };
-spr_array spat03 = {
+static spr_array spat03 = {
   1,
   { { -8, -16, 0, 361 } }
 };
-spr_array spat04 = {
+static spr_array spat04 = {
   1,
   { { -8, -16, 0, 362 } }
 };
-spr_array spat05 = {
+static spr_array spat05 = {
   1,
   { { -8, -16, 0, 363 } }
 };
-spr_array spat06 = {
+static spr_array spat06 = {
   1,
   { { -16, -16, 0, 364 } }
 };
-spr_array spat07 = {
+static spr_array spat07 = {
   1,
   { { -16, -16, 0, 365 } }
 };
-spr_array spat08 = {
+static spr_array spat08 = {
   1,
   { { -16, -32, 0, 366 } }
 };
-spr_array kpat00 = {
+static spr_array kpat00 = {
   1,
   { { -8, -8, 0, 367 } }
 };
-spr_array kpat01 = {
+static spr_array kpat01 = {
   1,
   { { -8, -8, 0, 368 } }
 };
-spr_array ipat00 = {
+static spr_array ipat00 = {
   1,
   { { -20, -16, 0, 369 } }
 };
-spr_array spat10 = {
+static spr_array spat10 = {
   1,
   { { -16, -8, 0, 370 } }
 };
-spr_array spat11 = {
+static spr_array spat11 = {
   1,
   { { -16, 0, 0, 371 } }
 };
-spr_array spat12 = {
+static spr_array spat12 = {
   1,
   { { -16, -32, 0, 372 } }
 };
-spr_array spat13 = {
+static spr_array spat13 = {
   1,
   { { -8, -16, 0, 373 } }
 };
-spr_array spat14 = {
+static spr_array spat14 = {
   1,
   { { -8, -16, 0, 374 } }
 };
-spr_array spat15 = {
+static spr_array spat15 = {
   1,
   { { -8, -16, 0, 375 } }
 };
-spr_array spat16 = {
+static spr_array spat16 = {
   1,
   { { -16, -16, 0, 376 } }
 };
-spr_array spat17 = {
+static spr_array spat17 = {
   1,
   { { -16, -16, 0, 377 } }
 };
-spr_array spat18 = {
+static spr_array spat18 = {
   1,
   { { -16, -32, 0, 378 } }
 };

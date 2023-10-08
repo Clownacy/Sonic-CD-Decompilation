@@ -5,13 +5,13 @@
 
 extern void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned short yOffs);
 
-char shibukichg0[4] = { 4, 0, 1, -1 };
+static char shibukichg0[4] = { 4, 0, 1, -1 };
 unsigned char* shibukichg = { (unsigned char*)shibukichg0 };
-spr_array shibuki0 = {
+static spr_array shibuki0 = {
   1,
   { { -96, -16, 0, 448 } }
 };
-spr_array shibuki1 = {
+static spr_array shibuki1 = {
   1,
   { { -96, -16, 0, 449 } }
 };
@@ -19,7 +19,7 @@ spr_array* shibukipat[2] = {
   &shibuki0,
   &shibuki1
 };
-void(*taki_move_tbl[2])(act_info*) = {
+static void(*taki_move_tbl[2])(act_info*) = {
   &taki_init,
   &taki_move
 };
@@ -108,7 +108,7 @@ void taki(act_info* pActwk) { /* Line 101, Address: 0x101d6e0 */
 
 
 
-void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
+static void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
   pActwk->r_no0 += 2; /* Line 112, Address: 0x101d768 */
   pActwk->patbase = shibukipat; /* Line 113, Address: 0x101d778 */
   pActwk->actflg = 4; /* Line 114, Address: 0x101d788 */
@@ -125,7 +125,7 @@ void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
 
 
 
-void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
+static void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
   unsigned short blkno;
   short i, xoffs;
 

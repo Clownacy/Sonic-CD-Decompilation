@@ -8,26 +8,26 @@
 
 extern void soundset(short ReqNo);
 
-spr_array tpat00 = {
+static spr_array tpat00 = {
   1,
   { { -40, 16, 0, 481 } }
 };
-spr_array tpat01 = {
+static spr_array tpat01 = {
   1,
   { { -40, 16, 0, 482 } }
 };
-spr_array tpat07 = {
+static spr_array tpat07 = {
   1,
   { { 0, 0, 0, 0 } }
 };
-spr_array tpat02 = {
+static spr_array tpat02 = {
   2,
   {
     { -24, -32, 0, 488 },
     { -40, -32, 0, 489 }
   }
 };
-spr_array tpat03 = {
+static spr_array tpat03 = {
   3,
   {
     { -22, -8, 0, 490 },
@@ -35,7 +35,7 @@ spr_array tpat03 = {
     { -40, -32, 0, 489 }
   }
 };
-spr_array tpat04 = {
+static spr_array tpat04 = {
   4,
   {
     { -22, -8, 0, 491 },
@@ -44,7 +44,7 @@ spr_array tpat04 = {
     { -40, -32, 0, 489 }
   }
 };
-spr_array tpat05 = {
+static spr_array tpat05 = {
   4,
   {
     { -22, -8, 0, 492 },
@@ -53,7 +53,7 @@ spr_array tpat05 = {
     { -40, -32, 0, 489 }
   }
 };
-spr_array tpat06 = {
+static spr_array tpat06 = {
   4,
   {
     { -22, -8, 0, 493 },
@@ -72,12 +72,12 @@ spr_array* pat_et[8] = {
   &tpat06,
   &tpat07
 };
-unsigned short tbl0sproffset[11] = {
+static unsigned short tbl0sproffset[11] = {
   1087, 1033,    0,    0,
   1108, 1024,    0,    0,
      0,    0,    0
 };
-char tbl0[64] = {
+static char tbl0[64] = {
     1,   0,   0,   2,
   -40, -20,   3,  28,
    10,   4,  18, -18,
@@ -95,8 +95,8 @@ char tbl0[64] = {
    -8,  35,  13, -10,
    40, -10,  10,  -1
 };
-char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
-char* pchg[1] = { pchg0 };
+static char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
+static char* pchg[1] = { pchg0 };
 
 
 
@@ -166,7 +166,7 @@ void et(act_info* actionwk) { /* Line 147, Address: 0x1020fd0 */
 } /* Line 166, Address: 0x102108c */
 
 
-void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
+static void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
   unsigned short* a1;
   unsigned short d0;
 
@@ -203,7 +203,7 @@ void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
   }
 } /* Line 204, Address: 0x1021220 */
 
-void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
+static void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
   int d0;
   act_info* a1;
 

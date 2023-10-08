@@ -4,7 +4,7 @@
 #include "ACTSET.H"
 #include "FCOL.H"
 
-int CKeyTogle;
+static int CKeyTogle;
 extern spr_array* sncpat[];
 extern edit_info_array edit_tbl;
 

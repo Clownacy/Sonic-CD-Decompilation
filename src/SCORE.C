@@ -5,41 +5,41 @@
 extern void sub_sync(short ReqNo);
 extern short playdieset(act_info* pActwk);
 
-unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
-unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
-spr_array tenpat0 = {
+static unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
+static unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
+static spr_array tenpat0 = {
   2,
   {
     { -8, 0, 0, 334 },
     { 0, 0, 0, 337 }
   }
 };
-spr_array tenpat1 = {
+static spr_array tenpat1 = {
   2,
   {
     { -8, 0, 0, 335 },
     { 0, 0, 0, 337 }
   }
 };
-spr_array tenpat2 = {
+static spr_array tenpat2 = {
   2,
   {
     { -8, 0, 0, 336 },
     { 0, 0, 0, 337 }
   }
 };
-spr_array tenpat3 = {
+static spr_array tenpat3 = {
   2,
   {
     { -8, 0, 0, 338 },
     { 0, 0, 0, 337 }
   }
 };
-spr_array tenpat4 = {
+static spr_array tenpat4 = {
   1,
   { { -4, 0, 0, 338 } }
 };
-spr_array tenpat5 = {
+static spr_array tenpat5 = {
   3,
   {
     { -12, 0, 0, 334 },
@@ -47,7 +47,7 @@ spr_array tenpat5 = {
     { 4, 0, 0, 337 }
   }
 };
-spr_array* tenpat[6] = {
+static spr_array* tenpat[6] = {
   &tenpat0,
   &tenpat1,
   &tenpat2,
@@ -111,7 +111,7 @@ spr_array scorepat3 = {
   1,
   { { 0, 32, 0, 344 } }
 };
-spr_array* scorepat[4] = {
+static spr_array* scorepat[4] = {
   &scorepat0,
   &scorepat1,
   &scorepat2,
@@ -292,7 +292,7 @@ unsigned char ringinittbl[3] = { 255, 255, 0 };
 
 
 
-void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
+static void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
   if (!pAct->r_no0) ten_init(pAct); /* Line 296, Address: 0x10050bc */
   ten_move(pAct); /* Line 297, Address: 0x10050d8 */
   actionsub(pAct); /* Line 298, Address: 0x10050e4 */
@@ -301,7 +301,7 @@ void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
 } /* Line 301, Address: 0x10050f0 */
 
 
-void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
+static void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
   pAct->r_no0 = 2; /* Line 305, Address: 0x1005108 */
   pAct->actflg = 4; /* Line 306, Address: 0x1005114 */
   pAct->patbase = tenpat; /* Line 307, Address: 0x1005120 */
@@ -312,7 +312,7 @@ void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
 } /* Line 312, Address: 0x100515c */
 
 
-void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
+static void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
   --pAct->actfree[0]; /* Line 316, Address: 0x100517c */
 
 
@@ -335,7 +335,7 @@ void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
 } /* Line 335, Address: 0x1005234 */
 
 
-void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
+static void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
   pAct->r_no0 = 2; /* Line 339, Address: 0x1005258 */
   pAct->patbase = scorepat; /* Line 340, Address: 0x1005264 */
   pAct->sproffset = 32768; /* Line 341, Address: 0x1005274 */
@@ -370,7 +370,7 @@ void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
 
 } /* Line 371, Address: 0x1005360 */
 
-void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
+static void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
   if (!pAct->userflag.b.h) { /* Line 374, Address: 0x100537c */
     if (pAct->userflag.b.l) { /* Line 375, Address: 0x100538c */
       if (plring) { /* Line 376, Address: 0x100539c */
@@ -539,9 +539,9 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
 
 
 
-void ringinit() {} /* Line 542, Address: 0x10059b0 */
+static void ringinit() {} /* Line 542, Address: 0x10059b0 */
 
-void scoreinit() { /* Line 544, Address: 0x10059c0 */
+static void scoreinit() { /* Line 544, Address: 0x10059c0 */
   spr_info* pSprdat;
 
   pSprdat = &scorepat1.spra[2]; /* Line 547, Address: 0x10059cc */
@@ -562,7 +562,7 @@ void scoreinit() { /* Line 544, Address: 0x10059c0 */
 
 
 
-void posiwrt() { /* Line 565, Address: 0x1005a00 */
+static void posiwrt() { /* Line 565, Address: 0x1005a00 */
   spr_info* pSprdat;
   int_union lwk;
 
@@ -578,23 +578,23 @@ void posiwrt() { /* Line 565, Address: 0x1005a00 */
 
 
 
-void bonuswrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 581, Address: 0x1005a70 */
+static void bonuswrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 581, Address: 0x1005a70 */
   scorewrt2(pSprdat, lDispVal, &subtbl[1], 4, 1); /* Line 582, Address: 0x1005a80 */
 
 } /* Line 584, Address: 0x1005aa0 */
 
-void ringwrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 586, Address: 0x1005ab0 */
+static void ringwrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 586, Address: 0x1005ab0 */
   scorewrt2(pSprdat, lDispVal, &subtbl[3], 2, 1); /* Line 587, Address: 0x1005ac0 */
 
 } /* Line 589, Address: 0x1005ae0 */
 
 
-void scorewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 592, Address: 0x1005af0 */
+static void scorewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 592, Address: 0x1005af0 */
   scorewrt2(pSprdat, lDispVal, &subtbl[0], 5, 0); /* Line 593, Address: 0x1005b00 */
 
 } /* Line 595, Address: 0x1005b20 */
 
-void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp) { /* Line 597, Address: 0x1005b30 */
+static void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp) { /* Line 597, Address: 0x1005b30 */
   unsigned int lDisp1;
   int wrt = 0; /* Line 599, Address: 0x1005b50 */
 
@@ -621,13 +621,13 @@ void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, s
 
 
 
-void posiwrt0(spr_info* pSprdat, unsigned int lDispVal) { /* Line 624, Address: 0x1005c40 */
+static void posiwrt0(spr_info* pSprdat, unsigned int lDispVal) { /* Line 624, Address: 0x1005c40 */
   timewrt0(pSprdat, lDispVal, &subtblh4[0], 3); /* Line 625, Address: 0x1005c50 */
 
 } /* Line 627, Address: 0x1005c6c */
 
 
-void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
+static void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
   unsigned int lDispVal;
 
   if (pl_suu >= 10) /* Line 633, Address: 0x1005c90 */
@@ -641,12 +641,12 @@ void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
 
 
 
-void timewrt1(spr_info* pSprdat, unsigned int lDispVal) { /* Line 644, Address: 0x1005cf0 */
+static void timewrt1(spr_info* pSprdat, unsigned int lDispVal) { /* Line 644, Address: 0x1005cf0 */
   timewrt0(pSprdat, lDispVal, &subtbl[5], 0); /* Line 645, Address: 0x1005d00 */
 
 } /* Line 647, Address: 0x1005d1c */
 
-void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0x1005d30 */
+static void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0x1005d30 */
   timewrt0(pSprdat, lDispVal, &subtbl[4], 1); /* Line 650, Address: 0x1005d40 */
 
 } /* Line 652, Address: 0x1005d5c */
@@ -657,7 +657,7 @@ void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0
 
 
 
-void timewrt0(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6) { /* Line 660, Address: 0x1005d70 */
+static void timewrt0(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6) { /* Line 660, Address: 0x1005d70 */
   unsigned short lDisp1;
 
   do {

@@ -10,14 +10,14 @@
 
 extern void soundset(short ReqNo);
 
-unsigned char ari_pchg00[4] = { 3, 0, 1, 255 };
-unsigned char ari_pchg01[4] = { 7, 2, 3, 255 };
+static unsigned char ari_pchg00[4] = { 3, 0, 1, 255 };
+static unsigned char ari_pchg01[4] = { 7, 2, 3, 255 };
 unsigned char* ari_pchg[2] =
 {
   ari_pchg00,
   ari_pchg01
 };
-spr_array ari0 =
+static spr_array ari0 =
 {
   3,
   {
@@ -26,7 +26,7 @@ spr_array ari0 =
     {  14,  -4, 0, 372 }
   }
 };
-spr_array ari1 =
+static spr_array ari1 =
 {
   3,
   {
@@ -35,7 +35,7 @@ spr_array ari1 =
     {  18,  -4, 0, 375 }
   }
 };
-spr_array ari2 =
+static spr_array ari2 =
 {
   3,
   {
@@ -44,7 +44,7 @@ spr_array ari2 =
     {  14,  -4, 0, 378 }
   }
 };
-spr_array ari3 =
+static spr_array ari3 =
 {
   3,
   {
@@ -60,39 +60,39 @@ spr_array* ari_pat[4] =
   &ari2,
   &ari3
 };
-unsigned char chou_pchg00[7] = { 7, 0, 0, 1, 2, 1, 255 };
-unsigned char chou_pchg01[7] = { 3, 0, 0, 1, 2, 1, 255 };
+static unsigned char chou_pchg00[7] = { 7, 0, 0, 1, 2, 1, 255 };
+static unsigned char chou_pchg01[7] = { 3, 0, 0, 1, 2, 1, 255 };
 unsigned char* chou_pchg[2] =
 {
   chou_pchg00,
   chou_pchg01
 };
-spr_array chou1e =
+static spr_array chou1e =
 {
   1,
   { { -16, -16, 0, 394 } }
 };
-spr_array chou2e =
+static spr_array chou2e =
 {
   1,
   { { -16, -8, 0, 395 } }
 };
-spr_array chou3e =
+static spr_array chou3e =
 {
   1,
   { { -16, -16, 0, 396 } }
 };
-spr_array chou1b =
+static spr_array chou1b =
 {
   1,
   { { -16, -16, 0, 397 } }
 };
-spr_array chou2b =
+static spr_array chou2b =
 {
   1,
   { { -16, -8, 0, 398 } }
 };
-spr_array chou3b =
+static spr_array chou3b =
 {
   1,
   { { -16, -16, 0, 399 } }
@@ -109,41 +109,41 @@ spr_array* b_chou_pat[3] =
   &chou2b,
   &chou3b
 };
-unsigned char pchg_e_0[4] = { 1, 0, 1, 255 };
-unsigned char pchg_e_1[5] = { 6, 2, 3, 4, 252 };
+static unsigned char pchg_e_0[4] = { 1, 0, 1, 255 };
+static unsigned char pchg_e_1[5] = { 6, 2, 3, 4, 252 };
 unsigned char* pchg_e[2] =
 {
   pchg_e_0,
   pchg_e_1
 };
-unsigned char pchg_b_0[4] = { 4, 0, 1, 255 };
-unsigned char pchg_b_1[5] = { 14, 2, 3, 4, 252 };
+static unsigned char pchg_b_0[4] = { 4, 0, 1, 255 };
+static unsigned char pchg_b_1[5] = { 14, 2, 3, 4, 252 };
 unsigned char* pchg_b[2] =
 {
   pchg_b_0,
   pchg_b_1
 };
-spr_array ka1e =
+static spr_array ka1e =
 {
   1,
   { { -16, -12, 0, 400 } }
 };
-spr_array ka2e =
+static spr_array ka2e =
 {
   1,
   { { -16, -4, 0, 401 } }
 };
-spr_array ka3e =
+static spr_array ka3e =
 {
   1,
   { { -16, -16, 0, 402 } }
 };
-spr_array ka4e =
+static spr_array ka4e =
 {
   1,
   { { -8, -16, 0, 403 } }
 };
-spr_array ka5e =
+static spr_array ka5e =
 {
   1,
   { { -12, -16, 0, 404 } }
@@ -156,27 +156,27 @@ spr_array* e_ka_pat[5] =
   &ka4e,
   &ka5e
 };
-spr_array ka1b =
+static spr_array ka1b =
 {
   1,
   { { -16, -12, 0, 405 } }
 };
-spr_array ka2b =
+static spr_array ka2b =
 {
   1,
   { { -16, -4, 0, 406 } }
 };
-spr_array ka3b =
+static spr_array ka3b =
 {
   1,
   { { -16, -16, 0, 407 } }
 };
-spr_array ka4b =
+static spr_array ka4b =
 {
   1,
   { { -8, -16, 0, 408 } }
 };
-spr_array ka5b =
+static spr_array ka5b =
 {
   1,
   { { -12, -16, 0, 409 } }
@@ -189,14 +189,14 @@ spr_array* b_ka_pat[5] =
   &ka4b,
   &ka5b
 };
-unsigned char e_kamem_pchg00[4] = { 29, 0, 1, 255 };
-unsigned char e_kamem_pchg01[3] = { 59, 2, 252 };
+static unsigned char e_kamem_pchg00[4] = { 29, 0, 1, 255 };
+static unsigned char e_kamem_pchg01[3] = { 59, 2, 252 };
 unsigned char* e_kamem_pchg[2] =
 {
   e_kamem_pchg00,
   e_kamem_pchg01
 };
-unsigned char b_kamem_pchg00[18] =
+static unsigned char b_kamem_pchg00[18] =
 {
   5,
   0, 1,
@@ -209,28 +209,28 @@ unsigned char b_kamem_pchg00[18] =
   0, 1,
   252
 };
-unsigned char b_kamem_pchg01[3] = { 11, 2, 252 };
+static unsigned char b_kamem_pchg01[3] = { 11, 2, 252 };
 unsigned char* b_kamem_pchg[2] =
 {
   b_kamem_pchg00,
   b_kamem_pchg01
 };
-spr_array kamem_pat00e =
+static spr_array kamem_pat00e =
 {
   1,
   { { -16, -15, 0, 410 } }
 };
-spr_array kamem_pat00b =
+static spr_array kamem_pat00b =
 {
   1,
   { { -16, -16, 0, 411 } }
 };
-spr_array kamem_pat01 =
+static spr_array kamem_pat01 =
 {
   1,
   { { -16, -14, 0, 412 } }
 };
-spr_array kamem_pat02 =
+static spr_array kamem_pat02 =
 {
   1,
   { { -17, -16, 0, 413 } }
@@ -247,24 +247,24 @@ spr_array* b_kamem_pat[3] =
   &kamem_pat01,
   &kamem_pat02
 };
-unsigned char tama_pchg00[6] = { 2, 0, 1, 2, 3, 255 };
+static unsigned char tama_pchg00[6] = { 2, 0, 1, 2, 3, 255 };
 unsigned char* tama_pchg[1] = { tama_pchg00 };
-spr_array tama_pat00 =
+static spr_array tama_pat00 =
 {
   1,
   { { -4, -4, 0, 414 } }
 };
-spr_array tama_pat01 =
+static spr_array tama_pat01 =
 {
   1,
  { { -4, -4, 0, 415 } }
 };
-spr_array tama_pat02 =
+static spr_array tama_pat02 =
 {
   1,
   { { -8, -8, 0, 416 } }
 };
-spr_array tama_pat03 =
+static spr_array tama_pat03 =
 {
   1,
   { { -8, -8, 0, 417 } }
@@ -276,8 +276,8 @@ spr_array* tama_pat[4] =
   &tama_pat02,
   &tama_pat03
 };
-unsigned char e_tagame_pchg00[3] = { 89, 6, 252 };
-unsigned char e_tagame_pchg01[20] =
+static unsigned char e_tagame_pchg00[3] = { 89, 6, 252 };
+static unsigned char e_tagame_pchg01[20] =
 {
   7,
   0, 0,
@@ -296,8 +296,8 @@ unsigned char* e_tagame_pchg[2] =
   e_tagame_pchg00,
   e_tagame_pchg01
 };
-unsigned char b_tagame_pchg00[3] = { 89, 6, 252 };
-unsigned char b_tagame_pchg01[25] = {
+static unsigned char b_tagame_pchg00[3] = { 89, 6, 252 };
+static unsigned char b_tagame_pchg01[25] = {
   4,
   0, 0,
   0, 0,
@@ -318,7 +318,7 @@ unsigned char* b_tagame_pchg[2] =
   b_tagame_pchg00,
   b_tagame_pchg01
 };
-spr_array tagame_pat00 =
+static spr_array tagame_pat00 =
 {
   2,
   {
@@ -326,7 +326,7 @@ spr_array tagame_pat00 =
     { -16, -22, 0, 419 }
   }
 };
-spr_array tagame_pat01 =
+static spr_array tagame_pat01 =
 {
   2,
   {
@@ -334,17 +334,17 @@ spr_array tagame_pat01 =
     { -16, -22, 0, 421 }
   }
 };
-spr_array tagame_pat02 =
+static spr_array tagame_pat02 =
 {
   1,
   { { -16, -16, 0, 422 } }
 };
-spr_array tagame_pat03e =
+static spr_array tagame_pat03e =
 {
   1,
   { { -16, -16, 0, 423 } }
 };
-spr_array tagame_pat04e =
+static spr_array tagame_pat04e =
 {
   2,
   {
@@ -352,7 +352,7 @@ spr_array tagame_pat04e =
     { -16, -2, 0, 425 }
   }
 };
-spr_array tagame_pat05e =
+static spr_array tagame_pat05e =
 {
   2,
   {
@@ -360,12 +360,12 @@ spr_array tagame_pat05e =
     { -16, -2, 0, 427 }
   }
 };
-spr_array tagame_pat03b =
+static spr_array tagame_pat03b =
 {
   1,
   { { -16, -16, 0, 428 } }
 };
-spr_array tagame_pat04b =
+static spr_array tagame_pat04b =
 {
   2,
   {
@@ -373,7 +373,7 @@ spr_array tagame_pat04b =
     { -16, -2, 0, 430 }
   }
 };
-spr_array tagame_pat05b =
+static spr_array tagame_pat05b =
 {
   2,
   {
@@ -381,7 +381,7 @@ spr_array tagame_pat05b =
     { -16, -2, 0, 432 }
   }
 };
-spr_array tagame_pat06 =
+static spr_array tagame_pat06 =
 {
   1,
   { { -16, -16, 0, 433 } }

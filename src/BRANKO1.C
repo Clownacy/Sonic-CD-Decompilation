@@ -6,15 +6,15 @@
 #include "ETC.H"
 #include "RIDECHK.H"
 
-spr_array pat0 = {
+static spr_array pat0 = {
   1,
   { { -8, -8, 0, 515 } }
 };
-spr_array pat1 = {
+static spr_array pat1 = {
   1,
   { { -8, -8, 0, 516 } }
 };
-spr_array pat2 = {
+static spr_array pat2 = {
   1,
   { { -8, -8, 0, 517 } }
 };
@@ -23,11 +23,11 @@ spr_array* branko1pat[3] = {
   &pat1,
   &pat2
 };
-void(*branko1_move_tbl[2])(act_info*) = {
+static void(*branko1_move_tbl[2])(act_info*) = {
   &branko1_init,
   &branko1_move
 };
-brankodata branko1_initbl[8] = {
+static brankodata branko1_initbl[8] = {
   { -16384,  8,  512, -512 },
   { -16384,  2,  256, -256 },
   { -16384, -2, -512,  256 },
@@ -129,7 +129,7 @@ void branko1(act_info* pActwk) { /* Line 103, Address: 0x1028580 */
 
 
 
-void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
+static void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
   int i;
   unsigned char knum;
   act_info* pNewact;
@@ -186,7 +186,7 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
 
 
 
-void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
+static void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
   int xwk, ywk;
 
   xwk = pActwk->xposi.l; /* Line 192, Address: 0x1028854 */
@@ -211,7 +211,7 @@ void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
 
 
 /* TODO: lines 245 & 246: Why shift 4 bytes right two times? */
-void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
+static void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
   short spdwk, sinwk, coswk;
   unsigned int lSinwk, lCoswk;
   ushort_union direc;
@@ -257,7 +257,7 @@ void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
 
 
 
-void branko1_ridechk(act_info* pActwk) { /* Line 260, Address: 0x1028b60 */
+static void branko1_ridechk(act_info* pActwk) { /* Line 260, Address: 0x1028b60 */
   act_info* pPlayerwk;
   int i;
 

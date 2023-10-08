@@ -1,14 +1,14 @@
 #include "EQU.H"
 #include "LOADER2.H"
 
-unsigned int SE_DashReq;
+static unsigned int SE_DashReq;
 extern void(*sOutputDebugString)(char*);
 extern void(*sPrintf)(char*, const char*, ...);
 extern void(*sCloseFile)(int);
 extern int(*sReadFile)(int, void*, int);
 extern int(*sOpenFile)(char*);
 extern void(*sMemSet)(void*, unsigned char, int);
-unsigned char SeToWavTbl[80] = {
+static unsigned char SeToWavTbl[80] = {
    0,  1,  2,  3,  4,  5,  6,  7,
    8,  9, 10, 11, 11, 12, 13, 14,
   15, 16, 17, 18, 19, 20, 20, 21,

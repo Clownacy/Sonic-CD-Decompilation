@@ -21,8 +21,8 @@ extern void mapwrt();
 extern void flashin();
 extern void fadein0();
 
-short Interupt_Counter;
-unsigned int PauseIcon;
+static short Interupt_Counter;
+static unsigned int PauseIcon;
 extern bmp_info SprBmp[700];
 void(*sMemCpy)(void*, void*, int);
 unsigned int* lpghWnd;
@@ -294,7 +294,7 @@ void DLL_memfree() {} /* Line 292, Address: 0x1017ea0 */
 
 
 
-void Print_Msg() {} /* Line 297, Address: 0x1017eb0 */
+static void Print_Msg() {} /* Line 297, Address: 0x1017eb0 */
 
 int Get_vscroll() { /* Line 299, Address: 0x1017ec0 */
 
@@ -839,7 +839,7 @@ void syspatchg() {
 } /* Line 839, Address: 0x101929c */
 
 
-void back_to_cnt() {
+static void back_to_cnt() {
   if (!actwk[0].actfree[0]) { /* Line 843, Address: 0x10192b0 */
     if (backto_cnt) { /* Line 844, Address: 0x10192c0 */
       ++backto_cnt; /* Line 845, Address: 0x10192d0 */
@@ -851,7 +851,7 @@ void back_to_cnt() {
 
 
 
-void bye_cnt() {
+static void bye_cnt() {
   if (byecnt0.w) { /* Line 855, Address: 0x10192f0 */
     ++byecnt0.w; /* Line 856, Address: 0x1019300 */
   }

@@ -10,8 +10,8 @@
 
 extern void sub_sync(short ReqNo); extern void playsp(); extern short pcol(act_info* pActwk); extern void da_set(); extern void plairset(); extern void soundset(short ReqNo); extern short playdieset(act_info* pActwk);
 
-unsigned int WaveClear;
-unsigned char Brake_Sw, Brake_Req;
+static unsigned int WaveClear;
+static unsigned char Brake_Sw, Brake_Req;
 extern spr_array* sncpat[];
 extern unsigned char mapwka[8][64];
 extern void(*WaveAllStop)();

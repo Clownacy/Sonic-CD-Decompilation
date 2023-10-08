@@ -9,140 +9,140 @@
 extern void sub_sync(short ReqNo);
 extern void soundset(short ReqNo);
 
-unsigned char itemchg0[11] = { 1, 16, 0, 0, 8, 0, 0, 9, 0, 0, 255 };
-unsigned char itemchg1[11] = { 1, 16, 1, 1, 8, 1, 1, 9, 1, 1, 255 };
-unsigned char itemchg2[11] = { 1, 16, 2, 2, 8, 2, 2, 9, 2, 2, 255 };
-unsigned char itemchg3[11] = { 1, 16, 3, 3, 8, 3, 3, 9, 3, 3, 255 };
-unsigned char itemchg4[11] = { 1, 16, 4, 4, 8, 4, 4, 9, 4, 4, 255 };
-unsigned char itemchg5[11] = { 1, 16, 5, 5, 8, 5, 5, 9, 5, 5, 255 };
-unsigned char itemchg6[11] = { 1, 16, 6, 6, 8, 6, 6, 9, 6, 6, 255 };
-unsigned char itemchg7[11] = { 1, 16, 7, 7, 8, 7, 7, 9, 7, 7, 255 };
-unsigned char itemchg8[10] = { 1, 10, 14, 15, 14, 11, 14, 15, 14, 255 };
-unsigned char itemchg9[10] = { 1, 12, 14, 15, 14, 13, 14, 15, 14, 255 };
+static unsigned char itemchg0[11] = { 1, 16, 0, 0, 8, 0, 0, 9, 0, 0, 255 };
+static unsigned char itemchg1[11] = { 1, 16, 1, 1, 8, 1, 1, 9, 1, 1, 255 };
+static unsigned char itemchg2[11] = { 1, 16, 2, 2, 8, 2, 2, 9, 2, 2, 255 };
+static unsigned char itemchg3[11] = { 1, 16, 3, 3, 8, 3, 3, 9, 3, 3, 255 };
+static unsigned char itemchg4[11] = { 1, 16, 4, 4, 8, 4, 4, 9, 4, 4, 255 };
+static unsigned char itemchg5[11] = { 1, 16, 5, 5, 8, 5, 5, 9, 5, 5, 255 };
+static unsigned char itemchg6[11] = { 1, 16, 6, 6, 8, 6, 6, 9, 6, 6, 255 };
+static unsigned char itemchg7[11] = { 1, 16, 7, 7, 8, 7, 7, 9, 7, 7, 255 };
+static unsigned char itemchg8[10] = { 1, 10, 14, 15, 14, 11, 14, 15, 14, 255 };
+static unsigned char itemchg9[10] = { 1, 12, 14, 15, 14, 13, 14, 15, 14, 255 };
 unsigned char* itemchg[10] = { itemchg0, itemchg1, itemchg2, itemchg3, itemchg4, itemchg5, itemchg6, itemchg7, itemchg8, itemchg9 };
-spr_array ite00 = {
+static spr_array ite00 = {
   2,
   { { -8, -10, 0, 272 }, { -16, -16, 0, 286 } }
 };
-spr_array ite01 = {
+static spr_array ite01 = {
   2,
   { { -8, -10, 0, 273 }, { -16, -16, 0, 286 } }
 };
-spr_array ite02 = {
+static spr_array ite02 = {
   2,
   { { -8, -10, 0, 274 }, { -16, -16, 0, 286 } }
 };
-spr_array ite03 = {
+static spr_array ite03 = {
   2,
   { { -8, -10, 0, 275 }, { -16, -16, 0, 286 } }
 };
-spr_array ite04 = {
+static spr_array ite04 = {
   2,
   { { -8, -10, 0, 276 }, { -16, -16, 0, 286 } }
 };
-spr_array ite05 = {
+static spr_array ite05 = {
   2,
   { { -8, -10, 0, 277 }, { -16, -16, 0, 286 } }
 };
-spr_array ite06 = {
+static spr_array ite06 = {
   2,
   { { -8, -10, 0, 278 }, { -16, -16, 0, 286 } }
 };
-spr_array ite07 = {
+static spr_array ite07 = {
   2,
   { { -8, -10, 0, 279 }, { -16, -16, 0, 286 } }
 };
-spr_array ite08 = {
+static spr_array ite08 = {
   2,
   { { -8, -10, 0, 280 }, { -16, -16, 0, 286 } }
 };
-spr_array ite09 = {
+static spr_array ite09 = {
   2,
   { { -8, -10, 8, 280 }, { -16, -16, 0, 286 } }
 };
-spr_array ite0a = {
+static spr_array ite0a = {
   2,
   { { -16, -40, 0, 281 }, { -8, -24, 0, 285 } }
 };
-spr_array ite0b = {
+static spr_array ite0b = {
   2,
   { { -16, -40, 8, 281 }, { -8, -24, 0, 285 } }
 };
-spr_array ite0c = {
+static spr_array ite0c = {
   2,
   { { -16, -40, 0, 282 }, { -8, -24, 0, 285 } }
 };
-spr_array ite0d = {
+static spr_array ite0d = {
   2,
   { { -16, -40, 8, 282 }, { -8, -24, 0, 285 } }
 };
-spr_array ite0e = {
+static spr_array ite0e = {
   2,
   { { -16, -40, 8, 283 }, { -8, -24, 0, 285 } }
 };
-spr_array ite0f = {
+static spr_array ite0f = {
   2,
   { { -4, -40, 8, 284 }, { -8, -24, 0, 285 } }
 };
-spr_array ite10 = {
+static spr_array ite10 = {
   1, { { -16, -16, 0, 286 } }
 };
-spr_array ite11 = {
+static spr_array ite11 = {
   1, { { -16, 0, 0, 287 } }
 };
-spr_array ite12 = {
+static spr_array ite12 = {
   1, { { -16, -8, 0, 281 } }
 };
-spr_array ite13 = {
+static spr_array ite13 = {
   1, { { -16, -8, 0, 282 } }
 };
 spr_array* itempat[20] = { &ite00, &ite01, &ite02, &ite03, &ite04, &ite05, &ite06, &ite07, &ite08, &ite09, &ite0a, &ite0b, &ite0c, &ite0d, &ite0e, &ite0f, &ite10, &ite11, &ite12, &ite13 };
-spr_array cor00 = {
+static spr_array cor00 = {
   1, { { -8, -16, 0, 272 } }
 };
-spr_array cor01 = {
+static spr_array cor01 = {
   1, { { -8, -16, 0, 273 } }
 };
-spr_array cor02 = {
+static spr_array cor02 = {
   1, { { -8, -16, 0, 274 } }
 };
-spr_array cor03 = {
+static spr_array cor03 = {
   1, { { -8, -16, 0, 275 } }
 };
-spr_array cor04 = {
+static spr_array cor04 = {
   1, { { -8, -16, 0, 276 } }
 };
-spr_array cor05 = {
+static spr_array cor05 = {
   1, { { -8, -16, 0, 277 } }
 };
-spr_array cor06 = {
+static spr_array cor06 = {
   1, { { -8, -16, 0, 278 } }
 };
-spr_array cor07 = {
+static spr_array cor07 = {
   1, { { -8, -16, 0, 279 } }
 };
-spr_array cor08 = {
+static spr_array cor08 = {
   1, { { -8, -16, 0, 280 } }
 };
-spr_array cor09 = {
+static spr_array cor09 = {
   1, { { -8, -16, 8, 280 } }
 };
-spr_array cor0a = {
+static spr_array cor0a = {
   1, { { -16, -40, 0, 281 } }
 };
-spr_array cor0b = {
+static spr_array cor0b = {
   1, { { -16, -40, 8, 281 } }
 };
-spr_array cor0c = {
+static spr_array cor0c = {
   1, { { -16, -40, 0, 282 } }
 };
-spr_array cor0d = {
+static spr_array cor0d = {
   1, { { -16, -40, 8, 282 } }
 };
-spr_array cor0e = {
+static spr_array cor0e = {
   1, { { -16, -40, 0, 283 } }
 };
-spr_array cor0f = {
+static spr_array cor0f = {
   1, { { -4, -40, 0, 284 } }
 };
 spr_array* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };

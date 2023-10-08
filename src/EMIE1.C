@@ -7,7 +7,7 @@
 
 extern void sub_sync(short ReqNo);
 
-void(*em1_tbl[5])(act_info*) = {
+static void(*em1_tbl[5])(act_info*) = {
   &emie1_init,
   &emie1_matu,
   &emie1_dakii,
@@ -17,7 +17,7 @@ void(*em1_tbl[5])(act_info*) = {
 extern palette_entry zone1colora[];
 extern char* em_pchg[];
 extern spr_array* emie1pat[];
-palette_entry emie1_clr[16] = {
+static palette_entry emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },
   { 128,  32,  96, 1 },
@@ -35,7 +35,7 @@ palette_entry emie1_clr[16] = {
   {  96,   0, 128, 1 },
   { 224,   0,   0, 1 }
 };
-void(*ht1_tbl[2])(act_info*) = {
+static void(*ht1_tbl[2])(act_info*) = {
   &heart1_init,
   &heart1_move
 };
@@ -163,7 +163,7 @@ void emie1(act_info* pActwk) { /* Line 146, Address: 0x10052b0 */
 
 
 
-void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
+static void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
   short iScd, xwk;
 
   pActwk->actflg |= 4; /* Line 169, Address: 0x10053a4 */
@@ -200,7 +200,7 @@ void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
 
 
 
-void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
+static void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
   short lenwk;
   unsigned char dakiflgwk;
 
@@ -355,7 +355,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
 
 
 
-void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
+static void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
 
 
 
@@ -395,7 +395,7 @@ void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
 
 
 
-void emie1_tobii(act_info* pActwk) { /* Line 398, Address: 0x1005c60 */
+static void emie1_tobii(act_info* pActwk) { /* Line 398, Address: 0x1005c60 */
   short lenwk;
 
   pActwk->patno = 6; /* Line 401, Address: 0x1005c70 */
@@ -426,7 +426,7 @@ void emie1_tobii(act_info* pActwk) { /* Line 398, Address: 0x1005c60 */
 
 
 
-void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
+static void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
   speedset(pActwk); /* Line 430, Address: 0x1005d8c */
   if ((pActwk->yspeed.w += 64) >= 0) { /* Line 431, Address: 0x1005d98 */
     pActwk->patno = 7; /* Line 432, Address: 0x1005dc0 */
@@ -462,7 +462,7 @@ void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
 
 
 
-void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Address: 0x1005e60 */
+static void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Address: 0x1005e60 */
   if (pEmiewk->xspeed.w) { /* Line 466, Address: 0x1005e70 */
     speedsetx(pSonicwk); /* Line 467, Address: 0x1005e80 */
     pSonicwk->yposi.w.h += emycol_d(pSonicwk); /* Line 468, Address: 0x1005e8c */
@@ -497,7 +497,7 @@ void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Address: 0x
 
 
 
-void setdirect(act_info* pEmiewk, act_info* pSonicwk) { /* Line 500, Address: 0x1005f50 */
+static void setdirect(act_info* pEmiewk, act_info* pSonicwk) { /* Line 500, Address: 0x1005f50 */
   if (pEmiewk->xposi.w.h < pSonicwk->xposi.w.h) { /* Line 501, Address: 0x1005f5c */
 
     pEmiewk->cddat &= 254; /* Line 503, Address: 0x1005f88 */
@@ -519,18 +519,18 @@ void setdirect(act_info* pEmiewk, act_info* pSonicwk) { /* Line 500, Address: 0x
 
 
 
-void speedset(act_info* pActwk) { /* Line 522, Address: 0x1005fe0 */
+static void speedset(act_info* pActwk) { /* Line 522, Address: 0x1005fe0 */
   speedsetx(pActwk); /* Line 523, Address: 0x1005fec */
   speedsety(pActwk); /* Line 524, Address: 0x1005ff8 */
 } /* Line 525, Address: 0x1006004 */
 
 
-void speedsetx(act_info* pActwk) { /* Line 528, Address: 0x1006020 */
+static void speedsetx(act_info* pActwk) { /* Line 528, Address: 0x1006020 */
   pActwk->xposi.l += pActwk->xspeed.w << 8; /* Line 529, Address: 0x1006028 */
 } /* Line 530, Address: 0x100604c */
 
 
-void speedsety(act_info* pActwk) { /* Line 533, Address: 0x1006060 */
+static void speedsety(act_info* pActwk) { /* Line 533, Address: 0x1006060 */
   pActwk->yposi.l += pActwk->yspeed.w << 8; /* Line 534, Address: 0x1006068 */
 } /* Line 535, Address: 0x100608c */
 
@@ -545,7 +545,7 @@ void speedsety(act_info* pActwk) { /* Line 533, Address: 0x1006060 */
 
 
 
-void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
+static void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
 
   if (!(swdata.b.h & 112)) return; /* Line 550, Address: 0x10060a8 */
 
@@ -556,7 +556,7 @@ void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
 } /* Line 556, Address: 0x10060c8 */
 
 
-void pljumpset() { /* Line 559, Address: 0x10060e0 */
+static void pljumpset() { /* Line 559, Address: 0x10060e0 */
   short sinwk, coswk;
 
   actwk[0].actfree[2] = 0; /* Line 562, Address: 0x10060e8 */
@@ -596,7 +596,7 @@ void pljumpset() { /* Line 559, Address: 0x10060e0 */
 
 
 
-void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
+static void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
   short lenwk;
 
 
@@ -687,7 +687,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
 
 
-void empatchg(act_info* pActwk, char** pPattbl) { /* Line 690, Address: 0x10065c0 */
+static void empatchg(act_info* pActwk, char** pPattbl) { /* Line 690, Address: 0x10065c0 */
   char *pPatdat, patnowk;
 
   if (pActwk->mstno.b.h != pActwk->mstno.b.l) { /* Line 693, Address: 0x10065d4 */
@@ -741,7 +741,7 @@ void empatchg(act_info* pActwk, char** pPattbl) { /* Line 690, Address: 0x10065c
 
 
 
-void emie1clrset() { /* Line 744, Address: 0x1006770 */
+static void emie1clrset() { /* Line 744, Address: 0x1006770 */
   emie1clrsetx(emie1_clr); /* Line 745, Address: 0x1006778 */
 } /* Line 746, Address: 0x1006788 */
 
@@ -755,7 +755,7 @@ void emie1clrset() { /* Line 744, Address: 0x1006770 */
 
 
 
-void emie1clrsetx(palette_entry* pPalet) { /* Line 758, Address: 0x10067a0 */
+static void emie1clrsetx(palette_entry* pPalet) { /* Line 758, Address: 0x10067a0 */
   palette_entry* pColorwk;
   short i;
 
@@ -779,7 +779,7 @@ void emie1clrsetx(palette_entry* pPalet) { /* Line 758, Address: 0x10067a0 */
 
 
 
-void heartset(act_info* pActwk) { /* Line 782, Address: 0x1006830 */
+static void heartset(act_info* pActwk) { /* Line 782, Address: 0x1006830 */
   act_info* pHeartact;
   short wk;
 
@@ -848,7 +848,7 @@ void heart1(act_info* pActwk) { /* Line 841, Address: 0x10069f0 */
 
 
 
-void heart1_init(act_info* pActwk) { /* Line 851, Address: 0x1006a70 */
+static void heart1_init(act_info* pActwk) { /* Line 851, Address: 0x1006a70 */
   pActwk->r_no0 += 2; /* Line 852, Address: 0x1006a7c */
   pActwk->actflg |= 4; /* Line 853, Address: 0x1006a8c */
   pActwk->sproffset = 880; /* Line 854, Address: 0x1006a9c */
@@ -864,7 +864,7 @@ void heart1_init(act_info* pActwk) { /* Line 851, Address: 0x1006a70 */
 
 
 
-void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
+static void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
   short sinwk, coswk;
 
   if (!pActwk->actfree[18]) { /* Line 870, Address: 0x1006b0c */
