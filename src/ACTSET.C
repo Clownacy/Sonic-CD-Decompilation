@@ -8,7 +8,7 @@ asetz_info* pAsetadrz_w;
 extern asetz_info asettblz[1];
 extern aset_info asettbl[1];
 aset_info* pAsetadr_dummy;
-extern unsigned char dummyarea[0];
+extern unsigned char dummyarea[];
 
 
 

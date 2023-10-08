@@ -5,7 +5,7 @@
 #include "FCOL.H"
 
 int CKeyTogle;
-extern spr_array* sncpat[0];
+extern spr_array* sncpat[];
 extern edit_info_array edit_tbl;
 
 

@@ -12,7 +12,7 @@ extern void sub_sync(short ReqNo); extern void playsp(); extern short pcol(act_i
 
 unsigned int WaveClear;
 unsigned char Brake_Sw, Brake_Req;
-extern spr_array* sncpat[0];
+extern spr_array* sncpat[];
 extern unsigned char mapwka[8][64];
 extern void(*WaveAllStop)();
 extern unsigned char* playchg[60];

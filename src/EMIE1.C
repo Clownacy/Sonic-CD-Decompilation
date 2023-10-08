@@ -14,9 +14,9 @@ void(*em1_tbl[5])(act_info*) = {
   &emie1_tobii,
   &emie1_tobim
 };
-extern tagPALETTEENTRY zone1colora[0];
-extern char* em_pchg[0];
-extern spr_array* emie1pat[0];
+extern tagPALETTEENTRY zone1colora[];
+extern char* em_pchg[];
+extern spr_array* emie1pat[];
 tagPALETTEENTRY emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },

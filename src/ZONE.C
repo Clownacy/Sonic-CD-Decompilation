@@ -142,8 +142,8 @@ spr_array* madepat_0[5] = {
   &madepat2,
   &madepat3
 };
-spr_array* title_pat[0];
-unsigned short title_tbl[0];
+spr_array* title_pat[];
+unsigned short title_tbl[];
 unsigned short ClearSountWait;
 short WaitCount;
 unsigned short cleartbl[12] = {

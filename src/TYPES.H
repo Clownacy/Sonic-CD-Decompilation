@@ -76,7 +76,7 @@ typedef struct {
   unsigned char cnt;
   union {
     spr_info spra[20];
-    spr_info spr[0];
+    spr_info spr[];
   };
 }
 spr_array;
@@ -247,7 +247,7 @@ edit_info;
 typedef struct {
   char num;
   char dummy;
-  edit_info dat[0];
+  edit_info dat[];
 }
 edit_info_array;
 

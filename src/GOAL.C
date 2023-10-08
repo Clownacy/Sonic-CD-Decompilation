@@ -17,37 +17,37 @@ void(*gene_tbl[6])(act_info*) = {
   &goal_move3,
   &kira_move
 };
-extern spr_array* genepat[0];
-extern unsigned char* genechg[0];
+extern spr_array* genepat[];
+extern unsigned char* genechg[];
 map_info mapinittbl = { 0, 0, 0, 3, 2, 0, 0, 4, 4, 129 };
 void(*bring2_tbl[3])(act_info*) = {
   &bring2init,
   &bring2move0,
   &bring2move1
 };
-extern spr_array* bring2pat[0];
-extern unsigned char* bring2chg[0];
+extern spr_array* bring2pat[];
+extern unsigned char* bring2chg[];
 void(*bigring_tbl[3])(act_info*) = {
   &bring_init,
   &bring_move0,
   &bring_move1
 };
-extern spr_array* bringpat[0];
-extern unsigned char* bringchg[0];
+extern spr_array* bringpat[];
+extern unsigned char* bringchg[];
 void(*mosugu_tbl[3])(act_info*, act_info*) = {
   &mosug_init,
   &mosug_move0,
   &mosug_move1
 };
-extern spr_array* goalpat[0];
 void(*goal_tbl[5])(act_info*) {
+extern spr_array* goalpat[];
   &goal_init,
   &goal_move0,
   &goal_move1,
   &goal_move2,
   &goal_move3
 };
-extern unsigned char* goalchg[0];
+extern unsigned char* goalchg[];
 
 
 

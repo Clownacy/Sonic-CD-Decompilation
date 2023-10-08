@@ -40,7 +40,7 @@ void(*WaveRequest)(short);
 void(*ClrSpriteDebug)();
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
-extern unsigned char zone1scd[0];
+extern unsigned char zone1scd[];
 dlink_export ExportedFunctions;
 int(*sGetFileSize)(int);
 
