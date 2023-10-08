@@ -124,7 +124,7 @@ void actset() { /* Line 111, Address: 0x10002f0 */
     asetposi = scra_h; /* Line 124, Address: 0x1000370 */
     pAsetadr_w = asetadr2; /* Line 125, Address: 0x1000378 */
     scra_h -= 128; /* Line 126, Address: 0x1000388 */
-    if (scra_h >= 0) /* Line 127, Address: 0x1000394 */
+    if (scra_h < 0) goto label1; /* Line 127, Address: 0x1000394 */
 
 
 
@@ -143,31 +143,31 @@ void actset() { /* Line 111, Address: 0x10002f0 */
 
 
 
+    while (1) {
 
-label1:
-      if (scra_h < (pAsetadr_w - 1)->x) { /* Line 148, Address: 0x10003a4 */
-        --pAsetadr_w; /* Line 149, Address: 0x10003d4 */
-        if (pAsetadr_w->a & 128) { /* Line 150, Address: 0x10003e8 */
+      if (!((short)((pAsetadr_w - 1)->x) > scra_h)) goto label1; /* Line 148, Address: 0x10003a4 */
+      --pAsetadr_w; /* Line 149, Address: 0x10003d4 */
+      if (pAsetadr_w->a & 128) { /* Line 150, Address: 0x10003e8 */
 
-          --flagworkcnt2; /* Line 152, Address: 0x1000404 */
-          cnt = flagworkcnt2; /* Line 153, Address: 0x1000418 */
-        }
-        if (actnoset(cnt, &index) == 0) { /* Line 155, Address: 0x1000424 */
-
-
-
-
-
-
-          --pAsetadr_w; /* Line 162, Address: 0x100043c */
-          goto label1; /* Line 163, Address: 0x1000450 */
-        } else if (pAsetadr_w->a & 128) { /* Line 164, Address: 0x1000458 */
-
-          ++flagworkcnt2; /* Line 166, Address: 0x1000474 */
-          flagwork[index] &= 127; /* Line 167, Address: 0x1000488 */
-        }
-        ++pAsetadr_w; /* Line 169, Address: 0x10004a8 */
+        --flagworkcnt2; /* Line 152, Address: 0x1000404 */
+        cnt = flagworkcnt2; /* Line 153, Address: 0x1000418 */
       }
+      if (actnoset(cnt, &index)) break; /* Line 155, Address: 0x1000424 */
+
+
+
+
+
+
+      --pAsetadr_w; /* Line 162, Address: 0x100043c */
+    } /* Line 163, Address: 0x1000450 */
+    if (pAsetadr_w->a & 128) { /* Line 164, Address: 0x1000458 */
+
+      ++flagworkcnt2; /* Line 166, Address: 0x1000474 */
+      flagwork[index] &= 127; /* Line 167, Address: 0x1000488 */
+    }
+    ++pAsetadr_w; /* Line 169, Address: 0x10004a8 */
+label1:
     asetadr2 = pAsetadr_w; /* Line 171, Address: 0x10004bc */
 
     pAsetadr_w = asetadr; /* Line 173, Address: 0x10004cc */
@@ -209,15 +209,15 @@ label1:
 
 
 
+    do {
 
-label2:
-    if (pAsetadr_w->x < scra_h) { /* Line 214, Address: 0x10005a0 */
+      if (!(pAsetadr_w->x < (unsigned short)scra_h)) goto label2; /* Line 214, Address: 0x10005a0 */
       if (pAsetadr_w->a & 128) { /* Line 215, Address: 0x10005c4 */
 
         cnt = flagworkcnt; /* Line 217, Address: 0x10005e0 */
         ++flagworkcnt; /* Line 218, Address: 0x10005ec */
       }
-      if (actnoset(cnt, &index) == 0) goto label2; /* Line 220, Address: 0x1000600 */
+    } while (!actnoset(cnt, &index)); /* Line 220, Address: 0x1000600 */
 
 
 
@@ -225,12 +225,12 @@ label2:
 
 
 
-      if (pAsetadr_w->a & 128) { /* Line 228, Address: 0x1000618 */
+    if (pAsetadr_w->a & 128) { /* Line 228, Address: 0x1000618 */
 
-        --flagworkcnt; /* Line 230, Address: 0x1000634 */
-        flagwork[index] &= 127; /* Line 231, Address: 0x1000648 */
-      }
+      --flagworkcnt; /* Line 230, Address: 0x1000634 */
+      flagwork[index] &= 127; /* Line 231, Address: 0x1000648 */
     }
+label2:
     asetadr = pAsetadr_w; /* Line 234, Address: 0x1000668 */
 
     pAsetadr_w = asetadr2; /* Line 236, Address: 0x1000678 */
