@@ -1,4 +1,3 @@
-// Addresses correspond to R11*.ELF, R12*.ELF
 #include "EQU.C"
 #include "DAI_K.H"
 
@@ -21,6 +20,7 @@ void(*dai_k_move_tbl)(act_info*)[2] = {
   &dai_k_init,
   &dai_k_move
 };
+
 
 
 

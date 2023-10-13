@@ -1,4 +1,3 @@
-// Addresses correspond to R12D.ELF
 #include "EQU.C"
 #include "BRANKO1.H"
 
@@ -39,6 +38,7 @@ brankodata branko1_initbl[8] = {
   { -32768, -1, -256,    0 },
   { -32768,  1,  256,    0 }
 };
+
 
 
 

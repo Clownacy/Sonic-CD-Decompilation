@@ -1,4 +1,3 @@
-// Addresses correspond to R13*.ELF
 #include "EQU.C"
 #include "DAI_RD1.H"
 
@@ -45,6 +44,7 @@ void(*vfuta_tbl)(act_info*)[3] = {
   &vfuta_move1,
   &vfuta_move2
 };
+
 
 
 

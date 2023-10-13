@@ -1,6 +1,6 @@
-// Addresses correspond to R7*.ELF, R8*.ELF
 #include "EQU.C"
 #include "DIRCOL.H"
+
 
 
 

@@ -1,4 +1,3 @@
-// Addresses correspond to WARP.ELF
 #include "EQU.H"
 #include "ACTION.H"
 
@@ -6,6 +5,7 @@ extern void(*act_tbl[1])(act_info*);
 extern void(*sMemSet)(void*, unsigned char, int);
 extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 extern bmp_info SprBmp[700];
+
 
 
 

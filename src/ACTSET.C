@@ -1,4 +1,3 @@
-// Addresses correspond to R3*.ELF, R4*.ELF (except R42B.ELF), R5*.ELF, R7*.ELF, R8*.ELF
 #include "EQU.C"
 #include "ACSET.H"
 
@@ -12,6 +11,7 @@ aset_info asettbl[1] {
 };
 aset_info* pAsetadr_dummy;
 unsigned char dummyarea[0];
+
 
 
 

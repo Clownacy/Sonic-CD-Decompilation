@@ -1,4 +1,3 @@
-// Addresses correspond to R6*.ELF
 #include "EQU.C"
 
 void(*block_tbl)(act_info*)[7] = {
@@ -39,6 +38,7 @@ spr_array block5 = {
   .spra = { { 244, 244, 0, 407 } }
 };
 spr_array* blockpat[6] { &block0, &block1, &block2, &block3, &block4, &block5 };
+
 
 
 
