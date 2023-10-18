@@ -7,6 +7,7 @@
 #include "LOADER2.H"
 #include "SCORE.H"
 
+extern int FadeProc();
 extern void sub_sync(short ReqNo);
 extern void scroll();
 extern void clchgctr();
@@ -41,22 +42,21 @@ void(*ClrSpriteDebug)();
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
 extern unsigned char zone1scd[];
-dlink_export ExportedFunctions;
+dlink_export ExportedFunctions = {
+  &game_init,
+  (void (*))&game,
+  &DLL_meminit,
+  &DLL_memfree,
+  (void (*)(short, short))&SWdataSet,
+  &Get_vscroll,
+  &Get_scra_h_posiw,
+  &Get_scrb_h_posiw,
+  &FadeProc,
+  &SetDebugFlag,
+  &GetRoundStr,
+  0
+};
 int(*sGetFileSize)(int);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
