@@ -8,8 +8,9 @@
 #include "RIDECHK.H"
 
 extern void soundset(short ReqNo);
-extern spr_array* markerpat[]; extern unsigned char* markerchg[]; extern spr_array* bariapat[]; extern unsigned char* bariachg[]; extern spr_array* bakupat[]; extern unsigned char* bakuchg[];
-unsigned char flowchg0[4] = { 3, 0, 1, 255 }, flowchg1[6] = { 3, 2, 3, 2, 3, 252 }, flowchg2[6] = { 1, 5, 5, 4, 6, 252 }, flowchg3[4] = { 19, 6, 7, 255 }, *flowchg[4] = { flowchg0, flowchg1, flowchg2, flowchg3 };
+extern spr_array* markerpat[]; extern unsigned char* markerchg[]; extern spr_array* bariapat[]; extern unsigned char* bariachg[]; extern spr_array* bakupat[]; extern unsigned char* bakuchg[]; extern spr_array* mizukipat[]; extern unsigned char* mizukichg[]; extern spr_array* futapat[]; extern unsigned char* futachg[]; extern spr_array* exit2pat[]; extern unsigned char* exit2chg[];
+unsigned char flowchg0[4] = { 3, 0, 1, 255 }, flowchg1[6] = { 3, 2, 3, 2, 3, 252 }, flowchg2[6] = { 1, 5, 5, 4, 6, 252 }, flowchg3[4] = { 19, 6, 7, 255 };
+unsigned char *flowchg[4] = { flowchg0, flowchg1, flowchg2, flowchg3 };
 spr_array flo00 = { 1, { { -4, -16, 0, 264 } } };
 spr_array flo01 = { 1, { { -4, -16, 0, 265 } } };
 spr_array flo02 = { 1, { { -8, -16, 0, 266 } } };
@@ -19,7 +20,6 @@ spr_array flo05 = { 1, { { -8, -16, 0, 269 } } };
 spr_array flo06 = { 1, { { -12, -48, 0, 270 } } };
 spr_array flo07 = { 1, { { -12, -48, 0, 271 } } };
 spr_array* flow_pat[8] = { &flo00, &flo01, &flo02, &flo03, &flo04, &flo05, &flo06, &flo07 };
-extern spr_array* mizukipat[]; extern unsigned char* mizukichg[]; extern spr_array* futapat[]; extern unsigned char* futachg[]; extern spr_array* exit2pat[]; extern unsigned char* exit2chg[];
 
 void patchg(act_info* patchgwk, unsigned char** pat_dat) { /* Line 24, Address: 0x10150d0 */
   unsigned char pat_no;
