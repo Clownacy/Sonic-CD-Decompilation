@@ -66,11 +66,11 @@ void speedset(act_info* pActwk) { /* Line 65, Address: 0x10012f0 */
   int_union xpos, ypos;
   short_union spd;
 
-  xpos = pActwk->xposi; /* Line 69, Address: 0x10012f8 */
-  ypos = pActwk->yposi; /* Line 70, Address: 0x1001304 */
-  spd = pActwk->xspeed; /* Line 71, Address: 0x1001310 */
+  xpos.l = pActwk->xposi.l; /* Line 69, Address: 0x10012f8 */
+  ypos.l = pActwk->yposi.l; /* Line 70, Address: 0x1001304 */
+  spd.w = pActwk->xspeed.w; /* Line 71, Address: 0x1001310 */
   xpos.l += spd.w << 8; /* Line 72, Address: 0x100131c */
-  spd = pActwk->yspeed; /* Line 73, Address: 0x1001338 */
+  spd.w = pActwk->yspeed.w; /* Line 73, Address: 0x1001338 */
   if (pActwk->actfree[2] & 8) goto label2; /* Line 74, Address: 0x1001344 */
   if (spd.w >= 0) goto label1; /* Line 75, Address: 0x100135c */
   if ((pActwk->actfree[2] & 2) == 0) goto label1; /* Line 76, Address: 0x1001370 */
@@ -84,8 +84,8 @@ label2:
   pActwk->yspeed.w = 4096; /* Line 84, Address: 0x1001400 */
 label3:
   ypos.l += spd.w << 8; /* Line 86, Address: 0x100140c */
-  pActwk->xposi = xpos; /* Line 87, Address: 0x1001428 */
-  pActwk->yposi = ypos; /* Line 88, Address: 0x1001434 */
+  pActwk->xposi.l = xpos.l; /* Line 87, Address: 0x1001428 */
+  pActwk->yposi.l = ypos.l; /* Line 88, Address: 0x1001434 */
 } /* Line 89, Address: 0x1001440 */
 
 
@@ -100,8 +100,8 @@ void speedset2(act_info* pActwk) { /* Line 97, Address: 0x1001450 */
   int actwkno;
   short d1;
 
-  xpos = pActwk->xposi; /* Line 103, Address: 0x1001464 */
-  ypos = pActwk->yposi; /* Line 104, Address: 0x1001470 */
+  xpos.l = pActwk->xposi.l; /* Line 103, Address: 0x1001464 */
+  ypos.l = pActwk->yposi.l; /* Line 104, Address: 0x1001470 */
   spd = pActwk->xspeed.w; /* Line 105, Address: 0x100147c */
   if (pActwk->cddat & 8) { /* Line 106, Address: 0x100148c */
 
@@ -122,8 +122,8 @@ void speedset2(act_info* pActwk) { /* Line 97, Address: 0x1001450 */
   spd = pActwk->yspeed.w; /* Line 122, Address: 0x1001550 */
   spd = spd << 8; /* Line 123, Address: 0x1001560 */
   ypos.l += spd; /* Line 124, Address: 0x1001564 */
-  pActwk->xposi = xpos; /* Line 125, Address: 0x1001570 */
-  pActwk->yposi = ypos; /* Line 126, Address: 0x100157c */
+  pActwk->xposi.l = xpos.l; /* Line 125, Address: 0x1001570 */
+  pActwk->yposi.l = ypos.l; /* Line 126, Address: 0x100157c */
 } /* Line 127, Address: 0x1001588 */
 
 

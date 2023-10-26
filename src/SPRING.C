@@ -361,8 +361,8 @@ void spr_d_init(act_info* actionwk) { /* Line 348, Address: 0x10043c0 */
 } /* Line 361, Address: 0x100446c */
 
 void spr_d_move(act_info* actionwk) { /* Line 363, Address: 0x1004480 */
-  actionwk->xposi = actwk[0].xposi; /* Line 364, Address: 0x100448c */
-  actionwk->yposi = actwk[0].yposi; /* Line 365, Address: 0x100449c */
+  actionwk->xposi.l = actwk[0].xposi.l; /* Line 364, Address: 0x100448c */
+  actionwk->yposi.l = actwk[0].yposi.l; /* Line 365, Address: 0x100449c */
   actionsub(actionwk); /* Line 366, Address: 0x10044ac */
 } /* Line 367, Address: 0x10044b8 */
 
@@ -527,7 +527,7 @@ void sdushmove(act_info* actionwk) { /* Line 511, Address: 0x1004ad0 */
     a1->cddat &= 254; /* Line 527, Address: 0x1004b98 */
   }
   *(short*)&a1->actfree[20] = 15; /* Line 529, Address: 0x1004ba4 */
-  a1->mspeed = a1->xspeed; /* Line 530, Address: 0x1004bac */
+  a1->mspeed.w = a1->xspeed.w; /* Line 530, Address: 0x1004bac */
   if ((a1->cddat & 4) == 0) /* Line 531, Address: 0x1004bb4 */
     a1->mstno.b.h = 0; /* Line 532, Address: 0x1004bc8 */
 

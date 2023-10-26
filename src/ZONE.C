@@ -706,7 +706,7 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
 
   play_start &= 253; // Line 707, Address: 0x10134e4
   time_flag = 1; // Line 708, Address: 0x10134f8
-  wD0 = stageno; // Line 709, Address: 0x1013504
+  wD0.w = stageno.w; // Line 709, Address: 0x1013504
   ++wD0.b.l; // Line 710, Address: 0x1013510
   if (wD0.b.l == 2) { // Line 711, Address: 0x101351c
     time_flag = 2; // Line 712, Address: 0x1013534
@@ -715,7 +715,7 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
     ++wD0.b.h; // Line 715, Address: 0x1013558
     wD0.b.l = 0; // Line 716, Address: 0x1013564
   }
-  stageno = wD0; // Line 718, Address: 0x1013568
+  stageno.w = wD0.w; // Line 718, Address: 0x1013568
 
   flagwkclr(); // Line 720, Address: 0x1013574
   fadeout_s(); // Line 721, Address: 0x101357c

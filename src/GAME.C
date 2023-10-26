@@ -265,7 +265,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
   plring = lpKeepWork->plring; /* Line 266, Address: 0x1017d14 */
   plscore = lpKeepWork->plscore; /* Line 267, Address: 0x1017d28 */
-  stageno = lpKeepWork->stageno; /* Line 268, Address: 0x1017d3c */
+  stageno.w = lpKeepWork->stageno.w; /* Line 268, Address: 0x1017d3c */
   play_start = lpKeepWork->play_start; /* Line 269, Address: 0x1017d50 */
   pl_suu = lpKeepWork->pl_suu; /* Line 270, Address: 0x1017d64 */
   generate_flag = lpKeepWork->generate_flag; /* Line 271, Address: 0x1017d78 */
@@ -391,7 +391,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
 
     lpKeepWork->plring = plring; /* Line 392, Address: 0x10181b8 */
     lpKeepWork->plscore = plscore; /* Line 393, Address: 0x10181cc */
-    lpKeepWork->stageno = stageno; /* Line 394, Address: 0x10181e0 */
+    lpKeepWork->stageno.w = stageno.w; /* Line 394, Address: 0x10181e0 */
     lpKeepWork->play_start = play_start; /* Line 395, Address: 0x10181f4 */
     lpKeepWork->pl_suu = pl_suu; /* Line 396, Address: 0x1018208 */
     lpKeepWork->generate_flag = generate_flag; /* Line 397, Address: 0x101821c */
@@ -443,18 +443,18 @@ int game() { /* Line 323, Address: 0x1017f70 */
   syspatchg(); /* Line 443, Address: 0x101849c */
 
 
-  scra_h_posiw = scra_h_posit; /* Line 446, Address: 0x10184a4 */
-  scra_v_posiw = scra_v_posit; /* Line 447, Address: 0x10184b4 */
-  scrb_h_posiw = scrb_h_posit; /* Line 448, Address: 0x10184c4 */
-  scrb_v_posiw = scrb_v_posit; /* Line 449, Address: 0x10184d4 */
-  scrc_h_posiw = scrc_h_posit; /* Line 450, Address: 0x10184e4 */
-  scrc_v_posiw = scrc_v_posit; /* Line 451, Address: 0x10184f4 */
-  scrz_h_posiw = scrz_h_posit; /* Line 452, Address: 0x1018504 */
-  scrz_v_posiw = scrz_v_posit; /* Line 453, Address: 0x1018514 */
-  scrflagaw = scrflaga; /* Line 454, Address: 0x1018524 */
-  scrflagbw = scrflagb; /* Line 455, Address: 0x1018534 */
-  scrflagcw = scrflagc; /* Line 456, Address: 0x1018544 */
-  scrflagzw = scrflagz; /* Line 457, Address: 0x1018554 */
+  scra_h_posiw.l = scra_h_posit.l; /* Line 446, Address: 0x10184a4 */
+  scra_v_posiw.l = scra_v_posit.l; /* Line 447, Address: 0x10184b4 */
+  scrb_h_posiw.l = scrb_h_posit.l; /* Line 448, Address: 0x10184c4 */
+  scrb_v_posiw.l = scrb_v_posit.l; /* Line 449, Address: 0x10184d4 */
+  scrc_h_posiw.l = scrc_h_posit.l; /* Line 450, Address: 0x10184e4 */
+  scrc_v_posiw.l = scrc_v_posit.l; /* Line 451, Address: 0x10184f4 */
+  scrz_h_posiw.l = scrz_h_posit.l; /* Line 452, Address: 0x1018504 */
+  scrz_v_posiw.l = scrz_v_posit.l; /* Line 453, Address: 0x1018514 */
+  scrflagaw.w = scrflaga.w; /* Line 454, Address: 0x1018524 */
+  scrflagbw.w = scrflagb.w; /* Line 455, Address: 0x1018534 */
+  scrflagcw.w = scrflagc.w; /* Line 456, Address: 0x1018544 */
+  scrflagzw.w = scrflagz.w; /* Line 457, Address: 0x1018554 */
   scrollwrt(); /* Line 458, Address: 0x1018564 */
   scoreset(); /* Line 459, Address: 0x101856c */
 

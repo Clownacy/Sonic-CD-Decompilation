@@ -24,7 +24,7 @@ int random() { /* Line 21, Address: 0x1002340 */
 
   lD1.l = ranum; /* Line 25, Address: 0x1002348 */
   if (ranum == 0) lD1.l = 10861 | 13914; /* Line 26, Address: 0x1002354 */
-  lD0 = lD1; /* Line 27, Address: 0x1002370 */
+  lD0.l = lD1.l; /* Line 27, Address: 0x1002370 */
   if (lD1.l < 0) { /* Line 28, Address: 0x1002378 */
     lD1.l *= 4; /* Line 29, Address: 0x1002384 */
     lD1.l |= -32768; /* Line 30, Address: 0x1002390 */

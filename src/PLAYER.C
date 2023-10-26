@@ -222,7 +222,7 @@ void play00move() { /* Line 217, Address: 0x1007cc0 */
     return; /* Line 222, Address: 0x1007d14 */
   }
 
-  if (plautoflag == 0) swdata = swdata1; /* Line 225, Address: 0x1007d1c */
+  if (plautoflag == 0) swdata.w = swdata1.w; /* Line 225, Address: 0x1007d1c */
   else swdata.b.l |= swdata1.b.l & 128; /* Line 226, Address: 0x1007d48 */
 
 

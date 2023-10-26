@@ -178,7 +178,7 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   pPlayerwk->yspeed.w = 0; /* Line 178, Address: 0x10199b4 */
 
   if (pActwk->actno != 10 || pActwk->r_no0 != 2) /* Line 180, Address: 0x10199bc */
-    pPlayerwk->mspeed = pPlayerwk->xspeed; /* Line 181, Address: 0x10199ec */
+    pPlayerwk->mspeed.w = pPlayerwk->xspeed.w; /* Line 181, Address: 0x10199ec */
 
   pPlayerwk->cddat &= 253; /* Line 183, Address: 0x10199fc */
   return 0; /* Line 184, Address: 0x1019a0c */

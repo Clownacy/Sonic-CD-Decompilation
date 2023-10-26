@@ -715,7 +715,7 @@ void offset_set(act_info* pActwk) { /* Line 697, Address: 0x1010640 */
   short iD1;
   short_union stagewk;
 
-  stagewk = stageno; /* Line 718, Address: 0x1010684 */
+  stagewk.w = stageno.w; /* Line 718, Address: 0x1010684 */
   stagewk.b.l = stagewk.b.l << 7; /* Line 719, Address: 0x1010690 */
   stagewk.w >>= 4; /* Line 720, Address: 0x101069c */
   iD0 = stagewk.b.l; /* Line 721, Address: 0x10106a8 */

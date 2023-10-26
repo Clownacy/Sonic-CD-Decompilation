@@ -53,8 +53,8 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
   int_union lXposi, lYposi;
   int_union iXspeed, iYspeed;
 
-  lXposi = pActwk->xposi; /* Line 56, Address: 0x100db60 */
-  lYposi = pActwk->yposi; /* Line 57, Address: 0x100db6c */
+  lXposi.l = pActwk->xposi.l; /* Line 56, Address: 0x100db60 */
+  lYposi.l = pActwk->yposi.l; /* Line 57, Address: 0x100db6c */
   iXspeed.l = pActwk->xspeed.w << 8; /* Line 58, Address: 0x100db78 */
   iYspeed.l = pActwk->yspeed.w << 8; /* Line 59, Address: 0x100db90 */
   lXposi.l += iXspeed.l; /* Line 60, Address: 0x100dba8 */
