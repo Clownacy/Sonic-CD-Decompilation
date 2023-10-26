@@ -219,7 +219,7 @@ void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
     d0 = 150; /* Line 219, Address: 0x10212dc */
     scoreup(d0); /* Line 220, Address: 0x10212e0 */
     a1 = &actwk[0]; /* Line 221, Address: 0x10212ec */
-    if (hitchk(actionwk, a1) != 0) ride_on_clr(actionwk, a1); /* Line 222, Address: 0x10212f4 */
+    if (hitchk(actionwk, a1)) ride_on_clr(actionwk, a1); /* Line 222, Address: 0x10212f4 */
     return; /* Line 223, Address: 0x102131c */
   }
   hitchk(actionwk, &actwk[0]); /* Line 225, Address: 0x1021324 */
@@ -256,7 +256,7 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
 } /* Line 256, Address: 0x102153c */
 
 void m1wait(act_info* actionwk) { /* Line 258, Address: 0x1021560 */
-  if (--actionwk->actfree[0] != 0) return; /* Line 259, Address: 0x102156c */
+  if (--actionwk->actfree[0]) return; /* Line 259, Address: 0x102156c */
   actionwk->r_no0 -= 6; /* Line 260, Address: 0x1021588 */
   actionwk->yposi.w.h = *(short*)&actionwk->actfree[6]; /* Line 261, Address: 0x1021598 */
   soundset(217); /* Line 262, Address: 0x10215a8 */

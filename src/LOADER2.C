@@ -47,7 +47,7 @@ void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /
       *buf++ = 65; /* Line 47, Address: 0x10137a8 */
       break; /* Line 48, Address: 0x10137bc */
     case 2:
-      if (generate_flag != 0) *buf++ = 67; /* Line 50, Address: 0x10137c4 */
+      if (generate_flag) *buf++ = 67; /* Line 50, Address: 0x10137c4 */
       else *buf++ = 68; /* Line 51, Address: 0x10137f0 */
   }
 

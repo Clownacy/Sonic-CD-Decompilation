@@ -148,7 +148,7 @@ void zone12chk() {
 
 
 void zone13chk() { /* Line 150, Address: 0x1017e50*/
-  if (bossflag != 0) return; /* Line 151, Address: 0x1017e58*/
+  if (bossflag) return; /* Line 151, Address: 0x1017e58*/
   scralim_n_down = 784; /* Line 152, Address: 0x1017e68*/
   bossclr_scr(3440, 784); /* Line 153, Address: 0x1017e74*/
 } /* Line 154, Address: 0x1017e84*/
@@ -175,7 +175,7 @@ void zone31chk() {
 
 
 void zone33chk() { /* Line 177, Address: 0x1017f40 */
-  if (bossflag != 0) { /* Line 178, Address: 0x1017f48 */
+  if (bossflag) { /* Line 178, Address: 0x1017f48 */
     bossclr_scrset(96); /* Line 179, Address: 0x1017f58 */
   } /* Line 180, Address: 0x1017f64 */
   else {
@@ -247,7 +247,7 @@ void zone53chk() { /* Line 245, Address: 0x1018170 */
 
 
 
-    if (bossflag != 0) { /* Line 250, Address: 0x1018190 */
+    if (bossflag) { /* Line 250, Address: 0x1018190 */
 
       scralim_down = 504; /* Line 252, Address: 0x10181a0 */
       scralim_n_down = 504; /* Line 253, Address: 0x10181ac */
@@ -282,7 +282,7 @@ void zone81chk() {
 
 
 void zone83chk() { /* Line 284, Address: 0x1018280 */
-  if (bossflag != 0) {
+  if (bossflag) {
     scralim_up = scralim_n_up = scralim_down = scralim_n_down = 268; /* Line 286, Address: 0x1018290 */
 
 
@@ -338,7 +338,7 @@ void zone43chk() { /* Line 337, Address: 0x1018440 */
   if (bossclr_scr(2808, 1216) == 0) { /* Line 338, Address: 0x1018448 */
 
 
-    if (bossflag != 0) { /* Line 341, Address: 0x1018460 */
+    if (bossflag) { /* Line 341, Address: 0x1018460 */
 
       scralim_down = 1264; /* Line 343, Address: 0x1018470 */
       scralim_n_down = 1264; /* Line 344, Address: 0x101847c */

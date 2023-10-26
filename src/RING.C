@@ -230,7 +230,7 @@ label2:
     if (stageno.b.h == 6) { /* Line 230, Address: 0x10067f8 */
       new_actwk->sprpri = 0; /* Line 231, Address: 0x1006814 */
       new_actwk->userflag.b.l = pActwk->userflag.b.l; /* Line 232, Address: 0x100681c */
-      if (new_actwk->userflag.b.l != 0) { /* Line 233, Address: 0x100682c */
+      if (new_actwk->userflag.b.l) { /* Line 233, Address: 0x100682c */
         new_actwk->sproffset %= 128; /* Line 234, Address: 0x100683c */
         new_actwk->sprpri = 2; /* Line 235, Address: 0x100684c */
       }
@@ -408,7 +408,7 @@ label1:
     new_actwk->sprpri = 3; /* Line 408, Address: 0x1007000 */
     if (stageno.b.h == 6) { /* Line 409, Address: 0x100700c */
       new_actwk->sprpri = 0; /* Line 410, Address: 0x1007028 */
-      if (pActwk->userflag.b.l != 0) { /* Line 411, Address: 0x1007030 */
+      if (pActwk->userflag.b.l) { /* Line 411, Address: 0x1007030 */
         new_actwk->sprpri = 3; /* Line 412, Address: 0x1007040 */
         new_actwk->sproffset %= 128; /* Line 413, Address: 0x100704c */
       }
@@ -466,7 +466,7 @@ void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
       }
     }
   }
-  if (sys_pattim4 != 0) { /* Line 469, Address: 0x10073a0 */
+  if (sys_pattim4) { /* Line 469, Address: 0x10073a0 */
     if (pActwk->yposi.w.h < scralim_down + 224) { /* Line 470, Address: 0x10073b0 */
       patchg(pActwk, ringchg); /* Line 471, Address: 0x10073e0 */
       actionsub(pActwk); /* Line 472, Address: 0x10073f4 */

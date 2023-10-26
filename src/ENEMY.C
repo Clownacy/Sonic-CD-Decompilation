@@ -521,7 +521,7 @@ void ene_ari(act_info* pActwk) { /* Line 516, Address: 0x1004c00 */
     &ari_move
   };
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 524, Address: 0x1004c30 */
+  if (enemy_suicide(pActwk)) return; /* Line 524, Address: 0x1004c30 */
   tbl[pActwk->r_no0 / 2](pActwk); /* Line 525, Address: 0x1004c44 */
   actionsub(pActwk); /* Line 526, Address: 0x1004c80 */
   frameout_s00(pActwk, *(short*)&pActwk->actfree[4]); /* Line 527, Address: 0x1004c8c */
@@ -637,7 +637,7 @@ void ari_move(act_info* pActwk) { /* Line 583, Address: 0x1004e60 */
 
 
 void ene_chou(act_info* pActwk) { /* Line 639, Address: 0x1005020 */
-  if (enemy_suicide(pActwk) != 0) return; /* Line 640, Address: 0x100502c */
+  if (enemy_suicide(pActwk)) return; /* Line 640, Address: 0x100502c */
   if (pActwk->r_no0 == 0) chou_init(pActwk); /* Line 641, Address: 0x1005040 */
   else chou_move(pActwk); /* Line 642, Address: 0x1005068 */
 } /* Line 643, Address: 0x1005074 */
@@ -701,7 +701,7 @@ void chou_move(act_info* pActwk) { /* Line 681, Address: 0x10051e0 */
   lSin.w.h = sSin; /* Line 701, Address: 0x10052f8 */
   lSin.w.l = 0; /* Line 702, Address: 0x1005300 */
   shift = *(short*)&pActwk->actfree[14]; /* Line 703, Address: 0x1005304 */
-  while (shift-- != 0) lSin.l /= 2; /* Line 704, Address: 0x1005314 */
+  while (shift--) lSin.l /= 2; /* Line 704, Address: 0x1005314 */
   lSin.l += *(int*)&pActwk->actfree[2]; /* Line 705, Address: 0x1005354 */
   pActwk->yposi.l = lSin.l; /* Line 706, Address: 0x1005368 */
 
@@ -751,7 +751,7 @@ void ene_ka(act_info* pActwk) { /* Line 744, Address: 0x10053c0 */
     &ka_stop
   };
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 754, Address: 0x10053f8 */
+  if (enemy_suicide(pActwk)) return; /* Line 754, Address: 0x10053f8 */
   tbl[pActwk->r_no0 / 2](pActwk); /* Line 755, Address: 0x100540c */
   actionsub(pActwk); /* Line 756, Address: 0x1005448 */
   frameout_s00(pActwk, *(short*)&pActwk->actfree[0]); /* Line 757, Address: 0x1005454 */
@@ -914,7 +914,7 @@ void ene_kamemusi(act_info* pActwk) { /* Line 900, Address: 0x10058a0 */
     return; /* Line 914, Address: 0x1005908 */
   }
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 917, Address: 0x1005910 */
+  if (enemy_suicide(pActwk)) return; /* Line 917, Address: 0x1005910 */
   tbl[pActwk->r_no0 / 2](pActwk); /* Line 918, Address: 0x1005924 */
   actionsub(pActwk); /* Line 919, Address: 0x1005960 */
   frameout_s00(pActwk, *(short*)&pActwk->actfree[0]); /* Line 920, Address: 0x100596c */
@@ -979,7 +979,7 @@ void kamemusi_move(act_info* pActwk) { /* Line 967, Address: 0x1005b20 */
         } /* Line 979, Address: 0x1005b84 */
         else
         {
-          if (area(pActwk) != 0) /* Line 982, Address: 0x1005b8c */
+          if (area(pActwk)) /* Line 982, Address: 0x1005b8c */
           {
             pActwk->r_no0 += 2; /* Line 984, Address: 0x1005ba0 */
             break; /* Line 985, Address: 0x1005bb0 */
@@ -1228,7 +1228,7 @@ void ene_tagame_a(act_info* pActwk) { /* Line 1221, Address: 0x1006290 */
     &tagame_jump1
   };
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 1231, Address: 0x10062c8 */
+  if (enemy_suicide(pActwk)) return; /* Line 1231, Address: 0x10062c8 */
   tbl[pActwk->r_no0 / 2](pActwk); /* Line 1232, Address: 0x10062dc */
   actionsub(pActwk); /* Line 1233, Address: 0x1006318 */
   frameout_s00(pActwk, *(short*)&pActwk->actfree[0]); /* Line 1234, Address: 0x1006324 */

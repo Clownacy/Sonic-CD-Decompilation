@@ -235,7 +235,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
   unsigned char mtype;
   unsigned short xlen;
 
-  if (time_stop != 0) { /* Line 238, Address: 0x1002394 */
+  if (time_stop) { /* Line 238, Address: 0x1002394 */
     ridechk(pActwk, &actwk[0]); /* Line 239, Address: 0x10023a4 */
     return; /* Line 240, Address: 0x10023b8 */
   }
@@ -287,9 +287,9 @@ unsigned char dodai_ride1(act_info* pActwk, int xpos) { /* Line 283, Address: 0x
 
 
 unsigned char dodai_ride2(act_info* pActwk) { /* Line 289, Address: 0x1002630 */
-  if (ridechk(pActwk, &actwk[0]) == 0) { /* Line 290, Address: 0x100263c */
+  if (!ridechk(pActwk, &actwk[0])) { /* Line 290, Address: 0x100263c */
 
-    if (pActwk->actfree[2] != 0) { /* Line 292, Address: 0x1002658 */
+    if (pActwk->actfree[2]) { /* Line 292, Address: 0x1002658 */
       --pActwk->actfree[2]; /* Line 293, Address: 0x1002668 */
     }
     return 0; /* Line 295, Address: 0x1002678 */
@@ -341,8 +341,8 @@ unsigned char dodai_fix(act_info* pActwk) { /* Line 335, Address: 0x1002840 */
 
 
 void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
-  if (pActwk->actfree[1] == 0) { /* Line 344, Address: 0x10028bc */
-    if (dodai_fix(pActwk) == 0) return; /* Line 345, Address: 0x10028cc */
+  if (!pActwk->actfree[1]) { /* Line 344, Address: 0x10028bc */
+    if (!dodai_fix(pActwk)) return; /* Line 345, Address: 0x10028cc */
 
 
 
@@ -352,7 +352,7 @@ void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
   }
 
 
-  if (pActwk->actfree[4] != 0) { /* Line 355, Address: 0x10028fc */
+  if (pActwk->actfree[4]) { /* Line 355, Address: 0x10028fc */
     --pActwk->actfree[4]; /* Line 356, Address: 0x100290c */
     dodai_fix(pActwk); /* Line 357, Address: 0x100291c */
     return; /* Line 358, Address: 0x1002928 */
@@ -380,7 +380,7 @@ void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
 void dodai_up(act_info* pActwk) { /* Line 380, Address: 0x1002a00 */
   switch (pActwk->actfree[1]) { /* Line 381, Address: 0x1002a0c */
     case 0:
-      if (dodai_fix(pActwk) == 0) break; /* Line 383, Address: 0x1002a40 */
+      if (!dodai_fix(pActwk)) break; /* Line 383, Address: 0x1002a40 */
 
 
 
@@ -410,14 +410,14 @@ void dodai_upx(act_info* pActwk) { /* Line 408, Address: 0x1002b20 */
 
   switch (pActwk->actfree[1]) { /* Line 411, Address: 0x1002b30 */
     case 0:
-      if (dodai_fix(pActwk) == 0) break; /* Line 413, Address: 0x1002b64 */
+      if (!dodai_fix(pActwk)) break; /* Line 413, Address: 0x1002b64 */
 
 
 
       pActwk->actfree[1] += 2; /* Line 417, Address: 0x1002b78 */
       pActwk->actfree[4] = 60; /* Line 418, Address: 0x1002b88 */
     case 2:
-      if (pActwk->actfree[4] != 0) { /* Line 420, Address: 0x1002b94 */
+      if (pActwk->actfree[4]) { /* Line 420, Address: 0x1002b94 */
         --pActwk->actfree[4]; /* Line 421, Address: 0x1002ba4 */
         dodai_fix(pActwk); /* Line 422, Address: 0x1002bb4 */
         break; /* Line 423, Address: 0x1002bc0 */
@@ -448,14 +448,14 @@ void dodai_rm(act_info* pActwk) { /* Line 446, Address: 0x1002c80 */
 
   switch (pActwk->actfree[1]) { /* Line 449, Address: 0x1002c90 */
     case 0:
-      if (dodai_fix(pActwk) == 0) break; /* Line 451, Address: 0x1002cc4 */
+      if (!dodai_fix(pActwk)) break; /* Line 451, Address: 0x1002cc4 */
 
 
 
       pActwk->actfree[1] += 2; /* Line 455, Address: 0x1002cd8 */
       pActwk->actfree[4] = 60; /* Line 456, Address: 0x1002ce8 */
     case 2:
-      if (pActwk->actfree[4] != 0) { /* Line 458, Address: 0x1002cf4 */
+      if (pActwk->actfree[4]) { /* Line 458, Address: 0x1002cf4 */
         --pActwk->actfree[4]; /* Line 459, Address: 0x1002d04 */
         dodai_fix(pActwk); /* Line 460, Address: 0x1002d14 */
         break; /* Line 461, Address: 0x1002d20 */
@@ -488,14 +488,14 @@ void dodai_lm(act_info* pActwk) { /* Line 486, Address: 0x1002e30 */
 
   switch (pActwk->actfree[1]) { /* Line 489, Address: 0x1002e40 */
     case 0:
-      if (dodai_fix(pActwk) == 0) break; /* Line 491, Address: 0x1002e74 */
+      if (!dodai_fix(pActwk)) break; /* Line 491, Address: 0x1002e74 */
 
 
 
       pActwk->actfree[1] += 2; /* Line 495, Address: 0x1002e88 */
       pActwk->actfree[4] = 60; /* Line 496, Address: 0x1002e98 */
     case 2:
-      if (pActwk->actfree[4] != 0) { /* Line 498, Address: 0x1002ea4 */
+      if (pActwk->actfree[4]) { /* Line 498, Address: 0x1002ea4 */
         --pActwk->actfree[4]; /* Line 499, Address: 0x1002eb4 */
         dodai_fix(pActwk); /* Line 500, Address: 0x1002ec4 */
         break; /* Line 501, Address: 0x1002ed0 */
@@ -554,7 +554,7 @@ short dodai_sub(act_info* pActwk) { /* Line 537, Address: 0x1002fe0 */
 void dai_fout(act_info* pActwk) { /* Line 554, Address: 0x1003060 */
   short s;
 
-  if (pActwk->cdsts != 0) { /* Line 557, Address: 0x1003070 */
+  if (pActwk->cdsts) { /* Line 557, Address: 0x1003070 */
     s = time_flag + pActwk->cdsts * 3; /* Line 558, Address: 0x1003080 */
     flagwork[s] %= 128; /* Line 559, Address: 0x10030b4 */
   }

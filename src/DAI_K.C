@@ -127,7 +127,7 @@ void(*dai_k_move_tbl[2])(act_info*) = {
 void dai_k(act_info* pActwk) { /* Line 127, Address: 0x1002090, Func Offset */
   dai_k_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 128, Address: 0x100209c, Func Offset */
 
-  if (time_stop == 0) { /* Line 130, Address: 0x10020e0, Func Offset */
+  if (!time_stop) { /* Line 130, Address: 0x10020e0, Func Offset */
     patchg(pActwk, (unsigned char**)&k_daichg); /* Line 131, Address: 0x10020f0, Func Offset */
   }
 
@@ -166,7 +166,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
 
 
-  if (ride_on_chk(pActwk, actwk) == 0) return; /* Line 169, Address: 0x10021d8 */
+  if (!ride_on_chk(pActwk, actwk)) return; /* Line 169, Address: 0x10021d8 */
 
 
 
@@ -227,7 +227,7 @@ void k_move(act_info* pActwk, act_info* pSonicwk) { /* Line 223, Address: 0x1002
     if (swdata.b.h & 8) { /* Line 227, Address: 0x1002428 */
       ++pSonicwk->actfree[15]; /* Line 228, Address: 0x1002440 */
     } /* Line 229, Address: 0x1002450 */
-    else if ((swdata.b.h & 4) && pSonicwk->actfree[15] != 0) { /* Line 230, Address: 0x1002470 */
+    else if ((swdata.b.h & 4) && pSonicwk->actfree[15]) { /* Line 230, Address: 0x1002470 */
       --pSonicwk->actfree[15]; /* Line 231, Address: 0x1002480 */
     }
 
@@ -237,7 +237,7 @@ void k_move(act_info* pActwk, act_info* pSonicwk) { /* Line 223, Address: 0x1002
     if (swdata.b.h & 4) { /* Line 237, Address: 0x1002498 */
       ++pSonicwk->actfree[15]; /* Line 238, Address: 0x10024b0 */
     } /* Line 239, Address: 0x10024c0 */
-    else if ((swdata.b.h & 8) && pSonicwk->actfree[15] != 0) { /* Line 240, Address: 0x10024e0 */
+    else if ((swdata.b.h & 8) && pSonicwk->actfree[15]) { /* Line 240, Address: 0x10024e0 */
       --pSonicwk->actfree[15]; /* Line 241, Address: 0x10024f0 */
     }
 

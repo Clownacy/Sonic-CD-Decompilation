@@ -462,7 +462,7 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
   }
 
   index = pActwk->cdsts; /* Line 464, Address: 0x1000d10 */
-  if (index != 0) { /* Line 465, Address: 0x1000d20 */
+  if (index) { /* Line 465, Address: 0x1000d20 */
 
     index *= 3; /* Line 467, Address: 0x1000d28 */
     tflag.b.h = 0; /* Line 468, Address: 0x1000d34 */
@@ -494,7 +494,7 @@ int frameout_s0(act_info* pActwk) { /* Line 491, Address: 0x1000e70 */
   short zflag;
 
   index = pActwk->cdsts; /* Line 496, Address: 0x1000e88 */
-  if (index != 0) { /* Line 497, Address: 0x1000e98 */
+  if (index) { /* Line 497, Address: 0x1000e98 */
 
     index *= 3; /* Line 499, Address: 0x1000ea0 */
     tflag.b.h = 0; /* Line 500, Address: 0x1000eac */

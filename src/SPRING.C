@@ -322,7 +322,7 @@ void koma_move(act_info* actionwk) { /* Line 307, Address: 0x10041e0 */
 void koma_move2(act_info* actionwk) { /* Line 322, Address: 0x1004270 */
   short d0, d1;
 
-  if (time_stop == 0) { /* Line 325, Address: 0x1004284 */
+  if (!time_stop) { /* Line 325, Address: 0x1004284 */
     d1 = emycol_d(actionwk); /* Line 326, Address: 0x1004294 */
     actionwk->yposi.w.h += d1; /* Line 327, Address: 0x10042a8 */
     d0 = *(short*)&actionwk->actfree[8]; /* Line 328, Address: 0x10042b8 */

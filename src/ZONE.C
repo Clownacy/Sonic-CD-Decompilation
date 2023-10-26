@@ -294,7 +294,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   plsubchg_flag = 8; /* Line 294, Address: 0x1012414 */
   if (pltimeover_f & 1) { /* Line 295, Address: 0x1012420 */
     pltimeover_f &= 254; /* Line 296, Address: 0x1012438 */
-    if (pl_suu != 0) { /* Line 297, Address: 0x101244c */
+    if (pl_suu) { /* Line 297, Address: 0x101244c */
       pAct->patbase = timepat; /* Line 298, Address: 0x101245c */
       plsubchg_flag = 2; /* Line 299, Address: 0x101246c */
     }
@@ -302,7 +302,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   else {
 
     pltimeover_f &= 254; /* Line 304, Address: 0x1012480 */
-    if (pl_suu != 0) { /* Line 305, Address: 0x1012494 */
+    if (pl_suu) { /* Line 305, Address: 0x1012494 */
 
       frameout(pAct); /* Line 307, Address: 0x10124a4 */
       return; /* Line 308, Address: 0x10124b0 */
@@ -325,7 +325,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   pTmpAct->xposi.w.h = 448; /* Line 325, Address: 0x1012548 */
   *(short*)&pTmpAct->actfree[0] = 288; /* Line 326, Address: 0x1012554 */
 
-  if (pl_suu != 0) { /* Line 328, Address: 0x1012560 */
+  if (pl_suu) { /* Line 328, Address: 0x1012560 */
     over_move(pAct); /* Line 329, Address: 0x1012570 */
   } /* Line 330, Address: 0x101257c */
   else {
@@ -444,7 +444,7 @@ void title_move1(act_info* pAct) { /* Line 430, Address: 0x10129e0 */
 
 
 void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
-  if (pAct->pattim != 0) { /* Line 447, Address: 0x1012abc */
+  if (pAct->pattim) { /* Line 447, Address: 0x1012abc */
     --pAct->pattim; /* Line 448, Address: 0x1012acc */
   } /* Line 449, Address: 0x1012adc */
   else {
@@ -466,7 +466,7 @@ void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
 
 
 void title_back1(act_info* pAct) { /* Line 468, Address: 0x1012bb0 */
-  if (pAct->pattim != 0) { /* Line 469, Address: 0x1012bbc */
+  if (pAct->pattim) { /* Line 469, Address: 0x1012bbc */
     --pAct->pattim; /* Line 470, Address: 0x1012bcc */
   } /* Line 471, Address: 0x1012bdc */
   else {
@@ -533,7 +533,7 @@ void clear(act_info* pAct) { /* Line 501, Address: 0x1012ce0 */
 
 void clear_init0(act_info* pAct) { /* Line 534, Address: 0x1012e50 */
   --pAct->actfree[8]; /* Line 535, Address: 0x1012e5c */
-  if (pAct->actfree[8] == 0) { /* Line 536, Address: 0x1012e6c */
+  if (!pAct->actfree[8]) { /* Line 536, Address: 0x1012e6c */
     pAct->r_no0 = 2; /* Line 537, Address: 0x1012e7c */
     clear_init(pAct); /* Line 538, Address: 0x1012e88 */
   }
@@ -570,14 +570,14 @@ label1:
       if (stageno.w == 1282) { /* Line 570, Address: 0x1012f7c */
         pTmpAct->sproffset = 32768; /* Line 571, Address: 0x1012f98 */
         pTmpAct->patbase = gotpat_0; /* Line 572, Address: 0x1012fa4 */
-        if (generate_flag != 0) { /* Line 573, Address: 0x1012fb4 */
+        if (generate_flag) { /* Line 573, Address: 0x1012fb4 */
           pTmpAct->patbase = madepat_0; /* Line 574, Address: 0x1012fc4 */
         }
       } /* Line 576, Address: 0x1012fd4 */
       else {
 
         pTmpAct->patbase = gotpat; /* Line 579, Address: 0x1012fdc */
-        if (generate_flag != 0) { /* Line 580, Address: 0x1012fec */
+        if (generate_flag) { /* Line 580, Address: 0x1012fec */
           pTmpAct->patbase = madepat; /* Line 581, Address: 0x1012ffc */
         }
       }
@@ -604,7 +604,7 @@ void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
 
   if (pAct->xposi.w.h == *(short*)&pAct->actfree[0]) { /* Line 605, Address: 0x101310c */
 
-    if (pAct->patno == 0) { /* Line 607, Address: 0x101313c */
+    if (!pAct->patno) { /* Line 607, Address: 0x101313c */
       pAct->r_no0 += 2; /* Line 608, Address: 0x101314c */
     }
   } /* Line 610, Address: 0x101315c */
@@ -629,8 +629,8 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
 
   lD0.l = 0; // Line 630, Address: 0x101320c
   bonus_f = 1; // Line 631, Address: 0x1013210
-  if (timebonus == 0) { // Line 632, Address: 0x101321c
-    if (ringbonus == 0) { // Line 633, Address: 0x101322c
+  if (!timebonus) { // Line 632, Address: 0x101321c
+    if (!ringbonus) { // Line 633, Address: 0x101322c
       --*(short*)&pAct->actfree[8]; // Line 634, Address: 0x101323c
       if (*(short*)&pAct->actfree[8] < 0) { // Line 635, Address: 0x101324c
         pAct->r_no0 += 2; // Line 636, Address: 0x1013264
@@ -640,7 +640,7 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
       }
 
       if (*(short*)&pAct->actfree[8] == 30) { // Line 642, Address: 0x10132c0
-        if (special_flag != 0) { // Line 643, Address: 0x10132dc
+        if (special_flag) { // Line 643, Address: 0x10132dc
           soundset(200); // Line 644, Address: 0x10132ec
         }
       }
@@ -650,17 +650,17 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
     }
   }
 
-  if (timebonus != 0) { // Line 653, Address: 0x101330c
+  if (timebonus) { // Line 653, Address: 0x101330c
     lD0.w.l += 10; // Line 654, Address: 0x101331c
     timebonus -= 100; // Line 655, Address: 0x1013328
   }
-  if (ringbonus != 0) { // Line 657, Address: 0x101333c
+  if (ringbonus) { // Line 657, Address: 0x101333c
 
     lD0.w.l += 10; // Line 659, Address: 0x101334c
     ringbonus -= 100; // Line 660, Address: 0x1013358
   }
 
-  if (timebonus == 0 && ringbonus == 0) { // Line 663, Address: 0x101336c
+  if (!timebonus && !ringbonus) { // Line 663, Address: 0x101336c
     WaveAllStop(); // Line 664, Address: 0x101338c
     soundset(154); // Line 665, Address: 0x101339c
     if (*(short*)&pAct->actfree[8] >= 45) { // Line 666, Address: 0x10133a8
@@ -700,7 +700,7 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
   projector_flag = 0; // Line 700, Address: 0x10134b0
   markerno = 0; // Line 701, Address: 0x10134b8
 
-  if (ta_flag != 0) { // Line 703, Address: 0x10134c0
+  if (ta_flag) { // Line 703, Address: 0x10134c0
     play_start &= 254; // Line 704, Address: 0x10134d0
   }
 
@@ -725,9 +725,9 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
     return; // Line 725, Address: 0x10135b0
   }
 
-  if (ta_flag == 0) { // Line 728, Address: 0x10135b8
+  if (!ta_flag) { // Line 728, Address: 0x10135b8
     if (clrspflg_save != 127) { // Line 729, Address: 0x10135c8
-      if (generate_flag == 0) return; // Line 730, Address: 0x10135e0
+      if (!generate_flag) return; // Line 730, Address: 0x10135e0
       generate_flag = 0; // Line 731, Address: 0x10135f0
 
       gf_flag |= 1 << stageno.b.l - 1; // Line 733, Address: 0x10135f8
@@ -741,5 +741,5 @@ void clear_move2(act_info* pAct) { // Line 687, Address: 0x1013460
 
 
 void clear_wait(act_info* pAct) { /* Line 743, Address: 0x1013660 */
-  if (--WaitCount == 0) pAct->r_no0 = 2; /* Line 744, Address: 0x1013668 */
+  if (!--WaitCount) pAct->r_no0 = 2; /* Line 744, Address: 0x1013668 */
 } /* Line 745, Address: 0x1013698 */

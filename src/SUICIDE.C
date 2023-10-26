@@ -68,12 +68,12 @@ short friend_suicide(act_info* pActwk) { /* Line 66, Address: 0x1013fa0 */
     return 0; /* Line 68, Address: 0x1013fc4 */
   if (time_flag < 2) /* Line 69, Address: 0x1013fd0 */
   {
-    if (projector_flag != 0) /* Line 71, Address: 0x1013fe8 */
+    if (projector_flag) /* Line 71, Address: 0x1013fe8 */
       return 0; /* Line 72, Address: 0x1013ff8 */
     frameout_s(pActwk); /* Line 73, Address: 0x1014004 */
     return -1; /* Line 74, Address: 0x1014010 */
   }
-  if (generate_flag != 0) /* Line 76, Address: 0x101401c */
+  if (generate_flag) /* Line 76, Address: 0x101401c */
     return 0; /* Line 77, Address: 0x101402c */
   frameout(pActwk); /* Line 78, Address: 0x1014038 */
   return -1; /* Line 79, Address: 0x1014044 */

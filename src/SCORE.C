@@ -293,7 +293,7 @@ unsigned char ringinittbl[3] = { 255, 255, 0 };
 
 
 void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
-  if (pAct->r_no0 == 0) ten_init(pAct); /* Line 296, Address: 0x10050bc */
+  if (!pAct->r_no0) ten_init(pAct); /* Line 296, Address: 0x10050bc */
   ten_move(pAct); /* Line 297, Address: 0x10050d8 */
   actionsub(pAct); /* Line 298, Address: 0x10050e4 */
 
@@ -316,7 +316,7 @@ void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
   --pAct->actfree[0]; /* Line 316, Address: 0x100517c */
 
 
-  if (pAct->actfree[0] == 0) /* Line 319, Address: 0x100518c */
+  if (!pAct->actfree[0]) /* Line 319, Address: 0x100518c */
     frameout(pAct); /* Line 320, Address: 0x100519c */
   pAct->yposi.w.h -= 2; /* Line 321, Address: 0x10051a8 */
 
@@ -329,7 +329,7 @@ void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
     tensuu(pAct); /* Line 329, Address: 0x10051f8 */
     return; /* Line 330, Address: 0x1005204 */
   }
-  if (pAct->r_no0 == 0) score_init(pAct); /* Line 332, Address: 0x100520c */
+  if (!pAct->r_no0) score_init(pAct); /* Line 332, Address: 0x100520c */
   score_move(pAct); /* Line 333, Address: 0x1005228 */
 
 } /* Line 335, Address: 0x1005234 */
@@ -341,16 +341,16 @@ void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
   pAct->sproffset = 32768; /* Line 341, Address: 0x1005274 */
   pAct->xposi.w.h = 144; /* Line 342, Address: 0x1005280 */
   pAct->yposi.w.h = 136; /* Line 343, Address: 0x100528c */
-  if (pAct->userflag.b.l != 0) { /* Line 344, Address: 0x1005298 */
+  if (pAct->userflag.b.l) { /* Line 344, Address: 0x1005298 */
     pAct->patno = 3; /* Line 345, Address: 0x10052a8 */
     return; /* Line 346, Address: 0x10052b4 */
   }
 
-  if (debugflag.w != 0) { /* Line 349, Address: 0x10052bc */
+  if (debugflag.w) { /* Line 349, Address: 0x10052bc */
     pAct->patno = 2; /* Line 350, Address: 0x10052cc */
   }
 
-  if (pAct->userflag.b.h != 0) { /* Line 353, Address: 0x10052d8 */
+  if (pAct->userflag.b.h) { /* Line 353, Address: 0x10052d8 */
     pAct->yposi.w.h = 328; /* Line 354, Address: 0x10052e8 */
     pAct->patno = 1; /* Line 355, Address: 0x10052f4 */
 
@@ -371,9 +371,9 @@ void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
 } /* Line 371, Address: 0x1005360 */
 
 void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
-  if (pAct->userflag.b.h == 0) { /* Line 374, Address: 0x100537c */
-    if (pAct->userflag.b.l != 0) { /* Line 375, Address: 0x100538c */
-      if (plring != 0) { /* Line 376, Address: 0x100539c */
+  if (!pAct->userflag.b.h) { /* Line 374, Address: 0x100537c */
+    if (pAct->userflag.b.l) { /* Line 375, Address: 0x100538c */
+      if (plring) { /* Line 376, Address: 0x100539c */
         pAct->sproffset = 32768; /* Line 377, Address: 0x10053ac */
         scorepat3.spra[0].index = 334; /* Line 378, Address: 0x10053b8 */
 
@@ -391,7 +391,7 @@ void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
     else {
 
       pAct->patno = 0; /* Line 393, Address: 0x1005428 */
-      if (debugflag.w != 0) { /* Line 394, Address: 0x1005430 */
+      if (debugflag.w) { /* Line 394, Address: 0x1005430 */
         pAct->patno = 2; /* Line 395, Address: 0x1005440 */
       }
     }
@@ -434,7 +434,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
   spr_array* pSprpat;
 
   pSprdat = &scorepat2.spra[3]; /* Line 436, Address: 0x1005560 */
-  if (debugflag.w != 0) { /* Line 437, Address: 0x1005568 */
+  if (debugflag.w) { /* Line 437, Address: 0x1005568 */
     posiwrt(); /* Line 438, Address: 0x1005578 */
 
     pSprdat = &scorepat2.spra[12]; /* Line 440, Address: 0x1005580 */
@@ -442,7 +442,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
   } /* Line 442, Address: 0x10055b4 */
   else {
 
-    if (plscore_f != 0) { /* Line 445, Address: 0x10055bc */
+    if (plscore_f) { /* Line 445, Address: 0x10055bc */
       if (plscore_f & 128) { /* Line 446, Address: 0x10055cc */
         scoreinit(); /* Line 447, Address: 0x10055e4 */
       }
@@ -452,7 +452,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
       scorewrt(pSprdat, plscore); /* Line 452, Address: 0x10055fc */
     }
 
-    if (plring_f != 0) { /* Line 455, Address: 0x1005610 */
+    if (plring_f) { /* Line 455, Address: 0x1005610 */
       if (plring_f & 128) { /* Line 456, Address: 0x1005620 */
         ringinit(); /* Line 457, Address: 0x1005638 */
       }
@@ -465,7 +465,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     }
   }
 
-  if (debugflag.w == 0 && pltime_f != 0 && pauseflag.b.h == 0) { /* Line 468, Address: 0x1005694 */
+  if (!debugflag.w && pltime_f && !pauseflag.b.h) { /* Line 468, Address: 0x1005694 */
     if (pltime.l == (9 | 15163)) { /* Line 469, Address: 0x10056c4 */
 
       if (time_flag & 128) return; /* Line 471, Address: 0x10056dc */
@@ -480,7 +480,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
       return; /* Line 480, Address: 0x1005720 */
     }
     if (pltime.l != (9 | 15163)) { /* Line 482, Address: 0x1005728 */
-      if (plautoflag == 0) { /* Line 483, Address: 0x1005740 */
+      if (!plautoflag) { /* Line 483, Address: 0x1005740 */
 
         ++pltime.b.b4; /* Line 485, Address: 0x1005750 */
         if (pltime.b.b4 >= 60) { /* Line 486, Address: 0x1005764 */
@@ -513,13 +513,13 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
   }
 
 
-  if (pl_suu_f != 0) { /* Line 516, Address: 0x10058c4 */
+  if (pl_suu_f) { /* Line 516, Address: 0x10058c4 */
     pl_suu_f = 0; /* Line 517, Address: 0x10058d4 */
     pSprdat = &scorepat1.spra[2]; /* Line 518, Address: 0x10058dc */
     playsuuwrt(pSprdat); /* Line 519, Address: 0x10058e4 */
   }
 
-  if (bonus_f != 0) { /* Line 522, Address: 0x10058f0 */
+  if (bonus_f) { /* Line 522, Address: 0x10058f0 */
     bonus_f = 0; /* Line 523, Address: 0x1005900 */
     if (stageno.w == 1282) pSprpat = &bonuspat0; /* Line 524, Address: 0x1005908 */
     else pSprpat = &bonuspat; /* Line 525, Address: 0x1005934 */
@@ -605,7 +605,7 @@ void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, s
     if (lDisp1 != 0) { /* Line 605, Address: 0x1005b98 */
       wrt = 1; /* Line 606, Address: 0x1005ba0 */
     }
-    if (wrt != 0 || (sD6 == 0 && zero_disp != 0)) { /* Line 608, Address: 0x1005ba4 */
+    if (wrt != 0 || (sD6 == 0 && zero_disp)) { /* Line 608, Address: 0x1005ba4 */
       pSprdat->index = lDisp1 + 308; /* Line 609, Address: 0x1005bcc */
     } /* Line 610, Address: 0x1005be4 */
     else {

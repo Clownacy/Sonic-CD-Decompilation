@@ -43,7 +43,7 @@ void action() { /* Line 40, Address: 0x1001260 */
 
   pActwk = &actwk[0]; /* Line 44, Address: 0x1001270 */
   for (i = 0; i < 128; ++i, ++pActwk) { /* Line 45, Address: 0x1001278 */
-    if (pActwk->actno != 0) { /* Line 46, Address: 0x1001284 */
+    if (pActwk->actno) { /* Line 46, Address: 0x1001284 */
 
 
 
@@ -144,7 +144,7 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
   pActwk->actflg %= 128; /* Line 144, Address: 0x10015d8 */
   flag = pActwk->actflg; /* Line 145, Address: 0x10015e8 */
   flag &= 12; /* Line 146, Address: 0x10015f8 */
-  if (flag != 0) { /* Line 147, Address: 0x1001600 */
+  if (flag) { /* Line 147, Address: 0x1001600 */
 
     hsiz = pActwk->sprhsize; /* Line 149, Address: 0x1001608 */
     xpos = pActwk->xposi.w.h; /* Line 150, Address: 0x1001624 */
@@ -229,10 +229,10 @@ void patset() { /* Line 198, Address: 0x1001860 */
     do {
 
       pActwk = pbuffer[i].pActwk[act]; /* Line 231, Address: 0x1001910 */
-      if (pActwk->actno != 0 && pActwk->patbase != 0) { /* Line 232, Address: 0x100193c */
+      if (pActwk->actno && pActwk->patbase != 0) { /* Line 232, Address: 0x100193c */
         flag = pActwk->actflg >> 2; /* Line 233, Address: 0x1001954 */
         flag %= 4; /* Line 234, Address: 0x1001968 */
-        if (flag != 0) { /* Line 235, Address: 0x1001970 */
+        if (flag) { /* Line 235, Address: 0x1001970 */
 
           pScrHposi = patsettbl[flag]; /* Line 237, Address: 0x1001978 */
           pScrVposi = patsettbl[flag + 4]; /* Line 238, Address: 0x100198c */
@@ -297,7 +297,7 @@ void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short
   flag = pActwk->actflg; /* Line 297, Address: 0x1001c4c */
   flag %= 4; /* Line 298, Address: 0x1001c58 */
   while (cnt > 0) { /* Line 299, Address: 0x1001c60 */
-    if (sprdat->index != 0) { /* Line 300, Address: 0x1001c68 */
+    if (sprdat->index) { /* Line 300, Address: 0x1001c68 */
       if (linkdata >= 80) return; /* Line 301, Address: 0x1001c78 */
 
       switch (flag) { /* Line 303, Address: 0x1001c90 */

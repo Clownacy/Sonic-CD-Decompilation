@@ -51,7 +51,7 @@ void frameoutchk(act_info* pActwk) { /* Line 23, Address: 0x1000fe0 */
 
 
 int sync() {
-  if (int_flg != 0) return -1; /* Line 54, Address: 0x10010d0 */
+  if (int_flg) return -1; /* Line 54, Address: 0x10010d0 */
   return 0; /* Line 55, Address: 0x10010ec */
 } /* Line 56, Address: 0x10010f0 */
 

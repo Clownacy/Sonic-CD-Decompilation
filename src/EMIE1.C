@@ -463,7 +463,7 @@ void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
 
 
 void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Address: 0x1005e60 */
-  if (pEmiewk->xspeed.w != 0) { /* Line 466, Address: 0x1005e70 */
+  if (pEmiewk->xspeed.w) { /* Line 466, Address: 0x1005e70 */
     speedsetx(pSonicwk); /* Line 467, Address: 0x1005e80 */
     pSonicwk->yposi.w.h += emycol_d(pSonicwk); /* Line 468, Address: 0x1005e8c */
 
@@ -622,7 +622,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
 
 
-  if (editmode.b.h != 0) return; /* Line 625, Address: 0x100633c */
+  if (editmode.b.h) return; /* Line 625, Address: 0x100633c */
 
 
 
@@ -654,11 +654,11 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
   }
 
   if (actwk[0].cddat & 6 /* Line 656, Address: 0x10064d4 */
-      || actwk[0].actfree[6] != 0
+      || actwk[0].actfree[6]
       || lenwk >= 1664
-      || plpower_b != 0
-      || plpower_a != 0
-      || plpower_m != 0) {
+      || plpower_b
+      || plpower_a
+      || plpower_m) {
     pActwk->r_no0 = 6; /* Line 662, Address: 0x1006540 */
   } /* Line 663, Address: 0x100654c */
   else {
@@ -867,7 +867,7 @@ void heart1_init(act_info* pActwk) { /* Line 851, Address: 0x1006a70 */
 void heart1_move(act_info* pActwk) { /* Line 867, Address: 0x1006b00 */
   short sinwk, coswk;
 
-  if (pActwk->actfree[18] == 0) { /* Line 870, Address: 0x1006b0c */
+  if (!pActwk->actfree[18]) { /* Line 870, Address: 0x1006b0c */
     sinset(pActwk->actfree[16] * 3, &sinwk, &coswk); /* Line 871, Address: 0x1006b1c */
     pActwk->xspeed.w = sinwk >> 2; /* Line 872, Address: 0x1006b44 */
   }
