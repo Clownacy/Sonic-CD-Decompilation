@@ -222,7 +222,7 @@ label2:
     new_actwk->actno = 16; /* Line 222, Address: 0x1006798 */
     new_actwk->r_no0 = 2; /* Line 223, Address: 0x10067a4 */
     new_actwk->xposi.w.h = d6; /* Line 224, Address: 0x10067b0 */
-    *(short*)&new_actwk->actfree[8] = pActwk->xposi.w.h; /* Line 225, Address: 0x10067b8 */
+    ((short*)new_actwk)[27] = pActwk->xposi.w.h; /* Line 225, Address: 0x10067b8 */
     new_actwk->yposi.w.h = d5; /* Line 226, Address: 0x10067c8 */
     new_actwk->patbase = ringpat; /* Line 227, Address: 0x10067d0 */
     new_actwk->sproffset = 42926; /* Line 228, Address: 0x10067e0 */

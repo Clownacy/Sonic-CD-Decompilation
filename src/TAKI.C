@@ -117,7 +117,7 @@ void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
   pActwk->sproffset = 954; /* Line 117, Address: 0x101d7ac */
   pActwk->yposi.w.h &= -16; /* Line 118, Address: 0x101d7b8 */
 
-  *(short*)&pActwk->actfree[0] = pActwk->yposi.w.h + 384; /* Line 120, Address: 0x101d7cc */
+  ((short*)pActwk)[23] = pActwk->yposi.w.h + 384; /* Line 120, Address: 0x101d7cc */
 
 } /* Line 122, Address: 0x101d7f0 */
 
@@ -129,7 +129,7 @@ void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
   unsigned short blkno;
   short i, xoffs;
 
-  if (pActwk->yposi.w.h + 4 >= *(short*)&pActwk->actfree[0]) { /* Line 132, Address: 0x101d818 */
+  if (pActwk->yposi.w.h + 4 >= ((short*)pActwk)[23]) { /* Line 132, Address: 0x101d818 */
 
     frameout(pActwk); /* Line 134, Address: 0x101d848 */
     return; /* Line 135, Address: 0x101d854 */

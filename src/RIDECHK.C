@@ -117,7 +117,7 @@ short ride_on_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 112, Address:
   if (pPlayerwk->r_no0 == 4) /* Line 117, Address: 0x101970c */
   {
     pPlayerwk->r_no0 -= 2; /* Line 119, Address: 0x1019724 */
-    *(short*)&pPlayerwk->actfree[6] = 120; /* Line 120, Address: 0x1019734 */
+    ((short*)pPlayerwk)[26] = 120; /* Line 120, Address: 0x1019734 */
   }
 
   pActwk->r_no1 = 0; /* Line 123, Address: 0x1019740 */

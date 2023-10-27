@@ -169,9 +169,9 @@ void marker_init(act_info* markerwk) { /* Line 141, Address: 0x1015600 */
   *parent = markerwk; /* Line 169, Address: 0x1015780 */
   new_actwk->xposi.w.h = markerwk->xposi.w.h; /* Line 170, Address: 0x1015788 */
   new_actwk->yposi.w.h = markerwk->yposi.w.h + -32; /* Line 171, Address: 0x1015798 */
-  *(short*)&new_actwk->actfree[0] = markerwk->xposi.w.h; /* Line 172, Address: 0x10157bc */
+  ((short*)new_actwk)[23] = markerwk->xposi.w.h; /* Line 172, Address: 0x10157bc */
   marker_yposi_m_buf = markerwk->yposi.w.h + -24; /* Line 173, Address: 0x10157cc */
-  *(short*)&new_actwk->actfree[2] = marker_yposi_m_buf; /* Line 174, Address: 0x10157e8 */
+  ((short*)new_actwk)[24] = marker_yposi_m_buf; /* Line 174, Address: 0x10157e8 */
 } /* Line 175, Address: 0x10157f0 */
 
 
@@ -214,11 +214,11 @@ void marker_move1(act_info* markerwk) { /* Line 199, Address: 0x10158a0 */
   cos_data = cos_tmp; /* Line 214, Address: 0x101592c */
   sin_data *= 8; /* Line 215, Address: 0x1015938 */
   sin_data /= 256; /* Line 216, Address: 0x101593c */
-  markerwk->xposi.w.h = *(short*)&markerwk->actfree[0]; /* Line 217, Address: 0x1015958 */
+  markerwk->xposi.w.h = ((short*)markerwk)[23]; /* Line 217, Address: 0x1015958 */
   markerwk->xposi.w.h += sin_data; /* Line 218, Address: 0x1015968 */
   cos_data = -cos_data * 8; /* Line 219, Address: 0x1015980 */
   cos_data /= 256; /* Line 220, Address: 0x1015988 */
-  markerwk->yposi.w.h = *(short*)&markerwk->actfree[2]; /* Line 221, Address: 0x10159a4 */
+  markerwk->yposi.w.h = ((short*)markerwk)[24]; /* Line 221, Address: 0x10159a4 */
   markerwk->yposi.w.h += cos_data; /* Line 222, Address: 0x10159b4 */
   if (markerwk->actfree[10] == 0) markerwk->r_no0 += 2; /* Line 223, Address: 0x10159cc */
 } /* Line 224, Address: 0x10159f0 */
@@ -283,7 +283,7 @@ void tensuu_set(act_info* tensuuwk) { /* Line 282, Address: 0x1015c50 */
   unsigned char score_tmp;
 
   if (tensuuwk->r_no1 != 0) return; /* Line 285, Address: 0x1015c60 */
-  score_tmp = *(short*)&tensuuwk->actfree[20]; /* Line 286, Address: 0x1015c74 */
+  score_tmp = ((unsigned short*)tensuuwk)[33]; /* Line 286, Address: 0x1015c74 */
   tensuu0(tensuuwk, score_tmp / 2); /* Line 287, Address: 0x1015c84 */
 } /* Line 288, Address: 0x1015cb0 */
 

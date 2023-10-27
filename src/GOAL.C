@@ -847,7 +847,7 @@ void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
      2000,  2000,  1000,  1000,  1000,  1000,   500,   500,   500,   500, 0
   };
 
-  cTime = pActwk->actfree[0] + -1; /* Line 850, Address: 0x1010ab0 */
+  cTime = ((char*)pActwk)[46] + -1; /* Line 850, Address: 0x1010ab0 */
   pActwk->actfree[0] = cTime; /* Line 851, Address: 0x1010ad4 */
   if (cTime != 0) return; /* Line 852, Address: 0x1010adc */
   if (time_flag == 0) { /* Line 853, Address: 0x1010aec */
@@ -872,7 +872,7 @@ void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
   }
 
   pActfree->actno = 58; /* Line 874, Address: 0x1010ba4 */
-  *(short*)&pActfree->actfree[8] = 16; /* Line 875, Address: 0x1010bb0 */
+  ((short*)pActfree)[27] = 16; /* Line 875, Address: 0x1010bb0 */
 
   bonus_f = 1; /* Line 877, Address: 0x1010bbc */
   iD0 = pltime.b.b3 + pltime.b.b2 * 60; /* Line 878, Address: 0x1010bc8 */

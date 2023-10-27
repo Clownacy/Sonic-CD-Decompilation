@@ -288,7 +288,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   pAct->r_no0 = 2; /* Line 288, Address: 0x10123c8 */
   pAct->yposi.w.h = 224; /* Line 289, Address: 0x10123d4 */
   pAct->xposi.w.h = 128; /* Line 290, Address: 0x10123e0 */
-  *(short*)&pAct->actfree[0] = 288; /* Line 291, Address: 0x10123ec */
+  ((short*)pAct)[23] = 288; /* Line 291, Address: 0x10123ec */
   pAct->sproffset = 32768; /* Line 292, Address: 0x10123f8 */
   pAct->patbase = gamepat; /* Line 293, Address: 0x1012404 */
   plsubchg_flag = 8; /* Line 294, Address: 0x1012414 */
@@ -323,7 +323,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
   pTmpAct->patno = 1; /* Line 323, Address: 0x1012530 */
   pTmpAct->yposi.w.h = 224; /* Line 324, Address: 0x101253c */
   pTmpAct->xposi.w.h = 448; /* Line 325, Address: 0x1012548 */
-  *(short*)&pTmpAct->actfree[0] = 288; /* Line 326, Address: 0x1012554 */
+  ((short*)pTmpAct)[23] = 288; /* Line 326, Address: 0x1012554 */
 
   if (pl_suu) { /* Line 328, Address: 0x1012560 */
     over_move(pAct); /* Line 329, Address: 0x1012570 */
@@ -335,7 +335,7 @@ void over_init(act_info* pAct) { /* Line 284, Address: 0x10123b0 */
 
 
 void over_move(act_info* pAct) { /* Line 337, Address: 0x10125a0 */
-  if (pAct->xposi.w.h < *(short*)&pAct->actfree[0]) { /* Line 338, Address: 0x10125ac */
+  if (pAct->xposi.w.h < (short)((unsigned short*)pAct)[23]) { /* Line 338, Address: 0x10125ac */
     pAct->xposi.w.h += 8; /* Line 339, Address: 0x10125e0 */
   } /* Line 340, Address: 0x10125f0 */
   else if (pAct->xposi.w.h > (short)((unsigned short*)pAct)[23]) { /* Line 341, Address: 0x10125f8 */
@@ -380,8 +380,8 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
   pAct->r_no0 = 2; /* Line 380, Address: 0x1012764 */
   pAct->xposi.w.h = 280; /* Line 381, Address: 0x1012770 */
   pAct->yposi.w.h = 48; /* Line 382, Address: 0x101277c */
-  *(short*)&pAct->actfree[6] = 48; /* Line 383, Address: 0x1012788 */
-  *(short*)&pAct->actfree[4] = 240; /* Line 384, Address: 0x1012794 */
+  ((short*)pAct)[26] = 48; /* Line 383, Address: 0x1012788 */
+  ((short*)pAct)[25] = 240; /* Line 384, Address: 0x1012794 */
   pAct->pattim = 90; /* Line 385, Address: 0x10127a0 */
   pAct->sproffset = 32768; /* Line 386, Address: 0x10127ac */
   pAct->patbase = title_pat; /* Line 387, Address: 0x10127b8 */
@@ -399,8 +399,8 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
 
     pTmpAct->yposi.w.h = *wp++; /* Line 400, Address: 0x1012828 */
     pTmpAct->xposi.w.h = *wp; /* Line 401, Address: 0x101283c */
-    *(short*)&pTmpAct->actfree[2] = *wp++; /* Line 402, Address: 0x1012848 */
-    *(short*)&pTmpAct->actfree[0] = *wp++; /* Line 403, Address: 0x101285c */
+    ((short*)pTmpAct)[24] = *wp++; /* Line 402, Address: 0x1012848 */
+    ((short*)pTmpAct)[23] = *wp++; /* Line 403, Address: 0x101285c */
     pTmpAct->patno = (*wp & -256) >> 8; /* Line 404, Address: 0x1012870 */
     if (i == 5) { /* Line 405, Address: 0x101288c */
       pTmpAct->patno = pTmpAct->patno + (unsigned char)stageno.b.l; /* Line 406, Address: 0x1012898 */
@@ -413,10 +413,10 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
 
 
 void title_move0(act_info* pAct) { /* Line 415, Address: 0x1012910 */
-  if (pAct->yposi.w.h == *(short*)&pAct->actfree[4]) { /* Line 416, Address: 0x101291c */
+  if (pAct->yposi.w.h == (short)((unsigned short*)pAct)[25]) { /* Line 416, Address: 0x101291c */
     pAct->r_no0 += 4; /* Line 417, Address: 0x101294c */
   } /* Line 418, Address: 0x101295c */
-  else if (pAct->yposi.w.h < *(short*)&pAct->actfree[4]) { /* Line 419, Address: 0x1012964 */
+  else if (pAct->yposi.w.h < (short)((unsigned short*)pAct)[25]) { /* Line 419, Address: 0x1012964 */
     pAct->yposi.w.h += 8; /* Line 420, Address: 0x1012998 */
   } /* Line 421, Address: 0x10129a8 */
   else {
@@ -428,10 +428,10 @@ void title_move0(act_info* pAct) { /* Line 415, Address: 0x1012910 */
 
 
 void title_move1(act_info* pAct) { /* Line 430, Address: 0x10129e0 */
-  if (pAct->xposi.w.h == *(short*)&pAct->actfree[0]) { /* Line 431, Address: 0x10129ec */
+  if (pAct->xposi.w.h == (short)((unsigned short*)pAct)[23]) { /* Line 431, Address: 0x10129ec */
     pAct->r_no0 += 4; /* Line 432, Address: 0x1012a1c */
   } /* Line 433, Address: 0x1012a2c */
-  else if (pAct->xposi.w.h < *(short*)&pAct->actfree[0]) { /* Line 434, Address: 0x1012a34 */
+  else if (pAct->xposi.w.h < (short)((unsigned short*)pAct)[23]) { /* Line 434, Address: 0x1012a34 */
     pAct->xposi.w.h += 8; /* Line 435, Address: 0x1012a68 */
   } /* Line 436, Address: 0x1012a78 */
   else {
@@ -448,12 +448,12 @@ void title_back0(act_info* pAct) { /* Line 446, Address: 0x1012ab0 */
     --pAct->pattim; /* Line 448, Address: 0x1012acc */
   } /* Line 449, Address: 0x1012adc */
   else {
-    if (pAct->yposi.w.h == *(short*)&pAct->actfree[6]) { /* Line 451, Address: 0x1012ae4 */
+    if (pAct->yposi.w.h == (short)((unsigned short*)pAct)[26]) { /* Line 451, Address: 0x1012ae4 */
       pAct->r_no0 += 4; /* Line 452, Address: 0x1012b14 */
       scroll_start.b.h = 1; /* Line 453, Address: 0x1012b24 */
       return; /* Line 454, Address: 0x1012b30 */
     }
-    if (pAct->yposi.w.h < *(short*)&pAct->actfree[6]) { /* Line 456, Address: 0x1012b38 */
+    if (pAct->yposi.w.h < (short)((unsigned short*)pAct)[26]) { /* Line 456, Address: 0x1012b38 */
       pAct->yposi.w.h += 16; /* Line 457, Address: 0x1012b6c */
     } /* Line 458, Address: 0x1012b7c */
     else {
@@ -470,11 +470,11 @@ void title_back1(act_info* pAct) { /* Line 468, Address: 0x1012bb0 */
     --pAct->pattim; /* Line 470, Address: 0x1012bcc */
   } /* Line 471, Address: 0x1012bdc */
   else {
-    if (pAct->xposi.w.h == *(short*)&pAct->actfree[2]) { /* Line 473, Address: 0x1012be4 */
+    if (pAct->xposi.w.h == (short)((unsigned short*)pAct)[24]) { /* Line 473, Address: 0x1012be4 */
       frameout(pAct); /* Line 474, Address: 0x1012c14 */
       return; /* Line 475, Address: 0x1012c20 */
     }
-    if (pAct->xposi.w.h < *(short*)&pAct->actfree[2]) { /* Line 477, Address: 0x1012c28 */
+    if (pAct->xposi.w.h < (short)((unsigned short*)pAct)[24]) { /* Line 477, Address: 0x1012c28 */
       pAct->xposi.w.h += 16; /* Line 478, Address: 0x1012c5c */
     } /* Line 479, Address: 0x1012c6c */
     else {
@@ -563,7 +563,7 @@ label1:
     pTmpAct = pAct; /* Line 563, Address: 0x1012f30 */
     wp = cleartbl; /* Line 564, Address: 0x1012f38 */
     for (i = 0; i < 3; ++i) { /* Line 565, Address: 0x1012f40 */
-      *(short*)&pTmpAct->actfree[8] = 360; /* Line 566, Address: 0x1012f4c */
+      ((short*)pTmpAct)[27] = 360; /* Line 566, Address: 0x1012f4c */
       pTmpAct->actno = 58; /* Line 567, Address: 0x1012f58 */
       pTmpAct->r_no0 = 4; /* Line 568, Address: 0x1012f64 */
       pTmpAct->sproffset = 32768; /* Line 569, Address: 0x1012f70 */
@@ -584,7 +584,7 @@ label1:
 
       pTmpAct->yposi.w.h = *wp++; /* Line 585, Address: 0x101300c */
       pTmpAct->xposi.w.h = *wp++; /* Line 586, Address: 0x1013020 */
-      *(short*)&pTmpAct->actfree[0] = *wp++; /* Line 587, Address: 0x1013034 */
+      ((short*)pTmpAct)[23] = *wp++; /* Line 587, Address: 0x1013034 */
       pTmpAct->patno = *wp++; /* Line 588, Address: 0x1013048 */
 
       if (i == 2) {  /* Line 590, Address: 0x1013068 */
@@ -598,11 +598,11 @@ label1:
 
 
 void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
-    --*(short*)&pAct->actfree[8]; /* Line 602, Address: 0x10130fc */
   if (((unsigned short*)pAct)[27]) { /* Line 601, Address: 0x10130ec */
+    --((unsigned short*)pAct)[27]; /* Line 602, Address: 0x10130fc */
   }
 
-  if (pAct->xposi.w.h == *(short*)&pAct->actfree[0]) { /* Line 605, Address: 0x101310c */
+  if (pAct->xposi.w.h == (short)((unsigned short*)pAct)[23]) { /* Line 605, Address: 0x101310c */
 
     if (!pAct->patno) { /* Line 607, Address: 0x101313c */
       pAct->r_no0 += 2; /* Line 608, Address: 0x101314c */
@@ -616,7 +616,7 @@ void clear_move0(act_info* pAct) { /* Line 600, Address: 0x10130e0 */
   }
 
 
-  if (*(short*)&pAct->actfree[8] < 352) { /* Line 619, Address: 0x10131c0 */
+  if (((unsigned short*)pAct)[27] < 352) { /* Line 619, Address: 0x10131c0 */
     actionsub(pAct); /* Line 620, Address: 0x10131d8 */
   }
 
@@ -631,15 +631,15 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
   bonus_f = 1; // Line 631, Address: 0x1013210
   if (!timebonus) { // Line 632, Address: 0x101321c
     if (!ringbonus) { // Line 633, Address: 0x101322c
-      --*(short*)&pAct->actfree[8]; // Line 634, Address: 0x101323c
-      if (*(short*)&pAct->actfree[8] < 0) { // Line 635, Address: 0x101324c
+      --((unsigned short*)pAct)[27]; // Line 634, Address: 0x101323c
+      if (((short*)pAct)[27] < 0) { // Line 635, Address: 0x101324c
         pAct->r_no0 += 2; // Line 636, Address: 0x1013264
         if (systemtimer.w.l - ClearSountWait >= 540) { // Line 637, Address: 0x1013274
           ClearSountWait = systemtimer.w.l + -540; // Line 638, Address: 0x10132a0
         }
       }
 
-      if (*(short*)&pAct->actfree[8] == 30) { // Line 642, Address: 0x10132c0
+      if (((short*)pAct)[27] == 30) { // Line 642, Address: 0x10132c0
         if (special_flag) { // Line 643, Address: 0x10132dc
           soundset(200); // Line 644, Address: 0x10132ec
         }
@@ -663,14 +663,14 @@ void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
   if (!timebonus && !ringbonus) { // Line 663, Address: 0x101336c
     WaveAllStop(); // Line 664, Address: 0x101338c
     soundset(154); // Line 665, Address: 0x101339c
-    if (*(short*)&pAct->actfree[8] >= 45) { // Line 666, Address: 0x10133a8
-      *(short*)&pAct->actfree[8] = 45; // Line 667, Address: 0x10133c0
+    if (((unsigned short*)pAct)[27] >= 45) { // Line 666, Address: 0x10133a8
+      ((unsigned short*)pAct)[27] = 45; // Line 667, Address: 0x10133c0
     }
   } // Line 669, Address: 0x10133cc
   else {
 
-      --*(short*)&pAct->actfree[8]; // Line 673, Address: 0x10133e4
     if (((unsigned short*)pAct)[27]) { // Line 672, Address: 0x10133d4
+      --((unsigned short*)pAct)[27]; // Line 673, Address: 0x10133e4
     }
 
     if ((pAct->actfree[8] % 2) == 0) { // Line 676, Address: 0x10133f4

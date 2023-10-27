@@ -173,7 +173,7 @@ void emie1_init(act_info* pActwk) { /* Line 166, Address: 0x1005390 */
 
   pActwk->sprhsize = 12; /* Line 174, Address: 0x10053dc */
   pActwk->sprvsize = 16; /* Line 175, Address: 0x10053e8 */
-  *(short*)&pActwk->actfree[12] = pActwk->xposi.w.h; /* Line 176, Address: 0x10053f4 */
+  ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 176, Address: 0x10053f4 */
 
   emie1clrset(); /* Line 178, Address: 0x1005404 */
 
@@ -268,7 +268,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
       }
     }
     else {
-      if ((*(short*)&pActwk->actfree[12] + -304) < pActwk->xposi.w.h) { /* Line 271, Address: 0x10057dc */
+      if ((((short*)pActwk)[29] + -304) < pActwk->xposi.w.h) { /* Line 271, Address: 0x10057dc */
 
 
 
@@ -400,7 +400,7 @@ void emie1_tobii(act_info* pActwk) { /* Line 398, Address: 0x1005c60 */
 
   pActwk->patno = 6; /* Line 401, Address: 0x1005c70 */
 
-  if ((lenwk = pActwk->xposi.w.h - *(short*)&pActwk->actfree[12]) < 0) { /* Line 403, Address: 0x1005c7c */
+  if ((lenwk = pActwk->xposi.w.h - ((short*)pActwk)[29]) < 0) { /* Line 403, Address: 0x1005c7c */
 
     lenwk = -lenwk; /* Line 405, Address: 0x1005cc8 */
   }
@@ -611,7 +611,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
   } /* Line 612, Address: 0x10062e8 */
   else {
-    if (*(short*)&pActwk->actfree[12] + -304 >= pActwk->xposi.w.h) return; /* Line 614, Address: 0x10062f0 */
+    if (((short*)pActwk)[29] + -304 >= pActwk->xposi.w.h) return; /* Line 614, Address: 0x10062f0 */
   }
 
 

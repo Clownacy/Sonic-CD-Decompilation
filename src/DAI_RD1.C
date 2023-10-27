@@ -169,9 +169,9 @@ void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
   pActwk->sprpri = 2; /* Line 169, Address: 0x100212c */
 
 
-  *(short*)&pActwk->actfree[14] = pActwk->xposi.w.h; /* Line 172, Address: 0x1002138 */
-  *(short*)&pActwk->actfree[16] = pActwk->yposi.w.h; /* Line 173, Address: 0x1002148 */
-  *(short*)&pActwk->actfree[12] = pActwk->yposi.w.h; /* Line 174, Address: 0x1002158 */
+  ((short*)pActwk)[30] = pActwk->xposi.w.h; /* Line 172, Address: 0x1002138 */
+  ((short*)pActwk)[31] = pActwk->yposi.w.h; /* Line 173, Address: 0x1002148 */
+  ((short*)pActwk)[29] = pActwk->yposi.w.h; /* Line 174, Address: 0x1002158 */
 
   pActwk->patbase = dai11a_pattbl; /* Line 176, Address: 0x1002168 */
   wk = pActwk->userflag.b.h & 3; /* Line 177, Address: 0x1002178 */
@@ -196,11 +196,11 @@ void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
       pNewact->actno = 10; /* Line 196, Address: 0x1002270 */
       pNewact->xposi.w.h = pActwk->xposi.w.h; /* Line 197, Address: 0x100227c */
       pNewact->yposi.w.h = pActwk->yposi.w.h + -16; /* Line 198, Address: 0x100228c */
-      pNewact->actfree[15] = -16; /* Line 199, Address: 0x10022b0 */
+      ((char*)(pNewact))[61] = -16; /* Line 199, Address: 0x10022b0 */
 
 
 
-      *(short*)&pNewact->actfree[10] = pActwk - actwk; /* Line 203, Address: 0x10022bc */
+      ((unsigned short*)pNewact)[28] = pActwk - actwk; /* Line 203, Address: 0x10022bc */
 
 
       pNewact->userflag.b.h = pActwk->userflag.b.l & 2; /* Line 206, Address: 0x10022f0 */
@@ -245,7 +245,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
   mtype = (pActwk->userflag.b.h >> 4) & 15; /* Line 245, Address: 0x10023c0 */
   dodai_mtype[mtype](pActwk); /* Line 246, Address: 0x10023e0 */
 
-  xlen = *(short*)&pActwk->actfree[14] & 65408; /* Line 248, Address: 0x1002404 */
+  xlen = ((unsigned short*)pActwk)[30] & 65408; /* Line 248, Address: 0x1002404 */
   xlen -= (scra_h_posit.w.h + -128) & -128; /* Line 249, Address: 0x100241c */
   if (xlen >= 641) { /* Line 250, Address: 0x1002444 */
     ride_on_clr(pActwk, &actwk[0]); /* Line 251, Address: 0x1002454 */
@@ -257,7 +257,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
 
 void dodai_ud(act_info* pActwk) { /* Line 258, Address: 0x1002490 */
   ++pActwk->actfree[0]; /* Line 259, Address: 0x100249c */
-  pActwk->yposi.w.h = *(short*)&pActwk->actfree[16] + dodai_sub(pActwk); /* Line 260, Address: 0x10024ac */
+  pActwk->yposi.w.h = ((short*)pActwk)[31] + dodai_sub(pActwk); /* Line 260, Address: 0x10024ac */
 
   ridechk(pActwk, &actwk[0]); /* Line 262, Address: 0x10024e4 */
 } /* Line 263, Address: 0x10024f8 */
@@ -268,11 +268,11 @@ void dodai_lr(act_info* pActwk) { /* Line 267, Address: 0x1002510 */
   int xsav;
 
   xsav = pActwk->xposi.l; /* Line 270, Address: 0x1002520 */
-  pActwk->xposi.w.h = *(short*)&pActwk->actfree[14] + dodai_sub(pActwk); /* Line 271, Address: 0x1002528 */
+  pActwk->xposi.w.h = ((short*)pActwk)[30] + dodai_sub(pActwk); /* Line 271, Address: 0x1002528 */
 
   ++pActwk->actfree[0]; /* Line 273, Address: 0x1002560 */
 
-  pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + *(short*)&pActwk->actfree[16]; /* Line 275, Address: 0x1002570 */
+  pActwk->yposi.w.h = (((unsigned char*)pActwk)[48] >> 1) + ((short*)pActwk)[31]; /* Line 275, Address: 0x1002570 */
 
 
 
@@ -309,9 +309,9 @@ void dodai_nA(act_info* pActwk) { /* Line 307, Address: 0x10026c0 */
 
   xsav = pActwk->xposi.l; /* Line 310, Address: 0x10026d0 */
   ++pActwk->actfree[0]; /* Line 311, Address: 0x10026d8 */
-  pActwk->yposi.w.h = *(short*)&pActwk->actfree[16] + dodai_sub(pActwk); /* Line 312, Address: 0x10026e8 */
+  pActwk->yposi.w.h = ((short*)pActwk)[31] + dodai_sub(pActwk); /* Line 312, Address: 0x10026e8 */
 
-  pActwk->xposi.w.h = *(short*)&pActwk->actfree[14] + dodai_sub(pActwk); /* Line 314, Address: 0x1002720 */
+  pActwk->xposi.w.h = ((short*)pActwk)[30] + dodai_sub(pActwk); /* Line 314, Address: 0x1002720 */
   dodai_ride1(pActwk, xsav); /* Line 316, Address: 0x1002758 */
 } /* Line 317, Address: 0x1002768 */
 
@@ -323,9 +323,9 @@ void dodai_nB(act_info* pActwk) { /* Line 321, Address: 0x1002780 */
 
   xsav = pActwk->xposi.l; /* Line 324, Address: 0x1002790 */
   ++pActwk->actfree[0]; /* Line 325, Address: 0x1002798 */
-  pActwk->yposi.w.h = *(short*)&pActwk->actfree[16] + dodai_sub(pActwk); /* Line 326, Address: 0x10027a8 */
+  pActwk->yposi.w.h = ((short*)pActwk)[31] + dodai_sub(pActwk); /* Line 326, Address: 0x10027a8 */
 
-  pActwk->xposi.w.h = *(short*)&pActwk->actfree[14] - dodai_sub(pActwk); /* Line 328, Address: 0x10027e0 */
+  pActwk->xposi.w.h = ((short*)pActwk)[30] - dodai_sub(pActwk); /* Line 328, Address: 0x10027e0 */
 
   dodai_ride1(pActwk, xsav); /* Line 330, Address: 0x1002818 */
 } /* Line 331, Address: 0x1002828 */
@@ -333,7 +333,7 @@ void dodai_nB(act_info* pActwk) { /* Line 321, Address: 0x1002780 */
 
 
 unsigned char dodai_fix(act_info* pActwk) { /* Line 335, Address: 0x1002840 */
-  pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + *(short*)&pActwk->actfree[16]; /* Line 336, Address: 0x100284c */
+  pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + ((short*)pActwk)[31]; /* Line 336, Address: 0x100284c */
 
   return dodai_ride2(pActwk); /* Line 338, Address: 0x100288c */
 } /* Line 339, Address: 0x1002898 */
@@ -387,14 +387,14 @@ void dodai_up(act_info* pActwk) { /* Line 380, Address: 0x1002a00 */
       pActwk->actfree[1] += 2; /* Line 387, Address: 0x1002a54 */
     case 2:
       if (pActwk->actfree[0] < 64) { /* Line 389, Address: 0x1002a64 */
-        pActwk->yposi.w.h = *(short*)&pActwk->actfree[16] - dodai_sub(pActwk); /* Line 390, Address: 0x1002a7c */
+        pActwk->yposi.w.h = ((short*)pActwk)[31] - dodai_sub(pActwk); /* Line 390, Address: 0x1002a7c */
 
         pActwk->actfree[0] += 2; /* Line 392, Address: 0x1002ab4 */
         ridechk(pActwk, &actwk[0]); /* Line 393, Address: 0x1002ac4 */
         break; /* Line 394, Address: 0x1002ad8 */
       }
 
-      *(short*)&pActwk->actfree[16] = pActwk->yposi.w.h; /* Line 397, Address: 0x1002ae0 */
+      ((short*)pActwk)[31] = pActwk->yposi.w.h; /* Line 397, Address: 0x1002ae0 */
       pActwk->actfree[1] += 2; /* Line 398, Address: 0x1002af0 */
     case 4:
       dodai_fix(pActwk); /* Line 400, Address: 0x1002b00 */
@@ -432,7 +432,7 @@ void dodai_upx(act_info* pActwk) { /* Line 408, Address: 0x1002b20 */
       }
 
       pActwk->yposi.w.h -= coli; /* Line 434, Address: 0x1002c24 */
-      *(short*)&pActwk->actfree[16] = pActwk->yposi.w.h; /* Line 435, Address: 0x1002c34 */
+      ((short*)pActwk)[31] = pActwk->yposi.w.h; /* Line 435, Address: 0x1002c34 */
       pActwk->actfree[1] += 2; /* Line 436, Address: 0x1002c44 */
     case 4:
       dodai_fix(pActwk); /* Line 438, Address: 0x1002c54 */
@@ -463,16 +463,16 @@ void dodai_rm(act_info* pActwk) { /* Line 446, Address: 0x1002c80 */
 
       if (pActwk->actfree[0] < 64) { /* Line 464, Address: 0x1002d28 */
         xsav = pActwk->xposi.l; /* Line 465, Address: 0x1002d40 */
-        pActwk->xposi.w.h = *(short*)&pActwk->actfree[14] + dodai_sub(pActwk); /* Line 466, Address: 0x1002d48 */
+        pActwk->xposi.w.h = ((short*)pActwk)[30] + dodai_sub(pActwk); /* Line 466, Address: 0x1002d48 */
 
         ++pActwk->actfree[0]; /* Line 468, Address: 0x1002d80 */
-        pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + *(short*)&pActwk->actfree[16]; /* Line 469, Address: 0x1002d90 */
+        pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + ((short*)pActwk)[31]; /* Line 469, Address: 0x1002d90 */
 
         dodai_ride1(pActwk, xsav); /* Line 471, Address: 0x1002dd0 */
         break; /* Line 472, Address: 0x1002de0 */
       }
 
-      *(short*)&pActwk->actfree[14] = pActwk->xposi.w.h; /* Line 475, Address: 0x1002de8 */
+      ((short*)pActwk)[30] = pActwk->xposi.w.h; /* Line 475, Address: 0x1002de8 */
       pActwk->actfree[1] += 2; /* Line 476, Address: 0x1002df8 */
     case 4:
       dodai_fix(pActwk); /* Line 478, Address: 0x1002e08 */
@@ -503,16 +503,16 @@ void dodai_lm(act_info* pActwk) { /* Line 486, Address: 0x1002e30 */
 
       if (pActwk->actfree[0] < 64) { /* Line 504, Address: 0x1002ed8 */
         xsav = pActwk->xposi.l; /* Line 505, Address: 0x1002ef0 */
-        pActwk->xposi.w.h = *(short*)&pActwk->actfree[14] - dodai_sub(pActwk); /* Line 506, Address: 0x1002ef8 */
+        pActwk->xposi.w.h = ((short*)pActwk)[30] - dodai_sub(pActwk); /* Line 506, Address: 0x1002ef8 */
 
         ++pActwk->actfree[0]; /* Line 508, Address: 0x1002f30 */
-        pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + *(short*)&pActwk->actfree[16]; /* Line 509, Address: 0x1002f40 */
+        pActwk->yposi.w.h = (pActwk->actfree[2] >> 1) + ((short*)pActwk)[31]; /* Line 509, Address: 0x1002f40 */
 
         dodai_ride1(pActwk, xsav); /* Line 511, Address: 0x1002f80 */
         break; /* Line 512, Address: 0x1002f90 */
       }
 
-      *(short*)&pActwk->actfree[14] = pActwk->xposi.w.h; /* Line 515, Address: 0x1002f98 */
+      ((short*)pActwk)[30] = pActwk->xposi.w.h; /* Line 515, Address: 0x1002f98 */
       pActwk->actfree[1] += 2; /* Line 516, Address: 0x1002fa8 */
     case 4:
       dodai_fix(pActwk); /* Line 518, Address: 0x1002fb8 */
@@ -538,7 +538,7 @@ short dodai_sub(act_info* pActwk) { /* Line 537, Address: 0x1002fe0 */
   short sinwk, coswk;
 
   sinset(pActwk->actfree[0], &sinwk, &coswk); /* Line 540, Address: 0x1002fec */
-  return (sinwk * pActwk->actfree[3]) >> 4; /* Line 541, Address: 0x1003010 */
+  return (sinwk * (char*)pActwk)[49] >> 4; /* Line 541, Address: 0x1003010 */
 } /* Line 542, Address: 0x1003044 */
 
 

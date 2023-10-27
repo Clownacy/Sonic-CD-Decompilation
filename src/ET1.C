@@ -187,10 +187,10 @@ void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
 
   actionwk->patbase = pat_et; /* Line 188, Address: 0x1021154 */
 
-  *(short*)&actionwk->actfree[2] = 0; /* Line 190, Address: 0x1021164 */
-  *(short*)&actionwk->actfree[6] = actionwk->yposi.w.h; /* Line 191, Address: 0x102116c */
-  *(short*)&actionwk->actfree[0] = 4; /* Line 192, Address: 0x102117c */
-  *(short*)&actionwk->actfree[8] = 1; /* Line 193, Address: 0x1021188 */
+  ((short*)actionwk)[24] = 0; /* Line 190, Address: 0x1021164 */
+  ((short*)actionwk)[26] = actionwk->yposi.w.h; /* Line 191, Address: 0x102116c */
+  ((short*)actionwk)[23] = 4; /* Line 192, Address: 0x102117c */
+  ((short*)actionwk)[27] = 1; /* Line 193, Address: 0x1021188 */
 
   d0 = 0; /* Line 195, Address: 0x1021194 */
   if (generate_flag == 0) d0 += 2; /* Line 196, Address: 0x1021198 */
@@ -212,7 +212,7 @@ void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
 
   if (actionwk->colicnt != 0) { /* Line 213, Address: 0x1021290 */
     actionwk->colino = 0; /* Line 214, Address: 0x10212a4 */
-    *(short*)&actionwk->actfree[0] = 0; /* Line 215, Address: 0x10212ac */
+    ((short*)actionwk)[23] = 0; /* Line 215, Address: 0x10212ac */
     actionwk->patno = 7; /* Line 216, Address: 0x10212b4 */
     actionwk->r_no0 += 2; /* Line 217, Address: 0x10212c0 */
     generate_flag = 1; /* Line 218, Address: 0x10212d0 */
@@ -231,7 +231,7 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
   char d0;
   short d5, d6, a6;
 
-  a6 = *(short*)&actionwk->actfree[2]; /* Line 234, Address: 0x102138c */
+  a6 = ((short*)actionwk)[24]; /* Line 234, Address: 0x102138c */
   d0 = tbl0[a6++]; /* Line 235, Address: 0x102139c */
   if (d0 < 0) { /* Line 236, Address: 0x10213cc */
 
@@ -239,11 +239,11 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
     actionwk->actfree[0] = 8; /* Line 239, Address: 0x10213ec */
     return; /* Line 240, Address: 0x10213f8 */
   }
-  ++actionwk->actfree[0]; /* Line 242, Address: 0x1021400 */
-  if (actionwk->actfree[0] != d0) return; /* Line 243, Address: 0x1021410 */
-  *(short*)&actionwk->actfree[2] = a6; /* Line 246, Address: 0x10214a0 */
+  ++((char*)actionwk)[46]; /* Line 242, Address: 0x1021400 */
+  if (((char*)actionwk)[46] != d0) return; /* Line 243, Address: 0x1021410 */
   d5 = tbl0[a6++]; /* Line 244, Address: 0x1021430 */
   d6 = tbl0[a6++]; /* Line 245, Address: 0x1021468 */
+  ((short*)actionwk)[24] = a6; /* Line 246, Address: 0x10214a0 */
   if (actwkchk(&a1) != 0) return; /* Line 247, Address: 0x10214a8 */
   a1->actno = 24; /* Line 248, Address: 0x10214bc */
   a1->r_no1 = 1; /* Line 249, Address: 0x10214c8 */
@@ -258,22 +258,22 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
 void m1wait(act_info* actionwk) { /* Line 258, Address: 0x1021560 */
   if (--actionwk->actfree[0]) return; /* Line 259, Address: 0x102156c */
   actionwk->r_no0 -= 6; /* Line 260, Address: 0x1021588 */
-  actionwk->yposi.w.h = *(short*)&actionwk->actfree[6]; /* Line 261, Address: 0x1021598 */
+  actionwk->yposi.w.h = ((short*)actionwk)[26]; /* Line 261, Address: 0x1021598 */
   soundset(217); /* Line 262, Address: 0x10215a8 */
 } /* Line 263, Address: 0x10215b4 */
 
 void a_hover(act_info* actionwk) { /* Line 265, Address: 0x10215d0 */
   unsigned short d0;
 
-  ++*(short*)&actionwk->actfree[0]; /* Line 268, Address: 0x10215dc */
-  d0 = actionwk->actfree[0]; /* Line 269, Address: 0x10215ec */
+  ++((unsigned short*)actionwk)[23]; /* Line 268, Address: 0x10215dc */
+  d0 = ((unsigned short*)actionwk)[23]; /* Line 269, Address: 0x10215ec */
   d0 &= 7; /* Line 270, Address: 0x10215f8 */
   if (d0 == 0) { /* Line 271, Address: 0x1021600 */
 
-    d0 = *(short*)&actionwk->actfree[8]; /* Line 273, Address: 0x102160c */
+    d0 = ((unsigned short*)actionwk)[27]; /* Line 273, Address: 0x102160c */
     actionwk->yposi.w.h += d0; /* Line 274, Address: 0x1021618 */
   }
-  d0 = *(short*)&actionwk->actfree[0]; /* Line 276, Address: 0x1021630 */
+  d0 = ((unsigned short*)actionwk)[23]; /* Line 276, Address: 0x1021630 */
   d0 &= 31; /* Line 277, Address: 0x102163c */
-  if (d0 == 0) *(short*)&actionwk->actfree[8] = -*(short*)&actionwk->actfree[8]; /* Line 278, Address: 0x1021644 */
+  if (d0 == 0) ((short*)actionwk)[27] = -((short*)actionwk)[27]; /* Line 278, Address: 0x1021644 */
 } /* Line 279, Address: 0x1021674 */
