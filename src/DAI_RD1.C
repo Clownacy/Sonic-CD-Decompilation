@@ -195,7 +195,7 @@ static void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
     else {
       pNewact->actno = 10; /* Line 196, Address: 0x1002270 */
       pNewact->xposi.w.h = pActwk->xposi.w.h; /* Line 197, Address: 0x100227c */
-      pNewact->yposi.w.h = pActwk->yposi.w.h + -16; /* Line 198, Address: 0x100228c */
+      pNewact->yposi.w.h = pActwk->yposi.w.h - 16; /* Line 198, Address: 0x100228c */
       ((char*)(pNewact))[61] = -16; /* Line 199, Address: 0x10022b0 */
 
 
@@ -246,7 +246,7 @@ static void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
   dodai_mtype[mtype](pActwk); /* Line 246, Address: 0x10023e0 */
 
   xlen = ((unsigned short*)pActwk)[30] & 65408; /* Line 248, Address: 0x1002404 */
-  xlen -= (scra_h_posit.w.h + -128) & -128; /* Line 249, Address: 0x100241c */
+  xlen -= (scra_h_posit.w.h - 128) & -128; /* Line 249, Address: 0x100241c */
   if (xlen >= 641) { /* Line 250, Address: 0x1002444 */
     ride_on_clr(pActwk, &actwk[0]); /* Line 251, Address: 0x1002454 */
     dai_fout(pActwk); /* Line 252, Address: 0x1002468 */

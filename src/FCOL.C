@@ -435,7 +435,7 @@ short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
   if (iBlkNo & 4096) { /* Line 435, Address: 0x100229c */
 
 
-    cDirect = -(cDirect + 64) + -64; /* Line 438, Address: 0x10022b0 */
+    cDirect = -(cDirect + 64) - 64; /* Line 438, Address: 0x10022b0 */
   }
   *cpDirStk = cDirect; /* Line 440, Address: 0x10022d4 */
   iXwork &= 15; /* Line 441, Address: 0x10022dc */
@@ -534,7 +534,7 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
 
 
 
-    cDirect = -(cDirect + 64) + -64; /* Line 537, Address: 0x10026e8 */
+    cDirect = -(cDirect + 64) - 64; /* Line 537, Address: 0x10026e8 */
   }
   *cpDirStk = cDirect; /* Line 539, Address: 0x100270c */
 
@@ -644,7 +644,7 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
 
 
     iYwork = ~iYwork; /* Line 646, Address: 0x1002b14 */
-    cDirect = -(cDirect + 64) + -64; /* Line 647, Address: 0x1002b30 */
+    cDirect = -(cDirect + 64) - 64; /* Line 647, Address: 0x1002b30 */
   }
   if (iBlkNo & 2048) { /* Line 649, Address: 0x1002b54 */
 
@@ -734,7 +734,7 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
 
 
     iYwork = ~iYwork; /* Line 736, Address: 0x1002f18 */
-    cDirect = -(cDirect + 64) + -64; /* Line 737, Address: 0x1002f34 */
+    cDirect = -(cDirect + 64) - 64; /* Line 737, Address: 0x1002f34 */
   }
   if (iBlkNo & 2048) { /* Line 739, Address: 0x1002f58 */
 
@@ -850,7 +850,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
     lpw = pmapwk; /* Line 850, Address: 0x1003470 */
     lpw += iXwork; /* Line 851, Address: 0x1003478 */
     lpw += iYwork << 4; /* Line 852, Address: 0x1003488 */
-    lpw += (iBlkNo + -1 << 4) << 4; /* Line 853, Address: 0x100349c */
+    lpw += (iBlkNo - 1 << 4) << 4; /* Line 853, Address: 0x100349c */
     iMapNo = *lpw; /* Line 854, Address: 0x10034b8 */
     return iMapNo; /* Line 855, Address: 0x10034c4 */
   }
@@ -878,7 +878,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
   lpw = pmapwk; /* Line 878, Address: 0x1003624 */
   lpw += iXwork; /* Line 879, Address: 0x100362c */
   lpw += iYwork << 4; /* Line 880, Address: 0x100363c */
-  lpw += (iBlkNo + -1 << 4) << 4; /* Line 881, Address: 0x1003650 */
+  lpw += (iBlkNo - 1 << 4) << 4; /* Line 881, Address: 0x1003650 */
   return *lpw; /* Line 882, Address: 0x100366c */
 
 } /* Line 884, Address: 0x1003678 */

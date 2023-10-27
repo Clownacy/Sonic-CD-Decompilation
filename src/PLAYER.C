@@ -296,7 +296,7 @@ void playpowercnt() { /* Line 276, Address: 0x1007f30 */
   if (plpower_m != 0) { /* Line 296, Address: 0x1008008 */
     d0 = ((unsigned short*)actwk)[27]; /* Line 297, Address: 0x100801c */
     if (d0 != 0) { /* Line 298, Address: 0x1008028 */
-      cal = d0 + -1; /* Line 299, Address: 0x1008034 */
+      cal = d0 - 1; /* Line 299, Address: 0x1008034 */
       --((unsigned short*)actwk)[27]; /* Line 300, Address: 0x1008044 */
       if (cal == 0) { /* Line 301, Address: 0x1008058 */
         if (plpower_s == 0 && boss_sound == 0) { /* Line 302, Address: 0x1008064 */
@@ -316,7 +316,7 @@ void playpowercnt() { /* Line 276, Address: 0x1007f30 */
   if (plpower_s != 0) { /* Line 316, Address: 0x10080bc */
     d0 = ((unsigned short*)actwk)[28]; /* Line 317, Address: 0x10080d0 */
     if (d0 != 0) { /* Line 318, Address: 0x10080dc */
-      cal = d0 + -1; /* Line 319, Address: 0x10080e8 */
+      cal = d0 - 1; /* Line 319, Address: 0x10080e8 */
       --((unsigned short*)actwk)[28]; /* Line 320, Address: 0x10080f8 */
       if (cal == 0) { /* Line 321, Address: 0x100810c */
         plmaxspdwk = 1536; /* Line 322, Address: 0x1008118 */
@@ -650,7 +650,7 @@ void levermove() { /* Line 618, Address: 0x1009080 */
   }
 
   d1 = actwk[ride_number].sprhsize; /* Line 652, Address: 0x1009228 */
-  d2 = d1 * 2 + -4; /* Line 653, Address: 0x1009254 */
+  d2 = d1 * 2 - 4; /* Line 653, Address: 0x1009254 */
   d1 = d1 + actwk[0].xposi.w.h - actwk[ride_number].xposi.w.h; /* Line 654, Address: 0x1009274 */
   if (d1 < 4) goto label3; /* Line 655, Address: 0x10092cc */
   if (d1 >= d2) goto label2; /* Line 656, Address: 0x10092e0 */
@@ -1226,7 +1226,7 @@ unsigned char jumpchk() { /* Line 1207, Address: 0x100b1d0 */
   if (dircol2(&actwk[0], &cal_char) < 6) return ret_flag; /* Line 1226, Address: 0x100b2c8 */
   cal_jump = 1664; /* Line 1227, Address: 0x100b2fc */
   if (actwk[0].cddat & 64) cal_jump = 896; /* Line 1228, Address: 0x100b304 */
-  cal_direc = (unsigned char)(actwk[0].direc.b.h + -64); /* Line 1229, Address: 0x100b324 */
+  cal_direc = (unsigned char)(actwk[0].direc.b.h - 64); /* Line 1229, Address: 0x100b324 */
 
 label1:
   sinset(cal_direc, &sin_tmp, &cos_tmp); /* Line 1232, Address: 0x100b340 */
@@ -1975,6 +1975,6 @@ unsigned char frip_spd(int* cal_jump, unsigned char* cal_direc) { /* Line 1961, 
 
   if (!(actwk[ride_no].cddat & 1)) cal_x = 64 - cal_x; /* Line 1976, Address: 0x100d9fc */
 
-  *cal_jump = -((cal_x * 2560) / 64) + -2560; /* Line 1978, Address: 0x100da50 */
+  *cal_jump = -((cal_x * 2560) / 64) - 2560; /* Line 1978, Address: 0x100da50 */
   return 0; /* Line 1979, Address: 0x100da8c */
 } /* Line 1980, Address: 0x100da90 */

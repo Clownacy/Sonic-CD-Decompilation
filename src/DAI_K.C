@@ -271,7 +271,7 @@ static void jumpchk_d(act_info* pActwk, act_info* pSonicwk) { /* Line 259, Addre
     jumpwk = 1664; /* Line 271, Address: 0x1002570 */
   }
 
-  sinset(pSonicwk->direc.b.h + -64, &sinwk, &coswk); /* Line 274, Address: 0x100257c */
+  sinset(pSonicwk->direc.b.h - 64, &sinwk, &coswk); /* Line 274, Address: 0x100257c */
   pSonicwk->xspeed.w += (coswk * jumpwk) >> 8; /* Line 275, Address: 0x10025a4 */
   pSonicwk->yspeed.w += (sinwk * jumpwk) >> 8; /* Line 276, Address: 0x10025d8 */
 

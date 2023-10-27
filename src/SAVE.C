@@ -44,7 +44,7 @@ void playloadb() { /* Line 14, Address: 0x1005e30 */
     chibi_flag = lpKeepWork->chibi_sb; /* Line 44, Address: 0x1005ffc */
   }
   if ((char)plflag < 0) { /* Line 46, Address: 0x1006010 */
-    scralim_left = lpKeepWork->plxposi_sb + -160; /* Line 47, Address: 0x1006030 */
+    scralim_left = lpKeepWork->plxposi_sb - 160; /* Line 47, Address: 0x1006030 */
   }
 
 
@@ -92,7 +92,7 @@ void playload() { /* Line 54, Address: 0x1006070 */
     }
 
     if ((char)plflag < 0) { /* Line 94, Address: 0x100623c */
-      scralim_left = plxposi_s + -160; /* Line 95, Address: 0x100625c */
+      scralim_left = plxposi_s - 160; /* Line 95, Address: 0x100625c */
     }
   }
 

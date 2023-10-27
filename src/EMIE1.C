@@ -268,7 +268,7 @@ static void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
       }
     }
     else {
-      if ((((short*)pActwk)[29] + -304) < pActwk->xposi.w.h) { /* Line 271, Address: 0x10057dc */
+      if ((((short*)pActwk)[29] - 304) < pActwk->xposi.w.h) { /* Line 271, Address: 0x10057dc */
 
 
 
@@ -369,7 +369,7 @@ static void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
   if (actwk[0].cddat & 1) { /* Line 369, Address: 0x1005b14 */
     pActwk->xposi.w.h = actwk[0].xposi.w.h + 12; /* Line 370, Address: 0x1005b2c */
   } else { /* Line 371, Address: 0x1005b50 */
-    pActwk->xposi.w.h = actwk[0].xposi.w.h + -12; /* Line 372, Address: 0x1005b58 */
+    pActwk->xposi.w.h = actwk[0].xposi.w.h - 12; /* Line 372, Address: 0x1005b58 */
   }
 
   pActwk->yposi.w.h = actwk[0].yposi.w.h; /* Line 375, Address: 0x1005b7c */
@@ -476,7 +476,7 @@ static void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Addr
       }
     } /* Line 477, Address: 0x1005efc */
     else {
-      if ((pSonicwk->xspeed.w + -64) >= 0) { /* Line 479, Address: 0x1005f04 */
+      if ((pSonicwk->xspeed.w - 64) >= 0) { /* Line 479, Address: 0x1005f04 */
         pSonicwk->xspeed.w -= 64; /* Line 480, Address: 0x1005f20 */
       } else { /* Line 481, Address: 0x1005f30 */
         pSonicwk->xspeed.w = 0; /* Line 482, Address: 0x1005f38 */
@@ -560,7 +560,7 @@ static void pljumpset() { /* Line 559, Address: 0x10060e0 */
   short sinwk, coswk;
 
   actwk[0].actfree[2] = 0; /* Line 562, Address: 0x10060e8 */
-  sinset(actwk[0].direc.b.h + -64, &sinwk, &coswk); /* Line 563, Address: 0x10060f0 */
+  sinset(actwk[0].direc.b.h - 64, &sinwk, &coswk); /* Line 563, Address: 0x10060f0 */
   coswk = (coswk * 1664) >> 8; /* Line 564, Address: 0x1006118 */
   actwk[0].xspeed.w += coswk; /* Line 565, Address: 0x1006148 */
   sinwk = (sinwk * 1664) >> 8; /* Line 566, Address: 0x1006160 */
@@ -611,7 +611,7 @@ static void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
   } /* Line 612, Address: 0x10062e8 */
   else {
-    if (((short*)pActwk)[29] + -304 >= pActwk->xposi.w.h) return; /* Line 614, Address: 0x10062f0 */
+    if (((short*)pActwk)[29] - 304 >= pActwk->xposi.w.h) return; /* Line 614, Address: 0x10062f0 */
   }
 
 
@@ -816,7 +816,7 @@ static void heartset(act_info* pActwk) { /* Line 782, Address: 0x1006830 */
   }
 
   pHeartact->xposi.w.h = pActwk->xposi.w.h + wk; /* Line 818, Address: 0x1006984 */
-  pHeartact->yposi.w.h = pActwk->yposi.w.h + -12; /* Line 819, Address: 0x10069b0 */
+  pHeartact->yposi.w.h = pActwk->yposi.w.h - 12; /* Line 819, Address: 0x10069b0 */
 } /* Line 820, Address: 0x10069d4 */
 
 

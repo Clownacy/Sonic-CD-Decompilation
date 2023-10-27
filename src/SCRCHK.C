@@ -427,7 +427,7 @@ int bossclr_scrset(unsigned short wD1) { /* Line 419, Address: 0x10186d0 */
   if (wD1 < 4) { /* Line 427, Address: 0x101873c */
     scralim_down = scralim_n_down; /* Line 428, Address: 0x1018750 */
   }
-  wD0 = (unsigned short)actwk[0].xposi.w.h + -160; /* Line 430, Address: 0x1018760 */
+  wD0 = (unsigned short)actwk[0].xposi.w.h - 160; /* Line 430, Address: 0x1018760 */
   if (scralim_left > (short)wD0) { /* Line 431, Address: 0x101877c */
     return 1; /* Line 432, Address: 0x10187a8 */
   }

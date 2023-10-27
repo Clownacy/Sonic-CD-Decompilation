@@ -56,7 +56,7 @@ void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
 
   block_tbl[pActwk->r_no0 / 2](pActwk); /* Line 57, Address: 0x10150c4 */
   iD0 = pActwk->xposi.w.h & 65408; /* Line 58, Address: 0x1015108 */
-  iD1 = scra_h_posit.w.h + -128; /* Line 59, Address: 0x101512c */
+  iD1 = scra_h_posit.w.h - 128; /* Line 59, Address: 0x101512c */
   iD1 &= -128; /* Line 60, Address: 0x1015150 */
   iD0 -= iD1; /* Line 61, Address: 0x1015160 */
   if ((unsigned short)iD0 >= 641) /* Line 62, Address: 0x101516c */

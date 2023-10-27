@@ -1087,7 +1087,7 @@ void kamemusi_tama_init(act_info* pActwk, act_info* pTamawk) { /* Line 1084, Add
   pTamawk->sproffset = pActwk->sproffset; /* Line 1087, Address: 0x1005f68 */
   pTamawk->sprpri = pActwk->sprpri + 1; /* Line 1088, Address: 0x1005f78 */
   pTamawk->xposi.w.h = pActwk->xposi.w.h; /* Line 1089, Address: 0x1005f94 */
-  pTamawk->yposi.w.h = pActwk->yposi.w.h + -10; /* Line 1090, Address: 0x1005fa4 */
+  pTamawk->yposi.w.h = pActwk->yposi.w.h - 10; /* Line 1090, Address: 0x1005fa4 */
 
   pTamawk->actflg |= 128; /* Line 1092, Address: 0x1005fc8 */
 } /* Line 1093, Address: 0x1005fd8 */

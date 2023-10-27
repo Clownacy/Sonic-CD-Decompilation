@@ -847,7 +847,7 @@ void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
      2000,  2000,  1000,  1000,  1000,  1000,   500,   500,   500,   500, 0
   };
 
-  cTime = ((char*)pActwk)[46] + -1; /* Line 850, Address: 0x1010ab0 */
+  cTime = ((char*)pActwk)[46] - 1; /* Line 850, Address: 0x1010ab0 */
   pActwk->actfree[0] = cTime; /* Line 851, Address: 0x1010ad4 */
   if (cTime != 0) return; /* Line 852, Address: 0x1010adc */
   if (time_flag == 0) { /* Line 853, Address: 0x1010aec */

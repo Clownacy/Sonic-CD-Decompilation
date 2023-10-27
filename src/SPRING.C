@@ -268,7 +268,7 @@ void koma(act_info* actionwk) { /* Line 255, Address: 0x1003f60 */
   }
   d0 = ((unsigned short*)actionwk)[29]; /* Line 269, Address: 0x1003fd4 */
   d0 &= -128; /* Line 270, Address: 0x1003fe0 */
-  d1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 271, Address: 0x1003fe8 */
+  d1 = (unsigned short)(scra_h_posit.w.h - 128) & 65408; /* Line 271, Address: 0x1003fe8 */
   d0 -= d1; /* Line 272, Address: 0x1004010 */
   if (d0 >= 641) frameout(actionwk); /* Line 273, Address: 0x1004018 */
 } /* Line 274, Address: 0x1004034 */
@@ -414,7 +414,7 @@ label1:
 
   d0 = ((unsigned short*)actionwk)[29]; /* Line 415, Address: 0x1004614 */
   d0 &= -128; /* Line 416, Address: 0x1004620 */
-  d1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 417, Address: 0x1004628 */
+  d1 = (unsigned short)(scra_h_posit.w.h - 128) & 65408; /* Line 417, Address: 0x1004628 */
   d0 += d1; /* Line 418, Address: 0x1004650 */
   if (d0 >= 641) frameout(actionwk); /* Line 419, Address: 0x1004658 */
 } /* Line 420, Address: 0x1004674 */

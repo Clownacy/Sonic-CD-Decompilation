@@ -137,7 +137,7 @@ static void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
 
   pActwk->yposi.w.h += 4; /* Line 138, Address: 0x101d85c */
   blkno = 8194; /* Line 139, Address: 0x101d86c */
-  xoffs = pActwk->xposi.w.h + -96; /* Line 140, Address: 0x101d874 */
+  xoffs = pActwk->xposi.w.h - 96; /* Line 140, Address: 0x101d874 */
 
   if (pActwk->yposi.w.h & 15) return; /* Line 142, Address: 0x101d898 */
 

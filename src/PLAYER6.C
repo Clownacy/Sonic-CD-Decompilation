@@ -227,7 +227,7 @@ void bura() { /* Line 209, Address: 0x1021030 */
   actwk[0].actfree[2] |= 4; /* Line 227, Address: 0x1021170 */
   actwk[0].pattimm = 7; /* Line 228, Address: 0x1021184 */
   tmp_yposi = actwk[0].yposi.w.h; /* Line 229, Address: 0x1021190 */
-  tmp_yposi = (tmp_yposi + -24 & -16) + 24; /* Line 230, Address: 0x102119c */
+  tmp_yposi = (tmp_yposi - 24 & -16) + 24; /* Line 230, Address: 0x102119c */
   actwk[0].yposi.w.h = tmp_yposi; /* Line 231, Address: 0x10211b4 */
 } /* Line 232, Address: 0x10211bc */
 
@@ -246,7 +246,7 @@ void sibi2() { /* Line 239, Address: 0x10211d0 */
       || actwk[0].actfree[6] != 0 || st6clrchg == 0)
     return; /* Line 247, Address: 0x102128c */
 
-  block_tbl = tbl[st6clrchg + -1]; /* Line 249, Address: 0x1021294 */
+  block_tbl = tbl[st6clrchg - 1]; /* Line 249, Address: 0x1021294 */
   block_no = scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h); /* Line 250, Address: 0x10212b4 */
   block_no %= 2048; /* Line 251, Address: 0x10212dc */
   i = 0; /* Line 252, Address: 0x10212e8 */
@@ -410,7 +410,7 @@ void playpowercnt() { /* Line 390, Address: 0x1021b00 */
   if (plpower_m != 0) { /* Line 410, Address: 0x1021bd8 */
     d0 = *(short*)&actwk[0].actfree[8]; /* Line 411, Address: 0x1021bec */
     if (d0 != 0) { /* Line 412, Address: 0x1021bf8 */
-      cal = d0 + -1; /* Line 413, Address: 0x1021c04 */
+      cal = d0 - 1; /* Line 413, Address: 0x1021c04 */
       --*(short*)&actwk[0].actfree[8]; /* Line 414, Address: 0x1021c14 */
       if (cal == 0) { /* Line 415, Address: 0x1021c28 */
         if (plpower_s == 0 && boss_sound == 0) { /* Line 416, Address: 0x1021c34 */
@@ -430,7 +430,7 @@ void playpowercnt() { /* Line 390, Address: 0x1021b00 */
   if (plpower_s != 0) { /* Line 430, Address: 0x1021c8c */
     d0 = *(short*)&actwk[0].actfree[10]; /* Line 431, Address: 0x1021ca0 */
     if (d0 != 0) { /* Line 432, Address: 0x1021cac */
-      cal = d0 + -1; /* Line 433, Address: 0x1021cb8 */
+      cal = d0 - 1; /* Line 433, Address: 0x1021cb8 */
       --*(short*)&actwk[0].actfree[10]; /* Line 434, Address: 0x1021cc8 */
       if (cal == 0) { /* Line 435, Address: 0x1021cdc */
         plmaxspdwk = 1536; /* Line 436, Address: 0x1021ce8 */
@@ -694,7 +694,7 @@ void kuru2move() { /* Line 666, Address: 0x10227b0 */
 
 
 void buramove() { /* Line 696, Address: 0x1022a10 */
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h + -24) % 2048 == 345 || swdata.b.l & 112) { /* Line 697, Address: 0x1022a18 */
+  if (scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h - 24) % 2048 == 345 || swdata.b.l & 112) { /* Line 697, Address: 0x1022a18 */
 
 
     actwk[0].actfree[2] &= 251; /* Line 700, Address: 0x1022a7c */
@@ -785,7 +785,7 @@ void levermove() { /* Line 753, Address: 0x1022e40 */
       }
 
       d0 = actwk[0].sprhsize; /* Line 787, Address: 0x1022fe8 */
-      d2 = d0 * 2 + -4; /* Line 788, Address: 0x1023014 */
+      d2 = d0 * 2 - 4; /* Line 788, Address: 0x1023014 */
       d0 += actwk[0].xposi.w.h - actwk[ride_number].yposi.w.h; /* Line 789, Address: 0x1023034 */
       if (d0 < 4) goto label2; /* Line 790, Address: 0x102308c */
       if (d0 >= d2) goto label1; /* Line 791, Address: 0x10230a0 */
@@ -1356,7 +1356,7 @@ unsigned char jumpchk() { /* Line 1336, Address: 0x1024ee0 */
 
   cal_jump = 1664; /* Line 1357, Address: 0x102500c */
   if (actwk[0].cddat & 64) cal_jump = 896; /* Line 1358, Address: 0x1025014 */
-  cal_direc = actwk[0].direc.b.h + -64; /* Line 1359, Address: 0x1025034 */
+  cal_direc = actwk[0].direc.b.h - 64; /* Line 1359, Address: 0x1025034 */
 
 label1:
   sinset(cal_direc, &sin_tmp, &cos_tmp); /* Line 1362, Address: 0x1025050 */
@@ -2060,6 +2060,6 @@ unsigned char frip_spd(int* cal_jump, unsigned char* cal_direc) { /* Line 2047, 
 
   if ((actwk[ride_no].cddat & 1) == 0) cal_x = 64 - cal_x; /* Line 2061, Address: 0x10272fc */
 
-  *cal_jump = -((cal_x * 512) / 64) + -2560; /* Line 2063, Address: 0x1027350 */
+  *cal_jump = -((cal_x * 512) / 64) - 2560; /* Line 2063, Address: 0x1027350 */
   return 0; /* Line 2064, Address: 0x102738c */
 } /* Line 2065, Address: 0x1027390 */

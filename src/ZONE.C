@@ -635,7 +635,7 @@ static void clear_move1(act_info* pAct) { // Line 627, Address: 0x1013200
       if (((short*)pAct)[27] < 0) { // Line 635, Address: 0x101324c
         pAct->r_no0 += 2; // Line 636, Address: 0x1013264
         if (systemtimer.w.l - ClearSountWait >= 540) { // Line 637, Address: 0x1013274
-          ClearSountWait = systemtimer.w.l + -540; // Line 638, Address: 0x10132a0
+          ClearSountWait = systemtimer.w.l - 540; // Line 638, Address: 0x10132a0
         }
       }
 

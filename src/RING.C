@@ -198,7 +198,7 @@ void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
   }
   i = fw_index + 1; /* Line 199, Address: 0x10065e4 */
   do {
-    if (flagwork[--i] & (1 << (ring_counter + -1))) goto label3; /* Line 201, Address: 0x10065e8 */
+    if (flagwork[--i] & (1 << (ring_counter - 1))) goto label3; /* Line 201, Address: 0x10065e8 */
   } while (--d0 != -1); /* Line 202, Address: 0x1006620 */
 
   flagwork[fw_index] &= 127; /* Line 204, Address: 0x1006648 */
@@ -273,7 +273,7 @@ void ringmove(act_info* pActwk) { /* Line 272, Address: 0x1006a40 */
   unsigned short d0;
 
   if (pActwk->actflg >= 0) { /* Line 275, Address: 0x1006a50 */
-    d0 = (((unsigned short*)pActwk)[27] & 65408) - (scra_h_posit.w.h + -128 & 65408); /* Line 276, Address: 0x1006a64 */
+    d0 = (((unsigned short*)pActwk)[27] & 65408) - (scra_h_posit.w.h - 128 & 65408); /* Line 276, Address: 0x1006a64 */
     if (d0 >= 641) { /* Line 277, Address: 0x1006a94 */
       ringerase(pActwk); /* Line 278, Address: 0x1006aa4 */
       return; /* Line 279, Address: 0x1006ab0 */
@@ -307,7 +307,7 @@ void ringget(act_info* pActwk) { /* Line 293, Address: 0x1006b40 */
     else if (d1 >= 3) d1 = 2; /* Line 307, Address: 0x1006c28 */
   }
 
-  flagwork[d0 + d1] |= 1 << (pActwk->actfree[10] + -1); /* Line 310, Address: 0x1006c48 */
+  flagwork[d0 + d1] |= 1 << (pActwk->actfree[10] - 1); /* Line 310, Address: 0x1006c48 */
   ringdie(pActwk); /* Line 311, Address: 0x1006c90 */
 } /* Line 312, Address: 0x1006c9c */
 

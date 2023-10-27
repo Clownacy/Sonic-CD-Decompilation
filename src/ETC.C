@@ -116,7 +116,7 @@ void sinset(unsigned char kakudo, short* sin, short* cos) { /* Line 66, Address:
 
   kakudo_w = (kakudo & 65535) + 64; /* Line 117, Address: 0x1001148 */
   *cos = sintable[kakudo_w]; /* Line 118, Address: 0x1001160 */
-  *sin = sintable[kakudo_w + -64]; /* Line 119, Address: 0x1001178 */
+  *sin = sintable[kakudo_w - 64]; /* Line 119, Address: 0x1001178 */
 } /* Line 120, Address: 0x1001194 */
 
 

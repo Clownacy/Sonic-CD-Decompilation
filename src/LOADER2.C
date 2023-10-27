@@ -180,20 +180,20 @@ void sub_sync(short ReqNo) { /* Line 177, Address: 0x1013bd0 */
   }
 
   if (ReqNo >= 118 && ReqNo < 129) { /* Line 182, Address: 0x1013c00 */
-    WaveRequest(ReqNo + -43); /* Line 183, Address: 0x1013c30 */
+    WaveRequest(ReqNo - 43); /* Line 183, Address: 0x1013c30 */
     return; /* Line 184, Address: 0x1013c58 */
   }
   if ((ReqNo >= 15 && ReqNo < 35) || (ReqNo >= 48 && ReqNo < 55)) { /* Line 186, Address: 0x1013c60 */
-    CDPlay(ReqNo + -12); /* Line 187, Address: 0x1013cc0 */
+    CDPlay(ReqNo - 12); /* Line 187, Address: 0x1013cc0 */
   } /* Line 188, Address: 0x1013ce8 */
   else if (ReqNo >= 102 && ReqNo < 113) { /* Line 189, Address: 0x1013cf0 */
-    CDPlay(ReqNo + -79); /* Line 190, Address: 0x1013d20 */
+    CDPlay(ReqNo - 79); /* Line 190, Address: 0x1013d20 */
   } /* Line 191, Address: 0x1013d48 */
   else if (ReqNo == 113) { /* Line 192, Address: 0x1013d50 */
     CDPlay(2); /* Line 193, Address: 0x1013d68 */
   } /* Line 194, Address: 0x1013d7c */
   else if (ReqNo >= 114 && ReqNo < 116) { /* Line 195, Address: 0x1013d84 */
-    CDPlay(ReqNo + -80); /* Line 196, Address: 0x1013db4 */
+    CDPlay(ReqNo - 80); /* Line 196, Address: 0x1013db4 */
   } else if (ReqNo == 146) { /* Line 197, Address: 0x1013ddc */
     WaveRequest(85); /* Line 198, Address: 0x1013dfc */
   }

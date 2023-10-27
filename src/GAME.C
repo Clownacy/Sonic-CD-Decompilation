@@ -818,7 +818,7 @@ void scdset() {
 void syspatchg() {
   if (--sys_pattim & 128) { /* Line 819, Address: 0x1019120 */
     sys_pattim = 11; /* Line 820, Address: 0x1019148 */
-    sys_patno = (sys_patno + -1) & 7; /* Line 821, Address: 0x1019154 */
+    sys_patno = (sys_patno - 1) & 7; /* Line 821, Address: 0x1019154 */
   }
   if (--sys_pattim2 & 128) { /* Line 823, Address: 0x1019174 */
     sys_pattim2 = 7; /* Line 824, Address: 0x101919c */

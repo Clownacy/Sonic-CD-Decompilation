@@ -345,7 +345,7 @@ short dircol_l3(act_info* pActwk, short iXposi, short iYposi) { /* Line 344, Add
   char* cpDirStk = &dirstk[0]; /* Line 345, Address: 0x100e58c */
   short iScd;
 
-  iXposi = (iXposi + -10) ^ 15; /* Line 348, Address: 0x100e594 */
+  iXposi = (iXposi - 10) ^ 15; /* Line 348, Address: 0x100e594 */
   iScd = scdchk_r(pActwk, iXposi, iYposi, -16, 2048, 14, cpDirStk); /* Line 349, Address: 0x100e5b4 */
   dircolchk1(64); /* Line 350, Address: 0x100e5e0 */
   return iScd; /* Line 351, Address: 0x100e5ec */
@@ -422,7 +422,7 @@ short dircol_u3(act_info* pActwk, short iXposi, short iYposi) { /* Line 421, Add
   short iScd;
   char* cpDirStk = &dirstk[0]; /* Line 423, Address: 0x100e81c */
 
-  iYposi = (iYposi + -10) ^ 15; /* Line 425, Address: 0x100e824 */
+  iYposi = (iYposi - 10) ^ 15; /* Line 425, Address: 0x100e824 */
   iScd = scdchk(pActwk, iXposi, iYposi, -16, 4096, 14, cpDirStk); /* Line 426, Address: 0x100e844 */
   dircolchk1(-128); /* Line 427, Address: 0x100e870 */
   return iScd; /* Line 428, Address: 0x100e87c */

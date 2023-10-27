@@ -168,9 +168,9 @@ void marker_init(act_info* markerwk) { /* Line 141, Address: 0x1015600 */
   parent = (act_info**)&new_actwk->actfree[6]; /* Line 168, Address: 0x1015778 */
   *parent = markerwk; /* Line 169, Address: 0x1015780 */
   new_actwk->xposi.w.h = markerwk->xposi.w.h; /* Line 170, Address: 0x1015788 */
-  new_actwk->yposi.w.h = markerwk->yposi.w.h + -32; /* Line 171, Address: 0x1015798 */
+  new_actwk->yposi.w.h = markerwk->yposi.w.h - 32; /* Line 171, Address: 0x1015798 */
   ((short*)new_actwk)[23] = markerwk->xposi.w.h; /* Line 172, Address: 0x10157bc */
-  marker_yposi_m_buf = markerwk->yposi.w.h + -24; /* Line 173, Address: 0x10157cc */
+  marker_yposi_m_buf = markerwk->yposi.w.h - 24; /* Line 173, Address: 0x10157cc */
   ((short*)new_actwk)[24] = marker_yposi_m_buf; /* Line 174, Address: 0x10157e8 */
 } /* Line 175, Address: 0x10157f0 */
 
@@ -270,7 +270,7 @@ void test_move(act_info* testwk) { /* Line 269, Address: 0x1015b90 */
   unsigned short cal0, cal1;
 
   cal0 = ((unsigned short*)testwk)[26] & 65408; /* Line 272, Address: 0x1015ba4 */
-  cal1 = (unsigned short)(scra_h_posit.w.h + -128) & 65408; /* Line 273, Address: 0x1015bbc */
+  cal1 = (unsigned short)(scra_h_posit.w.h - 128) & 65408; /* Line 273, Address: 0x1015bbc */
   if ((cal0 - cal1) >= 641) { frameout(testwk); return; } /* Line 274, Address: 0x1015be4 */
 
   patchg(testwk, bariachg); /* Line 276, Address: 0x1015c10 */
@@ -596,7 +596,7 @@ void ride_on_chk_f(act_info* futawk, act_info* sonicwk) { /* Line 587, Address: 
   if (actwkchk(&new_actwk) != 0) return; /* Line 596, Address: 0x1016764 */
   new_actwk->actno = 11; /* Line 597, Address: 0x1016778 */
   new_actwk->xposi.w.h = futawk->xposi.w.h; /* Line 598, Address: 0x1016784 */
-  new_actwk->yposi.w.h = futawk->yposi.w.h + -4; /* Line 599, Address: 0x1016794 */
+  new_actwk->yposi.w.h = futawk->yposi.w.h - 4; /* Line 599, Address: 0x1016794 */
   soundset(164); /* Line 600, Address: 0x10167b8 */
 } /* Line 601, Address: 0x10167c4 */
 
@@ -794,7 +794,7 @@ void muteki_sub(act_info* bariawk) { /* Line 786, Address: 0x1017070 */
   }
 
   ppw_offset.w = plposiwkadr.w; /* Line 796, Address: 0x10170d0 */
-  cal_no = bariawk->mstno.b.h + -1; /* Line 797, Address: 0x10170dc */
+  cal_no = bariawk->mstno.b.h - 1; /* Line 797, Address: 0x10170dc */
   if (cal_no >= 4) cal_no -= 4; /* Line 798, Address: 0x10170f8 */
   cal_no = cal_no * 24 + 4; /* Line 799, Address: 0x1017110 */
   ppw_offset.b.l -= cal_no; /* Line 800, Address: 0x101712c */
