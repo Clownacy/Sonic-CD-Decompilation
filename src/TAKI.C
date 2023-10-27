@@ -100,7 +100,7 @@ void(*taki_move_tbl[2])(act_info*) = {
 
 void taki(act_info* pActwk) { /* Line 101, Address: 0x101d6e0 */
   taki_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 102, Address: 0x101d6ec */
-  patchg(pActwk, (unsigned char**)shibukichg); /* Line 103, Address: 0x101d730 */
+  patchg(pActwk, &shibukichg); /* Line 103, Address: 0x101d730 */
   actionsub(pActwk); /* Line 104, Address: 0x101d744 */
 } /* Line 105, Address: 0x101d750 */
 

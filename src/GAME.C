@@ -195,32 +195,32 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
 
 
-  SetGrid = (int(*)(int, int, int, int))pFuncTbl++; /* Line 198, Address: 0x1017a20 */
-  EAsprset = (void(*)(short, short, unsigned short, unsigned short, unsigned short))pFuncTbl++; /* Line 199, Address: 0x1017a38 */
-  ClrSpriteDebug = (void(*)())pFuncTbl++; /* Line 200, Address: 0x1017a50 */
-  WaveRequest = (void(*)(short))pFuncTbl++; /* Line 201, Address: 0x1017a68 */
-  CDPlay = (void(*)(short))pFuncTbl++; /* Line 202, Address: 0x1017a80 */
-  CDPause = (void(*)(short))pFuncTbl++; /* Line 203, Address: 0x1017a98 */
-  ChangeTileBmp = (void(*)(int, int))pFuncTbl++; /* Line 204, Address: 0x1017ab0 */
+  SetGrid = (int(*)(int, int, int, int))*pFuncTbl++; /* Line 198, Address: 0x1017a20 */
+  EAsprset = (void(*)(short, short, unsigned short, unsigned short, unsigned short))*pFuncTbl++; /* Line 199, Address: 0x1017a38 */
+  ClrSpriteDebug = (void(*)())*pFuncTbl++; /* Line 200, Address: 0x1017a50 */
+  WaveRequest = (void(*)(short))*pFuncTbl++; /* Line 201, Address: 0x1017a68 */
+  CDPlay = (void(*)(short))*pFuncTbl++; /* Line 202, Address: 0x1017a80 */
+  CDPause = (void(*)(short))*pFuncTbl++; /* Line 203, Address: 0x1017a98 */
+  ChangeTileBmp = (void(*)(int, int))*pFuncTbl++; /* Line 204, Address: 0x1017ab0 */
   ++pFuncTbl; /* Line 205, Address: 0x1017ac8 */
   ++pFuncTbl; /* Line 206, Address: 0x1017ad4 */
   ++pFuncTbl; /* Line 207, Address: 0x1017ae0 */
-  WaveAllStop = (void(*)())pFuncTbl++; /* Line 208, Address: 0x1017aec */
+  WaveAllStop = (void(*)())*pFuncTbl++; /* Line 208, Address: 0x1017aec */
 
   ++pFuncTbl; /* Line 210, Address: 0x1017b04 */
   ++pFuncTbl; /* Line 211, Address: 0x1017b10 */
-  sMemSet = (void(*)(void*, unsigned char, int))pFuncTbl++; /* Line 212, Address: 0x1017b1c */
-  sMemCpy = (void(*)(void*, void*, int))pFuncTbl++; /* Line 213, Address: 0x1017b34 */
+  sMemSet = (void(*)(void*, unsigned char, int))*pFuncTbl++; /* Line 212, Address: 0x1017b1c */
+  sMemCpy = (void(*)(void*, void*, int))*pFuncTbl++; /* Line 213, Address: 0x1017b34 */
   ++pFuncTbl; /* Line 214, Address: 0x1017b4c */
-  sRandom = (int(*)())pFuncTbl++; /* Line 215, Address: 0x1017b58 */
+  sRandom = (int(*)())*pFuncTbl++; /* Line 215, Address: 0x1017b58 */
   ++pFuncTbl; /* Line 216, Address: 0x1017b70 */
   ++pFuncTbl; /* Line 217, Address: 0x1017b7c */
   ++pFuncTbl; /* Line 218, Address: 0x1017b88 */
-  sPrintf = (void(*)(char*, char*))pFuncTbl++; /* Line 219, Address: 0x1017b94 */
-  sOutputDebugString = (void(*)(char*))pFuncTbl++; /* Line 220, Address: 0x1017bac */
-  sOpenFile = (int(*)(char*))pFuncTbl++; /* Line 221, Address: 0x1017bc4 */
-  sReadFile = (int(*)(int, void*, int))pFuncTbl++; /* Line 222, Address: 0x1017bdc */
-  sCloseFile = (void(*)(int))pFuncTbl++; /* Line 223, Address: 0x1017bf4 */
+  sPrintf = (void(*)(char*, char*))*pFuncTbl++; /* Line 219, Address: 0x1017b94 */
+  sOutputDebugString = (void(*)(char*))*pFuncTbl++; /* Line 220, Address: 0x1017bac */
+  sOpenFile = (int(*)(char*))*pFuncTbl++; /* Line 221, Address: 0x1017bc4 */
+  sReadFile = (int(*)(int, void*, int))*pFuncTbl++; /* Line 222, Address: 0x1017bdc */
+  sCloseFile = (void(*)(int))*pFuncTbl++; /* Line 223, Address: 0x1017bf4 */
   ++pFuncTbl; /* Line 224, Address: 0x1017c0c */
 
 
@@ -251,16 +251,16 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
 
 
-  pmapwk = (unsigned short*)*pBufTbl++; /* Line 254, Address: 0x1017c18 */
-  lpcolorwk = (palette_entry*)*pBufTbl++; /* Line 255, Address: 0x1017c34 */
-  lpcolorwk2 = (palette_entry*)*pBufTbl++; /* Line 256, Address: 0x1017c50 */
-  lpcolorwk3 = (palette_entry*)*pBufTbl++; /* Line 257, Address: 0x1017c6c */
-  lpcolorwk4 = (palette_entry*)*pBufTbl++; /* Line 258, Address: 0x1017c88 */
-  lphscrollbuff = (int_union*)*pBufTbl++; /* Line 259, Address: 0x1017ca4 */
-  lpFadeFlag = (int*)pBufTbl++; /* Line 260, Address: 0x1017cc0 */
-  lpKeepWork = (game_info*)pBufTbl++; /* Line 261, Address: 0x1017cd8 */
+  pmapwk = (unsigned short*)**pBufTbl++; /* Line 254, Address: 0x1017c18 */
+  lpcolorwk = (palette_entry*)**pBufTbl++; /* Line 255, Address: 0x1017c34 */
+  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 256, Address: 0x1017c50 */
+  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 257, Address: 0x1017c6c */
+  lpcolorwk4 = (palette_entry*)**pBufTbl++; /* Line 258, Address: 0x1017c88 */
+  lphscrollbuff = (int_union*)**pBufTbl++; /* Line 259, Address: 0x1017ca4 */
+  lpFadeFlag = (int*)*pBufTbl++; /* Line 260, Address: 0x1017cc0 */
+  lpKeepWork = (game_info*)*pBufTbl++; /* Line 261, Address: 0x1017cd8 */
   ++pBufTbl; /* Line 262, Address: 0x1017cf0 */
-  lpghWnd = (unsigned int*)pBufTbl++; /* Line 263, Address: 0x1017cfc */
+  lpghWnd = (unsigned int*)*pBufTbl++; /* Line 263, Address: 0x1017cfc */
 
 
   plring = lpKeepWork->plring; /* Line 266, Address: 0x1017d14 */

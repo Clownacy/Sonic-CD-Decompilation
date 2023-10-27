@@ -288,7 +288,7 @@ void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
   actionwk->xspeed.w = 384; /* Line 288, Address: 0x10040cc */
 
   pa_set(); /* Line 290, Address: 0x10040d8 */
-  patchg(actionwk, (unsigned char**)komachg); /* Line 291, Address: 0x10040e0 */
+  patchg(actionwk, (unsigned char**)&komachg); /* Line 291, Address: 0x10040e0 */
 
   if (actwkchk(&a1) != 0) { /* Line 293, Address: 0x10040f4 */
 
@@ -329,7 +329,7 @@ void koma_move2(act_info* actionwk) { /* Line 322, Address: 0x1004270 */
     d0 -= actionwk->yposi.w.h; /* Line 329, Address: 0x10042c8 */
     if (d0 >= 12) actionwk->xspeed.w = -actionwk->xspeed.w; /* Line 330, Address: 0x10042dc */
     speedset2(actionwk); /* Line 331, Address: 0x1004314 */
-    patchg(actionwk, (unsigned char**)komachg); /* Line 332, Address: 0x1004320 */
+    patchg(actionwk, (unsigned char**)&komachg); /* Line 332, Address: 0x1004320 */
   }
   actionsub(actionwk); /* Line 334, Address: 0x1004334 */
 } /* Line 335, Address: 0x1004340 */
@@ -493,7 +493,7 @@ void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
 } /* Line 493, Address: 0x10049f8 */
 
 void sjumpmove2(act_info* actionwk) { /* Line 495, Address: 0x1004a10 */
-  patchg(actionwk, (unsigned char**)springchg); /* Line 496, Address: 0x1004a1c */
+  patchg(actionwk, (unsigned char**)&springchg); /* Line 496, Address: 0x1004a1c */
 } /* Line 497, Address: 0x1004a30 */
 
 void sjumpmove3(act_info* actionwk) { /* Line 499, Address: 0x1004a40 */
@@ -538,7 +538,7 @@ void sdushmove(act_info* actionwk) { /* Line 511, Address: 0x1004ad0 */
 } /* Line 538, Address: 0x1004bf8 */
 
 void sdushmove2(act_info* actionwk) { /* Line 540, Address: 0x1004c10 */
-  patchg(actionwk, (unsigned char**)springchg); /* Line 541, Address: 0x1004c1c */
+  patchg(actionwk, (unsigned char**)&springchg); /* Line 541, Address: 0x1004c1c */
 } /* Line 542, Address: 0x1004c30 */
 
 void sdushmove3(act_info* actionwk) { /* Line 544, Address: 0x1004c40 */
@@ -570,7 +570,7 @@ void sjump2move(act_info* actionwk) { /* Line 554, Address: 0x1004cc0 */
 } /* Line 570, Address: 0x1004d7c */
 
 void sjump2move2(act_info* actionwk) { /* Line 572, Address: 0x1004d90 */
-  patchg(actionwk, (unsigned char**)springchg); /* Line 573, Address: 0x1004d9c */
+  patchg(actionwk, (unsigned char**)&springchg); /* Line 573, Address: 0x1004d9c */
 } /* Line 574, Address: 0x1004db0 */
 
 void sjump2move3(act_info* actionwk) { /* Line 576, Address: 0x1004dc0 */
@@ -625,7 +625,7 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
 } /* Line 625, Address: 0x1005018 */
 
 void sjump3move2(act_info* actionwk) { /* Line 627, Address: 0x1005040 */
-  patchg(actionwk, (unsigned char**)springchg); /* Line 628, Address: 0x100504c */
+  patchg(actionwk, (unsigned char**)&springchg); /* Line 628, Address: 0x100504c */
 } /* Line 629, Address: 0x1005060 */
 
 void sjump3move3(act_info* actionwk) { /* Line 631, Address: 0x1005070 */
