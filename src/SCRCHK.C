@@ -73,7 +73,7 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
 
     sD1 = -sD1; /* Line 74, Address: 0x1017b58 */
     if (scralim_n_down < scra_v_posit.w.h) { /* Line 75, Address: 0x1017b64 */
-      scralim_down = scra_v_posit.w.h & -2; /* Line 76, Address: 0x1017b90 */
+      scralim_down = scra_v_posit.w.h & 65534; /* Line 76, Address: 0x1017b90 */
     }
 
     scralim_down += sD1; /* Line 79, Address: 0x1017bb4 */

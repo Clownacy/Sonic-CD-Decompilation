@@ -174,7 +174,7 @@ void mizuki_set() { /* Line 146, Address: 0x1007950 */
 unsigned int mapno_chk(short d2, short d3) { /* Line 174, Address: 0x1007ad0 */
   unsigned int d1;
 
-  d1 = 33; /* Line 177, Address: 0x1007ae0 */
+  d1 = 2162688; /* Line 177, Address: 0x1007ae0 */
   d1 += mapwka[d2 >> 8][d3 >> 8]; /* Line 178, Address: 0x1007ae4 */
   return d1; /* Line 179, Address: 0x1007b24 */
 } /* Line 180, Address: 0x1007b28 */
@@ -417,7 +417,7 @@ void playsave() {
   plring_s = plring; /* Line 417, Address: 0x100868c */
   lpKeepWork->plring_f2_s = plring_f2; /* Line 418, Address: 0x100869c */
   plring_f2_s = plring_f2; /* Line 419, Address: 0x10086b0 */
-  if (pltime.l >= (5 | 1)) lpKeepWork->pltime_sb = 5; /* Line 420, Address: 0x10086c0 */
+  if (pltime.l >= 327681) lpKeepWork->pltime_sb = 327680; /* Line 420, Address: 0x10086c0 */
   else lpKeepWork->pltime_sb = pltime.l; /* Line 421, Address: 0x10086f4 */
 
   lpKeepWork->chibi_sb = chibi_flag; /* Line 423, Address: 0x1008708 */
@@ -1975,6 +1975,6 @@ unsigned char frip_spd(int* cal_jump, unsigned char* cal_direc) { /* Line 1961, 
 
   if ((actwk[ride_no].cddat & 1) == 0) cal_x = 64 - cal_x; /* Line 1976, Address: 0x100d9fc */
 
-  *cal_jump = -((cal_x * 512) / 64) + -2560; /* Line 1978, Address: 0x100da50 */
+  *cal_jump = -((cal_x * 2560) / 64) + -2560; /* Line 1978, Address: 0x100da50 */
   return 0; /* Line 1979, Address: 0x100da8c */
 } /* Line 1980, Address: 0x100da90 */

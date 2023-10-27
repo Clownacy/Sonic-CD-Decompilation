@@ -99,7 +99,7 @@ void playsave0(act_info* savewk) { /* Line 86, Address: 0x10153f0 */
   scrz_v_posit_s = scrz_v_posit.w.h; /* Line 99, Address: 0x10154b8 */
   waterposi_m_s = waterposi_m; /* Line 100, Address: 0x10154c8 */
   waterflag_s = waterflag; /* Line 101, Address: 0x10154d8 */
-  if (pltime.l >= 5) pltime_s = 5; /* Line 102, Address: 0x10154e8 */
+  if (pltime.l >= 327680) pltime_s = 327680; /* Line 102, Address: 0x10154e8 */
   else pltime_s = pltime.l; /* Line 103, Address: 0x1015514 */
   chibi_s = chibi_flag; /* Line 104, Address: 0x1015524 */
 } /* Line 105, Address: 0x1015534 */
@@ -465,7 +465,7 @@ void flow_move0(act_info* flowerwk) { /* Line 453, Address: 0x1016170 */
     }
     flowerwk->r_no0 = 4; /* Line 466, Address: 0x101626c */
     flowerwk->mstno.b.h = 1; /* Line 467, Address: 0x1016278 */
-    flowerwk->sprvsize = 0; /* Line 468, Address: 0x1016284 */
+    flowerwk->sprvsize = 48; /* Line 468, Address: 0x1016284 */
     flow_move1(flowerwk); /* Line 469, Address: 0x1016290 */
   } else { /* Line 470, Address: 0x101629c */
     flowerwk->yposi.w.h += 2; /* Line 471, Address: 0x10162a4 */

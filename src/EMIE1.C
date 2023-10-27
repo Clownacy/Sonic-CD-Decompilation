@@ -380,7 +380,7 @@ void emie1_dakii(act_info* pActwk) { /* Line 358, Address: 0x1005ac0 */
 
     pActwk->actfree[20] &= 254; /* Line 381, Address: 0x1005bc4 */
     pActwk->r_no0 = 6; /* Line 382, Address: 0x1005bd4 */
-  } else if (pltime.l >= (9 | 12800)) { /* Line 383, Address: 0x1005be0 */
+  } else if (pltime.l >= 602624) { /* Line 383, Address: 0x1005be0 */
 
     pljumpset(); /* Line 385, Address: 0x1005c04 */
     pActwk->actfree[20] &= 254; /* Line 386, Address: 0x1005c0c */
@@ -476,7 +476,7 @@ void emie_play(act_info* pEmiewk, act_info* pSonicwk) { /* Line 465, Address: 0x
       }
     } /* Line 477, Address: 0x1005efc */
     else {
-      if ((pSonicwk->xspeed.w + -16) >= 0) { /* Line 479, Address: 0x1005f04 */
+      if ((pSonicwk->xspeed.w + -64) >= 0) { /* Line 479, Address: 0x1005f04 */
         pSonicwk->xspeed.w -= 64; /* Line 480, Address: 0x1005f20 */
       } else { /* Line 481, Address: 0x1005f30 */
         pSonicwk->xspeed.w = 0; /* Line 482, Address: 0x1005f38 */
@@ -618,7 +618,7 @@ void dakicheck(act_info* pActwk) { /* Line 599, Address: 0x1006290 */
 
 
 
-  if (pltime.l >= (9 | 12800)) return; /* Line 621, Address: 0x1006320 */
+  if (pltime.l >= 602624) return; /* Line 621, Address: 0x1006320 */
 
 
 

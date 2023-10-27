@@ -1115,7 +1115,7 @@ unsigned char CSset(unsigned short wSrc, unsigned short wDst) { /* Line 1112, Ad
   lSrc = wSrc; /* Line 1115, Address: 0x1003ba8 */
   lDst = wDst; /* Line 1116, Address: 0x1003bb0 */
   wk = lSrc + lDst; /* Line 1117, Address: 0x1003bb8 */
-  if (wk >= 1) return 1; /* Line 1118, Address: 0x1003bbc */
+  if (wk >= 65536) return 1; /* Line 1118, Address: 0x1003bbc */
   return 0; /* Line 1119, Address: 0x1003bd8 */
 } /* Line 1120, Address: 0x1003bdc */
 

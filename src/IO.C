@@ -23,11 +23,11 @@ int random() { /* Line 21, Address: 0x1002340 */
   unsigned short w;
 
   lD1.l = ranum; /* Line 25, Address: 0x1002348 */
-  if (ranum == 0) lD1.l = 10861 | 13914; /* Line 26, Address: 0x1002354 */
+  if (ranum == 0) lD1.l = 711800410; /* Line 26, Address: 0x1002354 */
   lD0.l = lD1.l; /* Line 27, Address: 0x1002370 */
   if (lD1.l < 0) { /* Line 28, Address: 0x1002378 */
     lD1.l *= 4; /* Line 29, Address: 0x1002384 */
-    lD1.l |= -32768; /* Line 30, Address: 0x1002390 */
+    lD1.l |= -2147483648; /* Line 30, Address: 0x1002390 */
   } /* Line 31, Address: 0x10023a0 */
   else {
     lD1.l *= 4; /* Line 33, Address: 0x10023a8 */
@@ -35,7 +35,7 @@ int random() { /* Line 21, Address: 0x1002340 */
   lD1.l += lD0.l; /* Line 35, Address: 0x10023b4 */
   if (lD1.l < 0) { /* Line 36, Address: 0x10023c4 */
     lD1.l *= 8; /* Line 37, Address: 0x10023d0 */
-    lD1.l |= -32768; /* Line 38, Address: 0x10023dc */
+    lD1.l |= -2147483648; /* Line 38, Address: 0x10023dc */
   } /* Line 39, Address: 0x10023ec */
   else {
     lD1.l *= 8; /* Line 41, Address: 0x10023f4 */

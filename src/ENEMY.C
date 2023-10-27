@@ -545,7 +545,7 @@ void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
 
   if (pActwk->userflag.b.h == 0) /* Line 546, Address: 0x1004d3c */
   {
-    *(int*)&pActwk->actfree[0] = -1; /* Line 548, Address: 0x1004d54 */
+    *(int*)&pActwk->actfree[0] = -65536; /* Line 548, Address: 0x1004d54 */
     pActwk->mstno.b.h = 0; /* Line 549, Address: 0x1004d64 */
   } /* Line 550, Address: 0x1004d6c */
   else
@@ -555,7 +555,7 @@ void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
   }
 
 
-  ++pActwk->yposi.l; /* Line 558, Address: 0x1004d90 */
+  pActwk->yposi.l += 65536; /* Line 558, Address: 0x1004d90 */
   c = emycol_d(pActwk); /* Line 559, Address: 0x1004da4 */
   if (c < 0) /* Line 560, Address: 0x1004db8 */
   {
@@ -569,7 +569,7 @@ void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
 void ari_fall(act_info* pActwk) { /* Line 569, Address: 0x1004df0 */
   short c;
 
-  ++pActwk->yposi.l; /* Line 572, Address: 0x1004e00 */
+  pActwk->yposi.l += 65536; /* Line 572, Address: 0x1004e00 */
   c = emycol_d(pActwk); /* Line 573, Address: 0x1004e14 */
   if (c < 0) /* Line 574, Address: 0x1004e28 */
   {
@@ -775,7 +775,7 @@ void ka_init(act_info* pActwk) { /* Line 763, Address: 0x1005480 */
   {
     pActwk->patbase = e_ka_pat; /* Line 776, Address: 0x1005520 */
     ((unsigned char***)pActwk)[13] = pchg_e; /* Line 777, Address: 0x1005530 */
-    ((int*)pActwk)[12] = -1; /* Line 778, Address: 0x1005540 */
+    ((int*)pActwk)[12] = -65536; /* Line 778, Address: 0x1005540 */
   } /* Line 779, Address: 0x100554c */
   else
   {
@@ -956,7 +956,7 @@ void kamemusi_init(act_info* pActwk) { /* Line 927, Address: 0x1005990 */
 void kamemusi_fall(act_info* pActwk) { /* Line 956, Address: 0x1005ab0 */
   short d1;
 
-  ++pActwk->yposi.l; /* Line 959, Address: 0x1005ac0 */
+  pActwk->yposi.l += 65536; /* Line 959, Address: 0x1005ac0 */
   d1 = emycol_d(pActwk); /* Line 960, Address: 0x1005ad4 */
   if (d1 < 0) pActwk->r_no0 += 2; /* Line 961, Address: 0x1005ae8 */
 } /* Line 962, Address: 0x1005b08 */
@@ -1151,13 +1151,13 @@ void tama_init(act_info* pActwk) { /* Line 1140, Address: 0x1006070 */
 
   if (pActwk->actfree[21] == 0) /* Line 1152, Address: 0x1006104 */
   {
-    *(int*)&pActwk->actfree[0] = 2; /* Line 1154, Address: 0x1006118 */
-    *(int*)&pActwk->actfree[4] = -4; /* Line 1155, Address: 0x1006128 */
+    *(int*)&pActwk->actfree[0] = 131072; /* Line 1154, Address: 0x1006118 */
+    *(int*)&pActwk->actfree[4] = -262144; /* Line 1155, Address: 0x1006128 */
   } /* Line 1156, Address: 0x1006138 */
   else
   {
-    *(int*)&pActwk->actfree[0] = -2; /* Line 1159, Address: 0x1006140 */
-    *(int*)&pActwk->actfree[4] = -4; /* Line 1160, Address: 0x1006150 */
+    *(int*)&pActwk->actfree[0] = -131072; /* Line 1159, Address: 0x1006140 */
+    *(int*)&pActwk->actfree[4] = -262144; /* Line 1160, Address: 0x1006150 */
   }
 } /* Line 1162, Address: 0x1006160 */
 

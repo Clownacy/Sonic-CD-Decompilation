@@ -411,7 +411,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
   plscore += updata; /* Line 411, Address: 0x1005488 */
   if (!(plscore < 1000000U)) { /* Line 412, Address: 0x10054a0 */
 
-    plscore = 15 | 16959; /* Line 414, Address: 0x10054bc */
+    plscore = 999999; /* Line 414, Address: 0x10054bc */
   }
   if (extrascore > (unsigned int)plscore) return; /* Line 416, Address: 0x10054cc */
 
@@ -466,7 +466,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
   }
 
   if (!debugflag.w && pltime_f && !pauseflag.b.h) { /* Line 468, Address: 0x1005694 */
-    if (pltime.l == (9 | 15163)) { /* Line 469, Address: 0x10056c4 */
+    if (pltime.l == 604987) { /* Line 469, Address: 0x10056c4 */
 
       if (time_flag & 128) return; /* Line 471, Address: 0x10056dc */
 
@@ -479,7 +479,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
 
       return; /* Line 480, Address: 0x1005720 */
     }
-    if (pltime.l != (9 | 15163)) { /* Line 482, Address: 0x1005728 */
+    if (pltime.l != 604987) { /* Line 482, Address: 0x1005728 */
       if (!plautoflag) { /* Line 483, Address: 0x1005740 */
 
         ++pltime.b.b4; /* Line 485, Address: 0x1005750 */
@@ -504,7 +504,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     timewrt(pSprdat, pltime.b.b3); /* Line 504, Address: 0x1005828 */
 
     pSprdat = &scorepat0.spra[14]; /* Line 506, Address: 0x1005844 */
-    if (pltime.l == (9 | 15163)) { /* Line 507, Address: 0x100584c */
+    if (pltime.l == 604987) { /* Line 507, Address: 0x100584c */
       timewrt(pSprdat, 99); /* Line 508, Address: 0x1005864 */
     } /* Line 509, Address: 0x1005874 */
     else {
@@ -526,7 +526,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     bonuswrt(&pSprpat->spra[8], ringbonus); /* Line 526, Address: 0x100593c */
     bonuswrt(&pSprpat->spra[13], timebonus); /* Line 527, Address: 0x1005958 */
     scorewrt(&pSprpat->spra[1], plscore); /* Line 528, Address: 0x1005974 */
-    pSprpat->spra[7].index = 318; /* Line 529, Address: 0x1005988 */
+    pSprpat->spra[7].index = 308; /* Line 529, Address: 0x1005988 */
   }
 
 

@@ -401,7 +401,7 @@ void title_init(act_info* pAct) { /* Line 375, Address: 0x1012750 */
     pTmpAct->xposi.w.h = *wp; /* Line 401, Address: 0x101283c */
     ((short*)pTmpAct)[24] = *wp++; /* Line 402, Address: 0x1012848 */
     ((short*)pTmpAct)[23] = *wp++; /* Line 403, Address: 0x101285c */
-    pTmpAct->patno = (*wp & -256) >> 8; /* Line 404, Address: 0x1012870 */
+    pTmpAct->patno = (*wp & 65280) >> 8; /* Line 404, Address: 0x1012870 */
     if (i == 5) { /* Line 405, Address: 0x101288c */
       pTmpAct->patno = pTmpAct->patno + (unsigned char)stageno.b.l; /* Line 406, Address: 0x1012898 */
     }
