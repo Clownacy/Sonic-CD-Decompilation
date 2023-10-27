@@ -406,7 +406,7 @@ short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 407, Address: 0x1002124 */
 
-  iBlkOffset = iBlkNo % 1024; /* Line 409, Address: 0x1002140 */
+  iBlkOffset = iBlkNo & 1023; /* Line 409, Address: 0x1002140 */
   if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 410, Address: 0x100215c */
 
     return scdend(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirStk); /* Line 412, Address: 0x1002194 */
@@ -438,7 +438,7 @@ short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
     cDirect = -(cDirect + 64) + -64; /* Line 438, Address: 0x10022b0 */
   }
   *cpDirStk = cDirect; /* Line 440, Address: 0x10022d4 */
-  iXwork %= 16; /* Line 441, Address: 0x10022dc */
+  iXwork &= 15; /* Line 441, Address: 0x10022dc */
 
 
   cScdwk = scdtblwk[iScdNo][iXwork]; /* Line 444, Address: 0x10022e8 */
@@ -454,7 +454,7 @@ short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
   if (iScdData >= 0) { /* Line 454, Address: 0x10023a0 */
     if (iScdData != 16) { /* Line 455, Address: 0x10023b0 */
 label1:
-      return 15 - (iScdData + (iYposi % 16)); /* Line 457, Address: 0x10023c4 */
+      return 15 - (iScdData + (iYposi & 15)); /* Line 457, Address: 0x10023c4 */
     }
   } else if (iOffset == 16) { /* Line 459, Address: 0x10023f8 */
 
@@ -463,7 +463,7 @@ label1:
       goto label1; /* Line 463, Address: 0x1002424 */
   }
   else {
-    iScdData += iYposi % 16; /* Line 466, Address: 0x100242c */
+    iScdData += iYposi & 15; /* Line 466, Address: 0x100242c */
     if (iScdData >= 0) /* Line 467, Address: 0x1002450 */
       return scdend(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirStk); /* Line 468, Address: 0x1002460 */
   }
@@ -507,11 +507,11 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
   char cScdwk;
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 509, Address: 0x1002568 */
-  iBlkOffset = iBlkNo % 1024; /* Line 510, Address: 0x1002584 */
+  iBlkOffset = iBlkNo & 1023; /* Line 510, Address: 0x1002584 */
   if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 511, Address: 0x10025a0 */
 
 
-    return 15 - (iYposi % 16); /* Line 514, Address: 0x10025d8 */
+    return 15 - (iYposi & 15); /* Line 514, Address: 0x10025d8 */
   }
 
   bySCDwk = scdadr[iBlkOffset]; /* Line 517, Address: 0x1002600 */
@@ -519,7 +519,7 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
   if (iScdNo == 0) { /* Line 519, Address: 0x100262c */
 
 
-    return 15 - (iYposi % 16); /* Line 522, Address: 0x1002638 */
+    return 15 - (iYposi & 15); /* Line 522, Address: 0x1002638 */
   }
 
   cDirect = scddirtbl[iScdNo]; /* Line 525, Address: 0x1002660 */
@@ -538,7 +538,7 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
   }
   *cpDirStk = cDirect; /* Line 539, Address: 0x100270c */
 
-  iXwork %= 16; /* Line 541, Address: 0x1002714 */
+  iXwork &= 15; /* Line 541, Address: 0x1002714 */
 
 
   cScdwk = scdtblwk[iScdNo][iXwork]; /* Line 544, Address: 0x1002720 */
@@ -549,10 +549,10 @@ short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short
 
   if (iScdData == 0) /* Line 550, Address: 0x100278c */
 
-    return 15 - (iYposi % 16); /* Line 552, Address: 0x100279c */
+    return 15 - (iYposi & 15); /* Line 552, Address: 0x100279c */
   if (iScdData >= 0) { /* Line 553, Address: 0x10027c4 */
 label1:
-    iYposi %= 16; /* Line 555, Address: 0x10027d4 */
+    iYposi &= 15; /* Line 555, Address: 0x10027d4 */
     iScdData += iYposi; /* Line 556, Address: 0x10027e0 */
     return 15 - iScdData; /* Line 557, Address: 0x10027f0 */
   }
@@ -564,7 +564,7 @@ label1:
     goto label1; /* Line 564, Address: 0x100283c */
   }
 
-  iScd = iYposi % 16; /* Line 567, Address: 0x1002844 */
+  iScd = iYposi & 15; /* Line 567, Address: 0x1002844 */
   if (iScd + iScdData > 0) { /* Line 568, Address: 0x1002864 */
     return 15 - iScd; /* Line 569, Address: 0x1002880 */
   }
@@ -623,7 +623,7 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
   char cScdwk;
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 625, Address: 0x10029d8 */
-  iBlkOffset = iBlkNo % 1024; /* Line 626, Address: 0x10029f4 */
+  iBlkOffset = iBlkNo & 1023; /* Line 626, Address: 0x10029f4 */
   if (iBlkOffset == 0 || (iBlkNo & (1 << iRideon)) == 0) { /* Line 627, Address: 0x1002a10 */
 
     return scdend_r(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirstk); /* Line 629, Address: 0x1002a48 */
@@ -654,7 +654,7 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
   *cpDirstk = cDirect; /* Line 654, Address: 0x1002b84 */
 
 
-  iYwork %= 16; /* Line 657, Address: 0x1002b8c */
+  iYwork &= 15; /* Line 657, Address: 0x1002b8c */
 
   cScdwk = scdtblwk2[iScdNo][iYwork]; /* Line 659, Address: 0x1002b98 */
   iScdData = cScdwk; /* Line 660, Address: 0x1002bc4 */
@@ -667,10 +667,10 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
   if (iScdData >= 0) { /* Line 667, Address: 0x1002c40 */
     if (iScdData == 16) goto label1; /* Line 668, Address: 0x1002c50 */
 
-    iXposi %= 16; /* Line 670, Address: 0x1002c64 */
+    iXposi &= 15; /* Line 670, Address: 0x1002c64 */
     return 15 - (iScdData + iXposi); /* Line 671, Address: 0x1002c70 */
   }
-  iXwork = iXposi % 16; /* Line 673, Address: 0x1002ca0 */
+  iXwork = iXposi & 15; /* Line 673, Address: 0x1002ca0 */
   iScdData += iXwork; /* Line 674, Address: 0x1002cc0 */
   if (iScdData >= 0) /* Line 675, Address: 0x1002ccc */
     return scdend_r(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirstk); /* Line 676, Address: 0x1002cdc */
@@ -713,11 +713,11 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
 
 
   iBlkNo = scramapad(pActwk, iXposi, iYposi); /* Line 715, Address: 0x1002de4 */
-  iBlkOffset = iBlkNo % 1024; /* Line 716, Address: 0x1002e00 */
+  iBlkOffset = iBlkNo & 1023; /* Line 716, Address: 0x1002e00 */
   if (iBlkOffset == 0 || ((1 << iRideon) & iBlkNo) == 0) { /* Line 717, Address: 0x1002e1c */
 
 
-    return 15 - (iXposi % 16); /* Line 720, Address: 0x1002e54 */
+    return 15 - (iXposi & 15); /* Line 720, Address: 0x1002e54 */
   }
 
   bySCDwk = scdadr[iBlkOffset]; /* Line 723, Address: 0x1002e7c */
@@ -725,7 +725,7 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
   if (iScdNo == 0) { /* Line 725, Address: 0x1002ea8 */
 
 
-    return 15 - (iXposi % 16); /* Line 728, Address: 0x1002eb4 */
+    return 15 - (iXposi & 15); /* Line 728, Address: 0x1002eb4 */
   }
 
   cDirect = scddirtbl[iScdNo]; /* Line 731, Address: 0x1002edc */
@@ -744,7 +744,7 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
   *cpDirstk = cDirect; /* Line 744, Address: 0x1002f88 */
 
 
-  iYwork %= 16; /* Line 747, Address: 0x1002f90 */
+  iYwork &= 15; /* Line 747, Address: 0x1002f90 */
 
   cScdwk = scdtblwk2[iScdNo][iYwork]; /* Line 749, Address: 0x1002f9c */
   iScdData = cScdwk; /* Line 750, Address: 0x1002fc8 */
@@ -754,22 +754,22 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
 
   if (iScdData == 0) { /* Line 755, Address: 0x1003008 */
 
-    return 15 - (iXposi % 16); /* Line 757, Address: 0x1003018 */
+    return 15 - (iXposi & 15); /* Line 757, Address: 0x1003018 */
   }
   if (iScdData >= 0) { /* Line 759, Address: 0x1003040 */
 
 
-    iXwork = iXposi % 16; /* Line 762, Address: 0x1003050 */
+    iXwork = iXposi & 15; /* Line 762, Address: 0x1003050 */
     iXwork += iScdData; /* Line 763, Address: 0x1003070 */
     iXwork = 15 - iXwork; /* Line 764, Address: 0x100307c */
     return iXwork; /* Line 765, Address: 0x100309c */
   }
 
-  iXwork = iXposi % 16; /* Line 768, Address: 0x10030a8 */
+  iXwork = iXposi & 15; /* Line 768, Address: 0x10030a8 */
   if ((iXwork + iScdData) >= 0) { /* Line 769, Address: 0x10030c8 */
 
 
-    return 15 - (iXposi % 16); /* Line 772, Address: 0x10030e4 */
+    return 15 - (iXposi & 15); /* Line 772, Address: 0x10030e4 */
   }
   return ~iXwork; /* Line 774, Address: 0x100310c */
 } /* Line 775, Address: 0x1003120 */
@@ -804,21 +804,21 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
 
 
 
-  iYwork = (iYposi >> 8) % 8; /* Line 807, Address: 0x10031f0 */
+  iYwork = (iYposi >> 8) & 7; /* Line 807, Address: 0x10031f0 */
   if (stageno.b.h == 2) { /* Line 808, Address: 0x1003214 */
-    iYwork %= 64; /* Line 809, Address: 0x1003230 */
+    iYwork &= 63; /* Line 809, Address: 0x1003230 */
   }
 
-  iXwork = iXposi % 64; /* Line 812, Address: 0x100323c */
+  iXwork = iXposi & 63; /* Line 812, Address: 0x100323c */
 
   iYwork = iYposi >> 1; /* Line 814, Address: 0x100325c */
   iYwork &= 1920; /* Line 815, Address: 0x100327c */
   iYwork = iYwork >> 7; /* Line 816, Address: 0x1003288 */
-  iYwork %= 8; /* Line 817, Address: 0x1003294 */
+  iYwork &= 7; /* Line 817, Address: 0x1003294 */
 
   iXwork = iXposi >> 8; /* Line 819, Address: 0x10032a0 */
-  iXwork %= 128; /* Line 820, Address: 0x10032c0 */
-  iXwork %= 64; /* Line 821, Address: 0x10032cc */
+  iXwork &= 127; /* Line 820, Address: 0x10032c0 */
+  iXwork &= 63; /* Line 821, Address: 0x10032cc */
 
   if (stageno.w != 0) { /* Line 823, Address: 0x10032d8 */
 
@@ -833,13 +833,13 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
 
     if (stageno.b.h == 5 || stageno.b.h == 6) { /* Line 834, Address: 0x1003374 */
 
-      pActwk->sproffset %= 32768; /* Line 836, Address: 0x10033ac */
+      pActwk->sproffset &= 32767; /* Line 836, Address: 0x10033ac */
     }
     if (stageno.b.h == 4) { /* Line 838, Address: 0x10033bc */
       pActwk->actflg &= 191; /* Line 839, Address: 0x10033d8 */
     }
 
-    iBlkNo = cBlkNo % 128; /* Line 842, Address: 0x10033e8 */
+    iBlkNo = cBlkNo & 127; /* Line 842, Address: 0x10033e8 */
 
     iYwork = (iYposi & 240) >> 4; /* Line 844, Address: 0x1003404 */
     iXwork = (iXposi & 240) >> 4; /* Line 845, Address: 0x1003438 */
@@ -855,7 +855,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
     return iMapNo; /* Line 855, Address: 0x10034c4 */
   }
 
-  iBlkNo = cBlkNo % 128; /* Line 858, Address: 0x10034d0 */
+  iBlkNo = cBlkNo & 127; /* Line 858, Address: 0x10034d0 */
   switch (stageno.b.h) { /* Line 859, Address: 0x10034ec */
 
     case 4:
@@ -870,7 +870,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
     default:
       iBlkNo = st_elseDataChk(iBlkNo, pActwk); /* Line 871, Address: 0x1003588 */
   }
-  iBlkNo %= 128; /* Line 873, Address: 0x10035a0 */
+  iBlkNo &= 127; /* Line 873, Address: 0x10035a0 */
   iYwork = (iYposi & 240) >> 4; /* Line 874, Address: 0x10035bc */
   iXwork = (iXposi & 240) >> 4; /* Line 875, Address: 0x10035f0 */
 
@@ -1006,7 +1006,7 @@ short st_wackyDataChk(short iBlkNo, act_info* pActwk) { /* Line 984, Address: 0x
     if (iBlkNo == 20) { /* Line 1006, Address: 0x1003888 */
 
       pActwk->actflg |= 64; /* Line 1008, Address: 0x10038a0 */
-      pActwk->sproffset %= 32768; /* Line 1009, Address: 0x10038b0 */
+      pActwk->sproffset &= 32767; /* Line 1009, Address: 0x10038b0 */
     }
   }
   return iBlkNo; /* Line 1012, Address: 0x10038c0 */
@@ -1031,7 +1031,7 @@ short st_starDataChk(short iBlkNo, act_info* pActwk) { /* Line 1028, Address: 0x
   if (iBlkNo == 4 || iBlkNo == 6) { /* Line 1031, Address: 0x10038ec */
 
 
-    pActwk->sproffset %= 32768; /* Line 1034, Address: 0x100391c */
+    pActwk->sproffset &= 32767; /* Line 1034, Address: 0x100391c */
     if (pActwk->actflg & 64) /* Line 1035, Address: 0x100392c */
       ++iBlkNo; /* Line 1036, Address: 0x1003944 */
     return iBlkNo; /* Line 1037, Address: 0x1003950 */
@@ -1039,7 +1039,7 @@ short st_starDataChk(short iBlkNo, act_info* pActwk) { /* Line 1028, Address: 0x
   if (prio_flag == 0) /* Line 1039, Address: 0x100395c */
     return iBlkNo; /* Line 1040, Address: 0x1003970 */
 
-  pActwk->sproffset %= 32768; /* Line 1042, Address: 0x100397c */
+  pActwk->sproffset &= 32767; /* Line 1042, Address: 0x100397c */
   switch (iBlkNo) { /* Line 1043, Address: 0x100398c */
 
     case 40:
@@ -1074,7 +1074,7 @@ short st_metalDataChk(short iBlkNo, act_info* pActwk) { /* Line 1070, Address: 0
   pActwk->sproffset |= 32768; /* Line 1074, Address: 0x1003a30 */
   if (prio_flag == 0) /* Line 1075, Address: 0x1003a40 */
     return iBlkNo; /* Line 1076, Address: 0x1003a54 */
-  pActwk->sproffset %= 32768; /* Line 1077, Address: 0x1003a60 */
+  pActwk->sproffset &= 32767; /* Line 1077, Address: 0x1003a60 */
 
   switch (iBlkNo) { /* Line 1079, Address: 0x1003a70 */
 

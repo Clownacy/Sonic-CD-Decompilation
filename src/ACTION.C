@@ -141,7 +141,7 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
 
   if (lpKeepWork->GamePass != 0) return; /* Line 142, Address: 0x10015c4 */
 
-  pActwk->actflg %= 128; /* Line 144, Address: 0x10015d8 */
+  pActwk->actflg &= 127; /* Line 144, Address: 0x10015d8 */
   flag = pActwk->actflg; /* Line 145, Address: 0x10015e8 */
   flag &= 12; /* Line 146, Address: 0x10015f8 */
   if (flag) { /* Line 147, Address: 0x1001600 */
@@ -231,7 +231,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
       pActwk = pbuffer[i].pActwk[act]; /* Line 231, Address: 0x1001910 */
       if (pActwk->actno && pActwk->patbase != 0) { /* Line 232, Address: 0x100193c */
         flag = pActwk->actflg >> 2; /* Line 233, Address: 0x1001954 */
-        flag %= 4; /* Line 234, Address: 0x1001968 */
+        flag &= 3; /* Line 234, Address: 0x1001968 */
         if (flag) { /* Line 235, Address: 0x1001970 */
 
           pScrHposi = patsettbl[flag]; /* Line 237, Address: 0x1001978 */
@@ -295,7 +295,7 @@ void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short
   unsigned short reverse;
 
   flag = pActwk->actflg; /* Line 297, Address: 0x1001c4c */
-  flag %= 4; /* Line 298, Address: 0x1001c58 */
+  flag &= 3; /* Line 298, Address: 0x1001c58 */
   while (cnt > 0) { /* Line 299, Address: 0x1001c60 */
     if (sprdat->index) { /* Line 300, Address: 0x1001c68 */
       if (linkdata >= 80) return; /* Line 301, Address: 0x1001c78 */

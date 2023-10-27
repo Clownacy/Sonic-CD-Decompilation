@@ -328,7 +328,7 @@ void baku_init(act_info* bakuhawk) { /* Line 326, Address: 0x1015de0 */
   bakuhawk->actflg |= 4; /* Line 328, Address: 0x1015dfc */
   bakuhawk->sprpri = 1; /* Line 329, Address: 0x1015e0c */
   bakuhawk->sproffset = 34432; /* Line 330, Address: 0x1015e18 */
-  if (bakuhawk->userflag.b.l != 0) bakuhawk->sproffset %= 32768; /* Line 331, Address: 0x1015e24 */
+  if (bakuhawk->userflag.b.l != 0) bakuhawk->sproffset &= 32767; /* Line 331, Address: 0x1015e24 */
 
   bakuhawk->patbase = bakupat; /* Line 333, Address: 0x1015e4c */
   tensuu_set(bakuhawk); /* Line 334, Address: 0x1015e5c */
@@ -434,7 +434,7 @@ void flow_init(act_info* flowerwk) { /* Line 428, Address: 0x1016040 */
   flowerwk->sprvsize = 0; /* Line 434, Address: 0x1016074 */
   flowerwk->sproffset = 42711; /* Line 435, Address: 0x101607c */
 
-  if (flowerwk->userflag.b.l != 0) flowerwk->sproffset %= 32768; /* Line 437, Address: 0x1016088 */
+  if (flowerwk->userflag.b.l != 0) flowerwk->sproffset &= 32767; /* Line 437, Address: 0x1016088 */
 
   flowerwk->patbase = flow_pat; /* Line 439, Address: 0x10160b0 */
   if (flowerwk->userflag.b.h == 0) { /* Line 440, Address: 0x10160c0 */
@@ -459,7 +459,7 @@ void flow_move0(act_info* flowerwk) { /* Line 453, Address: 0x1016170 */
     flowerwk->yposi.w.h += y_move; /* Line 459, Address: 0x10161b4 */
     if (flowerwk->userflag.b.h == 0) { /* Line 460, Address: 0x10161c4 */
       fwcnt_adr = flow_sub(flowerwk); /* Line 461, Address: 0x10161dc */
-      flower_index = flow_sub1(flowercnt[time_flag % 128]++); /* Line 462, Address: 0x10161ec */
+      flower_index = flow_sub1(flowercnt[time_flag & 127]++); /* Line 462, Address: 0x10161ec */
       flowerposi[flower_index].w.h = flowerwk->xposi.w.h; /* Line 463, Address: 0x1016224 */
       flowerposi[flower_index].w.l = flowerwk->yposi.w.h; /* Line 464, Address: 0x1016248 */
     }
@@ -734,7 +734,7 @@ void baria(act_info* bariawk) { /* Line 719, Address: 0x1016cc0 */
 
 
   if (actwk[0].sproffset & 32768) bariawk->sproffset |= 32768; /* Line 736, Address: 0x1016d54 */
-  else bariawk->sproffset %= 32768; /* Line 737, Address: 0x1016d84 */
+  else bariawk->sproffset &= 32767; /* Line 737, Address: 0x1016d84 */
   if (stageno.b.h == 6) bariawk->sproffset |= 32768; /* Line 738, Address: 0x1016d94 */
 } /* Line 739, Address: 0x1016dc0 */
 
@@ -762,7 +762,7 @@ void bariamove(act_info* bariawk) { /* Line 756, Address: 0x1016e90 */
   if (stageno.b.h == 6) { /* Line 762, Address: 0x1016f24 */
     bariawk->sproffset |= 128; /* Line 763, Address: 0x1016f40 */
     if (prio_flag != 0) /* Line 764, Address: 0x1016f50 */
-      bariawk->sproffset %= 128; /* Line 765, Address: 0x1016f64 */
+      bariawk->sproffset &= 127; /* Line 765, Address: 0x1016f64 */
   }
   patchg(bariawk, bariachg); /* Line 767, Address: 0x1016f74 */
   actionsub0(bariawk); /* Line 768, Address: 0x1016f88 */
@@ -790,7 +790,7 @@ void muteki_sub(act_info* bariawk) { /* Line 786, Address: 0x1017070 */
   if (stageno.b.h == 6) { /* Line 790, Address: 0x1017080 */
     bariawk->sproffset |= 128; /* Line 791, Address: 0x101709c */
     if (prio_flag != 0) /* Line 792, Address: 0x10170ac */
-      bariawk->sproffset %= 128; /* Line 793, Address: 0x10170c0 */
+      bariawk->sproffset &= 127; /* Line 793, Address: 0x10170c0 */
   }
 
   ppw_offset.w = plposiwkadr.w; /* Line 796, Address: 0x10170d0 */

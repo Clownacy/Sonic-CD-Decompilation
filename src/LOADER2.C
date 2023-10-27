@@ -39,7 +39,7 @@ void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /
 
   *buf++ = round + 48; /* Line 40, Address: 0x1013710 */
   *buf++ = stage + 48; /* Line 41, Address: 0x1013734 */
-  switch (Time_Flag % 128) { /* Line 42, Address: 0x1013758 */
+  switch (Time_Flag & 127) { /* Line 42, Address: 0x1013758 */
     case 0:
       *buf++ = 66; /* Line 44, Address: 0x101378c */
       break; /* Line 45, Address: 0x10137a0 */

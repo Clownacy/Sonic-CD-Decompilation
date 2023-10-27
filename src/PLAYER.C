@@ -594,7 +594,7 @@ void chk11() { /* Line 588, Address: 0x1008e40 */
   if (stageno.b.l != 0) return; /* Line 594, Address: 0x1008e90 */
   d0 = ((actwk[0].yposi.w.h >> 1) & 896) + (short)(actwk[0].xposi.b.b1 & 127); /* Line 595, Address: 0x1008ea8 */
 
-  mapdata = mapwka[d0 / 128][d0 % 64]; /* Line 597, Address: 0x1008ef8 */
+  mapdata = mapwka[d0 / 128][d0 & 63]; /* Line 597, Address: 0x1008ef8 */
   for (d0 = 0; d0 < 5; ++d0) { /* Line 598, Address: 0x1008f44 */
     if (mapdata == chk11tbl[d0]) { /* Line 599, Address: 0x1008f50 */
       actwk[0].actfree[2] |= 2; /* Line 600, Address: 0x1008f78 */
@@ -681,10 +681,10 @@ label3:
 
 
 label4:
-  if (scr_cnt % 16) ++scr_cnt, scr_cnt &= 207; /* Line 684, Address: 0x1009424 */
+  if (scr_cnt & 15) ++scr_cnt, scr_cnt &= 207; /* Line 684, Address: 0x1009424 */
   if (scr_cnt & 128) goto label7; /* Line 685, Address: 0x1009464 */
   if ((scr_cnt & 64) || (swdata.b.h & 2)) goto label8; /* Line 686, Address: 0x100947c */
-  if ((scr_cnt %= 16) == 0) { /* Line 687, Address: 0x10094ac */
+  if ((scr_cnt &= 15) == 0) { /* Line 687, Address: 0x10094ac */
     if (swdata.b.l & 1) { scr_cnt = 1; goto label11; } /* Line 688, Address: 0x10094d0 */
   } else {
     if (swdata.b.l & 1) { scr_cnt |= 128; goto label11; } /* Line 690, Address: 0x10094fc */
@@ -741,7 +741,7 @@ label7:
   }
 label8:
   if (scr_cnt & 64) goto label9; /* Line 743, Address: 0x100982c */
-  if ((scr_cnt %= 16) != 0) { /* Line 744, Address: 0x1009844 */
+  if ((scr_cnt &= 15) != 0) { /* Line 744, Address: 0x1009844 */
     if (swdata.b.l & 2) { scr_cnt = 1; goto label11; } /* Line 745, Address: 0x1009868 */
   }
   else if (swdata.b.l & 2) { scr_cnt |= 64; goto label11; } /* Line 747, Address: 0x1009894 */
@@ -767,7 +767,7 @@ label9:
   }
 label10:
   if (scra_vline == 96) { /* Line 769, Address: 0x10099f8 */
-    if ((scr_cnt % 16) == 0) scr_cnt = 0; /* Line 770, Address: 0x1009a14 */
+    if ((scr_cnt & 15) == 0) scr_cnt = 0; /* Line 770, Address: 0x1009a14 */
     goto label11; /* Line 771, Address: 0x1009a34 */
   }
   if (scra_vline < 96) scra_vline += 4; /* Line 773, Address: 0x1009a3c */
@@ -1653,7 +1653,7 @@ void loopchk() { /* Line 1647, Address: 0x100c720 */
 
   index = (actwk[0].yposi.w.h >> 1 & 896) + ((short)actwk[0].xposi.b.b1 & 127); /* Line 1654, Address: 0x100c79c */
 
-  mapdata = mapwka[index / 128][index % 64]; /* Line 1656, Address: 0x100c7e4 */
+  mapdata = mapwka[index / 128][index & 63]; /* Line 1656, Address: 0x100c7e4 */
   if (mapdata == ballmapno) { /* Line 1657, Address: 0x100c82c */
     if (stageno.b.h != 0 || (actwk[0].yposi.w.h & 255) >= 144) { /* Line 1658, Address: 0x100c844 */
       ballset(); return; /* Line 1659, Address: 0x100c87c */

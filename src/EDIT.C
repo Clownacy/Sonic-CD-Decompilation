@@ -113,8 +113,8 @@ void edit(act_info* pActwk) { /* Line 27, Address: 0x100edd0 */
         pActwk2->patno = pEdit_tbl->dat[index].patno; /* Line 113, Address: 0x100f1b4 */
         pActwk2->xposi.w.h = pActwk->xposi.w.h; /* Line 114, Address: 0x100f1d0 */
         pActwk2->yposi.w.h = pActwk->yposi.w.h; /* Line 115, Address: 0x100f1e0 */
-        pActwk2->actflg %= 4; /* Line 116, Address: 0x100f1f0 */
-        pActwk2->cddat %= 4; /* Line 117, Address: 0x100f20c */
+        pActwk2->actflg = pActwk->actflg & 3; /* Line 116, Address: 0x100f1f0 */
+        pActwk2->cddat = pActwk->actflg & 3; /* Line 117, Address: 0x100f20c */
       }
     }
   }

@@ -242,7 +242,7 @@ void t_item_init(act_info* t_itemwk) { /* Line 229, Address: 0x10110a0 */
   t_itemwk->mstno.b.h = t_itemwk->userflag.b.h; /* Line 242, Address: 0x1011154 */
 
   flag_no = flagwkadr(t_itemwk); /* Line 244, Address: 0x1011164 */
-  flagwork[flag_no] %= 128; /* Line 245, Address: 0x1011178 */
+  flagwork[flag_no] &= 127; /* Line 245, Address: 0x1011178 */
 
   t_itemwk->patno = 10; /* Line 247, Address: 0x1011198 */
   if (t_itemwk->userflag.b.h != 8) t_itemwk->patno += 2; /* Line 248, Address: 0x10111a4 */
@@ -393,7 +393,7 @@ void iteminit(act_info* itemwk) { /* Line 381, Address: 0x1011780 */
   itemwk->sprhsize = 15; /* Line 393, Address: 0x1011828 */
 
   flag_no = flagwkadr(itemwk); /* Line 395, Address: 0x1011834 */
-  flagwork[flag_no] %= 128; /* Line 396, Address: 0x1011848 */
+  flagwork[flag_no] &= 127; /* Line 396, Address: 0x1011848 */
   if (flagwork[flag_no] & 1) { /* Line 397, Address: 0x1011868 */
     itemwk->r_no0 = 8; /* Line 398, Address: 0x1011890 */
     itemwk->patno = 17; /* Line 399, Address: 0x101189c */

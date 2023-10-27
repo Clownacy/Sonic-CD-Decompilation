@@ -706,11 +706,11 @@ void empatchg(act_info* pActwk, char** pPattbl) { /* Line 690, Address: 0x10065c
     }
 
 
-    pActwk->patno = patnowk % 64; /* Line 709, Address: 0x10066b8 */
+    pActwk->patno = patnowk & 31; /* Line 709, Address: 0x10066b8 */
 
 
     pActwk->actflg &= 252; /* Line 712, Address: 0x10066d0 */
-    pActwk->actflg |= (pActwk->cddat ^ ((patnowk << 3) | (patnowk >> 5))) % 4; /* Line 713, Address: 0x10066e0 */
+    pActwk->actflg |= (pActwk->cddat ^ ((patnowk << 3) | (patnowk >> 5))) & 3; /* Line 713, Address: 0x10066e0 */
 
 
 

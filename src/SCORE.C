@@ -305,7 +305,7 @@ void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
   pAct->r_no0 = 2; /* Line 305, Address: 0x1005108 */
   pAct->actflg = 4; /* Line 306, Address: 0x1005114 */
   pAct->patbase = tenpat; /* Line 307, Address: 0x1005120 */
-  pAct->patno = pAct->userflag.b.h % 128; /* Line 308, Address: 0x1005130 */
+  pAct->patno = pAct->userflag.b.h & 127; /* Line 308, Address: 0x1005130 */
   pAct->actfree[0] = 24; /* Line 309, Address: 0x1005150 */
 
 
@@ -354,7 +354,7 @@ void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
     pAct->yposi.w.h = 328; /* Line 354, Address: 0x10052e8 */
     pAct->patno = 1; /* Line 355, Address: 0x10052f4 */
 
-    switch (time_flag % 4) { /* Line 357, Address: 0x1005300 */
+    switch (time_flag & 3) { /* Line 357, Address: 0x1005300 */
       case 0:
         scorepat1.spra[0].index = 338; /* Line 359, Address: 0x100532c */
         break; /* Line 360, Address: 0x1005338 */
@@ -380,7 +380,7 @@ void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
       } /* Line 380, Address: 0x10053c4 */
       else {
 
-        if ((systemtimer.b.b4 % 16) == 0) { /* Line 383, Address: 0x10053cc */
+        if ((systemtimer.b.b4 & 15) == 0) { /* Line 383, Address: 0x10053cc */
           if (scorepat3.spra[0].index == 334) /* Line 384, Address: 0x10053e8 */
             scorepat3.spra[0].index = 335; /* Line 385, Address: 0x1005400 */
           else
@@ -438,7 +438,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     posiwrt(); /* Line 438, Address: 0x1005578 */
 
     pSprdat = &scorepat2.spra[12]; /* Line 440, Address: 0x1005580 */
-    timewrt0(pSprdat, blkno % 2048, &subtbl[3], 2); /* Line 441, Address: 0x1005588 */
+    timewrt0(pSprdat, blkno & 2047, &subtbl[3], 2); /* Line 441, Address: 0x1005588 */
   } /* Line 442, Address: 0x10055b4 */
   else {
 

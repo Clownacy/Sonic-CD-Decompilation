@@ -267,13 +267,13 @@ void a_hover(act_info* actionwk) { /* Line 265, Address: 0x10215d0 */
 
   ++*(short*)&actionwk->actfree[0]; /* Line 268, Address: 0x10215dc */
   d0 = actionwk->actfree[0]; /* Line 269, Address: 0x10215ec */
-  d0 %= 8; /* Line 270, Address: 0x10215f8 */
+  d0 &= 7; /* Line 270, Address: 0x10215f8 */
   if (d0 == 0) { /* Line 271, Address: 0x1021600 */
 
     d0 = *(short*)&actionwk->actfree[8]; /* Line 273, Address: 0x102160c */
     actionwk->yposi.w.h += d0; /* Line 274, Address: 0x1021618 */
   }
   d0 = *(short*)&actionwk->actfree[0]; /* Line 276, Address: 0x1021630 */
-  d0 %= 32; /* Line 277, Address: 0x102163c */
+  d0 &= 31; /* Line 277, Address: 0x102163c */
   if (d0 == 0) *(short*)&actionwk->actfree[8] = -*(short*)&actionwk->actfree[8]; /* Line 278, Address: 0x1021644 */
 } /* Line 279, Address: 0x1021674 */

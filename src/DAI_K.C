@@ -199,7 +199,7 @@ void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
   actwk[0].patcnt = pattbl[actwk[0].actfree[1] >> 4]; /* Line 200, Address: 0x100233c */
 
-  if ((actwk[0].actfree[1] % 64) == 0) { /* Line 202, Address: 0x1002364 */
+  if ((actwk[0].actfree[1] & 63) == 0) { /* Line 202, Address: 0x1002364 */
     ++actwk[0].actfree[15]; /* Line 203, Address: 0x100237c */
   }
 

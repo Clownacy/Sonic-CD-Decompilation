@@ -174,14 +174,14 @@ void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
   *(short*)&pActwk->actfree[12] = pActwk->yposi.w.h; /* Line 174, Address: 0x1002158 */
 
   pActwk->patbase = dai11a_pattbl; /* Line 176, Address: 0x1002168 */
-  wk = pActwk->userflag.b.h % 4; /* Line 177, Address: 0x1002178 */
+  wk = pActwk->userflag.b.h & 3; /* Line 177, Address: 0x1002178 */
   pActwk->patno = wk; /* Line 178, Address: 0x100219c */
 
 
   pActwk->sprhsize = dai_hstbl[wk]; /* Line 181, Address: 0x10021a4 */
   pActwk->sprvsize = 8; /* Line 182, Address: 0x10021c4 */
 
-  wk = (pActwk->userflag.b.h >> 2) % 4; /* Line 184, Address: 0x10021d0 */
+  wk = (pActwk->userflag.b.h >> 2) & 3; /* Line 184, Address: 0x10021d0 */
   pActwk->actfree[3] = dai_mcnttbl[wk]; /* Line 185, Address: 0x10021f8 */
 
 
@@ -242,7 +242,7 @@ void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
 
 
 
-  mtype = (pActwk->userflag.b.h >> 4) % 16; /* Line 245, Address: 0x10023c0 */
+  mtype = (pActwk->userflag.b.h >> 4) & 15; /* Line 245, Address: 0x10023c0 */
   dodai_mtype[mtype](pActwk); /* Line 246, Address: 0x10023e0 */
 
   xlen = *(short*)&pActwk->actfree[14] & 65408; /* Line 248, Address: 0x1002404 */
@@ -556,7 +556,7 @@ void dai_fout(act_info* pActwk) { /* Line 554, Address: 0x1003060 */
 
   if (pActwk->cdsts) { /* Line 557, Address: 0x1003070 */
     s = time_flag + pActwk->cdsts * 3; /* Line 558, Address: 0x1003080 */
-    flagwork[s] %= 128; /* Line 559, Address: 0x10030b4 */
+    flagwork[s] &= 127; /* Line 559, Address: 0x10030b4 */
   }
 
   frameout(pActwk); /* Line 562, Address: 0x10030d4 */

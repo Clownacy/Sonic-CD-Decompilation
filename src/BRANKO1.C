@@ -147,7 +147,7 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
   if (pActwk->actfree[18] == 0) { /* Line 147, Address: 0x1028670 */
     *(unsigned short*)&pActwk->actfree[12] = pActwk->xposi.w.h; /* Line 148, Address: 0x1028684 */
     *(unsigned short*)&pActwk->actfree[8] = pActwk->yposi.w.h; /* Line 149, Address: 0x1028694 */
-    pActwk->actfree[5] = i = pActwk->userflag.b.h % 16; /* Line 150, Address: 0x10286a4 */
+    pActwk->actfree[5] = i = pActwk->userflag.b.h & 15; /* Line 150, Address: 0x10286a4 */
 
     for ( ; i > 0; --i) { /* Line 152, Address: 0x10286cc */
       if (actwkchk(&pNewact) == 0) { /* Line 153, Address: 0x10286d4 */

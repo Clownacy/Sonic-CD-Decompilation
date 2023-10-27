@@ -202,10 +202,10 @@ void gene_move1(act_info* pActwk) { /* Line 183, Address: 0x100f570 */
   pActwk->actfree[0] = iD0; /* Line 202, Address: 0x100f5e8 */
   if (iD0 >= 0) { /* Line 203, Address: 0x100f5f4 */
     iD1 = iD0; /* Line 204, Address: 0x100f604 */
-    iD1 %= 4; /* Line 205, Address: 0x100f60c */
+    iD1 &= 3; /* Line 205, Address: 0x100f60c */
     if (iD1 != 0) return; /* Line 206, Address: 0x100f618 */
-    iD0 %= 8; /* Line 208, Address: 0x100f634 */
     iD0 >>= 2; /* Line 207, Address: 0x100f628 */
+    iD0 &= 7; /* Line 208, Address: 0x100f634 */
     iD0 += iD0; /* Line 209, Address: 0x100f640 */
     wOff = iD0; /* Line 210, Address: 0x100f64c */
     ret = actwkchk(&pActfree); /* Line 211, Address: 0x100f650 */
@@ -597,7 +597,7 @@ void mosug_init(act_info* pActwk, act_info* pPlaywk) { /* Line 574, Address: 0x1
 
 
 
-  pActwk->sproffset %= 32768; /* Line 600, Address: 0x10102d0 */
+  pActwk->sproffset &= 32767; /* Line 600, Address: 0x10102d0 */
 
   mosug_move0(pActwk, pPlaywk); /* Line 602, Address: 0x10102e0 */
 } /* Line 603, Address: 0x10102f0 */
@@ -627,12 +627,12 @@ void mosug_move0(act_info* pActwk, act_info* pPlaywk) { /* Line 616, Address: 0x
   }
   if (pPlaywk->xspeed.w < 0) { /* Line 628, Address: 0x10103b8 */
 
-    pPlaywk->sproffset %= 32768; /* Line 630, Address: 0x10103d0 */
+    pPlaywk->sproffset &= 32767; /* Line 630, Address: 0x10103d0 */
   }
 
   if (stageno.w == 1280 && scralim_left >= 11352 && pPlaywk->yposi.w.h >= 620 && pPlaywk->yposi.w.h < 653) { /* Line 633, Address: 0x10103e0 */
 
-    pPlaywk->sproffset %= 32768; /* Line 635, Address: 0x1010450 */
+    pPlaywk->sproffset &= 32767; /* Line 635, Address: 0x1010450 */
   }
 
 
@@ -679,7 +679,7 @@ void mosug_move1(act_info* pActwk, act_info* pPlaywk) { /* Line 673, Address: 0x
   if (iD0 > iD1) { /* Line 679, Address: 0x10105e4 */
 
     if (pPlaywk->sproffset & 32768) { /* Line 681, Address: 0x1010600 */
-      pPlaywk->sproffset %= 32768; /* Line 682, Address: 0x1010618 */
+      pPlaywk->sproffset &= 32767; /* Line 682, Address: 0x1010618 */
     }
   }
 } /* Line 685, Address: 0x1010628 */

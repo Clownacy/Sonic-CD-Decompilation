@@ -156,7 +156,7 @@ void hoshi_move(act_info* pActwk, act_info* pPlaywk) { /* Line 155, Address: 0x1
   if (pPlaywk->actfree[2] & 2) /* Line 159, Address: 0x101b27c */
   {
     iXwork = pPlaywk->xposi.w.h; /* Line 161, Address: 0x101b294 */
-    iXwork %= 256; /* Line 162, Address: 0x101b2a4 */
+    iXwork &= 255; /* Line 162, Address: 0x101b2a4 */
     if (pPlaywk->xposi.w.h < *(short*)&pActwk->actfree[0]) /* Line 163, Address: 0x101b2b0 */
       iXwork = 255 - iXwork; /* Line 164, Address: 0x101b2dc */
 

@@ -751,7 +751,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   tv_flag = 1; /* Line 751, Address: 0x1018f54 */
 
 
-  gmmode.b.h %= 128; /* Line 754, Address: 0x1018f60 */
+  gmmode.b.h &= 127; /* Line 754, Address: 0x1018f60 */
   init_flag = 1; /* Line 755, Address: 0x1018f74 */
 
 
@@ -788,7 +788,7 @@ void flow_act_set() { /* Line 787, Address: 0x1019030 */
   int i, time, fcnt;
   act_info* pAct;
 
-  time = time_flag % 128; /* Line 791, Address: 0x1019044 */
+  time = time_flag & 127; /* Line 791, Address: 0x1019044 */
   fcnt = flowercnt[time]; /* Line 792, Address: 0x1019054 */
   if (fcnt != 0) { /* Line 793, Address: 0x1019068 */
     --fcnt; /* Line 794, Address: 0x1019070 */
@@ -818,11 +818,11 @@ void scdset() {
 void syspatchg() {
   if (--sys_pattim & 128) { /* Line 819, Address: 0x1019120 */
     sys_pattim = 11; /* Line 820, Address: 0x1019148 */
-    sys_patno = (sys_patno + -1) % 8; /* Line 821, Address: 0x1019154 */
+    sys_patno = (sys_patno + -1) & 7; /* Line 821, Address: 0x1019154 */
   }
   if (--sys_pattim2 & 128) { /* Line 823, Address: 0x1019174 */
     sys_pattim2 = 7; /* Line 824, Address: 0x101919c */
-    sys_patno2 = (sys_patno2 + 1) % 4; /* Line 825, Address: 0x10191a8 */
+    sys_patno2 = (sys_patno2 + 1) & 3; /* Line 825, Address: 0x10191a8 */
   }
   if (--sys_pattim3 & 128) { /* Line 827, Address: 0x10191c8 */
     sys_pattim3 = 7; /* Line 828, Address: 0x10191f0 */
@@ -832,7 +832,7 @@ void syspatchg() {
     sys_ringtimer += sys_pattim4; /* Line 832, Address: 0x101923c */
 
 
-    sys_patno4 = (sys_ringtimer >> 9) % 4; /* Line 835, Address: 0x1019264 */
+    sys_patno4 = (sys_ringtimer >> 9) & 3; /* Line 835, Address: 0x1019264 */
     --sys_pattim4; /* Line 836, Address: 0x1019288 */
   }
 
@@ -872,7 +872,7 @@ void sdfdout() { /* Line 869, Address: 0x1019340 */
 
 
     pauseflag.b.h |= 128; /* Line 874, Address: 0x101936c */
-    if ((time_flag % 128) == 0) { /* Line 875, Address: 0x1019380 */
+    if ((time_flag & 127) == 0) { /* Line 875, Address: 0x1019380 */
 
       if (plpower_m || plpower_s) { /* Line 877, Address: 0x1019398 */
         sub_sync(144); /* Line 878, Address: 0x10193b8 */
@@ -889,8 +889,8 @@ void sdfdin() { /* Line 888, Address: 0x10193f0 */
   if ((pauseflag.b.h & 128) != 0) { /* Line 889, Address: 0x10193f8 */
 
 
-    pauseflag.b.h %= 128; /* Line 892, Address: 0x1019410 */
-    if ((time_flag % 128) == 0) { /* Line 893, Address: 0x1019424 */
+    pauseflag.b.h &= 127; /* Line 892, Address: 0x1019410 */
+    if ((time_flag & 127) == 0) { /* Line 893, Address: 0x1019424 */
 
       if (plpower_m || plpower_s) { /* Line 895, Address: 0x101943c */
         sub_sync(145); /* Line 896, Address: 0x101945c */
@@ -919,7 +919,7 @@ void da_set() { /* Line 910, Address: 0x1019490 */
     { 54, 33, 102, 34 }
   };
 
-  wD0 = time_flag % 128; /* Line 922, Address: 0x101949c */
+  wD0 = time_flag & 127; /* Line 922, Address: 0x101949c */
   if (!ta_flag) { /* Line 923, Address: 0x10194b4 */
     if (wD0 == 2) { /* Line 924, Address: 0x10194c4 */
       wD0 += generate_flag; /* Line 925, Address: 0x10194d4 */
