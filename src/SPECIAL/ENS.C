@@ -843,7 +843,7 @@ void i_ring01(sprite_status_sp* actionwk) { /* Line 142, Address: 0x1001860 */
   if (--actionwk->actfree[0] == 0) actionwk->actflg &= 1; /* Line 143, Address: 0x1001868 */
 
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 145, Address: 0x1001898 */
-  actionwk->sy_speed.l += 2; /* Line 146, Address: 0x10018b0 */
+  actionwk->sy_speed.l = actionwk->sy_speed.l + 2; /* Line 146, Address: 0x10018b0 */
 } /* Line 147, Address: 0x10018c4 */
 
 void timeufo(sprite_status_sp* actionwk) { /* Line 149, Address: 0x10018d0 */

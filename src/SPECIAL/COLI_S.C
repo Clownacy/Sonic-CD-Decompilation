@@ -184,7 +184,7 @@ void stpnmget(short iXposi, short iYposi, short* ipD1, short* ipD2) { /* Line 16
 
   *ipD1 = *ipD2; /* Line 185, Address: 0x1001468 */
   *ipD2 &= 2047; /* Line 186, Address: 0x1001478 */
-  *ipD2 >>= 2; /* Line 187, Address: 0x100148c */
+  *ipD2 = *ipD2 >> 2; /* Line 187, Address: 0x100148c */
 } /* Line 188, Address: 0x10014b0 */
 
 
