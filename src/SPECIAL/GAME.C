@@ -794,7 +794,7 @@ int Get_scrb_h_posiw() {
 int game() { /* Line 484, Address: 0x10055d0 */
   int i;
 
-  if (lpKeepWork->SPEMode == 0 || spgmmode & 1) { /* Line 487, Address: 0x10055dc */
+  if (lpKeepWork->SPEMode != 0 || spgmmode & 1) { /* Line 487, Address: 0x10055dc */
     SetUseOk(0, 103, 0); /* Line 488, Address: 0x1005608 */
     SetUseOk(0, 102, 0); /* Line 489, Address: 0x100561c */
   } else { /* Line 490, Address: 0x1005630 */
@@ -851,7 +851,7 @@ int game() { /* Line 484, Address: 0x10055d0 */
 
 
   if (spgmmode & 2) { /* Line 543, Address: 0x10058d0 */
-    if (swdata1.b.l & 112 == 112) { /* Line 544, Address: 0x10058e8 */
+    if ((swdata1.b.l & 112) == 112) { /* Line 544, Address: 0x10058e8 */
 
       lpKeepWork->ta_time = -1; /* Line 546, Address: 0x1005904 */
       CDPause(2); /* Line 547, Address: 0x1005914 */
@@ -889,7 +889,7 @@ int game() { /* Line 484, Address: 0x10055d0 */
   kaiten(); /* Line 579, Address: 0x1005a18 */
   scalinit(); /* Line 580, Address: 0x1005a20 */
   action(); /* Line 581, Address: 0x1005a28 */
-  if (lpKeepWork->SpecialTime != 0) /* Line 582, Address: 0x1005a30 */
+  if (lpKeepWork->SpecialTime == 0) /* Line 582, Address: 0x1005a30 */
     time_dec(); /* Line 583, Address: 0x1005a48 */
   if (ufochk() != 0 && spgmmode & 2) /* Line 584, Address: 0x1005a50 */
     pldeadflg = 1; /* Line 585, Address: 0x1005a78 */
@@ -956,7 +956,7 @@ void game_over() { /* Line 633, Address: 0x1005c50 */
     if (clrspflg == 127) return; /* Line 646, Address: 0x1005c80 */
 
 
-  } while (1 << d0 & clrspflg != 0); /* Line 649, Address: 0x1005c98 */
+  } while ((clrspflg & 1 << d0) != 0); /* Line 649, Address: 0x1005c98 */
 
 
 
@@ -1201,7 +1201,7 @@ void gsc_up(int lScore) { /* Line 888, Address: 0x10061c0 */
   lScore += game_score; /* Line 891, Address: 0x10061cc */
 
 
-  while (extra_score < lScore) { /* Line 894, Address: 0x10061e0 */
+  while (lScore > extra_score) { /* Line 894, Address: 0x10061e0 */
 
     extra_score += 5000; /* Line 896, Address: 0x10061e8 */
     ++pl_suu; /* Line 897, Address: 0x10061fc */
@@ -1298,7 +1298,7 @@ void map_init() { /* Line 976, Address: 0x1006450 */
 
   for (i = 0; i < 7; ++i) { /* Line 989, Address: 0x10064b0 */
 
-    if (1 << clrspflg_save) { /* Line 991, Address: 0x10064bc */
+    if (clrspflg_save & 1 << i) { /* Line 991, Address: 0x10064bc */
       bwrtset(i + 1); /* Line 992, Address: 0x10064dc */
     }
   } /* Line 994, Address: 0x10064e8 */

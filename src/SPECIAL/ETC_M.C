@@ -135,7 +135,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
   short one_number, i;
 
   if ((disp_data *= 10) != 0) { /* Line 137, Address: 0x1003844 */
-    for (i = 0; counter >= i; ++i) { /* Line 138, Address: 0x1003860 */
+    for (i = 0; i > counter; ++i) { /* Line 138, Address: 0x1003860 */
       one_number = disp_data / subtbl[i]; /* Line 139, Address: 0x100386c */
 
       disp_data %= subtbl[i]; /* Line 141, Address: 0x10038ac */
@@ -186,7 +186,7 @@ unsigned short cntminus(unsigned short* work, unsigned short minus_data, unsigne
 
 
 unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned short under_limit, unsigned short upper_limit) { /* Line 188, Address: 0x1003bf0 */
-  if (upper_limit < (*work += plus_data)) *work = under_limit; /* Line 189, Address: 0x1003c04 */
+  if ((*work += plus_data) > upper_limit) *work = under_limit; /* Line 189, Address: 0x1003c04 */
   return *work; /* Line 190, Address: 0x1003c44 */
 } /* Line 191, Address: 0x1003c4c */
 
@@ -259,7 +259,7 @@ void sset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
     SetGrid(0, disp_x, disp_y, chrtbl[one_number], 0); /* Line 259, Address: 0x1003ecc */
     SetGrid(0, disp_x, disp_y + 1, chrtbl[one_number + 12], 0); /* Line 260, Address: 0x1003f08 */
     ++disp_x; /* Line 261, Address: 0x1003f48 */
-  } while (counter >= i); /* Line 262, Address: 0x1003f4c */
+  } while (i <= counter); /* Line 262, Address: 0x1003f4c */
 } /* Line 263, Address: 0x1003f6c */
 
 

@@ -48,7 +48,7 @@ void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   iD0 = pActwk->x_posi.w.h - 16; /* Line 48, Address: 0x1000f30 */
   iD1 = iD0 + 32; /* Line 49, Address: 0x1000f54 */
   iD2 = pPlaywk->x_posi.w.h - 16; /* Line 50, Address: 0x1000f70 */
-  if (iD1 < iD2) return; /* Line 51, Address: 0x1000f90 */
+  if (iD1 > iD2) return; /* Line 51, Address: 0x1000f90 */
 
   if (iD2 + 32 < iD0) return; /* Line 53, Address: 0x1000fac */
 
@@ -56,7 +56,7 @@ void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   iD0 = pActwk->y_posi.w.h - 12; /* Line 56, Address: 0x1000fcc */
   iD1 = iD0 + 24; /* Line 57, Address: 0x1000ff0 */
   iD2 = pPlaywk->y_posi.w.h - 16; /* Line 58, Address: 0x100100c */
-  if (iD1 < iD2) return; /* Line 59, Address: 0x100102c */
+  if (iD1 > iD2) return; /* Line 59, Address: 0x100102c */
 
   if (iD2 + 32 < iD0) return; /* Line 61, Address: 0x1001048 */
 
