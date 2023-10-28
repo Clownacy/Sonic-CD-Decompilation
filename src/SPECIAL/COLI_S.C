@@ -61,9 +61,9 @@ void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   if (iD2 + 32 < iD0) return; /* Line 61, Address: 0x1001048 */
 
 
-  if (pPlaywk->z_posi.w.h < 528) return; /* Line 64, Address: 0x1001068 */
+  if ((unsigned short)pPlaywk->z_posi.w.h < 528) return; /* Line 64, Address: 0x1001068 */
 
-  if (pPlaywk->z_posi.w.h >= 624) return; /* Line 66, Address: 0x1001080 */
+  if ((unsigned short)pPlaywk->z_posi.w.h >= 624) return; /* Line 66, Address: 0x1001080 */
 
   pPlaywk->colliflg = pActwk->actno; /* Line 68, Address: 0x1001098 */
   pActwk->colliflg = pPlaywk->actno; /* Line 69, Address: 0x10010a4 */
@@ -100,7 +100,7 @@ void plcolli(sprite_status_sp* pActwk) { /* Line 86, Address: 0x10010d0 */
 
   iD1 >>= 12; /* Line 101, Address: 0x1001120 */
   iD1 &= 15; /* Line 102, Address: 0x100112c */
-  pActwk->scno_sdir = iD1; /* Line 103, Address: 0x1001138 */
+  pActwk->scno_sdir = (char)iD1; /* Line 103, Address: 0x1001138 */
 
   stpnmget(pActwk->x_posi.w.h - 8, pActwk->y_posi.w.h - 8, &iD1, &iD2); /* Line 105, Address: 0x1001148 */
 

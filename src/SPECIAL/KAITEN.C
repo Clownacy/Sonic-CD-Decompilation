@@ -76,7 +76,7 @@ void scal(sprite_status_sp* pActwk) { /* Line 63, Address: 0x1009210 */
   lD3.l = lD1.w.l * zoomwk.cz; /* Line 76, Address: 0x10092f4 */
   lD3.l >>= 8; /* Line 77, Address: 0x1009318 */
   lD2.l += lD3.l; /* Line 78, Address: 0x1009324 */
-  if (lD2.l == 0) { /* Line 79, Address: 0x1009334 */
+  if ((long int)lD2.l == 0) { /* Line 79, Address: 0x1009334 */
     lD2.l = 1; /* Line 80, Address: 0x1009348 */
   }
   lD3.l = zoomwk.hcz.w.h * lD0.w.l; /* Line 82, Address: 0x1009350 */
@@ -173,7 +173,7 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
     lD3.l = zoomwk.sx * lD2.w.l; /* Line 173, Address: 0x1009874 */
     lD3.l += zoomwk.hcx; /* Line 174, Address: 0x1009898 */
     lD3.l >>= 5; /* Line 175, Address: 0x10098ac */
-    if (lD3.l == 0) { /* Line 176, Address: 0x10098b8 */
+    if ((long int)lD3.l == 0) { /* Line 176, Address: 0x10098b8 */
       lD3.l = 1; /* Line 177, Address: 0x10098cc */
     }
     lD5.l = zoomwk.cxsz.w.h * lD2.w.l; /* Line 179, Address: 0x10098d4 */

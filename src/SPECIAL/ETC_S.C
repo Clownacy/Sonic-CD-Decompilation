@@ -76,7 +76,7 @@ void dec() { /* Line 68, Address: 0x10041c0 */
   }
 
   tufo_initial(); /* Line 78, Address: 0x1004228 */
-  if (spe_time.l >= 15) return; /* Line 79, Address: 0x1004230 */
+  if ((long int)spe_time.l >= 15) return; /* Line 79, Address: 0x1004230 */
   se_no.b.b1 = 223; /* Line 80, Address: 0x100424c */
 } /* Line 81, Address: 0x1004258 */
 
@@ -86,15 +86,15 @@ void time_time_attack() {
   if (time_stop != 0) return; /* Line 86, Address: 0x1004270 */
   if (game_start != 0) return; /* Line 87, Address: 0x1004284 */
   spe_time.b.b4 += 3; /* Line 88, Address: 0x1004298 */
-  if (spe_time.b.b4 < 60) return; /* Line 89, Address: 0x10042ac */
+  if ((unsigned char)spe_time.b.b4 < 60) return; /* Line 89, Address: 0x10042ac */
 
   spe_time.b.b4 -= 60; /* Line 91, Address: 0x10042c8 */
   ++spe_time.b.b3; /* Line 92, Address: 0x10042dc */
-  if (spe_time.b.b3 < 60) return; /* Line 93, Address: 0x10042f0 */
+  if ((unsigned char)spe_time.b.b3 < 60) return; /* Line 93, Address: 0x10042f0 */
 
   spe_time.b.b3 -= 60; /* Line 95, Address: 0x100430c */
   ++spe_time.b.b2; /* Line 96, Address: 0x1004320 */
-  if (spe_time.b.b2 < 10) return; /* Line 97, Address: 0x1004334 */
+  if ((unsigned char)spe_time.b.b2 < 10) return; /* Line 97, Address: 0x1004334 */
 
   spe_time.l = 604987; /* Line 99, Address: 0x1004350 */
   pldeadflg = 1; /* Line 100, Address: 0x1004360 */
@@ -132,14 +132,14 @@ void angleget(short iXtget, short iYtget, short iXbase, short iYbase, unsigned c
 
   if (iXtget < 0) /* Line 133, Address: 0x10043e0 */
   {
-    if (iD3 & 32768) goto label2; /* Line 135, Address: 0x10043f4 */
+    if ((unsigned short)iD3 & 32768) goto label2; /* Line 135, Address: 0x10043f4 */
 
 label1:
     iD2 |= 1; /* Line 138, Address: 0x1004408 */
     iXtget = -iXtget; /* Line 139, Address: 0x1004414 */
   } /* Line 140, Address: 0x1004430 */
   else
-    if (iD3 & 32768) goto label1; /* Line 142, Address: 0x1004438 */
+    if ((unsigned short)iD3 & 32768) goto label1; /* Line 142, Address: 0x1004438 */
 
 label2:
   iYtget -= iYbase; /* Line 145, Address: 0x100444c */
@@ -167,11 +167,11 @@ label2:
     lD1 /= iXtget; /* Line 167, Address: 0x1004524 */
 
   iD1 = lD1; /* Line 169, Address: 0x1004544 */
-  if (iD1 >= 64) /* Line 170, Address: 0x1004558 */
+  if ((unsigned short)iD1 >= 64) /* Line 170, Address: 0x1004558 */
     iD1 = 63; /* Line 171, Address: 0x100456c */
 
-  *iAngle = iD1; /* Line 173, Address: 0x1004578 */
-  *iDirflg = iD2; /* Line 174, Address: 0x1004584 */
+  *iAngle = (char)iD1; /* Line 173, Address: 0x1004578 */
+  *iDirflg = (char)iD2; /* Line 174, Address: 0x1004584 */
 } /* Line 175, Address: 0x1004590 */
 
 
@@ -205,7 +205,7 @@ void speedget(unsigned char bAngle, unsigned char bDirflg, short iBaseSpd, int* 
   if (lD1.w.l == 0) /* Line 205, Address: 0x10045ec */
   {
     lD0.l = 0; /* Line 207, Address: 0x1004600 */
-    lD1.w.l = iBaseSpd; /* Line 208, Address: 0x1004604 */
+    lD1.w.l = (unsigned short)iBaseSpd; /* Line 208, Address: 0x1004604 */
   } /* Line 209, Address: 0x1004618 */
   else
   {

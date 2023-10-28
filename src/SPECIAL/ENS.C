@@ -932,7 +932,7 @@ void tufo02(sprite_status_sp* actionwk) { /* Line 216, Address: 0x1001bc0 */
     a1->actno = 12; /* Line 232, Address: 0x1001c88 */
     a1->sx_posi.w.h = actionwk->sx_posi.w.h - 16; /* Line 233, Address: 0x1001c94 */
     a1->sy_posi.w.h = actionwk->sy_posi.w.h; /* Line 234, Address: 0x1001cb8 */
-    d0 = random(); /* Line 235, Address: 0x1001cc8 */
+    d0 = (unsigned char)random(); /* Line 235, Address: 0x1001cc8 */
     a1->sx_posi.w.h += d0 & 31; /* Line 236, Address: 0x1001cdc */
 
     a1->sy_posi.w.h -= d0 & 31; /* Line 238, Address: 0x1001cfc */
@@ -1048,7 +1048,7 @@ void ufo02(sprite_status_sp* actionwk) { /* Line 332, Address: 0x1002100 */
   a1->actno = 12; /* Line 348, Address: 0x10021c8 */
   a1->sx_posi.w.h = actionwk->sx_posi.w.h - 16; /* Line 349, Address: 0x10021d4 */
   a1->sy_posi.w.h = actionwk->sy_posi.w.h; /* Line 350, Address: 0x10021f8 */
-  d0 = random(); /* Line 351, Address: 0x1002208 */
+  d0 = (unsigned char)random(); /* Line 351, Address: 0x1002208 */
   a1->sx_posi.w.h += d0 & 31; /* Line 352, Address: 0x100221c */
 
   a1->sy_posi.w.h += d0 & 31; /* Line 354, Address: 0x100223c */
@@ -1099,7 +1099,7 @@ void ufo_frout_chk(sprite_status_sp* actionwk) { /* Line 397, Address: 0x1002410
 
   actionwk->actflg &= 251; /* Line 400, Address: 0x100241c */
   d0 = actionwk->sx_posi.w.h; /* Line 401, Address: 0x100242c */
-  if (d0 >= 512) /* Line 402, Address: 0x100243c */
+  if ((unsigned short)d0 >= 512) /* Line 402, Address: 0x100243c */
   {
     actionwk->actflg |= 4; /* Line 404, Address: 0x1002450 */
     return; /* Line 405, Address: 0x1002460 */
@@ -1225,18 +1225,18 @@ void tufo_initial() { /* Line 521, Address: 0x10028e0 */
   if (spe_time.l >= 21) return; /* Line 525, Address: 0x10028f4 */
   a2 = &actwk[39]; /* Line 526, Address: 0x1002908 */
   a3 = tufo_tbl; /* Line 527, Address: 0x1002910 */
-  dummy = a2 - actwk; /* Line 529, Address: 0x1002924 */
   if (a2->actno) return; /* Line 528, Address: 0x1002918 */
+  dummy = (unsigned short)(a2 - actwk); /* Line 529, Address: 0x1002924 */
   a4 = &actwk[dummy + 8]; /* Line 530, Address: 0x100295c */
 
   a2->actno = 3; /* Line 532, Address: 0x1002980 */
 
-  a2->actfree[18] = tufo_tbl[0]; /* Line 534, Address: 0x1002988 */
-  a2->actfree[19] = tufo_tbl[1]; /* Line 535, Address: 0x1002998 */
+  a2->actfree[18] = (char)tufo_tbl[0]; /* Line 534, Address: 0x1002988 */
+  a2->actfree[19] = (char)tufo_tbl[1]; /* Line 535, Address: 0x1002998 */
   a3 += 2; /* Line 536, Address: 0x10029a8 */
   ((short**)a2)[20] = a3; /* Line 537, Address: 0x10029ac */
   ((short**)a2)[21] = a3; /* Line 538, Address: 0x10029b0 */
-  ((unsigned short*)a2)[38] = dummy + 8; /* Line 539, Address: 0x10029b4 */
+  ((unsigned short*)a2)[38] = (unsigned short)dummy + 8; /* Line 539, Address: 0x10029b4 */
   a4->actno = 5; /* Line 540, Address: 0x10029c8 */
   ((unsigned short*)a4)[38] = a2 - actwk; /* Line 541, Address: 0x10029d0 */
 } /* Line 542, Address: 0x10029fc */

@@ -744,7 +744,7 @@ void go_x_plus(sprite_status_sp* plwk, unsigned short cal_plus, short cal_speed)
 
 void ptrlget(sprite_status_sp* plwk) { /* Line 745, Address: 0x100bf30 */
   if (swdata_pl.b.h & 4) { /* Line 746, Address: 0x100bf38 */
-    if (--plwk->actfree[16] < 0) plwk->actfree[16] = 0; /* Line 747, Address: 0x100bf50 */
+    if ((char)--plwk->actfree[16] < 0) plwk->actfree[16] = 0; /* Line 747, Address: 0x100bf50 */
     return; /* Line 748, Address: 0x100bf84 */
   }
   if (swdata_pl.b.h & 8) { /* Line 750, Address: 0x100bf8c */

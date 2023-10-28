@@ -180,7 +180,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
 
 
 unsigned short cntminus(unsigned short* work, unsigned short minus_data, unsigned short under_limit, unsigned short upper_limit) { /* Line 182, Address: 0x1003b70 */
-  if ((*work -= minus_data) < under_limit) *work = upper_limit; /* Line 183, Address: 0x1003b84 */
+  if ((short)(*work -= minus_data) < (short)under_limit) *work = upper_limit; /* Line 183, Address: 0x1003b84 */
   return *work; /* Line 184, Address: 0x1003bdc */
 } /* Line 185, Address: 0x1003be4 */
 
@@ -251,7 +251,7 @@ void sset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
   short one_number, i = 0; /* Line 251, Address: 0x1003e1c */
   int disp_x, disp_y;
 
-  disp_x = x, disp_y = y; /* Line 254, Address: 0x1003e20 */
+  disp_x = (short)x, disp_y = (short)y; /* Line 254, Address: 0x1003e20 */
 
   do {
     one_number = disp_data / subtbl[i]; /* Line 257, Address: 0x1003e48 */
