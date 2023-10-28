@@ -839,9 +839,9 @@ int game() { /* Line 484, Address: 0x10055d0 */
       case 5:
         lpKeepWork->SPEMode = 6; /* Line 530, Address: 0x1005810 */
 
-        lpKeepWork->ta_time = spe_time.l >> 16 * 3600; /* Line 532, Address: 0x1005820 */
         lpKeepWork->ta_time = spe_time.l >> 8 * 60; /* Line 533, Address: 0x1005854 */
         lpKeepWork->ta_time += spe_time.l; /* Line 534, Address: 0x1005884 */
+        lpKeepWork->ta_time = (spe_time.l >> 16 & 255) * 60 * 60; /* Line 532, Address: 0x1005820 */
         CDPause(2); /* Line 535, Address: 0x10058a4 */
         return 4; /* Line 536, Address: 0x10058b8 */
       default:
@@ -1318,7 +1318,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
     tblno = tblno4; /* Line 1108, Address: 0x100655c */
     if (tblno == 0) break; /* Line 1109, Address: 0x1006574 */
     --tblno; /* Line 1110, Address: 0x100657c */
-    xbase = bwrtTbl[tblno].vadr & 127 / 2; /* Line 1111, Address: 0x1006584 */
+    xbase = (bwrtTbl[tblno].vadr & 127) / 2; /* Line 1111, Address: 0x1006584 */
     ybase = bwrtTbl[tblno].vadr / 128; /* Line 1112, Address: 0x10065c4 */
     i = 0; /* Line 1113, Address: 0x1006600 */
     for (y = 0; y < bwrtTbl[tblno].ysize; ++y) { /* Line 1114, Address: 0x1006604 */
@@ -1342,7 +1342,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
 
 
 
-    tblno4 /= 256; /* Line 1135, Address: 0x1006768 */
+    tblno4 >>= 8; /* Line 1135, Address: 0x1006768 */
   } while (1); /* Line 1136, Address: 0x1006774 */
 
 } /* Line 1138, Address: 0x100677c */
@@ -1375,11 +1375,11 @@ void stone_color_set() { /* Line 1162, Address: 0x10067b0 */
 
   if (ufoleft != 0) return; /* Line 1166, Address: 0x10067c0 */
   if (stone_timer == 0) return; /* Line 1167, Address: 0x10067d4 */
-  if (++stone_timer != 0) return; /* Line 1168, Address: 0x10067e8 */
+  if (--stone_timer != 0) return; /* Line 1168, Address: 0x10067e8 */
 
 
   lpPeSrc = &stone_color_set_tbl[stagenm]; /* Line 1171, Address: 0x100680c */
-  lpPeDest = lpcolorwk; /* Line 1172, Address: 0x1006834 */
+  lpPeDest = &lpcolorwk[50]; /* Line 1172, Address: 0x1006834 */
   for (i = 0; i < 4; ++i) { /* Line 1173, Address: 0x1006840 */
     *lpPeDest++ = *lpPeSrc++; /* Line 1174, Address: 0x100684c */
   } /* Line 1175, Address: 0x100687c */
@@ -1415,7 +1415,7 @@ void colset(palette_entry* lpPeSrc) { /* Line 1204, Address: 0x10068e0 */
   palette_entry* lpPeDest;
   int i;
 
-  lpPeDest = lpcolorwk; /* Line 1208, Address: 0x10068f0 */
+  lpPeDest = &lpcolorwk[16]; /* Line 1208, Address: 0x10068f0 */
   for (i = 0; i < 32; ++i) { /* Line 1209, Address: 0x10068fc */
     *lpPeDest++ = *lpPeSrc++; /* Line 1210, Address: 0x1006908 */
   } /* Line 1211, Address: 0x100693c */
@@ -1598,7 +1598,7 @@ void hscal0_0() { /* Line 1382, Address: 0x1006fd0 */
   d1 = 0; /* Line 1388, Address: 0x1006ff4 */
   rlspd_get(&d0, &d1); /* Line 1389, Address: 0x1006ff8 */
   hsdata1 += d0; /* Line 1390, Address: 0x1007008 */
-  d0 /= 2; /* Line 1391, Address: 0x1007020 */
+  d0 >>= 1; /* Line 1391, Address: 0x1007020 */
   hsdata0 += d0; /* Line 1392, Address: 0x100702c */
 
 
@@ -1650,7 +1650,7 @@ void hscal2_0() { /* Line 1438, Address: 0x1007220 */
   short *a0, *a1;
   short d3, d4, d7;
 
-  a0 = (short*)&hdatabuf[0]; /* Line 1443, Address: 0x1007244 */
+  a0 = (short*)&hdatabuf[96]; /* Line 1443, Address: 0x1007244 */
   a1 = (short*)hdatabuf_l; /* Line 1444, Address: 0x1007250 */
   d0 = -32768; /* Line 1445, Address: 0x1007258 */
   d1 = 1024; /* Line 1446, Address: 0x100725c */
@@ -1735,10 +1735,10 @@ void hscal0_4() { /* Line 1488, Address: 0x1007480 */
   d7 = 16; /* Line 1525, Address: 0x10075c0 */
 
   do {
-    *a0 = d0; /* Line 1528, Address: 0x10075cc */
-    *a1 = d0; /* Line 1529, Address: 0x10075d4 */
-    ++a0; /* Line 1530, Address: 0x10075dc */
-    ++a1; /* Line 1531, Address: 0x10075e0 */
+    *(int*)a0 = d0; /* Line 1528, Address: 0x10075cc */
+    *(int*)a1 = d0; /* Line 1529, Address: 0x10075d4 */
+    a0 += 2; /* Line 1530, Address: 0x10075dc */
+    a1 += 2; /* Line 1531, Address: 0x10075e0 */
   } while (--d7 >= 0); /* Line 1532, Address: 0x10075e4 */
   d7 = 6; /* Line 1533, Address: 0x1007608 */
   hscal4(a0, a1, a2, 0, d7); /* Line 1534, Address: 0x1007614 */
@@ -2069,7 +2069,7 @@ void colchg0() { /* Line 1851, Address: 0x10082d0 */
   d7 = 1000; /* Line 1859, Address: 0x1008300 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 1860, Address: 0x1008308 */
   d0 &= 65520; /* Line 1861, Address: 0x1008334 */
-  lpPeDest = lpcolorwk; /* Line 1862, Address: 0x100833c */
+  lpPeDest = &lpcolorwk[32]; /* Line 1862, Address: 0x100833c */
   for (i = 0; i < 16; ++i) { /* Line 1863, Address: 0x1008348 */
     d1 = cltbl[d0++]; /* Line 1864, Address: 0x1008354 */
     if (d1 >= 17) d1 <<= 4; /* Line 1865, Address: 0x100837c */
@@ -2131,12 +2131,12 @@ void colchg2() { /* Line 1904, Address: 0x1008560 */
   d7 = 46; /* Line 1921, Address: 0x10085f0 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 1922, Address: 0x10085f8 */
   d0 &= 65528; /* Line 1923, Address: 0x1008624 */
-  d0 /= 2; /* Line 1924, Address: 0x100862c */
+  d0 >>= 1; /* Line 1924, Address: 0x100862c */
   lpPeDest = &lpcolorwk[26]; /* Line 1925, Address: 0x1008634 */
   *lpPeDest++ = cltbl0[d0]; /* Line 1926, Address: 0x1008640 */
   *lpPeDest++ = cltbl0[d0 + 1]; /* Line 1927, Address: 0x1008678 */
   *lpPeDest++ = cltbl0[d0 + 2]; /* Line 1928, Address: 0x10086b4 */
-  *lpPeDest++ = cltbl0[d0 + 3]; /* Line 1929, Address: 0x10086f0 */
+  *lpPeDest = cltbl0[d0 + 3]; /* Line 1929, Address: 0x10086f0 */
 
   d5 = 1; /* Line 1931, Address: 0x1008724 */
   d6 = 0; /* Line 1932, Address: 0x100872c */
@@ -2148,7 +2148,7 @@ void colchg2() { /* Line 1904, Address: 0x1008560 */
   d7 = 10; /* Line 1938, Address: 0x1008780 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 1939, Address: 0x1008788 */
   d0 /= 2; /* Line 1940, Address: 0x10087b4 */
-  lpPeDest = &lpcolorwk[33]; /* Line 1941, Address: 0x10087bc */
+  lpPeDest = &lpcolorwk[24]; /* Line 1941, Address: 0x10087bc */
   *lpPeDest = cltbl1[d0]; /* Line 1942, Address: 0x10087c8 */
 } /* Line 1943, Address: 0x10087f8 */
 
@@ -2168,12 +2168,12 @@ void colchg3() { /* Line 1945, Address: 0x1008820 */
   d0 = clchgcnt[0]; /* Line 1958, Address: 0x10088a4 */
   clchgcnt[0] += 2; /* Line 1959, Address: 0x10088b4 */
   d0 &= 24; /* Line 1960, Address: 0x10088c8 */
-  d0 /= 2; /* Line 1961, Address: 0x10088d4 */
+  d0 >>= 1; /* Line 1961, Address: 0x10088d4 */
   lpPeDest = &lpcolorwk[26]; /* Line 1962, Address: 0x10088e0 */
   *lpPeDest++ = cltbl0[d0]; /* Line 1963, Address: 0x10088ec */
   *lpPeDest++ = cltbl0[d0 + 1]; /* Line 1964, Address: 0x1008928 */
   *lpPeDest++ = cltbl0[d0 + 2]; /* Line 1965, Address: 0x1008968 */
-  *lpPeDest++ = cltbl0[d0 + 3]; /* Line 1966, Address: 0x10089a8 */
+  *lpPeDest = cltbl0[d0 + 3]; /* Line 1966, Address: 0x10089a8 */
 
   d5 = 1; /* Line 1968, Address: 0x10089e0 */
   d6 = 0; /* Line 1969, Address: 0x10089ec */
@@ -2184,7 +2184,7 @@ void colchg3() { /* Line 1945, Address: 0x1008820 */
   d0 = clchgcnt[2]; /* Line 1974, Address: 0x1008a30 */
   clchgcnt[2] += 2; /* Line 1975, Address: 0x1008a40 */
   d0 &= 14; /* Line 1976, Address: 0x1008a54 */
-  d0 /= 2; /* Line 1977, Address: 0x1008a60 */
+  d0 >>= 1; /* Line 1977, Address: 0x1008a60 */
 
   lpPeDest = &lpcolorwk[40]; /* Line 1979, Address: 0x1008a6c */
   *lpPeDest++ = cltbl1[d0]; /* Line 1980, Address: 0x1008a78 */
@@ -2229,7 +2229,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   d6 = 0; /* Line 2019, Address: 0x1008bd4 */
   d7 = 12; /* Line 2020, Address: 0x1008bd8 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2021, Address: 0x1008be0 */
-  d0 /= 2; /* Line 2022, Address: 0x1008c0c */
+  d0 >>= 1; /* Line 2022, Address: 0x1008c0c */
   lpPeDest = &lpcolorwk[26]; /* Line 2023, Address: 0x1008c14 */
   *lpPeDest = tbl0[d0]; /* Line 2024, Address: 0x1008c20 */
 
@@ -2237,7 +2237,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   d6 = 0; /* Line 2027, Address: 0x1008c58 */
   d7 = 50; /* Line 2028, Address: 0x1008c5c */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2029, Address: 0x1008c64 */
-  d0 /= 2; /* Line 2030, Address: 0x1008c90 */
+  d0 >>= 1; /* Line 2030, Address: 0x1008c90 */
   lpPeDest = &lpcolorwk[45]; /* Line 2031, Address: 0x1008c98 */
   *lpPeDest = tbl1[d0]; /* Line 2032, Address: 0x1008ca4 */
 
@@ -2245,7 +2245,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   d6 = 0; /* Line 2035, Address: 0x1008cdc */
   d7 = 51; /* Line 2036, Address: 0x1008ce0 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2037, Address: 0x1008ce8 */
-  d0 /= 2; /* Line 2038, Address: 0x1008d14 */
+  d0 >>= 1; /* Line 2038, Address: 0x1008d14 */
   lpPeDest = &lpcolorwk[46]; /* Line 2039, Address: 0x1008d1c */
   *lpPeDest = tbl2[d0]; /* Line 2040, Address: 0x1008d28 */
 
@@ -2253,7 +2253,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   d6 = 0; /* Line 2043, Address: 0x1008d60 */
   d7 = 55; /* Line 2044, Address: 0x1008d64 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2045, Address: 0x1008d6c */
-  d0 /= 2; /* Line 2046, Address: 0x1008da0 */
+  d0 >>= 1; /* Line 2046, Address: 0x1008da0 */
   lpPeDest = &lpcolorwk[47]; /* Line 2047, Address: 0x1008da8 */
   *lpPeDest = tbl3[d0]; /* Line 2048, Address: 0x1008db4 */
 } /* Line 2049, Address: 0x1008de4 */
@@ -2282,19 +2282,19 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
   d7 = 24; /* Line 2072, Address: 0x1008e3c */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2073, Address: 0x1008e44 */
 
-  d0 /= 2; /* Line 2075, Address: 0x1008e78 */
+  d0 >>= 1; /* Line 2075, Address: 0x1008e78 */
   lpPeDest = &lpcolorwk[33]; /* Line 2076, Address: 0x1008e80 */
 
   for (i = 0; i < 12; ++i) { /* Line 2078, Address: 0x1008e8c */
-    *lpPeDest++ = tbl0[d0 + 1]; /* Line 2079, Address: 0x1008e98 */
+    *lpPeDest++ = tbl0[d0++]; /* Line 2079, Address: 0x1008e98 */
   } /* Line 2080, Address: 0x1008ee0 */
   d5 = 2; /* Line 2081, Address: 0x1008f00 */
   d6 = 0; /* Line 2082, Address: 0x1008f08 */
   d7 = 22; /* Line 2083, Address: 0x1008f0c */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2084, Address: 0x1008f14 */
-  d0 /= 2; /* Line 2085, Address: 0x1008f48 */
+  d0 >>= 1; /* Line 2085, Address: 0x1008f48 */
   lpPeDest = &lpcolorwk[29]; /* Line 2086, Address: 0x1008f50 */
-  *lpPeDest++ = tbl1[d0 + 1]; /* Line 2087, Address: 0x1008f5c */
+  *lpPeDest++ = tbl1[d0++]; /* Line 2087, Address: 0x1008f5c */
   *lpPeDest = tbl1[d0]; /* Line 2088, Address: 0x1008fa4 */
 } /* Line 2089, Address: 0x1008fd8 */
 
@@ -2313,7 +2313,7 @@ void colchg6() { /* Line 2093, Address: 0x1009000 */
   d6 = 0; /* Line 2103, Address: 0x1009058 */
   d7 = 23; /* Line 2104, Address: 0x100905c */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 2105, Address: 0x1009064 */
-  d0 /= 2; /* Line 2106, Address: 0x1009098 */
+  d0 >>= 1; /* Line 2106, Address: 0x1009098 */
   lpPeDest = &lpcolorwk[31]; /* Line 2107, Address: 0x10090a0 */
   *lpPeDest = tbl[d0]; /* Line 2108, Address: 0x10090ac */
 } /* Line 2109, Address: 0x10090dc */

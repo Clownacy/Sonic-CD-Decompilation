@@ -138,7 +138,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
     for (i = 0; counter >= i; ++i) { /* Line 138, Address: 0x1003860 */
       one_number = disp_data / subtbl[i]; /* Line 139, Address: 0x100386c */
 
-      disp_data /= subtbl[i]; /* Line 141, Address: 0x10038ac */
+      disp_data %= subtbl[i]; /* Line 141, Address: 0x10038ac */
       if (nullflg != 0 || one_number != 0) { /* Line 142, Address: 0x10038e0 */
 
         nullflg = 1; /* Line 144, Address: 0x1003904 */
@@ -255,7 +255,7 @@ void sset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
 
   do {
     one_number = disp_data / subtbl[i]; /* Line 257, Address: 0x1003e48 */
-    disp_data /= subtbl[i++]; /* Line 258, Address: 0x1003e88 */
+    disp_data %= subtbl[i++]; /* Line 258, Address: 0x1003e88 */
     SetGrid(0, disp_x, disp_y, chrtbl[one_number], 0); /* Line 259, Address: 0x1003ecc */
     SetGrid(0, disp_x, disp_y + 1, chrtbl[one_number], 0); /* Line 260, Address: 0x1003f08 */
     ++disp_x; /* Line 261, Address: 0x1003f48 */
@@ -301,5 +301,5 @@ void rfill(unsigned int* address, unsigned int data, short size) { /* Line 299, 
 } /* Line 301, Address: 0x1003ffc */
 
 void rcopy(unsigned int* address1, unsigned int* address2, short size) { /* Line 303, Address: 0x1004010 */
-  for (size /= 4; size >= 0; --size) *address1++ = *address2++; /* Line 304, Address: 0x1004020 */
+  for (size /= 4; size >= 0; --size) *address2++ = *address1++; /* Line 304, Address: 0x1004020 */
 } /* Line 305, Address: 0x1004088 */

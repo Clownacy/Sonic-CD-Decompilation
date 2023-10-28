@@ -126,12 +126,12 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
   zoomwk.cxcz.w.h = lD3.w.l; /* Line 126, Address: 0x1009568 */
 
   lD3.l = zoomwk.h * zoomwk.sx; /* Line 128, Address: 0x1009574 */
-  lD3.l *= zoomwk.sz; /* Line 129, Address: 0x100959c */
+  lD3.l = lD3.w.l * zoomwk.sz; /* Line 129, Address: 0x100959c */
   lD3.l >>= 5; /* Line 130, Address: 0x10095c0 */
   zoomwk.hsxsz = lD3.l; /* Line 131, Address: 0x10095cc */
 
   lD3.l = zoomwk.h * zoomwk.sx; /* Line 133, Address: 0x10095d8 */
-  lD3.l *= zoomwk.cz; /* Line 134, Address: 0x1009600 */
+  lD3.l = lD3.w.l * zoomwk.cz; /* Line 134, Address: 0x1009600 */
   lD3.l >>= 5; /* Line 135, Address: 0x1009624 */
   zoomwk.hsxcz = lD3.l; /* Line 136, Address: 0x1009630 */
   lD3.l = zoomwk.h * zoomwk.cx; /* Line 137, Address: 0x100963c */
@@ -141,19 +141,19 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
   lsv1 = lD3.l << 3; /* Line 141, Address: 0x100968c */
   lD3.l = -zoomwk.sz << 7; /* Line 142, Address: 0x1009694 */
   lsv2 = lD3.l << 3; /* Line 143, Address: 0x10096b0 */
-  lD3.l = -zoomwk.cz << 7; /* Line 144, Address: 0x10096b8 */
+  lD3.l = zoomwk.cz * 127; /* Line 144, Address: 0x10096b8 */
   lsv3 = lD3.l << 3; /* Line 145, Address: 0x10096d4 */
-  lD3.l = -zoomwk.sz << 7; /* Line 146, Address: 0x10096dc */
+  lD3.l = zoomwk.sz * 127; /* Line 146, Address: 0x10096dc */
   lsv4 = lD3.l << 3; /* Line 147, Address: 0x10096f8 */
 
   lD4.l = zoomwk.sx * zoomwk.sz; /* Line 149, Address: 0x1009700 */
   lD4.l >>= 5; /* Line 150, Address: 0x1009728 */
-  lD3.l = lD4.l * zoomwk.h + zoomwk.i; /* Line 151, Address: 0x1009734 */
+  lD3.l = lD4.l * (zoomwk.h + zoomwk.i); /* Line 151, Address: 0x1009734 */
   lD3.l >>= iD6; /* Line 152, Address: 0x1009764 */
   zoomwk.hisxsz.w.h = lD3.w.l; /* Line 153, Address: 0x1009778 */
   lD4.l = zoomwk.sx * zoomwk.cz; /* Line 154, Address: 0x1009784 */
   lD4.l >>= 5; /* Line 155, Address: 0x10097ac */
-  lD3.l = lD4.l * zoomwk.h + zoomwk.i; /* Line 156, Address: 0x10097b8 */
+  lD3.l = lD4.l * (zoomwk.h + zoomwk.i); /* Line 156, Address: 0x10097b8 */
   lD3.l >>= iD6; /* Line 157, Address: 0x10097e8 */
   zoomwk.hisxcz.w.h = lD3.w.l; /* Line 158, Address: 0x10097fc */
 
@@ -177,7 +177,7 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
       lD3.l = 1; /* Line 177, Address: 0x10098cc */
     }
     lD5.l = zoomwk.cxsz.w.h * lD2.w.l; /* Line 179, Address: 0x10098d4 */
-    lD4.l = zoomwk.hsxsz + lsv1 - lD5.l; /* Line 180, Address: 0x10098f8 */
+    lD4.l = zoomwk.hsxsz + (lsv1 - lD5.l); /* Line 180, Address: 0x10098f8 */
     lD4.l >>= iD6; /* Line 181, Address: 0x1009910 */
     lD4.l *= zoomwk.z; /* Line 182, Address: 0x1009924 */
     lD4.w.l = lD4.l / lD3.l; /* Line 183, Address: 0x1009940 */
@@ -195,23 +195,23 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
     *ptv_adr++ = lD4.w.l; /* Line 195, Address: 0x1009a54 */
 
     lD5.l = zoomwk.cxsz.w.h * lD2.w.l; /* Line 197, Address: 0x1009a64 */
-    lD4.l = zoomwk.hsxsz + lsv3 - lD5.l; /* Line 198, Address: 0x1009a88 */
+    lD4.l = zoomwk.hsxsz + (lsv3 - lD5.l); /* Line 198, Address: 0x1009a88 */
     lD4.l >>= iD6; /* Line 199, Address: 0x1009aa0 */
     lD4.l *= zoomwk.z; /* Line 200, Address: 0x1009ab4 */
     lD4.w.l = lD4.l / lD3.l; /* Line 201, Address: 0x1009ad0 */
     lD4.w.l += lD0.w.l; /* Line 202, Address: 0x1009af8 */
     lD4.w.l -= zoomwk.hisxsz.w.h; /* Line 203, Address: 0x1009b08 */
-    lD4.w.l -= *(ptv_adr - 1); /* Line 204, Address: 0x1009b1c */
+    lD4.w.l -= *(ptv_adr - 2); /* Line 204, Address: 0x1009b1c */
     *ptv_adr++ = lD4.w.l; /* Line 205, Address: 0x1009b2c */
 
-    lD5.l = zoomwk.cxcz.w.h * lD2.l; /* Line 207, Address: 0x1009b40 */
+    lD5.l = zoomwk.cxcz.w.h * lD2.w.l; /* Line 207, Address: 0x1009b40 */
     lD4.l = lsv4 + lD5.l - zoomwk.hsxcz; /* Line 208, Address: 0x1009b64 */
     lD4.l >>= iD6; /* Line 209, Address: 0x1009b7c */
     lD4.l *= zoomwk.z; /* Line 210, Address: 0x1009b90 */
     lD4.w.l = lD4.l / lD3.l; /* Line 211, Address: 0x1009bac */
     lD4.w.l += lD1.w.l; /* Line 212, Address: 0x1009bd4 */
     lD4.w.l += zoomwk.hisxcz.w.h; /* Line 213, Address: 0x1009be4 */
-    lD4.w.l -= *(ptv_adr - 1); /* Line 214, Address: 0x1009bf8 */
+    lD4.w.l -= *(ptv_adr - 2); /* Line 214, Address: 0x1009bf8 */
     *ptv_adr++ = lD4.w.l; /* Line 215, Address: 0x1009c08 */
   } /* Line 216, Address: 0x1009c1c */
 } /* Line 217, Address: 0x1009c48 */

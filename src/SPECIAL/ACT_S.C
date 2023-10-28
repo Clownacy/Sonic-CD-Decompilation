@@ -94,7 +94,7 @@ void zbuf_set(sprite_status_sp* work, int length) { /* Line 93, Address: 0x10002
   short i = 0; /* Line 94, Address: 0x10002e0 */
 
   if (length >= 4096) length = 4095; /* Line 96, Address: 0x10002e4 */
-  length = (length * 4 & 1008) / 2; /* Line 97, Address: 0x10002fc */
+  length = (length >> 2 & 1008) / 2; /* Line 97, Address: 0x10002fc */
 
 
   for (i = 0; i < 7; ++i) { /* Line 100, Address: 0x1000324 */
