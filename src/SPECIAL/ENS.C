@@ -860,7 +860,7 @@ void timeufo(sprite_status_sp* actionwk) { /* Line 149, Address: 0x10018d0 */
   }
   actionwk->z_posi.w.h = actwk[0].z_posi.w.h; /* Line 161, Address: 0x100193c */
   actionwk->z_posi.w.h -= 320; /* Line 162, Address: 0x100194c */
-  if (actionwk->actfree[20] != 0) /* Line 163, Address: 0x100195c */
+  if (actionwk->actfree[20]) /* Line 163, Address: 0x100195c */
   {
     --actionwk->actfree[20]; /* Line 165, Address: 0x100196c */
     actionwk->actflg |= 4; /* Line 166, Address: 0x100197c */
@@ -896,8 +896,8 @@ void tufo01(sprite_status_sp* actionwk) { /* Line 182, Address: 0x1001a30 */
   ptset_ufo(actionwk); /* Line 196, Address: 0x1001aa8 */
   scal(actionwk); /* Line 197, Address: 0x1001ab4 */
   ufovspl(actionwk); /* Line 198, Address: 0x1001ac0 */
-  if (actionwk->colliflg == 0) return; /* Line 199, Address: 0x1001acc */
-  if (time_stop != 0) return; /* Line 200, Address: 0x1001adc */
+  if (!actionwk->colliflg) return; /* Line 199, Address: 0x1001acc */
+  if (time_stop) return; /* Line 200, Address: 0x1001adc */
   actionwk->exeno = 2; /* Line 201, Address: 0x1001aec */
   a1 = &actwk[((unsigned short*)actionwk)[38]]; /* Line 202, Address: 0x1001af8 */
   a1->actflg |= 1; /* Line 203, Address: 0x1001b1c */
@@ -997,7 +997,7 @@ void ufo01(sprite_status_sp* actionwk) { /* Line 285, Address: 0x1001ed0 */
   ptset_ufo(actionwk); /* Line 297, Address: 0x1001f44 */
   scal(actionwk); /* Line 298, Address: 0x1001f50 */
   ufovspl(actionwk); /* Line 299, Address: 0x1001f5c */
-  if (actionwk->colliflg == 0) return; /* Line 300, Address: 0x1001f68 */
+  if (!actionwk->colliflg) return; /* Line 300, Address: 0x1001f68 */
   if (ufoleft < 2) time_stop = 1; /* Line 301, Address: 0x1001f78 */
 
   ufo_dec(); /* Line 303, Address: 0x1001f9c */
@@ -1190,7 +1190,7 @@ void ufo_initial() { /* Line 480, Address: 0x10026a0 */
   ufoleft = d7; /* Line 490, Address: 0x100270c */
 
   cnt = 0; /* Line 492, Address: 0x1002714 */
-  while (d7 != 0) /* Line 493, Address: 0x1002718 */
+  while (d7) /* Line 493, Address: 0x1002718 */
   {
 
     u_init(cnt++, a2++); /* Line 496, Address: 0x1002720 */
@@ -1225,8 +1225,8 @@ void tufo_initial() { /* Line 521, Address: 0x10028e0 */
   if (spe_time.l >= 21) return; /* Line 525, Address: 0x10028f4 */
   a2 = &actwk[39]; /* Line 526, Address: 0x1002908 */
   a3 = tufo_tbl; /* Line 527, Address: 0x1002910 */
-  if (a2->actno != 0) return; /* Line 528, Address: 0x1002918 */
   dummy = a2 - actwk; /* Line 529, Address: 0x1002924 */
+  if (a2->actno) return; /* Line 528, Address: 0x1002918 */
   a4 = &actwk[dummy + 8]; /* Line 530, Address: 0x100295c */
 
   a2->actno = 3; /* Line 532, Address: 0x1002980 */
@@ -1374,7 +1374,7 @@ void tlogo01(sprite_status_sp* actionwk) { /* Line 668, Address: 0x1002f70 */
 } /* Line 674, Address: 0x1002fcc */
 
 void tlogo02(sprite_status_sp* actionwk) { /* Line 676, Address: 0x1002fe0 */
-  if (--((unsigned short*)actionwk)[36] != 0) return; /* Line 677, Address: 0x1002fe8 */
+  if (--((unsigned short*)actionwk)[36]) return; /* Line 677, Address: 0x1002fe8 */
   ++actionwk->exeno; /* Line 678, Address: 0x1003004 */
 } /* Line 679, Address: 0x1003014 */
 
@@ -1439,7 +1439,7 @@ void tobi03(sprite_status_sp* actionwk) { /* Line 732, Address: 0x1003290 */
 } /* Line 739, Address: 0x10032f8 */
 
 void tobi04(sprite_status_sp* actionwk) { /* Line 741, Address: 0x1003310 */
-  if (--((unsigned short*)actionwk)[36] != 0) return; /* Line 742, Address: 0x1003318 */
+  if (--((unsigned short*)actionwk)[36]) return; /* Line 742, Address: 0x1003318 */
   actionwk->actflg |= 1; /* Line 743, Address: 0x1003334 */
   game_start = 0; /* Line 744, Address: 0x1003344 */
 } /* Line 745, Address: 0x100334c */
@@ -1450,7 +1450,7 @@ int exp_set(sprite_status_sp** a1) { /* Line 747, Address: 0x1003360 */
 
   pActwk = &actwk[24]; /* Line 751, Address: 0x1003370 */
   d7 = 7; /* Line 752, Address: 0x1003378 */
-  while (d7 != 0) /* Line 753, Address: 0x1003384 */
+  while (d7) /* Line 753, Address: 0x1003384 */
   {
     if (pActwk->actno == 0) /* Line 755, Address: 0x100338c */
     {
@@ -1485,6 +1485,6 @@ void eexp00(sprite_status_sp* actionwk) { /* Line 778, Address: 0x1003450 */
 } /* Line 785, Address: 0x10034b0 */
 
 void eexp01(sprite_status_sp* actionwk) { /* Line 787, Address: 0x10034c0 */
-  if (--((unsigned short*)actionwk)[36] != 0) return; /* Line 788, Address: 0x10034c8 */
+  if (--((unsigned short*)actionwk)[36]) return; /* Line 788, Address: 0x10034c8 */
   actionwk->actflg |= 1; /* Line 789, Address: 0x10034e4 */
 } /* Line 790, Address: 0x10034f4 */

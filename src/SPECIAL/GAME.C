@@ -754,7 +754,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 392, Address: 0x100
   game_score = lpKeepWork->plscore; /* Line 444, Address: 0x100546c */
   pl_suu = lpKeepWork->pl_suu; /* Line 445, Address: 0x1005480 */
   spgmmode = 0; /* Line 447, Address: 0x1005494 */
-  if (lpKeepWork->ta_flag != 0) { /* Line 448, Address: 0x100549c */
+  if (lpKeepWork->ta_flag) { /* Line 448, Address: 0x100549c */
     spgmmode |= 2; /* Line 449, Address: 0x10054b0 */
   }
 
@@ -894,7 +894,7 @@ int game() { /* Line 484, Address: 0x10055d0 */
   if (ufochk() != 0 && spgmmode & 2) /* Line 584, Address: 0x1005a50 */
     pldeadflg = 1; /* Line 585, Address: 0x1005a78 */
 
-  if (pldeadflg != 0) { /* Line 587, Address: 0x1005a84 */
+  if (pldeadflg) { /* Line 587, Address: 0x1005a84 */
     clwout(); /* Line 588, Address: 0x1005a94 */
     game_over(); /* Line 589, Address: 0x1005a9c */
     if (spgmmode & 2) { /* Line 590, Address: 0x1005aa4 */
@@ -905,7 +905,7 @@ int game() { /* Line 484, Address: 0x10055d0 */
     return 1; /* Line 595, Address: 0x1005ae8 */
   }
 
-  if (gmclrflg != 0) { /* Line 598, Address: 0x1005af4 */
+  if (gmclrflg) { /* Line 598, Address: 0x1005af4 */
     game_clear(); /* Line 599, Address: 0x1005b04 */
     clwout(); /* Line 600, Address: 0x1005b0c */
     lpKeepWork->SPEMode = 1; /* Line 601, Address: 0x1005b14 */
@@ -927,7 +927,7 @@ int ufochk() { /* Line 616, Address: 0x1005b80 */
   int i;
 
   for (i = 0; i < 6; ++i) { /* Line 619, Address: 0x1005b88 */
-    if (actwk[i + 32].actno != 0) return 0; /* Line 620, Address: 0x1005b94 */
+    if (actwk[i + 32].actno) return 0; /* Line 620, Address: 0x1005b94 */
   } /* Line 621, Address: 0x1005bc8 */
   return -1; /* Line 622, Address: 0x1005bd8 */
 } /* Line 623, Address: 0x1005bdc */
@@ -1316,7 +1316,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
 
   do {
     tblno = tblno4; /* Line 1108, Address: 0x100655c */
-    if (tblno == 0) break; /* Line 1109, Address: 0x1006574 */
+    if (!tblno) break; /* Line 1109, Address: 0x1006574 */
     --tblno; /* Line 1110, Address: 0x100657c */
     xbase = (bwrtTbl[tblno].vadr & 127) / 2; /* Line 1111, Address: 0x1006584 */
     ybase = bwrtTbl[tblno].vadr / 128; /* Line 1112, Address: 0x10065c4 */
@@ -1571,7 +1571,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) {  /* Line 1349, Address: 0x1
 
 
 void hscal_1() { /* Line 1363, Address: 0x1006e90 */
-  if (scroll_stop == 0) { /* Line 1364, Address: 0x1006e98 */
+  if (!scroll_stop) { /* Line 1364, Address: 0x1006e98 */
     if (stagenm == 0) hscal1_0(); /* Line 1365, Address: 0x1006ea8 */
     else if (stagenm == 4) hscal1_4(); /* Line 1366, Address: 0x1006ecc */
     else if (stagenm == 5) hscal1_5(); /* Line 1367, Address: 0x1006ef4 */
@@ -1579,7 +1579,7 @@ void hscal_1() { /* Line 1363, Address: 0x1006e90 */
 } /* Line 1369, Address: 0x1006f14 */
 
 void hscal_2(){ /* Line 1371, Address: 0x1006f30 */
-  if (scroll_stop == 0) { /* Line 1372, Address: 0x1006f38 */
+  if (!scroll_stop) { /* Line 1372, Address: 0x1006f38 */
     if (stagenm == 0) hscal2_0(); /* Line 1373, Address: 0x1006f48 */
     else if (stagenm == 4) hscal2_4(); /* Line 1374, Address: 0x1006f6c */
     else if (stagenm == 5) hscal2_5(); /* Line 1375, Address: 0x1006f94 */
@@ -1603,7 +1603,7 @@ void hscal0_0() { /* Line 1382, Address: 0x1006fd0 */
 
 
 
-  if (hscrflg == 0) { /* Line 1396, Address: 0x1007044 */
+  if (!hscrflg) { /* Line 1396, Address: 0x1007044 */
     ++hscrcnt; /* Line 1397, Address: 0x1007054 */
     if (hscrcnt >= 512) { /* Line 1398, Address: 0x1007068 */
       hscrcnt = 511; /* Line 1399, Address: 0x1007080 */
@@ -1665,7 +1665,7 @@ void hscal2_0() { /* Line 1438, Address: 0x1007220 */
 void hscal0(short* a0, short* a1, int d0, int d1, short d3, short d4, short d7) { /* Line 1455, Address: 0x10072e0 */
   int_union d2;
 
-  if (hscrflg == 0) { /* Line 1458, Address: 0x1007300 */
+  if (!hscrflg) { /* Line 1458, Address: 0x1007300 */
 
     do {
       *a0++ = d3; /* Line 1461, Address: 0x1007310 */
@@ -1717,7 +1717,7 @@ void hscal0_4() { /* Line 1488, Address: 0x1007480 */
     hscrflg = 1; /* Line 1507, Address: 0x10074ec */
     ++hscrcnt4; /* Line 1508, Address: 0x10074f8 */
     hscrcnt4 &= 15; /* Line 1509, Address: 0x100750c */
-    if (hscrcnt4 == 0) hscrflg = 2; /* Line 1510, Address: 0x1007520 */
+    if (!hscrcnt4) hscrflg = 2; /* Line 1510, Address: 0x1007520 */
   }
 
   if (rlscrflg_save & 8) { /* Line 1513, Address: 0x100753c */
@@ -1725,7 +1725,7 @@ void hscal0_4() { /* Line 1488, Address: 0x1007480 */
     hscrflg = 255; /* Line 1515, Address: 0x1007554 */
     --hscrcnt4; /* Line 1516, Address: 0x1007560 */
     hscrcnt4 &= 15; /* Line 1517, Address: 0x1007574 */
-    if (hscrcnt4 == 0) hscrflg = 2; /* Line 1518, Address: 0x1007588 */
+    if (!hscrcnt4) hscrflg = 2; /* Line 1518, Address: 0x1007588 */
   }
 
   a0 = (short*)&hdatabuf[0]; /* Line 1521, Address: 0x10075a4 */
@@ -2046,7 +2046,7 @@ void hscrl7() {} /* Line 1829, Address: 0x1008270 */
 
 
 void hscal() { /* Line 1838, Address: 0x1008280 */
-  if (scroll_stop == 0) { /* Line 1839, Address: 0x1008288 */
+  if (!scroll_stop) { /* Line 1839, Address: 0x1008288 */
     hscrltbl[stagenm](); /* Line 1840, Address: 0x1008298 */
   }
 
@@ -2179,7 +2179,7 @@ void colchg3() { /* Line 1945, Address: 0x1008820 */
   d6 = 0; /* Line 1969, Address: 0x10089ec */
   d7 = 2; /* Line 1970, Address: 0x10089f0 */
   d0 = cntplus(clchgcnt, d5, d6, d7); /* Line 1971, Address: 0x10089fc */
-  if (d0 != 0) return; /* Line 1972, Address: 0x1008a28 */
+  if (d0) return; /* Line 1972, Address: 0x1008a28 */
 
   d0 = clchgcnt[2]; /* Line 1974, Address: 0x1008a30 */
   clchgcnt[2] += 2; /* Line 1975, Address: 0x1008a40 */

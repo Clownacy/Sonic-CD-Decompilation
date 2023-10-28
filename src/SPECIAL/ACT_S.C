@@ -174,7 +174,7 @@ void patset(sprite_status_sp* work) { /* Line 172, Address: 0x1000670 */
   sprite_patterns_sp* patchg;
   spr_array* sprpat_adr;
 
-  if (work->actno == 0) return; /* Line 177, Address: 0x1000688 */
+  if (!work->actno) return; /* Line 177, Address: 0x1000688 */
   patchg_tbl = work->pattbl; /* Line 178, Address: 0x1000698 */
   patchg = patchg_tbl[work->pattblno]; /* Line 179, Address: 0x10006a0 */
   if (work->patno >= patchg->cnt) work->patno = 0; /* Line 180, Address: 0x10006b8 */
