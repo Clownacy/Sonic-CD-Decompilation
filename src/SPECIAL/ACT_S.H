@@ -1,0 +1,11 @@
+void action();
+void actmain(sprite_status_sp* work);
+void zbuf_init();
+void zbuf_set(sprite_status_sp* work, int length);
+void zbuf_patset();
+void zpatset(short z_buffer_start);
+short zpatset_call(short z_buffer_number);
+void patinit(sprite_status_sp* work, unsigned char pattbl_number);
+void patinit1(sprite_status_sp* work, unsigned char pattbl_number);
+void patset(sprite_status_sp* work);
+void n_patset(sprite_status_sp* work, spr_array* sprpat_adr);

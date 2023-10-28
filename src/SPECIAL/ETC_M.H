@@ -1,0 +1,14 @@
+void sonic_disp();
+void sonic_disp_disp(short tbl_no);
+void time_bonus_disp();
+void ring_bonus_disp();
+void game_score_disp();
+void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short counter);
+unsigned short cntminus(unsigned short* work, unsigned short minus_data, unsigned short under_limit, unsigned short upper_limit);
+unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned short under_limit, unsigned short upper_limit);
+void spetime_disp();
+void ringno_disp();
+void ufoleft_disp();
+void sset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short counter);
+void rfill(unsigned int* address, unsigned int data, short size);
+void rcopy(unsigned int* address1, unsigned int* address2, short size);

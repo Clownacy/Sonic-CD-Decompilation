@@ -286,3 +286,108 @@ typedef struct tagPOINT {
   int y;
 }
 point;
+
+
+
+/* SPECIAL STAGE */
+
+typedef struct {
+  unsigned char cnt;
+  char timer;
+  spr_array* spr[64];
+}
+sprite_patterns_sp;
+
+typedef struct {
+  unsigned char actno;
+  unsigned char cgno;
+  unsigned char actflg;
+  unsigned char exeno;
+  unsigned short sprcolor;
+  sprite_patterns_sp** pattbl;
+  unsigned char pattblno;
+  unsigned char patno;
+  char pctime;
+  char pctime_b;
+  unsigned char scno_ce;
+  unsigned char scno_ul;
+  unsigned char scno_ur;
+  unsigned char scno_dr;
+  unsigned char scno_dl;
+  unsigned char scno_sdir;
+  short spdcnt;
+  short spdcnt_shock;
+  short spdcnt_max;
+  int_union x_posi;
+  int_union y_posi;
+  int_union z_posi;
+  int_union sx_posi;
+  int_union sy_posi;
+  int_union x_speed;
+  int_union y_speed;
+  int_union z_speed;
+  int_union sx_speed;
+  int_union sy_speed;
+  unsigned char colliflg;
+  unsigned char dummy[3];
+  unsigned char actfree[48];
+}
+sprite_status_sp;
+
+typedef struct {
+  short base;
+  short data[4];
+}
+damage_info;
+
+typedef struct {
+  short base;
+  short data[3];
+}
+hane_info;
+
+typedef struct {
+  short x;
+  short y;
+  short z;
+  short ax;
+  short sx;
+  short cx;
+  short az;
+  short sz;
+  short cz;
+  short msz;
+  short mcz;
+  short h;
+  short i;
+  int hsxsz;
+  int hsxcz;
+  int hcxcz;
+  int hcxsz;
+  int hcx;
+  int hzsx;
+  int_union hsz;
+  int_union hcz;
+  int_union zcx;
+  int_union hisxsz;
+  int_union hisxcz;
+  int_union cxsz;
+  int_union cxcz;
+  int_union sxsz;
+  int_union sxcz;
+}
+zoom_info;
+
+typedef struct {
+  char no;
+  short* mv_tbl[6];
+}
+move_tbl;
+
+typedef struct {
+  unsigned short* tbl;
+  unsigned short vadr;
+  unsigned short xsize;
+  unsigned short ysize;
+}
+bwrt_info;
