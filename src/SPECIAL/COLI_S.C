@@ -173,7 +173,7 @@ void stpnmget(short iXposi, short iYposi, short* ipD1, short* ipD2) { /* Line 16
   if (wD2 >= 16383) { /* Line 173, Address: 0x10013e4 */
 
 
-    sPrintf(buf, "stpnmget Err wD2 = %x\n"); /* Line 176, Address: 0x10013f4 */
+    sPrintf(buf, "stpnmget Err wD2 = %x\n", wD2); /* Line 176, Address: 0x10013f4 */
     sOutputDebugString(buf); /* Line 177, Address: 0x1001414 */
     wD2 = 16383; /* Line 178, Address: 0x1001428 */
   }

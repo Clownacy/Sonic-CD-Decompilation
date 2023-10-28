@@ -800,7 +800,7 @@ void b_ring00(sprite_status_sp* actionwk) { /* Line 79, Address: 0x1001570 */
 } /* Line 100, Address: 0x100166c */
 
 void b_ring01(sprite_status_sp* actionwk) { /* Line 102, Address: 0x1001690 */
-  if (actionwk->actfree[0] == 0) actionwk->actflg |= 1; /* Line 103, Address: 0x1001698 */
+  if (--actionwk->actfree[0] == 0) actionwk->actflg |= 1; /* Line 103, Address: 0x1001698 */
 
   actionwk->sx_posi.l += actionwk->sx_speed.l; /* Line 105, Address: 0x10016c8 */
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 106, Address: 0x10016e0 */
@@ -840,7 +840,7 @@ void i_ring00(sprite_status_sp* actionwk) { /* Line 131, Address: 0x10017d0 */
 } /* Line 140, Address: 0x1001850 */
 
 void i_ring01(sprite_status_sp* actionwk) { /* Line 142, Address: 0x1001860 */
-  if (actionwk->actfree[0] == 0) actionwk->actflg &= 1; /* Line 143, Address: 0x1001868 */
+  if (--actionwk->actfree[0] == 0) actionwk->actflg &= 1; /* Line 143, Address: 0x1001868 */
 
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 145, Address: 0x1001898 */
   actionwk->sy_speed.l += 2; /* Line 146, Address: 0x10018b0 */
@@ -1206,7 +1206,7 @@ void u_init(short cnt, sprite_status_sp* a2) { /* Line 501, Address: 0x1002780 *
   a1tbl = mvtbl_tbl[stagenm]->mv_tbl[cnt]; /* Line 506, Address: 0x1002798 */
 
   dummy = a2 - actwk; /* Line 508, Address: 0x10027d0 */
-  a4 = &actwk[dummy]; /* Line 509, Address: 0x1002800 */
+  a4 = &actwk[dummy + 8]; /* Line 509, Address: 0x1002800 */
   a2->actno = 2; /* Line 510, Address: 0x1002820 */
   a2->actfree[18] = a1tbl[0]; /* Line 511, Address: 0x100282c */
   a2->actfree[19] = a1tbl[1]; /* Line 512, Address: 0x1002844 */

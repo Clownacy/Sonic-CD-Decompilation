@@ -98,10 +98,10 @@ void zbuf_set(sprite_status_sp* work, int length) { /* Line 93, Address: 0x10002
 
 
   for (i = 0; i < 7; ++i) { /* Line 100, Address: 0x1000324 */
-    if (z_buffer[i] == 0) break; /* Line 101, Address: 0x1000330 */
+    if (z_buffer[length + i] == 0) break; /* Line 101, Address: 0x1000330 */
   } /* Line 102, Address: 0x1000360 */
-  z_buffer[length] = work - actwk; /* Line 103, Address: 0x1000380 */
-  z_buffer[length + 1] = 0; /* Line 104, Address: 0x10003d0 */
+  z_buffer[length + i] = work - actwk; /* Line 103, Address: 0x1000380 */
+  z_buffer[length + i + 1] = 0; /* Line 104, Address: 0x10003d0 */
 } /* Line 105, Address: 0x10003f8 */
 
 

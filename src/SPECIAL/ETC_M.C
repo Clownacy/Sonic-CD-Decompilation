@@ -143,7 +143,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
 
         nullflg = 1; /* Line 144, Address: 0x1003904 */
         SetGrid(0, x, y, disp_ascii[one_number], 0); /* Line 145, Address: 0x1003910 */
-        SetGrid(0, x, y + 1, disp_ascii[one_number], 0); /* Line 146, Address: 0x1003958 */
+        SetGrid(0, x, y + 1, disp_ascii[one_number + 10], 0); /* Line 146, Address: 0x1003958 */
       } /* Line 147, Address: 0x10039a8 */
       else {
         SetGrid(0, x, y, 0, 0); /* Line 149, Address: 0x10039b0 */
@@ -257,7 +257,7 @@ void sset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
     one_number = disp_data / subtbl[i]; /* Line 257, Address: 0x1003e48 */
     disp_data %= subtbl[i++]; /* Line 258, Address: 0x1003e88 */
     SetGrid(0, disp_x, disp_y, chrtbl[one_number], 0); /* Line 259, Address: 0x1003ecc */
-    SetGrid(0, disp_x, disp_y + 1, chrtbl[one_number], 0); /* Line 260, Address: 0x1003f08 */
+    SetGrid(0, disp_x, disp_y + 1, chrtbl[one_number + 12], 0); /* Line 260, Address: 0x1003f08 */
     ++disp_x; /* Line 261, Address: 0x1003f48 */
   } while (counter >= i); /* Line 262, Address: 0x1003f4c */
 } /* Line 263, Address: 0x1003f6c */

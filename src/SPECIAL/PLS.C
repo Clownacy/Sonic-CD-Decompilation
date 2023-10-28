@@ -346,9 +346,9 @@ void init_xyget(sprite_status_sp* plwk) { /* Line 337, Address: 0x100ad50 */
     1024, 1152, 128
   };
 
-  plwk->x_posi.w.h = tbl[stagenm]; /* Line 349, Address: 0x100ad8c */
-  plwk->y_posi.w.h = tbl[stagenm + 1]; /* Line 350, Address: 0x100adb4 */
-  *(short*)(plwk->actfree + 6) = tbl[stagenm + 2]; /* Line 351, Address: 0x100ade0 */
+  plwk->x_posi.w.h = tbl[stagenm * 3]; /* Line 349, Address: 0x100ad8c */
+  plwk->y_posi.w.h = tbl[stagenm * 3 + 1]; /* Line 350, Address: 0x100adb4 */
+  *(short*)(plwk->actfree + 6) = tbl[stagenm * 3 + 2]; /* Line 351, Address: 0x100ade0 */
 } /* Line 352, Address: 0x100ae0c */
 
 
@@ -683,7 +683,7 @@ void speed_ud(sprite_status_sp* plwk) { /* Line 682, Address: 0x100bbf0 */
   short max_speed;
 
   if (game_start != 0) return; /* Line 685, Address: 0x100bbfc */
-  if (swdata_pl.b.h != 2) { /* Line 686, Address: 0x100bc10 */
+  if ((swdata_pl.b.h & 15) != 2) { /* Line 686, Address: 0x100bc10 */
     if (plwk->actfree[18] != 0) { /* Line 687, Address: 0x100bc2c */
       --plwk->actfree[18]; /* Line 688, Address: 0x100bc44 */
       max_speed = 3584; /* Line 689, Address: 0x100bc54 */
@@ -744,7 +744,7 @@ void go_x_plus(sprite_status_sp* plwk, unsigned short cal_plus, short cal_speed)
 
 void ptrlget(sprite_status_sp* plwk) { /* Line 745, Address: 0x100bf30 */
   if (swdata_pl.b.h & 4) { /* Line 746, Address: 0x100bf38 */
-    if (--plwk->actfree[16] < 0) plwk->actfree[16]; /* Line 747, Address: 0x100bf50 */
+    if (--plwk->actfree[16] < 0) plwk->actfree[16] = 0; /* Line 747, Address: 0x100bf50 */
     return; /* Line 748, Address: 0x100bf84 */
   }
   if (swdata_pl.b.h & 8) { /* Line 750, Address: 0x100bf8c */
@@ -917,7 +917,7 @@ void kemuri0(sprite_status_sp* kemuriwk) { /* Line 899, Address: 0x100c590 */
 
 
 void kemuri1(sprite_status_sp* kemuriwk) { /* Line 919, Address: 0x100c6c0 */
-  if (--*(short*)(kemuriwk->actfree)) kemuriwk->actflg |= 1; /* Line 920, Address: 0x100c6c8 */
+  if (--*(short*)(kemuriwk->actfree) == 0) kemuriwk->actflg |= 1; /* Line 920, Address: 0x100c6c8 */
   kemuriwk->sx_posi.l += kemuriwk->sx_speed.l; /* Line 921, Address: 0x100c700 */
   --kemuriwk->sy_posi.l; /* Line 922, Address: 0x100c718 */
 } /* Line 923, Address: 0x100c728 */
