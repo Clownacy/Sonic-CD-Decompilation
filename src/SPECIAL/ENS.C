@@ -1144,7 +1144,7 @@ void ptset_ufo(sprite_status_sp* actionwk) { /* Line 418, Address: 0x10024e0 */
   zbuf_set(actionwk, d0l); /* Line 444, Address: 0x10025f4 */
 
 
-  if (d0l >= 1280) d0l = 1280; /* Line 447, Address: 0x1002604 */
+  if (d0l >= 1280U) d0l = 1280; /* Line 447, Address: 0x1002604 */
   d0l >>= 4; /* Line 448, Address: 0x1002614 */
   if (d0l >= 81) d0l = 80; /* Line 449, Address: 0x1002618 */
 

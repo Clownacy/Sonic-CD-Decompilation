@@ -1213,7 +1213,7 @@ void gsc_up(int lScore) { /* Line 888, Address: 0x10061c0 */
   } /* Line 903, Address: 0x1006264 */
 
   game_score = lScore; /* Line 905, Address: 0x100627c */
-  if (game_score >= 1000000) { /* Line 906, Address: 0x1006288 */
+  if (game_score >= 1000000U) { /* Line 906, Address: 0x1006288 */
     game_score = 999999; /* Line 907, Address: 0x10062a4 */
   }
 } /* Line 909, Address: 0x10062b4 */
@@ -2252,7 +2252,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   d5 = 1; /* Line 2042, Address: 0x1008d58 */
   d6 = 0; /* Line 2043, Address: 0x1008d60 */
   d7 = 55; /* Line 2044, Address: 0x1008d64 */
-  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534); /* Line 2045, Address: 0x1008d6c */
+  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534U); /* Line 2045, Address: 0x1008d6c */
   d0 >>= 1; /* Line 2046, Address: 0x1008da0 */
   lpPeDest = &lpcolorwk[47]; /* Line 2047, Address: 0x1008da8 */
   *lpPeDest = tbl3[d0]; /* Line 2048, Address: 0x1008db4 */
@@ -2280,7 +2280,7 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
   d5 = 2; /* Line 2070, Address: 0x1008e30 */
   d6 = 0; /* Line 2071, Address: 0x1008e38 */
   d7 = 24; /* Line 2072, Address: 0x1008e3c */
-  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534); /* Line 2073, Address: 0x1008e44 */
+  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534U); /* Line 2073, Address: 0x1008e44 */
 
   d0 >>= 1; /* Line 2075, Address: 0x1008e78 */
   lpPeDest = &lpcolorwk[33]; /* Line 2076, Address: 0x1008e80 */
@@ -2291,7 +2291,7 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
   d5 = 2; /* Line 2081, Address: 0x1008f00 */
   d6 = 0; /* Line 2082, Address: 0x1008f08 */
   d7 = 22; /* Line 2083, Address: 0x1008f0c */
-  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65532); /* Line 2084, Address: 0x1008f14 */
+  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65532U); /* Line 2084, Address: 0x1008f14 */
   d0 >>= 1; /* Line 2085, Address: 0x1008f48 */
   lpPeDest = &lpcolorwk[29]; /* Line 2086, Address: 0x1008f50 */
   *lpPeDest++ = tbl1[d0++]; /* Line 2087, Address: 0x1008f5c */
@@ -2312,7 +2312,7 @@ void colchg6() { /* Line 2093, Address: 0x1009000 */
   d5 = 1; /* Line 2102, Address: 0x1009050 */
   d6 = 0; /* Line 2103, Address: 0x1009058 */
   d7 = 23; /* Line 2104, Address: 0x100905c */
-  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534); /* Line 2105, Address: 0x1009064 */
+  d0 = (short)(cntplus(clchgcnt, d5, d6, d7) & 65534U); /* Line 2105, Address: 0x1009064 */
   d0 >>= 1; /* Line 2106, Address: 0x1009098 */
   lpPeDest = &lpcolorwk[31]; /* Line 2107, Address: 0x10090a0 */
   *lpPeDest = tbl[d0]; /* Line 2108, Address: 0x10090ac */
