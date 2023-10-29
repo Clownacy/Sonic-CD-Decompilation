@@ -839,9 +839,9 @@ int game() { /* Line 484, Address: 0x10055d0 */
       case 5:
         lpKeepWork->SPEMode = 6; /* Line 530, Address: 0x1005810 */
 
-        lpKeepWork->ta_time = spe_time.l >> 8 * 60; /* Line 533, Address: 0x1005854 */
-        lpKeepWork->ta_time += spe_time.l; /* Line 534, Address: 0x1005884 */
         lpKeepWork->ta_time = (spe_time.l >> 16 & 255) * 60 * 60; /* Line 532, Address: 0x1005820 */
+        lpKeepWork->ta_time += (spe_time.l >> 8 & 255) * 60; /* Line 533, Address: 0x1005854 */
+        lpKeepWork->ta_time += spe_time.l & 255; /* Line 534, Address: 0x1005884 */
         CDPause(2); /* Line 535, Address: 0x10058a4 */
         return 4; /* Line 536, Address: 0x10058b8 */
       default:
@@ -1315,7 +1315,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
   unsigned short col, tblno;
 
   do {
-    tblno = tblno4; /* Line 1108, Address: 0x100655c */
+    tblno = tblno4 & 255; /* Line 1108, Address: 0x100655c */
     if (!tblno) break; /* Line 1109, Address: 0x1006574 */
     --tblno; /* Line 1110, Address: 0x100657c */
     xbase = (bwrtTbl[tblno].vadr & 127) / 2; /* Line 1111, Address: 0x1006584 */

@@ -166,7 +166,7 @@ label2:
   else
     lD1 /= iXtget; /* Line 167, Address: 0x1004524 */
 
-  iD1 = lD1; /* Line 169, Address: 0x1004544 */
+  iD1 = lD1 & 255; /* Line 169, Address: 0x1004544 */
   if ((unsigned short)iD1 >= 64) /* Line 170, Address: 0x1004558 */
     iD1 = 63; /* Line 171, Address: 0x100456c */
 

@@ -1020,7 +1020,7 @@ void ufo01(sprite_status_sp* actionwk) { /* Line 285, Address: 0x1001ed0 */
     case 2:
     case 3:
       rufo_getnm *= 2; /* Line 322, Address: 0x1002088 */
-      ring_add(rufo_getnm >> 1); /* Line 323, Address: 0x100209c */
+      ring_add(rufo_getnm >> 1 & 65535); /* Line 323, Address: 0x100209c */
       break; /* Line 324, Address: 0x10020bc */
     case 1:
       ((short*)actwk)[45] = 200; /* Line 326, Address: 0x10020c4 */

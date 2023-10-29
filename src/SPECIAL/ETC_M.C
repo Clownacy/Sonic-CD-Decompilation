@@ -200,9 +200,9 @@ void spetime_disp() { /* Line 197, Address: 0x1003c60 */
     sset(subtbl, 19, 0, spe_time.l, 2); /* Line 200, Address: 0x1003c80 */
   } /* Line 201, Address: 0x1003ca4 */
   else {
-    sset(subtbl, 17, 0, spe_time.l >> 16, 1); /* Line 203, Address: 0x1003cac */
-    sset(subtbl, 20, 0, spe_time.l >> 8, 1); /* Line 204, Address: 0x1003cd8 */
-    sset(subtbl, 23, 0, spe_time.l * 100 / 60, 1); /* Line 205, Address: 0x1003d04 */
+    sset(subtbl, 17, 0, spe_time.l >> 16 & 255, 1); /* Line 203, Address: 0x1003cac */
+    sset(subtbl, 20, 0, spe_time.l >> 8 & 255, 1); /* Line 204, Address: 0x1003cd8 */
+    sset(subtbl, 23, 0, (spe_time.l & 255) * 100 / 60, 1); /* Line 205, Address: 0x1003d04 */
   }
 
 } /* Line 208, Address: 0x1003d58 */
