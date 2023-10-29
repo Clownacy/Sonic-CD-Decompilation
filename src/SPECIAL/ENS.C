@@ -884,7 +884,7 @@ void tufo01(sprite_status_sp* actionwk) { /* Line 182, Address: 0x1001a30 */
   sprite_status_sp* a1;
   unsigned char d0;
 
-  mcnt = ((unsigned short**)actionwk)[22]; /* Line 187, Address: 0x1001a48 */
+  mcnt = (unsigned short*)(actionwk->actfree + 16); /* Line 187, Address: 0x1001a48 */
 
   actionwk->x_posi.l += actionwk->x_speed.l; /* Line 189, Address: 0x1001a50 */
   actionwk->y_posi.l += actionwk->y_speed.l; /* Line 190, Address: 0x1001a68 */
@@ -917,7 +917,7 @@ void tufo02(sprite_status_sp* actionwk) { /* Line 216, Address: 0x1001bc0 */
   unsigned short *tim, d0;
   sprite_status_sp* a1;
 
-  tim = ((unsigned short**)actionwk)[18]; /* Line 220, Address: 0x1001bd4 */
+  tim = (unsigned short*)(actionwk->actfree); /* Line 220, Address: 0x1001bd4 */
 
   actionwk->sx_posi.w.h -= 4; /* Line 222, Address: 0x1001bdc */
   if (actionwk->actfree[3] == 0) actionwk->sx_posi.w.h += 8; /* Line 223, Address: 0x1001bec */
@@ -986,7 +986,7 @@ void ufo01(sprite_status_sp* actionwk) { /* Line 285, Address: 0x1001ed0 */
   unsigned short* mcnt;
   sprite_status_sp* a1;
 
-  mcnt = ((unsigned short**)actionwk)[22]; /* Line 289, Address: 0x1001ee4 */
+  mcnt = (unsigned short*)(actionwk->actfree + 16); /* Line 289, Address: 0x1001ee4 */
   actionwk->x_posi.l += actionwk->x_speed.l; /* Line 290, Address: 0x1001eec */
   actionwk->y_posi.l += actionwk->y_speed.l; /* Line 291, Address: 0x1001f04 */
   if (--*mcnt == 0) /* Line 292, Address: 0x1001f1c */
@@ -1033,7 +1033,7 @@ void ufo02(sprite_status_sp* actionwk) { /* Line 332, Address: 0x1002100 */
   unsigned short *tim, d0;
   sprite_status_sp* a1;
 
-  tim = ((unsigned short**)actionwk)[18]; /* Line 336, Address: 0x1002114 */
+  tim = (unsigned short*)(actionwk->actfree); /* Line 336, Address: 0x1002114 */
 
   actionwk->sx_posi.w.h -= 4; /* Line 338, Address: 0x100211c */
   if (actionwk->actfree[3] == 0) actionwk->sx_posi.w.h += 8; /* Line 339, Address: 0x100212c */
