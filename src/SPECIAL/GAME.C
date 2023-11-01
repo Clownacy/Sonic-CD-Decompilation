@@ -798,9 +798,9 @@ int game() { /* Line 484, Address: 0x10055d0 */
     SetUseOk(0, 103, 0); /* Line 488, Address: 0x1005608 */
     SetUseOk(0, 102, 0); /* Line 489, Address: 0x100561c */
   } else { /* Line 490, Address: 0x1005630 */
-    SetUseOk(0, 103, 0); /* Line 491, Address: 0x1005638 */
+    SetUseOk(0, 103, 1); /* Line 491, Address: 0x1005638 */
     if (spgmmode & 2) { /* Line 492, Address: 0x100564c */
-      SetUseOk(0, 102, 0); /* Line 493, Address: 0x1005664 */
+      SetUseOk(0, 102, 1); /* Line 493, Address: 0x1005664 */
     }
     else SetUseOk(0, 102, 0); /* Line 495, Address: 0x1005680 */
   }
@@ -1457,7 +1457,7 @@ void sinit4() { /* Line 1243, Address: 0x1006a20 */
 
   colset(coltbl4); /* Line 1248, Address: 0x1006a34 */
 
-  for (i = 0; i < 128; ++i) hdatabuf[i] = -128; /* Line 1250, Address: 0x1006a44 */
+  for (i = 0; i < 128; ++i) hdatabuf[i] = 4286578688; /* Line 1250, Address: 0x1006a44 */
 } /* Line 1251, Address: 0x1006a90 */
 
 void sinit5() { /* Line 1253, Address: 0x1006ab0 */
@@ -1620,7 +1620,7 @@ void hscal0_0() { /* Line 1382, Address: 0x1006fd0 */
 
   a0 = (short*)&hdatabuf[0]; /* Line 1411, Address: 0x10070e0 */
   a1 = (short*)hdatabuf_l; /* Line 1412, Address: 0x10070e8 */
-  d0 = 1; /* Line 1413, Address: 0x10070f0 */
+  d0 = 65536; /* Line 1413, Address: 0x10070f0 */
   d1 = 1024; /* Line 1414, Address: 0x10070f8 */
   d3 = 0; /* Line 1415, Address: 0x1007100 */
   d4 = 0; /* Line 1416, Address: 0x1007104 */

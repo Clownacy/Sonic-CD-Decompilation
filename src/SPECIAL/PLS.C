@@ -461,7 +461,7 @@ void evt06(sprite_status_sp* plwk) { /* Line 455, Address: 0x100b2c0 */
   key_set(206); /* Line 461, Address: 0x100b300 */
   patinit(plwk, 14); /* Line 462, Address: 0x100b30c */
 
-  tbl[(plwk->scno_sdir & 15) / 2](plwk); /* Line 464, Address: 0x100b31c */
+  tbl[(plwk->scno_sdir & 14) / 2](plwk); /* Line 464, Address: 0x100b31c */
 } /* Line 465, Address: 0x100b35c */
 
 
@@ -501,7 +501,7 @@ void evt07(sprite_status_sp* plwk) { /* Line 496, Address: 0x100b480 */
 
   key_set(195); /* Line 502, Address: 0x100b4c0 */
 
-  tbl[(plwk->scno_sdir & 15) / 2](plwk); /* Line 504, Address: 0x100b4cc */
+  tbl[(plwk->scno_sdir & 14) / 2](plwk); /* Line 504, Address: 0x100b4cc */
 } /* Line 505, Address: 0x100b50c */
 
 
@@ -621,7 +621,7 @@ void boundchk(sprite_status_sp* plwk) { /* Line 536, Address: 0x100b630 */
 short k_search(sprite_status_sp** new_actwk) { /* Line 621, Address: 0x100b910 */
   short i;
 
-  for (i = 0; i < 16; ++i) /* Line 624, Address: 0x100b91c */
+  for (i = 8; i < 16; ++i) /* Line 624, Address: 0x100b91c */
     if ((*new_actwk = &actwk[i])->actno == 0) return 0; /* Line 625, Address: 0x100b930 */
   return -1; /* Line 626, Address: 0x100b994 */
 } /* Line 627, Address: 0x100b998 */
@@ -663,7 +663,7 @@ void rlmove(sprite_status_sp* plwk) { /* Line 649, Address: 0x100ba50 */
 
 void rlmove_j(sprite_status_sp* plwk) { /* Line 664, Address: 0x100bb20 */
   if (game_start != 0) return; /* Line 665, Address: 0x100bb28 */
-  if (swdata_pl.b.h & 4) { /* Line 666, Address: 0x100bb3c */
+  if (swdata_pl.b.h & 8) { /* Line 666, Address: 0x100bb3c */
     ((int*)plwk)[19] += -262144; /* Line 667, Address: 0x100bb54 */
     ((int*)plwk)[19] = (((int*)plwk)[19] << 39) >> 39; /* Line 668, Address: 0x100bb68 */
     rlscrflg |= 8; /* Line 669, Address: 0x100bb7c */
