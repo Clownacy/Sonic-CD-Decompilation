@@ -1,4 +1,4 @@
-void SetUseOk();
+void SetUseOk(short unknown1, short unknown2, short unknown3);
 void m2mainchk();
 void m2subset();
 void DLL_meminit(char*** pBufTbl, void** pFuncTbl);

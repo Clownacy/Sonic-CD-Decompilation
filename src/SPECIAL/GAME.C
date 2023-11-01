@@ -682,7 +682,7 @@ int(*sGetFileSize)(int);
 
 
 
-void SetUseOk() { /* Line 135, Address: 0x1005100 */
+void SetUseOk(short unknown1, short unknown2, short unknown3) { /* Line 135, Address: 0x1005100 */
 } /* Line 136, Address: 0x1005104 */
 
 void m2mainchk() {} /* Line 378, Address: 0x1005110 */
