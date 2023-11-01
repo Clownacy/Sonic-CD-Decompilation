@@ -1060,16 +1060,16 @@ void mvtblset(sprite_status_sp* actionwk) { /* Line 357, Address: 0x1002280 */
   short mcnt;
   int d2l, d3l;
 
-label1:
-  a1 = ((short**)actionwk)[21]; /* Line 364, Address: 0x10022a8 */
+  do {
+    a1 = ((short**)actionwk)[21]; /* Line 364, Address: 0x10022a8 */
 
-  mcnt = ((short*)actionwk)[44] = *a1++; /* Line 366, Address: 0x10022b0 */
-  if (mcnt >= 0) goto label2; /* Line 367, Address: 0x10022cc */
+    mcnt = ((short*)actionwk)[44] = *a1++; /* Line 366, Address: 0x10022b0 */
+    if (mcnt >= 0) break; /* Line 367, Address: 0x10022cc */
 
-  ((int*)actionwk)[21] = ((int*)actionwk)[20]; /* Line 369, Address: 0x10022dc */
+    ((int*)actionwk)[21] = ((int*)actionwk)[20]; /* Line 369, Address: 0x10022dc */
 
-  goto label1; /* Line 371, Address: 0x10022ec */
-label2:
+  } while (1); /* Line 371, Address: 0x10022ec */
+
   d0 = *a1++; /* Line 373, Address: 0x10022f4 */
   d1 = *a1++; /* Line 374, Address: 0x1002308 */
   actionwk->x_posi.w.h = d0; /* Line 375, Address: 0x100231c */
