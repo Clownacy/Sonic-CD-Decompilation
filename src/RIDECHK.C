@@ -266,7 +266,7 @@ short hitchk(act_info* pActwk, act_info* pPlayerwk) { /* Line 243, Address: 0x10
 
   iD2 = iD1; /* Line 267, Address: 0x1019cb4 */
   iD2 += iD2; /* Line 268, Address: 0x1019cbc */
-  if (iD0 >= iD2) /* Line 269, Address: 0x1019cc8 */
+  if ((unsigned short)iD0 >= (unsigned short)iD2) /* Line 269, Address: 0x1019cc8 */
     return hit_e(pActwk, pPlayerwk); /* Line 270, Address: 0x1019ce4 */
 
   if (pPlayerwk->mstno.b.h == 43) /* Line 272, Address: 0x1019cfc */
@@ -377,7 +377,7 @@ short hit_x(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iD5) { /*
     if (pPlayerwk->cddat & 2) /* Line 377, Address: 0x101a160 */
     return hit_e(pActwk, pPlayerwk); /* Line 378, Address: 0x101a178 */
 
-  if (iD5 < 5) /* Line 380, Address: 0x101a190 */
+  if ((unsigned short)iD5 < 5) /* Line 380, Address: 0x101a190 */
     return hit_e(pActwk, pPlayerwk); /* Line 381, Address: 0x101a1a8 */
   hit_set(pActwk, pPlayerwk); /* Line 382, Address: 0x101a1c0 */
   ride_on_clr(pActwk, pPlayerwk); /* Line 383, Address: 0x101a1d0 */
@@ -689,7 +689,7 @@ void hit_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 682, Address: 0x10
     return; /* Line 689, Address: 0x101aac8 */
   }
 
-  iHitActno = pPlayerwk->colino; /* Line 692, Address: 0x101aad0 */
+  iHitActno = (unsigned short)pPlayerwk->colino; /* Line 692, Address: 0x101aad0 */
   if (iHitActno != 0) /* Line 693, Address: 0x101aaec */
   {
     pHitAct = &actwk[iHitActno]; /* Line 695, Address: 0x101aafc */

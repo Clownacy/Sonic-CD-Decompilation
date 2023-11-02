@@ -31,7 +31,7 @@ void patchg(act_info* patchgwk, unsigned char** pat_dat) { /* Line 24, Address: 
     patchgwk->patcnt = patchgwk->pattim = 0; /* Line 31, Address: 0x1015128 */
   }
 
-  if (--patchgwk->pattim >= 0) return; /* Line 34, Address: 0x101513c */
+  if ((char)--patchgwk->pattim >= 0) return; /* Line 34, Address: 0x101513c */
   sprpat_adr = pat_dat[patchgwk->mstno.b.h]; /* Line 35, Address: 0x1015168 */
 
   search_end = 0; /* Line 37, Address: 0x1015188 */
@@ -150,7 +150,7 @@ void marker_init(act_info* markerwk) { /* Line 141, Address: 0x1015600 */
   markerwk->sprvsize = 24; /* Line 150, Address: 0x1015658 */
   markerwk->sprpri = 4; /* Line 151, Address: 0x1015664 */
 
-  if (markerno >= markerwk->userflag.b.h) /* Line 153, Address: 0x1015670 */
+  if (markerno >= (unsigned char)markerwk->userflag.b.h) /* Line 153, Address: 0x1015670 */
     markerwk->actfree[4] = 1; /* Line 154, Address: 0x1015698 */
   else
     markerwk->colino = 227; /* Line 156, Address: 0x10156ac */
@@ -874,7 +874,7 @@ void ball_move(act_info* ballwk) { /* Line 863, Address: 0x10173d0 */
     if (cal_speed0 < cal_speed1) cal_speed0 = cal_speed1; /* Line 874, Address: 0x10174b8 */
     if (actwk[0].xspeed.w < 0) cal_speed0 = -cal_speed0; /* Line 875, Address: 0x10174dc */
     actwk[0].xspeed.w = actwk[0].mspeed.w = cal_speed0; /* Line 876, Address: 0x1017510 */
-    if ((actwk[0].direc.b.h + 32 & 192) == 128) /* Line 877, Address: 0x1017520 */
+    if (((unsigned char)actwk[0].direc.b.h + 32 & 192) == 128) /* Line 877, Address: 0x1017520 */
       actwk[0].mspeed.w = -actwk[0].mspeed.w; /* Line 878, Address: 0x1017544 */
     goto label1; /* Line 879, Address: 0x1017568 */
   } else if (ballwk->userflag.b.h >= 2) { ball_rd7(ballwk); return; } /* Line 880, Address: 0x1017570 */

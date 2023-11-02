@@ -856,7 +856,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
   }
 
   iBlkNo = cBlkNo & 127; /* Line 858, Address: 0x10034d0 */
-  switch (stageno.b.h) { /* Line 859, Address: 0x10034ec */
+  switch ((unsigned char)stageno.b.h) { /* Line 859, Address: 0x10034ec */
 
     case 4:
       iBlkNo = st_wackyDataChk(iBlkNo, pActwk); /* Line 862, Address: 0x1003528 */

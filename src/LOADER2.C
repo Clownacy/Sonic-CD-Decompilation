@@ -33,7 +33,7 @@ extern void(*CDPlay)(short);
 void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /* Line 33, Address: 0x10136b0 */
   unsigned char stage, round;
 
-  round = (StageNo >> 8) + 1; /* Line 36, Address: 0x10136c8 */
+  round = (char)(StageNo >> 8) + 1; /* Line 36, Address: 0x10136c8 */
   if (round >= 2) ++round; /* Line 37, Address: 0x10136e0 */
   stage = (char)StageNo + 1; /* Line 38, Address: 0x10136f8 */
 
@@ -166,7 +166,7 @@ void soundset(short ReqNo) { /* Line 163, Address: 0x1013b50 */
 
 
   ReqNo -= 144; /* Line 168, Address: 0x1013b74 */
-  ReqNo = SeToWavTbl[ReqNo]; /* Line 169, Address: 0x1013b80 */
+  ReqNo = (unsigned short)SeToWavTbl[ReqNo]; /* Line 169, Address: 0x1013b80 */
 
   WaveRequest(ReqNo); /* Line 171, Address: 0x1013bac */
 } /* Line 172, Address: 0x1013bc0 */

@@ -799,12 +799,12 @@ void ka_move(act_info* pActwk) { /* Line 792, Address: 0x10055a0 */
     d0 = pPlayerwk->yposi.w.h; /* Line 799, Address: 0x10055d4 */
     d0 -= pActwk->yposi.w.h; /* Line 800, Address: 0x10055e0 */
     d0 += 48; /* Line 801, Address: 0x10055f4 */
-    if (d0 < 112) /* Line 802, Address: 0x1005600 */
+    if ((unsigned short)d0 < 112) /* Line 802, Address: 0x1005600 */
     {
       d0 = pPlayerwk->xposi.w.h; /* Line 804, Address: 0x1005614 */
       d0 -= pActwk->xposi.w.h; /* Line 805, Address: 0x1005620 */
       d0 += 48; /* Line 806, Address: 0x1005634 */
-      if (d0 < 96) /* Line 807, Address: 0x1005640 */
+      if ((unsigned short)d0 < 96) /* Line 807, Address: 0x1005640 */
       {
         pActwk->r_no0 += 2; /* Line 809, Address: 0x1005654 */
         pActwk->mstno.b.h = 1; /* Line 810, Address: 0x1005664 */
@@ -1016,14 +1016,14 @@ short area(act_info* pActwk) { /* Line 1010, Address: 0x1005ce0 */
   d0 = pPlayerwk->yposi.w.h; /* Line 1016, Address: 0x1005d00 */
   d0 -= pActwk->yposi.w.h; /* Line 1017, Address: 0x1005d0c */
   d0 += 80; /* Line 1018, Address: 0x1005d20 */
-  if (d0 < 160) /* Line 1019, Address: 0x1005d2c */
+  if ((unsigned short)d0 < 160) /* Line 1019, Address: 0x1005d2c */
   {
     carry_flag = 1; /* Line 1021, Address: 0x1005d40 */
     d0 = pPlayerwk->xposi.w.h; /* Line 1022, Address: 0x1005d4c */
     d0 -= pActwk->xposi.w.h; /* Line 1023, Address: 0x1005d58 */
     d1 = d0; /* Line 1024, Address: 0x1005d6c */
     d1 += 80; /* Line 1025, Address: 0x1005d74 */
-    if (d1 < 160) carry_flag = 1; /* Line 1026, Address: 0x1005d80 */
+    if ((unsigned short)d1 < 160) carry_flag = 1; /* Line 1026, Address: 0x1005d80 */
     else carry_flag = 0; /* Line 1027, Address: 0x1005da8 */
   } /* Line 1028, Address: 0x1005dac */
   else

@@ -67,14 +67,14 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
   bDirSave = bDirwk; /* Line 67, Address: 0x100dbec */
   dirstk[0] = bDirwk; /* Line 68, Address: 0x100dbf0 */
   dirstk[2] = bDirwk; /* Line 69, Address: 0x100dbf8 */
-  if ((bDirwk + 32) < 0) /* Line 70, Address: 0x100dc00 */
+  if ((char)(bDirwk + 32) < 0) /* Line 70, Address: 0x100dc00 */
   {
-    if (bDirwk < 0) --bDirwk; /* Line 72, Address: 0x100dc20 */
+    if ((char)bDirwk < 0) --bDirwk; /* Line 72, Address: 0x100dc20 */
     bDirwk += 32; /* Line 73, Address: 0x100dc40 */
   } /* Line 74, Address: 0x100dc48 */
   else
   {
-    if (bDirwk < 0) ++bDirwk; /* Line 77, Address: 0x100dc50 */
+    if ((char)bDirwk < 0) ++bDirwk; /* Line 77, Address: 0x100dc50 */
     bDirwk += 31; /* Line 78, Address: 0x100dc70 */
   }
 
@@ -477,7 +477,7 @@ short emycol_d(act_info* pActwk) { /* Line 463, Address: 0x100e960 */
 short emycol_d2(act_info* pActwk, short iXposi) { /* Line 477, Address: 0x100e990 */
   short iYposi;
 
-  iYposi = pActwk->yposi.w.h + pActwk->sprvsize; /* Line 480, Address: 0x100e9a4 */
+  iYposi = pActwk->yposi.w.h + (char)pActwk->sprvsize; /* Line 480, Address: 0x100e9a4 */
   return emycol_d3(pActwk, iXposi, iYposi); /* Line 481, Address: 0x100e9e8 */
 } /* Line 482, Address: 0x100e9fc */
 

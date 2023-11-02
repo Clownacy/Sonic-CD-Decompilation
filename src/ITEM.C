@@ -414,7 +414,7 @@ void itemmove(act_info* itemwk) { /* Line 410, Address: 0x1011910 */
   if (itemwk->patbase != itempat) { /* Line 414, Address: 0x1011920 */
     error_item(itemwk); return; /* Line 415, Address: 0x1011938 */
   }
-  if (itemwk->actflg >= 0) { itemmove3(itemwk); return; } /* Line 417, Address: 0x101194c */
+  if ((char)itemwk->actflg >= 0) { itemmove3(itemwk); return; } /* Line 417, Address: 0x101194c */
   if (itemwk->r_no1 != 0) { /* Line 418, Address: 0x1011980 */
     speedset(itemwk); /* Line 419, Address: 0x1011994 */
     if ((col_ofs = emycol_d(itemwk)) < 0) { /* Line 420, Address: 0x10119a0 */
@@ -423,7 +423,7 @@ void itemmove(act_info* itemwk) { /* Line 410, Address: 0x1011910 */
       itemwk->r_no1 = 0; /* Line 423, Address: 0x10119e4 */
     }
   } /* Line 425, Address: 0x10119ec */
-  else if (itemwk->actflg < 0) ride_on_chk_i(itemwk); /* Line 426, Address: 0x10119f4 */
+  else if ((char)itemwk->actflg < 0) ride_on_chk_i(itemwk); /* Line 426, Address: 0x10119f4 */
 
   itemmove2(itemwk); /* Line 428, Address: 0x1011a20 */
 

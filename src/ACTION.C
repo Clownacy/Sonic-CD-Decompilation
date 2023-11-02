@@ -146,21 +146,21 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
   flag &= 12; /* Line 146, Address: 0x10015f8 */
   if (flag) { /* Line 147, Address: 0x1001600 */
 
-    hsiz = pActwk->sprhsize; /* Line 149, Address: 0x1001608 */
+    hsiz = (short)(unsigned short)pActwk->sprhsize; /* Line 149, Address: 0x1001608 */
     xpos = pActwk->xposi.w.h; /* Line 150, Address: 0x1001624 */
     xpos -= scra_h_posit.w.h; /* Line 151, Address: 0x1001634 */
     if (xpos + hsiz < 0) return; /* Line 152, Address: 0x1001648 */
     if (xpos - hsiz >= 320) return; /* Line 153, Address: 0x1001664 */
 
-    vsiz = pActwk->sprvsize; /* Line 155, Address: 0x1001684 */
+    vsiz = (short)(unsigned short)pActwk->sprvsize; /* Line 155, Address: 0x1001684 */
     ypos = pActwk->yposi.w.h; /* Line 156, Address: 0x10016a0 */
-    if (scra_v_posit.w.h < 256) { /* Line 157, Address: 0x10016b0 */
+    if ((unsigned short)scra_v_posit.w.h < 256) { /* Line 157, Address: 0x10016b0 */
 
-      if (ypos >= 2048) ypos -= 2048; /* Line 159, Address: 0x10016cc */
+      if ((unsigned short)ypos >= 2048) ypos -= 2048; /* Line 159, Address: 0x10016cc */
     } /* Line 160, Address: 0x10016ec */
-    else if (scra_v_posit.w.h >= 1792) { /* Line 161, Address: 0x10016f4 */
+    else if ((unsigned short)scra_v_posit.w.h >= 1792) { /* Line 161, Address: 0x10016f4 */
 
-      if (ypos < 256) ypos += 2048; /* Line 163, Address: 0x1001710 */
+      if ((unsigned short)ypos < 256) ypos += 2048; /* Line 163, Address: 0x1001710 */
     }
     ypos -= scra_v_posit.w.h; /* Line 165, Address: 0x1001730 */
     if (ypos + vsiz < 0) return; /* Line 166, Address: 0x1001744 */
@@ -240,13 +240,13 @@ void patset() { /* Line 198, Address: 0x1001860 */
           xposi -= pScrHposi->w.h; /* Line 240, Address: 0x10019ac */
           xposi += 128; /* Line 241, Address: 0x10019c0 */
           yposi = pActwk->yposi.w.h; /* Line 242, Address: 0x10019cc */
-          if (pScrVposi->w.h < 256) { /* Line 243, Address: 0x10019d8 */
+          if ((unsigned short)pScrVposi->w.h < 256) { /* Line 243, Address: 0x10019d8 */
 
-            if (yposi >= 2048) yposi -= 2048; /* Line 245, Address: 0x10019f0 */
+            if ((unsigned short)yposi >= 2048) yposi -= 2048; /* Line 245, Address: 0x10019f0 */
           } /* Line 246, Address: 0x1001a10 */
-          else if (pScrVposi->w.h >= 1792) { /* Line 247, Address: 0x1001a18 */
+          else if ((unsigned short)pScrVposi->w.h >= 1792) { /* Line 247, Address: 0x1001a18 */
 
-            if (yposi < 256) yposi += 2048; /* Line 249, Address: 0x1001a30 */
+            if ((unsigned short)yposi < 256) yposi += 2048; /* Line 249, Address: 0x1001a30 */
           }
           yposi -= pScrVposi->w.h; /* Line 251, Address: 0x1001a50 */
           yposi += 128; /* Line 252, Address: 0x1001a60 */
@@ -275,7 +275,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
     while (--pbuffer[i].cnt > 0);
   } /* Line 276, Address: 0x1001b64 */
 
-  for (i = linkdata; i < 80; ++i) { /* Line 278, Address: 0x1001b84 */
+  for (i = (short)(unsigned short)linkdata; i < 80; ++i) { /* Line 278, Address: 0x1001b84 */
     EAsprset(0, 0, 0, i, 0); /* Line 279, Address: 0x1001ba8 */
   } /* Line 280, Address: 0x1001bcc */
 } /* Line 281, Address: 0x1001bec */

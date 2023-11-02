@@ -59,7 +59,7 @@ void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
   iD1 = scra_h_posit.w.h + -128; /* Line 59, Address: 0x101512c */
   iD1 &= -128; /* Line 60, Address: 0x1015150 */
   iD0 -= iD1; /* Line 61, Address: 0x1015160 */
-  if (iD0 >= 641) /* Line 62, Address: 0x101516c */
+  if ((unsigned short)iD0 >= 641) /* Line 62, Address: 0x101516c */
     frameout(pActwk); /* Line 63, Address: 0x1015180 */
 } /* Line 64, Address: 0x101518c */
 

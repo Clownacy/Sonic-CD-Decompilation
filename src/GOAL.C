@@ -199,7 +199,7 @@ void gene_move1(act_info* pActwk) { /* Line 183, Address: 0x100f570 */
   bywk = pActwk->actfree[0]; /* Line 199, Address: 0x100f5c4 */
   iD0 = bywk; /* Line 200, Address: 0x100f5d0 */
   --iD0; /* Line 201, Address: 0x100f5dc */
-  pActwk->actfree[0] = iD0; /* Line 202, Address: 0x100f5e8 */
+  pActwk->actfree[0] = (unsigned short)iD0; /* Line 202, Address: 0x100f5e8 */
   if (iD0 >= 0) { /* Line 203, Address: 0x100f5f4 */
     iD1 = iD0; /* Line 204, Address: 0x100f604 */
     iD1 &= 3; /* Line 205, Address: 0x100f60c */
@@ -248,7 +248,7 @@ void kira_set(act_info* pActwk) { /* Line 239, Address: 0x100f770 */
 
   for (i = 0, iD1 = 0; i < 7; ++i, ++iD1) { /* Line 249, Address: 0x100f7d0 */
 
-    ret = actwkchk(&pActfree); /* Line 251, Address: 0x100f7e0 */
+    ret = (short)actwkchk(&pActfree); /* Line 251, Address: 0x100f7e0 */
     if (ret != 0) break; /* Line 252, Address: 0x100f7fc */
     pActfree->actno = 21; /* Line 253, Address: 0x100f804 */
     pActfree->actflg |= 4; /* Line 254, Address: 0x100f810 */
@@ -581,7 +581,7 @@ void mosug_init(act_info* pActwk, act_info* pPlaywk) { /* Line 574, Address: 0x1
       return; /* Line 581, Address: 0x1010238 */
     }
 
-    if (divdevwk[0] != 0) return; /* Line 584, Address: 0x1010240 */
+    if ((unsigned long int)divdevwk[0] != 0) return; /* Line 584, Address: 0x1010240 */
   }
 
 
@@ -641,9 +641,9 @@ void mosug_move0(act_info* pActwk, act_info* pPlaywk) { /* Line 616, Address: 0x
   iD0 += 128; /* Line 641, Address: 0x1010494 */
   if (iD0 < 0) return; /* Line 642, Address: 0x10104a0 */
 
-  if (iD0 >= 256) return; /* Line 644, Address: 0x10104b0 */
+  if ((unsigned short)iD0 >= 256) return; /* Line 644, Address: 0x10104b0 */
 
-  if (pPlaywk->xposi.w.h < pActwk->xposi.w.h) return; /* Line 646, Address: 0x10104c4 */
+  if ((unsigned short)pPlaywk->xposi.w.h < (unsigned short)pActwk->xposi.w.h) return; /* Line 646, Address: 0x10104c4 */
 
   if (plflag == 2) return; /* Line 648, Address: 0x10104f0 */
 
@@ -796,8 +796,8 @@ void goal_move0(act_info* pActwk) { /* Line 791, Address: 0x10108c0 */
   iD0 = pPlaywk->yposi.w.h - pActwk->yposi.w.h; /* Line 796, Address: 0x10108dc */
   iD0 += 128; /* Line 797, Address: 0x101090c */
   if (iD0 < 0) return; /* Line 798, Address: 0x1010918 */
-  if (iD0 >= 256) return; /* Line 799, Address: 0x1010928 */
-  if (pActwk->xposi.w.h >= pPlaywk->xposi.w.h) return; /* Line 800, Address: 0x101093c */
+  if ((unsigned short)iD0 >= 256) return; /* Line 799, Address: 0x1010928 */
+  if ((unsigned short)pActwk->xposi.w.h >= (unsigned short)pPlaywk->xposi.w.h) return; /* Line 800, Address: 0x101093c */
   scralim_left = scra_h_posit.w.h; /* Line 801, Address: 0x1010964 */
   scralim_n_left = scra_h_posit.w.h; /* Line 802, Address: 0x1010974 */
   pltime_f = 0; /* Line 803, Address: 0x1010984 */

@@ -274,7 +274,7 @@ int tm_setchk(unsigned char cnt, unsigned short* pIndex) { /* Line 272, Address:
   unsigned char time;
 
   tflag = time_flag & 127; /* Line 276, Address: 0x1000760 */
-  *pIndex = tflag + cnt * 3; /* Line 277, Address: 0x1000778 */
+  *pIndex = tflag + (unsigned short)cnt * 3; /* Line 277, Address: 0x1000778 */
   time = pAsetadr_w->c; /* Line 278, Address: 0x10007a0 */
   time = (time >> 5) & 7; /* Line 279, Address: 0x10007b0 */
   switch (tflag) { /* Line 280, Address: 0x10007c4 */
@@ -455,7 +455,7 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
     scra_h -= 128; /* Line 455, Address: 0x1000cac */
     scra_h &= -128; /* Line 456, Address: 0x1000cb8 */
     xposi -= scra_h; /* Line 457, Address: 0x1000cc8 */
-    if (xposi < 641) { /* Line 458, Address: 0x1000cd4 */
+    if ((unsigned short)xposi < 641) { /* Line 458, Address: 0x1000cd4 */
 
       if ((time_flag & 128) == 0) return 0; /* Line 460, Address: 0x1000cec */
     }

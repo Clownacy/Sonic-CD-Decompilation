@@ -236,11 +236,11 @@ void k0_move(act_info* pActwk, act_info* pPlaywk) { /* Line 236, Address: 0x101b
   if (pPlaywk->mstno.b.h == 43) return; /* Line 239, Address: 0x101b4a0 */
   iD0 = pActwk->yposi.w.h - pPlaywk->yposi.w.h; /* Line 240, Address: 0x101b4bc */
   iD0 += 64; /* Line 241, Address: 0x101b4f0 */
-  if (iD0 >= 128) return; /* Line 242, Address: 0x101b4fc */
+  if ((unsigned short)iD0 >= 128) return; /* Line 242, Address: 0x101b4fc */
 
   iD0 = pActwk->xposi.w.h - pPlaywk->xposi.w.h; /* Line 244, Address: 0x101b510 */
   iD0 += 32; /* Line 245, Address: 0x101b544 */
-  if (iD0 >= 64) return; /* Line 246, Address: 0x101b550 */
+  if ((unsigned short)iD0 >= 64) return; /* Line 246, Address: 0x101b550 */
 
   if (pPlaywk->xspeed.w >= 0) return; /* Line 248, Address: 0x101b564 */
   if (pActwk->xposi.w.h < pPlaywk->xposi.w.h) return; /* Line 249, Address: 0x101b57c */

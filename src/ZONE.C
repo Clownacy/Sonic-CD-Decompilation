@@ -516,7 +516,7 @@ void clear(act_info* pAct) { /* Line 501, Address: 0x1012ce0 */
       break; /* Line 516, Address: 0x1012db8 */
 
     case 8:
-      if (systemtimer.w.l - ClearSountWait >= 720) { /* Line 519, Address: 0x1012dc0 */
+      if ((unsigned short)((unsigned short)systemtimer.w.l - ClearSountWait) >= 720) { /* Line 519, Address: 0x1012dc0 */
         pAct->r_no0 += 2; /* Line 520, Address: 0x1012df4 */
       }
       actionsub(pAct); /* Line 522, Address: 0x1012e04 */

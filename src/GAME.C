@@ -829,7 +829,7 @@ void syspatchg() {
     if (++sys_patno3 >= 6) sys_patno3 = 0; /* Line 829, Address: 0x10191fc */
   }
   if (sys_pattim4) { /* Line 831, Address: 0x101922c */
-    sys_ringtimer += sys_pattim4; /* Line 832, Address: 0x101923c */
+    sys_ringtimer += (unsigned short)sys_pattim4; /* Line 832, Address: 0x101923c */
 
 
     sys_patno4 = (sys_ringtimer >> 9) & 3; /* Line 835, Address: 0x1019264 */
@@ -926,7 +926,7 @@ void da_set() { /* Line 910, Address: 0x1019490 */
     }
   }
 
-  sub_sync(da_tbl[stageno.b.h][wD0]); /* Line 929, Address: 0x10194e8 */
+  sub_sync((unsigned short)da_tbl[stageno.b.h][wD0]); /* Line 929, Address: 0x10194e8 */
 
 
 } /* Line 932, Address: 0x1019528 */

@@ -325,7 +325,7 @@ void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
 
 
 void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
-  if (pAct->userflag.b.h & 128) { /* Line 328, Address: 0x10051dc */
+  if ((unsigned char)pAct->userflag.b.h & 128) { /* Line 328, Address: 0x10051dc */
     tensuu(pAct); /* Line 329, Address: 0x10051f8 */
     return; /* Line 330, Address: 0x1005204 */
   }
@@ -483,13 +483,13 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
       if (!plautoflag) { /* Line 483, Address: 0x1005740 */
 
         ++pltime.b.b4; /* Line 485, Address: 0x1005750 */
-        if (pltime.b.b4 >= 60) { /* Line 486, Address: 0x1005764 */
+        if ((unsigned char)pltime.b.b4 >= 60) { /* Line 486, Address: 0x1005764 */
           pltime.b.b4 = 0; /* Line 487, Address: 0x1005780 */
           ++pltime.b.b3; /* Line 488, Address: 0x1005788 */
-          if (pltime.b.b3 >= 60) { /* Line 489, Address: 0x100579c */
+          if ((unsigned char)pltime.b.b3 >= 60) { /* Line 489, Address: 0x100579c */
             pltime.b.b3 = 0; /* Line 490, Address: 0x10057b8 */
             ++pltime.b.b2; /* Line 491, Address: 0x10057c0 */
-            if (pltime.b.b2 >= 9) { /* Line 492, Address: 0x10057d4 */
+            if ((unsigned char)pltime.b.b2 >= 9) { /* Line 492, Address: 0x10057d4 */
               pltime.b.b2 = 9; /* Line 493, Address: 0x10057f0 */
             }
           }
@@ -523,8 +523,8 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     bonus_f = 0; /* Line 523, Address: 0x1005900 */
     if (stageno.w == 1282) pSprpat = &bonuspat0; /* Line 524, Address: 0x1005908 */
     else pSprpat = &bonuspat; /* Line 525, Address: 0x1005934 */
-    bonuswrt(&pSprpat->spra[8], ringbonus); /* Line 526, Address: 0x100593c */
-    bonuswrt(&pSprpat->spra[13], timebonus); /* Line 527, Address: 0x1005958 */
+    bonuswrt(&pSprpat->spra[8], (unsigned short)ringbonus); /* Line 526, Address: 0x100593c */
+    bonuswrt(&pSprpat->spra[13], (unsigned short)timebonus); /* Line 527, Address: 0x1005958 */
     scorewrt(&pSprpat->spra[1], plscore); /* Line 528, Address: 0x1005974 */
     pSprpat->spra[7].index = 308; /* Line 529, Address: 0x1005988 */
   }

@@ -308,7 +308,7 @@ void emie1_matu(act_info* pActwk) { /* Line 203, Address: 0x1005520 */
     if ((dakiflgwk & 64) == 0) { /* Line 308, Address: 0x100591c */
       if (pActwk->actfree[21] >= 3) { /* Line 309, Address: 0x100592c */
 
-        if ((pActwk->actfree[16] + 4) >= 256) { /* Line 311, Address: 0x1005944 */
+        if (((short)pActwk->actfree[16] + 4) >= 256) { /* Line 311, Address: 0x1005944 */
           pActwk->actfree[21] = 0; /* Line 312, Address: 0x1005968 */
         }
 
@@ -437,7 +437,7 @@ void emie1_tobim(act_info* pActwk) { /* Line 429, Address: 0x1005d80 */
   pActwk->xspeed.w = 0; /* Line 437, Address: 0x1005de8 */
   pActwk->yspeed.w = 0; /* Line 438, Address: 0x1005df0 */
 
-  if (pActwk->actfree[16] + 16 < 256) { /* Line 440, Address: 0x1005df8 */
+  if ((short)pActwk->actfree[16] + 16 < 256) { /* Line 440, Address: 0x1005df8 */
     pActwk->actfree[16] += 16; /* Line 441, Address: 0x1005e1c */
   } /* Line 442, Address: 0x1005e2c */
   else {
@@ -697,7 +697,7 @@ void empatchg(act_info* pActwk, char** pPattbl) { /* Line 690, Address: 0x10065c
     pActwk->pattim = 0; /* Line 697, Address: 0x1006614 */
   }
 
-  if (--pActwk->pattim <= 0) { /* Line 700, Address: 0x100661c */
+  if ((char)--pActwk->pattim <= 0) { /* Line 700, Address: 0x100661c */
     pPatdat = pPattbl[pActwk->mstno.b.l]; /* Line 701, Address: 0x1006648 */
     if ((patnowk = pPatdat[pActwk->patcnt]) < 0) { /* Line 702, Address: 0x1006668 */
 
