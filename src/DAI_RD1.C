@@ -204,7 +204,7 @@ void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
 
 
       pNewact->userflag.b.h = pActwk->userflag.b.l & 2; /* Line 206, Address: 0x10022f0 */
-      wk = pActwk->userflag.b.l & 248; /* Line 207, Address: 0x1002314 */
+      wk = pActwk->userflag.b.l & 255 & 248; /* Line 207, Address: 0x1002314 */
       pNewact->actfree[14] = wk; /* Line 208, Address: 0x1002338 */
       pNewact->xposi.w.h += wk; /* Line 209, Address: 0x1002340 */
     }

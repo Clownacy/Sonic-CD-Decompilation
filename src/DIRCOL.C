@@ -25,7 +25,7 @@
 
 unsigned int swap(int lSrc) { /* Line 26, Address: 0x100dab0 */
   unsigned short iLow, iHi = (unsigned int)(lSrc & -65536) >> 16; /* Line 27, Address: 0x100dac0 */
-  iLow = lSrc; /* Line 28, Address: 0x100dad8 */
+  iLow = lSrc & 65535; /* Line 28, Address: 0x100dad8 */
   return (iHi << 16) | iLow; /* Line 29, Address: 0x100dae8 */
 } /* Line 30, Address: 0x100daf8 */
 

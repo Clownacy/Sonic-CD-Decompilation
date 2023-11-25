@@ -149,7 +149,7 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
     ((unsigned short*)pActwk)[27] = pActwk->yposi.w.h; /* Line 149, Address: 0x1028694 */
     pActwk->actfree[5] = i = (unsigned char)(pActwk->userflag.b.h & 15); /* Line 150, Address: 0x10286a4 */
 
-    for ( ; i > 0; --i) { /* Line 152, Address: 0x10286cc */
+    for ( ; (i & 255) > 0; i = i - 1 & 255) { /* Line 152, Address: 0x10286cc */
       if (actwkchk(&pNewact) == 0) { /* Line 153, Address: 0x10286d4 */
 
         pNewact->actno = 41; /* Line 155, Address: 0x10286e8 */
@@ -161,7 +161,7 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
         pNewact->actfree[5] = pActwk->actfree[5]; /* Line 161, Address: 0x1028724 */
         pNewact->actfree[18] = i; /* Line 162, Address: 0x1028734 */
 
-        if (pActwk->actfree[5] == i) { /* Line 164, Address: 0x102873c */
+        if (pActwk->actfree[5] == (i & 255)) { /* Line 164, Address: 0x102873c */
 
           pNewact->patno = 1; /* Line 166, Address: 0x1028754 */
         } /* Line 167, Address: 0x1028760 */
