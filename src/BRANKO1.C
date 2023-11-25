@@ -210,7 +210,7 @@ static void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
 
 
 
-/* TODO: lines 245 & 246: Why shift 4 bytes right two times? */
+
 static void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
   short spdwk, sinwk, coswk;
   unsigned int lSinwk, lCoswk;
