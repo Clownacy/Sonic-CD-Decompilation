@@ -690,7 +690,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
 
   scr_set(); /* Line 691, Address: 0x1018d34 */
   scroll(); /* Line 692, Address: 0x1018d3c */
-  scrflaga.w |= 4; /* Line 693, Address: 0x1018d44 */
+  scrflaga.b.h |= 4; /* Line 693, Address: 0x1018d44 */
 
   mapinit(); /* Line 695, Address: 0x1018d58 */
   mapwrt(); /* Line 696, Address: 0x1018d60 */

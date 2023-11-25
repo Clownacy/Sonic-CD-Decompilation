@@ -903,7 +903,7 @@ void ball_rd7(act_info* ballwk) { /* Line 902, Address: 0x10176f0 */
   short cal_speed0;
 
   if (ballwk->userflag.b.h != 4) { /* Line 905, Address: 0x1017700 */
-    if (ballwk->userflag.b.h != 2) { /* Line 906, Address: 0x101771c */
+    if (ballwk->userflag.b.h == 2) { /* Line 906, Address: 0x101771c */
       if (actwk[0].yspeed.w >= 0) { ball_ball(); return; } /* Line 907, Address: 0x1017738 */
     }
     else

@@ -334,7 +334,7 @@ short hit_v(act_info* pActwk, act_info* pPlayerwk, short iHitXs, short iHitHs) {
   if (iHitHs < iHitXs) /* Line 334, Address: 0x1019fd0 */
   {
     iHitHs += iHitHs; /* Line 336, Address: 0x1019ff4 */
-    iHitXs += iHitHs; /* Line 337, Address: 0x101a004 */
+    iHitXs -= iHitHs; /* Line 337, Address: 0x101a004 */
     iD4 = -iHitXs; /* Line 338, Address: 0x101a014 */
   }
 
@@ -709,7 +709,7 @@ void hit_set(act_info* pActwk, act_info* pPlayerwk) { /* Line 682, Address: 0x10
 
 
 
-    if (stageno.b.l == 768 && pActwk->actno == 39 && pHitAct->actno == 39) return; /* Line 712, Address: 0x101abc0 */
+    if (stageno.w == 768 && pActwk->actno == 39 && pHitAct->actno == 39) return; /* Line 712, Address: 0x101abc0 */
 
 
 

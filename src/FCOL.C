@@ -634,7 +634,7 @@ short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
   iScdNo = bySCDwk; /* Line 634, Address: 0x1002a90 */
   if (iScdNo == 0) { /* Line 635, Address: 0x1002aa0 */
 
-    scdend_r(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirstk); /* Line 637, Address: 0x1002aac */
+    return scdend_r(pActwk, iXposi, iYposi, iOffset, iBlkMsk, iRideon, cpDirstk); /* Line 637, Address: 0x1002aac */
   }
 
   cDirect = scddirtbl[iScdNo]; /* Line 640, Address: 0x1002ad8 */

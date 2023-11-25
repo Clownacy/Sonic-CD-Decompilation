@@ -79,7 +79,7 @@ short dircol(act_info* pActwk, char* cpDirec) { /* Line 50, Address: 0x100db40 *
   }
 
 
-  bDirwk &= 12; /* Line 82, Address: 0x100dc78 */
+  bDirwk = bDirwk & 12; /* Line 82, Address: 0x100dc78 */
 
   if (bDirwk == 0) /* Line 84, Address: 0x100dc88 */
     return dircol_d3(pActwk, iXposi, iYposi); /* Line 85, Address: 0x100dc94 */

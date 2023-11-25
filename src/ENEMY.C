@@ -543,7 +543,7 @@ void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
   *(short*)&pActwk->actfree[4] = pActwk->xposi.w.h; /* Line 543, Address: 0x1004d1c */
   pa_set(pActwk, 2); /* Line 544, Address: 0x1004d2c */
 
-  if (pActwk->userflag.b.h) /* Line 546, Address: 0x1004d3c */
+  if (pActwk->userflag.b.h == 0) /* Line 546, Address: 0x1004d3c */
   {
     *(int*)&pActwk->actfree[0] = -1; /* Line 548, Address: 0x1004d54 */
     pActwk->mstno.b.h = 0; /* Line 549, Address: 0x1004d64 */

@@ -572,7 +572,7 @@ void mosugu(act_info* pActwk) { /* Line 557, Address: 0x1010130 */
 
 
 void mosug_init(act_info* pActwk, act_info* pPlaywk) { /* Line 574, Address: 0x10101d0 */
-  if (stageno.b.l == 513 && time_flag == 1) { /* Line 575, Address: 0x10101e0 */
+  if (stageno.w == 513 && time_flag == 1) { /* Line 575, Address: 0x10101e0 */
 
     if (pActwk->userflag.b.h == 0) { /* Line 577, Address: 0x1010214 */
 

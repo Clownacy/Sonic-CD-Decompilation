@@ -434,7 +434,7 @@ int bossclr_scrset(unsigned short wD1) { /* Line 419, Address: 0x10186d0 */
   if (scralim_right < wD0) { /* Line 434, Address: 0x10187b4 */
     wD0 = scralim_right; /* Line 435, Address: 0x10187e0 */
   }
-  scralim_n_left = wD0; /* Line 437, Address: 0x10187ec */
-  scralim_left = wD0; /* Line 438, Address: 0x10187f4 */
+  scralim_left = wD0; /* Line 437, Address: 0x10187ec */
+  scralim_n_left = wD0; /* Line 438, Address: 0x10187f4 */
   return 1; /* Line 439, Address: 0x10187fc */
 } /* Line 440, Address: 0x1018800 */

@@ -55,7 +55,7 @@ void hoshi(act_info* pActwk) { /* Line 53, Address: 0x101ae10 */
 
   hoshi_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 56, Address: 0x101ae20 */
   actionsub(pActwk); /* Line 57, Address: 0x101ae6c */
-  iXposi = *(short*)&pActwk->actfree[0]; /* Line 58, Address: 0x101ae78 */
+  iXposi = *(unsigned short*)&pActwk->actfree[0]; /* Line 58, Address: 0x101ae78 */
   frameout_s00(pActwk, iXposi); /* Line 59, Address: 0x101ae88 */
 } /* Line 60, Address: 0x101ae98 */
 
@@ -281,7 +281,7 @@ void kasoku(act_info* pActwk) { /* Line 277, Address: 0x101b640 */
   }
   kasoku_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 285, Address: 0x101b67c */
   actionsub(pActwk); /* Line 286, Address: 0x101b6c8 */
-  iXwork = *(short*)&pActwk->actfree[0]; /* Line 287, Address: 0x101b6d4 */
+  iXwork = *(unsigned short*)&pActwk->actfree[0]; /* Line 287, Address: 0x101b6d4 */
   frameout_s00(pActwk, iXwork); /* Line 288, Address: 0x101b6e4 */
 } /* Line 289, Address: 0x101b6f4 */
 

@@ -320,7 +320,7 @@ void ringgetsub() { /* Line 318, Address: 0x1006cc0 */
   plring_f |= 1; /* Line 320, Address: 0x1006cdc */
   if (plring >= 100) { /* Line 321, Address: 0x1006cf0 */
     if (plring_f2 & 2) { /* Line 322, Address: 0x1006d0c */
-      if (plring >= 200) { /* Line 323, Address: 0x1006d24 */
+      if (plring < 200) { /* Line 323, Address: 0x1006d24 */
         soundset(149); /* Line 324, Address: 0x1006d40 */
         return; /* Line 325, Address: 0x1006d4c */
       }

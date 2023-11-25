@@ -145,17 +145,17 @@ void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
   pActwk->sprvsize = 8; /* Line 145, Address: 0x1028664 */
 
   if (pActwk->actfree[18] == 0) { /* Line 147, Address: 0x1028670 */
-    *(short*)&pActwk->actfree[12] = pActwk->xposi.w.h; /* Line 148, Address: 0x1028684 */
-    *(short*)&pActwk->actfree[8] = pActwk->yposi.w.h; /* Line 149, Address: 0x1028694 */
+    *(unsigned short*)&pActwk->actfree[12] = pActwk->xposi.w.h; /* Line 148, Address: 0x1028684 */
+    *(unsigned short*)&pActwk->actfree[8] = pActwk->yposi.w.h; /* Line 149, Address: 0x1028694 */
     pActwk->actfree[5] = i = pActwk->userflag.b.h % 16; /* Line 150, Address: 0x10286a4 */
 
     for ( ; i > 0; --i) { /* Line 152, Address: 0x10286cc */
       if (actwkchk(&pNewact) == 0) { /* Line 153, Address: 0x10286d4 */
 
         pNewact->actno = 41; /* Line 155, Address: 0x10286e8 */
-        *(short*)&pNewact->actfree[12] = *(short*)&pActwk->actfree[12]; /* Line 156, Address: 0x10286f4 */
+        *(unsigned short*)&pNewact->actfree[12] = *(unsigned short*)&pActwk->actfree[12]; /* Line 156, Address: 0x10286f4 */
 
-        *(short*)&pNewact->actfree[8] = *(short*)&pActwk->actfree[8]; /* Line 158, Address: 0x1028704 */
+        *(unsigned short*)&pNewact->actfree[8] = *(unsigned short*)&pActwk->actfree[8]; /* Line 158, Address: 0x1028704 */
 
         pNewact->userflag.b.h = pActwk->userflag.b.h; /* Line 160, Address: 0x1028714 */
         pNewact->actfree[5] = pActwk->actfree[5]; /* Line 161, Address: 0x1028724 */
@@ -237,7 +237,7 @@ void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
 
 
 
-  direc.w = *(short*)&pActwk->actfree[16]; /* Line 240, Address: 0x1028a20 */
+  direc.w = *(unsigned short*)&pActwk->actfree[16]; /* Line 240, Address: 0x1028a20 */
   sinset(direc.b.h, &sinwk, &coswk); /* Line 241, Address: 0x1028a2c */
   spdwk = pActwk->actfree[18] << 4; /* Line 242, Address: 0x1028a40 */
   lSinwk = sinwk * spdwk; /* Line 243, Address: 0x1028a6c */
@@ -265,10 +265,10 @@ void branko1_ridechk(act_info* pActwk) { /* Line 260, Address: 0x1028b60 */
     pActwk->sprvsize = 8; /* Line 265, Address: 0x1028b88 */
 
 
-    if (ridechk(pActwk, actwk) == 0) { /* Line 268, Address: 0x1028b94 */
+    if (ridechk(pActwk, pPlayerwk) == 0) { /* Line 268, Address: 0x1028b94 */
       pActwk->sprvsize = 12; /* Line 269, Address: 0x1028bb4 */
 
-      if (ridechk(pActwk, actwk) == 0) goto label1; /* Line 271, Address: 0x1028bc0 */
+      if (ridechk(pActwk, pPlayerwk) == 0) goto label1; /* Line 271, Address: 0x1028bc0 */
     }
 
 

@@ -317,7 +317,7 @@ short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
 
   flag_no = t_itemwk->cdsts, flag_no *= 3; /* Line 318, Address: 0x1011484 */
   t_flag = time_flag; /* Line 319, Address: 0x10114a8 */
-  if ((t_flag & 128) == 0) return flag_no += t_flag; /* Line 320, Address: 0x10114bc */
+  if ((t_flag & 128) == 0) { flag_no += t_flag; return flag_no; } /* Line 320, Address: 0x10114bc */
   t_flag &= -129; /* Line 321, Address: 0x10114e8 */
   t_item = time_item; /* Line 322, Address: 0x10114f8 */
   t_item = -t_item; /* Line 323, Address: 0x1011510 */

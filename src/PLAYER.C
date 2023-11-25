@@ -54,16 +54,16 @@ void play00(act_info* actionwk) { /* Line 47, Address: 0x1007630 */
   if (ta_flag == 0 && editmode.b.h != 0) { edit(&actwk[0]); return; } /* Line 54, Address: 0x100765c */
 
   d0 = actwk[0].actfree[0]; /* Line 56, Address: 0x10076a0 */
-  if (d0 != 0) /* Line 57, Address: 0x10076ac */
+  if (d0 != 0) { /* Line 57, Address: 0x10076ac */
     ++d0; /* Line 58, Address: 0x10076b8 */
-  if (actwk[0].cddat & 4) { /* Line 59, Address: 0x10076c0 */
-    if (d0 >= 45) d0 = 45; /* Line 60, Address: 0x10076d8 */
-  } /* Line 61, Address: 0x10076f0 */
-  else if (d0 >= 30) d0 = 30; /* Line 62, Address: 0x10076f8 */
+    if (actwk[0].cddat & 4) { /* Line 59, Address: 0x10076c0 */
+      if (d0 >= 45) d0 = 45; /* Line 60, Address: 0x10076d8 */
+    } /* Line 61, Address: 0x10076f0 */
+    else if (d0 >= 30) d0 = 30; /* Line 62, Address: 0x10076f8 */
 
 
-  actwk[0].actfree[0] = d0; /* Line 65, Address: 0x1007710 */
-
+    actwk[0].actfree[0] = d0; /* Line 65, Address: 0x1007710 */
+  }
 
 
   switch (actwk[0].r_no0) { /* Line 69, Address: 0x1007718 */
@@ -278,9 +278,9 @@ void playpowercnt() { /* Line 276, Address: 0x1007f30 */
   unsigned short cal;
 
   if (backto_cnt < 157) { /* Line 280, Address: 0x1007f40 */
-    d0 = ((short*)actwk)[26]; /* Line 281, Address: 0x1007f5c */
+    d0 = ((unsigned short*)actwk)[26]; /* Line 281, Address: 0x1007f5c */
     if (d0 != 0) { /* Line 282, Address: 0x1007f68 */
-      --((short*)actwk)[26]; /* Line 283, Address: 0x1007f74 */
+      --((unsigned short*)actwk)[26]; /* Line 283, Address: 0x1007f74 */
       if (d0 & 4) { /* Line 284, Address: 0x1007f88 */
         d0 >>= 3; /* Line 285, Address: 0x1007f98 */
         if ((actwk[0].actfree[2] & 64) == 0) /* Line 286, Address: 0x1007fa0 */
@@ -294,10 +294,10 @@ void playpowercnt() { /* Line 276, Address: 0x1007f30 */
 
 
   if (plpower_m != 0) { /* Line 296, Address: 0x1008008 */
-    d0 = ((short*)actwk)[27]; /* Line 297, Address: 0x100801c */
+    d0 = ((unsigned short*)actwk)[27]; /* Line 297, Address: 0x100801c */
     if (d0 != 0) { /* Line 298, Address: 0x1008028 */
       cal = d0 + -1; /* Line 299, Address: 0x1008034 */
-      --((short*)actwk)[27]; /* Line 300, Address: 0x1008044 */
+      --((unsigned short*)actwk)[27]; /* Line 300, Address: 0x1008044 */
       if (cal == 0) { /* Line 301, Address: 0x1008058 */
         if (plpower_s == 0 && boss_sound == 0) { /* Line 302, Address: 0x1008064 */
           if (time_flag == 0) { /* Line 303, Address: 0x100808c */
@@ -314,10 +314,10 @@ void playpowercnt() { /* Line 276, Address: 0x1007f30 */
 
 
   if (plpower_s != 0) { /* Line 316, Address: 0x10080bc */
-    d0 = ((short*)actwk)[28]; /* Line 317, Address: 0x10080d0 */
+    d0 = ((unsigned short*)actwk)[28]; /* Line 317, Address: 0x10080d0 */
     if (d0 != 0) { /* Line 318, Address: 0x10080dc */
       cal = d0 + -1; /* Line 319, Address: 0x10080e8 */
-      --((short*)actwk)[28]; /* Line 320, Address: 0x10080f8 */
+      --((unsigned short*)actwk)[28]; /* Line 320, Address: 0x10080f8 */
       if (cal == 0) { /* Line 321, Address: 0x100810c */
         plmaxspdwk = 1536; /* Line 322, Address: 0x1008118 */
         pladdspdwk = 12; /* Line 323, Address: 0x1008124 */

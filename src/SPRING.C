@@ -226,7 +226,7 @@ void iwa(act_info* actionwk) { /* Line 219, Address: 0x1003de0 */
       break;
   }
   actionsub(actionwk); /* Line 228, Address: 0x1003e2c */
-  frameout(actionwk); /* Line 229, Address: 0x1003e38 */
+  frameout_s(actionwk); /* Line 229, Address: 0x1003e38 */
 } /* Line 230, Address: 0x1003e44 */
 
 void iwa_init(act_info* actionwk) { /* Line 232, Address: 0x1003e60 */
