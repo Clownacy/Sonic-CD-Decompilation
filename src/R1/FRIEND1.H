@@ -1,0 +1,10 @@
+void t_roll(int cos_shift, int sin_shift, act_info* pActwk);
+void rev_h(act_info* pActwk);
+void set_sproffset(act_info* pActwk);
+void friend(act_info* pActwk);
+void t_init(act_info* pActwk);
+void t_move(act_info* pActwk);
+void t_movie(act_info* pActwk);
+void p_init(act_info* pActwk);
+void p_move(act_info* pActwk);
+void p_movie(act_info* pActwk);

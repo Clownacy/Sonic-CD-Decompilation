@@ -1,0 +1,10 @@
+void movie1(act_info* pActwk);
+void die(act_info* pActwk);
+void mm_init(act_info* pActwk);
+void mm_wait(act_info* pActwk);
+void mm_die(act_info* pActwk);
+void m_baku(act_info* pActwk);
+void mm1wait(act_info* pActwk);
+void sub(act_info* pActwk);
+void s_init(act_info* pActwk);
+void s_move(act_info* pActwk);

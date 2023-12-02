@@ -1,0 +1,16 @@
+short pcol(act_info* pActwk);
+short CollitblDataXchk(act_info* pActwk, act_info* pColliAct, short iXposi, short iYposi, short iD5);
+short CollitblDataYchk(act_info* pActwk, act_info* pColliAct, short iXposi, short iYposi, short iColiNo, short iD5);
+short ColliHitChk(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5);
+short pcolitem(act_info* pActwk, act_info* pColliAct);
+short pcolnomal(act_info* pActwk, act_info* pColliAct);
+short pcolplay2(act_info* pActwk, act_info* pColliAct);
+short pcolplay(act_info* pActwk, act_info* pColliAct);
+short pcole(act_info* pActwk, act_info* pColliAct);
+void playdamagechk(act_info* pActwk, act_info* pColliAct);
+short playdamageset(act_info* pActwk, act_info* pColliAct);
+short playdieset(act_info* pActwk);
+short pcolspecial(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5);
+short eggman_chk(act_info* pActwk, act_info* pColliAct);
+short yago(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5);
+short main_attack(act_info* pActwk, act_info* pColliAct);

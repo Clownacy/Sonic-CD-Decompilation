@@ -1,0 +1,13 @@
+short colli_pl_sikake_d(act_info* pActwk, act_info* pPlayerwk, short collinum);
+short colli_pl_sikake(act_info* pActwk, act_info* pPlayerwk, short collnum);
+void tobita1(act_info* pActwk);
+void tobita_init(act_info* pActwk);
+void tobita_stop_r(act_info* pActwk);
+void tobita_stop_l(act_info* pActwk);
+void tobita_ride_r(act_info* pActwk);
+void tobita_ride_l(act_info* pActwk);
+void tobita_yure_r(act_info* pActwk);
+void tobita_yure_l(act_info* pActwk);
+void hariyama(act_info* pActwk);
+void hari_init(act_info* pActwk);
+void hari_normal(act_info* pActwk);
