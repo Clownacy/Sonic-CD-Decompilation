@@ -321,7 +321,7 @@ static void playposiset() { /* Line 271, Address: 0x1022460 */
   }
 
 
-  ywk = scra_v_posit.w.h; /* Line 324, Address: 0x1022634 */
+  scra_v_posit.w.h = ywk; /* Line 324, Address: 0x1022634 */
 
   scrbinit(xwk, ywk); /* Line 326, Address: 0x102263c */
 
@@ -450,7 +450,7 @@ void scroll() { /* Line 390, Address: 0x10227b0 */
     ldwk2.w.h = *psHscr; /* Line 450, Address: 0x1022a28 */
     ++psHscr; /* Line 451, Address: 0x1022a30 */
     wk = ldwk2.w.l, ldwk2.w.l = ldwk2.w.h, ldwk2.w.h = wk; /* Line 452, Address: 0x1022a34 */
-    ldwk2.w.l = ldwk2.w.l + -scrz_h_posit.w.h; /* Line 453, Address: 0x1022a4c */
+    ldwk2.w.l = -(ldwk2.w.l + scrz_h_posit.w.h); /* Line 453, Address: 0x1022a4c */
 
     for (j = z12c_cnttbl[i]; j >= 0; --j) { /* Line 455, Address: 0x1022a7c */
 
@@ -1026,7 +1026,7 @@ static void sv_move_sub(short yPos) { /* Line 1025, Address: 0x1023910 */
   int_union lSpd;
 
   lSpd.l = 0; /* Line 1028, Address: 0x102391c */
-  lSpd.w.h = yPos + scra_v_posit.w.h; /* Line 1029, Address: 0x1023920 */
+  lSpd.w.l = yPos + scra_v_posit.w.h; /* Line 1029, Address: 0x1023920 */
   if (yPos < 0) { /* Line 1030, Address: 0x102394c */
     scrv_up_ch(lSpd); /* Line 1031, Address: 0x1023960 */
   } else { /* Line 1032, Address: 0x102396c */
@@ -1058,7 +1058,7 @@ static void sv_move_minus(short speed) { /* Line 1057, Address: 0x10239c0 */
   int_union lSpd;
   short wk;
   lSpd.l = (-speed << 8) + scra_v_posit.l; /* Line 1060, Address: 0x10239d0 */
-  wk = lSpd.w.h, lSpd.w.l = lSpd.w.h, lSpd.w.h = wk; /* Line 1061, Address: 0x10239f4 */
+  wk = lSpd.w.l, lSpd.w.l = lSpd.w.h, lSpd.w.h = wk; /* Line 1061, Address: 0x10239f4 */
   scrv_up_ch(lSpd); /* Line 1062, Address: 0x1023a0c */
 } /* Line 1063, Address: 0x1023a18 */
 

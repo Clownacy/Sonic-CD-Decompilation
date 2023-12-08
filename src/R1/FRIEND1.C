@@ -349,8 +349,8 @@ static void p_init(act_info* pActwk) { /* Line 339, Address: 0x1031ec0 */
 
   if (pActwk->userflag.b.h >= 0) /* Line 350, Address: 0x1031f44 */
   {
-    ((int*)pActwk)[12] = 1; /* Line 352, Address: 0x1031f5c */
-    ((int*)pActwk)[13] = -4; /* Line 353, Address: 0x1031f68 */
+    ((int*)pActwk)[12] = 65536; /* Line 352, Address: 0x1031f5c */
+    ((int*)pActwk)[13] = -262144; /* Line 353, Address: 0x1031f68 */
   } /* Line 354, Address: 0x1031f74 */
   else
   {
@@ -375,8 +375,8 @@ static void p_move(act_info* pActwk) { /* Line 364, Address: 0x1031fb0 */
   if ((temp = emycol_d(pActwk)) <= 0) /* Line 375, Address: 0x1032024 */
   {
     pActwk->yposi.w.h += temp; /* Line 377, Address: 0x1032050 */
-    ((int*)pActwk)[13] = -4; /* Line 378, Address: 0x1032060 */
-    ((int*)pActwk)[12] = -((int*)pActwk)[12]; /* Line 379, Address: 0x103206c */
+    ((int*)pActwk)[13] = -262144; /* Line 378, Address: 0x1032060 */
+    ((int*)pActwk)[12] *= -1; /* Line 379, Address: 0x103206c */
     rev_h(pActwk); /* Line 380, Address: 0x103207c */
   }
   actionsub(pActwk); /* Line 382, Address: 0x1032088 */
@@ -394,7 +394,7 @@ static void p_movie(act_info* pActwk) { /* Line 388, Address: 0x10320c0 */
     frameout(pActwk); /* Line 394, Address: 0x103210c */
     return; /* Line 395, Address: 0x1032118 */
   }
-  if (tempact->actfree[21] != 0) /* Line 397, Address: 0x1032120 */
+  if (((char*)tempact)[67]) /* Line 397, Address: 0x1032120 */
   {
     frameout(pActwk); /* Line 399, Address: 0x103212c */
     return; /* Line 400, Address: 0x1032138 */

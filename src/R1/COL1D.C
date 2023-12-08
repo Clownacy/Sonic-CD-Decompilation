@@ -124,7 +124,7 @@ void clchgctr() { /* Line 104, Address: 0x10232a0 */
   --clchgtim[1]; /* Line 124, Address: 0x102339c */
   if (clchgtim[1] & 128) { /* Line 125, Address: 0x10233b0 */
     clchgtim[1] = 5; /* Line 126, Address: 0x10233c8 */
-    if (clchgtim[1] == 2) { /* Line 127, Address: 0x10233d4 */
+    if (clchgcnt[1] == 2) { /* Line 127, Address: 0x10233d4 */
       clchgcnt[1] = 0; /* Line 128, Address: 0x10233ec */
     } /* Line 129, Address: 0x10233f4 */
     else {

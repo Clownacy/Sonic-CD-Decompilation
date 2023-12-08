@@ -216,7 +216,7 @@ short colli_pl_sikake(act_info* pActwk, act_info* pPlayerwk, short collnum) { /*
   xe_w = xe; /* Line 216, Address: 0x101e248 */
   xp_w = xp; /* Line 217, Address: 0x101e254 */
   xe_w += right; /* Line 218, Address: 0x101e260 */
-  xp_w += hp; /* Line 219, Address: 0x101e270 */
+  xp_w -= hp; /* Line 219, Address: 0x101e270 */
   if (xp_w - xe_w >= 0) goto label1; /* Line 220, Address: 0x101e280 */
 
 
@@ -562,7 +562,7 @@ void hariyama(act_info* pActwk) { /* Line 558, Address: 0x101ed30 */
     0
   };
 
-  hari_tbl[pActwk->r_no0 / 2]; /* Line 565, Address: 0x101ed58 */
+  hari_tbl[pActwk->r_no0 / 2](pActwk); /* Line 565, Address: 0x101ed58 */
 } /* Line 566, Address: 0x101ed94 */
 
 

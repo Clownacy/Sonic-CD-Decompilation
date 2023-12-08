@@ -724,8 +724,8 @@ void scrollz_h(int lD4, int flagz) { /* Line 721, Address: 0x1026cf0 */
   lD2.l = scrz_h_posit.l; /* Line 724, Address: 0x1026cfc */
   lD0.l = lD2.l + lD4; /* Line 725, Address: 0x1026d08 */
   scrz_h_posit.l = lD0.l; /* Line 726, Address: 0x1026d18 */
-  lD0.b.b3 &= 16; /* Line 727, Address: 0x1026d24 */
-  if ((scrz_h_count ^ lD0.b.b3) == 0) { /* Line 728, Address: 0x1026d30 */
+  lD0.b.b2 &= 16; /* Line 727, Address: 0x1026d24 */
+  if ((scrz_h_count ^ lD0.b.b2) == 0) { /* Line 728, Address: 0x1026d30 */
     scrz_h_count ^= 16; /* Line 729, Address: 0x1026d54 */
     lD0.l -= lD2.l; /* Line 730, Address: 0x1026d68 */
     if ((long int)lD0.l < 0) scrflagz.b.h |= flagz; /* Line 731, Address: 0x1026d78 */

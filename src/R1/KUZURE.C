@@ -275,7 +275,7 @@ void actb_init_a(act_info* pActwk) { /* Line 211, Address: 0x101f6f0 */
         pActwk_w->sprpri = 3; /* Line 275, Address: 0x101f90c */
         pActwk_w->sproffset = 17598; /* Line 276, Address: 0x101f918 */
         pActwk_w->patbase = patc; /* Line 277, Address: 0x101f924 */
-        ((int*)pActwk)[12] = 2; /* Line 278, Address: 0x101f934 */
+        ((int*)pActwk)[12] = 131072; /* Line 278, Address: 0x101f934 */
         pActwk_w->actno = pActwk->actfree[21]; /* Line 279, Address: 0x101f940 */
         pActwk_w->r_no0 = pActwk->r_no0; /* Line 280, Address: 0x101f950 */
         if (reverse_flag) /* Line 281, Address: 0x101f960 */
@@ -380,7 +380,7 @@ void actb_init_b(act_info* pActwk) { /* Line 314, Address: 0x101faa0 */
     pActwk_w->sproffset = 17598; /* Line 380, Address: 0x101fd0c */
     pActwk_w->actflg |= 4; /* Line 381, Address: 0x101fd18 */
     pActwk_w->patbase = patd; /* Line 382, Address: 0x101fd28 */
-    ((int*)pActwk)[12] = 2; /* Line 383, Address: 0x101fd38 */
+    ((int*)pActwk)[12] = 131072; /* Line 383, Address: 0x101fd38 */
     pActwk_w->actno = pActwk->actfree[21]; /* Line 384, Address: 0x101fd44 */
     pActwk_w->r_no0 = pActwk->r_no0; /* Line 385, Address: 0x101fd54 */
     pActwk_w->yposi.w.h = pActwk->yposi.w.h; /* Line 386, Address: 0x101fd64 */

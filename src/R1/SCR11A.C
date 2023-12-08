@@ -583,7 +583,7 @@ label4:
 
       wD5 = wD6; /* Line 584, Address: 0x1024910 */
       wD5 >>= 3; /* Line 585, Address: 0x1024914 */
-      if (wD1 < wD5) { /* Line 586, Address: 0x102491c */
+      if (wD5 > wD1) { /* Line 586, Address: 0x102491c */
 
         wD1 -= wD5; /* Line 588, Address: 0x1024930 */
         wD5 = -wD1; /* Line 589, Address: 0x102493c */

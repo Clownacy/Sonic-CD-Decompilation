@@ -463,7 +463,7 @@ void scroll() { /* Line 333, Address: 0x1026d60 */
     *pHscrollbuff++ = d0; /* Line 463, Address: 0x1027490 */
     s = d3.w.h; /* Line 464, Address: 0x10274a8 */
     d3.w.h = d3.w.l; /* Line 465, Address: 0x10274b4 */
-    d3.l = s; /* Line 466, Address: 0x10274bc */
+    d3.w.l = s; /* Line 466, Address: 0x10274bc */
     d3.l += d2.l; /* Line 467, Address: 0x10274c0 */
     s = d3.w.h; /* Line 468, Address: 0x10274d0 */
     d3.w.h = d3.w.l; /* Line 469, Address: 0x10274e0 */
@@ -626,7 +626,7 @@ void sv_move_sub(short wD0) { /* Line 624, Address: 0x1027d10 */
 
   lD1.w.h = 0; /* Line 627, Address: 0x1027d1c */
   lD1.w.l = wD0 + scra_v_posit.w.h; /* Line 628, Address: 0x1027d20 */
-  if (wD0 > 0) scrv_up_ch(lD1); /* Line 629, Address: 0x1027d4c */
+  if (wD0 < 0) scrv_up_ch(lD1); /* Line 629, Address: 0x1027d4c */
   else scrv_down_ch(lD1); /* Line 630, Address: 0x1027d74 */
 } /* Line 631, Address: 0x1027d80 */
 

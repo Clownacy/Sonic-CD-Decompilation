@@ -319,7 +319,7 @@ static void playposiset() { /* Line 269, Address: 0x1026060 */
   }
 
 
-  ywk = scra_v_posit.w.h; /* Line 322, Address: 0x1026234 */
+  scra_v_posit.w.h = ywk; /* Line 322, Address: 0x1026234 */
 
   scrbinit(xwk, ywk); /* Line 324, Address: 0x102623c */
 
@@ -986,7 +986,7 @@ static void sv_move_sub(short yPos) { /* Line 985, Address: 0x10273b0 */
   int_union lSpd;
 
   lSpd.l = 0; /* Line 988, Address: 0x10273bc */
-  lSpd.w.h = yPos + scra_v_posit.w.h; /* Line 989, Address: 0x10273c0 */
+  lSpd.w.l = yPos + scra_v_posit.w.h; /* Line 989, Address: 0x10273c0 */
   if (yPos < 0) { /* Line 990, Address: 0x10273ec */
     scrv_up_ch(lSpd); /* Line 991, Address: 0x1027400 */
   } else { /* Line 992, Address: 0x102740c */
@@ -1018,7 +1018,7 @@ static void sv_move_minus(short speed) { /* Line 1017, Address: 0x1027460 */
   int_union lSpd;
   short wk;
   lSpd.l = (-speed << 8) + scra_v_posit.l; /* Line 1020, Address: 0x1027470 */
-  wk = lSpd.w.h, lSpd.w.l = lSpd.w.h, lSpd.w.h = wk; /* Line 1021, Address: 0x1027494 */
+  wk = lSpd.w.l, lSpd.w.l = lSpd.w.h, lSpd.w.h = wk; /* Line 1021, Address: 0x1027494 */
   scrv_up_ch(lSpd); /* Line 1022, Address: 0x10274ac */
 } /* Line 1023, Address: 0x10274b8 */
 

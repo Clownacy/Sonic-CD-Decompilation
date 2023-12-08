@@ -1256,7 +1256,7 @@ int egg1_02(act_info* pActwk) { /* Line 1235, Address: 0x1029af0 */
   if (pActwk->r_no1 == 2) /* Line 1256, Address: 0x1029bb0 */
   {
 
-    pActwk->mstno.b.l = 0; /* Line 1259, Address: 0x1029bc8 */
+    pActwk->mstno.w = 0; /* Line 1259, Address: 0x1029bc8 */
     pActwk->patno = 0; /* Line 1260, Address: 0x1029bd0 */
     pActwk->patcnt = 0; /* Line 1261, Address: 0x1029bd8 */
     pActwk->pattim = 0; /* Line 1262, Address: 0x1029be0 */
@@ -2500,7 +2500,7 @@ int egg1arm3_02(act_info* pActwk) { /* Line 2471, Address: 0x102e270 */
   else
   {
     ++pActwk->actfree[0]; /* Line 2502, Address: 0x102e39c */
-    if (((short*)pActwk)[23] % 7) /* Line 2503, Address: 0x102e3ac */
+    if (((short*)pActwk)[23] % 7 == 0) /* Line 2503, Address: 0x102e3ac */
       arm_bom(pActwk); /* Line 2504, Address: 0x102e3d0 */
     tenmetu(); /* Line 2505, Address: 0x102e3dc */
   }
@@ -3657,7 +3657,7 @@ void bom_set(act_info* pActwk) { /* Line 3634, Address: 0x1031750 */
 
   if (pActwk->actfree[1] % 4 == 0) /* Line 3658, Address: 0x1031794 */
   {
-    temp = pActwk->actfree[1] / 4 % 10 * 2; /* Line 3660, Address: 0x10317c4 */
+    temp = (short)(pActwk->actfree[1] / 4) % 10 * 2; /* Line 3660, Address: 0x10317c4 */
     if (actwkchk(&subActwk) == 0) /* Line 3661, Address: 0x1031818 */
     {
       subActwk->r_no1 = 255; /* Line 3663, Address: 0x103182c */

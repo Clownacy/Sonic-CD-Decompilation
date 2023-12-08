@@ -885,7 +885,7 @@ static void sv_move_sub(short yPos) { /* Line 884, Address: 0x1026870 */
   int_union lSpd;
 
   lSpd.l = 0; /* Line 887, Address: 0x102687c */
-  lSpd.w.h = yPos + scra_v_posit.w.h; /* Line 888, Address: 0x1026880 */
+  lSpd.w.l = yPos + scra_v_posit.w.h; /* Line 888, Address: 0x1026880 */
   if (yPos < 0) { /* Line 889, Address: 0x10268ac */
     scrv_up_ch(lSpd); /* Line 890, Address: 0x10268c0 */
   } else { /* Line 891, Address: 0x10268cc */
