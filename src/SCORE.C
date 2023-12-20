@@ -409,7 +409,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
   plscore_f = 1; /* Line 409, Address: 0x100547c */
 
   plscore += updata; /* Line 411, Address: 0x1005488 */
-  if (!(plscore < 1000000U)) { /* Line 412, Address: 0x10054a0 */
+  if (plscore >= 1000000U) { /* Line 412, Address: 0x10054a0 */
 
     plscore = 999999; /* Line 414, Address: 0x10054bc */
   }

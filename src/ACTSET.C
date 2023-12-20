@@ -145,7 +145,7 @@ void actset() { /* Line 111, Address: 0x10002f0 */
 
     while (1)
     {
-      if (!((short)((pAsetadr_w - 1)->x) > scra_h)) goto label1; /* Line 148, Address: 0x10003a4 */
+      if ((short)((pAsetadr_w - 1)->x) <= scra_h) goto label1; /* Line 148, Address: 0x10003a4 */
       --pAsetadr_w; /* Line 149, Address: 0x10003d4 */
       if (pAsetadr_w->a & 128) /* Line 150, Address: 0x10003e8 */
       {
