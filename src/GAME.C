@@ -30,7 +30,7 @@ void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
 void(*sOutputDebugString)(char*);
-void(*sPrintf)(char*, char*);
+void(*sPrintf)(char*, const char*, ...);
 int(*sRandom)();
 void(*sMemSet)(void*, unsigned char, int);
 void(*WaveAllStop)();
@@ -216,7 +216,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
   ++pFuncTbl; /* Line 216, Address: 0x1017b70 */
   ++pFuncTbl; /* Line 217, Address: 0x1017b7c */
   ++pFuncTbl; /* Line 218, Address: 0x1017b88 */
-  sPrintf = (void(*)(char*, char*))*pFuncTbl++; /* Line 219, Address: 0x1017b94 */
+  sPrintf = (void(*)(char*, const char*, ...))*pFuncTbl++; /* Line 219, Address: 0x1017b94 */
   sOutputDebugString = (void(*)(char*))*pFuncTbl++; /* Line 220, Address: 0x1017bac */
   sOpenFile = (int(*)(char*))*pFuncTbl++; /* Line 221, Address: 0x1017bc4 */
   sReadFile = (int(*)(int, void*, int))*pFuncTbl++; /* Line 222, Address: 0x1017bdc */
