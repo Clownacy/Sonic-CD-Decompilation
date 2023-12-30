@@ -37,7 +37,7 @@ extern unsigned char dummyarea[];
 
 void flagwkclr() { /* Line 38, Address: 0x1000000 */
   flagworkcnt = flagworkcnt2 = 1; /* Line 39, Address: 0x1000008 */
-  sMemSet(flagwork, 0, 766); /* Line 40, Address: 0x1000020 */
+  sMemSet(flagwork, 0, sizeof(flagwork)); /* Line 40, Address: 0x1000020 */
 } /* Line 41, Address: 0x1000040 */
 
 

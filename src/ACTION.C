@@ -184,7 +184,7 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
 
 void frameout(act_info* pActwk) { /* Line 185, Address: 0x1001820 */
 
-  sMemSet(pActwk, 0, 68); /* Line 187, Address: 0x100182c */
+  sMemSet(pActwk, 0, sizeof(*pActwk)); /* Line 187, Address: 0x100182c */
 } /* Line 188, Address: 0x1001848 */
 
 

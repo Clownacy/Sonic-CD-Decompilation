@@ -280,7 +280,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
   flagworkcnt = lpKeepWork->flagworkcnt; /* Line 281, Address: 0x1017e2c */
   flagworkcnt2 = lpKeepWork->flagworkcnt2; /* Line 282, Address: 0x1017e40 */
-  sMemCpy(flagwork, lpKeepWork->flagwork, 766); /* Line 283, Address: 0x1017e54 */
+  sMemCpy(flagwork, lpKeepWork->flagwork, flagwork); /* Line 283, Address: 0x1017e54 */
 
   lpKeepWork->pSprBmp = SprBmp; /* Line 285, Address: 0x1017e7c */
 
@@ -409,7 +409,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
     }
     lpKeepWork->flagworkcnt = flagworkcnt; /* Line 410, Address: 0x10182f4 */
     lpKeepWork->flagworkcnt2 = flagworkcnt2; /* Line 411, Address: 0x1018308 */
-    sMemCpy(lpKeepWork->flagwork, flagwork, 766); /* Line 412, Address: 0x101831c */
+    sMemCpy(lpKeepWork->flagwork, flagwork, sizeof(flagwork)); /* Line 412, Address: 0x101831c */
 
     if (gameflag.w == 2) { /* Line 414, Address: 0x1018344 */
 
@@ -513,11 +513,11 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
 
 
   plsubchg_flag = 0; /* Line 515, Address: 0x1018700 */
-  sMemSet(flowercnt, 0, 3); /* Line 516, Address: 0x1018708 */
-  sMemSet(pbuffer, 0, 2048); /* Line 517, Address: 0x1018728 */
-  sMemSet(flowerposi, 0, 768); /* Line 518, Address: 0x1018748 */
-  sMemSet(actwk, 0, 8704); /* Line 519, Address: 0x1018768 */
-  sMemSet(flowwk, 0, 4096); /* Line 520, Address: 0x1018788 */
+  sMemSet(flowercnt, 0, sizeof(flowercnt)); /* Line 516, Address: 0x1018708 */
+  sMemSet(pbuffer, 0, sizeof(pbuffer)); /* Line 517, Address: 0x1018728 */
+  sMemSet(flowerposi, 0, sizeof(flowerposi)); /* Line 518, Address: 0x1018748 */
+  sMemSet(actwk, 0, sizeof(actwk)); /* Line 519, Address: 0x1018768 */
+  sMemSet(flowwk, 0, sizeof(flowwk)); /* Line 520, Address: 0x1018788 */
 
 
 
@@ -537,8 +537,8 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   water_flag = 0; /* Line 537, Address: 0x1018810 */
   waterflag = 0; /* Line 538, Address: 0x1018818 */
   waterflag2 = 0; /* Line 539, Address: 0x1018820 */
-  sMemSet(cgchgcnt, 0, 6); /* Line 540, Address: 0x1018828 */
-  sMemSet(cgchgtim, 0, 6); /* Line 541, Address: 0x1018848 */
+  sMemSet(cgchgcnt, 0, sizeof(cgchgcnt)); /* Line 540, Address: 0x1018828 */
+  sMemSet(cgchgtim, 0, sizeof(cgchgtim)); /* Line 541, Address: 0x1018848 */
 
 
   scra_h_posit.l = 0; /* Line 544, Address: 0x1018868 */
@@ -589,7 +589,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   plretspdwk = 0; /* Line 589, Address: 0x10189d0 */
   playpatno = 0; /* Line 590, Address: 0x10189d8 */
   playwrtflag = 0; /* Line 591, Address: 0x10189e0 */
-  sMemSet(dirstk, 0, 4); /* Line 592, Address: 0x10189e8 */
+  sMemSet(dirstk, 0, sizeof(dirstk)); /* Line 592, Address: 0x10189e8 */
   actset_rno.w = 0; /* Line 593, Address: 0x1018a08 */
   asetposi = 0; /* Line 594, Address: 0x1018a10 */
   asetadr = 0; /* Line 595, Address: 0x1018a18 */
@@ -613,8 +613,8 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   loopmapno2 = 0; /* Line 613, Address: 0x1018aa8 */
   ballmapno = 0; /* Line 614, Address: 0x1018ab0 */
   ballmapno2 = 0; /* Line 615, Address: 0x1018ab8 */
-  sMemSet(clchgcnt, 0, 7); /* Line 616, Address: 0x1018ac0 */
-  sMemSet(clchgtim, 0, 7); /* Line 617, Address: 0x1018ae0 */
+  sMemSet(clchgcnt, 0, sizeof(clchgcnt)); /* Line 616, Address: 0x1018ac0 */
+  sMemSet(clchgtim, 0, sizeof(clchgtim)); /* Line 617, Address: 0x1018ae0 */
   watercoliflag = 0; /* Line 618, Address: 0x1018b00 */
   waterstop = 0; /* Line 619, Address: 0x1018b08 */
   mizuflag = 0; /* Line 620, Address: 0x1018b10 */
@@ -629,7 +629,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   edplayflag = 0; /* Line 629, Address: 0x1018b58 */
   waterdirec.w = 0; /* Line 630, Address: 0x1018b60 */
   ms_wflg = 0; /* Line 631, Address: 0x1018b68 */
-  sMemSet(switchflag, 0, 32); /* Line 632, Address: 0x1018b70 */
+  sMemSet(switchflag, 0, sizeof(switchflag)); /* Line 632, Address: 0x1018b70 */
 
 
   demo_cnt = 0; /* Line 635, Address: 0x1018b90 */
@@ -677,7 +677,7 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   st6clrchg = 0; /* Line 677, Address: 0x1018cd0 */
   chibi_flag = 0; /* Line 678, Address: 0x1018cd8 */
   mapwrt_cnt = 0; /* Line 679, Address: 0x1018ce0 */
-  sMemSet(linework, 0, 512); /* Line 680, Address: 0x1018ce8 */
+  sMemSet(linework, 0, sizeof(linework)); /* Line 680, Address: 0x1018ce8 */
 
   scrinit(); /* Line 682, Address: 0x1018d08 */
 

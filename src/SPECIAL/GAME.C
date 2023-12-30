@@ -763,7 +763,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 392, Address: 0x100
 
   sPrintf(fn, "SPECIAL\\MAP\\SP%1dMAP.MAP", lpKeepWork->stagenm); /* Line 454, Address: 0x10054c4 */
   hf = sOpenFile(fn); /* Line 455, Address: 0x10054f0 */
-  sReadFile(hf, sm_adr0, 32768); /* Line 456, Address: 0x1005508 */
+  sReadFile(hf, sm_adr0, sizeof(sm_adr0)); /* Line 456, Address: 0x1005508 */
   sCloseFile(hf); /* Line 457, Address: 0x1005528 */
 
   lpKeepWork->sm_adr0 = sm_adr0; /* Line 459, Address: 0x100553c */

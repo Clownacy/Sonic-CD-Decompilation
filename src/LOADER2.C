@@ -72,7 +72,7 @@ void ReadBlockMap() { /* Line 59, Address: 0x1013830 */
 
 
 
-  sMemSet(blockwk, 0, 8192); /* Line 75, Address: 0x101388c */
+  sMemSet(blockwk, 0, sizeof(blockwk)); /* Line 75, Address: 0x101388c */
   hf = sOpenFile(fn); /* Line 76, Address: 0x10138ac */
   if (hf == -1) { /* Line 77, Address: 0x10138c4 */
 
@@ -81,7 +81,7 @@ void ReadBlockMap() { /* Line 59, Address: 0x1013830 */
 
   } /* Line 82, Address: 0x1013904 */
   else {
-    sReadFile(hf, blockwk, 8192); /* Line 84, Address: 0x101390c */
+    sReadFile(hf, blockwk, sizeof(blockwk)); /* Line 84, Address: 0x101390c */
     sCloseFile(hf); /* Line 85, Address: 0x101392c */
 
     sPrintf(buf, "Block Map Read:%s\n", fn); /* Line 87, Address: 0x1013940 */

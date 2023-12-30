@@ -70,7 +70,7 @@ void actmain(sprite_status_sp* work) { /* Line 69, Address: 0x10001d0 */
   if (work->actno == 0) return; /* Line 70, Address: 0x10001dc */
   act_tbl[work->actno - 1](work); /* Line 71, Address: 0x10001f0 */
   if ((work->actflg & 1) == 0) return; /* Line 72, Address: 0x1000220 */
-  sMemSet(work, 0, sizeof(sprite_status_sp)); /* Line 73, Address: 0x1000238 */
+  sMemSet(work, 0, sizeof(*work)); /* Line 73, Address: 0x1000238 */
 } /* Line 74, Address: 0x1000254 */
 
 
