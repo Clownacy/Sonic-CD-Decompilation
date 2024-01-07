@@ -20,7 +20,7 @@
 
 
 
-void frameoutchk(act_info* pActwk) { /* Line 23, Address: 0x1000fe0 */
+void frameoutchk(sprite_status* pActwk) { /* Line 23, Address: 0x1000fe0 */
   short xposi;
   short scra_h;
   unsigned char index;

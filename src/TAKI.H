@@ -1,5 +1,5 @@
-void taki(act_info* pActwk);
-void taki_init(act_info* pActwk);
-void taki_move(act_info* pActwk);
-void jisin_set(act_info* pActwk);
-void jisin(act_info* pActwk);
+void taki(sprite_status* pActwk);
+void taki_init(sprite_status* pActwk);
+void taki_move(sprite_status* pActwk);
+void jisin_set(sprite_status* pActwk);
+void jisin(sprite_status* pActwk);

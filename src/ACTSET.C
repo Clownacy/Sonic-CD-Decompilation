@@ -296,7 +296,7 @@ int tm_setchk(unsigned char cnt, unsigned short* pIndex) { /* Line 272, Address:
 
 
 int actnoset(unsigned char cnt, unsigned short* pIndex) { /* Line 298, Address: 0x10008b0 */
-  act_info* pActwk;
+  sprite_status* pActwk;
   short zflag;
   unsigned char revflg;
   unsigned char an;
@@ -377,9 +377,9 @@ int actnoset(unsigned char cnt, unsigned short* pIndex) { /* Line 298, Address: 
 
 
 
-int actwkchk(act_info** ppActwk) { /* Line 380, Address: 0x1000af0 */
+int actwkchk(sprite_status** ppActwk) { /* Line 380, Address: 0x1000af0 */
   short i;
-  act_info* pActwk;
+  sprite_status* pActwk;
 
   pActwk = &actwk[32]; /* Line 384, Address: 0x1000b00 */
   for (i = 0; i < 96; ++i, ++pActwk) /* Line 385, Address: 0x1000b08 */
@@ -400,9 +400,9 @@ int actwkchk(act_info** ppActwk) { /* Line 380, Address: 0x1000af0 */
 
 
 
-int actwkchk2(act_info* pActwk, act_info** ppNewActwk) { /* Line 403, Address: 0x1000b80 */
-  act_info* pNextActwk;
-  act_info* pLastActwk;
+int actwkchk2(sprite_status* pActwk, sprite_status** ppNewActwk) { /* Line 403, Address: 0x1000b80 */
+  sprite_status* pNextActwk;
+  sprite_status* pLastActwk;
 
 
   pNextActwk = pActwk + 1; /* Line 408, Address: 0x1000b94 */
@@ -427,7 +427,7 @@ int actwkchk2(act_info* pActwk, act_info** ppNewActwk) { /* Line 403, Address: 0
 
 
 
-int frameout_s(act_info* pActwk) { /* Line 430, Address: 0x1000c00 */
+int frameout_s(sprite_status* pActwk) { /* Line 430, Address: 0x1000c00 */
   frameout_s00(pActwk, pActwk->xposi.w.h); /* Line 431, Address: 0x1000c0c */
 } /* Line 432, Address: 0x1000c20 */
 
@@ -438,7 +438,7 @@ int frameout_s(act_info* pActwk) { /* Line 430, Address: 0x1000c00 */
 
 
 
-int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c30 */
+int frameout_s00(sprite_status* pActwk, short xposi) { /* Line 441, Address: 0x1000c30 */
   short scra_h;
   unsigned short index;
   short_union tflag;
@@ -488,7 +488,7 @@ int frameout_s00(act_info* pActwk, short xposi) { /* Line 441, Address: 0x1000c3
 
 
 
-int frameout_s0(act_info* pActwk) { /* Line 491, Address: 0x1000e70 */
+int frameout_s0(sprite_status* pActwk) { /* Line 491, Address: 0x1000e70 */
   unsigned short index;
   short_union tflag;
   short zflag;

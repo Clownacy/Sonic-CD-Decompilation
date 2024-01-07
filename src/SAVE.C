@@ -12,7 +12,7 @@
 
 
 void playloadb() { /* Line 14, Address: 0x1005e30 */
-  act_info* pActwk;
+  sprite_status* pActwk;
 
   pActwk = &actwk[0]; /* Line 17, Address: 0x1005e38 */
   pActwk->xposi.w.h = lpKeepWork->plxposi_sb; /* Line 18, Address: 0x1005e40 */
@@ -52,7 +52,7 @@ void playloadb() { /* Line 14, Address: 0x1005e30 */
 
 
 void playload() { /* Line 54, Address: 0x1006070 */
-  act_info* pActwk;
+  sprite_status* pActwk;
   pActwk = &actwk[0]; /* Line 56, Address: 0x100607c */
 
   if (plflag == 2) { /* Line 58, Address: 0x1006084 */

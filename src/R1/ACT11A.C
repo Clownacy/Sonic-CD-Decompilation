@@ -24,7 +24,7 @@
 #include "SHOOT1.H"
 #include "SIKAKE.H"
 
-void(*act_tbl[64])(act_info*) = {
+void(*act_tbl[64])(sprite_status*) = {
   &play00,
   &play00,
   &baria,
@@ -59,7 +59,7 @@ void(*act_tbl[64])(act_info*) = {
   &kuzureru_tikei,
   &dodai,
   &ene_kamemusi,
-  (void(*)(act_info*))&ene_tama,
+  (void(*)(sprite_status*))&ene_tama,
   &friend,
   &noact,
   &hariyama,
@@ -148,7 +148,7 @@ void(*act_tbl[64])(act_info*) = {
 
 
 
-void debugact(act_info* pAct) { /* Line 151, Address: 0x1021440 */
+void debugact(sprite_status* pAct) { /* Line 151, Address: 0x1021440 */
   if (pAct->xposi.w.h++ >= 300) pAct->xposi.w.h = 0; /* Line 152, Address: 0x102144c */
   if (pAct->yposi.w.h++ >= 200) pAct->yposi.w.h = 0; /* Line 153, Address: 0x1021478 */
 
@@ -158,6 +158,6 @@ void debugact(act_info* pAct) { /* Line 151, Address: 0x1021440 */
 
 
 
-void noact(act_info* pAct) { /* Line 161, Address: 0x10214c0 */
+void noact(sprite_status* pAct) { /* Line 161, Address: 0x10214c0 */
   frameout(pAct); /* Line 162, Address: 0x10214cc */
 } /* Line 163, Address: 0x10214d8 */

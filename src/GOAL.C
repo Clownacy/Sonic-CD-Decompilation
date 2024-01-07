@@ -9,7 +9,7 @@ extern void soundset(short ReqNo);
 extern void colorset2(int ColorNo);
 extern void sub_sync(short ReqNo);
 
-void(*gene_tbl[6])(act_info*) = {
+void(*gene_tbl[6])(sprite_status*) = {
   &gene_init,
   &gene_move0,
   &gene_move1,
@@ -20,27 +20,27 @@ void(*gene_tbl[6])(act_info*) = {
 extern spr_array* genepat[];
 extern unsigned char* genechg[];
 extern map_init_data mapinittbl;
-void(*bring2_tbl[3])(act_info*) = {
+void(*bring2_tbl[3])(sprite_status*) = {
   &bring2init,
   &bring2move0,
   &bring2move1
 };
 extern spr_array* bring2pat[];
 extern unsigned char* bring2chg[];
-void(*bigring_tbl[3])(act_info*) = {
+void(*bigring_tbl[3])(sprite_status*) = {
   &bring_init,
   &bring_move0,
   &bring_move1
 };
 extern spr_array* bringpat[];
 extern unsigned char* bringchg[];
-void(*mosugu_tbl[3])(act_info*, act_info*) = {
+void(*mosugu_tbl[3])(sprite_status*, sprite_status*) = {
   &mosug_init,
   &mosug_move0,
   &mosug_move1
 };
 extern spr_array* goalpat[];
-void(*goal_tbl[5])(act_info*) = {
+void(*goal_tbl[5])(sprite_status*) = {
   &goal_init,
   &goal_move0,
   &goal_move1,
@@ -92,7 +92,7 @@ extern unsigned char* goalchg[];
 
 
 
-void gene(act_info* pActwk) { /* Line 95, Address: 0x100f280 */
+void gene(sprite_status* pActwk) { /* Line 95, Address: 0x100f280 */
   gene_tbl[pActwk->r_no0 / 2](pActwk); /* Line 96, Address: 0x100f28c */
   if (pActwk->r_no0 == 0) return; /* Line 97, Address: 0x100f2d0 */
 
@@ -114,7 +114,7 @@ void gene(act_info* pActwk) { /* Line 95, Address: 0x100f280 */
 
 
 
-void gene_init(act_info* pActwk) { /* Line 117, Address: 0x100f330 */
+void gene_init(sprite_status* pActwk) { /* Line 117, Address: 0x100f330 */
   pActwk->actflg |= 4; /* Line 118, Address: 0x100f33c */
   pActwk->r_no0 += 2; /* Line 119, Address: 0x100f34c */
   pActwk->sprpri = 4; /* Line 120, Address: 0x100f35c */
@@ -136,7 +136,7 @@ void gene_init(act_info* pActwk) { /* Line 117, Address: 0x100f330 */
 
 
 
-void gene_move0(act_info* pActwk) { /* Line 139, Address: 0x100f3d0 */
+void gene_move0(sprite_status* pActwk) { /* Line 139, Address: 0x100f3d0 */
   short coli;
   short iD0, iD1;
 
@@ -180,8 +180,8 @@ label1:
 
 
 
-void gene_move1(act_info* pActwk) { /* Line 183, Address: 0x100f570 */
-  act_info* pActfree;
+void gene_move1(sprite_status* pActwk) { /* Line 183, Address: 0x100f570 */
+  sprite_status* pActfree;
   short iD0, iD1, ret;
   unsigned short wOff;
   unsigned char bywk;
@@ -236,10 +236,10 @@ void gene_move1(act_info* pActwk) { /* Line 183, Address: 0x100f570 */
 
 
 
-void kira_set(act_info* pActwk) { /* Line 239, Address: 0x100f770 */
+void kira_set(sprite_status* pActwk) { /* Line 239, Address: 0x100f770 */
   int i, ret, iColor;
   short iD1;
-  act_info* pActfree;
+  sprite_status* pActfree;
   short tbl[11] = { 0, /* Line 243, Address: 0x100f78c */
     -128, 128, -256, 256, -384,  384, -512, 512, -640, 640 };
 
@@ -273,7 +273,7 @@ void kira_set(act_info* pActwk) { /* Line 239, Address: 0x100f770 */
 
 
 
-void kira_move(act_info* pActwk) { /* Line 276, Address: 0x100f8e0 */
+void kira_move(sprite_status* pActwk) { /* Line 276, Address: 0x100f8e0 */
   short ret;
 
   patchg(pActwk, genechg); /* Line 279, Address: 0x100f8f0 */
@@ -299,7 +299,7 @@ void kira_move(act_info* pActwk) { /* Line 276, Address: 0x100f8e0 */
 
 
 
-short gene_coli(act_info* pActwk, act_info* pPlaywk) { /* Line 302, Address: 0x100f970 */
+short gene_coli(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 302, Address: 0x100f970 */
   short iD0, iD1;
 
   if (!(pPlaywk->cddat & 4)) return 0; /* Line 305, Address: 0x100f984 */
@@ -338,7 +338,7 @@ short gene_coli(act_info* pActwk, act_info* pPlaywk) { /* Line 302, Address: 0x1
 
 
 
-void bring2(act_info* pActwk) { /* Line 341, Address: 0x100fb20 */
+void bring2(sprite_status* pActwk) { /* Line 341, Address: 0x100fb20 */
   bring2_tbl[pActwk->r_no0 / 2](pActwk); /* Line 342, Address: 0x100fb2c */
   actionsub(pActwk); /* Line 343, Address: 0x100fb70 */
 } /* Line 344, Address: 0x100fb7c */
@@ -353,7 +353,7 @@ void bring2(act_info* pActwk) { /* Line 341, Address: 0x100fb20 */
 
 
 
-void bring2init(act_info* pActwk) { /* Line 356, Address: 0x100fb90 */
+void bring2init(sprite_status* pActwk) { /* Line 356, Address: 0x100fb90 */
   pActwk->actflg |= 4; /* Line 357, Address: 0x100fb9c */
   pActwk->r_no0 += 2; /* Line 358, Address: 0x100fbac */
   pActwk->sproffset = 1007; /* Line 359, Address: 0x100fbbc */
@@ -371,7 +371,7 @@ void bring2init(act_info* pActwk) { /* Line 356, Address: 0x100fb90 */
 
 
 
-void bring2move0(act_info* pActwk) { /* Line 374, Address: 0x100fc00 */
+void bring2move0(sprite_status* pActwk) { /* Line 374, Address: 0x100fc00 */
   patchg(pActwk, bring2chg); /* Line 375, Address: 0x100fc0c */
 } /* Line 376, Address: 0x100fc20 */
 
@@ -385,7 +385,7 @@ void bring2move0(act_info* pActwk) { /* Line 374, Address: 0x100fc00 */
 
 
 
-void bring2move1(act_info* pActwk) { /* Line 388, Address: 0x100fc30 */
+void bring2move1(sprite_status* pActwk) { /* Line 388, Address: 0x100fc30 */
   frameout(pActwk); /* Line 389, Address: 0x100fc3c */
 } /* Line 390, Address: 0x100fc48 */
 
@@ -406,7 +406,7 @@ void bring2move1(act_info* pActwk) { /* Line 388, Address: 0x100fc30 */
 
 
 
-void bigring(act_info* pActwk) { /* Line 409, Address: 0x100fc60 */
+void bigring(sprite_status* pActwk) { /* Line 409, Address: 0x100fc60 */
   if (pActwk->userflag.b.h != 0) { /* Line 410, Address: 0x100fc6c */
 
     bring2(pActwk); /* Line 412, Address: 0x100fc84 */
@@ -433,7 +433,7 @@ void bigring(act_info* pActwk) { /* Line 409, Address: 0x100fc60 */
 
 
 
-void bring_init(act_info* pActwk) { /* Line 436, Address: 0x100fd40 */
+void bring_init(sprite_status* pActwk) { /* Line 436, Address: 0x100fd40 */
   if (clrspflg_save == 127 || ta_flag != 0) { /* Line 437, Address: 0x100fd4c */
 
     frameout(pActwk); /* Line 439, Address: 0x100fd78 */
@@ -460,8 +460,8 @@ void bring_init(act_info* pActwk) { /* Line 436, Address: 0x100fd40 */
 
 
 
-void bring_move0(act_info* pActwk) { /* Line 463, Address: 0x100fe10 */
-  act_info *pActfree, *pPlaywk;
+void bring_move0(sprite_status* pActwk) { /* Line 463, Address: 0x100fe10 */
+  sprite_status *pActfree, *pPlaywk;
   short iD0, ret;
   do {
     pPlaywk = &actwk[0]; /* Line 467, Address: 0x100fe28 */
@@ -501,7 +501,7 @@ void bring_move0(act_info* pActwk) { /* Line 463, Address: 0x100fe10 */
 
 
 
-void bring_move1(act_info* pActwk) { /* Line 504, Address: 0x100ff70 */
+void bring_move1(sprite_status* pActwk) { /* Line 504, Address: 0x100ff70 */
   patchg(pActwk, bringchg); /* Line 505, Address: 0x100ff7c */
 } /* Line 506, Address: 0x100ff90 */
 
@@ -517,7 +517,7 @@ void bring_move1(act_info* pActwk) { /* Line 504, Address: 0x100ff70 */
 
 
 
-short bring_coli(act_info* pActwk, act_info* pPlaywk) { /* Line 520, Address: 0x100ffa0 */
+short bring_coli(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 520, Address: 0x100ffa0 */
   short iD0, iD1;
 
   iD1 = pPlaywk->sprhs; /* Line 523, Address: 0x100ffb4 */
@@ -554,7 +554,7 @@ short bring_coli(act_info* pActwk, act_info* pPlaywk) { /* Line 520, Address: 0x
 
 
 
-void mosugu(act_info* pActwk) { /* Line 557, Address: 0x1010130 */
+void mosugu(sprite_status* pActwk) { /* Line 557, Address: 0x1010130 */
   mosugu_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 558, Address: 0x101013c */
   if (stageno.b.l != 2) /* Line 559, Address: 0x1010188 */
     actionsub(pActwk); /* Line 560, Address: 0x10101a4 */
@@ -571,7 +571,7 @@ void mosugu(act_info* pActwk) { /* Line 557, Address: 0x1010130 */
 
 
 
-void mosug_init(act_info* pActwk, act_info* pPlaywk) { /* Line 574, Address: 0x10101d0 */
+void mosug_init(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 574, Address: 0x10101d0 */
   if (stageno.w == 513 && time_flag == 1) { /* Line 575, Address: 0x10101e0 */
 
     if (pActwk->userflag.b.h == 0) { /* Line 577, Address: 0x1010214 */
@@ -613,7 +613,7 @@ void mosug_init(act_info* pActwk, act_info* pPlaywk) { /* Line 574, Address: 0x1
 
 
 
-void mosug_move0(act_info* pActwk, act_info* pPlaywk) { /* Line 616, Address: 0x1010300 */
+void mosug_move0(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 616, Address: 0x1010300 */
   short iD0;
   short iD1;
 
@@ -670,7 +670,7 @@ void mosug_move0(act_info* pActwk, act_info* pPlaywk) { /* Line 616, Address: 0x
 
 
 
-void mosug_move1(act_info* pActwk, act_info* pPlaywk) { /* Line 673, Address: 0x1010570 */
+void mosug_move1(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 673, Address: 0x1010570 */
   short iD0;
   short iD1;
 
@@ -694,7 +694,7 @@ void mosug_move1(act_info* pActwk, act_info* pPlaywk) { /* Line 673, Address: 0x
 
 
 
-void offset_set(act_info* pActwk) { /* Line 697, Address: 0x1010640 */
+void offset_set(sprite_status* pActwk) { /* Line 697, Address: 0x1010640 */
   short tbl[56] = { /* Line 698, Address: 0x1010650 */
      858, 1271, 1271, 1271,
      897, 1271, 1271, 1271,
@@ -749,7 +749,7 @@ void offset_set(act_info* pActwk) { /* Line 697, Address: 0x1010640 */
 
 
 
-void goal(act_info* pActwk) { /* Line 752, Address: 0x1010790 */
+void goal(sprite_status* pActwk) { /* Line 752, Address: 0x1010790 */
   goal_tbl[pActwk->r_no0 / 2](pActwk); /* Line 753, Address: 0x101079c */
   actionsub(pActwk); /* Line 754, Address: 0x10107e0 */
 } /* Line 755, Address: 0x10107ec */
@@ -764,7 +764,7 @@ void goal(act_info* pActwk) { /* Line 752, Address: 0x1010790 */
 
 
 
-void goal_init(act_info* pActwk) { /* Line 767, Address: 0x1010800 */
+void goal_init(sprite_status* pActwk) { /* Line 767, Address: 0x1010800 */
   pActwk->r_no0 += 2; /* Line 768, Address: 0x101080c */
   pActwk->actflg |= 4; /* Line 769, Address: 0x101081c */
   pActwk->sprhs = 24; /* Line 770, Address: 0x101082c */
@@ -788,8 +788,8 @@ void goal_init(act_info* pActwk) { /* Line 767, Address: 0x1010800 */
 
 
 
-void goal_move0(act_info* pActwk) { /* Line 791, Address: 0x10108c0 */
-  act_info* pPlaywk;
+void goal_move0(sprite_status* pActwk) { /* Line 791, Address: 0x10108c0 */
+  sprite_status* pPlaywk;
   short iD0;
 
   pPlaywk = &actwk[0]; /* Line 795, Address: 0x10108d4 */
@@ -819,7 +819,7 @@ void goal_move0(act_info* pActwk) { /* Line 791, Address: 0x10108c0 */
 
 
 
-void goal_move1(act_info* pActwk) { /* Line 822, Address: 0x10109f0 */
+void goal_move1(sprite_status* pActwk) { /* Line 822, Address: 0x10109f0 */
   patchg(pActwk, goalchg); /* Line 823, Address: 0x10109fc */
   --pActwk->actfree[0]; /* Line 824, Address: 0x1010a10 */
   if (pActwk->actfree[0] != 0) return; /* Line 825, Address: 0x1010a20 */
@@ -838,8 +838,8 @@ void goal_move1(act_info* pActwk) { /* Line 822, Address: 0x10109f0 */
 
 
 
-void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
-  act_info* pActfree;
+void goal_move2(sprite_status* pActwk) { /* Line 841, Address: 0x1010a70 */
+  sprite_status* pActfree;
   short iD0;
   char cTime;
   unsigned short timebonustbl[21] = { /* Line 845, Address: 0x1010a84 */
@@ -897,7 +897,7 @@ void goal_move2(act_info* pActwk) { /* Line 841, Address: 0x1010a70 */
 
 
 
-void goal_move3(act_info* pActwk) { /* Line 900, Address: 0x1010ce0 */
+void goal_move3(sprite_status* pActwk) { /* Line 900, Address: 0x1010ce0 */
 
   pActwk->xposi.w.h = pActwk->xposi.w.h; /* Line 902, Address: 0x1010ce8 */
 } /* Line 903, Address: 0x1010cf8 */

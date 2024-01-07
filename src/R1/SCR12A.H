@@ -1,6 +1,6 @@
 void enecginit();
 void divdevset();
-act_info* main_chk();
+sprite_status* main_chk();
 void scr_set();
 void playposiset();
 void scrbinit(short d1, short d0);

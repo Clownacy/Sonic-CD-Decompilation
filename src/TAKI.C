@@ -19,7 +19,7 @@ spr_array* shibukipat[2] = {
   &shibuki0,
   &shibuki1
 };
-static void(*taki_move_tbl[2])(act_info*) = {
+static void(*taki_move_tbl[2])(sprite_status*) = {
   &taki_init,
   &taki_move
 };
@@ -98,7 +98,7 @@ static void(*taki_move_tbl[2])(act_info*) = {
 
 
 
-void taki(act_info* pActwk) { /* Line 101, Address: 0x101d6e0 */
+void taki(sprite_status* pActwk) { /* Line 101, Address: 0x101d6e0 */
   taki_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 102, Address: 0x101d6ec */
   patchg(pActwk, &shibukichg); /* Line 103, Address: 0x101d730 */
   actionsub(pActwk); /* Line 104, Address: 0x101d744 */
@@ -108,7 +108,7 @@ void taki(act_info* pActwk) { /* Line 101, Address: 0x101d6e0 */
 
 
 
-static void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
+static void taki_init(sprite_status* pActwk) { /* Line 111, Address: 0x101d760 */
   pActwk->r_no0 += 2; /* Line 112, Address: 0x101d768 */
   pActwk->patbase = shibukipat; /* Line 113, Address: 0x101d778 */
   pActwk->actflg = 4; /* Line 114, Address: 0x101d788 */
@@ -125,7 +125,7 @@ static void taki_init(act_info* pActwk) { /* Line 111, Address: 0x101d760 */
 
 
 
-static void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
+static void taki_move(sprite_status* pActwk) { /* Line 128, Address: 0x101d800 */
   unsigned short blkno;
   short i, xoffs;
 
@@ -160,7 +160,7 @@ static void taki_move(act_info* pActwk) { /* Line 128, Address: 0x101d800 */
 
 
 
-void jisin_set(act_info* pActwk) { /* Line 163, Address: 0x101d930 */
+void jisin_set(sprite_status* pActwk) { /* Line 163, Address: 0x101d930 */
   pActwk = pActwk; /* Line 164, Address: 0x101d938 */
 
 } /* Line 166, Address: 0x101d940 */
@@ -177,7 +177,7 @@ void jisin_set(act_info* pActwk) { /* Line 163, Address: 0x101d930 */
 
 
 
-void jisin(act_info* pActwk) { /* Line 180, Address: 0x101d950 */
+void jisin(sprite_status* pActwk) { /* Line 180, Address: 0x101d950 */
   pActwk = pActwk; /* Line 181, Address: 0x101d958 */
 
 } /* Line 183, Address: 0x101d960 */

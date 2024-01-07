@@ -144,7 +144,7 @@ static char* pchg[1] = { pchg0 };
 
 
 
-void et(act_info* actionwk) { /* Line 147, Address: 0x1020fd0 */
+void et(sprite_status* actionwk) { /* Line 147, Address: 0x1020fd0 */
   switch (actionwk->r_no0) { /* Line 148, Address: 0x1020fdc */
 
     case 0:
@@ -166,7 +166,7 @@ void et(act_info* actionwk) { /* Line 147, Address: 0x1020fd0 */
 } /* Line 166, Address: 0x102108c */
 
 
-static void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
+static void m_init(sprite_status* actionwk) { /* Line 169, Address: 0x10210a0 */
   unsigned short* a1;
   unsigned short d0;
 
@@ -203,9 +203,9 @@ static void m_init(act_info* actionwk) { /* Line 169, Address: 0x10210a0 */
   }
 } /* Line 204, Address: 0x1021220 */
 
-static void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
+static void m_wait(sprite_status* actionwk) { /* Line 206, Address: 0x1021240 */
   int d0;
-  act_info* a1;
+  sprite_status* a1;
 
   if (generate_flag != 0 || time_flag != 0) return; /* Line 210, Address: 0x1021254 */
   a_hover(actionwk); /* Line 211, Address: 0x1021284 */
@@ -226,8 +226,8 @@ static void m_wait(act_info* actionwk) { /* Line 206, Address: 0x1021240 */
   patchg(actionwk, (unsigned char**)pchg); /* Line 226, Address: 0x1021338 */
 } /* Line 227, Address: 0x102134c */
 
-void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
-  act_info* a1;
+void m_die(sprite_status* actionwk) { /* Line 229, Address: 0x1021370 */
+  sprite_status* a1;
   char d0;
   short d5, d6, a6;
 
@@ -255,14 +255,14 @@ void m_die(act_info* actionwk) { /* Line 229, Address: 0x1021370 */
   soundset(158); /* Line 255, Address: 0x1021530 */
 } /* Line 256, Address: 0x102153c */
 
-void m1wait(act_info* actionwk) { /* Line 258, Address: 0x1021560 */
+void m1wait(sprite_status* actionwk) { /* Line 258, Address: 0x1021560 */
   if (--actionwk->actfree[0]) return; /* Line 259, Address: 0x102156c */
   actionwk->r_no0 -= 6; /* Line 260, Address: 0x1021588 */
   actionwk->yposi.w.h = ((short*)actionwk)[26]; /* Line 261, Address: 0x1021598 */
   soundset(217); /* Line 262, Address: 0x10215a8 */
 } /* Line 263, Address: 0x10215b4 */
 
-void a_hover(act_info* actionwk) { /* Line 265, Address: 0x10215d0 */
+void a_hover(sprite_status* actionwk) { /* Line 265, Address: 0x10215d0 */
   unsigned short d0;
 
   ++((unsigned short*)actionwk)[23]; /* Line 268, Address: 0x10215dc */

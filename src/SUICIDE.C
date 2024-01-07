@@ -32,7 +32,7 @@ extern void soundset(short ReqNo);
 
 
 
-short enemy_suicide(act_info* pActwk) { /* Line 35, Address: 0x1013ea0 */
+short enemy_suicide(sprite_status* pActwk) { /* Line 35, Address: 0x1013ea0 */
   short xposi, yposi;
 
   if (generate_flag == 0) /* Line 38, Address: 0x1013eb4 */
@@ -63,7 +63,7 @@ short enemy_suicide(act_info* pActwk) { /* Line 35, Address: 0x1013ea0 */
 
 
 
-short friend_suicide(act_info* pActwk) { /* Line 66, Address: 0x1013fa0 */
+short friend_suicide(sprite_status* pActwk) { /* Line 66, Address: 0x1013fa0 */
   if (pActwk->userflag.b.h < 0) /* Line 67, Address: 0x1013fac */
     return 0; /* Line 68, Address: 0x1013fc4 */
   if (time_flag < 2) /* Line 69, Address: 0x1013fd0 */

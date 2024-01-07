@@ -4,9 +4,9 @@
 #include "ACTSET.H"
 #include "PLAYSUB.H"
 
-void(*hoshi_tbl[2])(act_info*, act_info*) = { &hoshi_init, &hoshi_move };
-void(*k0_tbl[2])(act_info*, act_info*) = { &k0_init, &k0_move };
-void(*kasoku_tbl[2])(act_info*, act_info*) = { &kasoku_init, &kasoku_move };
+void(*hoshi_tbl[2])(sprite_status*, sprite_status*) = { &hoshi_init, &hoshi_move };
+void(*k0_tbl[2])(sprite_status*, sprite_status*) = { &k0_init, &k0_move };
+void(*kasoku_tbl[2])(sprite_status*, sprite_status*) = { &kasoku_init, &kasoku_move };
 spr_array hoshipat0 = {
   1, { { -24, -20, 0, 392 } }
 };
@@ -50,7 +50,7 @@ spr_array kasokupat_j = {
 };
 spr_array* kasokupat[10] = { &kasokupat_a, &kasokupat_b, &kasokupat_c, &kasokupat_d, &kasokupat_e, &kasokupat_f, &kasokupat_g, &kasokupat_h, &kasokupat_i, &kasokupat_j };
 
-void hoshi(act_info* pActwk) { /* Line 53, Address: 0x101ae10 */
+void hoshi(sprite_status* pActwk) { /* Line 53, Address: 0x101ae10 */
   short iXposi;
 
   hoshi_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 56, Address: 0x101ae20 */
@@ -78,8 +78,8 @@ void hoshi(act_info* pActwk) { /* Line 53, Address: 0x101ae10 */
 
 
 
-void hoshi_init(act_info* pActwk, act_info* pPlaywk) { /* Line 81, Address: 0x101aeb0 */
-  act_info* pActfree;
+void hoshi_init(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 81, Address: 0x101aeb0 */
+  sprite_status* pActfree;
   short i, iXwork, iLp, iOffset;
   short tbl0[4] = { 64, 128, -64, -128 }; /* Line 84, Address: 0x101aed0 */
   short tbl1[3] = { 0, 96, -96 }; /* Line 85, Address: 0x101aefc */
@@ -152,7 +152,7 @@ void hoshi_init(act_info* pActwk, act_info* pPlaywk) { /* Line 81, Address: 0x10
 
 
 
-void hoshi_move(act_info* pActwk, act_info* pPlaywk) { /* Line 155, Address: 0x101b250 */
+void hoshi_move(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 155, Address: 0x101b250 */
   short iXwork = 0; /* Line 156, Address: 0x101b260 */
 
   if (pActwk->userflag.b.h != 0) return; /* Line 158, Address: 0x101b264 */
@@ -189,7 +189,7 @@ void hoshi_move(act_info* pActwk, act_info* pPlaywk) { /* Line 155, Address: 0x1
 
 
 
-void kasoku0(act_info* pActwk) { /* Line 192, Address: 0x101b3c0 */
+void kasoku0(sprite_status* pActwk) { /* Line 192, Address: 0x101b3c0 */
   k0_tbl[pActwk->r_no0 / 2](pActwk, &actwk[0]); /* Line 193, Address: 0x101b3cc */
   frameout_s(pActwk); /* Line 194, Address: 0x101b418 */
 } /* Line 195, Address: 0x101b424 */
@@ -214,7 +214,7 @@ void kasoku0(act_info* pActwk) { /* Line 192, Address: 0x101b3c0 */
 
 
 
-void k0_init(act_info* pActwk, act_info* pPlaywk) { /* Line 217, Address: 0x101b440 */
+void k0_init(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 217, Address: 0x101b440 */
   pActwk->r_no0 += 2; /* Line 218, Address: 0x101b450 */
   pActwk->actflg |= 4; /* Line 219, Address: 0x101b460 */
   k0_move(pActwk, pPlaywk); /* Line 220, Address: 0x101b470 */
@@ -233,7 +233,7 @@ void k0_init(act_info* pActwk, act_info* pPlaywk) { /* Line 217, Address: 0x101b
 
 
 
-void k0_move(act_info* pActwk, act_info* pPlaywk) { /* Line 236, Address: 0x101b490 */
+void k0_move(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 236, Address: 0x101b490 */
   short iD0;
 
   if (pPlaywk->mstno.b.h == 43) return; /* Line 239, Address: 0x101b4a0 */
@@ -274,7 +274,7 @@ void k0_move(act_info* pActwk, act_info* pPlaywk) { /* Line 236, Address: 0x101b
 
 
 
-void kasoku(act_info* pActwk) { /* Line 277, Address: 0x101b640 */
+void kasoku(sprite_status* pActwk) { /* Line 277, Address: 0x101b640 */
   short iXwork;
 
   if (pActwk->userflag.b.l != 0) /* Line 280, Address: 0x101b650 */
@@ -307,7 +307,7 @@ void kasoku(act_info* pActwk) { /* Line 277, Address: 0x101b640 */
 
 
 
-void kasoku_init(act_info* pActwk, act_info* pPlaywk) { /* Line 310, Address: 0x101b710 */
+void kasoku_init(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 310, Address: 0x101b710 */
   pActwk->r_no0 += 2; /* Line 311, Address: 0x101b720 */
   pActwk->actflg |= 4; /* Line 312, Address: 0x101b730 */
   pActwk->sprpri = 1; /* Line 313, Address: 0x101b740 */
@@ -337,7 +337,7 @@ void kasoku_init(act_info* pActwk, act_info* pPlaywk) { /* Line 310, Address: 0x
 
 
 
-void kasoku_move(act_info* pActwk, act_info* pPlaywk) { /* Line 340, Address: 0x101b7f0 */
+void kasoku_move(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 340, Address: 0x101b7f0 */
   short iD0, iD1, iD2;
   int lD0wk;
 

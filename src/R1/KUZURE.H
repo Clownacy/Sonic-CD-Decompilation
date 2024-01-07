@@ -1,7 +1,7 @@
-void kuzureru_tikei(act_info* pActwk);
-void acta_init(act_info* pActwk);
-void acta_check(act_info* pActwk);
-void actb_wait(act_info* pActwk);
-void actb_down(act_info* pActwk);
-void actb_init_a(act_info* pActwk);
-void actb_init_b(act_info* pActwk);
+void kuzureru_tikei(sprite_status* pActwk);
+void acta_init(sprite_status* pActwk);
+void acta_check(sprite_status* pActwk);
+void actb_wait(sprite_status* pActwk);
+void actb_down(sprite_status* pActwk);
+void actb_init_a(sprite_status* pActwk);
+void actb_init_b(sprite_status* pActwk);

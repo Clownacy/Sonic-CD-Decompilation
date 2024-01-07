@@ -6,7 +6,7 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 
-extern short playdamageset(act_info* pActwk, act_info* pColliAct);
+extern short playdamageset(sprite_status* pActwk, sprite_status* pColliAct);
 
 static unsigned char tobita1chg0[16] = { 2, 0, 1, 0, 2, 0, 1, 0, 3, 4, 3, 5, 3, 4, 3, 255 };
 static unsigned char tobita1chg1[9] = { 2, 0, 1, 0, 2, 0, 1, 0, 255 };
@@ -151,7 +151,7 @@ spr_array* hari12pat[1] = { &pat0 };
 
 
 
-short colli_pl_sikake_d(act_info* pActwk, act_info* pPlayerwk, short collinum) { /* Line 154, Address: 0x101e0d0 */
+short colli_pl_sikake_d(sprite_status* pActwk, sprite_status* pPlayerwk, short collinum) { /* Line 154, Address: 0x101e0d0 */
   if (editmode.b.h == 0) /* Line 155, Address: 0x101e0e4 */
   {
     if (pPlayerwk->r_no0 < 6) /* Line 157, Address: 0x101e0fc */
@@ -175,7 +175,7 @@ short colli_pl_sikake_d(act_info* pActwk, act_info* pPlayerwk, short collinum) {
 
 
 
-short colli_pl_sikake(act_info* pActwk, act_info* pPlayerwk, short collnum) { /* Line 178, Address: 0x101e170 */
+short colli_pl_sikake(sprite_status* pActwk, sprite_status* pPlayerwk, short collnum) { /* Line 178, Address: 0x101e170 */
   short xe;
   short xe_w;
   short xp;
@@ -290,8 +290,8 @@ label1:
 
 
 
-void tobita1(act_info* pActwk) { /* Line 293, Address: 0x101e470 */
-  void(*tobita_tbl[7])(act_info*) = /* Line 294, Address: 0x101e47c */
+void tobita1(sprite_status* pActwk) { /* Line 293, Address: 0x101e470 */
+  void(*tobita_tbl[7])(sprite_status*) = /* Line 294, Address: 0x101e47c */
   {
     &tobita_init,
     &tobita_stop_r,
@@ -309,7 +309,7 @@ void tobita1(act_info* pActwk) { /* Line 293, Address: 0x101e470 */
 
 
 
-void tobita_init(act_info* pActwk) { /* Line 312, Address: 0x101e500 */
+void tobita_init(sprite_status* pActwk) { /* Line 312, Address: 0x101e500 */
   unsigned char d0, d1;
 
   pActwk->patbase = tobita1_pat; /* Line 315, Address: 0x101e514 */
@@ -339,8 +339,8 @@ label2:
 
 
 
-void tobita_stop_r(act_info* pActwk) { /* Line 342, Address: 0x101e610 */
-  act_info* pPlayerwk;
+void tobita_stop_r(sprite_status* pActwk) { /* Line 342, Address: 0x101e610 */
+  sprite_status* pPlayerwk;
   int d0;
   int_union d1;
   short tmp;
@@ -368,8 +368,8 @@ void tobita_stop_r(act_info* pActwk) { /* Line 342, Address: 0x101e610 */
 
 
 
-void tobita_stop_l(act_info* pActwk) { /* Line 371, Address: 0x101e6e0 */
-  act_info* pPlayerwk;
+void tobita_stop_l(sprite_status* pActwk) { /* Line 371, Address: 0x101e6e0 */
+  sprite_status* pPlayerwk;
   int d0;
   int_union d1;
   short tmp;
@@ -397,8 +397,8 @@ void tobita_stop_l(act_info* pActwk) { /* Line 371, Address: 0x101e6e0 */
 
 
 
-void tobita_ride_r(act_info* pActwk) { /* Line 400, Address: 0x101e7b0 */
-  act_info* pPlayerwk;
+void tobita_ride_r(sprite_status* pActwk) { /* Line 400, Address: 0x101e7b0 */
+  sprite_status* pPlayerwk;
 
   pPlayerwk = &actwk[0]; /* Line 403, Address: 0x101e7c0 */
 
@@ -416,8 +416,8 @@ void tobita_ride_r(act_info* pActwk) { /* Line 400, Address: 0x101e7b0 */
 
 
 
-void tobita_ride_l(act_info* pActwk) { /* Line 419, Address: 0x101e870 */
-  act_info* pPlayerwk;
+void tobita_ride_l(sprite_status* pActwk) { /* Line 419, Address: 0x101e870 */
+  sprite_status* pPlayerwk;
 
   pPlayerwk = &actwk[0]; /* Line 422, Address: 0x101e880 */
 
@@ -435,8 +435,8 @@ void tobita_ride_l(act_info* pActwk) { /* Line 419, Address: 0x101e870 */
 
 
 
-void tobita_yure_r(act_info* pActwk) { /* Line 438, Address: 0x101e930 */
-  act_info* pPlayerwk;
+void tobita_yure_r(sprite_status* pActwk) { /* Line 438, Address: 0x101e930 */
+  sprite_status* pPlayerwk;
   int zflag;
   short d0;
   char cnt;
@@ -492,8 +492,8 @@ void tobita_yure_r(act_info* pActwk) { /* Line 438, Address: 0x101e930 */
 
 
 
-void tobita_yure_l(act_info* pActwk) { /* Line 495, Address: 0x101eb30 */
-  act_info* pPlayerwk;
+void tobita_yure_l(sprite_status* pActwk) { /* Line 495, Address: 0x101eb30 */
+  sprite_status* pPlayerwk;
   int zflag;
   short d0;
   char cnt;
@@ -555,8 +555,8 @@ void tobita_yure_l(act_info* pActwk) { /* Line 495, Address: 0x101eb30 */
 
 
 
-void hariyama(act_info* pActwk) { /* Line 558, Address: 0x101ed30 */
-  void(*hari_tbl[2])(act_info*) = /* Line 559, Address: 0x101ed3c */
+void hariyama(sprite_status* pActwk) { /* Line 558, Address: 0x101ed30 */
+  void(*hari_tbl[2])(sprite_status*) = /* Line 559, Address: 0x101ed3c */
   {
     &hari_normal,
     0
@@ -568,7 +568,7 @@ void hariyama(act_info* pActwk) { /* Line 558, Address: 0x101ed30 */
 
 
 
-void hari_init(act_info* pActwk) { /* Line 571, Address: 0x101edb0 */
+void hari_init(sprite_status* pActwk) { /* Line 571, Address: 0x101edb0 */
   pActwk->r_no0 += 2; /* Line 572, Address: 0x101edbc */
   pActwk->patbase = hari12pat; /* Line 573, Address: 0x101edcc */
   pActwk->actflg |= 4; /* Line 574, Address: 0x101eddc */
@@ -588,8 +588,8 @@ void hari_init(act_info* pActwk) { /* Line 571, Address: 0x101edb0 */
 
 
 
-void hari_normal(act_info* pActwk) { /* Line 591, Address: 0x101ee70 */
-  act_info* pPlayerwk;
+void hari_normal(sprite_status* pActwk) { /* Line 591, Address: 0x101ee70 */
+  sprite_status* pPlayerwk;
   short py;
 
   pPlayerwk = &actwk[0]; /* Line 595, Address: 0x101ee84 */

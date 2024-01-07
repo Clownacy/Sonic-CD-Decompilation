@@ -513,8 +513,8 @@ spr_array* b_tagame_pat[7] =
 
 
 
-void ene_ari(act_info* pActwk) { /* Line 516, Address: 0x1004c00 */
-  void(*tbl[3])(act_info*) = /* Line 517, Address: 0x1004c0c */
+void ene_ari(sprite_status* pActwk) { /* Line 516, Address: 0x1004c00 */
+  void(*tbl[3])(sprite_status*) = /* Line 517, Address: 0x1004c0c */
   {
     &ari_init,
     &ari_fall,
@@ -530,7 +530,7 @@ void ene_ari(act_info* pActwk) { /* Line 516, Address: 0x1004c00 */
 
 
 
-void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
+void ari_init(sprite_status* pActwk) { /* Line 533, Address: 0x1004cb0 */
   short c;
 
   pActwk->actflg |= 4; /* Line 536, Address: 0x1004cc0 */
@@ -566,7 +566,7 @@ void ari_init(act_info* pActwk) { /* Line 533, Address: 0x1004cb0 */
 
 
 
-void ari_fall(act_info* pActwk) { /* Line 569, Address: 0x1004df0 */
+void ari_fall(sprite_status* pActwk) { /* Line 569, Address: 0x1004df0 */
   short c;
 
   pActwk->yposi.l += 65536; /* Line 572, Address: 0x1004e00 */
@@ -580,7 +580,7 @@ void ari_fall(act_info* pActwk) { /* Line 569, Address: 0x1004df0 */
 
 
 
-void ari_move(act_info* pActwk) { /* Line 583, Address: 0x1004e60 */
+void ari_move(sprite_status* pActwk) { /* Line 583, Address: 0x1004e60 */
   short xpos;
   short xpos_m;
   short c;
@@ -636,7 +636,7 @@ void ari_move(act_info* pActwk) { /* Line 583, Address: 0x1004e60 */
 
 
 
-void ene_chou(act_info* pActwk) { /* Line 639, Address: 0x1005020 */
+void ene_chou(sprite_status* pActwk) { /* Line 639, Address: 0x1005020 */
   if (enemy_suicide(pActwk)) return; /* Line 640, Address: 0x100502c */
   if (pActwk->r_no0 == 0) chou_init(pActwk); /* Line 641, Address: 0x1005040 */
   else chou_move(pActwk); /* Line 642, Address: 0x1005068 */
@@ -645,7 +645,7 @@ void ene_chou(act_info* pActwk) { /* Line 639, Address: 0x1005020 */
 
 
 
-void chou_init(act_info* pActwk) { /* Line 648, Address: 0x1005090 */
+void chou_init(sprite_status* pActwk) { /* Line 648, Address: 0x1005090 */
   pActwk->r_no0 += 2; /* Line 649, Address: 0x100509c */
   pActwk->actflg |= 4; /* Line 650, Address: 0x10050ac */
   pActwk->sprpri = 3; /* Line 651, Address: 0x10050bc */
@@ -678,7 +678,7 @@ void chou_init(act_info* pActwk) { /* Line 648, Address: 0x1005090 */
 
 
 
-void chou_move(act_info* pActwk) { /* Line 681, Address: 0x10051e0 */
+void chou_move(sprite_status* pActwk) { /* Line 681, Address: 0x10051e0 */
   short xpos;
   short shift;
   short sSin, sCos;
@@ -741,8 +741,8 @@ void chou_move(act_info* pActwk) { /* Line 681, Address: 0x10051e0 */
 
 
 
-void ene_ka(act_info* pActwk) { /* Line 744, Address: 0x10053c0 */
-  void(*tbl[5])(act_info*) = /* Line 745, Address: 0x10053cc */
+void ene_ka(sprite_status* pActwk) { /* Line 744, Address: 0x10053c0 */
+  void(*tbl[5])(sprite_status*) = /* Line 745, Address: 0x10053cc */
   {
     &ka_init,
     &ka_move,
@@ -760,7 +760,7 @@ void ene_ka(act_info* pActwk) { /* Line 744, Address: 0x10053c0 */
 
 
 
-void ka_init(act_info* pActwk) { /* Line 763, Address: 0x1005480 */
+void ka_init(sprite_status* pActwk) { /* Line 763, Address: 0x1005480 */
   pActwk->r_no0 += 2; /* Line 764, Address: 0x100548c */
   pActwk->actflg |= 4; /* Line 765, Address: 0x100549c */
   pActwk->sprpri = 3; /* Line 766, Address: 0x10054ac */
@@ -789,8 +789,8 @@ void ka_init(act_info* pActwk) { /* Line 763, Address: 0x1005480 */
 
 
 
-void ka_move(act_info* pActwk) { /* Line 792, Address: 0x10055a0 */
-  act_info* pPlayerwk;
+void ka_move(sprite_status* pActwk) { /* Line 792, Address: 0x10055a0 */
+  sprite_status* pPlayerwk;
   short d0;
 
   if (editmode.w == 0) /* Line 796, Address: 0x10055b4 */
@@ -829,7 +829,7 @@ void ka_move(act_info* pActwk) { /* Line 792, Address: 0x10055a0 */
 
 
 
-void ka_turn(act_info* pActwk) { /* Line 832, Address: 0x1005760 */
+void ka_turn(sprite_status* pActwk) { /* Line 832, Address: 0x1005760 */
   patchg(pActwk, ((unsigned char***)pActwk)[13]); /* Line 833, Address: 0x100576c */
 
 } /* Line 835, Address: 0x1005780 */
@@ -837,7 +837,7 @@ void ka_turn(act_info* pActwk) { /* Line 832, Address: 0x1005760 */
 
 
 
-void ka_down(act_info* pActwk) { /* Line 840, Address: 0x1005790 */
+void ka_down(sprite_status* pActwk) { /* Line 840, Address: 0x1005790 */
   short c;
 
   pActwk->yposi.w.h += 6; /* Line 843, Address: 0x10057a0 */
@@ -854,7 +854,7 @@ void ka_down(act_info* pActwk) { /* Line 840, Address: 0x1005790 */
 
 
 
-void ka_stop(act_info* pActwk) { /* Line 857, Address: 0x1005850 */
+void ka_stop(sprite_status* pActwk) { /* Line 857, Address: 0x1005850 */
   if ((char)pActwk->actflg < 0) return; /* Line 858, Address: 0x100585c */
   frameout_s0(pActwk); /* Line 859, Address: 0x100587c */
 } /* Line 860, Address: 0x1005888 */
@@ -897,8 +897,8 @@ void ka_stop(act_info* pActwk) { /* Line 857, Address: 0x1005850 */
 
 
 
-void ene_kamemusi(act_info* pActwk) { /* Line 900, Address: 0x10058a0 */
-  void(*tbl[6])(act_info*) = /* Line 901, Address: 0x10058ac */
+void ene_kamemusi(sprite_status* pActwk) { /* Line 900, Address: 0x10058a0 */
+  void(*tbl[6])(sprite_status*) = /* Line 901, Address: 0x10058ac */
   {
     &kamemusi_init,
     &kamemusi_fall,
@@ -924,7 +924,7 @@ void ene_kamemusi(act_info* pActwk) { /* Line 900, Address: 0x10058a0 */
 
 
 
-void kamemusi_init(act_info* pActwk) { /* Line 927, Address: 0x1005990 */
+void kamemusi_init(sprite_status* pActwk) { /* Line 927, Address: 0x1005990 */
   pActwk->r_no0 += 2; /* Line 928, Address: 0x100599c */
   pActwk->actflg |= 4; /* Line 929, Address: 0x10059ac */
   pActwk->sprpri = 4; /* Line 930, Address: 0x10059bc */
@@ -953,7 +953,7 @@ void kamemusi_init(act_info* pActwk) { /* Line 927, Address: 0x1005990 */
 
 
 
-void kamemusi_fall(act_info* pActwk) { /* Line 956, Address: 0x1005ab0 */
+void kamemusi_fall(sprite_status* pActwk) { /* Line 956, Address: 0x1005ab0 */
   short d1;
 
   pActwk->yposi.l += 65536; /* Line 959, Address: 0x1005ac0 */
@@ -964,7 +964,7 @@ void kamemusi_fall(act_info* pActwk) { /* Line 956, Address: 0x1005ab0 */
 
 
 
-void kamemusi_move(act_info* pActwk) { /* Line 967, Address: 0x1005b20 */
+void kamemusi_move(sprite_status* pActwk) { /* Line 967, Address: 0x1005b20 */
   short d0, d1;
 
   do
@@ -1007,8 +1007,8 @@ void kamemusi_move(act_info* pActwk) { /* Line 967, Address: 0x1005b20 */
   } while (1); /* Line 1007, Address: 0x1005cbc */
 } /* Line 1008, Address: 0x1005cc4 */
 
-short area(act_info* pActwk) { /* Line 1010, Address: 0x1005ce0 */
-  act_info* pPlayerwk;
+short area(sprite_status* pActwk) { /* Line 1010, Address: 0x1005ce0 */
+  sprite_status* pPlayerwk;
   short d0, d1;
   short carry_flag;
 
@@ -1036,7 +1036,7 @@ short area(act_info* pActwk) { /* Line 1010, Address: 0x1005ce0 */
 
 
 
-void kamemusi_stop(act_info* pActwk) { /* Line 1039, Address: 0x1005de0 */
+void kamemusi_stop(sprite_status* pActwk) { /* Line 1039, Address: 0x1005de0 */
   pActwk->r_no0 += 2; /* Line 1040, Address: 0x1005dec */
   pActwk->mstno.b.h = 1; /* Line 1041, Address: 0x1005dfc */
 
@@ -1046,7 +1046,7 @@ void kamemusi_stop(act_info* pActwk) { /* Line 1039, Address: 0x1005de0 */
 
 
 
-void kamemusi_stop1(act_info* pActwk) { /* Line 1049, Address: 0x1005e30 */
+void kamemusi_stop1(sprite_status* pActwk) { /* Line 1049, Address: 0x1005e30 */
   patchg(pActwk, ((unsigned char***)pActwk)[13]); /* Line 1050, Address: 0x1005e3c */
 
 } /* Line 1052, Address: 0x1005e50 */
@@ -1054,9 +1054,9 @@ void kamemusi_stop1(act_info* pActwk) { /* Line 1049, Address: 0x1005e30 */
 
 
 
-void kamemusi_tama(act_info* pActwk) { /* Line 1057, Address: 0x1005e60 */
-  act_info* pTama1wk;
-  act_info* pTama2wk;
+void kamemusi_tama(sprite_status* pActwk) { /* Line 1057, Address: 0x1005e60 */
+  sprite_status* pTama1wk;
+  sprite_status* pTama2wk;
 
   pActwk->r_no0 = 4; /* Line 1061, Address: 0x1005e6c */
   pActwk->mstno.b.h = 0; /* Line 1062, Address: 0x1005e78 */
@@ -1081,7 +1081,7 @@ void kamemusi_tama(act_info* pActwk) { /* Line 1057, Address: 0x1005e60 */
   }
 } /* Line 1082, Address: 0x1005f24 */
 
-void kamemusi_tama_init(act_info* pActwk, act_info* pTamawk) { /* Line 1084, Address: 0x1005f40 */
+void kamemusi_tama_init(sprite_status* pActwk, sprite_status* pTamawk) { /* Line 1084, Address: 0x1005f40 */
   pTamawk->actno = pActwk->actno; /* Line 1085, Address: 0x1005f4c */
   pTamawk->userflag.b.h = 1; /* Line 1086, Address: 0x1005f5c */
   pTamawk->sproffset = pActwk->sproffset; /* Line 1087, Address: 0x1005f68 */
@@ -1123,8 +1123,8 @@ void kamemusi_tama_init(act_info* pActwk, act_info* pTamawk) { /* Line 1084, Add
 
 
 
-void tama(act_info* pActwk) { /* Line 1126, Address: 0x1005ff0 */
-  void(*tbl[2])(act_info*) = /* Line 1127, Address: 0x1005ffc */
+void tama(sprite_status* pActwk) { /* Line 1126, Address: 0x1005ff0 */
+  void(*tbl[2])(sprite_status*) = /* Line 1127, Address: 0x1005ffc */
   {
     &tama_init,
     &tama_move
@@ -1137,7 +1137,7 @@ void tama(act_info* pActwk) { /* Line 1126, Address: 0x1005ff0 */
 
 
 
-void tama_init(act_info* pActwk) { /* Line 1140, Address: 0x1006070 */
+void tama_init(sprite_status* pActwk) { /* Line 1140, Address: 0x1006070 */
   pActwk->r_no0 += 2; /* Line 1141, Address: 0x1006078 */
   pActwk->actflg |= 4; /* Line 1142, Address: 0x1006088 */
   pActwk->actflg |= 128; /* Line 1143, Address: 0x1006098 */
@@ -1164,7 +1164,7 @@ void tama_init(act_info* pActwk) { /* Line 1140, Address: 0x1006070 */
 
 
 
-void tama_move(act_info* pActwk) { /* Line 1167, Address: 0x1006170 */
+void tama_move(sprite_status* pActwk) { /* Line 1167, Address: 0x1006170 */
   short d1;
 
   if (!(pActwk->actflg & 128)) /* Line 1170, Address: 0x1006180 */
@@ -1218,8 +1218,8 @@ void tama_move(act_info* pActwk) { /* Line 1167, Address: 0x1006170 */
 
 
 
-void ene_tagame_a(act_info* pActwk) { /* Line 1221, Address: 0x1006290 */
-  void(*tbl[5])(act_info*) = /* Line 1222, Address: 0x100629c */
+void ene_tagame_a(sprite_status* pActwk) { /* Line 1221, Address: 0x1006290 */
+  void(*tbl[5])(sprite_status*) = /* Line 1222, Address: 0x100629c */
   {
     &tagame_init,
     &tagame_wait,
@@ -1237,7 +1237,7 @@ void ene_tagame_a(act_info* pActwk) { /* Line 1221, Address: 0x1006290 */
 
 
 
-void tagame_init(act_info* pActwk) { /* Line 1240, Address: 0x1006350 */
+void tagame_init(sprite_status* pActwk) { /* Line 1240, Address: 0x1006350 */
   pActwk->r_no0 += 2; /* Line 1241, Address: 0x100635c */
   pActwk->actflg |= 4; /* Line 1242, Address: 0x100636c */
   pActwk->sprpri = 3; /* Line 1243, Address: 0x100637c */
@@ -1269,7 +1269,7 @@ void tagame_init(act_info* pActwk) { /* Line 1240, Address: 0x1006350 */
 
 
 
-void tagame_wait(act_info* pActwk) { /* Line 1272, Address: 0x10064a0 */
+void tagame_wait(sprite_status* pActwk) { /* Line 1272, Address: 0x10064a0 */
   pActwk->r_no0 += 2; /* Line 1273, Address: 0x10064a8 */
   pActwk->mstno.w = 255; /* Line 1274, Address: 0x10064b8 */
   pActwk->colino = 0; /* Line 1275, Address: 0x10064c4 */
@@ -1279,7 +1279,7 @@ void tagame_wait(act_info* pActwk) { /* Line 1272, Address: 0x10064a0 */
 
 
 
-void tagame_wait1(act_info* pActwk) { /* Line 1282, Address: 0x10064f0 */
+void tagame_wait1(sprite_status* pActwk) { /* Line 1282, Address: 0x10064f0 */
   patchg(pActwk, ((unsigned char***)pActwk)[16]); /* Line 1283, Address: 0x10064fc */
 
 } /* Line 1285, Address: 0x1006510 */
@@ -1287,7 +1287,7 @@ void tagame_wait1(act_info* pActwk) { /* Line 1282, Address: 0x10064f0 */
 
 
 
-void tagame_jump(act_info* pActwk) { /* Line 1290, Address: 0x1006520 */
+void tagame_jump(sprite_status* pActwk) { /* Line 1290, Address: 0x1006520 */
   pActwk->r_no0 += 2; /* Line 1291, Address: 0x100652c */
   pActwk->mstno.w = 511; /* Line 1292, Address: 0x100653c */
   pActwk->colino = 46; /* Line 1293, Address: 0x1006548 */
@@ -1303,7 +1303,7 @@ void tagame_jump(act_info* pActwk) { /* Line 1290, Address: 0x1006520 */
 
 
 
-void tagame_jump1(act_info* pActwk) { /* Line 1306, Address: 0x10065c0 */
+void tagame_jump1(sprite_status* pActwk) { /* Line 1306, Address: 0x10065c0 */
   pActwk->yposi.l += ((int*)pActwk)[14]; /* Line 1307, Address: 0x10065cc */
   ((int*)pActwk)[14] += ((int*)pActwk)[15]; /* Line 1308, Address: 0x10065e4 */
 
@@ -1321,5 +1321,5 @@ void tagame_jump1(act_info* pActwk) { /* Line 1306, Address: 0x10065c0 */
 
 
 
-void ene_tama(act_info* pActwk) { /* Line 1324, Address: 0x1006690 */
+void ene_tama(sprite_status* pActwk) { /* Line 1324, Address: 0x1006690 */
 } /* Line 1325, Address: 0x1006694 */

@@ -129,8 +129,8 @@ unsigned char* ringchg[3] = {
 
 
 
-void ring(act_info* pActwk) { /* Line 132, Address: 0x10062a0 */
-  void(*ring_move_tbl[5])(act_info*) = { /* Line 133, Address: 0x10062ac */
+void ring(sprite_status* pActwk) { /* Line 132, Address: 0x10062a0 */
+  void(*ring_move_tbl[5])(sprite_status*) = { /* Line 133, Address: 0x10062ac */
     &ringinit,
     &ringmove,
     &ringget,
@@ -145,7 +145,7 @@ void ring(act_info* pActwk) { /* Line 132, Address: 0x10062a0 */
 
 
 
-void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
+void ringinit(sprite_status* pActwk) { /* Line 148, Address: 0x1006330 */
   char ringtbl[32] = { /* Line 149, Address: 0x1006360 */
      16,   0,
      24,   0,
@@ -169,7 +169,7 @@ void ringinit(act_info* pActwk) { /* Line 148, Address: 0x1006330 */
   char ring_counter;
   short d0, d1, d2, d3, d5, d6;
   char d4;
-  act_info* new_actwk;
+  sprite_status* new_actwk;
 
   d1 = time_flag & 127; /* Line 174, Address: 0x1006394 */
   if (time_flag & 128) { /* Line 175, Address: 0x10063b4 */
@@ -269,7 +269,7 @@ label3:
 
 
 
-void ringmove(act_info* pActwk) { /* Line 272, Address: 0x1006a40 */
+void ringmove(sprite_status* pActwk) { /* Line 272, Address: 0x1006a40 */
   unsigned short d0;
 
   if (pActwk->actflg >= 0) { /* Line 275, Address: 0x1006a50 */
@@ -290,7 +290,7 @@ void ringmove(act_info* pActwk) { /* Line 272, Address: 0x1006a40 */
 
 
 
-void ringget(act_info* pActwk) { /* Line 293, Address: 0x1006b40 */
+void ringget(sprite_status* pActwk) { /* Line 293, Address: 0x1006b40 */
   short d0, d1;
 
   pActwk->r_no0 += 2; /* Line 296, Address: 0x1006b54 */
@@ -345,7 +345,7 @@ void ringgetsub() { /* Line 318, Address: 0x1006cc0 */
 
 
 
-void ringdie(act_info* pActwk) { /* Line 348, Address: 0x1006e00 */
+void ringdie(sprite_status* pActwk) { /* Line 348, Address: 0x1006e00 */
   patchg(pActwk, ringchg); /* Line 349, Address: 0x1006e0c */
   actionsub(pActwk); /* Line 350, Address: 0x1006e20 */
 } /* Line 351, Address: 0x1006e2c */
@@ -354,7 +354,7 @@ void ringdie(act_info* pActwk) { /* Line 348, Address: 0x1006e00 */
 
 
 
-void ringerase(act_info* pActwk) { /* Line 357, Address: 0x1006e40 */
+void ringerase(sprite_status* pActwk) { /* Line 357, Address: 0x1006e40 */
   frameout(pActwk); /* Line 358, Address: 0x1006e4c */
 } /* Line 359, Address: 0x1006e58 */
 
@@ -365,8 +365,8 @@ void ringerase(act_info* pActwk) { /* Line 357, Address: 0x1006e40 */
 
 
 
-void flyring(act_info* pActwk) { /* Line 368, Address: 0x1006e70 */
-  void(*flyring_move_tbl[5])(act_info*) = { /* Line 369, Address: 0x1006e7c */
+void flyring(sprite_status* pActwk) { /* Line 368, Address: 0x1006e70 */
+  void(*flyring_move_tbl[5])(sprite_status*) = { /* Line 369, Address: 0x1006e7c */
     &flyringinit,
     &flyringmove,
     &flyringget,
@@ -381,9 +381,9 @@ void flyring(act_info* pActwk) { /* Line 368, Address: 0x1006e70 */
 
 
 
-void flyringinit(act_info* pActwk) { /* Line 384, Address: 0x1006f00 */
+void flyringinit(sprite_status* pActwk) { /* Line 384, Address: 0x1006f00 */
   short d2, d3, d5;
-  act_info* new_actwk;
+  sprite_status* new_actwk;
   unsigned short d0, d1;
   short_union d4;
 
@@ -451,7 +451,7 @@ label1:
 
 
 
-void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
+void flyringmove(sprite_status* pActwk) { /* Line 454, Address: 0x1007270 */
   short d1;
 
 
@@ -480,7 +480,7 @@ void flyringmove(act_info* pActwk) { /* Line 454, Address: 0x1007270 */
 
 
 
-void flyringget(act_info* pActwk) { /* Line 483, Address: 0x1007430 */
+void flyringget(sprite_status* pActwk) { /* Line 483, Address: 0x1007430 */
   pActwk->r_no0 += 2; /* Line 484, Address: 0x100743c */
   pActwk->colino = 0; /* Line 485, Address: 0x100744c */
   pActwk->sprpri = 1; /* Line 486, Address: 0x1007454 */
@@ -493,7 +493,7 @@ void flyringget(act_info* pActwk) { /* Line 483, Address: 0x1007430 */
 
 
 
-void flyringdie(act_info* pActwk) { /* Line 496, Address: 0x1007490 */
+void flyringdie(sprite_status* pActwk) { /* Line 496, Address: 0x1007490 */
   patchg(pActwk, ringchg); /* Line 497, Address: 0x100749c */
   actionsub(pActwk); /* Line 498, Address: 0x10074b0 */
 } /* Line 499, Address: 0x10074bc */
@@ -502,6 +502,6 @@ void flyringdie(act_info* pActwk) { /* Line 496, Address: 0x1007490 */
 
 
 
-void flyringerase(act_info* pActwk) { /* Line 505, Address: 0x10074d0 */
+void flyringerase(sprite_status* pActwk) { /* Line 505, Address: 0x10074d0 */
   frameout(pActwk); /* Line 506, Address: 0x10074dc */
 } /* Line 507, Address: 0x10074e8 */

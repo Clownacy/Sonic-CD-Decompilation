@@ -23,7 +23,7 @@
 #include "SHOOT1.H"
 #include "SIKAKE.H"
 
-void(*act_tbl[64])(act_info*) = {
+void(*act_tbl[64])(sprite_status*) = {
   &play00,
   &play00,
   &baria,
@@ -163,7 +163,7 @@ void(*act_tbl[64])(act_info*) = {
 
 
 
-void debugact(act_info* pActwk) { /* Line 166, Address: 0x1023ed0 */
+void debugact(sprite_status* pActwk) { /* Line 166, Address: 0x1023ed0 */
   if (pActwk->xposi.w.h++ >= 300) /* Line 167, Address: 0x1023edc */
     pActwk->xposi.w.h = 0; /* Line 168, Address: 0x1023f00 */
   if (pActwk->yposi.w.h++ >= 200) /* Line 169, Address: 0x1023f08 */
@@ -175,6 +175,6 @@ void debugact(act_info* pActwk) { /* Line 166, Address: 0x1023ed0 */
 
 
 
-void noact(act_info* pActwk) { /* Line 178, Address: 0x1023f50 */
+void noact(sprite_status* pActwk) { /* Line 178, Address: 0x1023f50 */
   frameout(pActwk); /* Line 179, Address: 0x1023f5c */
 } /* Line 180, Address: 0x1023f68 */

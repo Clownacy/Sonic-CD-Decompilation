@@ -1,4 +1,4 @@
-act_info* main_chk();
+sprite_status* main_chk();
 void scr_set();
 void playposiset();
 void scrbinit(short sXpos, short sYpos);

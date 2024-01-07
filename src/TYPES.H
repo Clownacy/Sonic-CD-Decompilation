@@ -177,11 +177,11 @@ typedef struct {
   unsigned char dummy[2];
   unsigned char actfree[22];
 }
-act_info;
+sprite_status;
 
 typedef struct {
   int cnt;
-  act_info* pActwk[63];
+  sprite_status* pActwk[63];
 }
 act_info_array;
 

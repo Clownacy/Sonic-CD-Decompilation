@@ -14,7 +14,7 @@
 #include "FRIEND1.H"
 #include "SIKAKE.H"
 
-void(*act_tbl[64])(act_info*) = {
+void(*act_tbl[64])(sprite_status*) = {
   &play00,
   &play00,
   &baria,
@@ -164,7 +164,7 @@ void(*act_tbl[64])(act_info*) = {
 
 
 
-void debugact(act_info* pActwk) { /* Line 167, Address: 0x10231f0 */
+void debugact(sprite_status* pActwk) { /* Line 167, Address: 0x10231f0 */
   if (pActwk->xposi.w.h++ >= 300) /* Line 168, Address: 0x10231fc */
     pActwk->xposi.w.h = 0; /* Line 169, Address: 0x1023220 */
   if (pActwk->yposi.w.h++ >= 200) /* Line 170, Address: 0x1023228 */
@@ -176,6 +176,6 @@ void debugact(act_info* pActwk) { /* Line 167, Address: 0x10231f0 */
 
 
 
-void noact(act_info* pActwk) { /* Line 179, Address: 0x1023270 */
+void noact(sprite_status* pActwk) { /* Line 179, Address: 0x1023270 */
   frameout(pActwk); /* Line 180, Address: 0x102327c */
 } /* Line 181, Address: 0x1023288 */

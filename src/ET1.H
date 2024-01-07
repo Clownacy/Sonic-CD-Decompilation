@@ -1,6 +1,6 @@
-void et(act_info* actionwk);
-void m_init(act_info* actionwk);
-void m_wait(act_info* actionwk);
-void m_die(act_info* actionwk);
-void m1wait(act_info* actionwk);
-void a_hover(act_info* actionwk);
+void et(sprite_status* actionwk);
+void m_init(sprite_status* actionwk);
+void m_wait(sprite_status* actionwk);
+void m_die(sprite_status* actionwk);
+void m1wait(sprite_status* actionwk);
+void a_hover(sprite_status* actionwk);

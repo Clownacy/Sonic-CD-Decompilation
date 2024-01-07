@@ -1,2 +1,2 @@
-void debugact(act_info* pAct);
-void noact(act_info* pAct);
+void debugact(sprite_status* pAct);
+void noact(sprite_status* pAct);

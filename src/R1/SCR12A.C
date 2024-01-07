@@ -148,7 +148,7 @@ void divdevset() {} /* Line 137, Address: 0x1026640 */
 
 
 
-act_info* main_chk() {
+sprite_status* main_chk() {
   if (main_play == 0) { /* Line 152, Address: 0x1026650 */
     return &actwk[0]; /* Line 153, Address: 0x1026664 */
   }

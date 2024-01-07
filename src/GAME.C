@@ -280,7 +280,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 193, Address: 0x101
 
   flagworkcnt = lpKeepWork->flagworkcnt; /* Line 281, Address: 0x1017e2c */
   flagworkcnt2 = lpKeepWork->flagworkcnt2; /* Line 282, Address: 0x1017e40 */
-  sMemCpy(flagwork, lpKeepWork->flagwork, flagwork); /* Line 283, Address: 0x1017e54 */
+  sMemCpy(flagwork, lpKeepWork->flagwork, sizeof(flagwork)); /* Line 283, Address: 0x1017e54 */
 
   lpKeepWork->pSprBmp = SprBmp; /* Line 285, Address: 0x1017e7c */
 
@@ -786,7 +786,7 @@ void play_act_set() {
 
 void flow_act_set() { /* Line 787, Address: 0x1019030 */
   int i, time, fcnt;
-  act_info* pAct;
+  sprite_status* pAct;
 
   time = time_flag & 127; /* Line 791, Address: 0x1019044 */
   fcnt = flowercnt[time]; /* Line 792, Address: 0x1019054 */

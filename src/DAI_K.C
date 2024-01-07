@@ -27,7 +27,7 @@ spr_array* k_daipat[3] = {
 };
 static char k_daichg0[5] = { 1, 0, 1, 2, -1 };
 static char* k_daichg = k_daichg0;
-static void(*dai_k_move_tbl[2])(act_info*) = {
+static void(*dai_k_move_tbl[2])(sprite_status*) = {
   &dai_k_init,
   &dai_k_move
 };
@@ -124,7 +124,7 @@ static void(*dai_k_move_tbl[2])(act_info*) = {
 
 
 
-void dai_k(act_info* pActwk) { /* Line 127, Address: 0x1002090, Func Offset */
+void dai_k(sprite_status* pActwk) { /* Line 127, Address: 0x1002090, Func Offset */
   dai_k_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 128, Address: 0x100209c, Func Offset */
 
   if (!time_stop) { /* Line 130, Address: 0x10020e0, Func Offset */
@@ -140,7 +140,7 @@ void dai_k(act_info* pActwk) { /* Line 127, Address: 0x1002090, Func Offset */
 
 
 
-static void dai_k_init(act_info* pActwk) { /* Line 143, Address: 0x1002130 */
+static void dai_k_init(sprite_status* pActwk) { /* Line 143, Address: 0x1002130 */
   pActwk->r_no0 += 2; /* Line 144, Address: 0x100213c */
   pActwk->actflg = 4; /* Line 145, Address: 0x100214c */
   pActwk->sprpri = 4; /* Line 146, Address: 0x1002158 */
@@ -158,7 +158,7 @@ static void dai_k_init(act_info* pActwk) { /* Line 143, Address: 0x1002130 */
 
 
 
-static void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
+static void dai_k_move(sprite_status* pActwk) { /* Line 161, Address: 0x10021b0 */
   short lenwk, sinwk, coswk;
   static unsigned char pattbl[16] = { 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5 };
 
@@ -220,7 +220,7 @@ static void dai_k_move(act_info* pActwk) { /* Line 161, Address: 0x10021b0 */
 
 
 
-static void k_move(act_info* pActwk, act_info* pSonicwk) { /* Line 223, Address: 0x10023f0 */
+static void k_move(sprite_status* pActwk, sprite_status* pSonicwk) { /* Line 223, Address: 0x10023f0 */
   if (pSonicwk->xposi.w.h >= pActwk->xposi.w.h) { /* Line 224, Address: 0x10023fc */
 
 
@@ -256,7 +256,7 @@ static void k_move(act_info* pActwk, act_info* pSonicwk) { /* Line 223, Address:
 
 
 
-static void jumpchk_d(act_info* pActwk, act_info* pSonicwk) { /* Line 259, Address: 0x1002510 */
+static void jumpchk_d(sprite_status* pActwk, sprite_status* pSonicwk) { /* Line 259, Address: 0x1002510 */
   short jumpwk, sinwk, coswk;
 
   if (!(swdata.b.l & 112)) return; /* Line 262, Address: 0x1002524 */

@@ -26,16 +26,16 @@ spr_array* dai11a_pattbl[3] = {
   &dai11a_pat2,
   &dai11a_pat3
 };
-static void(*dodai_acttbl[2])(act_info*) = {
+static void(*dodai_acttbl[2])(sprite_status*) = {
   &dodai_init,
   &dodai_move
 };
-static void(*dodai_mtype[10])(act_info*) = {
+static void(*dodai_mtype[10])(sprite_status*) = {
   &dodai_ud,
   &dodai_lr,
   &dodai_nA,
   &dodai_nB,
-  (void(*)(act_info*))&dodai_fix,
+  (void(*)(sprite_status*))&dodai_fix,
   &dodai_fal,
   &dodai_up,
   &dodai_upx,
@@ -54,7 +54,7 @@ spr_array* vfutapat[2] = {
   &vfuta_pat0,
   &vfuta_pat1
 };
-static void(*vfuta_tbl[3])(act_info*) = {
+static void(*vfuta_tbl[3])(sprite_status*) = {
   &vfuta_init,
   &vfuta_move1,
   &vfuta_move2
@@ -146,7 +146,7 @@ static void(*vfuta_tbl[3])(act_info*) = {
 
 
 
-void dodai(act_info* pActwk) { /* Line 149, Address: 0x1002090 */
+void dodai(sprite_status* pActwk) { /* Line 149, Address: 0x1002090 */
   dodai_acttbl[pActwk->r_no0 / 2](pActwk); /* Line 150, Address: 0x100209c */
   actionsub(pActwk); /* Line 151, Address: 0x10020e0 */
 } /* Line 152, Address: 0x10020ec */
@@ -155,9 +155,9 @@ void dodai(act_info* pActwk) { /* Line 149, Address: 0x1002090 */
 
 
 
-static void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
+static void dodai_init(sprite_status* pActwk) { /* Line 158, Address: 0x1002100 */
   char wk;
-  act_info* pNewact;
+  sprite_status* pNewact;
   static unsigned char dai_mcnttbl[4] = { 0, 3, 4, 6 };
   static unsigned char dai_hstbl[3] = { 16, 32, 48 };
 
@@ -231,7 +231,7 @@ static void dodai_init(act_info* pActwk) { /* Line 158, Address: 0x1002100 */
 
 
 
-static void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
+static void dodai_move(sprite_status* pActwk) { /* Line 234, Address: 0x1002380 */
   unsigned char mtype;
   unsigned short xlen;
 
@@ -255,7 +255,7 @@ static void dodai_move(act_info* pActwk) { /* Line 234, Address: 0x1002380 */
 
 
 
-static void dodai_ud(act_info* pActwk) { /* Line 258, Address: 0x1002490 */
+static void dodai_ud(sprite_status* pActwk) { /* Line 258, Address: 0x1002490 */
   ++pActwk->actfree[0]; /* Line 259, Address: 0x100249c */
   pActwk->yposi.w.h = ((short*)pActwk)[31] + dodai_sub(pActwk); /* Line 260, Address: 0x10024ac */
 
@@ -264,7 +264,7 @@ static void dodai_ud(act_info* pActwk) { /* Line 258, Address: 0x1002490 */
 
 
 
-static void dodai_lr(act_info* pActwk) { /* Line 267, Address: 0x1002510 */
+static void dodai_lr(sprite_status* pActwk) { /* Line 267, Address: 0x1002510 */
   int xsav;
 
   xsav = pActwk->xposi.l; /* Line 270, Address: 0x1002520 */
@@ -280,13 +280,13 @@ static void dodai_lr(act_info* pActwk) { /* Line 267, Address: 0x1002510 */
 } /* Line 280, Address: 0x10025c0 */
 
 
-static unsigned char dodai_ride1(act_info* pActwk, int xpos) { /* Line 283, Address: 0x10025e0 */
+static unsigned char dodai_ride1(sprite_status* pActwk, int xpos) { /* Line 283, Address: 0x10025e0 */
   pActwk->xspeed.w = (pActwk->xposi.l - xpos) >> 8; /* Line 284, Address: 0x10025f0 */
   dodai_ride2(pActwk); /* Line 285, Address: 0x1002614 */
 } /* Line 286, Address: 0x1002620 */
 
 
-static unsigned char dodai_ride2(act_info* pActwk) { /* Line 289, Address: 0x1002630 */
+static unsigned char dodai_ride2(sprite_status* pActwk) { /* Line 289, Address: 0x1002630 */
   if (!ridechk(pActwk, &actwk[0])) { /* Line 290, Address: 0x100263c */
 
     if (pActwk->actfree[2]) { /* Line 292, Address: 0x1002658 */
@@ -304,7 +304,7 @@ static unsigned char dodai_ride2(act_info* pActwk) { /* Line 289, Address: 0x100
 
 
 
-static void dodai_nA(act_info* pActwk) { /* Line 307, Address: 0x10026c0 */
+static void dodai_nA(sprite_status* pActwk) { /* Line 307, Address: 0x10026c0 */
   int xsav;
 
   xsav = pActwk->xposi.l; /* Line 310, Address: 0x10026d0 */
@@ -318,7 +318,7 @@ static void dodai_nA(act_info* pActwk) { /* Line 307, Address: 0x10026c0 */
 
 
 
-static void dodai_nB(act_info* pActwk) { /* Line 321, Address: 0x1002780 */
+static void dodai_nB(sprite_status* pActwk) { /* Line 321, Address: 0x1002780 */
   int xsav;
 
   xsav = pActwk->xposi.l; /* Line 324, Address: 0x1002790 */
@@ -332,7 +332,7 @@ static void dodai_nB(act_info* pActwk) { /* Line 321, Address: 0x1002780 */
 
 
 
-static unsigned char dodai_fix(act_info* pActwk) { /* Line 335, Address: 0x1002840 */
+static unsigned char dodai_fix(sprite_status* pActwk) { /* Line 335, Address: 0x1002840 */
   pActwk->yposi.w.h = ((char)pActwk->actfree[2] >> 1) + ((short*)pActwk)[31]; /* Line 336, Address: 0x100284c */
 
   return dodai_ride2(pActwk); /* Line 338, Address: 0x100288c */
@@ -340,7 +340,7 @@ static unsigned char dodai_fix(act_info* pActwk) { /* Line 335, Address: 0x10028
 
 
 
-static void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
+static void dodai_fal(sprite_status* pActwk) { /* Line 343, Address: 0x10028b0 */
   if (!pActwk->actfree[1]) { /* Line 344, Address: 0x10028bc */
     if (!dodai_fix(pActwk)) return; /* Line 345, Address: 0x10028cc */
 
@@ -377,7 +377,7 @@ static void dodai_fal(act_info* pActwk) { /* Line 343, Address: 0x10028b0 */
 
 
 
-static void dodai_up(act_info* pActwk) { /* Line 380, Address: 0x1002a00 */
+static void dodai_up(sprite_status* pActwk) { /* Line 380, Address: 0x1002a00 */
   switch (pActwk->actfree[1]) { /* Line 381, Address: 0x1002a0c */
     case 0:
       if (!dodai_fix(pActwk)) break; /* Line 383, Address: 0x1002a40 */
@@ -405,7 +405,7 @@ static void dodai_up(act_info* pActwk) { /* Line 380, Address: 0x1002a00 */
 
 
 
-static void dodai_upx(act_info* pActwk) { /* Line 408, Address: 0x1002b20 */
+static void dodai_upx(sprite_status* pActwk) { /* Line 408, Address: 0x1002b20 */
   short coli;
 
   switch (pActwk->actfree[1]) { /* Line 411, Address: 0x1002b30 */
@@ -443,7 +443,7 @@ static void dodai_upx(act_info* pActwk) { /* Line 408, Address: 0x1002b20 */
 
 
 
-static void dodai_rm(act_info* pActwk) { /* Line 446, Address: 0x1002c80 */
+static void dodai_rm(sprite_status* pActwk) { /* Line 446, Address: 0x1002c80 */
   int xsav;
 
   switch (pActwk->actfree[1]) { /* Line 449, Address: 0x1002c90 */
@@ -483,7 +483,7 @@ static void dodai_rm(act_info* pActwk) { /* Line 446, Address: 0x1002c80 */
 
 
 
-static void dodai_lm(act_info* pActwk) { /* Line 486, Address: 0x1002e30 */
+static void dodai_lm(sprite_status* pActwk) { /* Line 486, Address: 0x1002e30 */
   int xsav;
 
   switch (pActwk->actfree[1]) { /* Line 489, Address: 0x1002e40 */
@@ -534,7 +534,7 @@ static void dodai_lm(act_info* pActwk) { /* Line 486, Address: 0x1002e30 */
 
 
 
-static short dodai_sub(act_info* pActwk) { /* Line 537, Address: 0x1002fe0 */
+static short dodai_sub(sprite_status* pActwk) { /* Line 537, Address: 0x1002fe0 */
   short sinwk, coswk;
 
   sinset((unsigned char)(char)pActwk->actfree[0], &sinwk, &coswk); /* Line 540, Address: 0x1002fec */
@@ -551,7 +551,7 @@ static short dodai_sub(act_info* pActwk) { /* Line 537, Address: 0x1002fe0 */
 
 
 
-static void dai_fout(act_info* pActwk) { /* Line 554, Address: 0x1003060 */
+static void dai_fout(sprite_status* pActwk) { /* Line 554, Address: 0x1003060 */
   short s;
 
   if (pActwk->cdsts) { /* Line 557, Address: 0x1003070 */
@@ -624,7 +624,7 @@ static void dai_fout(act_info* pActwk) { /* Line 554, Address: 0x1003060 */
 
 
 
-void vfuta(act_info* pActwk) { /* Line 627, Address: 0x1003100 */
+void vfuta(sprite_status* pActwk) { /* Line 627, Address: 0x1003100 */
   vfuta_tbl[pActwk->r_no0 / 2](pActwk); /* Line 628, Address: 0x100310c */
   actionsub(pActwk); /* Line 629, Address: 0x1003150 */
   frameout_s(pActwk); /* Line 630, Address: 0x100315c */
@@ -634,7 +634,7 @@ void vfuta(act_info* pActwk) { /* Line 627, Address: 0x1003100 */
 
 
 
-static void vfuta_init(act_info* pActwk) { /* Line 637, Address: 0x1003180 */
+static void vfuta_init(sprite_status* pActwk) { /* Line 637, Address: 0x1003180 */
   pActwk->r_no0 += 2; /* Line 638, Address: 0x100318c */
   pActwk->patbase = vfutapat; /* Line 639, Address: 0x100319c */
   pActwk->sprpri = 1; /* Line 640, Address: 0x10031ac */
@@ -650,7 +650,7 @@ static void vfuta_init(act_info* pActwk) { /* Line 637, Address: 0x1003180 */
 
 
 
-static void vfuta_move1(act_info* pActwk) { /* Line 653, Address: 0x1003210 */
+static void vfuta_move1(sprite_status* pActwk) { /* Line 653, Address: 0x1003210 */
   short wk;
 
   if ((wk = pActwk->yposi.w.h - actwk[0].yposi.w.h) < 0) {; /* Line 656, Address: 0x1003220 */
@@ -678,7 +678,7 @@ static void vfuta_move1(act_info* pActwk) { /* Line 653, Address: 0x1003210 */
 
 
 
-static void vfuta_move2(act_info* pActwk) { /* Line 681, Address: 0x1003370 */
+static void vfuta_move2(sprite_status* pActwk) { /* Line 681, Address: 0x1003370 */
   short wk;
 
   wk = pActwk->actfree[16]; /* Line 684, Address: 0x100337c */

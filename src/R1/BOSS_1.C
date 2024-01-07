@@ -625,8 +625,8 @@ extern short scr_dir_tbl[6];
 
 
 
-void egg1(act_info* pActwk) { /* Line 628, Address: 0x1027730 */
-  int(*tbl[8])(act_info*) = /* Line 629, Address: 0x102773c */
+void egg1(sprite_status* pActwk) { /* Line 628, Address: 0x1027730 */
+  int(*tbl[8])(sprite_status*) = /* Line 629, Address: 0x102773c */
   {
     &egg1_ini,
     &egg1_01,
@@ -654,7 +654,7 @@ void egg1(act_info* pActwk) { /* Line 628, Address: 0x1027730 */
 
 
 
-void egg1_anime(act_info* pActwk) { /* Line 657, Address: 0x1027820 */
+void egg1_anime(sprite_status* pActwk) { /* Line 657, Address: 0x1027820 */
   if (!pActwk->actfree[0]) return; /* Line 658, Address: 0x1027828 */
   --pActwk->actfree[0]; /* Line 659, Address: 0x1027838 */
   if (pActwk->actfree[0]) return; /* Line 660, Address: 0x1027848 */
@@ -666,7 +666,7 @@ void egg1_anime(act_info* pActwk) { /* Line 657, Address: 0x1027820 */
 } /* Line 666, Address: 0x1027880 */
 
 
-void egg1_jisin(act_info* pActwk) { /* Line 669, Address: 0x1027890 */
+void egg1_jisin(sprite_status* pActwk) { /* Line 669, Address: 0x1027890 */
   short temp0 = 784; /* Line 670, Address: 0x10278a0 */
   short temp1 = 1; /* Line 671, Address: 0x10278ac */
 
@@ -702,7 +702,7 @@ void sonic_hajiku(short subact) { /* Line 690, Address: 0x1027950 */
 } /* Line 702, Address: 0x1027a20 */
 
 
-void egg1_coliude(short subact, act_info* pActwk) { /* Line 705, Address: 0x1027a40 */
+void egg1_coliude(short subact, sprite_status* pActwk) { /* Line 705, Address: 0x1027a40 */
 
   actwk[subact].actfree[2] |= 16; /* Line 707, Address: 0x1027a50 */
   sonic_hajiku(subact); /* Line 708, Address: 0x1027a80 */
@@ -712,7 +712,7 @@ void egg1_coliude(short subact, act_info* pActwk) { /* Line 705, Address: 0x1027
 } /* Line 712, Address: 0x1027ab0 */
 
 
-void egg1_hit_chk(act_info* pActwk) { /* Line 715, Address: 0x1027ac0 */
+void egg1_hit_chk(sprite_status* pActwk) { /* Line 715, Address: 0x1027ac0 */
   short subact;
 
   if (!pActwk->actfree[10]) /* Line 718, Address: 0x1027ad0 */
@@ -803,7 +803,7 @@ void egg1_hit_chk(act_info* pActwk) { /* Line 715, Address: 0x1027ac0 */
 
 
 
-void egg1_warai_chk(act_info* pActwk) { /* Line 806, Address: 0x1028090 */
+void egg1_warai_chk(sprite_status* pActwk) { /* Line 806, Address: 0x1028090 */
 
   if (!pActwk->mstno.b.h) /* Line 808, Address: 0x1028098 */
   {
@@ -824,7 +824,7 @@ void egg1_warai_chk(act_info* pActwk) { /* Line 806, Address: 0x1028090 */
 
 
 
-void egg1_coli(short subact, act_info* pActwk) { /* Line 827, Address: 0x1028120 */
+void egg1_coli(short subact, sprite_status* pActwk) { /* Line 827, Address: 0x1028120 */
 
   pActwk->actfree[10] = 20; /* Line 829, Address: 0x1028130 */
 
@@ -904,7 +904,7 @@ void egg1_coli(short subact, act_info* pActwk) { /* Line 827, Address: 0x1028120
 } /* Line 904, Address: 0x102867c */
 
 
-void egg1coli_set_body(act_info* pActwk) { /* Line 907, Address: 0x1028690 */
+void egg1coli_set_body(sprite_status* pActwk) { /* Line 907, Address: 0x1028690 */
   short subact;
 
   pActwk->colino = 252; /* Line 910, Address: 0x102869c */
@@ -933,19 +933,19 @@ void egg1coli_set_arm(short subact) { /* Line 929, Address: 0x1028910 */
 } /* Line 933, Address: 0x10289c0 */
 
 
-void egg1coli_set_arm_l(act_info* pActwk) { /* Line 936, Address: 0x10289d0 */
+void egg1coli_set_arm_l(sprite_status* pActwk) { /* Line 936, Address: 0x10289d0 */
   egg1coli_set_arm(((short*)&actwk[((short*)pActwk)[27]])[26]); /* Line 937, Address: 0x10289dc */
   egg1coli_set_body(pActwk); /* Line 938, Address: 0x1028a10 */
 } /* Line 939, Address: 0x1028a1c */
 
 
-void egg1coli_set_arm_r(act_info* pActwk) { /* Line 942, Address: 0x1028a30 */
+void egg1coli_set_arm_r(sprite_status* pActwk) { /* Line 942, Address: 0x1028a30 */
   egg1coli_set_arm(((short*)&actwk[((short*)pActwk)[27]])[27]); /* Line 943, Address: 0x1028a3c */
   egg1coli_set_arm_l(pActwk); /* Line 944, Address: 0x1028a70 */
 } /* Line 945, Address: 0x1028a7c */
 
 
-void egg1coli_set(act_info* pActwk) { /* Line 948, Address: 0x1028a90 */
+void egg1coli_set(sprite_status* pActwk) { /* Line 948, Address: 0x1028a90 */
   if (pActwk->actfree[1] == 3) /* Line 949, Address: 0x1028a9c */
     egg1coli_set_arm_r(pActwk); /* Line 950, Address: 0x1028ab4 */
   if (pActwk->actfree[1] == 2) /* Line 951, Address: 0x1028ac0 */
@@ -957,7 +957,7 @@ void egg1coli_set(act_info* pActwk) { /* Line 948, Address: 0x1028a90 */
 
 
 
-int egg1_ini(act_info* pActwk) { /* Line 960, Address: 0x1028b20 */
+int egg1_ini(sprite_status* pActwk) { /* Line 960, Address: 0x1028b20 */
   divdevset(4); /* Line 961, Address: 0x1028b2c */
   bossstart = 1; /* Line 962, Address: 0x1028b38 */
 
@@ -1001,9 +1001,9 @@ int egg1_ini(act_info* pActwk) { /* Line 960, Address: 0x1028b20 */
 
 
 
-int make_act(act_info* pActwk, act_info** subActwk) { /* Line 1004, Address: 0x1028c10 */
+int make_act(sprite_status* pActwk, sprite_status** subActwk) { /* Line 1004, Address: 0x1028c10 */
   int ret;
-  act_info* ppActwk;
+  sprite_status* ppActwk;
 
   if (actwkchk(&ppActwk) == 0) /* Line 1008, Address: 0x1028c24 */
   {
@@ -1018,8 +1018,8 @@ int make_act(act_info* pActwk, act_info** subActwk) { /* Line 1004, Address: 0x1
 } /* Line 1018, Address: 0x1028c78 */
 
 
-void egg1_make_act(act_info* pActwk) { /* Line 1021, Address: 0x1028c90 */
-  act_info *subActwk, *disActwk, *bodyActwk;
+void egg1_make_act(sprite_status* pActwk) { /* Line 1021, Address: 0x1028c90 */
+  sprite_status *subActwk, *disActwk, *bodyActwk;
   short subact;
 
 
@@ -1170,7 +1170,7 @@ void egg1_make_act(act_info* pActwk) { /* Line 1021, Address: 0x1028c90 */
 
 
 
-int egg1_01(act_info* pActwk) { /* Line 1173, Address: 0x10298b0 */
+int egg1_01(sprite_status* pActwk) { /* Line 1173, Address: 0x10298b0 */
   scralim_right = 2752; /* Line 1174, Address: 0x10298b8 */
   scralim_n_right = 2752; /* Line 1175, Address: 0x10298c4 */
 
@@ -1196,7 +1196,7 @@ int egg1_01(act_info* pActwk) { /* Line 1173, Address: 0x10298b0 */
 
 
 
-int egg1_06(act_info* pActwk) { /* Line 1199, Address: 0x10299f0 */
+int egg1_06(sprite_status* pActwk) { /* Line 1199, Address: 0x10299f0 */
 
   scra_vline += 6; /* Line 1201, Address: 0x10299fc */
   if (scra_vline >= 200) /* Line 1202, Address: 0x1029a10 */
@@ -1213,7 +1213,7 @@ int egg1_06(act_info* pActwk) { /* Line 1199, Address: 0x10299f0 */
 
 
 
-int egg1_wait(act_info* pActwk) { /* Line 1216, Address: 0x1029a70 */
+int egg1_wait(sprite_status* pActwk) { /* Line 1216, Address: 0x1029a70 */
   ++pActwk->actfree[1]; /* Line 1217, Address: 0x1029a7c */
   if (pActwk->actfree[1] == 60) /* Line 1218, Address: 0x1029a8c */
   {
@@ -1232,7 +1232,7 @@ int egg1_wait(act_info* pActwk) { /* Line 1216, Address: 0x1029a70 */
 
 
 
-int egg1_02(act_info* pActwk) { /* Line 1235, Address: 0x1029af0 */
+int egg1_02(sprite_status* pActwk) { /* Line 1235, Address: 0x1029af0 */
   short subact;
   short egg1acttbl[20] = /* Line 1237, Address: 0x1029b00 */
   {
@@ -1280,7 +1280,7 @@ int egg1_02(act_info* pActwk) { /* Line 1235, Address: 0x1029af0 */
 
 
 
-int egg1_03(act_info* pActwk) { /* Line 1283, Address: 0x1029d40 */
+int egg1_03(sprite_status* pActwk) { /* Line 1283, Address: 0x1029d40 */
   short subact;
 
   ++pActwk->actfree[1]; /* Line 1286, Address: 0x1029d50 */
@@ -1315,7 +1315,7 @@ int egg1_03(act_info* pActwk) { /* Line 1283, Address: 0x1029d40 */
 
 
 
-int egg1_04(act_info* pActwk) { /* Line 1318, Address: 0x1029e80 */
+int egg1_04(sprite_status* pActwk) { /* Line 1318, Address: 0x1029e80 */
   int ret = 1; /* Line 1319, Address: 0x1029e98 */
   unsigned short sin, cos;
   int_union sinl, cosl;
@@ -1384,7 +1384,7 @@ int egg1_04(act_info* pActwk) { /* Line 1318, Address: 0x1029e80 */
 
 
 
-int egg1_05(act_info* pActwk) { /* Line 1387, Address: 0x102a120 */
+int egg1_05(sprite_status* pActwk) { /* Line 1387, Address: 0x102a120 */
   short temp0, temp1;
   int ret = 1; /* Line 1389, Address: 0x102a138 */
 
@@ -1408,8 +1408,8 @@ int egg1_05(act_info* pActwk) { /* Line 1387, Address: 0x102a120 */
 
 
 
-void egg1body(act_info* pActwk) { /* Line 1411, Address: 0x102a200 */
-  int(*tbl[9])(act_info*) = /* Line 1412, Address: 0x102a20c */
+void egg1body(sprite_status* pActwk) { /* Line 1411, Address: 0x102a200 */
+  int(*tbl[9])(sprite_status*) = /* Line 1412, Address: 0x102a20c */
   {
     &egg1body_ini,
     &egg1body_01,
@@ -1428,7 +1428,7 @@ void egg1body(act_info* pActwk) { /* Line 1411, Address: 0x102a200 */
 
 
 
-void spd_normal(act_info* pActwk) { /* Line 1431, Address: 0x102a2a0 */
+void spd_normal(sprite_status* pActwk) { /* Line 1431, Address: 0x102a2a0 */
   short subact1, subact2;
 
   subact1 = ((short*)pActwk)[26]; /* Line 1434, Address: 0x102a2b0 */
@@ -1472,7 +1472,7 @@ void spd_normal(act_info* pActwk) { /* Line 1431, Address: 0x102a2a0 */
 
 
 
-int egg1body_ini(act_info* pActwk) { /* Line 1475, Address: 0x102a730 */
+int egg1body_ini(sprite_status* pActwk) { /* Line 1475, Address: 0x102a730 */
   pActwk->cddat = 0; /* Line 1476, Address: 0x102a73c */
   pActwk->r_no0 = 2; /* Line 1477, Address: 0x102a744 */
   pActwk->actflg = 4; /* Line 1478, Address: 0x102a750 */
@@ -1487,7 +1487,7 @@ int egg1body_ini(act_info* pActwk) { /* Line 1475, Address: 0x102a730 */
 
 
 
-int egg1body_08(act_info* pActwk) { /* Line 1490, Address: 0x102a7b0 */
+int egg1body_08(sprite_status* pActwk) { /* Line 1490, Address: 0x102a7b0 */
   --pActwk->actfree[3]; /* Line 1491, Address: 0x102a7bc */
   if (!pActwk->actfree[3]) /* Line 1492, Address: 0x102a7cc */
   {  
@@ -1501,7 +1501,7 @@ int egg1body_08(act_info* pActwk) { /* Line 1490, Address: 0x102a7b0 */
 
 
 
-void bup_set(act_info* legActwk) { /* Line 1504, Address: 0x102a820 */
+void bup_set(sprite_status* legActwk) { /* Line 1504, Address: 0x102a820 */
   short subact;
 
   legActwk->actfree[2] |= 32; /* Line 1507, Address: 0x102a82c */
@@ -1514,7 +1514,7 @@ void bup_set(act_info* legActwk) { /* Line 1504, Address: 0x102a820 */
 
 
 
-void bup_clr(act_info* legActwk) { /* Line 1517, Address: 0x102a8e0 */
+void bup_clr(sprite_status* legActwk) { /* Line 1517, Address: 0x102a8e0 */
   short subact;
 
   legActwk->actfree[2] &= 223; /* Line 1520, Address: 0x102a8ec */
@@ -1527,7 +1527,7 @@ void bup_clr(act_info* legActwk) { /* Line 1517, Address: 0x102a8e0 */
 
 
 
-void grd_set(act_info* legActwk) { /* Line 1530, Address: 0x102a9a0 */
+void grd_set(sprite_status* legActwk) { /* Line 1530, Address: 0x102a9a0 */
   short subact;
 
   legActwk->actfree[2] |= 16; /* Line 1533, Address: 0x102a9ac */
@@ -1540,7 +1540,7 @@ void grd_set(act_info* legActwk) { /* Line 1530, Address: 0x102a9a0 */
 
 
 
-void grd_clr(act_info* legActwk) { /* Line 1543, Address: 0x102aa60 */
+void grd_clr(sprite_status* legActwk) { /* Line 1543, Address: 0x102aa60 */
   short subact;
 
   legActwk->actfree[2] &= 239; /* Line 1546, Address: 0x102aa6c */
@@ -1553,7 +1553,7 @@ void grd_clr(act_info* legActwk) { /* Line 1543, Address: 0x102aa60 */
 
 
 
-int egg1body_01(act_info* pActwk) { /* Line 1556, Address: 0x102ab20 */
+int egg1body_01(sprite_status* pActwk) { /* Line 1556, Address: 0x102ab20 */
   short subact;
 
   subact = ((short*)pActwk)[27]; /* Line 1559, Address: 0x102ab30 */
@@ -1579,7 +1579,7 @@ int egg1body_01(act_info* pActwk) { /* Line 1556, Address: 0x102ab20 */
 
 
 
-int egg1body_02(act_info* pActwk) { /* Line 1582, Address: 0x102ad10 */
+int egg1body_02(sprite_status* pActwk) { /* Line 1582, Address: 0x102ad10 */
   short subact;
 
   subact = ((short*)pActwk)[27]; /* Line 1585, Address: 0x102ad20 */
@@ -1624,7 +1624,7 @@ int egg1body_02(act_info* pActwk) { /* Line 1582, Address: 0x102ad10 */
 
 
 
-int egg1body_03(act_info* pActwk) { /* Line 1627, Address: 0x102b0b0 */
+int egg1body_03(sprite_status* pActwk) { /* Line 1627, Address: 0x102b0b0 */
   short subact;
 
   if (!(pActwk->actfree[2] & 2)) /* Line 1630, Address: 0x102b0c0 */
@@ -1648,7 +1648,7 @@ int egg1body_03(act_info* pActwk) { /* Line 1627, Address: 0x102b0b0 */
 
 
 
-int egg1body_04(act_info* pActwk) { /* Line 1651, Address: 0x102b1e0 */
+int egg1body_04(sprite_status* pActwk) { /* Line 1651, Address: 0x102b1e0 */
   short subact1;
   short subact2;
   short subact3;
@@ -1741,7 +1741,7 @@ int egg1body_04(act_info* pActwk) { /* Line 1651, Address: 0x102b1e0 */
 
 
 
-void armset_1(act_info* pActwk) { /* Line 1744, Address: 0x102b880 */
+void armset_1(sprite_status* pActwk) { /* Line 1744, Address: 0x102b880 */
   short subact1, subact2;
 
   subact1 = ((short*)pActwk)[25]; /* Line 1747, Address: 0x102b890 */
@@ -1767,7 +1767,7 @@ void armset_1(act_info* pActwk) { /* Line 1744, Address: 0x102b880 */
 
 
 
-void armset_2(act_info* pActwk) { /* Line 1770, Address: 0x102ba90 */
+void armset_2(sprite_status* pActwk) { /* Line 1770, Address: 0x102ba90 */
   short subact1, subact2;
 
   subact1 = ((short*)pActwk)[25]; /* Line 1773, Address: 0x102baa0 */
@@ -1793,7 +1793,7 @@ void armset_2(act_info* pActwk) { /* Line 1770, Address: 0x102ba90 */
 
 
 
-void armset_3(act_info* pActwk) { /* Line 1796, Address: 0x102bca0 */
+void armset_3(sprite_status* pActwk) { /* Line 1796, Address: 0x102bca0 */
   short subact1, subact2;
 
   subact1 = ((short*)pActwk)[25]; /* Line 1799, Address: 0x102bcb0 */
@@ -1818,7 +1818,7 @@ void armset_3(act_info* pActwk) { /* Line 1796, Address: 0x102bca0 */
 } /* Line 1818, Address: 0x102be9c */
 
 
-void spd_up(act_info* pActwk) { /* Line 1821, Address: 0x102beb0 */
+void spd_up(sprite_status* pActwk) { /* Line 1821, Address: 0x102beb0 */
   short subact1, subact2;
 
   subact1 = ((short*)pActwk)[26]; /* Line 1824, Address: 0x102bec0 */
@@ -1864,7 +1864,7 @@ void spd_up(act_info* pActwk) { /* Line 1821, Address: 0x102beb0 */
 
 
 
-int egg1body_05(act_info* pActwk) { /* Line 1867, Address: 0x102c340 */
+int egg1body_05(sprite_status* pActwk) { /* Line 1867, Address: 0x102c340 */
   short subact1;
   short subact2;
   short subact3;
@@ -1965,7 +1965,7 @@ int egg1body_05(act_info* pActwk) { /* Line 1867, Address: 0x102c340 */
 
 
 
-int egg1body_06(act_info* pActwk) { /* Line 1968, Address: 0x102ca20 */
+int egg1body_06(sprite_status* pActwk) { /* Line 1968, Address: 0x102ca20 */
   short subact1;
   short subact2;
   short subact3;
@@ -2077,7 +2077,7 @@ int egg1body_06(act_info* pActwk) { /* Line 1968, Address: 0x102ca20 */
 
 
 
-int egg1body_07(act_info* pActwk) { /* Line 2080, Address: 0x102d2c0 */
+int egg1body_07(sprite_status* pActwk) { /* Line 2080, Address: 0x102d2c0 */
   int ret = 1; /* Line 2081, Address: 0x102d2d4 */
   short subact;
 
@@ -2102,8 +2102,8 @@ int egg1body_07(act_info* pActwk) { /* Line 2080, Address: 0x102d2c0 */
 
 
 
-void arm_bom(act_info* pActwk) { /* Line 2105, Address: 0x102d390 */
-  act_info* subActwk;
+void arm_bom(sprite_status* pActwk) { /* Line 2105, Address: 0x102d390 */
+  sprite_status* subActwk;
 
   if (actwkchk(&subActwk) == 0) /* Line 2108, Address: 0x102d39c */
   {
@@ -2121,8 +2121,8 @@ void arm_bom(act_info* pActwk) { /* Line 2105, Address: 0x102d390 */
 
 
 
-void egg1arm1(act_info* pActwk) { /* Line 2124, Address: 0x102d410 */
-  int(*tbl[3])(act_info*) = /* Line 2125, Address: 0x102d41c */
+void egg1arm1(sprite_status* pActwk) { /* Line 2124, Address: 0x102d410 */
+  int(*tbl[3])(sprite_status*) = /* Line 2125, Address: 0x102d41c */
   {
     &egg1arm1_ini,
     &egg1arm1_01,
@@ -2135,7 +2135,7 @@ void egg1arm1(act_info* pActwk) { /* Line 2124, Address: 0x102d410 */
 
 
 
-int egg1arm1_ini(act_info* pActwk) { /* Line 2138, Address: 0x102d4a0 */
+int egg1arm1_ini(sprite_status* pActwk) { /* Line 2138, Address: 0x102d4a0 */
   int ret = 1; /* Line 2139, Address: 0x102d4b0 */
 
   pActwk->cddat = 0; /* Line 2141, Address: 0x102d4b4 */
@@ -2151,7 +2151,7 @@ int egg1arm1_ini(act_info* pActwk) { /* Line 2138, Address: 0x102d4a0 */
 
 
 
-int egg1arm1_01(act_info* pActwk) { /* Line 2154, Address: 0x102d530 */
+int egg1arm1_01(sprite_status* pActwk) { /* Line 2154, Address: 0x102d530 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 2157, Address: 0x102d53c */
@@ -2185,7 +2185,7 @@ int egg1arm1_01(act_info* pActwk) { /* Line 2154, Address: 0x102d530 */
 
 
 
-int egg1arm1_02(act_info* pActwk) { /* Line 2188, Address: 0x102d730 */
+int egg1arm1_02(sprite_status* pActwk) { /* Line 2188, Address: 0x102d730 */
   int ret = 1; /* Line 2189, Address: 0x102d740 */
 
   if (!(pActwk->actfree[2] & 2)) /* Line 2191, Address: 0x102d744 */
@@ -2219,8 +2219,8 @@ int egg1arm1_02(act_info* pActwk) { /* Line 2188, Address: 0x102d730 */
 
 
 
-void egg1arm2(act_info* pActwk) { /* Line 2222, Address: 0x102d830 */
-  int(*tbl[6])(act_info*) = /* Line 2223, Address: 0x102d83c */
+void egg1arm2(sprite_status* pActwk) { /* Line 2222, Address: 0x102d830 */
+  int(*tbl[6])(sprite_status*) = /* Line 2223, Address: 0x102d83c */
   {
     &egg1arm2_ini,
     &egg1arm2_01,
@@ -2239,7 +2239,7 @@ void egg1arm2(act_info* pActwk) { /* Line 2222, Address: 0x102d830 */
 
 
 
-int egg1arm2_ini(act_info* pActwk) { /* Line 2242, Address: 0x102d8f0 */
+int egg1arm2_ini(sprite_status* pActwk) { /* Line 2242, Address: 0x102d8f0 */
   pActwk->cddat = 0; /* Line 2243, Address: 0x102d8fc */
   pActwk->actflg = 4; /* Line 2244, Address: 0x102d904 */
   pActwk->sprhsize = 8; /* Line 2245, Address: 0x102d910 */
@@ -2254,7 +2254,7 @@ int egg1arm2_ini(act_info* pActwk) { /* Line 2242, Address: 0x102d8f0 */
 
 
 
-int egg1arm2_01(act_info* pActwk) { /* Line 2257, Address: 0x102d970 */
+int egg1arm2_01(sprite_status* pActwk) { /* Line 2257, Address: 0x102d970 */
   ((char*)pActwk)[46] -= 2; /* Line 2258, Address: 0x102d97c */
   if (((char*)pActwk)[46] > 0) /* Line 2259, Address: 0x102d98c */
     egg1arm2_set(pActwk); /* Line 2260, Address: 0x102d9a4 */
@@ -2271,7 +2271,7 @@ int egg1arm2_01(act_info* pActwk) { /* Line 2257, Address: 0x102d970 */
 
 
 
-int egg1arm2_03(act_info* pActwk) { /* Line 2274, Address: 0x102da00 */
+int egg1arm2_03(sprite_status* pActwk) { /* Line 2274, Address: 0x102da00 */
   ((char*)pActwk)[46] += 2; /* Line 2275, Address: 0x102da0c */
   if (((char*)pActwk)[46] < 48) /* Line 2276, Address: 0x102da1c */
     egg1arm2_set(pActwk); /* Line 2277, Address: 0x102da38 */
@@ -2287,20 +2287,20 @@ int egg1arm2_03(act_info* pActwk) { /* Line 2274, Address: 0x102da00 */
 
 
 
-int egg1arm2_02(act_info* pActwk) { /* Line 2290, Address: 0x102daa0 */
+int egg1arm2_02(sprite_status* pActwk) { /* Line 2290, Address: 0x102daa0 */
   egg1arm2_set(pActwk); /* Line 2291, Address: 0x102daac */
   return 1; /* Line 2292, Address: 0x102dab8 */
 } /* Line 2293, Address: 0x102dabc */
 
 
-int egg1arm2_04(act_info* pActwk) { /* Line 2296, Address: 0x102dad0 */
+int egg1arm2_04(sprite_status* pActwk) { /* Line 2296, Address: 0x102dad0 */
   egg1arm2_set(pActwk); /* Line 2297, Address: 0x102dadc */
   return 1; /* Line 2298, Address: 0x102dae8 */
 } /* Line 2299, Address: 0x102daec */
 
 
 
-int egg1arm2_05(act_info* pActwk) { /* Line 2303, Address: 0x102db00 */
+int egg1arm2_05(sprite_status* pActwk) { /* Line 2303, Address: 0x102db00 */
   int ret = 1; /* Line 2304, Address: 0x102db14 */
   short subact;
 
@@ -2334,7 +2334,7 @@ int egg1arm2_05(act_info* pActwk) { /* Line 2303, Address: 0x102db00 */
 
 
 
-void egg1arm2_set(act_info* pActwk) { /* Line 2337, Address: 0x102dc40 */
+void egg1arm2_set(sprite_status* pActwk) { /* Line 2337, Address: 0x102dc40 */
   short subact;
   unsigned short sin, cos;
   int_union sinl, cosl;
@@ -2360,8 +2360,8 @@ void egg1arm2_set(act_info* pActwk) { /* Line 2337, Address: 0x102dc40 */
 
 
 
-void egg1arm3(act_info* pActwk) { /* Line 2363, Address: 0x102dda0 */
-  int(*tbl[6])(act_info*) = /* Line 2364, Address: 0x102ddac */
+void egg1arm3(sprite_status* pActwk) { /* Line 2363, Address: 0x102dda0 */
+  int(*tbl[6])(sprite_status*) = /* Line 2364, Address: 0x102ddac */
   {
     &egg1arm3_ini,
     &egg1arm3_01,
@@ -2380,7 +2380,7 @@ void egg1arm3(act_info* pActwk) { /* Line 2363, Address: 0x102dda0 */
 
 
 
-int egg1arm3_ini(act_info* pActwk) { /* Line 2383, Address: 0x102de40 */
+int egg1arm3_ini(sprite_status* pActwk) { /* Line 2383, Address: 0x102de40 */
   pActwk->cddat = 0; /* Line 2384, Address: 0x102de4c */
   pActwk->actflg = 4; /* Line 2385, Address: 0x102de54 */
   pActwk->sprhsize = 32; /* Line 2386, Address: 0x102de60 */
@@ -2394,7 +2394,7 @@ int egg1arm3_ini(act_info* pActwk) { /* Line 2383, Address: 0x102de40 */
 
 
 
-int egg1arm3_01(act_info* pActwk) { /* Line 2397, Address: 0x102deb0 */
+int egg1arm3_01(sprite_status* pActwk) { /* Line 2397, Address: 0x102deb0 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 2400, Address: 0x102debc */
@@ -2424,7 +2424,7 @@ int egg1arm3_01(act_info* pActwk) { /* Line 2397, Address: 0x102deb0 */
 
 
 
-int egg1arm3_03(act_info* pActwk) { /* Line 2427, Address: 0x102e040 */
+int egg1arm3_03(sprite_status* pActwk) { /* Line 2427, Address: 0x102e040 */
   int ret = 1; /* Line 2428, Address: 0x102e050 */
 
   if (((short*)pActwk)[29] > 0) /* Line 2430, Address: 0x102e054 */
@@ -2436,7 +2436,7 @@ int egg1arm3_03(act_info* pActwk) { /* Line 2427, Address: 0x102e040 */
 
 
 
-int egg1arm3_04(act_info* pActwk) { /* Line 2439, Address: 0x102e0b0 */
+int egg1arm3_04(sprite_status* pActwk) { /* Line 2439, Address: 0x102e0b0 */
   int ret = 1; /* Line 2440, Address: 0x102e0c0 */
 
   if (((short*)pActwk)[29] < 16) /* Line 2442, Address: 0x102e0c4 */
@@ -2448,7 +2448,7 @@ int egg1arm3_04(act_info* pActwk) { /* Line 2439, Address: 0x102e0b0 */
 
 
 
-int egg1arm3_05(act_info* pActwk) { /* Line 2451, Address: 0x102e120 */
+int egg1arm3_05(sprite_status* pActwk) { /* Line 2451, Address: 0x102e120 */
   short subact;
 
   if (((short*)pActwk)[29] < 8) /* Line 2454, Address: 0x102e12c */
@@ -2468,7 +2468,7 @@ int egg1arm3_05(act_info* pActwk) { /* Line 2451, Address: 0x102e120 */
 
 
 
-int egg1arm3_02(act_info* pActwk) { /* Line 2471, Address: 0x102e270 */
+int egg1arm3_02(sprite_status* pActwk) { /* Line 2471, Address: 0x102e270 */
   int ret = 1; /* Line 2472, Address: 0x102e284 */
   short subact;
 
@@ -2512,8 +2512,8 @@ int egg1arm3_02(act_info* pActwk) { /* Line 2471, Address: 0x102e270 */
 
 
 
-void egg1arm4(act_info* pActwk) { /* Line 2515, Address: 0x102e400 */
-  int(*tbl[3])(act_info*) = /* Line 2516, Address: 0x102e40c */
+void egg1arm4(sprite_status* pActwk) { /* Line 2515, Address: 0x102e400 */
+  int(*tbl[3])(sprite_status*) = /* Line 2516, Address: 0x102e40c */
   {
     &egg1arm4_ini,
     &egg1arm4_01,
@@ -2526,7 +2526,7 @@ void egg1arm4(act_info* pActwk) { /* Line 2515, Address: 0x102e400 */
 
 
 
-int egg1arm4_ini(act_info* pActwk) { /* Line 2529, Address: 0x102e490 */
+int egg1arm4_ini(sprite_status* pActwk) { /* Line 2529, Address: 0x102e490 */
   pActwk->cddat = 0; /* Line 2530, Address: 0x102e498 */
   pActwk->actflg = 4; /* Line 2531, Address: 0x102e4a0 */
   pActwk->sprhsize = 12; /* Line 2532, Address: 0x102e4ac */
@@ -2539,7 +2539,7 @@ int egg1arm4_ini(act_info* pActwk) { /* Line 2529, Address: 0x102e490 */
 
 
 
-int egg1arm4_01(act_info* pActwk) { /* Line 2542, Address: 0x102e500 */
+int egg1arm4_01(sprite_status* pActwk) { /* Line 2542, Address: 0x102e500 */
   short subact;
 
 
@@ -2595,7 +2595,7 @@ int egg1arm4_01(act_info* pActwk) { /* Line 2542, Address: 0x102e500 */
 
 
 
-int egg1arm4_02(act_info* pActwk) { /* Line 2598, Address: 0x102e660 */
+int egg1arm4_02(sprite_status* pActwk) { /* Line 2598, Address: 0x102e660 */
   int ret = 1; /* Line 2599, Address: 0x102e670 */
 
   if (!(pActwk->actfree[2] & 2)) /* Line 2601, Address: 0x102e674 */
@@ -2637,8 +2637,8 @@ int egg1arm4_02(act_info* pActwk) { /* Line 2598, Address: 0x102e660 */
 
 
 
-void egg1leg1(act_info* pActwk) { /* Line 2640, Address: 0x102e780 */
-  int(*tbl[13])(act_info*) = /* Line 2641, Address: 0x102e78c */
+void egg1leg1(sprite_status* pActwk) { /* Line 2640, Address: 0x102e780 */
+  int(*tbl[13])(sprite_status*) = /* Line 2641, Address: 0x102e78c */
   {
     &egg1leg1_ini,
     &egg1leg1_01,
@@ -2661,7 +2661,7 @@ void egg1leg1(act_info* pActwk) { /* Line 2640, Address: 0x102e780 */
 
 
 
-int egg1leg1_ini(act_info* pActwk) { /* Line 2664, Address: 0x102e820 */
+int egg1leg1_ini(sprite_status* pActwk) { /* Line 2664, Address: 0x102e820 */
   pActwk->cddat = 0; /* Line 2665, Address: 0x102e828 */
   pActwk->actflg = 4; /* Line 2666, Address: 0x102e830 */
   pActwk->sprhsize = 8; /* Line 2667, Address: 0x102e83c */
@@ -2679,7 +2679,7 @@ int egg1leg1_ini(act_info* pActwk) { /* Line 2664, Address: 0x102e820 */
 
 
 
-int egg1leg1_01(act_info* pActwk) { /* Line 2682, Address: 0x102e8b0 */
+int egg1leg1_01(sprite_status* pActwk) { /* Line 2682, Address: 0x102e8b0 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2685, Address: 0x102e8c0 */
@@ -2724,7 +2724,7 @@ int egg1leg1_01(act_info* pActwk) { /* Line 2682, Address: 0x102e8b0 */
 
 
 
-int egg1leg1_02(act_info* pActwk) { /* Line 2727, Address: 0x102eb40 */
+int egg1leg1_02(sprite_status* pActwk) { /* Line 2727, Address: 0x102eb40 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2730, Address: 0x102eb50 */
@@ -2744,7 +2744,7 @@ int egg1leg1_02(act_info* pActwk) { /* Line 2727, Address: 0x102eb40 */
 
 
 
-int egg1leg1_03(act_info* pActwk) { /* Line 2747, Address: 0x102ec40 */
+int egg1leg1_03(sprite_status* pActwk) { /* Line 2747, Address: 0x102ec40 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2750, Address: 0x102ec50 */
@@ -2758,7 +2758,7 @@ int egg1leg1_03(act_info* pActwk) { /* Line 2747, Address: 0x102ec40 */
 
 
 
-int egg1leg1_04(act_info* pActwk) { /* Line 2761, Address: 0x102ed00 */
+int egg1leg1_04(sprite_status* pActwk) { /* Line 2761, Address: 0x102ed00 */
   if (!(pActwk->actfree[2] & 1)) /* Line 2762, Address: 0x102ed0c */
   {
     pActwk->actfree[0] = pActwk->actfree[0] - ((char*)pActwk)[67]; /* Line 2764, Address: 0x102ed24 */
@@ -2777,7 +2777,7 @@ int egg1leg1_04(act_info* pActwk) { /* Line 2761, Address: 0x102ed00 */
 
 
 
-int egg1leg1_05(act_info* pActwk) { /* Line 2780, Address: 0x102edb0 */
+int egg1leg1_05(sprite_status* pActwk) { /* Line 2780, Address: 0x102edb0 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2783, Address: 0x102edc0 */
@@ -2809,7 +2809,7 @@ int egg1leg1_05(act_info* pActwk) { /* Line 2780, Address: 0x102edb0 */
 
 
 
-int egg1leg1_06(act_info* pActwk) { /* Line 2812, Address: 0x102ef90 */
+int egg1leg1_06(sprite_status* pActwk) { /* Line 2812, Address: 0x102ef90 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2815, Address: 0x102efa0 */
@@ -2839,7 +2839,7 @@ int egg1leg1_06(act_info* pActwk) { /* Line 2812, Address: 0x102ef90 */
 
 
 
-int egg1leg1_07(act_info* pActwk) { /* Line 2842, Address: 0x102f150 */
+int egg1leg1_07(sprite_status* pActwk) { /* Line 2842, Address: 0x102f150 */
   int ret = 1; /* Line 2843, Address: 0x102f164 */
   short subact;
 
@@ -2877,7 +2877,7 @@ int egg1leg1_07(act_info* pActwk) { /* Line 2842, Address: 0x102f150 */
 
 
 
-int egg1leg1_08(act_info* pActwk) { /* Line 2880, Address: 0x102f400 */
+int egg1leg1_08(sprite_status* pActwk) { /* Line 2880, Address: 0x102f400 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 2883, Address: 0x102f40c */
@@ -2892,7 +2892,7 @@ int egg1leg1_08(act_info* pActwk) { /* Line 2880, Address: 0x102f400 */
 
 
 
-int egg1leg1_09(act_info* pActwk) { /* Line 2895, Address: 0x102f520 */
+int egg1leg1_09(sprite_status* pActwk) { /* Line 2895, Address: 0x102f520 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2898, Address: 0x102f530 */
@@ -2933,7 +2933,7 @@ int egg1leg1_09(act_info* pActwk) { /* Line 2895, Address: 0x102f520 */
 
 
 
-int egg1leg1_10(act_info* pActwk) { /* Line 2936, Address: 0x102f740 */
+int egg1leg1_10(sprite_status* pActwk) { /* Line 2936, Address: 0x102f740 */
   short subact;
 
   subact = ((short*)pActwk)[26]; /* Line 2939, Address: 0x102f750 */
@@ -2953,7 +2953,7 @@ int egg1leg1_10(act_info* pActwk) { /* Line 2936, Address: 0x102f740 */
 
 
 
-int egg1leg1_11(act_info* pActwk) { /* Line 2956, Address: 0x102f840 */
+int egg1leg1_11(sprite_status* pActwk) { /* Line 2956, Address: 0x102f840 */
   short subact;
 
   if (!(pActwk->actfree[2] & 1)) /* Line 2959, Address: 0x102f850 */
@@ -2988,7 +2988,7 @@ int egg1leg1_11(act_info* pActwk) { /* Line 2956, Address: 0x102f840 */
 
 
 
-void egg1leg1_set(act_info* pActwk) { /* Line 2991, Address: 0x102f9d0 */
+void egg1leg1_set(sprite_status* pActwk) { /* Line 2991, Address: 0x102f9d0 */
   unsigned short sin, cos;
   short sin2, cos2;
   int_union sinl, cosl;
@@ -3051,7 +3051,7 @@ void egg1leg1_set(act_info* pActwk) { /* Line 2991, Address: 0x102f9d0 */
 
 
 
-int egg1leg1_12(act_info* pActwk) { /* Line 3054, Address: 0x102fe20 */
+int egg1leg1_12(sprite_status* pActwk) { /* Line 3054, Address: 0x102fe20 */
   int ret = 1; /* Line 3055, Address: 0x102fe30 */
 
   if (!(pActwk->actfree[2] & 2)) /* Line 3057, Address: 0x102fe34 */
@@ -3100,8 +3100,8 @@ int egg1leg1_12(act_info* pActwk) { /* Line 3054, Address: 0x102fe20 */
 
 
 
-void egg1leg2(act_info* pActwk) { /* Line 3103, Address: 0x102fff0 */
-  int(*tbl[8])(act_info*) = /* Line 3104, Address: 0x102fffc */
+void egg1leg2(sprite_status* pActwk) { /* Line 3103, Address: 0x102fff0 */
+  int(*tbl[8])(sprite_status*) = /* Line 3104, Address: 0x102fffc */
   {
     &egg1leg2_ini,
     &egg1leg2_01,
@@ -3119,7 +3119,7 @@ void egg1leg2(act_info* pActwk) { /* Line 3103, Address: 0x102fff0 */
 
 
 
-int egg1leg2_ini(act_info* pActwk) { /* Line 3122, Address: 0x1030090 */
+int egg1leg2_ini(sprite_status* pActwk) { /* Line 3122, Address: 0x1030090 */
   pActwk->cddat = 0; /* Line 3123, Address: 0x1030098 */
   pActwk->r_no0 = 2; /* Line 3124, Address: 0x10300a0 */
   pActwk->actflg = 4; /* Line 3125, Address: 0x10300ac */
@@ -3135,7 +3135,7 @@ int egg1leg2_ini(act_info* pActwk) { /* Line 3122, Address: 0x1030090 */
 
 
 
-int egg1leg2_01(act_info* pActwk) { /* Line 3138, Address: 0x1030120 */
+int egg1leg2_01(sprite_status* pActwk) { /* Line 3138, Address: 0x1030120 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 3141, Address: 0x103012c */
@@ -3147,7 +3147,7 @@ int egg1leg2_01(act_info* pActwk) { /* Line 3138, Address: 0x1030120 */
 
 
 
-int egg1leg2_02(act_info* pActwk) { /* Line 3150, Address: 0x10301d0 */
+int egg1leg2_02(sprite_status* pActwk) { /* Line 3150, Address: 0x10301d0 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 3153, Address: 0x10301dc */
@@ -3162,7 +3162,7 @@ int egg1leg2_02(act_info* pActwk) { /* Line 3150, Address: 0x10301d0 */
 
 
 
-int egg1leg2_03(act_info* pActwk) { /* Line 3165, Address: 0x10302f0 */
+int egg1leg2_03(sprite_status* pActwk) { /* Line 3165, Address: 0x10302f0 */
   int xs;
 
   if (((short*)pActwk)[29] < 8) /* Line 3168, Address: 0x1030300 */
@@ -3183,7 +3183,7 @@ int egg1leg2_03(act_info* pActwk) { /* Line 3165, Address: 0x10302f0 */
 
 
 
-int egg1leg2_04(act_info* pActwk) { /* Line 3186, Address: 0x10303a0 */
+int egg1leg2_04(sprite_status* pActwk) { /* Line 3186, Address: 0x10303a0 */
   ((short*)pActwk)[31] = 0; /* Line 3187, Address: 0x10303ac */
   if (((short*)pActwk)[29] >= -7) /* Line 3188, Address: 0x10303b4 */
   {
@@ -3201,7 +3201,7 @@ int egg1leg2_04(act_info* pActwk) { /* Line 3186, Address: 0x10303a0 */
 
 
 
-int egg1leg2_05(act_info* pActwk) { /* Line 3204, Address: 0x1030450 */
+int egg1leg2_05(sprite_status* pActwk) { /* Line 3204, Address: 0x1030450 */
   int xs, ys;
 
   if (((short*)pActwk)[29] >= -7) /* Line 3207, Address: 0x1030464 */
@@ -3228,7 +3228,7 @@ int egg1leg2_05(act_info* pActwk) { /* Line 3204, Address: 0x1030450 */
 
 
 
-int egg1leg2_06(act_info* pActwk) { /* Line 3231, Address: 0x1030560 */
+int egg1leg2_06(sprite_status* pActwk) { /* Line 3231, Address: 0x1030560 */
   int xs, ys;
 
   if (((short*)pActwk)[29] >= -7) /* Line 3234, Address: 0x1030574 */
@@ -3260,7 +3260,7 @@ int egg1leg2_06(act_info* pActwk) { /* Line 3231, Address: 0x1030560 */
 
 
 
-void leg2_set(int xs, int ys, act_info* pActwk) { /* Line 3263, Address: 0x1030670 */
+void leg2_set(int xs, int ys, sprite_status* pActwk) { /* Line 3263, Address: 0x1030670 */
   short subact;
 
   if (pActwk->actfree[2] & 32) /* Line 3266, Address: 0x1030684 */
@@ -3280,7 +3280,7 @@ void leg2_set(int xs, int ys, act_info* pActwk) { /* Line 3263, Address: 0x10306
 
 
 
-void leg2_set2(act_info* pActwk) { /* Line 3283, Address: 0x1030840 */
+void leg2_set2(sprite_status* pActwk) { /* Line 3283, Address: 0x1030840 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 3286, Address: 0x103084c */
@@ -3291,7 +3291,7 @@ void leg2_set2(act_info* pActwk) { /* Line 3283, Address: 0x1030840 */
 
 
 
-int egg1leg2_07(act_info* pActwk) { /* Line 3294, Address: 0x1030920 */
+int egg1leg2_07(sprite_status* pActwk) { /* Line 3294, Address: 0x1030920 */
   int ret = 1; /* Line 3295, Address: 0x1030930 */
 
   if (!(pActwk->actfree[2] & 2)) /* Line 3297, Address: 0x1030934 */
@@ -3342,8 +3342,8 @@ int egg1leg2_07(act_info* pActwk) { /* Line 3294, Address: 0x1030920 */
 
 
 
-void egg1leg3(act_info* pActwk) { /* Line 3345, Address: 0x1030a90 */
-  int(*tbl[7])(act_info*) = /* Line 3346, Address: 0x1030a9c */
+void egg1leg3(sprite_status* pActwk) { /* Line 3345, Address: 0x1030a90 */
+  int(*tbl[7])(sprite_status*) = /* Line 3346, Address: 0x1030a9c */
   {
     &egg1leg3_ini,
     &egg1leg3_01,
@@ -3360,7 +3360,7 @@ void egg1leg3(act_info* pActwk) { /* Line 3345, Address: 0x1030a90 */
 
 
 
-void leg3_set_not_grd(act_info* pActwk) { /* Line 3363, Address: 0x1030b30 */
+void leg3_set_not_grd(sprite_status* pActwk) { /* Line 3363, Address: 0x1030b30 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 3366, Address: 0x1030b3c */
@@ -3370,7 +3370,7 @@ void leg3_set_not_grd(act_info* pActwk) { /* Line 3363, Address: 0x1030b30 */
 
 
 
-int egg1leg3_ini(act_info* pActwk) { /* Line 3373, Address: 0x1030c10 */
+int egg1leg3_ini(sprite_status* pActwk) { /* Line 3373, Address: 0x1030c10 */
   pActwk->cddat = 0; /* Line 3374, Address: 0x1030c1c */
   pActwk->actflg = 4; /* Line 3375, Address: 0x1030c24 */
   pActwk->sprhsize = 32; /* Line 3376, Address: 0x1030c30 */
@@ -3391,7 +3391,7 @@ int egg1leg3_ini(act_info* pActwk) { /* Line 3373, Address: 0x1030c10 */
 
 
 
-void leg3_on_the_ground(act_info* pActwk) { /* Line 3394, Address: 0x1030cd0 */
+void leg3_on_the_ground(sprite_status* pActwk) { /* Line 3394, Address: 0x1030cd0 */
   short subact;
 
   pActwk->actfree[2] |= 16; /* Line 3397, Address: 0x1030cdc */
@@ -3410,7 +3410,7 @@ void leg3_on_the_ground(act_info* pActwk) { /* Line 3394, Address: 0x1030cd0 */
 
 
 
-int egg1leg3_01(act_info* pActwk) { /* Line 3413, Address: 0x1030e10 */
+int egg1leg3_01(sprite_status* pActwk) { /* Line 3413, Address: 0x1030e10 */
   ((int*)pActwk)[14] = ((int*)pActwk)[14] - ((int*)pActwk)[16]; /* Line 3414, Address: 0x1030e1c */
   ((int*)pActwk)[15] = ((int*)pActwk)[15] + ((int*)pActwk)[4]; /* Line 3415, Address: 0x1030e38 */
 
@@ -3464,7 +3464,7 @@ int egg1leg3_01(act_info* pActwk) { /* Line 3413, Address: 0x1030e10 */
 
 
 
-int egg1leg3_03(act_info* pActwk) { /* Line 3467, Address: 0x1030fb0 */
+int egg1leg3_03(sprite_status* pActwk) { /* Line 3467, Address: 0x1030fb0 */
   ((int*)pActwk)[14] = ((int*)pActwk)[14] + ((int*)pActwk)[16]; /* Line 3468, Address: 0x1030fbc */
   ((int*)pActwk)[15] = ((int*)pActwk)[15] - ((int*)pActwk)[4]; /* Line 3469, Address: 0x1030fd8 */
   if (((int*)pActwk)[15] <= 0) /* Line 3470, Address: 0x1030ff4 */
@@ -3484,7 +3484,7 @@ int egg1leg3_03(act_info* pActwk) { /* Line 3467, Address: 0x1030fb0 */
 
 
 
-int egg1leg3_02(act_info* pActwk) { /* Line 3487, Address: 0x1031060 */
+int egg1leg3_02(sprite_status* pActwk) { /* Line 3487, Address: 0x1031060 */
 
 
   if (!(pActwk->actfree[2] & 16)) /* Line 3490, Address: 0x103106c */
@@ -3515,7 +3515,7 @@ int egg1leg3_02(act_info* pActwk) { /* Line 3487, Address: 0x1031060 */
 
 
 
-int egg1leg3_04(act_info* pActwk) { /* Line 3518, Address: 0x10310e0 */
+int egg1leg3_04(sprite_status* pActwk) { /* Line 3518, Address: 0x10310e0 */
   leg3_set_not_grd(pActwk); /* Line 3519, Address: 0x10310ec */
   return 1; /* Line 3520, Address: 0x10310f8 */
 } /* Line 3521, Address: 0x10310fc */
@@ -3523,7 +3523,7 @@ int egg1leg3_04(act_info* pActwk) { /* Line 3518, Address: 0x10310e0 */
 
 
 
-int egg1leg3_05(act_info* pActwk) { /* Line 3526, Address: 0x1031110 */
+int egg1leg3_05(sprite_status* pActwk) { /* Line 3526, Address: 0x1031110 */
   short subact;
 
   subact = ((short*)pActwk)[25]; /* Line 3529, Address: 0x103111c */
@@ -3541,7 +3541,7 @@ int egg1leg3_05(act_info* pActwk) { /* Line 3526, Address: 0x1031110 */
 
 
 
-void leg3_set(act_info* pActwk) { /* Line 3544, Address: 0x10312e0 */
+void leg3_set(sprite_status* pActwk) { /* Line 3544, Address: 0x10312e0 */
   short subact;
   int xs, ys;
 
@@ -3582,7 +3582,7 @@ void leg3_set(act_info* pActwk) { /* Line 3544, Address: 0x10312e0 */
 
 
 
-int egg1leg3_06(act_info* pActwk) { /* Line 3585, Address: 0x1031580 */
+int egg1leg3_06(sprite_status* pActwk) { /* Line 3585, Address: 0x1031580 */
   int ret = 1; /* Line 3586, Address: 0x1031590 */
 
   if (!(pActwk->actfree[2] & 2)) /* Line 3588, Address: 0x1031594 */
@@ -3631,9 +3631,9 @@ int egg1leg3_06(act_info* pActwk) { /* Line 3585, Address: 0x1031580 */
 
 
 
-void bom_set(act_info* pActwk) { /* Line 3634, Address: 0x1031750 */
+void bom_set(sprite_status* pActwk) { /* Line 3634, Address: 0x1031750 */
   short temp;
-  act_info* subActwk;
+  sprite_status* subActwk;
 
 
 

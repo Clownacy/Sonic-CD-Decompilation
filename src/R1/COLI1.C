@@ -70,13 +70,13 @@ static unsigned char bCarry;
 
 
 
-short pcol(act_info* pActwk) { /* Line 73, Address: 0x101fc70 */
+short pcol(sprite_status* pActwk) { /* Line 73, Address: 0x101fc70 */
   short iXwork = pActwk->xposi.w.h, /* Line 74, Address: 0x101fc9c */
         iYwork = pActwk->yposi.w.h,
         iSprvs = pActwk->sprvsize - 3;
   short iXcollichk = 16; /* Line 77, Address: 0x101fcdc */
   short i, iRet, iColino;
-  act_info* pColliAct;
+  sprite_status* pColliAct;
 
   iXwork -= 8; /* Line 81, Address: 0x101fce8 */
   iYwork -= iSprvs; /* Line 82, Address: 0x101fcf4 */
@@ -128,7 +128,7 @@ short pcol(act_info* pActwk) { /* Line 73, Address: 0x101fc70 */
 
 
 
-short CollitblDataXchk(act_info* pActwk, act_info* pColliAct, short iXposi, short iYposi, short iD5) { /* Line 131, Address: 0x101fe30 */
+short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iYposi, short iD5) { /* Line 131, Address: 0x101fe30 */
   short iColiNo = pColliAct->colino; /* Line 132, Address: 0x101fe58 */
   short iColiwk;
   short iColiData;
@@ -179,7 +179,7 @@ short CollitblDataXchk(act_info* pActwk, act_info* pColliAct, short iXposi, shor
 
 
 
-short CollitblDataYchk(act_info* pActwk, act_info* pColliAct, short iXposi, short iYposi, short iColiNo, short iD5) { /* Line 182, Address: 0x1020020 */
+short CollitblDataYchk(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iYposi, short iColiNo, short iD5) { /* Line 182, Address: 0x1020020 */
   short iColiData;
   short iYwork;
 
@@ -231,7 +231,7 @@ short CollitblDataYchk(act_info* pActwk, act_info* pColliAct, short iXposi, shor
 
 
 
-short ColliHitChk(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 234, Address: 0x10201e0 */
+short ColliHitChk(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 234, Address: 0x10201e0 */
   unsigned char iColino = pColliAct->colino & 192; /* Line 235, Address: 0x1020200 */
 
   if (iColino == 0) /* Line 237, Address: 0x1020218 */
@@ -268,7 +268,7 @@ short ColliHitChk(act_info* pActwk, act_info* pColliAct, short iXposi, short iCh
 
 
 
-short pcolitem(act_info* pActwk, act_info* pColliAct) { /* Line 271, Address: 0x10202d0 */
+short pcolitem(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 271, Address: 0x10202d0 */
   short iD0;
 
   if ((pColliAct->colino & 63) != 6) /* Line 274, Address: 0x10202e4 */
@@ -319,7 +319,7 @@ short pcolitem(act_info* pActwk, act_info* pColliAct) { /* Line 271, Address: 0x
 
 
 
-short pcolnomal(act_info* pActwk, act_info* pColliAct) { /* Line 322, Address: 0x1020470 */
+short pcolnomal(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 322, Address: 0x1020470 */
   short iScoreCntwk;
   short iScoreData;
 
@@ -393,7 +393,7 @@ short pcolnomal(act_info* pActwk, act_info* pColliAct) { /* Line 322, Address: 0
 
 
 
-short pcolplay2(act_info* pActwk, act_info* pColliAct) { /* Line 396, Address: 0x1020790 */
+short pcolplay2(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 396, Address: 0x1020790 */
   pColliAct->cddat |= 128; /* Line 397, Address: 0x10207a0 */
   pcolplay(pActwk, pColliAct); /* Line 398, Address: 0x10207b0 */
 } /* Line 399, Address: 0x10207c0 */
@@ -411,7 +411,7 @@ short pcolplay2(act_info* pActwk, act_info* pColliAct) { /* Line 396, Address: 0
 
 
 
-short pcolplay(act_info* pActwk, act_info* pColliAct) { /* Line 414, Address: 0x10207d0 */
+short pcolplay(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 414, Address: 0x10207d0 */
   if (plpower_m == 0) /* Line 415, Address: 0x10207e0 */
     return pcole(pActwk, pColliAct); /* Line 416, Address: 0x10207f4 */
 
@@ -431,7 +431,7 @@ short pcolplay(act_info* pActwk, act_info* pColliAct) { /* Line 414, Address: 0x
 
 
 
-short pcole(act_info* pActwk, act_info* pColliAct) { /* Line 434, Address: 0x1020820 */
+short pcole(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 434, Address: 0x1020820 */
   if (((unsigned short*)pActwk)[26] != 0) /* Line 435, Address: 0x1020830 */
     return -1; /* Line 436, Address: 0x1020844 */
 
@@ -451,7 +451,7 @@ short pcole(act_info* pActwk, act_info* pColliAct) { /* Line 434, Address: 0x102
 
 
 
-void playdamagechk(act_info* pActwk, act_info* pColliAct) { /* Line 454, Address: 0x1020870 */
+void playdamagechk(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 454, Address: 0x1020870 */
 
 
   pActwk->actfree[0] = 0; /* Line 457, Address: 0x1020880 */
@@ -495,8 +495,8 @@ void playdamagechk(act_info* pActwk, act_info* pColliAct) { /* Line 454, Address
 
 
 
-short playdamageset(act_info* pActwk, act_info* pColliAct) { /* Line 498, Address: 0x10209b0 */
-  act_info* pFreeAct;
+short playdamageset(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 498, Address: 0x10209b0 */
+  sprite_status* pFreeAct;
   short iRet;
 
   if (plpower_b != 0) /* Line 502, Address: 0x10209c4 */
@@ -537,7 +537,7 @@ short playdamageset(act_info* pActwk, act_info* pColliAct) { /* Line 498, Addres
 
 
 
-short playdieset(act_info* pActwk) { /* Line 540, Address: 0x1020ad0 */
+short playdieset(sprite_status* pActwk) { /* Line 540, Address: 0x1020ad0 */
   if (editmode.w != 0) /* Line 541, Address: 0x1020adc */
     return -1; /* Line 542, Address: 0x1020af4 */
   plpower_m = 0; /* Line 543, Address: 0x1020b00 */
@@ -573,7 +573,7 @@ short playdieset(act_info* pActwk) { /* Line 540, Address: 0x1020ad0 */
 
 
 
-short pcolspecial(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 576, Address: 0x1020ba0 */
+short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 576, Address: 0x1020ba0 */
   char cColiNo = pColliAct->colino & 63; /* Line 577, Address: 0x1020bc0 */
 
   switch (cColiNo) /* Line 579, Address: 0x1020be0 */
@@ -616,7 +616,7 @@ short pcolspecial(act_info* pActwk, act_info* pColliAct, short iXposi, short iCh
 
 
 
-short eggman_chk(act_info* pActwk, act_info* pColliAct) { /* Line 619, Address: 0x1020d30 */
+short eggman_chk(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 619, Address: 0x1020d30 */
   if (bossstart != 1) return -1; /* Line 620, Address: 0x1020d40 */
   pcolnomal(pActwk, pColliAct); /* Line 621, Address: 0x1020d64 */
   if (pColliAct->colino == 0) pColliAct->colicnt += 3; /* Line 622, Address: 0x1020d74 */
@@ -643,7 +643,7 @@ short eggman_chk(act_info* pActwk, act_info* pColliAct) { /* Line 619, Address: 
 
 
 
-short yago(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 646, Address: 0x1020dd0 */
+short yago(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iChkPosi, short iD5) { /* Line 646, Address: 0x1020dd0 */
   iD5 -= iChkPosi; /* Line 647, Address: 0x1020dec */
   if (iD5 >= 8) /* Line 648, Address: 0x1020dfc */
     return pcolnomal(pActwk, pColliAct); /* Line 649, Address: 0x1020e14 */
@@ -682,7 +682,7 @@ short yago(act_info* pActwk, act_info* pColliAct, short iXposi, short iChkPosi, 
 
 
 
-short main_attack(act_info* pActwk, act_info* pColliAct) { /* Line 685, Address: 0x1020f80 */
+short main_attack(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 685, Address: 0x1020f80 */
   if (pActwk->mstno.b.h == 2) /* Line 686, Address: 0x1020f8c */
     ++pColliAct->colicnt; /* Line 687, Address: 0x1020fa8 */
   return 1; /* Line 688, Address: 0x1020fb8 */

@@ -3,7 +3,7 @@
 #include "ACTION.H"
 
 extern void sub_sync(short ReqNo);
-extern short playdieset(act_info* pActwk);
+extern short playdieset(sprite_status* pActwk);
 
 static unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
 static unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
@@ -292,7 +292,7 @@ unsigned char ringinittbl[3] = { 255, 255, 0 };
 
 
 
-static void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
+static void tensuu(sprite_status* pAct) { /* Line 295, Address: 0x10050b0 */
   if (!pAct->r_no0) ten_init(pAct); /* Line 296, Address: 0x10050bc */
   ten_move(pAct); /* Line 297, Address: 0x10050d8 */
   actionsub(pAct); /* Line 298, Address: 0x10050e4 */
@@ -301,7 +301,7 @@ static void tensuu(act_info* pAct) { /* Line 295, Address: 0x10050b0 */
 } /* Line 301, Address: 0x10050f0 */
 
 
-static void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
+static void ten_init(sprite_status* pAct) { /* Line 304, Address: 0x1005100 */
   pAct->r_no0 = 2; /* Line 305, Address: 0x1005108 */
   pAct->actflg = 4; /* Line 306, Address: 0x1005114 */
   pAct->patbase = tenpat; /* Line 307, Address: 0x1005120 */
@@ -312,7 +312,7 @@ static void ten_init(act_info* pAct) { /* Line 304, Address: 0x1005100 */
 } /* Line 312, Address: 0x100515c */
 
 
-static void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
+static void ten_move(sprite_status* pAct) { /* Line 315, Address: 0x1005170 */
   --pAct->actfree[0]; /* Line 316, Address: 0x100517c */
 
 
@@ -324,7 +324,7 @@ static void ten_move(act_info* pAct) { /* Line 315, Address: 0x1005170 */
 } /* Line 324, Address: 0x10051b8 */
 
 
-void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
+void score(sprite_status* pAct) { /* Line 327, Address: 0x10051d0 */
   if ((unsigned char)pAct->userflag.b.h & 128) { /* Line 328, Address: 0x10051dc */
     tensuu(pAct); /* Line 329, Address: 0x10051f8 */
     return; /* Line 330, Address: 0x1005204 */
@@ -335,7 +335,7 @@ void score(act_info* pAct) { /* Line 327, Address: 0x10051d0 */
 } /* Line 335, Address: 0x1005234 */
 
 
-static void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
+static void score_init(sprite_status* pAct) { /* Line 338, Address: 0x1005250 */
   pAct->r_no0 = 2; /* Line 339, Address: 0x1005258 */
   pAct->patbase = scorepat; /* Line 340, Address: 0x1005264 */
   pAct->sproffset = 32768; /* Line 341, Address: 0x1005274 */
@@ -370,7 +370,7 @@ static void score_init(act_info* pAct) { /* Line 338, Address: 0x1005250 */
 
 } /* Line 371, Address: 0x1005360 */
 
-static void score_move(act_info* pAct) { /* Line 373, Address: 0x1005370 */
+static void score_move(sprite_status* pAct) { /* Line 373, Address: 0x1005370 */
   if (!pAct->userflag.b.h) { /* Line 374, Address: 0x100537c */
     if (pAct->userflag.b.l) { /* Line 375, Address: 0x100538c */
       if (plring) { /* Line 376, Address: 0x100539c */

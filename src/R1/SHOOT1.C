@@ -21,7 +21,7 @@ unsigned short* shooterpositbl[3] = { shooterposi_0, shooterposi_1, shooterposi_
 extern spr_array* bariapat[];
 
 
-void eda(act_info* edawk) { /* Line 24, Address: 0x101cf50 */
+void eda(sprite_status* edawk) { /* Line 24, Address: 0x101cf50 */
   switch (edawk->r_no0) { /* Line 25, Address: 0x101cf5c */
     case 0:
       eda_init(edawk); /* Line 27, Address: 0x101cf84 */
@@ -37,7 +37,7 @@ void eda(act_info* edawk) { /* Line 24, Address: 0x101cf50 */
 } /* Line 37, Address: 0x101cfbc */
 
 
-void eda_init(act_info* edawk) { /* Line 40, Address: 0x101cfd0 */
+void eda_init(sprite_status* edawk) { /* Line 40, Address: 0x101cfd0 */
   edawk->r_no0 += 2; /* Line 41, Address: 0x101cfdc */
   edawk->actflg |= 4; /* Line 42, Address: 0x101cfec */
   edawk->patbase = edapat; /* Line 43, Address: 0x101cffc */
@@ -50,7 +50,7 @@ void eda_init(act_info* edawk) { /* Line 40, Address: 0x101cfd0 */
 } /* Line 50, Address: 0x101d040 */
 
 
-void eda_move(act_info* edawk) { /* Line 53, Address: 0x101d050 */
+void eda_move(sprite_status* edawk) { /* Line 53, Address: 0x101d050 */
   unsigned char action_no;
   action_no = edawk->actno; /* Line 55, Address: 0x101d05c */
 } /* Line 56, Address: 0x101d068 */
@@ -61,7 +61,7 @@ void eda_move(act_info* edawk) { /* Line 53, Address: 0x101d050 */
 
 
 
-void kage(act_info* kagewk) { /* Line 64, Address: 0x101d080 */
+void kage(sprite_status* kagewk) { /* Line 64, Address: 0x101d080 */
   switch (kagewk->r_no0) { /* Line 65, Address: 0x101d08c */
     case 0:
       kage_init(kagewk); /* Line 67, Address: 0x101d0b4 */
@@ -77,7 +77,7 @@ void kage(act_info* kagewk) { /* Line 64, Address: 0x101d080 */
 } /* Line 77, Address: 0x101d0ec */
 
 
-void kage_init(act_info* kagewk) { /* Line 80, Address: 0x101d100 */
+void kage_init(sprite_status* kagewk) { /* Line 80, Address: 0x101d100 */
   kagewk->r_no0 += 2; /* Line 81, Address: 0x101d10c */
   kagewk->actflg |= 4; /* Line 82, Address: 0x101d11c */
   kagewk->sprpri = 6; /* Line 83, Address: 0x101d12c */
@@ -91,7 +91,7 @@ void kage_init(act_info* kagewk) { /* Line 80, Address: 0x101d100 */
 } /* Line 91, Address: 0x101d17c */
 
 
-void kage_move(act_info* kagewk) { /* Line 94, Address: 0x101d190 */
+void kage_move(sprite_status* kagewk) { /* Line 94, Address: 0x101d190 */
   unsigned char action_no;
   action_no = kagewk->actno; /* Line 96, Address: 0x101d19c */
 } /* Line 97, Address: 0x101d1a8 */
@@ -101,7 +101,7 @@ void kage_move(act_info* kagewk) { /* Line 94, Address: 0x101d190 */
 
 
 
-void ana(act_info* anawk) { /* Line 104, Address: 0x101d1c0 */
+void ana(sprite_status* anawk) { /* Line 104, Address: 0x101d1c0 */
   switch (anawk->r_no0) { /* Line 105, Address: 0x101d1cc */
     case 0:
       kage1_init(anawk); /* Line 107, Address: 0x101d200 */
@@ -119,7 +119,7 @@ void ana(act_info* anawk) { /* Line 104, Address: 0x101d1c0 */
 } /* Line 119, Address: 0x101d240 */
 
 
-void kage1_init(act_info* anawk) { /* Line 122, Address: 0x101d250 */
+void kage1_init(sprite_status* anawk) { /* Line 122, Address: 0x101d250 */
   anawk->r_no0 += 2; /* Line 123, Address: 0x101d25c */
   anawk->actflg |= 4; /* Line 124, Address: 0x101d26c */
 
@@ -137,7 +137,7 @@ void kage1_init(act_info* anawk) { /* Line 122, Address: 0x101d250 */
 } /* Line 137, Address: 0x101d304 */
 
 
-void kage1_move0(act_info* anawk) { /* Line 140, Address: 0x101d320 */
+void kage1_move0(sprite_status* anawk) { /* Line 140, Address: 0x101d320 */
   short cal_position;
 
   if (actwk[0].actfree[2] == 0) return; /* Line 143, Address: 0x101d330 */
@@ -152,12 +152,12 @@ void kage1_move0(act_info* anawk) { /* Line 140, Address: 0x101d320 */
 } /* Line 152, Address: 0x101d440 */
 
 
-void kage1_move1(act_info* anawk) { /* Line 155, Address: 0x101d460 */
+void kage1_move1(sprite_status* anawk) { /* Line 155, Address: 0x101d460 */
   actionsub(anawk); /* Line 156, Address: 0x101d46c */
 } /* Line 157, Address: 0x101d478 */
 
 
-unsigned char kage1_chk(act_info* anawk) { /* Line 160, Address: 0x101d490 */
+unsigned char kage1_chk(sprite_status* anawk) { /* Line 160, Address: 0x101d490 */
   short flag_no;
   unsigned char zero_flag;
 
@@ -168,7 +168,7 @@ unsigned char kage1_chk(act_info* anawk) { /* Line 160, Address: 0x101d490 */
 } /* Line 168, Address: 0x101d530 */
 
 
-void kage1_clr(act_info* anawk) { /* Line 171, Address: 0x101d550 */
+void kage1_clr(sprite_status* anawk) { /* Line 171, Address: 0x101d550 */
   short flag_no;
 
   flag_no = time_flag + anawk->cdsts * 3; /* Line 174, Address: 0x101d55c */
@@ -259,7 +259,7 @@ void kage1_clr(act_info* anawk) { /* Line 171, Address: 0x101d550 */
 
 
 
-void shooter(act_info* shootwk) { /* Line 262, Address: 0x101d5d0 */
+void shooter(sprite_status* shootwk) { /* Line 262, Address: 0x101d5d0 */
   short flag_no, addition;
 
   if (!(time_flag & 128)) goto label1; /* Line 265, Address: 0x101d5e4 */
@@ -292,7 +292,7 @@ label1:
 } /* Line 292, Address: 0x101d7a8 */
 
 
-void shooterinit(act_info* shootwk) { /* Line 295, Address: 0x101d7c0 */
+void shooterinit(sprite_status* shootwk) { /* Line 295, Address: 0x101d7c0 */
   unsigned short** move;
   unsigned short* movetbl;
 
@@ -314,7 +314,7 @@ void shooterinit(act_info* shootwk) { /* Line 295, Address: 0x101d7c0 */
 } /* Line 314, Address: 0x101d8a4 */
 
 
-void shootermove(act_info* shootwk) { /* Line 317, Address: 0x101d8c0 */
+void shootermove(sprite_status* shootwk) { /* Line 317, Address: 0x101d8c0 */
   short cal_position;
 
   cal_position = actwk[0].xposi.w.h - shootwk->xposi.w.h + 16; /* Line 320, Address: 0x101d8d0 */
@@ -343,14 +343,14 @@ void shootermove(act_info* shootwk) { /* Line 317, Address: 0x101d8c0 */
 } /* Line 343, Address: 0x101dad0 */
 
 
-void shootermove2(act_info* shootwk) { /* Line 346, Address: 0x101daf0 */
+void shootermove2(sprite_status* shootwk) { /* Line 346, Address: 0x101daf0 */
   shooterspdset(shootwk); /* Line 347, Address: 0x101dafc */
   shootwk->r_no0 += 2; /* Line 348, Address: 0x101db08 */
   soundset(145); /* Line 349, Address: 0x101db18 */
 } /* Line 350, Address: 0x101db24 */
 
 
-void shootermove3(act_info* shootwk) { /* Line 353, Address: 0x101db40 */
+void shootermove3(sprite_status* shootwk) { /* Line 353, Address: 0x101db40 */
   unsigned char move_counter;
   unsigned short** move;
   unsigned short* movetbl;
@@ -381,7 +381,7 @@ void shootermove3(act_info* shootwk) { /* Line 353, Address: 0x101db40 */
 } /* Line 381, Address: 0x101dce0 */
 
 
-void shooterspdset(act_info* shootwk) { /* Line 384, Address: 0x101dd00 */
+void shooterspdset(sprite_status* shootwk) { /* Line 384, Address: 0x101dd00 */
   short ms_work0, ms_work1, cal_position_x, cal_position_y;
   int cal_long_x, cal_long_y;
 
@@ -437,7 +437,7 @@ void shooterspdset(act_info* shootwk) { /* Line 384, Address: 0x101dd00 */
 } /* Line 437, Address: 0x101dfec */
 
 
-void mspd_set(act_info* shootwk) { /* Line 440, Address: 0x101e010 */
+void mspd_set(sprite_status* shootwk) { /* Line 440, Address: 0x101e010 */
   short mspdtbl[4] = { 4096, 3072, 3072, 2048 }; /* Line 441, Address: 0x101e01c */
   short cal_mspeed;
 

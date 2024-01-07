@@ -1,7 +1,7 @@
 #include "EQU.H"
 #include "ACTION.H"
 
-extern void(*act_tbl[1])(act_info*);
+extern void(*act_tbl[1])(sprite_status*);
 extern void(*sMemSet)(void*, unsigned char, int);
 extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 extern bmp_info SprBmp[700];
@@ -38,7 +38,7 @@ extern bmp_info SprBmp[700];
 
 
 void action() { /* Line 40, Address: 0x1001260 */
-  act_info* pActwk;
+  sprite_status* pActwk;
   int i;
 
   pActwk = &actwk[0]; /* Line 44, Address: 0x1001270 */
@@ -62,7 +62,7 @@ void action() { /* Line 40, Address: 0x1001260 */
 
 
 
-void speedset(act_info* pActwk) { /* Line 65, Address: 0x10012f0 */
+void speedset(sprite_status* pActwk) { /* Line 65, Address: 0x10012f0 */
   int_union xpos, ypos;
   short_union spd;
 
@@ -94,7 +94,7 @@ label3:
 
 
 
-void speedset2(act_info* pActwk) { /* Line 97, Address: 0x1001450 */
+void speedset2(sprite_status* pActwk) { /* Line 97, Address: 0x1001450 */
   int_union xpos, ypos;
   int spd;
   int actwkno;
@@ -132,7 +132,7 @@ void speedset2(act_info* pActwk) { /* Line 97, Address: 0x1001450 */
 
 
 
-void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
+void actionsub(sprite_status* pActwk) { /* Line 135, Address: 0x10015a0 */
   int i;
   unsigned short flag;
   short hsiz, vsiz;
@@ -182,7 +182,7 @@ void actionsub(act_info* pActwk) { /* Line 135, Address: 0x10015a0 */
 
 
 
-void frameout(act_info* pActwk) { /* Line 185, Address: 0x1001820 */
+void frameout(sprite_status* pActwk) { /* Line 185, Address: 0x1001820 */
 
   sMemSet(pActwk, 0, sizeof(*pActwk)); /* Line 187, Address: 0x100182c */
 } /* Line 188, Address: 0x1001848 */
@@ -196,7 +196,7 @@ void frameout(act_info* pActwk) { /* Line 185, Address: 0x1001820 */
 
 
 void patset() { /* Line 198, Address: 0x1001860 */
-  act_info* pActwk;
+  sprite_status* pActwk;
   unsigned char flag;
   short i;
   short act;
@@ -289,7 +289,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
 
 
 
-void spatset(short xposi, short yposi, act_info* pActwk, sprite_data* sprdat, short cnt) { /* Line 292, Address: 0x1001c20 */
+void spatset(short xposi, short yposi, sprite_status* pActwk, sprite_data* sprdat, short cnt) { /* Line 292, Address: 0x1001c20 */
   unsigned char flag;
   short x, y;
   unsigned short reverse;
@@ -345,7 +345,7 @@ void spatset(short xposi, short yposi, act_info* pActwk, sprite_data* sprdat, sh
 
 
 
-int scronchk(act_info* pActwk) { /* Line 348, Address: 0x10020e0 */
+int scronchk(sprite_status* pActwk) { /* Line 348, Address: 0x10020e0 */
   short xposi, yposi;
 
   xposi = pActwk->xposi.w.h; /* Line 351, Address: 0x10020f0 */
@@ -363,7 +363,7 @@ int scronchk(act_info* pActwk) { /* Line 348, Address: 0x10020e0 */
 
 
 
-int scronchk2(act_info* pActwk) { /* Line 366, Address: 0x10021b0 */
+int scronchk2(sprite_status* pActwk) { /* Line 366, Address: 0x10021b0 */
   short xposi, yposi;
   short hsize;
 

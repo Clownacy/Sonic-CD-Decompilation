@@ -47,7 +47,7 @@ extern unsigned char mapwka[8][64];
 
 
 
-short fcol(act_info* pActwk) { /* Line 50, Address: 0x1001350 */
+short fcol(sprite_status* pActwk) { /* Line 50, Address: 0x1001350 */
   short iColliVal;
   unsigned char byDirec;
   char cDirecWork;
@@ -113,7 +113,7 @@ short fcol(act_info* pActwk) { /* Line 50, Address: 0x1001350 */
 
 
 
-short fcol_d(act_info* pActwk) { /* Line 116, Address: 0x1001540 */
+short fcol_d(sprite_status* pActwk) { /* Line 116, Address: 0x1001540 */
   short iXposi, iYposi;
   short iScd, iScd0, iScd1;
   char* cpDirStk;
@@ -196,7 +196,7 @@ short fcol_d(act_info* pActwk) { /* Line 116, Address: 0x1001540 */
 
 
 
-short fcol_r(act_info* pActwk) { /* Line 199, Address: 0x1001860 */
+short fcol_r(sprite_status* pActwk) { /* Line 199, Address: 0x1001860 */
   short iXposi, iYposi;
   short scd0, scd1;
   char* cpDirStk;
@@ -254,7 +254,7 @@ short fcol_r(act_info* pActwk) { /* Line 199, Address: 0x1001860 */
 
 
 
-short fcol_u(act_info* pActwk) { /* Line 257, Address: 0x1001b00 */
+short fcol_u(sprite_status* pActwk) { /* Line 257, Address: 0x1001b00 */
   short iXposi, iYposi;
   short scd0, scd1;
   char* cpDirStk;
@@ -310,7 +310,7 @@ short fcol_u(act_info* pActwk) { /* Line 257, Address: 0x1001b00 */
 
 
 
-short fcol_l(act_info* pActwk) { /* Line 313, Address: 0x1001da0 */
+short fcol_l(sprite_status* pActwk) { /* Line 313, Address: 0x1001da0 */
   short iXposi, iYposi;
   short scd0, scd1;
   char* cpDirStk;
@@ -362,7 +362,7 @@ short fcol_l(act_info* pActwk) { /* Line 313, Address: 0x1001da0 */
 
 
 
-short scdend(act_info* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 365, Address: 0x1002040 */
+short scdend(sprite_status* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 365, Address: 0x1002040 */
   short iScd;
 
   iYposi += iOffset; /* Line 368, Address: 0x1002068 */
@@ -392,7 +392,7 @@ short scdend(act_info* pActwk, short iXposi, short iYposi, short iOffset, short 
 
 
 
-short scdchk(act_info* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 395, Address: 0x10020e0 */
+short scdchk(sprite_status* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 395, Address: 0x10020e0 */
   short iBlkNo;
   short iBlkOffset;
   short iXwork;
@@ -495,7 +495,7 @@ label1:
 
 
 
-short scdchk2(act_info* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 498, Address: 0x1002520 */
+short scdchk2(sprite_status* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirStk) { /* Line 498, Address: 0x1002520 */
   short iBlkNo;
   short iBlkOffset;
   short iScd;
@@ -580,7 +580,7 @@ label1:
 
 
 
-short scdend_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 583, Address: 0x10028f0 */
+short scdend_r(sprite_status* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 583, Address: 0x10028f0 */
   short iScd;
 
   iXposi += iOffset; /* Line 586, Address: 0x1002918 */
@@ -611,7 +611,7 @@ short scdend_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, shor
 
 
 
-short scdchk_r(act_info* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 614, Address: 0x1002990 */
+short scdchk_r(sprite_status* pActwk, short iXposi, short iYposi, short iOffset, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 614, Address: 0x1002990 */
   short iBlkNo;
   short iBlkOffset;
   short iXwork;
@@ -700,7 +700,7 @@ label1:
 
 
 
-short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 703, Address: 0x1002da0 */
+short scdchk2_r(sprite_status* pActwk, short iXposi, short iYposi, short iBlkMsk, short iRideon, char* cpDirstk) { /* Line 703, Address: 0x1002da0 */
   short iBlkNo;
   short iBlkOffset;
   short iXwork;
@@ -787,7 +787,7 @@ short scdchk2_r(act_info* pActwk, short iXposi, short iYposi, short iBlkMsk, sho
 
 
 
-short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Address: 0x1003160 */
+short scramapad(sprite_status* pActwk, short iXposi, short iYposi) { /* Line 790, Address: 0x1003160 */
   char cBlkNo;
   short iBlkNo;
   short iMapNo;
@@ -897,7 +897,7 @@ short scramapad(act_info* pActwk, short iXposi, short iYposi) { /* Line 790, Add
 
 
 
-short dirchk(act_info* pActwk, short scd0, short scd1) { /* Line 900, Address: 0x10036a0 */
+short dirchk(sprite_status* pActwk, short scd0, short scd1) { /* Line 900, Address: 0x10036a0 */
   unsigned char cDirectWk;
 
   cDirectWk = dirstk[2]; /* Line 903, Address: 0x10036b4 */
@@ -959,7 +959,7 @@ short scdcnv() {
 
 
 
-short st_elseDataChk(short iBlkNo, act_info* pActwk) { /* Line 962, Address: 0x1003760 */
+short st_elseDataChk(short iBlkNo, sprite_status* pActwk) { /* Line 962, Address: 0x1003760 */
   if (!(pActwk->actflg & 64)) /* Line 963, Address: 0x100376c */
     return iBlkNo; /* Line 964, Address: 0x1003784 */
   if (++iBlkNo == 41) /* Line 965, Address: 0x1003790 */
@@ -981,7 +981,7 @@ short st_elseDataChk(short iBlkNo, act_info* pActwk) { /* Line 962, Address: 0x1
 
 
 
-short st_wackyDataChk(short iBlkNo, act_info* pActwk) { /* Line 984, Address: 0x10037e0 */
+short st_wackyDataChk(short iBlkNo, sprite_status* pActwk) { /* Line 984, Address: 0x10037e0 */
   if (pActwk->actflg & 64) { /* Line 985, Address: 0x10037ec */
 
 
@@ -1025,7 +1025,7 @@ short st_wackyDataChk(short iBlkNo, act_info* pActwk) { /* Line 984, Address: 0x
 
 
 
-short st_starDataChk(short iBlkNo, act_info* pActwk) { /* Line 1028, Address: 0x10038d0 */
+short st_starDataChk(short iBlkNo, sprite_status* pActwk) { /* Line 1028, Address: 0x10038d0 */
 
   pActwk->sproffset |= 32768; /* Line 1030, Address: 0x10038dc */
   if (iBlkNo == 4 || iBlkNo == 6) { /* Line 1031, Address: 0x10038ec */
@@ -1067,7 +1067,7 @@ short st_starDataChk(short iBlkNo, act_info* pActwk) { /* Line 1028, Address: 0x
 
 
 
-short st_metalDataChk(short iBlkNo, act_info* pActwk) { /* Line 1070, Address: 0x1003a00 */
+short st_metalDataChk(short iBlkNo, sprite_status* pActwk) { /* Line 1070, Address: 0x1003a00 */
 
   if (pActwk->actno >= 3) /* Line 1072, Address: 0x1003a0c */
     return iBlkNo; /* Line 1073, Address: 0x1003a24 */

@@ -74,8 +74,8 @@ spr_array* patd[];
 
 
 
-void kuzureru_tikei(act_info* pActwk) { /* Line 77, Address: 0x101f240 */
-  void(*act_tbl[4])(act_info*) = /* Line 78, Address: 0x101f24c */
+void kuzureru_tikei(sprite_status* pActwk) { /* Line 77, Address: 0x101f240 */
+  void(*act_tbl[4])(sprite_status*) = /* Line 78, Address: 0x101f24c */
   {
     &acta_init,
     &acta_check,
@@ -93,7 +93,7 @@ void kuzureru_tikei(act_info* pActwk) { /* Line 77, Address: 0x101f240 */
 
 
 
-void acta_init(act_info* pActwk) { /* Line 96, Address: 0x101f300 */
+void acta_init(sprite_status* pActwk) { /* Line 96, Address: 0x101f300 */
   spr_array** pPB_kuzure;
   short_union id_no;
   unsigned char** pTbltbl;
@@ -144,8 +144,8 @@ void acta_init(act_info* pActwk) { /* Line 96, Address: 0x101f300 */
 
 
 
-void acta_check(act_info* pActwk) { /* Line 147, Address: 0x101f4e0 */
-  act_info* pPlayerwk;
+void acta_check(sprite_status* pActwk) { /* Line 147, Address: 0x101f4e0 */
+  sprite_status* pPlayerwk;
 
   pPlayerwk = &actwk[0]; /* Line 150, Address: 0x101f4f0 */
   if (ridechk(pActwk, pPlayerwk)) /* Line 151, Address: 0x101f4f8 */
@@ -154,7 +154,7 @@ void acta_check(act_info* pActwk) { /* Line 147, Address: 0x101f4e0 */
     soundset(163); /* Line 154, Address: 0x101f520 */
     pActwk->r_no0 += 2; /* Line 155, Address: 0x101f52c */
     if (pActwk->userflag.b.h < 0) actb_init_b(pActwk); /* Line 156, Address: 0x101f53c */
-    else actb_init_b(pActwk); /* Line 157, Address: 0x101f568 */
+    else actb_init_a(pActwk); /* Line 157, Address: 0x101f568 */
   }
 } /* Line 159, Address: 0x101f574 */
 
@@ -163,8 +163,8 @@ void acta_check(act_info* pActwk) { /* Line 147, Address: 0x101f4e0 */
 
 
 
-void actb_wait(act_info* pActwk) { /* Line 166, Address: 0x101f590 */
-  act_info* pPlayerwk;
+void actb_wait(sprite_status* pActwk) { /* Line 166, Address: 0x101f590 */
+  sprite_status* pPlayerwk;
 
   --((short*)pActwk)[23]; /* Line 169, Address: 0x101f5a0 */
   if (((short*)pActwk)[23] == 0) /* Line 170, Address: 0x101f5b0 */
@@ -189,8 +189,8 @@ void actb_wait(act_info* pActwk) { /* Line 166, Address: 0x101f590 */
 
 
 
-void actb_down(act_info* pActwk) { /* Line 192, Address: 0x101f650 */
-  act_info* pPlayerwk;
+void actb_down(sprite_status* pActwk) { /* Line 192, Address: 0x101f650 */
+  sprite_status* pPlayerwk;
   short yposi;
 
   pActwk->yposi.l += ((int*)pActwk)[12]; /* Line 196, Address: 0x101f664 */
@@ -208,9 +208,9 @@ void actb_down(act_info* pActwk) { /* Line 192, Address: 0x101f650 */
 
 
 
-void actb_init_a(act_info* pActwk) { /* Line 211, Address: 0x101f6f0 */
-  act_info* pActwk_w;
-  act_info* pPlayerwk;
+void actb_init_a(sprite_status* pActwk) { /* Line 211, Address: 0x101f6f0 */
+  sprite_status* pActwk_w;
+  sprite_status* pPlayerwk;
   unsigned char** pTbltbl;
   unsigned char* pTbla;
   char patno;
@@ -311,9 +311,9 @@ void actb_init_a(act_info* pActwk) { /* Line 211, Address: 0x101f6f0 */
 
 
 
-void actb_init_b(act_info* pActwk) { /* Line 314, Address: 0x101faa0 */
-  act_info* pActwk_w;
-  act_info* pPlayerwk;
+void actb_init_b(sprite_status* pActwk) { /* Line 314, Address: 0x101faa0 */
+  sprite_status* pActwk_w;
+  sprite_status* pPlayerwk;
   unsigned char** pTbltbl;
   unsigned char* pTblb;
   char userflag;

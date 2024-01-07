@@ -5,7 +5,7 @@
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 
-void(*block_tbl[7])(act_info*) =
+void(*block_tbl[7])(sprite_status*) =
 {
   &block_init,
   &block_move,
@@ -51,7 +51,7 @@ spr_array block5 =
 };
 spr_array* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
 
-void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
+void block(sprite_status* pActwk) { /* Line 54, Address: 0x10150b0 */
   short iD0, iD1;
 
   block_tbl[pActwk->r_no0 / 2](pActwk); /* Line 57, Address: 0x10150c4 */
@@ -73,7 +73,7 @@ void block(act_info* pActwk) { /* Line 54, Address: 0x10150b0 */
 
 
 
-void block_init(act_info* pActwk) { /* Line 76, Address: 0x10151b0 */
+void block_init(sprite_status* pActwk) { /* Line 76, Address: 0x10151b0 */
   pActwk->r_no0 += 2; /* Line 77, Address: 0x10151bc */
   pActwk->actflg |= 4; /* Line 78, Address: 0x10151cc */
   pActwk->patbase = blockpat; /* Line 79, Address: 0x10151dc */
@@ -97,7 +97,7 @@ void block_init(act_info* pActwk) { /* Line 76, Address: 0x10151b0 */
 
 
 
-void block_move(act_info* pActwk) { /* Line 100, Address: 0x1015250 */
+void block_move(sprite_status* pActwk) { /* Line 100, Address: 0x1015250 */
   block_ride(pActwk); /* Line 101, Address: 0x101525c */
   if (time_flag != 0) /* Line 102, Address: 0x1015268 */
     if (time_flag == 2) /* Line 103, Address: 0x101527c */
@@ -132,7 +132,7 @@ label1:
 
 
 
-void block_move2(act_info* pActwk) { /* Line 135, Address: 0x1015330 */
+void block_move2(sprite_status* pActwk) { /* Line 135, Address: 0x1015330 */
   short iD0;
 
   block_ride(pActwk); /* Line 138, Address: 0x1015340 */
@@ -158,7 +158,7 @@ void block_move2(act_info* pActwk) { /* Line 135, Address: 0x1015330 */
 
 
 
-void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
+void block_move3(sprite_status* pActwk) { /* Line 161, Address: 0x10153d0 */
   block_ride(pActwk); /* Line 162, Address: 0x10153dc */
   if (!(pActwk->cddat & 8)) /* Line 163, Address: 0x10153e8 */
   {
@@ -180,7 +180,7 @@ void block_move3(act_info* pActwk) { /* Line 161, Address: 0x10153d0 */
 
 
 
-void block_move4(act_info* pActwk) { /* Line 183, Address: 0x1015450 */
+void block_move4(sprite_status* pActwk) { /* Line 183, Address: 0x1015450 */
   pActwk->mstno.b.h = 0; /* Line 184, Address: 0x101545c */
   block_ride(pActwk); /* Line 185, Address: 0x1015464 */
   if (!(pActwk->cddat & 8)) /* Line 186, Address: 0x1015470 */
@@ -204,7 +204,7 @@ void block_move4(act_info* pActwk) { /* Line 183, Address: 0x1015450 */
 
 
 
-void block_move5(act_info* pActwk) { /* Line 207, Address: 0x10154e0 */
+void block_move5(sprite_status* pActwk) { /* Line 207, Address: 0x10154e0 */
   block_ride(pActwk); /* Line 208, Address: 0x10154ec */
   patchg(pActwk, blockchg); /* Line 209, Address: 0x10154f8 */
   actionsub(pActwk); /* Line 210, Address: 0x101550c */
@@ -220,7 +220,7 @@ void block_move5(act_info* pActwk) { /* Line 207, Address: 0x10154e0 */
 
 
 
-void block_move6(act_info* pActwk) { /* Line 223, Address: 0x1015530 */
+void block_move6(sprite_status* pActwk) { /* Line 223, Address: 0x1015530 */
   pActwk->r_no0 = 2; /* Line 224, Address: 0x1015538 */
 } /* Line 225, Address: 0x1015544 */
 
@@ -234,7 +234,7 @@ void block_move6(act_info* pActwk) { /* Line 223, Address: 0x1015530 */
 
 
 
-void block_ride(act_info* pActwk) { /* Line 237, Address: 0x1015550 */
+void block_ride(sprite_status* pActwk) { /* Line 237, Address: 0x1015550 */
   ride_on_chk_b(pActwk, actwk); /* Line 238, Address: 0x101555c */
   ride_on_chk_b(pActwk, actwk); /* Line 239, Address: 0x1015570 */
 } /* Line 240, Address: 0x1015584 */
@@ -250,6 +250,6 @@ void block_ride(act_info* pActwk) { /* Line 237, Address: 0x1015550 */
 
 
 
-void ride_on_chk_b(act_info* pActwk, act_info* pPlaywk) { /* Line 253, Address: 0x10155a0 */
+void ride_on_chk_b(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 253, Address: 0x10155a0 */
   ridechk(pActwk, pPlaywk); /* Line 254, Address: 0x10155b0 */
 } /* Line 255, Address: 0x10155c0 */

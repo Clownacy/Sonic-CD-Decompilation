@@ -1,5 +1,5 @@
-void dai_k(act_info* pActwk);
-void dai_k_init(act_info* pActwk);
-void dai_k_move(act_info* pActwk);
-void k_move(act_info* pActwk, act_info* pSonicwk);
-void jumpchk_d(act_info* pActwk, act_info* pSonicwk);
+void dai_k(sprite_status* pActwk);
+void dai_k_init(sprite_status* pActwk);
+void dai_k_move(sprite_status* pActwk);
+void k_move(sprite_status* pActwk, sprite_status* pSonicwk);
+void jumpchk_d(sprite_status* pActwk, sprite_status* pSonicwk);

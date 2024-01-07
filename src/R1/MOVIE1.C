@@ -149,8 +149,8 @@ char tbl0[37] =
 
 
 
-void movie1(act_info* pActwk) { /* Line 152, Address: 0x1029530 */
-  void(*tbl_m[5])(act_info*) = /* Line 153, Address: 0x102953c */
+void movie1(sprite_status* pActwk) { /* Line 152, Address: 0x1029530 */
+  void(*tbl_m[5])(sprite_status*) = /* Line 153, Address: 0x102953c */
   {
     &mm_init,
     &mm_wait,
@@ -176,15 +176,15 @@ void movie1(act_info* pActwk) { /* Line 152, Address: 0x1029530 */
 
 
 
-void die(act_info* pActwk) { /* Line 179, Address: 0x1029620 */
+void die(sprite_status* pActwk) { /* Line 179, Address: 0x1029620 */
   frameout(pActwk); /* Line 180, Address: 0x102962c */
 } /* Line 181, Address: 0x1029638 */
 
 
 
 
-void mm_init(act_info* pActwk) { /* Line 186, Address: 0x1029650 */
-  act_info* subactwk;
+void mm_init(sprite_status* pActwk) { /* Line 186, Address: 0x1029650 */
+  sprite_status* subactwk;
 
   if (projector_flag) /* Line 189, Address: 0x102965c */
   {
@@ -254,7 +254,7 @@ void mm_init(act_info* pActwk) { /* Line 186, Address: 0x1029650 */
 
 
 
-void mm_wait(act_info* pActwk) { /* Line 257, Address: 0x1029a70 */
+void mm_wait(sprite_status* pActwk) { /* Line 257, Address: 0x1029a70 */
   if (pActwk->colicnt) /* Line 258, Address: 0x1029a7c */
   {
     pActwk->colino = 0; /* Line 260, Address: 0x1029a8c */
@@ -266,7 +266,7 @@ void mm_wait(act_info* pActwk) { /* Line 257, Address: 0x1029a70 */
 
 
 
-void mm_die(act_info* pActwk) { /* Line 269, Address: 0x1029ad0 */
+void mm_die(sprite_status* pActwk) { /* Line 269, Address: 0x1029ad0 */
   pActwk->r_no0 += 2; /* Line 270, Address: 0x1029adc */
   pActwk->patno = 1; /* Line 271, Address: 0x1029aec */
   pActwk->actfree[21] = 255; /* Line 272, Address: 0x1029af8 */
@@ -276,11 +276,11 @@ void mm_die(act_info* pActwk) { /* Line 269, Address: 0x1029ad0 */
 
 
 
-void m_baku(act_info* pActwk) { /* Line 279, Address: 0x1029b50 */
+void m_baku(sprite_status* pActwk) { /* Line 279, Address: 0x1029b50 */
   char* temp;
   unsigned char timeb;
   char xx, yy;
-  act_info* subactwk;
+  sprite_status* subactwk;
 
   temp = ((char**)pActwk)[48]; /* Line 285, Address: 0x1029b6c */
   if (*temp >= 0) /* Line 286, Address: 0x1029b74 */
@@ -316,7 +316,7 @@ void m_baku(act_info* pActwk) { /* Line 279, Address: 0x1029b50 */
 
 
 
-void mm1wait(act_info* pActwk) { /* Line 319, Address: 0x1029cd0 */
+void mm1wait(sprite_status* pActwk) { /* Line 319, Address: 0x1029cd0 */
   --((unsigned short*)pActwk)[23]; /* Line 320, Address: 0x1029cdc */
   if (!((unsigned short*)pActwk)[23]) /* Line 321, Address: 0x1029cec */
   {
@@ -327,7 +327,7 @@ void mm1wait(act_info* pActwk) { /* Line 319, Address: 0x1029cd0 */
 
 
 
-void sub(act_info* pActwk) { /* Line 330, Address: 0x1029d30 */
+void sub(sprite_status* pActwk) { /* Line 330, Address: 0x1029d30 */
   short subact;
 
   subact = ((short*)pActwk)[33]; /* Line 333, Address: 0x1029d40 */
@@ -351,7 +351,7 @@ void sub(act_info* pActwk) { /* Line 330, Address: 0x1029d30 */
 
 
 
-void s_init(act_info* pActwk) { /* Line 354, Address: 0x1029e20 */
+void s_init(sprite_status* pActwk) { /* Line 354, Address: 0x1029e20 */
   pActwk->r_no0 += 2; /* Line 355, Address: 0x1029e2c */
   pActwk->actflg |= 4; /* Line 356, Address: 0x1029e3c */
   pActwk->sprpri = 4; /* Line 357, Address: 0x1029e4c */
@@ -383,7 +383,7 @@ void s_init(act_info* pActwk) { /* Line 354, Address: 0x1029e20 */
 
 
 
-void s_move(act_info* pActwk) { /* Line 386, Address: 0x1029f30 */
+void s_move(sprite_status* pActwk) { /* Line 386, Address: 0x1029f30 */
 
   patchg(pActwk, movie1_pchg); /* Line 388, Address: 0x1029f3c */
   actionsub(pActwk); /* Line 389, Address: 0x1029f50 */

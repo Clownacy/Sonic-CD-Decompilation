@@ -137,7 +137,7 @@ char springchg0[12] = {
 char* springchg[1] = { springchg0 };
 char komachg0[4] = { 8, 0, 1, -1 };
 char* komachg[1] = { komachg0 };
-void(*sjump_move_tbl[13])(act_info*) = {
+void(*sjump_move_tbl[13])(sprite_status*) = {
   &sjumpinit,
   &sjumpmove,
   &sjumpmove2,
@@ -216,7 +216,7 @@ void(*sjump_move_tbl[13])(act_info*) = {
 
 
 
-void iwa(act_info* actionwk) { /* Line 219, Address: 0x1003de0 */
+void iwa(sprite_status* actionwk) { /* Line 219, Address: 0x1003de0 */
   switch (actionwk->r_no0) { /* Line 220, Address: 0x1003dec */
 
     case 0:
@@ -229,7 +229,7 @@ void iwa(act_info* actionwk) { /* Line 219, Address: 0x1003de0 */
   frameout_s(actionwk); /* Line 229, Address: 0x1003e38 */
 } /* Line 230, Address: 0x1003e44 */
 
-void iwa_init(act_info* actionwk) { /* Line 232, Address: 0x1003e60 */
+void iwa_init(sprite_status* actionwk) { /* Line 232, Address: 0x1003e60 */
   unsigned char d0;
 
   actionwk->r_no0 += 2; /* Line 235, Address: 0x1003e70 */
@@ -243,8 +243,8 @@ void iwa_init(act_info* actionwk) { /* Line 232, Address: 0x1003e60 */
   pa_set(); /* Line 243, Address: 0x1003ed8 */
 } /* Line 244, Address: 0x1003ee0 */
 
-void iwa_move(act_info* actionwk) { /* Line 246, Address: 0x1003f00 */
-  act_info* a1;
+void iwa_move(sprite_status* actionwk) { /* Line 246, Address: 0x1003f00 */
+  sprite_status* a1;
 
   if (!(actionwk->actflg & 128)) return; /* Line 249, Address: 0x1003f10 */
 
@@ -252,7 +252,7 @@ void iwa_move(act_info* actionwk) { /* Line 246, Address: 0x1003f00 */
   ride_on_chk(actionwk, a1); /* Line 252, Address: 0x1003f30 */
 } /* Line 253, Address: 0x1003f40 */
 
-void koma(act_info* actionwk) { /* Line 255, Address: 0x1003f60 */
+void koma(sprite_status* actionwk) { /* Line 255, Address: 0x1003f60 */
   unsigned short d0, d1;
 
   switch (actionwk->r_no0) { /* Line 258, Address: 0x1003f74 */
@@ -273,8 +273,8 @@ void koma(act_info* actionwk) { /* Line 255, Address: 0x1003f60 */
   if (d0 >= 641) frameout(actionwk); /* Line 273, Address: 0x1004018 */
 } /* Line 274, Address: 0x1004034 */
 
-void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
-  act_info* a1;
+void koma_init(sprite_status* actionwk) { /* Line 276, Address: 0x1004050 */
+  sprite_status* a1;
 
 
   actionwk->r_no0 += 2; /* Line 280, Address: 0x100405c */
@@ -304,7 +304,7 @@ void koma_init(act_info* actionwk) { /* Line 276, Address: 0x1004050 */
   a1->userflag.w = actwk[((unsigned short*)a1)[28]].userflag.w; /* Line 304, Address: 0x1004198 */
 } /* Line 305, Address: 0x10041c8 */
 
-void koma_move(act_info* actionwk) { /* Line 307, Address: 0x10041e0 */
+void koma_move(sprite_status* actionwk) { /* Line 307, Address: 0x10041e0 */
   short d1;
 
   d1 = emycol_d(actionwk); /* Line 310, Address: 0x10041f0 */
@@ -319,7 +319,7 @@ void koma_move(act_info* actionwk) { /* Line 307, Address: 0x10041e0 */
 
 } /* Line 320, Address: 0x100425c */
 
-void koma_move2(act_info* actionwk) { /* Line 322, Address: 0x1004270 */
+void koma_move2(sprite_status* actionwk) { /* Line 322, Address: 0x1004270 */
   short d0, d1;
 
   if (!time_stop) { /* Line 325, Address: 0x1004284 */
@@ -334,7 +334,7 @@ void koma_move2(act_info* actionwk) { /* Line 322, Address: 0x1004270 */
   actionsub(actionwk); /* Line 334, Address: 0x1004334 */
 } /* Line 335, Address: 0x1004340 */
 
-void spring_d(act_info* actionwk) { /* Line 337, Address: 0x1004360 */
+void spring_d(sprite_status* actionwk) { /* Line 337, Address: 0x1004360 */
   switch (actionwk->r_no0) { /* Line 338, Address: 0x100436c */
 
     case 0:
@@ -345,7 +345,7 @@ void spring_d(act_info* actionwk) { /* Line 337, Address: 0x1004360 */
   }
 } /* Line 346, Address: 0x10043ac */
 
-void spr_d_init(act_info* actionwk) { /* Line 348, Address: 0x10043c0 */
+void spr_d_init(sprite_status* actionwk) { /* Line 348, Address: 0x10043c0 */
   if (actionwk->userflag.b.h & 2) /* Line 349, Address: 0x10043cc */
     actionwk->patbase = springpat; /* Line 350, Address: 0x10043e8 */
   else
@@ -360,7 +360,7 @@ void spr_d_init(act_info* actionwk) { /* Line 348, Address: 0x10043c0 */
   spr_d_move(actionwk); /* Line 360, Address: 0x1004460 */
 } /* Line 361, Address: 0x100446c */
 
-void spr_d_move(act_info* actionwk) { /* Line 363, Address: 0x1004480 */
+void spr_d_move(sprite_status* actionwk) { /* Line 363, Address: 0x1004480 */
   actionwk->xposi.l = actwk[0].xposi.l; /* Line 364, Address: 0x100448c */
   actionwk->yposi.l = actwk[0].yposi.l; /* Line 365, Address: 0x100449c */
   actionsub(actionwk); /* Line 366, Address: 0x10044ac */
@@ -382,9 +382,9 @@ void spr_d_move(act_info* actionwk) { /* Line 363, Address: 0x1004480 */
 
 
 
-void spring(act_info* actionwk) { /* Line 385, Address: 0x10044d0 */
+void spring(sprite_status* actionwk) { /* Line 385, Address: 0x10044d0 */
   unsigned short d1;
-  act_info* a1;
+  sprite_status* a1;
   unsigned short d0;
 
 
@@ -419,7 +419,7 @@ label1:
   if (d0 >= 641) frameout(actionwk); /* Line 419, Address: 0x1004658 */
 } /* Line 420, Address: 0x1004674 */
 
-void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
+void sjumpinit(sprite_status* actionwk) { /* Line 422, Address: 0x1004690 */
   short sjumptbl[2] = { -4096, -2560 }; /* Line 423, Address: 0x10046a0 */
   unsigned char d0;
 
@@ -470,12 +470,12 @@ void sjumpinit(act_info* actionwk) { /* Line 422, Address: 0x1004690 */
 
 } /* Line 471, Address: 0x10048fc */
 
-int ride_on_chk_s(act_info* actionwk, act_info* a1) { /* Line 473, Address: 0x1004910 */
+int ride_on_chk_s(sprite_status* actionwk, sprite_status* a1) { /* Line 473, Address: 0x1004910 */
   return ride_on_chk(actionwk, a1); /* Line 474, Address: 0x1004920 */
 } /* Line 475, Address: 0x1004938 */
 
-void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
-  act_info* a1;
+void sjumpmove(sprite_status* actionwk) { /* Line 477, Address: 0x1004950 */
+  sprite_status* a1;
 
   if (!(actionwk->actflg & 128)) return; /* Line 480, Address: 0x1004960 */
 
@@ -492,24 +492,24 @@ void sjumpmove(act_info* actionwk) { /* Line 477, Address: 0x1004950 */
   soundset(152); /* Line 492, Address: 0x10049ec */
 } /* Line 493, Address: 0x10049f8 */
 
-void sjumpmove2(act_info* actionwk) { /* Line 495, Address: 0x1004a10 */
+void sjumpmove2(sprite_status* actionwk) { /* Line 495, Address: 0x1004a10 */
   patchg(actionwk, (unsigned char**)&springchg); /* Line 496, Address: 0x1004a1c */
 } /* Line 497, Address: 0x1004a30 */
 
-void sjumpmove3(act_info* actionwk) { /* Line 499, Address: 0x1004a40 */
+void sjumpmove3(sprite_status* actionwk) { /* Line 499, Address: 0x1004a40 */
   actionwk->cddat &= 247; /* Line 500, Address: 0x1004a48 */
   actionwk->mstno.b.l = 1; /* Line 501, Address: 0x1004a58 */
   actionwk->r_no0 -= 4; /* Line 502, Address: 0x1004a64 */
   actionwk->patno = 0; /* Line 503, Address: 0x1004a74 */
 } /* Line 504, Address: 0x1004a7c */
 
-int ride_on_chk_s1(act_info* actionwk, act_info* a1) { /* Line 506, Address: 0x1004a90 */
+int ride_on_chk_s1(sprite_status* actionwk, sprite_status* a1) { /* Line 506, Address: 0x1004a90 */
   return ride_on_chk(actionwk, a1); /* Line 507, Address: 0x1004aa0 */
 } /* Line 508, Address: 0x1004ab8 */
 
 
-void sdushmove(act_info* actionwk) { /* Line 511, Address: 0x1004ad0 */
-  act_info* a1;
+void sdushmove(sprite_status* actionwk) { /* Line 511, Address: 0x1004ad0 */
+  sprite_status* a1;
 
   if (!(actionwk->actflg & 128)) return; /* Line 514, Address: 0x1004ae0 */
 
@@ -537,22 +537,22 @@ void sdushmove(act_info* actionwk) { /* Line 511, Address: 0x1004ad0 */
   soundset(152); /* Line 537, Address: 0x1004bec */
 } /* Line 538, Address: 0x1004bf8 */
 
-void sdushmove2(act_info* actionwk) { /* Line 540, Address: 0x1004c10 */
+void sdushmove2(sprite_status* actionwk) { /* Line 540, Address: 0x1004c10 */
   patchg(actionwk, (unsigned char**)&springchg); /* Line 541, Address: 0x1004c1c */
 } /* Line 542, Address: 0x1004c30 */
 
-void sdushmove3(act_info* actionwk) { /* Line 544, Address: 0x1004c40 */
+void sdushmove3(sprite_status* actionwk) { /* Line 544, Address: 0x1004c40 */
   actionwk->mstno.b.l = 1; /* Line 545, Address: 0x1004c48 */
   actionwk->r_no0 -= 4; /* Line 546, Address: 0x1004c54 */
   actionwk->patno = 0; /* Line 547, Address: 0x1004c64 */
 } /* Line 548, Address: 0x1004c6c */
 
-int ride_on_chk_s2(act_info* actionwk, act_info* a1) { /* Line 550, Address: 0x1004c80 */
+int ride_on_chk_s2(sprite_status* actionwk, sprite_status* a1) { /* Line 550, Address: 0x1004c80 */
   return hitchk_u(actionwk, a1); /* Line 551, Address: 0x1004c90 */
 } /* Line 552, Address: 0x1004ca8 */
 
-void sjump2move(act_info* actionwk) { /* Line 554, Address: 0x1004cc0 */
-  act_info* a1;
+void sjump2move(sprite_status* actionwk) { /* Line 554, Address: 0x1004cc0 */
+  sprite_status* a1;
 
   if (!(actionwk->actflg & 128)) return; /* Line 557, Address: 0x1004cd0 */
 
@@ -569,18 +569,18 @@ void sjump2move(act_info* actionwk) { /* Line 554, Address: 0x1004cc0 */
   soundset(152); /* Line 569, Address: 0x1004d70 */
 } /* Line 570, Address: 0x1004d7c */
 
-void sjump2move2(act_info* actionwk) { /* Line 572, Address: 0x1004d90 */
+void sjump2move2(sprite_status* actionwk) { /* Line 572, Address: 0x1004d90 */
   patchg(actionwk, (unsigned char**)&springchg); /* Line 573, Address: 0x1004d9c */
 } /* Line 574, Address: 0x1004db0 */
 
-void sjump2move3(act_info* actionwk) { /* Line 576, Address: 0x1004dc0 */
+void sjump2move3(sprite_status* actionwk) { /* Line 576, Address: 0x1004dc0 */
   actionwk->mstno.b.l = 1; /* Line 577, Address: 0x1004dc8 */
   actionwk->r_no0 -= 4; /* Line 578, Address: 0x1004dd4 */
   actionwk->patno = 0; /* Line 579, Address: 0x1004de4 */
 } /* Line 580, Address: 0x1004dec */
 
-void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
-  act_info* a1;
+void sjump3move(sprite_status* actionwk) { /* Line 582, Address: 0x1004e00 */
+  sprite_status* a1;
   unsigned short sin, cos;
   int sinl, cosl;
   unsigned char d0;
@@ -624,11 +624,11 @@ void sjump3move(act_info* actionwk) { /* Line 582, Address: 0x1004e00 */
   sjump3move2(actionwk); /* Line 624, Address: 0x100500c */
 } /* Line 625, Address: 0x1005018 */
 
-void sjump3move2(act_info* actionwk) { /* Line 627, Address: 0x1005040 */
+void sjump3move2(sprite_status* actionwk) { /* Line 627, Address: 0x1005040 */
   patchg(actionwk, (unsigned char**)&springchg); /* Line 628, Address: 0x100504c */
 } /* Line 629, Address: 0x1005060 */
 
-void sjump3move3(act_info* actionwk) { /* Line 631, Address: 0x1005070 */
+void sjump3move3(sprite_status* actionwk) { /* Line 631, Address: 0x1005070 */
   actionwk->mstno.b.l = 1; /* Line 632, Address: 0x1005078 */
   actionwk->r_no0 -= 4; /* Line 633, Address: 0x1005084 */
   actionwk->patno = 0; /* Line 634, Address: 0x1005094 */

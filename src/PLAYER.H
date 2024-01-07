@@ -1,5 +1,5 @@
 void bye_chk();
-void play00(act_info* actionwk);
+void play00(sprite_status* actionwk);
 void muteki_set();
 void test_mapwrt();
 void play00init();

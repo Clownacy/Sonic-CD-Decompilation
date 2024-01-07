@@ -147,7 +147,7 @@ extern map_init_data mapinittbl;
 
 
 
-act_info* main_chk() {
+sprite_status* main_chk() {
   if (main_play == 0) { /* Line 151, Address: 0x1025f00 */
     return &actwk[0]; /* Line 152, Address: 0x1025f14 */
   }

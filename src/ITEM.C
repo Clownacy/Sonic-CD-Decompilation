@@ -164,7 +164,7 @@ spr_array* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor0
 
 
 
-void timedisp(act_info* timewk) { /* Line 167, Address: 0x1010de0 */
+void timedisp(sprite_status* timewk) { /* Line 167, Address: 0x1010de0 */
   switch (timewk->r_no0) { /* Line 168, Address: 0x1010dec */
     case 0:
       td_init(timewk); /* Line 170, Address: 0x1010e14 */
@@ -181,7 +181,7 @@ void timedisp(act_info* timewk) { /* Line 167, Address: 0x1010de0 */
 } /* Line 181, Address: 0x1010ea4 */
 
 
-void td_init(act_info* timewk) { /* Line 184, Address: 0x1010ec0 */
+void td_init(sprite_status* timewk) { /* Line 184, Address: 0x1010ec0 */
   timewk->r_no0 += 2; /* Line 185, Address: 0x1010ecc */
   timewk->patbase = itempat; /* Line 186, Address: 0x1010edc */
   timewk->sproffset = 32768; /* Line 187, Address: 0x1010eec */
@@ -191,7 +191,7 @@ void td_init(act_info* timewk) { /* Line 184, Address: 0x1010ec0 */
 } /* Line 191, Address: 0x1010f1c */
 
 
-void td_move(act_info* timewk) { /* Line 194, Address: 0x1010f30 */
+void td_move(sprite_status* timewk) { /* Line 194, Address: 0x1010f30 */
   timewk->patno = 18; /* Line 195, Address: 0x1010f38 */
   if (time_item >= 0) timewk->patno = 19; /* Line 196, Address: 0x1010f44 */
 } /* Line 197, Address: 0x1010f68 */
@@ -202,7 +202,7 @@ void td_move(act_info* timewk) { /* Line 194, Address: 0x1010f30 */
 
 
 
-void t_item(act_info* t_itemwk) { /* Line 205, Address: 0x1010f80 */
+void t_item(sprite_status* t_itemwk) { /* Line 205, Address: 0x1010f80 */
   if (ta_flag != 0) { frameout(t_itemwk); return; } /* Line 206, Address: 0x1010f8c */
   if (t_itemwk->userflag.b.h == 10) { timedisp(t_itemwk); return; } /* Line 207, Address: 0x1010fb4 */
   switch (t_itemwk->r_no0) { /* Line 208, Address: 0x1010fe4 */
@@ -226,7 +226,7 @@ void t_item(act_info* t_itemwk) { /* Line 205, Address: 0x1010f80 */
 } /* Line 226, Address: 0x1011084 */
 
 
-void t_item_init(act_info* t_itemwk) { /* Line 229, Address: 0x10110a0 */
+void t_item_init(sprite_status* t_itemwk) { /* Line 229, Address: 0x10110a0 */
   short flag_no;
 
   t_itemwk->r_no0 += 2; /* Line 232, Address: 0x10110b0 */
@@ -257,7 +257,7 @@ void t_item_init(act_info* t_itemwk) { /* Line 229, Address: 0x10110a0 */
 } /* Line 257, Address: 0x1011234 */
 
 
-void t_item_move0(act_info* t_itemwk) { /* Line 260, Address: 0x1011250 */
+void t_item_move0(sprite_status* t_itemwk) { /* Line 260, Address: 0x1011250 */
   short flag_no;
 
 
@@ -295,7 +295,7 @@ void t_item_move0(act_info* t_itemwk) { /* Line 260, Address: 0x1011250 */
 } /* Line 295, Address: 0x101138c */
 
 
-void t_item_move1(act_info* t_itemwk) { /* Line 298, Address: 0x10113a0 */
+void t_item_move1(sprite_status* t_itemwk) { /* Line 298, Address: 0x10113a0 */
   if (--t_itemwk->actfree[1] != 0) { /* Line 299, Address: 0x10113ac */
     patchg(t_itemwk, itemchg); /* Line 300, Address: 0x10113cc */
     return; /* Line 301, Address: 0x10113e0 */
@@ -306,13 +306,13 @@ void t_item_move1(act_info* t_itemwk) { /* Line 298, Address: 0x10113a0 */
 } /* Line 306, Address: 0x1011430 */
 
 
-void t_item_move2(act_info* t_itemwk) { /* Line 309, Address: 0x1011440 */
+void t_item_move2(sprite_status* t_itemwk) { /* Line 309, Address: 0x1011440 */
   unsigned char action_no;
   action_no = t_itemwk->actno; /* Line 311, Address: 0x101144c */
 } /* Line 312, Address: 0x1011458 */
 
 
-short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
+short flagwkadr(sprite_status* t_itemwk) { /* Line 315, Address: 0x1011470 */
   short flag_no, t_flag, t_item;
 
   flag_no = t_itemwk->cdsts, flag_no *= 3; /* Line 318, Address: 0x1011484 */
@@ -331,7 +331,7 @@ short flagwkadr(act_info* t_itemwk) { /* Line 315, Address: 0x1011470 */
 
 
 
-void ride_on_chk_i(act_info* itemwk) { /* Line 334, Address: 0x10115a0 */
+void ride_on_chk_i(sprite_status* itemwk) { /* Line 334, Address: 0x10115a0 */
   if (stageno.b.h == 6) { /* Line 335, Address: 0x10115ac */
     if (prio_flag != 0) { /* Line 336, Address: 0x10115c8 */
 
@@ -351,7 +351,7 @@ void ride_on_chk_i(act_info* itemwk) { /* Line 334, Address: 0x10115a0 */
 
 
 
-void item(act_info* itemwk) { /* Line 354, Address: 0x1011640 */
+void item(sprite_status* itemwk) { /* Line 354, Address: 0x1011640 */
   if (itemwk->userflag.b.h == 0 && ta_flag != 0) { /* Line 355, Address: 0x101164c */
     frameout_s(itemwk); return; /* Line 356, Address: 0x1011678 */
   }
@@ -378,7 +378,7 @@ void item(act_info* itemwk) { /* Line 354, Address: 0x1011640 */
 } /* Line 378, Address: 0x1011764 */
 
 
-void iteminit(act_info* itemwk) { /* Line 381, Address: 0x1011780 */
+void iteminit(sprite_status* itemwk) { /* Line 381, Address: 0x1011780 */
   short flag_no;
 
   itemwk->r_no0 += 2; /* Line 384, Address: 0x1011790 */
@@ -407,7 +407,7 @@ void iteminit(act_info* itemwk) { /* Line 381, Address: 0x1011780 */
 } /* Line 407, Address: 0x10118f8 */
 
 
-void itemmove(act_info* itemwk) { /* Line 410, Address: 0x1011910 */
+void itemmove(sprite_status* itemwk) { /* Line 410, Address: 0x1011910 */
   short col_ofs;
 
 
@@ -436,20 +436,20 @@ void itemmove(act_info* itemwk) { /* Line 410, Address: 0x1011910 */
 } /* Line 436, Address: 0x1011a2c */
 
 
-void itemmove2(act_info* itemwk) { /* Line 439, Address: 0x1011a40 */
+void itemmove2(sprite_status* itemwk) { /* Line 439, Address: 0x1011a40 */
   if (time_stop == 0) patchg(itemwk, itemchg); /* Line 440, Address: 0x1011a4c */
   itemmove3(itemwk); /* Line 441, Address: 0x1011a78 */
 } /* Line 442, Address: 0x1011a84 */
 
 
-void itemmove3(act_info* itemwk) { /* Line 445, Address: 0x1011aa0 */
+void itemmove3(sprite_status* itemwk) { /* Line 445, Address: 0x1011aa0 */
   actionsub(itemwk); /* Line 446, Address: 0x1011aac */
   frameout_s(itemwk); /* Line 447, Address: 0x1011ab8 */
 } /* Line 448, Address: 0x1011ac4 */
 
 
-void itemget(act_info* itemwk) { /* Line 451, Address: 0x1011ae0 */
-  act_info* new_actwk;
+void itemget(sprite_status* itemwk) { /* Line 451, Address: 0x1011ae0 */
+  sprite_status* new_actwk;
   short flag_no;
 
 
@@ -480,7 +480,7 @@ void itemget(act_info* itemwk) { /* Line 451, Address: 0x1011ae0 */
 
 
 
-void powerup_init(act_info* powerwk) { /* Line 483, Address: 0x1011c40 */
+void powerup_init(sprite_status* powerwk) { /* Line 483, Address: 0x1011c40 */
   powerwk->r_no0 = 0; /* Line 484, Address: 0x1011c48 */
   powerwk->mstno.w = 0; /* Line 485, Address: 0x1011c50 */
 } /* Line 486, Address: 0x1011c58 */
@@ -489,7 +489,7 @@ void powerup_init(act_info* powerwk) { /* Line 483, Address: 0x1011c40 */
 
 
 
-void item2(act_info* itemwk) { /* Line 492, Address: 0x1011c70 */
+void item2(sprite_status* itemwk) { /* Line 492, Address: 0x1011c70 */
   switch (itemwk->r_no0) { /* Line 493, Address: 0x1011c7c */
     case 0:
       item2init(itemwk); /* Line 495, Address: 0x1011cb0 */
@@ -507,7 +507,7 @@ void item2(act_info* itemwk) { /* Line 492, Address: 0x1011c70 */
 } /* Line 507, Address: 0x1011cf0 */
 
 
-void item2init(act_info* itemwk) { /* Line 510, Address: 0x1011d00 */
+void item2init(sprite_status* itemwk) { /* Line 510, Address: 0x1011d00 */
   itemwk->r_no0 += 2; /* Line 511, Address: 0x1011d0c */
   itemwk->sproffset = 32768; /* Line 512, Address: 0x1011d1c */
 
@@ -521,7 +521,7 @@ void item2init(act_info* itemwk) { /* Line 510, Address: 0x1011d00 */
 } /* Line 521, Address: 0x1011d84 */
 
 
-void item2move(act_info* itemwk) { /* Line 524, Address: 0x1011da0 */
+void item2move(sprite_status* itemwk) { /* Line 524, Address: 0x1011da0 */
   if (itemwk->yspeed.w < 0) { /* Line 525, Address: 0x1011dac */
     speedset2(itemwk); /* Line 526, Address: 0x1011dc4 */
     itemwk->yspeed.w += 24; /* Line 527, Address: 0x1011dd0 */
@@ -619,12 +619,12 @@ void item2move(act_info* itemwk) { /* Line 524, Address: 0x1011da0 */
 } /* Line 619, Address: 0x101229c */
 
 
-void item2die(act_info* itemwk) { /* Line 622, Address: 0x10122b0 */
+void item2die(sprite_status* itemwk) { /* Line 622, Address: 0x10122b0 */
   if (--itemwk->pattim == 255) frameout(itemwk); /* Line 623, Address: 0x10122bc */
 } /* Line 624, Address: 0x10122ec */
 
 
-void error_item(act_info* itemwk) { /* Line 627, Address: 0x1012300 */
+void error_item(sprite_status* itemwk) { /* Line 627, Address: 0x1012300 */
 
 
 

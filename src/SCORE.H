@@ -1,9 +1,9 @@
-void tensuu(act_info* pAct);
-void ten_init(act_info* pAct);
-void ten_move(act_info* pAct);
-void score(act_info* pAct);
-void score_init(act_info* pAct);
-void score_move(act_info* pAct);
+void tensuu(sprite_status* pAct);
+void ten_init(sprite_status* pAct);
+void ten_move(sprite_status* pAct);
+void score(sprite_status* pAct);
+void score_init(sprite_status* pAct);
+void score_move(sprite_status* pAct);
 void scoreup(unsigned int updata);
 void scoreset();
 void ringinit();

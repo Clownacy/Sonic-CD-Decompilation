@@ -93,8 +93,8 @@ spr_array* pat_kowasi[14] =
   &spr_kowasi0d
 };
 
-void kowasi(act_info* pActwk) {  /* Line 96, Address: 0x101ece0 */
-  void(*tbl[3])(act_info*) =  /* Line 97, Address: 0x101ecec */
+void kowasi(sprite_status* pActwk) {  /* Line 96, Address: 0x101ece0 */
+  void(*tbl[3])(sprite_status*) =  /* Line 97, Address: 0x101ecec */
   {
     &m_init,
     &m_wait,
@@ -110,7 +110,7 @@ void kowasi(act_info* pActwk) {  /* Line 96, Address: 0x101ece0 */
 
 
 
-void m_init(act_info* pActwk) { /* Line 113, Address: 0x101ed60 */
+void m_init(sprite_status* pActwk) { /* Line 113, Address: 0x101ed60 */
   pActwk->r_no0 += 2; /* Line 114, Address: 0x101ed6c */
   pActwk->actflg |= 4; /* Line 115, Address: 0x101ed7c */
   pActwk->sprpri = 1; /* Line 116, Address: 0x101ed8c */
@@ -131,9 +131,9 @@ void m_init(act_info* pActwk) { /* Line 113, Address: 0x101ed60 */
 
 
 
-void m_wait(act_info* pActwk) { /* Line 134, Address: 0x101ee10 */
-  act_info* pActwk_w;
-  act_info* pPlayerwk;
+void m_wait(sprite_status* pActwk) { /* Line 134, Address: 0x101ee10 */
+  sprite_status* pActwk_w;
+  sprite_status* pPlayerwk;
   unsigned char* pTbl0pat;
   short* pTbl0dposi;
   int* pTbl0speed;
@@ -235,8 +235,8 @@ void m_wait(act_info* pActwk) { /* Line 134, Address: 0x101ee10 */
 
 
 
-void m_down(act_info* pActwk) { /* Line 238, Address: 0x101f160 */
-  act_info* pPlayerwk;
+void m_down(sprite_status* pActwk) { /* Line 238, Address: 0x101f160 */
+  sprite_status* pPlayerwk;
   short y;
 
   *(int*)&pActwk->actfree[4] += 16384; /* Line 242, Address: 0x101f174 */

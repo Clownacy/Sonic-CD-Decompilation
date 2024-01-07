@@ -8,13 +8,13 @@
 #include "FCOL.H"
 #include "ETC.H"
 
-extern void sub_sync(short ReqNo); extern short playdamageset(act_info* pActwk, act_info* pColliAct); extern void soundset(short ReqNo); extern short pcol(act_info* pActwk); extern void da_set(); extern short playdieset(act_info* pActwk);
+extern void sub_sync(short ReqNo); extern short playdamageset(sprite_status* pActwk, sprite_status* pColliAct); extern void soundset(short ReqNo); extern short pcol(sprite_status* pActwk); extern void da_set(); extern short playdieset(sprite_status* pActwk);
 
-unsigned int WaveClear;
-unsigned char Brake_Sw, Brake_Req;
+static unsigned int WaveClear;
+static unsigned char Brake_Sw, Brake_Req;
 extern spr_array* sncpat[];
 extern unsigned char mapwka[8][64];
-short tate[2] = { 426, -1 }, yoko[2] = { 449, -1 }, naname[9] = { 444, 475, 468, 465, 419, 409, 408, 418, -1 };
+static short tate[2] = { 426, -1 }, yoko[2] = { 449, -1 }, naname[9] = { 444, 475, 468, 465, 419, 409, 408, 418, -1 };
 extern void(*WaveAllStop)();
 extern unsigned char *playchg[60], plchg00[8], plchg01[8], plchg49[8], plchg53[8], plchg03[8], plchg02[8], plchg54[8], plchg35[6], plchg04[8], plchg39[7], plchg33[6], plchg34[6];
 unsigned char* playcg;
@@ -44,7 +44,7 @@ void bye_chk() { /* Line 23, Address: 0x1020870 */
 
 
 
-void play00(act_info* actionwk) { /* Line 47, Address: 0x10209a0 */
+void play00(sprite_status* actionwk) { /* Line 47, Address: 0x10209a0 */
   unsigned char d0;
 
   Brake_Req = 0; /* Line 50, Address: 0x10209b0 */
@@ -146,7 +146,7 @@ void play00init() {
 void mizuki_set() { /* Line 146, Address: 0x1020cc0 */
  short d2, d3;
  unsigned int d1;
- act_info* new_actwk;
+ sprite_status* new_actwk;
 
   if (stageno.b.h != 0) return; /* Line 151, Address: 0x1020cd4 */
   if (gametimer.b.l & 3) return; /* Line 152, Address: 0x1020cec */
@@ -1725,7 +1725,7 @@ void play00die() { /* Line 1718, Address: 0x10260c0 */
 
 
 void play00die_sub() { /* Line 1727, Address: 0x1026110 */
-  act_info* new_actwk;
+  sprite_status* new_actwk;
 
   if (scralim_down + 256 >= actwk[0].yposi.w.h) return; /* Line 1730, Address: 0x1026118 */
   actwk[0].yspeed.w = -56; /* Line 1731, Address: 0x1026148 */

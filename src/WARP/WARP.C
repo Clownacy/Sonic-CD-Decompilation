@@ -22,7 +22,7 @@ static palette_entry clchg_tbl[28] = {
   { 192, 224, 192, 1 }, { 224, 224, 224, 1 }, { 192, 224, 192, 1 }, { 160, 224, 160, 1 },
   { 128, 224, 128, 1 }, {  96, 224,  96, 1 }, {  64, 224,  64, 1 }, {  32, 224,  32, 1 }
 };
-void(*act_tbl[2])(act_info*) = { &sonic_act, &atom };
+void(*act_tbl[2])(sprite_status*) = { &sonic_act, &atom };
 extern bmp_info SprBmp[700];
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
@@ -193,7 +193,7 @@ void game_init() { /* Line 170, Address: 0x1000380 */
 
 
 
-act_info* atomwk_search() { /* Line 196, Address: 0x1000490 */
+sprite_status* atomwk_search() { /* Line 196, Address: 0x1000490 */
   int i;
 
 
@@ -206,7 +206,7 @@ act_info* atomwk_search() { /* Line 196, Address: 0x1000490 */
 
 
 int game() { /* Line 208, Address: 0x1000510 */
-  act_info* pActwk;
+  sprite_status* pActwk;
   unsigned short wD0;
 
   if (!gmtime0) /* Line 212, Address: 0x1000520 */
@@ -264,7 +264,7 @@ int game() { /* Line 208, Address: 0x1000510 */
 
 
 
-void sonic0(act_info* pActwk) { /* Line 267, Address: 0x1000690 */
+void sonic0(sprite_status* pActwk) { /* Line 267, Address: 0x1000690 */
   pActwk->sproffset = 32768; /* Line 268, Address: 0x1000698 */
   pActwk->patbase = ptsonic; /* Line 269, Address: 0x10006a4 */
   pActwk->xposi.w.h = 288; /* Line 270, Address: 0x10006b4 */
@@ -272,7 +272,7 @@ void sonic0(act_info* pActwk) { /* Line 267, Address: 0x1000690 */
   ++pActwk->r_no0; /* Line 272, Address: 0x10006cc */
 } /* Line 273, Address: 0x10006dc */
 
-void sonic1(act_info* pActwk) { /* Line 275, Address: 0x10006f0 */
+void sonic1(sprite_status* pActwk) { /* Line 275, Address: 0x10006f0 */
   pActwk->yposi.w.h -= 8; /* Line 276, Address: 0x10006f8 */
   if (pActwk->yposi.w.h == 248) { /* Line 277, Address: 0x1000708 */
     ++pActwk->r_no0; /* Line 278, Address: 0x1000724 */
@@ -281,7 +281,7 @@ void sonic1(act_info* pActwk) { /* Line 275, Address: 0x10006f0 */
 
 } /* Line 282, Address: 0x1000740 */
 
-void sonic2(act_info* pActwk) { /* Line 284, Address: 0x1000750 */
+void sonic2(sprite_status* pActwk) { /* Line 284, Address: 0x1000750 */
   --pActwk->actfree[8]; /* Line 285, Address: 0x1000758 */
   if (pActwk->actfree[8] == 0) { /* Line 286, Address: 0x1000768 */
     ++pActwk->r_no0; /* Line 287, Address: 0x100077c */
@@ -289,7 +289,7 @@ void sonic2(act_info* pActwk) { /* Line 284, Address: 0x1000750 */
 
 } /* Line 290, Address: 0x100078c */
 
-void sonic3(act_info* pActwk) { /* Line 292, Address: 0x10007a0 */
+void sonic3(sprite_status* pActwk) { /* Line 292, Address: 0x10007a0 */
   pActwk->yposi.w.h -= 8; /* Line 293, Address: 0x10007a8 */
   if (pActwk->yposi.w.h == 96) { /* Line 294, Address: 0x10007b8 */
     ++pActwk->r_no0; /* Line 295, Address: 0x10007d4 */
@@ -297,7 +297,7 @@ void sonic3(act_info* pActwk) { /* Line 292, Address: 0x10007a0 */
 
 } /* Line 298, Address: 0x10007e4 */
 
-void sonic_act(act_info* pActwk) { /* Line 300, Address: 0x10007f0 */
+void sonic_act(sprite_status* pActwk) { /* Line 300, Address: 0x10007f0 */
   if (gmtime1 & 1) { /* Line 301, Address: 0x10007fc */
     ++pActwk->patno; /* Line 302, Address: 0x1000814 */
     if (pActwk->patno >= 5) pActwk->patno = 0; /* Line 303, Address: 0x1000824 */
@@ -350,7 +350,7 @@ void sonic_act(act_info* pActwk) { /* Line 300, Address: 0x10007f0 */
 
 
 
-void atom1(act_info* pActwk) { /* Line 353, Address: 0x1000900 */
+void atom1(sprite_status* pActwk) { /* Line 353, Address: 0x1000900 */
   int lD0;
 
   lD0 = *(int*)&pActwk->actfree[0]; /* Line 356, Address: 0x1000910 */
@@ -370,7 +370,7 @@ void atom1(act_info* pActwk) { /* Line 353, Address: 0x1000900 */
 } /* Line 370, Address: 0x1000988 */
 
 
-void atom0(act_info* pActwk) { /* Line 373, Address: 0x10009a0 */
+void atom0(sprite_status* pActwk) { /* Line 373, Address: 0x10009a0 */
   int_union lD0, lD1;
   pActwk->sproffset = 32768; /* Line 375, Address: 0x10009ac */
   pActwk->patbase = spr_atom; /* Line 376, Address: 0x10009b8 */
@@ -388,7 +388,7 @@ void atom0(act_info* pActwk) { /* Line 373, Address: 0x10009a0 */
 } /* Line 388, Address: 0x1000a8c */
 
 
-void atom(act_info* pActwk) { /* Line 391, Address: 0x1000aa0 */
+void atom(sprite_status* pActwk) { /* Line 391, Address: 0x1000aa0 */
   if (gmtime1 & 1) { /* Line 392, Address: 0x1000aac */
     ++pActwk->patno; /* Line 393, Address: 0x1000ac4 */
     if (pActwk->patno >= 5) pActwk->patno = 0; /* Line 394, Address: 0x1000ad4 */

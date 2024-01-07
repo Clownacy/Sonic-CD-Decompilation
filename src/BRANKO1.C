@@ -23,7 +23,7 @@ spr_array* branko1pat[3] = {
   &pat1,
   &pat2
 };
-static void(*branko1_move_tbl[2])(act_info*) = {
+static void(*branko1_move_tbl[2])(sprite_status*) = {
   &branko1_init,
   &branko1_move
 };
@@ -100,7 +100,7 @@ static brankodata branko1_initbl[8] = {
 
 
 
-void branko1(act_info* pActwk) { /* Line 103, Address: 0x1028580 */
+void branko1(sprite_status* pActwk) { /* Line 103, Address: 0x1028580 */
   branko1_move_tbl[pActwk->r_no0 / 2](pActwk); /* Line 104, Address: 0x102858c */
   actionsub(pActwk); /* Line 105, Address: 0x10285d0 */
   frameout_s00(pActwk, ((short*)pActwk)[29]); /* Line 106, Address: 0x10285dc */
@@ -129,10 +129,10 @@ void branko1(act_info* pActwk) { /* Line 103, Address: 0x1028580 */
 
 
 
-static void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
+static void branko1_init(sprite_status* pActwk) { /* Line 132, Address: 0x1028600 */
   int i;
   unsigned char knum;
-  act_info* pNewact;
+  sprite_status* pNewact;
 
   pActwk->r_no0 += 2; /* Line 137, Address: 0x1028614 */
   pActwk->actflg |= 4; /* Line 138, Address: 0x1028624 */
@@ -186,7 +186,7 @@ static void branko1_init(act_info* pActwk) { /* Line 132, Address: 0x1028600 */
 
 
 
-static void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
+static void branko1_move(sprite_status* pActwk) { /* Line 189, Address: 0x1028840 */
   int xwk, ywk;
 
   xwk = pActwk->xposi.l; /* Line 192, Address: 0x1028854 */
@@ -211,7 +211,7 @@ static void branko1_move(act_info* pActwk) { /* Line 189, Address: 0x1028840 */
 
 
 
-static void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 */
+static void branko1_posiset(sprite_status* pActwk) { /* Line 214, Address: 0x1028900 */
   short spdwk, sinwk, coswk;
   unsigned int lSinwk, lCoswk;
   ushort_union direc;
@@ -257,8 +257,8 @@ static void branko1_posiset(act_info* pActwk) { /* Line 214, Address: 0x1028900 
 
 
 
-static void branko1_ridechk(act_info* pActwk) { /* Line 260, Address: 0x1028b60 */
-  act_info* pPlayerwk;
+static void branko1_ridechk(sprite_status* pActwk) { /* Line 260, Address: 0x1028b60 */
+  sprite_status* pPlayerwk;
   int i;
 
   for (i = 0, pPlayerwk = &actwk[0]; i < 2; ++i) {  ; /* Line 264, Address: 0x1028b74 */

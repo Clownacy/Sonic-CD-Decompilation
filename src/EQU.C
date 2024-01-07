@@ -217,7 +217,7 @@ ushort_union swdata2;
 ushort_union swdata1;
 ushort_union swdata;
 short_union gmmode;
-act_info actwk[128];
+sprite_status actwk[128];
 int_union* lphscrollbuff;
 short playposiwk[128];
 act_info_array pbuffer[8];

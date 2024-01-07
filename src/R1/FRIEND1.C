@@ -203,7 +203,7 @@ static unsigned short tbl0sproffset[11] =
 
 
 
-static void t_roll(int cos_shift, int sin_shift, act_info* pActwk) { /* Line 206, Address: 0x1031900 */
+static void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk) { /* Line 206, Address: 0x1031900 */
   unsigned short sin, cos;
 
   sinset(pActwk->actfree[4], (short*)&sin, (short*)&cos); /* Line 209, Address: 0x1031914 */
@@ -216,13 +216,13 @@ static void t_roll(int cos_shift, int sin_shift, act_info* pActwk) { /* Line 206
 } /* Line 216, Address: 0x10319b4 */
 
 
-static void rev_h(act_info* pActwk) { /* Line 219, Address: 0x10319d0 */
+static void rev_h(sprite_status* pActwk) { /* Line 219, Address: 0x10319d0 */
   pActwk->actflg ^= 1; /* Line 220, Address: 0x10319d8 */
   pActwk->cddat ^= 1; /* Line 221, Address: 0x10319e8 */
 } /* Line 222, Address: 0x10319f8 */
 
 
-static void set_sproffset(act_info* pActwk) { /* Line 225, Address: 0x1031a10 */
+static void set_sproffset(sprite_status* pActwk) { /* Line 225, Address: 0x1031a10 */
   int temp;
 
   temp = stageno.b.l; /* Line 228, Address: 0x1031a1c */
@@ -234,14 +234,14 @@ static void set_sproffset(act_info* pActwk) { /* Line 225, Address: 0x1031a10 */
 
 
 
-void friend(act_info* pActwk) { /* Line 237, Address: 0x1031a70 */
-  void(*tbl_f[3])(act_info*) = /* Line 238, Address: 0x1031a7c */
+void friend(sprite_status* pActwk) { /* Line 237, Address: 0x1031a70 */
+  void(*tbl_f[3])(sprite_status*) = /* Line 238, Address: 0x1031a7c */
   {
     &t_init,
     &t_move,
     &t_movie
   };
-  void(*tbl_r[3])(act_info*) = /* Line 244, Address: 0x1031aa0 */
+  void(*tbl_r[3])(sprite_status*) = /* Line 244, Address: 0x1031aa0 */
   {
     &p_init,
     &p_move,
@@ -258,7 +258,7 @@ void friend(act_info* pActwk) { /* Line 237, Address: 0x1031a70 */
 
 
 
-static void t_init(act_info* pActwk) { /* Line 261, Address: 0x1031b90 */
+static void t_init(sprite_status* pActwk) { /* Line 261, Address: 0x1031b90 */
   pActwk->r_no0 += 2; /* Line 262, Address: 0x1031b9c */
   pActwk->actflg = 4; /* Line 263, Address: 0x1031bac */
   pActwk->sprvsize = 8; /* Line 264, Address: 0x1031bb8 */
@@ -288,7 +288,7 @@ static void t_init(act_info* pActwk) { /* Line 261, Address: 0x1031b90 */
 
 
 
-static void t_move(act_info* pActwk) { /* Line 291, Address: 0x1031cc0 */
+static void t_move(sprite_status* pActwk) { /* Line 291, Address: 0x1031cc0 */
   unsigned char temp;
 
   t_roll(1, 1, pActwk); /* Line 294, Address: 0x1031cd0 */
@@ -306,8 +306,8 @@ label1:
 
 
 
-static void t_movie(act_info* pActwk) { /* Line 309, Address: 0x1031db0 */
-  act_info* tempact;
+static void t_movie(sprite_status* pActwk) { /* Line 309, Address: 0x1031db0 */
+  sprite_status* tempact;
 
   tempact = &actwk[((short*)pActwk)[33]]; /* Line 312, Address: 0x1031dc0 */
   if (tempact->actno != 46) /* Line 313, Address: 0x1031de8 */
@@ -336,7 +336,7 @@ static void t_movie(act_info* pActwk) { /* Line 309, Address: 0x1031db0 */
 
 
 
-static void p_init(act_info* pActwk) { /* Line 339, Address: 0x1031ec0 */
+static void p_init(sprite_status* pActwk) { /* Line 339, Address: 0x1031ec0 */
   pActwk->r_no0 += 2; /* Line 340, Address: 0x1031ecc */
   pActwk->actflg = 4; /* Line 341, Address: 0x1031edc */
   pActwk->sprvsize = 8; /* Line 342, Address: 0x1031ee8 */
@@ -361,7 +361,7 @@ static void p_init(act_info* pActwk) { /* Line 339, Address: 0x1031ec0 */
 
 
 
-static void p_move(act_info* pActwk) { /* Line 364, Address: 0x1031fb0 */
+static void p_move(sprite_status* pActwk) { /* Line 364, Address: 0x1031fb0 */
   short temp;
 
   pActwk->xposi.l += ((int*)pActwk)[12]; /* Line 367, Address: 0x1031fc0 */
@@ -385,8 +385,8 @@ static void p_move(act_info* pActwk) { /* Line 364, Address: 0x1031fb0 */
 
 
 
-static void p_movie(act_info* pActwk) { /* Line 388, Address: 0x10320c0 */
-  act_info* tempact;
+static void p_movie(sprite_status* pActwk) { /* Line 388, Address: 0x10320c0 */
+  sprite_status* tempact;
 
   tempact = &actwk[((short*)pActwk)[33]]; /* Line 391, Address: 0x10320d0 */
   if (tempact->actno != 46) /* Line 392, Address: 0x10320f8 */
