@@ -1,0 +1,9 @@
+void sprinit();
+void sonic_set();
+void flick_set();
+void pocky_set();
+void pecky_set();
+void ricky_set();
+void inco_set();
+void hato_set();
+void sheep_set();

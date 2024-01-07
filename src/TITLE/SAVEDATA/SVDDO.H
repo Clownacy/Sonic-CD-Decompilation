@@ -1,0 +1,12 @@
+void SDDraw();
+void SDStart();
+void DeleteFileSelect();
+void UpdateFileSelect(unsigned short nNewNumber);
+void UpdateSelectSonicMark(unsigned short nNewNumber);
+void UpdateFileView(unsigned short nFileNumber);
+void UpdateMessage(char* msg);
+void DefaultMessage();
+unsigned int ChkSaveFile();
+void SDMenu();
+int SDEnd();
+int CheckAutoEnd();

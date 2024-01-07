@@ -1,0 +1,2 @@
+void ReadDataFile();
+void WriteDataFile();

@@ -1,0 +1,10 @@
+extern zoom_info_lpl zoomwk;
+extern rotate_2 playwk;
+extern rotate_1 k_wk;
+extern unsigned char lp_cgflg;
+extern unsigned char push_flg_s;
+extern int_union rotspeed;
+extern unsigned short rotflg;
+extern short zoomflg;
+extern unsigned char lpcg_chg;
+extern unsigned char int1_flg;

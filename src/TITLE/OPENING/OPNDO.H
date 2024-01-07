@@ -1,0 +1,11 @@
+void OEDraw();
+unsigned int ChkNewSlot();
+void OETitleSta();
+void OETitle();
+void OEFadeOut();
+void OEFadeIn();
+void OEOpenSta();
+void OESegaLogo();
+void OEDark();
+void OESonic();
+int OEEnd();

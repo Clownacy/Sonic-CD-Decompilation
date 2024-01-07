@@ -1,0 +1,12 @@
+void DLL_meminit(char*** pBufTbl, void** pFuncTbl);
+void DLL_memfree();
+void SWdataSet(ushort_union sw1, ushort_union sw2);
+void game_init();
+int game();
+void cgmwrt_a();
+void cgmwrt_b();
+void v_int();
+void PutAscii(unsigned short c, unsigned short XPos, unsigned short YPos);
+void soundset(short ReqNo);
+void EndingMesColor();
+int EndingMes();

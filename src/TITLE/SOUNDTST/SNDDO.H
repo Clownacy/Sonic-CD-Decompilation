@@ -1,0 +1,10 @@
+void SNDDraw();
+void SNDStart();
+void SNDMenu();
+int SNDEnd();
+int SNDEnd2();
+int SNDEnd3();
+int MC_SONICCreate(short cgno);
+int MC_SONICDelete();
+void SNDKakusi();
+void SNDSpecialMes();

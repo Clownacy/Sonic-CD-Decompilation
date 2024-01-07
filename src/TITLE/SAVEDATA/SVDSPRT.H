@@ -1,0 +1,13 @@
+unsigned int CreateCharSprt(char c, int kind, int nBlockNo, int nSprNum);
+unsigned int CreateStringSprt(char* str, int kind, int nBlockNo, int nStartSprNum);
+void DeleteCharSprt(int nBlockNo, int nSprNum);
+void DeleteStringSprt(int strLength, int nBlockNo, int nStartSprNum);
+void DeleteAllCharSprt();
+int GetCursolPositon();
+void MovCursol(int x);
+void DispCursol();
+void HideCursol();
+void HideSonicCursol();
+void DispSonicCursol(POINT point);
+void RunSonicCursol(POINT point);
+void UpdateSonicCursol();
