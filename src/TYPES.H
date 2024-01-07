@@ -265,7 +265,7 @@ typedef struct {
   unsigned char colorno2;
   unsigned char soundNo;
 }
-map_info;
+map_init_data;
 
 typedef struct tagPALETTEENTRY {
   unsigned char peRed;

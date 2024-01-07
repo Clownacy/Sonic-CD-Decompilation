@@ -46,7 +46,7 @@ extern void(*sMemSet)(void*, unsigned char, int);
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
 extern int(*SetGrid)(int, int, int, int, int);
-extern map_info mapinittbl;
+extern map_init_data mapinittbl;
 
 
 

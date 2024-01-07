@@ -19,7 +19,7 @@ void(*gene_tbl[6])(act_info*) = {
 };
 extern spr_array* genepat[];
 extern unsigned char* genechg[];
-extern map_info mapinittbl;
+extern map_init_data mapinittbl;
 void(*bring2_tbl[3])(act_info*) = {
   &bring2init,
   &bring2move0,
