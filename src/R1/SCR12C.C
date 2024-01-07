@@ -1119,7 +1119,7 @@ static void scrv_move(int_union lSpd) { /* Line 1055, Address: 0x1026d70 */
 void scrollwrt() { /* Line 1119, Address: 0x1026ed0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
-  point TilePoint;
+  POINT TilePoint;
   unsigned char* pScrFlag;
   unsigned char* pMapWk;
   int_union lD4;
@@ -1203,7 +1203,7 @@ void scrollwrtb(unsigned char* pScrFlag, unsigned char* pMapWk, int VramBase) { 
   unsigned short wD5;
   unsigned short wH_posiw;
   unsigned short wV_posiw;
-  point TilePoint;
+  POINT TilePoint;
   int BlkIndex;
   int i;
 
@@ -1320,7 +1320,7 @@ label1:
 
 
 
-void hblockwrt(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1323, Address: 0x10275c0 */
+void hblockwrt(POINT* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1323, Address: 0x10275c0 */
   int BlkIndex;
 
 
@@ -1347,7 +1347,7 @@ void hblockwrt(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsigne
 
 
 
-void hblockwrt1(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1350, Address: 0x1027690 */
+void hblockwrt1(POINT* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1350, Address: 0x1027690 */
   int BlkIndex;
 
   do {
@@ -1377,7 +1377,7 @@ void hblockwrt1(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsign
 
 
 
-void vblockwrt(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1380, Address: 0x1027760 */
+void vblockwrt(POINT* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt) { /* Line 1380, Address: 0x1027760 */
   int BlkIndex;
 
   do {
@@ -1405,7 +1405,7 @@ void vblockwrt(point* pTilePoint, int VramBase, unsigned short wH_posiw, unsigne
 
 
 
-void blockwrt(int VramBase, point* pTilePoint, int BlkIndex) { /* Line 1408, Address: 0x1027820 */
+void blockwrt(int VramBase, POINT* pTilePoint, int BlkIndex) { /* Line 1408, Address: 0x1027820 */
   int base;
   int frip;
   int p0, p1, p2, p3;
@@ -1574,7 +1574,7 @@ int mapadrset2(unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk
 
 void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned short yOffs) { /* Line 1575, Address: 0x1027f40 */
   int VramBase;
-  point TilePoint;
+  POINT TilePoint;
   unsigned char* pMapWk;
   unsigned short* pBlockIndex;
   int Index;
@@ -1624,28 +1624,28 @@ int block_chk(unsigned short xOffs, unsigned short yOffs) { /* Line 1603, Addres
 
 
 
-void vramadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, point* lpTilePoint) { /* Line 1627, Address: 0x1028120 */
+void vramadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint) { /* Line 1627, Address: 0x1028120 */
   vramadrset99(wH_posiw, wV_posiw, xOffs, yOffs, lpTilePoint); /* Line 1628, Address: 0x102813c */
 } /* Line 1629, Address: 0x1028158 */
 
 
-void vramadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, point* lpTilePoint) { /* Line 1632, Address: 0x1028170 */
+void vramadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint) { /* Line 1632, Address: 0x1028170 */
   wH_posiw = 0; /* Line 1633, Address: 0x102818c */
   vramadrset99(wH_posiw, wV_posiw, xOffs, yOffs, lpTilePoint); /* Line 1634, Address: 0x1028190 */
 } /* Line 1635, Address: 0x10281ac */
 
 
-void vramadrset0(unsigned short xOffs, unsigned short yOffs, point* lpTilePoint) { /* Line 1638, Address: 0x10281c0 */
+void vramadrset0(unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint) { /* Line 1638, Address: 0x10281c0 */
   vramadrset99(0, 0, xOffs, yOffs, lpTilePoint); /* Line 1639, Address: 0x10281d4 */
 } /* Line 1640, Address: 0x10281f0 */
 
 
-void vramadrset2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, point* lpTilePoint) { /* Line 1643, Address: 0x1028200 */
+void vramadrset2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint) { /* Line 1643, Address: 0x1028200 */
   vramadrset99(wH_posiw, wV_posiw, xOffs, yOffs, lpTilePoint); /* Line 1644, Address: 0x102821c */
 } /* Line 1645, Address: 0x1028238 */
 
 
-void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, point* lpTilePoint) { /* Line 1648, Address: 0x1028250 */
+void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint) { /* Line 1648, Address: 0x1028250 */
   xOffs += wH_posiw; /* Line 1649, Address: 0x1028268 */
   yOffs += wV_posiw; /* Line 1650, Address: 0x1028278 */
   yOffs &= 240; /* Line 1651, Address: 0x1028288 */
@@ -1693,7 +1693,7 @@ void mapwrt2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pM
 
 
 void mapwrt3(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pMapWk, int VramBase, unsigned short wD4, unsigned short wD6) { /* Line 1695, Address: 0x10283f0 */
-  point TilePoint;
+  POINT TilePoint;
 
   do {
     vramadrset(wH_posiw, wV_posiw, 0, wD4, &TilePoint); /* Line 1699, Address: 0x1028410 */
@@ -1731,7 +1731,7 @@ void mapwrt_z11c(unsigned char* pMapWk, int VramBase) { /* Line 1706, Address: 0
 
 
 void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, unsigned char* pMapWk, int VramBase) { /* Line 1733, Address: 0x1028560 */
-  point TilePoint;
+  POINT TilePoint;
   unsigned short wH_posiw, wV_posiw;
   unsigned short wD5;
 

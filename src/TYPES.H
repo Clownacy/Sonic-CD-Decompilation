@@ -286,7 +286,7 @@ typedef struct tagPOINT {
   int x;
   int y;
 }
-point;
+POINT;
 
 
 
