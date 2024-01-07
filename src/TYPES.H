@@ -183,7 +183,7 @@ typedef struct {
   int cnt;
   sprite_status* pActwk[63];
 }
-act_info_array;
+sprite_statuses;
 
 typedef struct {
   unsigned short x;

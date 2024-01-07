@@ -220,7 +220,7 @@ short_union gmmode;
 sprite_status actwk[128];
 int_union* lphscrollbuff;
 short playposiwk[128];
-act_info_array pbuffer[8];
+sprite_statuses pbuffer[8];
 short hscrollwork[256];
 unsigned char flowwk[4096];
 unsigned short blockwk[4][1024];
