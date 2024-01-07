@@ -210,12 +210,13 @@ typedef struct {
 }
 bmp_info;
 
-struct brankodata {
+typedef struct brankodata {
   short angle;
   short accel;
   short area1;
   short area2;
-};
+}
+brankodata;
 
 typedef struct dlink_export {
   void(*game_init)();
