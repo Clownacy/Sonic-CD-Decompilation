@@ -200,7 +200,7 @@ void patset(sprite_status_sp* work) { /* Line 172, Address: 0x1000670 */
 void n_patset(sprite_status_sp* work, spr_array* sprpat_adr) { /* Line 200, Address: 0x10007d0 */
   short x_posi, y_posi, i, sx, sy;
   unsigned short rev;
-  spr_info sprdat;
+  sprite_data sprdat;
 
   if (linkdata >= 80) return; /* Line 205, Address: 0x10007f8 */
 

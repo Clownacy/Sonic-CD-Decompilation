@@ -205,7 +205,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
   short cnt;
   spr_array* patadr;
   spr_array** patbase;
-  spr_info* sprdat;
+  sprite_data* sprdat;
   int_union *pScrHposi, *pScrVposi;
   int_union* patsettbl[8] = /* Line 210, Address: 0x100188c */
   {
@@ -289,7 +289,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
 
 
 
-void spatset(short xposi, short yposi, act_info* pActwk, spr_info* sprdat, short cnt) { /* Line 292, Address: 0x1001c20 */
+void spatset(short xposi, short yposi, act_info* pActwk, sprite_data* sprdat, short cnt) { /* Line 292, Address: 0x1001c20 */
   unsigned char flag;
   short x, y;
   unsigned short reverse;

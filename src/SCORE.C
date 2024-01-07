@@ -430,7 +430,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
 
 
 void scoreset() { /* Line 432, Address: 0x1005550 */
-  spr_info* pSprdat;
+  sprite_data* pSprdat;
   spr_array* pSprpat;
 
   pSprdat = &scorepat2.spra[3]; /* Line 436, Address: 0x1005560 */
@@ -542,7 +542,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
 static void ringinit() {} /* Line 542, Address: 0x10059b0 */
 
 static void scoreinit() { /* Line 544, Address: 0x10059c0 */
-  spr_info* pSprdat;
+  sprite_data* pSprdat;
 
   pSprdat = &scorepat1.spra[2]; /* Line 547, Address: 0x10059cc */
   playsuuwrt(pSprdat); /* Line 548, Address: 0x10059d4 */
@@ -563,7 +563,7 @@ static void scoreinit() { /* Line 544, Address: 0x10059c0 */
 
 
 static void posiwrt() { /* Line 565, Address: 0x1005a00 */
-  spr_info* pSprdat;
+  sprite_data* pSprdat;
   int_union lwk;
 
   lwk.l = 0; /* Line 569, Address: 0x1005a0c */
@@ -578,23 +578,23 @@ static void posiwrt() { /* Line 565, Address: 0x1005a00 */
 
 
 
-static void bonuswrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 581, Address: 0x1005a70 */
+static void bonuswrt(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 581, Address: 0x1005a70 */
   scorewrt2(pSprdat, lDispVal, &subtbl[1], 4, 1); /* Line 582, Address: 0x1005a80 */
 
 } /* Line 584, Address: 0x1005aa0 */
 
-static void ringwrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 586, Address: 0x1005ab0 */
+static void ringwrt(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 586, Address: 0x1005ab0 */
   scorewrt2(pSprdat, lDispVal, &subtbl[3], 2, 1); /* Line 587, Address: 0x1005ac0 */
 
 } /* Line 589, Address: 0x1005ae0 */
 
 
-static void scorewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 592, Address: 0x1005af0 */
+static void scorewrt(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 592, Address: 0x1005af0 */
   scorewrt2(pSprdat, lDispVal, &subtbl[0], 5, 0); /* Line 593, Address: 0x1005b00 */
 
 } /* Line 595, Address: 0x1005b20 */
 
-static void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp) { /* Line 597, Address: 0x1005b30 */
+static void scorewrt2(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp) { /* Line 597, Address: 0x1005b30 */
   unsigned int lDisp1;
   int wrt = 0; /* Line 599, Address: 0x1005b50 */
 
@@ -621,13 +621,13 @@ static void scorewrt2(spr_info* pSprdat, unsigned int lDispVal, unsigned int* su
 
 
 
-static void posiwrt0(spr_info* pSprdat, unsigned int lDispVal) { /* Line 624, Address: 0x1005c40 */
+static void posiwrt0(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 624, Address: 0x1005c40 */
   timewrt0(pSprdat, lDispVal, &subtblh4[0], 3); /* Line 625, Address: 0x1005c50 */
 
 } /* Line 627, Address: 0x1005c6c */
 
 
-static void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
+static void playsuuwrt(sprite_data* pSprdat) { /* Line 630, Address: 0x1005c80 */
   unsigned int lDispVal;
 
   if (pl_suu >= 10) /* Line 633, Address: 0x1005c90 */
@@ -641,12 +641,12 @@ static void playsuuwrt(spr_info* pSprdat) { /* Line 630, Address: 0x1005c80 */
 
 
 
-static void timewrt1(spr_info* pSprdat, unsigned int lDispVal) { /* Line 644, Address: 0x1005cf0 */
+static void timewrt1(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 644, Address: 0x1005cf0 */
   timewrt0(pSprdat, lDispVal, &subtbl[5], 0); /* Line 645, Address: 0x1005d00 */
 
 } /* Line 647, Address: 0x1005d1c */
 
-static void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0x1005d30 */
+static void timewrt(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 649, Address: 0x1005d30 */
   timewrt0(pSprdat, lDispVal, &subtbl[4], 1); /* Line 650, Address: 0x1005d40 */
 
 } /* Line 652, Address: 0x1005d5c */
@@ -657,7 +657,7 @@ static void timewrt(spr_info* pSprdat, unsigned int lDispVal) { /* Line 649, Add
 
 
 
-static void timewrt0(spr_info* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6) { /* Line 660, Address: 0x1005d70 */
+static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6) { /* Line 660, Address: 0x1005d70 */
   unsigned short lDisp1;
 
   do {

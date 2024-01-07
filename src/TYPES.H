@@ -70,13 +70,13 @@ typedef struct {
   unsigned char etc;
   unsigned short index;
 }
-spr_info;
+sprite_data;
 
 typedef struct {
   unsigned char cnt;
   union {
-    spr_info spra[20];
-    spr_info spr[];
+    sprite_data spra[20];
+    sprite_data spr[];
   };
 }
 spr_array;
