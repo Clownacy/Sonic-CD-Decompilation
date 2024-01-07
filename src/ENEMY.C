@@ -17,7 +17,7 @@ unsigned char* ari_pchg[2] =
   ari_pchg00,
   ari_pchg01
 };
-static spr_array ari0 =
+static sprite_pattern ari0 =
 {
   3,
   {
@@ -26,7 +26,7 @@ static spr_array ari0 =
     {  14,  -4, 0, 372 }
   }
 };
-static spr_array ari1 =
+static sprite_pattern ari1 =
 {
   3,
   {
@@ -35,7 +35,7 @@ static spr_array ari1 =
     {  18,  -4, 0, 375 }
   }
 };
-static spr_array ari2 =
+static sprite_pattern ari2 =
 {
   3,
   {
@@ -44,7 +44,7 @@ static spr_array ari2 =
     {  14,  -4, 0, 378 }
   }
 };
-static spr_array ari3 =
+static sprite_pattern ari3 =
 {
   3,
   {
@@ -53,7 +53,7 @@ static spr_array ari3 =
     {  18,  -4, 0, 381 }
   }
 };
-spr_array* ari_pat[4] =
+sprite_pattern* ari_pat[4] =
 {
   &ari0,
   &ari1,
@@ -67,43 +67,43 @@ unsigned char* chou_pchg[2] =
   chou_pchg00,
   chou_pchg01
 };
-static spr_array chou1e =
+static sprite_pattern chou1e =
 {
   1,
   { { -16, -16, 0, 394 } }
 };
-static spr_array chou2e =
+static sprite_pattern chou2e =
 {
   1,
   { { -16, -8, 0, 395 } }
 };
-static spr_array chou3e =
+static sprite_pattern chou3e =
 {
   1,
   { { -16, -16, 0, 396 } }
 };
-static spr_array chou1b =
+static sprite_pattern chou1b =
 {
   1,
   { { -16, -16, 0, 397 } }
 };
-static spr_array chou2b =
+static sprite_pattern chou2b =
 {
   1,
   { { -16, -8, 0, 398 } }
 };
-static spr_array chou3b =
+static sprite_pattern chou3b =
 {
   1,
   { { -16, -16, 0, 399 } }
 };
-spr_array* e_chou_pat[3] =
+sprite_pattern* e_chou_pat[3] =
 {
   &chou1e,
   &chou2e,
   &chou3e
 };
-spr_array* b_chou_pat[3] =
+sprite_pattern* b_chou_pat[3] =
 {
   &chou1b,
   &chou2b,
@@ -123,32 +123,32 @@ unsigned char* pchg_b[2] =
   pchg_b_0,
   pchg_b_1
 };
-static spr_array ka1e =
+static sprite_pattern ka1e =
 {
   1,
   { { -16, -12, 0, 400 } }
 };
-static spr_array ka2e =
+static sprite_pattern ka2e =
 {
   1,
   { { -16, -4, 0, 401 } }
 };
-static spr_array ka3e =
+static sprite_pattern ka3e =
 {
   1,
   { { -16, -16, 0, 402 } }
 };
-static spr_array ka4e =
+static sprite_pattern ka4e =
 {
   1,
   { { -8, -16, 0, 403 } }
 };
-static spr_array ka5e =
+static sprite_pattern ka5e =
 {
   1,
   { { -12, -16, 0, 404 } }
 };
-spr_array* e_ka_pat[5] =
+sprite_pattern* e_ka_pat[5] =
 {
   &ka1e,
   &ka2e,
@@ -156,32 +156,32 @@ spr_array* e_ka_pat[5] =
   &ka4e,
   &ka5e
 };
-static spr_array ka1b =
+static sprite_pattern ka1b =
 {
   1,
   { { -16, -12, 0, 405 } }
 };
-static spr_array ka2b =
+static sprite_pattern ka2b =
 {
   1,
   { { -16, -4, 0, 406 } }
 };
-static spr_array ka3b =
+static sprite_pattern ka3b =
 {
   1,
   { { -16, -16, 0, 407 } }
 };
-static spr_array ka4b =
+static sprite_pattern ka4b =
 {
   1,
   { { -8, -16, 0, 408 } }
 };
-static spr_array ka5b =
+static sprite_pattern ka5b =
 {
   1,
   { { -12, -16, 0, 409 } }
 };
-spr_array* b_ka_pat[5] =
+sprite_pattern* b_ka_pat[5] =
 {
   &ka1b,
   &ka2b,
@@ -215,33 +215,33 @@ unsigned char* b_kamem_pchg[2] =
   b_kamem_pchg00,
   b_kamem_pchg01
 };
-static spr_array kamem_pat00e =
+static sprite_pattern kamem_pat00e =
 {
   1,
   { { -16, -15, 0, 410 } }
 };
-static spr_array kamem_pat00b =
+static sprite_pattern kamem_pat00b =
 {
   1,
   { { -16, -16, 0, 411 } }
 };
-static spr_array kamem_pat01 =
+static sprite_pattern kamem_pat01 =
 {
   1,
   { { -16, -14, 0, 412 } }
 };
-static spr_array kamem_pat02 =
+static sprite_pattern kamem_pat02 =
 {
   1,
   { { -17, -16, 0, 413 } }
 };
-spr_array* e_kamem_pat[3] =
+sprite_pattern* e_kamem_pat[3] =
 {
   &kamem_pat00e,
   &kamem_pat01,
   &kamem_pat02
 };
-spr_array* b_kamem_pat[3] =
+sprite_pattern* b_kamem_pat[3] =
 {
   &kamem_pat00b,
   &kamem_pat01,
@@ -249,27 +249,27 @@ spr_array* b_kamem_pat[3] =
 };
 static unsigned char tama_pchg00[6] = { 2, 0, 1, 2, 3, 255 };
 unsigned char* tama_pchg[1] = { tama_pchg00 };
-static spr_array tama_pat00 =
+static sprite_pattern tama_pat00 =
 {
   1,
   { { -4, -4, 0, 414 } }
 };
-static spr_array tama_pat01 =
+static sprite_pattern tama_pat01 =
 {
   1,
  { { -4, -4, 0, 415 } }
 };
-static spr_array tama_pat02 =
+static sprite_pattern tama_pat02 =
 {
   1,
   { { -8, -8, 0, 416 } }
 };
-static spr_array tama_pat03 =
+static sprite_pattern tama_pat03 =
 {
   1,
   { { -8, -8, 0, 417 } }
 };
-spr_array* tama_pat[4] =
+sprite_pattern* tama_pat[4] =
 {
   &tama_pat00,
   &tama_pat01,
@@ -318,7 +318,7 @@ unsigned char* b_tagame_pchg[2] =
   b_tagame_pchg00,
   b_tagame_pchg01
 };
-static spr_array tagame_pat00 =
+static sprite_pattern tagame_pat00 =
 {
   2,
   {
@@ -326,7 +326,7 @@ static spr_array tagame_pat00 =
     { -16, -22, 0, 419 }
   }
 };
-static spr_array tagame_pat01 =
+static sprite_pattern tagame_pat01 =
 {
   2,
   {
@@ -334,17 +334,17 @@ static spr_array tagame_pat01 =
     { -16, -22, 0, 421 }
   }
 };
-static spr_array tagame_pat02 =
+static sprite_pattern tagame_pat02 =
 {
   1,
   { { -16, -16, 0, 422 } }
 };
-static spr_array tagame_pat03e =
+static sprite_pattern tagame_pat03e =
 {
   1,
   { { -16, -16, 0, 423 } }
 };
-static spr_array tagame_pat04e =
+static sprite_pattern tagame_pat04e =
 {
   2,
   {
@@ -352,7 +352,7 @@ static spr_array tagame_pat04e =
     { -16, -2, 0, 425 }
   }
 };
-static spr_array tagame_pat05e =
+static sprite_pattern tagame_pat05e =
 {
   2,
   {
@@ -360,12 +360,12 @@ static spr_array tagame_pat05e =
     { -16, -2, 0, 427 }
   }
 };
-static spr_array tagame_pat03b =
+static sprite_pattern tagame_pat03b =
 {
   1,
   { { -16, -16, 0, 428 } }
 };
-static spr_array tagame_pat04b =
+static sprite_pattern tagame_pat04b =
 {
   2,
   {
@@ -373,7 +373,7 @@ static spr_array tagame_pat04b =
     { -16, -2, 0, 430 }
   }
 };
-static spr_array tagame_pat05b =
+static sprite_pattern tagame_pat05b =
 {
   2,
   {
@@ -381,12 +381,12 @@ static spr_array tagame_pat05b =
     { -16, -2, 0, 432 }
   }
 };
-static spr_array tagame_pat06 =
+static sprite_pattern tagame_pat06 =
 {
   1,
   { { -16, -16, 0, 433 } }
 };
-spr_array* e_tagame_pat[7] =
+sprite_pattern* e_tagame_pat[7] =
 {
   &tagame_pat00,
   &tagame_pat01,
@@ -396,7 +396,7 @@ spr_array* e_tagame_pat[7] =
   &tagame_pat05e,
   &tagame_pat06
 };
-spr_array* b_tagame_pat[7] =
+sprite_pattern* b_tagame_pat[7] =
 {
   &tagame_pat00,
   &tagame_pat01,

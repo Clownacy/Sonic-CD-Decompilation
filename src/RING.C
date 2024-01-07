@@ -9,40 +9,40 @@
 extern void soundset(short ReqNo);
 extern void sub_sync(short ReqNo);
 
-spr_array ringsp0 = {
+sprite_pattern ringsp0 = {
   1,
   { { -8, -8, 0, 310 } }
 };
-spr_array ringsp1 = {
+sprite_pattern ringsp1 = {
   1,
   { { -8, -8, 0, 311 } }
 };
-spr_array ringsp2 = {
+sprite_pattern ringsp2 = {
   1,
   { { -4, -8, 0, 312 } }
 };
-spr_array ringsp3 = {
+sprite_pattern ringsp3 = {
   1,
   { { -8, -8, 0, 313 } }
 };
-spr_array ringsp4 = {
+sprite_pattern ringsp4 = {
   1,
   { { -8, -8, 0, 314 } }
 };
-spr_array ringsp5 = {
+sprite_pattern ringsp5 = {
   1,
   { { -8, -8, 0, 315 } }
 };
-spr_array ringsp6 = {
+sprite_pattern ringsp6 = {
   1,
   { { -8, -8, 0, 316 } }
 };
-spr_array ringsp7 = {
+sprite_pattern ringsp7 = {
   1,
   { { -8, -8, 0, 317 } }
 };
-spr_array ringsp8;
-spr_array* ringpat[9] = {
+sprite_pattern ringsp8;
+sprite_pattern* ringpat[9] = {
   &ringsp0,
   &ringsp1,
   &ringsp2,

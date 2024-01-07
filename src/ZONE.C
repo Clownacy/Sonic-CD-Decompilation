@@ -8,63 +8,63 @@
 extern void sub_sync(short ReqNo);
 extern void soundset(short ReqNo);
 
-static spr_array game0 = {
+static sprite_pattern game0 = {
   1,
   { { -72, -8, 0, 379 } }
 };
-static spr_array game1 = {
+static sprite_pattern game1 = {
   1,
   { { 8, -8, 0, 380 } }
 };
-spr_array* gamepat[2] = {
+sprite_pattern* gamepat[2] = {
   &game0,
   &game1
 };
-static spr_array time0 = {
+static sprite_pattern time0 = {
   1,
   { { -68, -8, 0, 381 } }
 };
-static spr_array time1 = {
+static sprite_pattern time1 = {
   1,
   { { 4, -8, 0, 382 } }
 };
-spr_array* timepat[2] = {
+sprite_pattern* timepat[2] = {
   &time0,
   &time1
 };
-static spr_array gotpat0 = {
+static sprite_pattern gotpat0 = {
   1,
   { { -68, -20, 0, 383 } }
 };
-static spr_array gotpat1 = {
+static sprite_pattern gotpat1 = {
   1,
   { { -100, 4, 0, 384 } }
 };
-static spr_array gotpat2 = {
+static sprite_pattern gotpat2 = {
   1,
   { { -100, 4, 0, 385 } }
 };
-static spr_array gotpat3 = {
+static sprite_pattern gotpat3 = {
   1,
   { { -100, 4, 0, 386 } }
 };
-static spr_array madepat0 = {
+static sprite_pattern madepat0 = {
   1,
   { { -128, -20, 0, 387 } }
 };
-static spr_array madepat1 = {
+static sprite_pattern madepat1 = {
   1,
   { { -112, 4, 0, 388 } }
 };
-static spr_array madepat2 = {
+static sprite_pattern madepat2 = {
   1,
   { { -112, 4, 0, 389 } }
 };
-static spr_array madepat3 = {
+static sprite_pattern madepat3 = {
   1,
   { { -112, 4, 0, 390 } }
 };
-spr_array bonuspat = {
+sprite_pattern bonuspat = {
   18,
   {
     { -44, -32, 0, 391 },
@@ -87,7 +87,7 @@ spr_array bonuspat = {
     { 120, 16, 0, 0 }
   }
 };
-spr_array bonuspat0 = {
+sprite_pattern bonuspat0 = {
   18,
   {
     { -44, -32, 0, 392 },
@@ -110,35 +110,35 @@ spr_array bonuspat0 = {
     { 120, 16, 0, 0 }
   }
 };
-spr_array* gotpat[5] = {
+sprite_pattern* gotpat[5] = {
   &gotpat0,
   &bonuspat,
   &gotpat1,
   &gotpat2,
   &gotpat3
 };
-spr_array* gotpat_0[5] = {
+sprite_pattern* gotpat_0[5] = {
   &gotpat0,
   &bonuspat0,
   &gotpat1,
   &gotpat2,
   &gotpat3
 };
-spr_array* madepat[5] = {
+sprite_pattern* madepat[5] = {
   &madepat0,
   &bonuspat,
   &madepat1,
   &madepat2,
   &madepat3
 };
-spr_array* madepat_0[5] = {
+sprite_pattern* madepat_0[5] = {
   &madepat0,
   &bonuspat0,
   &madepat1,
   &madepat2,
   &madepat3
 };
-extern spr_array* title_pat[];
+extern sprite_pattern* title_pat[];
 extern unsigned short title_tbl[];
 static unsigned short ClearSountWait;
 static short WaitCount;

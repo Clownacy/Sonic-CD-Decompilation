@@ -3,227 +3,227 @@
 #include "SPS_EQU.H"
 #include "ENS.H"
 
-static spr_array seexp00 = {
+static sprite_pattern seexp00 = {
   1,
   { { -10, -8, 0, 127 } }
 };
-static spr_array seexp01 = {
+static sprite_pattern seexp01 = {
   1,
   { { -20, -16, 0, 128 } }
 };
-static spr_array seexp02 = {
+static sprite_pattern seexp02 = {
   1,
   { { -20, -16, 0, 129 } }
 };
-static spr_array seexp03 = {
+static sprite_pattern seexp03 = {
   1,
   { { -25, -8, 0, 130 } }
 };
-static spr_array seexp04 = {
+static sprite_pattern seexp04 = {
   1,
   { { -25, -24, 0, 131 } }
 };
-static spr_array stitle00 = {
+static sprite_pattern stitle00 = {
   1,
   { { -90, -56, 0, 132 } }
 };
-static spr_array spress00 = {
+static sprite_pattern spress00 = {
   1,
   { { 0, 0, 0, 1 } }
 };
-static spr_array sobi00 = {
+static sprite_pattern sobi00 = {
   1,
   { { -15, -112, 0, 133 } }
 };
-static spr_array sitem00 = {
+static sprite_pattern sitem00 = {
   1,
   { { -10, -16, 0, 119 } }
 };
-static spr_array sitem01 = {
+static sprite_pattern sitem01 = {
   1,
   { { -10, -16, 0, 120 } }
 };
-static spr_array sitem02 = {
+static sprite_pattern sitem02 = {
   1,
   { { -10, -16, 0, 121 } }
 };
-static spr_array sitem03 = {
+static sprite_pattern sitem03 = {
   1,
   { { -10, -16, 0, 122 } }
 };
-static spr_array sitem04 = {
+static sprite_pattern sitem04 = {
   1,
   { { -10, -24, 0, 123 } }
 };
-static spr_array sitem05 = {
+static sprite_pattern sitem05 = {
   1,
   { { -10, -24, 0, 124 } }
 };
-static spr_array sitem06 = {
+static sprite_pattern sitem06 = {
   1,
   { { -5, -24, 0, 125 } }
 };
-static spr_array sitem07 = {
+static sprite_pattern sitem07 = {
   1,
   { { -10, -24, 0, 126 } }
 };
-static spr_array skage00 = {
+static sprite_pattern skage00 = {
   1,
   { { -40, -8, 0, 71 } }
 };
-static spr_array skage01 = {
+static sprite_pattern skage01 = {
   1,
   { { -35, -8, 0, 72 } }
 };
-static spr_array skage02 = {
+static sprite_pattern skage02 = {
   1,
   { { -30, -4, 0, 73 } }
 };
-static spr_array skage03 = {
+static sprite_pattern skage03 = {
   1,
   { { -30, -4, 0, 74 } }
 };
-static spr_array skage04 = {
+static sprite_pattern skage04 = {
   1,
   { { -25, -4, 0, 75 } }
 };
-static spr_array skage05 = {
+static sprite_pattern skage05 = {
   1,
   { { -20, -4, 0, 76 } }
 };
-static spr_array skage06 = {
+static sprite_pattern skage06 = {
   1,
   { { -15, -4, 0, 77 } }
 };
-static spr_array skage07 = {
+static sprite_pattern skage07 = {
   1,
   { { -15, -4, 0, 78 } }
 };
-static spr_array skage08 = {
+static sprite_pattern skage08 = {
   1,
   { { -10, -4, 0, 79 } }
 };
-static spr_array skage09 = {
+static sprite_pattern skage09 = {
   1,
   { { -5, -4, 0, 80 } }
 };
-static spr_array Tufo00 = {
+static sprite_pattern Tufo00 = {
   1,
   { { -40, -56, 0, 81 } }
 };
-static spr_array Tufo01 = {
+static sprite_pattern Tufo01 = {
   1,
   { { -30, -48, 0, 82 } }
 };
-static spr_array Tufo02 = {
+static sprite_pattern Tufo02 = {
   1,
   { { -30, -40, 0, 83 } }
 };
-static spr_array Tufo03 = {
+static sprite_pattern Tufo03 = {
   1,
   { { -30, -40, 0, 84 } }
 };
-static spr_array Tufo04 = {
+static sprite_pattern Tufo04 = {
   1,
   { { -30, -32, 0, 85 } }
 };
-static spr_array Tufo05 = {
+static sprite_pattern Tufo05 = {
   1,
   { { -20, -32, 0, 86 } }
 };
-static spr_array Tufo06 = {
+static sprite_pattern Tufo06 = {
   1,
   { { -20, -32, 0, 87 } }
 };
-static spr_array Tufo07 = {
+static sprite_pattern Tufo07 = {
   1,
   { { -15, -24, 0, 88 } }
 };
-static spr_array Tufo08 = {
+static sprite_pattern Tufo08 = {
   1,
   { { -10, -16, 0, 89 } }
 };
-static spr_array Tufo09 = {
+static sprite_pattern Tufo09 = {
   1,
   { { -5, -8, 0, 90 } }
 };
-static spr_array sufo00 = {
+static sprite_pattern sufo00 = {
   1,
   { { -40, -56, 0, 91 } }
 };
-static spr_array sufo01 = {
+static sprite_pattern sufo01 = {
   1,
   { { -30, -48, 0, 92 } }
 };
-static spr_array sufo02 = {
+static sprite_pattern sufo02 = {
   1,
   { { -30, -40, 0, 93 } }
 };
-static spr_array sufo03 = {
+static sprite_pattern sufo03 = {
   1,
   { { -30, -40, 0, 94 } }
 };
-static spr_array sufo04 = {
+static sprite_pattern sufo04 = {
   1,
   { { -30, -32, 0, 95 } }
 };
-static spr_array sufo05 = {
+static sprite_pattern sufo05 = {
   1,
   { { -20, -32, 0, 96 } }
 };
-static spr_array sufo06 = {
+static sprite_pattern sufo06 = {
   1,
   { { -20, -32, 0, 97 } }
 };
-static spr_array sufo07 = {
+static sprite_pattern sufo07 = {
   1,
   { { -15, -24, 0, 98 } }
 };
-static spr_array sufo08 = {
+static sprite_pattern sufo08 = {
   1,
   { { -10, -16, 0, 99 } }
 };
-static spr_array sufo09 = {
+static sprite_pattern sufo09 = {
   1,
   { { -5, -8, 0, 100 } }
 };
-static spr_array sufo10 = {
+static sprite_pattern sufo10 = {
   1,
   { { -40, -8, 0, 101 } }
 };
-static spr_array sufo11 = {
+static sprite_pattern sufo11 = {
   1,
   { { -30, -48, 0, 102 } }
 };
-static spr_array sufo12 = {
+static sprite_pattern sufo12 = {
   1,
   { { -30, -40, 0, 103 } }
 };
-static spr_array sufo13 = {
+static sprite_pattern sufo13 = {
   1,
   { { -30, -40, 0, 104 } }
 };
-static spr_array sufo14 = {
+static sprite_pattern sufo14 = {
   1,
   { { -30, -32, 0, 105 } }
 };
-static spr_array sufo15 = {
+static sprite_pattern sufo15 = {
   1,
   { { -20, -32, 0, 106 } }
 };
-static spr_array sufo16 = {
+static sprite_pattern sufo16 = {
   1,
   { { -20, -32, 0, 107 } }
 };
-static spr_array sufo17 = {
+static sprite_pattern sufo17 = {
   1,
   { { -15, -24, 0, 108 } }
 };
-static spr_array sufo18 = {
+static sprite_pattern sufo18 = {
   1,
   { { -10, -16, 0, 109 } }
 };
-static spr_array sufo19 = {
+static sprite_pattern sufo19 = {
   1,
   { { -5, -8, 0, 110 } }
 };

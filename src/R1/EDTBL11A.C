@@ -1,28 +1,28 @@
 #include "..\TYPES.H"
 
-extern spr_array* vfutapat[];
-extern spr_array* emie1pat[];
-extern spr_array* pat_et[];
-extern spr_array* iwapat[];
-extern spr_array* hari12pat[];
-extern spr_array* futapat[];
-extern spr_array* k_daipat[];
-extern spr_array* dai11a_pattbl[];
-extern spr_array* springpat[];
-extern spr_array* spring90pat[];
-extern spr_array* spring45pat[];
-extern spr_array* pat_friend0[];
-extern spr_array* pat_friend1[];
-extern spr_array* e_ka_pat[];
-extern spr_array* e_chou_pat[];
-extern spr_array* ari_pat[];
-extern spr_array* e_kamem_pat[];
-extern spr_array* itempat[];
-extern spr_array* mizukipat[];
-extern spr_array* patbase_kuzure_a[];
-extern spr_array* patbase_kuzure_b[];
-extern spr_array* markerpat[];
-extern spr_array* bariapat[];
+extern sprite_pattern* vfutapat[];
+extern sprite_pattern* emie1pat[];
+extern sprite_pattern* pat_et[];
+extern sprite_pattern* iwapat[];
+extern sprite_pattern* hari12pat[];
+extern sprite_pattern* futapat[];
+extern sprite_pattern* k_daipat[];
+extern sprite_pattern* dai11a_pattbl[];
+extern sprite_pattern* springpat[];
+extern sprite_pattern* spring90pat[];
+extern sprite_pattern* spring45pat[];
+extern sprite_pattern* pat_friend0[];
+extern sprite_pattern* pat_friend1[];
+extern sprite_pattern* e_ka_pat[];
+extern sprite_pattern* e_chou_pat[];
+extern sprite_pattern* ari_pat[];
+extern sprite_pattern* e_kamem_pat[];
+extern sprite_pattern* itempat[];
+extern sprite_pattern* mizukipat[];
+extern sprite_pattern* patbase_kuzure_a[];
+extern sprite_pattern* patbase_kuzure_b[];
+extern sprite_pattern* markerpat[];
+extern sprite_pattern* bariapat[];
 
 edit_info_array edit_tbl = {
   52,

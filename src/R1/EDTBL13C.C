@@ -1,13 +1,13 @@
 #include "..\TYPES.H"
 
-extern spr_array* iwapat[];
-extern spr_array* springpat[];
-extern spr_array* spring90pat[];
-extern spr_array* pat_friend0[];
-extern spr_array* pat_friend1[];
-extern spr_array* itempat[];
-extern spr_array* egg1_pat[];
-extern spr_array* bariapat[];
+extern sprite_pattern* iwapat[];
+extern sprite_pattern* springpat[];
+extern sprite_pattern* spring90pat[];
+extern sprite_pattern* pat_friend0[];
+extern sprite_pattern* pat_friend1[];
+extern sprite_pattern* itempat[];
+extern sprite_pattern* egg1_pat[];
+extern sprite_pattern* bariapat[];
 
 edit_info_array edit_tbl = {
   24,

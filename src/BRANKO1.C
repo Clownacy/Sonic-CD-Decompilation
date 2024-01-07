@@ -6,19 +6,19 @@
 #include "ETC.H"
 #include "RIDECHK.H"
 
-static spr_array pat0 = {
+static sprite_pattern pat0 = {
   1,
   { { -8, -8, 0, 515 } }
 };
-static spr_array pat1 = {
+static sprite_pattern pat1 = {
   1,
   { { -8, -8, 0, 516 } }
 };
-static spr_array pat2 = {
+static sprite_pattern pat2 = {
   1,
   { { -8, -8, 0, 517 } }
 };
-spr_array* branko1pat[3] = {
+sprite_pattern* branko1pat[3] = {
   &pat0,
   &pat1,
   &pat2

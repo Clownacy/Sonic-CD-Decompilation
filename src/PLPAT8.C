@@ -1,758 +1,758 @@
 #include "TYPES.H"
 
-spr_array pat00 = {
+static sprite_pattern pat00 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array pat01 = {
+static sprite_pattern pat01 = {
   1,
   { { -16, -20, 0, 1 } }
 };
-spr_array pat02 = {
+static sprite_pattern pat02 = {
   1,
   { { -16, -20, 0, 2 } }
 };
-spr_array pat03 = {
+static sprite_pattern pat03 = {
   1,
   { { -16, -20, 0, 3 } }
 };
-spr_array pat04 = {
+static sprite_pattern pat04 = {
   1,
   { { -16, -20, 0, 4 } }
 };
-spr_array pat05 = {
+static sprite_pattern pat05 = {
   1,
   { { -16, -20, 0, 5 } }
 };
-spr_array pat06 = {
+static sprite_pattern pat06 = {
   1,
   { { -16, -20, 0, 6 } }
 };
-spr_array pat07 = {
+static sprite_pattern pat07 = {
   1,
   { { -16, -20, 0, 7 } }
 };
-spr_array pat08 = {
+static sprite_pattern pat08 = {
   1,
   { { -16, -20, 0, 8 } }
 };
-spr_array pat09 = {
+static sprite_pattern pat09 = {
   1,
   { { -20, -20, 0, 9 } }
 };
-spr_array pat0a = {
+static sprite_pattern pat0a = {
   1,
   { { -16, -20, 0, 10 } }
 };
-spr_array pat0b = {
+static sprite_pattern pat0b = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat0c = {
+static sprite_pattern pat0c = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat0d = {
+static sprite_pattern pat0d = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat0e = {
+static sprite_pattern pat0e = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat0f = {
+static sprite_pattern pat0f = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat10 = {
+static sprite_pattern pat10 = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat11 = {
+static sprite_pattern pat11 = {
   1,
   { { -20, -20, 0, 17 } }
 };
-spr_array pat12 = {
+static sprite_pattern pat12 = {
   1,
   { { -20, -20, 0, 18 } }
 };
-spr_array pat13 = {
+static sprite_pattern pat13 = {
   1,
   { { -20, -20, 0, 19 } }
 };
-spr_array pat14 = {
+static sprite_pattern pat14 = {
   1,
   { { -20, -28, 0, 20 } }
 };
-spr_array pat15 = {
+static sprite_pattern pat15 = {
   1,
   { { -20, -20, 0, 21 } }
 };
-spr_array pat16 = {
+static sprite_pattern pat16 = {
   1,
   { { -20, -20, 0, 22 } }
 };
-spr_array pat17 = {
+static sprite_pattern pat17 = {
   1,
   { { -20, -24, 0, 23 } }
 };
-spr_array pat18 = {
+static sprite_pattern pat18 = {
   1,
   { { -8, -12, 0, 111 } }
 };
-spr_array pat19 = {
+static sprite_pattern pat19 = {
   1,
   { { -8, -12, 0, 112 } }
 };
-spr_array pat1a = {
+static sprite_pattern pat1a = {
   1,
   { { -24, -20, 0, 0 } }
 };
-spr_array pat1b = {
+static sprite_pattern pat1b = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat1c = {
+static sprite_pattern pat1c = {
   1,
   { { -20, -24, 0, 0 } }
 };
-spr_array pat1d = {
+static sprite_pattern pat1d = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat1e = {
+static sprite_pattern pat1e = {
   1,
   { { -24, -20, 0, 0 } }
 };
-spr_array pat1f = {
+static sprite_pattern pat1f = {
   1,
   { { -24, -20, 0, 0 } }
 };
-spr_array pat20 = {
+static sprite_pattern pat20 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat21 = {
+static sprite_pattern pat21 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat22 = {
+static sprite_pattern pat22 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat23 = {
+static sprite_pattern pat23 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat24 = {
+static sprite_pattern pat24 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat25 = {
+static sprite_pattern pat25 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat26 = {
+static sprite_pattern pat26 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat27 = {
+static sprite_pattern pat27 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat28 = {
+static sprite_pattern pat28 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat29 = {
+static sprite_pattern pat29 = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat2a = {
+static sprite_pattern pat2a = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat2b = {
+static sprite_pattern pat2b = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat2c = {
+static sprite_pattern pat2c = {
   1,
   { { -16, -16, 0, 0 } }
 };
-spr_array pat2d = {
+static sprite_pattern pat2d = {
   1,
   { { -16, -16, 0, 45 } }
 };
-spr_array pat2e = {
+static sprite_pattern pat2e = {
   1,
   { { -16, -16, 0, 46 } }
 };
-spr_array pat2f = {
+static sprite_pattern pat2f = {
   1,
   { { -16, -16, 0, 47 } }
 };
-spr_array pat30 = {
+static sprite_pattern pat30 = {
   1,
   { { -16, -16, 0, 48 } }
 };
-spr_array pat31 = {
+static sprite_pattern pat31 = {
   1,
   { { -16, -16, 0, 49 } }
 };
-spr_array pat32 = {
+static sprite_pattern pat32 = {
   1,
   { { -16, -24, 0, 212 } }
 };
-spr_array pat33 = {
+static sprite_pattern pat33 = {
   1,
   { { -20, -20, 0, 51 } }
 };
-spr_array pat34 = {
+static sprite_pattern pat34 = {
   1,
   { { -20, -20, 0, 52 } }
 };
-spr_array pat35 = {
+static sprite_pattern pat35 = {
   1,
   { { -20, -20, 0, 53 } }
 };
-spr_array pat36 = {
+static sprite_pattern pat36 = {
   1,
   { { -20, -20, 0, 54 } }
 };
-spr_array pat37 = {
+static sprite_pattern pat37 = {
   1,
   { { -20, -20, 0, 55 } }
 };
-spr_array pat38 = {
+static sprite_pattern pat38 = {
   1,
   { { -20, -20, 0, 56 } }
 };
-spr_array pat39 = {
+static sprite_pattern pat39 = {
   1,
   { { -24, -20, 0, 57 } }
 };
-spr_array pat3a = {
+static sprite_pattern pat3a = {
   1,
   { { -24, -20, 0, 58 } }
 };
-spr_array pat3b = {
+static sprite_pattern pat3b = {
   1,
   { { -24, -20, 0, 59 } }
 };
-spr_array pat3c = {
+static sprite_pattern pat3c = {
   1,
   { { -24, -20, 0, 60 } }
 };
-spr_array pat3d = {
+static sprite_pattern pat3d = {
   1,
   { { -24, -20, 0, 61 } }
 };
-spr_array pat3e = {
+static sprite_pattern pat3e = {
   1,
   { { -24, -20, 0, 62 } }
 };
-spr_array pat3f = {
+static sprite_pattern pat3f = {
   1,
   { { -20, -20, 0, 63 } }
 };
-spr_array pat40 = {
+static sprite_pattern pat40 = {
   1,
   { { -20, -20, 0, 64 } }
 };
-spr_array pat41 = {
+static sprite_pattern pat41 = {
   1,
   { { -20, -20, 0, 65 } }
 };
-spr_array pat42 = {
+static sprite_pattern pat42 = {
   1,
   { { -20, -20, 0, 66 } }
 };
-spr_array pat43 = {
+static sprite_pattern pat43 = {
   1,
   { { -20, -20, 0, 67 } }
 };
-spr_array pat44 = {
+static sprite_pattern pat44 = {
   1,
   { { -20, -20, 0, 68 } }
 };
-spr_array pat45 = {
+static sprite_pattern pat45 = {
   1,
   { { -20, -24, 0, 69 } }
 };
-spr_array pat46 = {
+static sprite_pattern pat46 = {
   1,
   { { -20, -24, 0, 70 } }
 };
-spr_array pat47 = {
+static sprite_pattern pat47 = {
   1,
   { { -20, -24, 0, 71 } }
 };
-spr_array pat48 = {
+static sprite_pattern pat48 = {
   1,
   { { -20, -24, 0, 72 } }
 };
-spr_array pat49 = {
+static sprite_pattern pat49 = {
   1,
   { { -20, -24, 0, 73 } }
 };
-spr_array pat4a = {
+static sprite_pattern pat4a = {
   1,
   { { -20, -24, 0, 74 } }
 };
-spr_array pat4b = {
+static sprite_pattern pat4b = {
   1,
   { { -20, -20, 0, 75 } }
 };
-spr_array pat4c = {
+static sprite_pattern pat4c = {
   1,
   { { -20, -20, 0, 76 } }
 };
-spr_array pat4d = {
+static sprite_pattern pat4d = {
   1,
   { { -20, -20, 0, 77 } }
 };
-spr_array pat4e = {
+static sprite_pattern pat4e = {
   1,
   { { -20, -20, 0, 78 } }
 };
-spr_array pat4f = {
+static sprite_pattern pat4f = {
   1,
   { { -20, -20, 0, 79 } }
 };
-spr_array pat50 = {
+static sprite_pattern pat50 = {
   1,
   { { -20, -20, 0, 80 } }
 };
-spr_array pat51 = {
+static sprite_pattern pat51 = {
   1,
   { { -20, -20, 0, 81 } }
 };
-spr_array pat52 = {
+static sprite_pattern pat52 = {
   1,
   { { -20, -20, 0, 82 } }
 };
-spr_array pat53 = {
+static sprite_pattern pat53 = {
   1,
   { { -20, -20, 0, 83 } }
 };
-spr_array pat54 = {
+static sprite_pattern pat54 = {
   1,
   { { -20, -20, 0, 84 } }
 };
-spr_array pat55 = {
+static sprite_pattern pat55 = {
   1,
   { { -20, -20, 0, 85 } }
 };
-spr_array pat56 = {
+static sprite_pattern pat56 = {
   1,
   { { -20, -20, 0, 86 } }
 };
-spr_array pat57 = {
+static sprite_pattern pat57 = {
   1,
   { { -20, -20, 0, 87 } }
 };
-spr_array pat58 = {
+static sprite_pattern pat58 = {
   1,
   { { -20, -20, 0, 88 } }
 };
-spr_array pat59 = {
+static sprite_pattern pat59 = {
   1,
   { { -20, -20, 0, 89 } }
 };
-spr_array pat5a = {
+static sprite_pattern pat5a = {
   1,
   { { -20, -20, 0, 90 } }
 };
-spr_array pat5b = {
+static sprite_pattern pat5b = {
   1,
   { { -20, -20, 0, 91 } }
 };
-spr_array pat5c = {
+static sprite_pattern pat5c = {
   1,
   { { -20, -20, 0, 92 } }
 };
-spr_array pat5d = {
+static sprite_pattern pat5d = {
   1,
   { { -20, -16, 0, 93 } }
 };
-spr_array pat5e = {
+static sprite_pattern pat5e = {
   1,
   { { -20, -16, 0, 0 } }
 };
-spr_array pat5f = {
+static sprite_pattern pat5f = {
   1,
   { { -20, -20, 0, 0 } }
 };
-spr_array pat60 = {
+static sprite_pattern pat60 = {
   1,
   { { -20, -20, 0, 96 } }
 };
-spr_array pat61 = {
+static sprite_pattern pat61 = {
   1,
   { { -20, -12, 0, 0 } }
 };
-spr_array pat62 = {
+static sprite_pattern pat62 = {
   1,
   { { -24, -12, 0, 0 } }
 };
-spr_array pat63 = {
+static sprite_pattern pat63 = {
   1,
   { { -28, -12, 0, 0 } }
 };
-spr_array pat64 = {
+static sprite_pattern pat64 = {
   1,
   { { -20, -20, 0, 100 } }
 };
-spr_array pat65 = {
+static sprite_pattern pat65 = {
   1,
   { { -20, -20, 0, 101 } }
 };
-spr_array pat66 = {
+static sprite_pattern pat66 = {
   1,
   { { -20, -20, 0, 102 } }
 };
-spr_array pat67 = {
+static sprite_pattern pat67 = {
   1,
   { { -20, -20, 0, 103 } }
 };
-spr_array pat68 = {
+static sprite_pattern pat68 = {
   1,
   { { -20, -24, 0, 0 } }
 };
-spr_array pat69 = {
+static sprite_pattern pat69 = {
   1,
   { { -20, -24, 0, 0 } }
 };
-spr_array pat6a = {
+static sprite_pattern pat6a = {
   1,
   { { -20, -24, 0, 106 } }
 };
-spr_array pat6b = {
+static sprite_pattern pat6b = {
   1,
   { { -24, -16, 0, 0 } }
 };
-spr_array pat6c = {
+static sprite_pattern pat6c = {
   1,
   { { -24, -16, 0, 0 } }
 };
-spr_array pat6d = {
+static sprite_pattern pat6d = {
   1,
   { { -28, -20, 8, 109 } }
 };
-spr_array pat6e = {
+static sprite_pattern pat6e = {
   1,
   { { -28, -20, 8, 110 } }
 };
-spr_array pat6f = {
+static sprite_pattern pat6f = {
   1,
   { { -8, -12, 0, 111 } }
 };
-spr_array pat70 = {
+static sprite_pattern pat70 = {
   1,
   { { -8, -12, 0, 112 } }
 };
-spr_array pat71 = {
+static sprite_pattern pat71 = {
   1,
   { { -8, -12, 0, 113 } }
 };
-spr_array pat72 = {
+static sprite_pattern pat72 = {
   1,
   { { -8, -12, 0, 114 } }
 };
-spr_array pat73 = {
+static sprite_pattern pat73 = {
   1,
   { { -8, -12, 0, 115 } }
 };
-spr_array pat74 = {
+static sprite_pattern pat74 = {
   1,
   { { -8, -12, 0, 116 } }
 };
-spr_array pat75 = {
+static sprite_pattern pat75 = {
   1,
   { { -8, -12, 0, 117 } }
 };
-spr_array pat76 = {
+static sprite_pattern pat76 = {
   1,
   { { -8, -12, 0, 118 } }
 };
-spr_array pat77 = {
+static sprite_pattern pat77 = {
   1,
   { { -8, -12, 0, 119 } }
 };
-spr_array pat78 = {
+static sprite_pattern pat78 = {
   1,
   { { -8, -12, 0, 120 } }
 };
-spr_array pat79 = {
+static sprite_pattern pat79 = {
   1,
   { { -16, -12, 0, 121 } }
 };
-spr_array pat7a = {
+static sprite_pattern pat7a = {
   1,
   { { -8, -12, 0, 122 } }
 };
-spr_array pat7b = {
+static sprite_pattern pat7b = {
   1,
   { { -8, -12, 0, 123 } }
 };
-spr_array pat7c = {
+static sprite_pattern pat7c = {
   1,
   { { -8, -6, 0, 124 } }
 };
-spr_array pat7d = {
+static sprite_pattern pat7d = {
   1,
   { { -8, -6, 0, 125 } }
 };
-spr_array pat7e = {
+static sprite_pattern pat7e = {
   1,
   { { -8, -6, 0, 126 } }
 };
-spr_array pat7f = {
+static sprite_pattern pat7f = {
   1,
   { { -20, -20, 8, 127 } }
 };
-spr_array pat80 = {
+static sprite_pattern pat80 = {
   1,
   { { -20, -20, 8, 128 } }
 };
-spr_array pat81 = {
+static sprite_pattern pat81 = {
   1,
   { { -20, -16, 0, 0 } }
 };
-spr_array pat82 = {
+static sprite_pattern pat82 = {
   1,
   { { -20, -16, 0, 0 } }
 };
-spr_array pat83 = {
+static sprite_pattern pat83 = {
   1,
   { { -28, -20, 8, 131 } }
 };
-spr_array pat84 = {
+static sprite_pattern pat84 = {
   1,
   { { -28, -20, 8, 132 } }
 };
-spr_array pat85 = {
+static sprite_pattern pat85 = {
   1,
   { { -20, -20, 8, 133 } }
 };
-spr_array pat86 = {
+static sprite_pattern pat86 = {
   1,
   { { -20, -20, 8, 134 } }
 };
-spr_array pat87 = {
+static sprite_pattern pat87 = {
   1,
   { { -20, -20, 8, 135 } }
 };
-spr_array pat88 = {
+static sprite_pattern pat88 = {
   1,
   { { -20, -20, 8, 136 } }
 };
-spr_array pat89 = {
+static sprite_pattern pat89 = {
   1,
   { { -20, -16, 0, 0 } }
 };
-spr_array pat8a = {
+static sprite_pattern pat8a = {
   1,
   { { -20, -16, 0, 0 } }
 };
-spr_array pat8b = {
+static sprite_pattern pat8b = {
   1,
   { { -24, -20, 0, 0 } }
 };
-spr_array pat8c = {
+static sprite_pattern pat8c = {
   1,
   { { -20, -24, 0, 0 } }
 };
-spr_array pat8d = {
+static sprite_pattern pat8d = {
   1,
   { { -20, -24, 0, 0 } }
 };
-spr_array pat8e = {
+static sprite_pattern pat8e = {
   1,
   { { -16, -24, 0, 0 } }
 };
-spr_array pat8f = {
+static sprite_pattern pat8f = {
   1,
   { { -16, -24, 0, 0 } }
 };
-spr_array pat90 = {
+static sprite_pattern pat90 = {
   1,
   { { -16, -24, 0, 144 } }
 };
-spr_array pat91 = {
+static sprite_pattern pat91 = {
   1,
   { { -16, -24, 0, 145 } }
 };
-spr_array pat92 = {
+static sprite_pattern pat92 = {
   1,
   { { -16, -24, 0, 146 } }
 };
-spr_array pat93 = {
+static sprite_pattern pat93 = {
   1,
   { { -16, -24, 0, 147 } }
 };
-spr_array pat94 = {
+static sprite_pattern pat94 = {
   1,
   { { -20, -16, 0, 148 } }
 };
-spr_array pat95 = {
+static sprite_pattern pat95 = {
   1,
   { { -20, -16, 0, 149 } }
 };
-spr_array pat96 = {
+static sprite_pattern pat96 = {
   1,
   { { -20, -16, 0, 150 } }
 };
-spr_array pat97 = {
+static sprite_pattern pat97 = {
   1,
   { { -20, -16, 0, 151 } }
 };
-spr_array pat98 = {
+static sprite_pattern pat98 = {
   1,
   { { -20, -24, 0, 152 } }
 };
-spr_array pat99 = {
+static sprite_pattern pat99 = {
   1,
   { { -20, -20, 0, 153 } }
 };
-spr_array pat9a = {
+static sprite_pattern pat9a = {
   1,
   { { -20, -24, 0, 154 } }
 };
-spr_array pat9b = {
+static sprite_pattern pat9b = {
   1,
   { { -20, -20, 0, 155 } }
 };
-spr_array pat9c = {
+static sprite_pattern pat9c = {
   1,
   { { -16, -20, 0, 156 } }
 };
-spr_array pat9d = {
+static sprite_pattern pat9d = {
   1,
   { { -16, -20, 0, 157 } }
 };
-spr_array pat9e = {
+static sprite_pattern pat9e = {
   1,
   { { -16, -20, 0, 158 } }
 };
-spr_array pat9f = {
+static sprite_pattern pat9f = {
   1,
   { { -16, -20, 0, 159 } }
 };
-spr_array pata0 = {
+static sprite_pattern pata0 = {
   1,
   { { -24, -20, 0, 160 } }
 };
-spr_array pata1 = {
+static sprite_pattern pata1 = {
   1,
   { { -20, -20, 0, 161 } }
 };
-spr_array pata2 = {
+static sprite_pattern pata2 = {
   1,
   { { -24, -20, 0, 162 } }
 };
-spr_array pata3 = {
+static sprite_pattern pata3 = {
   1,
   { { -20, -20, 0, 163 } }
 };
-spr_array pata4 = {
+static sprite_pattern pata4 = {
   1,
   { { -20, -24, 0, 164 } }
 };
-spr_array pata5 = {
+static sprite_pattern pata5 = {
   1,
   { { -20, -24, 0, 165 } }
 };
-spr_array pata6 = {
+static sprite_pattern pata6 = {
   1,
   { { -20, -20, 0, 113 } }
 };
-spr_array pata7 = {
+static sprite_pattern pata7 = {
   1,
   { { -20, -16, 0, 167 } }
 };
-spr_array pata8 = {
+static sprite_pattern pata8 = {
   1,
   { { -20, -16, 0, 168 } }
 };
-spr_array pata9 = {
+static sprite_pattern pata9 = {
   1,
   { { -20, -16, 0, 169 } }
 };
-spr_array pataa = {
+static sprite_pattern pataa = {
   1,
   { { -20, -16, 0, 170 } }
 };
-spr_array patab = {
+static sprite_pattern patab = {
   1,
   { { -16, -12, 0, 171 } }
 };
-spr_array patac = {
+static sprite_pattern patac = {
   1,
   { { -16, -12, 0, 172 } }
 };
-spr_array patad = {
+static sprite_pattern patad = {
   1,
   { { -16, -20, 0, 173 } }
 };
-spr_array patae = {
+static sprite_pattern patae = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array pataf = {
+static sprite_pattern pataf = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb0 = {
+static sprite_pattern patb0 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb1 = {
+static sprite_pattern patb1 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb2 = {
+static sprite_pattern patb2 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb3 = {
+static sprite_pattern patb3 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb4 = {
+static sprite_pattern patb4 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patb5 = {
+static sprite_pattern patb5 = {
   1,
   { { -16, -20, 0, 181 } }
 };
-spr_array patb6 = {
+static sprite_pattern patb6 = {
   1,
   { { -16, -20, 0, 182 } }
 };
-spr_array patb7 = {
+static sprite_pattern patb7 = {
   1,
   { { -16, -20, 0, 183 } }
 };
-spr_array patb8 = {
+static sprite_pattern patb8 = {
   1,
   { { -12, -20, 0, 184 } }
 };
-spr_array patb9 = {
+static sprite_pattern patb9 = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patba = {
+static sprite_pattern patba = {
   1,
   { { -16, -20, 0, 0 } }
 };
-spr_array patbb = {
+static sprite_pattern patbb = {
   1,
   { { -16, -20, 8, 1 } }
 };
-spr_array* sncpat[188] = {
+sprite_pattern* sncpat[188] = {
   &pat00, &pat01, &pat02, &pat03, &pat04, &pat05, &pat06, &pat07, &pat08, &pat09, &pat0a, &pat0b, &pat0c, &pat0d, &pat0e, &pat0f,
   &pat10, &pat11, &pat12, &pat13, &pat14, &pat15, &pat16, &pat17, &pat18, &pat19, &pat1a, &pat1b, &pat1c, &pat1d, &pat1e, &pat1f,
   &pat20, &pat21, &pat22, &pat23, &pat24, &pat25, &pat26, &pat27, &pat28, &pat29, &pat2a, &pat2b, &pat2c, &pat2d, &pat2e, &pat2f,

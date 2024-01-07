@@ -1,45 +1,45 @@
 #include "..\TYPES.H"
 
-static spr_array pata00 = {
+static sprite_pattern pata00 = {
   1,
   { { -40, -48, 0, 498 } }
 };
-spr_array* patbase_kuzure_a[1] = { &pata00 };
+sprite_pattern* patbase_kuzure_a[1] = { &pata00 };
 static unsigned char tbla00[22] = {
   4, 3, 255, 255, 0, 0, 0, 1, 2, 3,
   3, 4, 0, 5, 5, 5, 5, 6, 6, 6,
   6, 6
 };
 unsigned char* tbla[1] = { tbla00 };
-static spr_array patc00 = {
+static sprite_pattern patc00 = {
   1,
   { { -8, -8, 0, 499 } }
 };
-static spr_array patc01 = {
+static sprite_pattern patc01 = {
   1,
   { { -8, -8, 0, 500 } }
 };
-static spr_array patc02 = {
+static sprite_pattern patc02 = {
   1,
   { { -8, -8, 0, 501 } }
 };
-static spr_array patc03 = {
+static sprite_pattern patc03 = {
   1,
   { { -8, -8, 0, 502 } }
 };
-static spr_array patc04 = {
+static sprite_pattern patc04 = {
   1,
   { { -8, -8, 0, 503 } }
 };
-static spr_array patc05 = {
+static sprite_pattern patc05 = {
   1,
   { { -8, -8, 0, 504 } }
 };
-static spr_array patc06 = {
+static sprite_pattern patc06 = {
   1,
   { { -8, -24, 0, 505 } }
 };
-spr_array* patc[7] = {
+sprite_pattern* patc[7] = {
   &patc00,
   &patc01,
   &patc02,
@@ -48,27 +48,27 @@ spr_array* patc[7] = {
   &patc05,
   &patc06
 };
-static spr_array patb00 = {
+static sprite_pattern patb00 = {
   1,
   { { -48, -32, 0, 506 } }
 };
-static spr_array patb01 = {
+static sprite_pattern patb01 = {
   1,
   { { -32, -48, 0, 507 } }
 };
-static spr_array patb02 = {
+static sprite_pattern patb02 = {
   1,
   { { -48, -32, 0, 508 } }
 };
-static spr_array patb03 = {
+static sprite_pattern patb03 = {
   1,
   { { -16, -48, 0, 509 } }
 };
-static spr_array patb04 = {
+static sprite_pattern patb04 = {
   1,
   { { -16, -48, 0, 510 } }
 };
-spr_array* patbase_kuzure_b[6] = {
+sprite_pattern* patbase_kuzure_b[6] = {
   &patb00,
   &patb00,
   &patb01,
@@ -89,31 +89,31 @@ unsigned char* tblb[6] = {
   tblb03,
   tblb04
 };
-static spr_array patd00 = {
+static sprite_pattern patd00 = {
   1,
   { { -8, -32, 0, 511 } }
 };
-static spr_array patd01 = {
+static sprite_pattern patd01 = {
   1,
   { { -8, -48, 0, 512 } }
 };
-static spr_array patd02 = {
+static sprite_pattern patd02 = {
   1,
   { { -8, -48, 0, 513 } }
 };
-static spr_array patd03 = {
+static sprite_pattern patd03 = {
   1,
   { { -8, -48, 0, 514 } }
 };
-static spr_array patd04 = {
+static sprite_pattern patd04 = {
   1,
   { { -8, -48, 0, 515 } }
 };
-static spr_array patd05 = {
+static sprite_pattern patd05 = {
   1,
   { { -8, -48, 0, 516 } }
 };
-spr_array* patd[6] = {
+sprite_pattern* patd[6] = {
   &patd00,
   &patd01,
   &patd02,

@@ -14,62 +14,62 @@ unsigned char* egg1_pchg[5] =
   egg1_pchg3,
   egg1_pchg4
 };
-spr_array spr_egg1_pat0 =
+sprite_pattern spr_egg1_pat0 =
 {
   1,
   { { -28, -24, 0, 512 } }
 };
-spr_array spr_egg1_pat1 =
+sprite_pattern spr_egg1_pat1 =
 {
   1,
   { { -28, -40, 0, 513 } }
 };
-spr_array spr_egg1_pat2 =
+sprite_pattern spr_egg1_pat2 =
 {
   1,
   { { -28, -24, 0, 514 } }
 };
-spr_array spr_egg1_pat3 =
+sprite_pattern spr_egg1_pat3 =
 {
   1,
   { { -28, -24, 0, 515 } }
 };
-spr_array spr_egg1_pat4 =
+sprite_pattern spr_egg1_pat4 =
 {
   1,
   { { -28, -40, 0, 516 } }
 };
-spr_array spr_egg1_pat5 =
+sprite_pattern spr_egg1_pat5 =
 {
   1,
   { { -28, -24, 0, 517 } }
 };
-spr_array spr_egg1_pat6 =
+sprite_pattern spr_egg1_pat6 =
 {
   1,
   { { -28, -24, 0, 518 } }
 };
-spr_array spr_egg1_pat7 =
+sprite_pattern spr_egg1_pat7 =
 {
   1,
   { { -28, -24, 0, 519 } }
 };
-spr_array spr_egg1_pat8 =
+sprite_pattern spr_egg1_pat8 =
 {
   1,
   { { -28, -24, 0, 520 } }
 };
-spr_array spr_egg1_pat9 =
+sprite_pattern spr_egg1_pat9 =
 {
   1,
   { { -28, -24, 0, 521 } }
 };
-spr_array spr_egg1_pat10 =
+sprite_pattern spr_egg1_pat10 =
 {
   1,
   { { -28, -24, 0, 522 } }
 };
-spr_array* egg1_pat[11] =
+sprite_pattern* egg1_pat[11] =
 {
   &spr_egg1_pat0,
   &spr_egg1_pat1,
@@ -83,7 +83,7 @@ spr_array* egg1_pat[11] =
   &spr_egg1_pat9,
   &spr_egg1_pat10
 };
-spr_array spr_egg1body_pat0 =
+sprite_pattern spr_egg1body_pat0 =
 {
   2,
   {
@@ -91,38 +91,38 @@ spr_array spr_egg1body_pat0 =
     { -36, -31, 0, 498 }
   }
 };
-spr_array* egg1body_pat[1] = { &spr_egg1body_pat0 };
-spr_array spr_egg1leg1_pat0 =
+sprite_pattern* egg1body_pat[1] = { &spr_egg1body_pat0 };
+sprite_pattern spr_egg1leg1_pat0 =
 {
   1,
   { { -8, -8, 0, 499 } }
 };
-spr_array* egg1leg1_pat[1] = { &spr_egg1leg1_pat0 };
-spr_array spr_egg1leg2_pat0 =
+sprite_pattern* egg1leg1_pat[1] = { &spr_egg1leg1_pat0 };
+sprite_pattern spr_egg1leg2_pat0 =
 {
   1,
   { { -12, -20, 0, 500 } }
 };
-spr_array* egg1leg2_pat[1] = { &spr_egg1leg2_pat0 };
-spr_array spr_egg1leg3_pat0 =
+sprite_pattern* egg1leg2_pat[1] = { &spr_egg1leg2_pat0 };
+sprite_pattern spr_egg1leg3_pat0 =
 {
   1,
   { { -32, -20, 0, 501 } }
 };
-spr_array* egg1leg3_pat[1] = { &spr_egg1leg3_pat0 };
-spr_array spr_egg1arm1_pat0 =
+sprite_pattern* egg1leg3_pat[1] = { &spr_egg1leg3_pat0 };
+sprite_pattern spr_egg1arm1_pat0 =
 {
   1,
   { { -24, -12, 0, 502 } }
 };
-spr_array* egg1arm1_pat[1] = { &spr_egg1arm1_pat0 };
-spr_array spr_egg1arm2_pat0 =
+sprite_pattern* egg1arm1_pat[1] = { &spr_egg1arm1_pat0 };
+sprite_pattern spr_egg1arm2_pat0 =
 {
   1,
   { { -8, -8, 0, 503 } }
 };
-spr_array* egg1arm2_pat[1] = { &spr_egg1arm2_pat0 };
-spr_array spr_egg1arm3_pat10 =
+sprite_pattern* egg1arm2_pat[1] = { &spr_egg1arm2_pat0 };
+sprite_pattern spr_egg1arm3_pat10 =
 {
   2,
   {
@@ -130,7 +130,7 @@ spr_array spr_egg1arm3_pat10 =
     {  10, -8, 0, 523 }
   }
 };
-spr_array spr_egg1arm3_pat11 =
+sprite_pattern spr_egg1arm3_pat11 =
 {
   2,
   {
@@ -138,7 +138,7 @@ spr_array spr_egg1arm3_pat11 =
     {  10, -8, 0, 523 }
   }
 };
-spr_array spr_egg1arm3_pat12 =
+sprite_pattern spr_egg1arm3_pat12 =
 {
   2,
   {
@@ -146,39 +146,39 @@ spr_array spr_egg1arm3_pat12 =
     { 10, -8, 0, 523 }
   }
 };
-spr_array* egg1arm3_pat1[3] =
+sprite_pattern* egg1arm3_pat1[3] =
 {
   &spr_egg1arm3_pat10,
   &spr_egg1arm3_pat11,
   &spr_egg1arm3_pat12
 };
-spr_array spr_egg1arm3_pat20 =
+sprite_pattern spr_egg1arm3_pat20 =
 {
   1,
   { { -14, -8, 0, 507 } }
 };
-spr_array spr_egg1arm3_pat21 =
+sprite_pattern spr_egg1arm3_pat21 =
 {
   1,
   { { -6, -8, 0, 508 } }
 };
-spr_array spr_egg1arm3_pat22 =
+sprite_pattern spr_egg1arm3_pat22 =
 {
   1,
   { { 2, -8, 0, 509 } }
 };
-spr_array* egg1arm3_pat2[3] =
+sprite_pattern* egg1arm3_pat2[3] =
 {
   &spr_egg1arm3_pat20,
   &spr_egg1arm3_pat21,
   &spr_egg1arm3_pat22
 };
-spr_array spr_egg1arm4_pat0 =
+sprite_pattern spr_egg1arm4_pat0 =
 {
   1,
   { { -20, -16, 0, 510 } }
 };
-spr_array* egg1arm4_pat[1] = { &spr_egg1arm4_pat0 };
+sprite_pattern* egg1arm4_pat[1] = { &spr_egg1arm4_pat0 };
 extern short scr_dir_tbl[6];
 
 

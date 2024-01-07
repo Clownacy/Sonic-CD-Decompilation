@@ -10,125 +10,125 @@
 
 extern void soundset(short ReqNo);
 
-static spr_array spat00 = {
+static sprite_pattern spat00 = {
   1,
   { { -16, -8, 0, 358 } }
 };
-static spr_array spat01 = {
+static sprite_pattern spat01 = {
   1,
   { { -16, 0, 0, 359 } }
 };
-static spr_array spat02 = {
+static sprite_pattern spat02 = {
   1,
   { { -16, -32, 0, 360 } }
 };
-static spr_array spat03 = {
+static sprite_pattern spat03 = {
   1,
   { { -8, -16, 0, 361 } }
 };
-static spr_array spat04 = {
+static sprite_pattern spat04 = {
   1,
   { { -8, -16, 0, 362 } }
 };
-static spr_array spat05 = {
+static sprite_pattern spat05 = {
   1,
   { { -8, -16, 0, 363 } }
 };
-static spr_array spat06 = {
+static sprite_pattern spat06 = {
   1,
   { { -16, -16, 0, 364 } }
 };
-static spr_array spat07 = {
+static sprite_pattern spat07 = {
   1,
   { { -16, -16, 0, 365 } }
 };
-static spr_array spat08 = {
+static sprite_pattern spat08 = {
   1,
   { { -16, -32, 0, 366 } }
 };
-static spr_array kpat00 = {
+static sprite_pattern kpat00 = {
   1,
   { { -8, -8, 0, 367 } }
 };
-static spr_array kpat01 = {
+static sprite_pattern kpat01 = {
   1,
   { { -8, -8, 0, 368 } }
 };
-static spr_array ipat00 = {
+static sprite_pattern ipat00 = {
   1,
   { { -20, -16, 0, 369 } }
 };
-static spr_array spat10 = {
+static sprite_pattern spat10 = {
   1,
   { { -16, -8, 0, 370 } }
 };
-static spr_array spat11 = {
+static sprite_pattern spat11 = {
   1,
   { { -16, 0, 0, 371 } }
 };
-static spr_array spat12 = {
+static sprite_pattern spat12 = {
   1,
   { { -16, -32, 0, 372 } }
 };
-static spr_array spat13 = {
+static sprite_pattern spat13 = {
   1,
   { { -8, -16, 0, 373 } }
 };
-static spr_array spat14 = {
+static sprite_pattern spat14 = {
   1,
   { { -8, -16, 0, 374 } }
 };
-static spr_array spat15 = {
+static sprite_pattern spat15 = {
   1,
   { { -8, -16, 0, 375 } }
 };
-static spr_array spat16 = {
+static sprite_pattern spat16 = {
   1,
   { { -16, -16, 0, 376 } }
 };
-static spr_array spat17 = {
+static sprite_pattern spat17 = {
   1,
   { { -16, -16, 0, 377 } }
 };
-static spr_array spat18 = {
+static sprite_pattern spat18 = {
   1,
   { { -16, -32, 0, 378 } }
 };
-spr_array* springpat[3] = {
+sprite_pattern* springpat[3] = {
   &spat00,
   &spat01,
   &spat02
 };
-spr_array* spring90pat[3] = {
+sprite_pattern* spring90pat[3] = {
   &spat03,
   &spat04,
   &spat05
 };
-spr_array* spring45pat[3] = {
+sprite_pattern* spring45pat[3] = {
   &spat06,
   &spat07,
   &spat08
 };
-spr_array* springpat2[3] = {
+sprite_pattern* springpat2[3] = {
   &spat10,
   &spat11,
   &spat12
 };
-spr_array* spring90pat2[3] = {
+sprite_pattern* spring90pat2[3] = {
   &spat13,
   &spat14,
   &spat15
 };
-spr_array* spring45pat2[3] = {
+sprite_pattern* spring45pat2[3] = {
   &spat16,
   &spat17,
   &spat18
 };
-spr_array* komapat[2] = {
+sprite_pattern* komapat[2] = {
   &kpat00,
   &kpat01
 };
-spr_array* iwapat[1] = { &ipat00 };
+sprite_pattern* iwapat[1] = { &ipat00 };
 char springchg0[12] = {
    0,  0,  1,  1,
    2,  2,  2,  2,

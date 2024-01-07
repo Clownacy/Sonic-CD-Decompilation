@@ -8,19 +8,19 @@
 
 extern void soundset(short ReqNo);
 
-static spr_array k_daipat0 = {
+static sprite_pattern k_daipat0 = {
   1,
   { { -16, -8, 0, 478 } }
 };
-static spr_array k_daipat1 = {
+static sprite_pattern k_daipat1 = {
   1,
   { { -16, -8, 0, 479 } }
 };
-static spr_array k_daipat2 = {
+static sprite_pattern k_daipat2 = {
   1,
   { { -16, -8, 0, 480 } }
 };
-spr_array* k_daipat[3] = {
+sprite_pattern* k_daipat[3] = {
   &k_daipat0,
   &k_daipat1,
   &k_daipat2

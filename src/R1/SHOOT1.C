@@ -5,20 +5,20 @@
 
 extern void soundset(short ReqNo);
 
-static spr_array eda00 = { 1, { { -16, -12, 0, 288 } } };
-static spr_array eda01 = { 1, { { -20, -16, 0, 289 } } };
-static spr_array eda02 = { 1, { { -12, -16, 0, 290 } } };
-spr_array* edapat[3] = { &eda00, &eda01, &eda02 };
-static spr_array kag00 = { 1, { { -16, -16, 0, 291 } } };
-static spr_array kag01 = { 1, { { -16, -8, 0, 292 } } };
-spr_array* kagepat[2] = { &kag00, &kag01 };
-static spr_array ana00 = { 1, { { -16, -16, 0, 293 } } };
-spr_array* kage1pat[1] = { &ana00 };
+static sprite_pattern eda00 = { 1, { { -16, -12, 0, 288 } } };
+static sprite_pattern eda01 = { 1, { { -20, -16, 0, 289 } } };
+static sprite_pattern eda02 = { 1, { { -12, -16, 0, 290 } } };
+sprite_pattern* edapat[3] = { &eda00, &eda01, &eda02 };
+static sprite_pattern kag00 = { 1, { { -16, -16, 0, 291 } } };
+static sprite_pattern kag01 = { 1, { { -16, -8, 0, 292 } } };
+sprite_pattern* kagepat[2] = { &kag00, &kag01 };
+static sprite_pattern ana00 = { 1, { { -16, -16, 0, 293 } } };
+sprite_pattern* kage1pat[1] = { &ana00 };
 static unsigned short shooterposi_0[69] = { 136, 5184, 240, 5240, 264, 5264, 320, 5264, 480, 5184, 504, 5120, 480, 5104, 448, 5104, 384, 5120, 368, 5152, 360, 5184, 368, 5224, 424, 5728, 536, 5792, 528, 5824, 504, 5840, 456, 5824, 424, 5760, 408, 5720, 416, 5696, 456, 5712, 496, 5760, 512, 5824, 512, 5840, 528, 5840, 648, 5824, 704, 5760, 728, 5712, 704, 5712, 672, 5760, 656, 5888, 656, 5928, 672, 5928, 736, 5888, 752 };
 static unsigned short shooterposi_1[35] = { 68, 3848, 416, 3984, 416, 4040, 440, 4064, 496, 4064, 608, 4096, 656, 4144, 672, 4200, 648, 4224, 592, 4200, 536, 4144, 512, 4080, 544, 4064, 608, 4096, 656, 4144, 672, 4200, 648, 4400, 456 };
 static unsigned short shooterposi_2[35] = { 68, 5680, 656, 5680, 792, 5688, 824, 5840, 976, 5888, 992, 5944, 968, 5976, 912, 5944, 856, 5880, 832, 5824, 864, 5800, 912, 5840, 976, 5888, 992, 5944, 968, 6072, 840, 6096, 800, 6096, 616 };
 unsigned short* shooterpositbl[3] = { shooterposi_0, shooterposi_1, shooterposi_2 };
-extern spr_array* bariapat[];
+extern sprite_pattern* bariapat[];
 
 
 void eda(sprite_status* edawk) { /* Line 24, Address: 0x101cf50 */

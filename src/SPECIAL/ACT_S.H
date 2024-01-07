@@ -8,4 +8,4 @@ short zpatset_call(short z_buffer_number);
 void patinit(sprite_status_sp* work, unsigned char pattbl_number);
 void patinit1(sprite_status_sp* work, unsigned char pattbl_number);
 void patset(sprite_status_sp* work);
-void n_patset(sprite_status_sp* work, spr_array* sprpat_adr);
+void n_patset(sprite_status_sp* work, sprite_pattern* sprpat_adr);

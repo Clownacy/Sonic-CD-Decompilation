@@ -5,77 +5,77 @@
 #include "..\RIDECHK.H"
 extern void soundset(short ReqNo);
 
-spr_array spr_kowasi00 =
+sprite_pattern spr_kowasi00 =
 {
   1,
   { { -16, -24, 0, 434 } }
 };
-spr_array spr_kowasi01 =
+sprite_pattern spr_kowasi01 =
 {
   1,
   { { -16, -24, 0, 435 } }
 };
-spr_array spr_kowasi02 =
+sprite_pattern spr_kowasi02 =
 {
   1,
   { { -16, -24, 0, 436 } }
 };
-spr_array spr_kowasi03 =
+sprite_pattern spr_kowasi03 =
 {
   1,
   { { -16, -24, 0, 437 } }
 };
-spr_array spr_kowasi04 =
+sprite_pattern spr_kowasi04 =
 {
   1,
   { { -16, -24, 0, 438 } }
 };
-spr_array spr_kowasi05 =
+sprite_pattern spr_kowasi05 =
 {
   1,
   { { -16, -24, 0, 439 } }
 };
-spr_array spr_kowasi06 =
+sprite_pattern spr_kowasi06 =
 {
   1,
   { { -16, -24, 0, 440 } }
 };
-spr_array spr_kowasi07 =
+sprite_pattern spr_kowasi07 =
 {
   1,
   { { -16, -24, 0, 441 } }
 };
-spr_array spr_kowasi08 =
+sprite_pattern spr_kowasi08 =
 {
   1,
   { { -8, -8, 0, 442 } }
 };
-spr_array spr_kowasi09 =
+sprite_pattern spr_kowasi09 =
 {
   1,
   { { -8, -8, 0, 443 } }
 };
-spr_array spr_kowasi0a =
+sprite_pattern spr_kowasi0a =
 {
   1,
   { { -8, -8, 0, 444 } }
 };
-spr_array spr_kowasi0b =
+sprite_pattern spr_kowasi0b =
 {
   1,
   { { -8, -8, 0, 445 } }
 };
-spr_array spr_kowasi0c =
+sprite_pattern spr_kowasi0c =
 {
   1,
   { { -8, -8, 0, 446 } }
 };
-spr_array spr_kowasi0d =
+sprite_pattern spr_kowasi0d =
 {
   1,
   { { -8, -8, 0, 447 } }
 };
-spr_array* pat_kowasi[14] =
+sprite_pattern* pat_kowasi[14] =
 {
   &spr_kowasi00,
   &spr_kowasi01,

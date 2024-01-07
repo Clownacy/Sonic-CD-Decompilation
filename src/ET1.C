@@ -8,26 +8,26 @@
 
 extern void soundset(short ReqNo);
 
-static spr_array tpat00 = {
+static sprite_pattern tpat00 = {
   1,
   { { -40, 16, 0, 481 } }
 };
-static spr_array tpat01 = {
+static sprite_pattern tpat01 = {
   1,
   { { -40, 16, 0, 482 } }
 };
-static spr_array tpat07 = {
+static sprite_pattern tpat07 = {
   1,
   { { 0, 0, 0, 0 } }
 };
-static spr_array tpat02 = {
+static sprite_pattern tpat02 = {
   2,
   {
     { -24, -32, 0, 488 },
     { -40, -32, 0, 489 }
   }
 };
-static spr_array tpat03 = {
+static sprite_pattern tpat03 = {
   3,
   {
     { -22, -8, 0, 490 },
@@ -35,7 +35,7 @@ static spr_array tpat03 = {
     { -40, -32, 0, 489 }
   }
 };
-static spr_array tpat04 = {
+static sprite_pattern tpat04 = {
   4,
   {
     { -22, -8, 0, 491 },
@@ -44,7 +44,7 @@ static spr_array tpat04 = {
     { -40, -32, 0, 489 }
   }
 };
-static spr_array tpat05 = {
+static sprite_pattern tpat05 = {
   4,
   {
     { -22, -8, 0, 492 },
@@ -53,7 +53,7 @@ static spr_array tpat05 = {
     { -40, -32, 0, 489 }
   }
 };
-static spr_array tpat06 = {
+static sprite_pattern tpat06 = {
   4,
   {
     { -22, -8, 0, 493 },
@@ -62,7 +62,7 @@ static spr_array tpat06 = {
     { -40, -32, 0, 489 }
   }
 };
-spr_array* pat_et[8] = {
+sprite_pattern* pat_et[8] = {
   &tpat00,
   &tpat01,
   &tpat02,

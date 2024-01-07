@@ -16,7 +16,7 @@ static void(*em1_tbl[5])(sprite_status*) = {
 };
 extern palette_entry zone1colora[];
 extern char* em_pchg[];
-extern spr_array* emie1pat[];
+extern sprite_pattern* emie1pat[];
 static palette_entry emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },

@@ -20,132 +20,132 @@ static unsigned char itemchg7[11] = { 1, 16, 7, 7, 8, 7, 7, 9, 7, 7, 255 };
 static unsigned char itemchg8[10] = { 1, 10, 14, 15, 14, 11, 14, 15, 14, 255 };
 static unsigned char itemchg9[10] = { 1, 12, 14, 15, 14, 13, 14, 15, 14, 255 };
 unsigned char* itemchg[10] = { itemchg0, itemchg1, itemchg2, itemchg3, itemchg4, itemchg5, itemchg6, itemchg7, itemchg8, itemchg9 };
-static spr_array ite00 = {
+static sprite_pattern ite00 = {
   2,
   { { -8, -10, 0, 272 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite01 = {
+static sprite_pattern ite01 = {
   2,
   { { -8, -10, 0, 273 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite02 = {
+static sprite_pattern ite02 = {
   2,
   { { -8, -10, 0, 274 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite03 = {
+static sprite_pattern ite03 = {
   2,
   { { -8, -10, 0, 275 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite04 = {
+static sprite_pattern ite04 = {
   2,
   { { -8, -10, 0, 276 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite05 = {
+static sprite_pattern ite05 = {
   2,
   { { -8, -10, 0, 277 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite06 = {
+static sprite_pattern ite06 = {
   2,
   { { -8, -10, 0, 278 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite07 = {
+static sprite_pattern ite07 = {
   2,
   { { -8, -10, 0, 279 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite08 = {
+static sprite_pattern ite08 = {
   2,
   { { -8, -10, 0, 280 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite09 = {
+static sprite_pattern ite09 = {
   2,
   { { -8, -10, 8, 280 }, { -16, -16, 0, 286 } }
 };
-static spr_array ite0a = {
+static sprite_pattern ite0a = {
   2,
   { { -16, -40, 0, 281 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite0b = {
+static sprite_pattern ite0b = {
   2,
   { { -16, -40, 8, 281 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite0c = {
+static sprite_pattern ite0c = {
   2,
   { { -16, -40, 0, 282 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite0d = {
+static sprite_pattern ite0d = {
   2,
   { { -16, -40, 8, 282 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite0e = {
+static sprite_pattern ite0e = {
   2,
   { { -16, -40, 8, 283 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite0f = {
+static sprite_pattern ite0f = {
   2,
   { { -4, -40, 8, 284 }, { -8, -24, 0, 285 } }
 };
-static spr_array ite10 = {
+static sprite_pattern ite10 = {
   1, { { -16, -16, 0, 286 } }
 };
-static spr_array ite11 = {
+static sprite_pattern ite11 = {
   1, { { -16, 0, 0, 287 } }
 };
-static spr_array ite12 = {
+static sprite_pattern ite12 = {
   1, { { -16, -8, 0, 281 } }
 };
-static spr_array ite13 = {
+static sprite_pattern ite13 = {
   1, { { -16, -8, 0, 282 } }
 };
-spr_array* itempat[20] = { &ite00, &ite01, &ite02, &ite03, &ite04, &ite05, &ite06, &ite07, &ite08, &ite09, &ite0a, &ite0b, &ite0c, &ite0d, &ite0e, &ite0f, &ite10, &ite11, &ite12, &ite13 };
-static spr_array cor00 = {
+sprite_pattern* itempat[20] = { &ite00, &ite01, &ite02, &ite03, &ite04, &ite05, &ite06, &ite07, &ite08, &ite09, &ite0a, &ite0b, &ite0c, &ite0d, &ite0e, &ite0f, &ite10, &ite11, &ite12, &ite13 };
+static sprite_pattern cor00 = {
   1, { { -8, -16, 0, 272 } }
 };
-static spr_array cor01 = {
+static sprite_pattern cor01 = {
   1, { { -8, -16, 0, 273 } }
 };
-static spr_array cor02 = {
+static sprite_pattern cor02 = {
   1, { { -8, -16, 0, 274 } }
 };
-static spr_array cor03 = {
+static sprite_pattern cor03 = {
   1, { { -8, -16, 0, 275 } }
 };
-static spr_array cor04 = {
+static sprite_pattern cor04 = {
   1, { { -8, -16, 0, 276 } }
 };
-static spr_array cor05 = {
+static sprite_pattern cor05 = {
   1, { { -8, -16, 0, 277 } }
 };
-static spr_array cor06 = {
+static sprite_pattern cor06 = {
   1, { { -8, -16, 0, 278 } }
 };
-static spr_array cor07 = {
+static sprite_pattern cor07 = {
   1, { { -8, -16, 0, 279 } }
 };
-static spr_array cor08 = {
+static sprite_pattern cor08 = {
   1, { { -8, -16, 0, 280 } }
 };
-static spr_array cor09 = {
+static sprite_pattern cor09 = {
   1, { { -8, -16, 8, 280 } }
 };
-static spr_array cor0a = {
+static sprite_pattern cor0a = {
   1, { { -16, -40, 0, 281 } }
 };
-static spr_array cor0b = {
+static sprite_pattern cor0b = {
   1, { { -16, -40, 8, 281 } }
 };
-static spr_array cor0c = {
+static sprite_pattern cor0c = {
   1, { { -16, -40, 0, 282 } }
 };
-static spr_array cor0d = {
+static sprite_pattern cor0d = {
   1, { { -16, -40, 8, 282 } }
 };
-static spr_array cor0e = {
+static sprite_pattern cor0e = {
   1, { { -16, -40, 0, 283 } }
 };
-static spr_array cor0f = {
+static sprite_pattern cor0f = {
   1, { { -4, -40, 0, 284 } }
 };
-spr_array* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };
+sprite_pattern* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };
 
 
 

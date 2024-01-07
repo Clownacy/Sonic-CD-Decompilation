@@ -9,19 +9,19 @@
 
 extern void soundset(short ReqNo);
 
-static spr_array dai11a_pat1 = {
+static sprite_pattern dai11a_pat1 = {
   1,
   { { -16, -16, 0, 488 } }
 };
-static spr_array dai11a_pat2 = {
+static sprite_pattern dai11a_pat2 = {
   1,
   { { -32, -16, 0, 489 } }
 };
-static spr_array dai11a_pat3 = {
+static sprite_pattern dai11a_pat3 = {
   1,
   { { -48, -16, 0, 490 } }
 };
-spr_array* dai11a_pattbl[3] = {
+sprite_pattern* dai11a_pattbl[3] = {
   &dai11a_pat1,
   &dai11a_pat2,
   &dai11a_pat3
@@ -42,15 +42,15 @@ static void(*dodai_mtype[10])(sprite_status*) = {
   &dodai_rm,
   &dodai_lm
 };
-static spr_array vfuta_pat0 = {
+static sprite_pattern vfuta_pat0 = {
   1,
   { { -4, -24, 0, 524 } }
 };
-static spr_array vfuta_pat1 = {
+static sprite_pattern vfuta_pat1 = {
   1,
   { { -4, -24, 0, 525 } }
 };
-spr_array* vfutapat[2] = {
+sprite_pattern* vfutapat[2] = {
   &vfuta_pat0,
   &vfuta_pat1
 };

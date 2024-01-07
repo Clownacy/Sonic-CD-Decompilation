@@ -10,23 +10,23 @@ void(*pl_acttbl[24])(sprite_status_sp*) = {
 };
 extern sprite_patterns_sp* mpplayer[];
 extern sprite_patterns_sp* mpsibuki[];
-static spr_array kem00 = { 1, { { -4, -4, 0, 111 } } };
-static spr_array kem01 = { 1, { { -4, -4, 0, 112 } } };
-static spr_array kem02 = { 1, { { -4, -4, 0, 113 } } };
+static sprite_pattern kem00 = { 1, { { -4, -4, 0, 111 } } };
+static sprite_pattern kem01 = { 1, { { -4, -4, 0, 112 } } };
+static sprite_pattern kem02 = { 1, { { -4, -4, 0, 113 } } };
 static sprite_patterns_sp kemuri00 = { 3, 1, { &kem00, &kem01, &kem02 } };
 static sprite_patterns_sp* mpkemuri[1] = { &kemuri00 };
-static spr_array stn00 = { 1, { { -10, -24, 0, 114 } } };
-static spr_array stn01 = { 1, { { -10, -24, 0, 115 } } };
-static spr_array stn02 = { 1, { { -10, -24, 8, 116 } } };
-static spr_array stn03 = { 1, { { -10, -24, 0, 117 } } };
-static spr_array stn04 = { 1, { { -12, -24, 0, 118 } } };
-static spr_array stn05 = { 1, { { -12, -24, 16, 118 } } };
-static spr_array stn06 = { 1, { { -12, -24, 24, 118 } } };
-static spr_array stn07 = { 1, { { -12, -24, 8, 118 } } };
-static spr_array stn08 = { 1, { { -8, -16, 0, 119 } } };
-static spr_array stn09 = { 1, { { -8, -16, 16, 119 } } };
-static spr_array stn0a = { 1, { { -8, -16, 24, 119 } } };
-static spr_array stn0b = { 1, { { -8, -16, 8, 119 } } };
+static sprite_pattern stn00 = { 1, { { -10, -24, 0, 114 } } };
+static sprite_pattern stn01 = { 1, { { -10, -24, 0, 115 } } };
+static sprite_pattern stn02 = { 1, { { -10, -24, 8, 116 } } };
+static sprite_pattern stn03 = { 1, { { -10, -24, 0, 117 } } };
+static sprite_pattern stn04 = { 1, { { -12, -24, 0, 118 } } };
+static sprite_pattern stn05 = { 1, { { -12, -24, 16, 118 } } };
+static sprite_pattern stn06 = { 1, { { -12, -24, 24, 118 } } };
+static sprite_pattern stn07 = { 1, { { -12, -24, 8, 118 } } };
+static sprite_pattern stn08 = { 1, { { -8, -16, 0, 119 } } };
+static sprite_pattern stn09 = { 1, { { -8, -16, 16, 119 } } };
+static sprite_pattern stn0a = { 1, { { -8, -16, 24, 119 } } };
+static sprite_pattern stn0b = { 1, { { -8, -16, 8, 119 } } };
 static sprite_patterns_sp stone00 = { 4, 3, { &stn00, &stn01, &stn03, &stn02 } };
 static sprite_patterns_sp stone01 = { 4, 1, { &stn04, &stn05, &stn06, &stn07 } };
 static sprite_patterns_sp stone02 = { 4, 1, { &stn0b, &stn0a, &stn09, &stn08 } };
@@ -684,8 +684,8 @@ void speed_ud(sprite_status_sp* plwk) { /* Line 682, Address: 0x100bbf0 */
 
   if (game_start != 0) return; /* Line 685, Address: 0x100bbfc */
   if ((swdata_pl.b.h & 15) != 2) { /* Line 686, Address: 0x100bc10 */
-    if (plwk->actfree[18] != 0) { /* Line 687, Address: 0x100bc2c */
-      --plwk->actfree[18]; /* Line 688, Address: 0x100bc44 */
+    if (((short*)plwk)[45] != 0) { /* Line 687, Address: 0x100bc2c */
+      --((short*)plwk)[45]; /* Line 688, Address: 0x100bc44 */
       max_speed = 3584; /* Line 689, Address: 0x100bc54 */
     } else { /* Line 690, Address: 0x100bc60 */
       if (plwk->exeno == 7) max_speed = 512; /* Line 691, Address: 0x100bc68 */

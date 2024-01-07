@@ -172,7 +172,7 @@ void patinit1(sprite_status_sp* work, unsigned char pattbl_number) { /* Line 157
 void patset(sprite_status_sp* work) { /* Line 172, Address: 0x1000670 */
   sprite_patterns_sp** patchg_tbl;
   sprite_patterns_sp* patchg;
-  spr_array* sprpat_adr;
+  sprite_pattern* sprpat_adr;
 
   if (!work->actno) return; /* Line 177, Address: 0x1000688 */
   patchg_tbl = work->pattbl; /* Line 178, Address: 0x1000698 */
@@ -197,7 +197,7 @@ void patset(sprite_status_sp* work) { /* Line 172, Address: 0x1000670 */
 
 
 
-void n_patset(sprite_status_sp* work, spr_array* sprpat_adr) { /* Line 200, Address: 0x10007d0 */
+void n_patset(sprite_status_sp* work, sprite_pattern* sprpat_adr) { /* Line 200, Address: 0x10007d0 */
   short x_posi, y_posi, i, sx, sy;
   unsigned short rev;
   sprite_data sprdat;

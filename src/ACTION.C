@@ -203,8 +203,8 @@ void patset() { /* Line 198, Address: 0x1001860 */
   short xposi, yposi;
   short patno;
   short cnt;
-  spr_array* patadr;
-  spr_array** patbase;
+  sprite_pattern* patadr;
+  sprite_pattern** patbase;
   sprite_data* sprdat;
   int_union *pScrHposi, *pScrVposi;
   int_union* patsettbl[8] = /* Line 210, Address: 0x100188c */

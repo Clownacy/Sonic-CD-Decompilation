@@ -21,37 +21,37 @@ unsigned char* tobita1chg[5] =
   tobitastop1,
   tobitastop2
 };
-static spr_array tobita_a =
+static sprite_pattern tobita_a =
 {
   1,
   { { -8, -4, 0, 488 } }
 };
-static spr_array tobita_b =
+static sprite_pattern tobita_b =
 {
   1,
   { { -8, -4, 0, 489 } }
 };
-static spr_array tobita_c =
+static sprite_pattern tobita_c =
 {
   1,
   { { -8, -16, 0, 490 } }
 };
-static spr_array tobita_r_a =
+static sprite_pattern tobita_r_a =
 {
   1,
   { { -24, -4, 0, 491 } }
 };
-static spr_array tobita_r_b =
+static sprite_pattern tobita_r_b =
 {
   1,
   { { -24, -4, 0, 492 } }
 };
-static spr_array tobita_r_c =
+static sprite_pattern tobita_r_c =
 {
   1,
   { { -24, -16, 0, 493 } }
 };
-spr_array* tobita1_pat[6] =
+sprite_pattern* tobita1_pat[6] =
 {
   &tobita_a,
   &tobita_b,
@@ -60,12 +60,12 @@ spr_array* tobita1_pat[6] =
   &tobita_r_b,
   &tobita_r_c
 };
-static spr_array pat0 =
+static sprite_pattern pat0 =
 {
   1,
   { { -16, -16, 0, 494 } }
 };
-spr_array* hari12pat[1] = { &pat0 };
+sprite_pattern* hari12pat[1] = { &pat0 };
 
 
 

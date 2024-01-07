@@ -79,7 +79,7 @@ typedef struct {
     sprite_data spr[];
   };
 }
-spr_array;
+sprite_pattern;
 
 typedef struct {
   short plring;
@@ -151,7 +151,7 @@ typedef struct {
   unsigned char actno;
   unsigned char actflg;
   unsigned short sproffset;
-  spr_array** patbase;
+  sprite_pattern** patbase;
   int_union xposi;
   int_union yposi;
   short_union xspeed;
@@ -237,7 +237,7 @@ dlink_export;
 typedef struct {
   unsigned char actno;
   unsigned char sprpri;
-  spr_array** patbase;
+  sprite_pattern** patbase;
   unsigned short offset;
   unsigned char userflag_h;
   unsigned char rludrv;
@@ -295,7 +295,7 @@ POINT;
 typedef struct {
   unsigned char cnt;
   char timer;
-  spr_array* spr[64];
+  sprite_pattern* spr[64];
 }
 sprite_patterns_sp;
 

@@ -19,37 +19,37 @@ unsigned char blockchg0[3] = { 2, 5, 255 };
 unsigned char blockchg1[10] = { 2, 1, 5, 2, 5, 3, 5, 4, 5, 252 };
 unsigned char blockchg2[10] = { 2, 1, 0, 2, 0, 3, 0, 4, 0, 252 };
 unsigned char* blockchg[3] = { blockchg0, blockchg1, blockchg2 };
-spr_array block0 =
+sprite_pattern block0 =
 {
   0,
   { { -12, -12, 0, 403 } }
 };
-spr_array block1 =
+sprite_pattern block1 =
 {
   1,
   { { -12, -12, 0, 403 } }
 };
-spr_array block2 =
+sprite_pattern block2 =
 {
   1,
   { { -12, -12, 0, 404 } }
 };
-spr_array block3 =
+sprite_pattern block3 =
 {
   1,
   { { -12, -12, 0, 405 } }
 };
-spr_array block4 =
+sprite_pattern block4 =
 {
   1,
   { { -12, -12, 0, 406 } }
 };
-spr_array block5 =
+sprite_pattern block5 =
 {
   1,
   { { -12, -12, 0, 407 } }
 };
-spr_array* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
+sprite_pattern* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
 
 void block(sprite_status* pActwk) { /* Line 54, Address: 0x10150b0 */
   short iD0, iD1;

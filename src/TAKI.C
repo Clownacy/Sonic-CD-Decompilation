@@ -7,15 +7,15 @@ extern void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned sho
 
 static char shibukichg0[4] = { 4, 0, 1, -1 };
 unsigned char* shibukichg = { (unsigned char*)shibukichg0 };
-static spr_array shibuki0 = {
+static sprite_pattern shibuki0 = {
   1,
   { { -96, -16, 0, 448 } }
 };
-static spr_array shibuki1 = {
+static sprite_pattern shibuki1 = {
   1,
   { { -96, -16, 0, 449 } }
 };
-spr_array* shibukipat[2] = {
+sprite_pattern* shibukipat[2] = {
   &shibuki0,
   &shibuki1
 };

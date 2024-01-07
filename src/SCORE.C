@@ -7,39 +7,39 @@ extern short playdieset(sprite_status* pActwk);
 
 static unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
 static unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
-static spr_array tenpat0 = {
+static sprite_pattern tenpat0 = {
   2,
   {
     { -8, 0, 0, 334 },
     { 0, 0, 0, 337 }
   }
 };
-static spr_array tenpat1 = {
+static sprite_pattern tenpat1 = {
   2,
   {
     { -8, 0, 0, 335 },
     { 0, 0, 0, 337 }
   }
 };
-static spr_array tenpat2 = {
+static sprite_pattern tenpat2 = {
   2,
   {
     { -8, 0, 0, 336 },
     { 0, 0, 0, 337 }
   }
 };
-static spr_array tenpat3 = {
+static sprite_pattern tenpat3 = {
   2,
   {
     { -8, 0, 0, 338 },
     { 0, 0, 0, 337 }
   }
 };
-static spr_array tenpat4 = {
+static sprite_pattern tenpat4 = {
   1,
   { { -4, 0, 0, 338 } }
 };
-static spr_array tenpat5 = {
+static sprite_pattern tenpat5 = {
   3,
   {
     { -12, 0, 0, 334 },
@@ -47,7 +47,7 @@ static spr_array tenpat5 = {
     { 4, 0, 0, 337 }
   }
 };
-static spr_array* tenpat[6] = {
+static sprite_pattern* tenpat[6] = {
   &tenpat0,
   &tenpat1,
   &tenpat2,
@@ -55,7 +55,7 @@ static spr_array* tenpat[6] = {
   &tenpat4,
   &tenpat5
 };
-spr_array scorepat0 = {
+sprite_pattern scorepat0 = {
   19,
   {
     { 0, 0, 0, 339 },
@@ -79,7 +79,7 @@ spr_array scorepat0 = {
     { 64, 32, 0, 318 }
   }
 };
-spr_array scorepat1 = {
+sprite_pattern scorepat1 = {
   3,
   {
     { 0, 0, 0, 347 },
@@ -87,7 +87,7 @@ spr_array scorepat1 = {
     { 24, 4, 0, 318 }
   }
 };
-spr_array scorepat2 = {
+sprite_pattern scorepat2 = {
   15,
   {
     { 0, 0, 0, 339 },
@@ -107,19 +107,19 @@ spr_array scorepat2 = {
     { 64, 32, 0, 318 }
   }
 };
-spr_array scorepat3 = {
+sprite_pattern scorepat3 = {
   1,
   { { 0, 32, 0, 344 } }
 };
-static spr_array* scorepat[4] = {
+static sprite_pattern* scorepat[4] = {
   &scorepat0,
   &scorepat1,
   &scorepat2,
   &scorepat3
 };
 extern void(*WaveAllStop)();
-extern spr_array bonuspat;
-extern spr_array bonuspat0;
+extern sprite_pattern bonuspat;
+extern sprite_pattern bonuspat0;
 unsigned char scoreinittbl[7] = { 255, 255, 255, 255, 255, 255, 0 };
 unsigned char ringinittbl[3] = { 255, 255, 0 };
 
@@ -431,7 +431,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
 
 void scoreset() { /* Line 432, Address: 0x1005550 */
   sprite_data* pSprdat;
-  spr_array* pSprpat;
+  sprite_pattern* pSprpat;
 
   pSprdat = &scorepat2.spra[3]; /* Line 436, Address: 0x1005560 */
   if (debugflag.w) { /* Line 437, Address: 0x1005568 */

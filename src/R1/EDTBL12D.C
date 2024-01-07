@@ -1,25 +1,25 @@
 #include "..\TYPES.H"
 
-extern spr_array* hari12pat[];
-extern spr_array* tobita1_pat[];
-extern spr_array* futapat[];
-extern spr_array* k_daipat[];
-extern spr_array* iwapat[];
-extern spr_array* dai11a_pattbl[];
-extern spr_array* komapat[];
-extern spr_array* springpat[];
-extern spr_array* spring90pat[];
-extern spr_array* spring45pat[];
-extern spr_array* e_ka_pat[];
-extern spr_array* e_chou_pat[];
-extern spr_array* ari_pat[];
-extern spr_array* itempat[];
-extern spr_array* patbase_kuzure_a[];
-extern spr_array* patbase_kuzure_b[];
-extern spr_array* itempat[];
-extern spr_array* edapat[];
-extern spr_array* kagepat[];
-extern spr_array* bariapat[];
+extern sprite_pattern* hari12pat[];
+extern sprite_pattern* tobita1_pat[];
+extern sprite_pattern* futapat[];
+extern sprite_pattern* k_daipat[];
+extern sprite_pattern* iwapat[];
+extern sprite_pattern* dai11a_pattbl[];
+extern sprite_pattern* komapat[];
+extern sprite_pattern* springpat[];
+extern sprite_pattern* spring90pat[];
+extern sprite_pattern* spring45pat[];
+extern sprite_pattern* e_ka_pat[];
+extern sprite_pattern* e_chou_pat[];
+extern sprite_pattern* ari_pat[];
+extern sprite_pattern* itempat[];
+extern sprite_pattern* patbase_kuzure_a[];
+extern sprite_pattern* patbase_kuzure_b[];
+extern sprite_pattern* itempat[];
+extern sprite_pattern* edapat[];
+extern sprite_pattern* kagepat[];
+extern sprite_pattern* bariapat[];
 
 edit_info_array edit_tbl = {
   46,

@@ -7,11 +7,11 @@
 extern void soundset(short ReqNo);
 
 unsigned char* tblb[];
-spr_array* patbase_kuzure_b[];
+sprite_pattern* patbase_kuzure_b[];
 unsigned char* tbla[];
-spr_array* patbase_kuzure_a[];
-spr_array* patc[];
-spr_array* patd[];
+sprite_pattern* patbase_kuzure_a[];
+sprite_pattern* patc[];
+sprite_pattern* patd[];
 
 
 
@@ -94,7 +94,7 @@ void kuzureru_tikei(sprite_status* pActwk) { /* Line 77, Address: 0x101f240 */
 
 
 void acta_init(sprite_status* pActwk) { /* Line 96, Address: 0x101f300 */
-  spr_array** pPB_kuzure;
+  sprite_pattern** pPB_kuzure;
   short_union id_no;
   unsigned char** pTbltbl;
   unsigned char* pTbl;

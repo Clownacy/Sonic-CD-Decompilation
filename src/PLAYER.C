@@ -12,13 +12,13 @@ extern void sub_sync(short ReqNo); extern void playsp(); extern short pcol(sprit
 
 static unsigned int WaveClear;
 static unsigned char Brake_Sw, Brake_Req;
-extern spr_array* sncpat[];
+extern sprite_pattern* sncpat[];
 extern unsigned char mapwka[8][64];
 extern void(*WaveAllStop)();
 extern unsigned char* playchg[60];
 extern unsigned char plchg00[8], plchg01[8], plchg49[8], plchg53[8], plchg03[8], plchg02[8], plchg54[8], plchg35[6], plchg04[8], plchg39[7], plchg33[6], plchg34[6];
 unsigned char* playcg;
-spr_array** playpat;
+sprite_pattern** playpat;
 
 void bye_chk() { /* Line 23, Address: 0x1007500 */
   if (actwk[0].mstno.b.h != 5) { byecnt0.w = 0; return; } /* Line 24, Address: 0x1007508 */

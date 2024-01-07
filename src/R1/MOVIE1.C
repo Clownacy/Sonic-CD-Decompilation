@@ -33,37 +33,37 @@ unsigned char* movie1_pchg[2] =
   movie1_pchg00,
   movie1_pchg01
 };
-spr_array spr_movie1 =
+sprite_pattern spr_movie1 =
 {
   1,
   { { -12, -12, 0, 510 } }
 };
-spr_array spr_movie2 =
+sprite_pattern spr_movie2 =
 {
   1,
   { { -8, -4, 0, 511 } }
 };
-spr_array spr_movie3 =
+sprite_pattern spr_movie3 =
 {
   1,
   { { -8, -4, 0, 512 } }
 };
-spr_array spr_movie4 =
+sprite_pattern spr_movie4 =
 {
   1,
   { { -20, -24, 0, 513 } }
 };
-spr_array spr_movie5 =
+sprite_pattern spr_movie5 =
 {
   1,
   { { -20, -24, 0, 514 } }
 };
-spr_array spr_movie0 =
+sprite_pattern spr_movie0 =
 {
   1,
   { { -20, -24, 0, 514 } }
 };
-spr_array* pat_movie[6] =
+sprite_pattern* pat_movie[6] =
 {
   &spr_movie1,
   &spr_movie0,

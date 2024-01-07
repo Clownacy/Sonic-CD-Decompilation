@@ -42,53 +42,53 @@ static unsigned char pchg10[58] =
 };
 static unsigned char* pchg0[2] = { pchg00, pchg01 };
 static unsigned char* pchg1[1] = { pchg10 };
-static spr_array spr_flicky1 =
+static sprite_pattern spr_flicky1 =
 {
   1,
   { { -8, -8, 0, 491 } }
 };
-static spr_array spr_flicky2 =
+static sprite_pattern spr_flicky2 =
 {
   1,
   { { -8, -8, 0, 492 } }
 };
-static spr_array spr_ricky1 =
+static sprite_pattern spr_ricky1 =
 {
   1,
   { { -12, -8, 0, 492 } }
 };
-static spr_array spr_ricky2 =
+static sprite_pattern spr_ricky2 =
 {
   1,
   { { -12, -8, 0, 493 } }
 };
-static spr_array spr_ricky3 =
+static sprite_pattern spr_ricky3 =
 {
   1,
   { { -12, -8, 0, 494 } }
 };
-static spr_array spr_ricky4 =
+static sprite_pattern spr_ricky4 =
 {
   1,
   { { -12, -8, 0, 495 } }
 };
-static spr_array spr_friend0 =
+static sprite_pattern spr_friend0 =
 {
   1,
   { { -12, -8, 0, 495 } }
 };
-static spr_array spr_ricky5 =
+static sprite_pattern spr_ricky5 =
 {
   1,
   { { -12, -8, 0, 496 } }
 };
-spr_array* pat_friend0[3] =
+sprite_pattern* pat_friend0[3] =
 {
   &spr_flicky1,
   &spr_flicky2,
   &spr_friend0
 };
-spr_array* pat_friend1[6] =
+sprite_pattern* pat_friend1[6] =
 {
   &spr_ricky1,
   &spr_ricky2,

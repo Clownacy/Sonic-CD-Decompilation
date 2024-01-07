@@ -1,14 +1,14 @@
 #include "..\TYPES.H"
 
-spr_array pata00 = {
+sprite_pattern pata00 = {
   1,
   { { -40, -48, 0, 481 } }
 };
-spr_array pata01 = {
+sprite_pattern pata01 = {
   1,
   { { -32, -40, 0, 482 } }
 };
-spr_array* patbase_kuzure_a[2] = {
+sprite_pattern* patbase_kuzure_a[2] = {
   &pata00,
   &pata01
 };
@@ -25,35 +25,35 @@ unsigned char* tbla[2] = {
   tbla00,
   tbla01
 };
-spr_array patc00 = {
+sprite_pattern patc00 = {
   1,
   { { -8, -8, 0, 483 } }
 };
-spr_array patc01 = {
+sprite_pattern patc01 = {
   1,
   { { -8, -8, 0, 484 } }
 };
-spr_array patc02 = {
+sprite_pattern patc02 = {
   1,
   { { -8, -8, 0, 485 } }
 };
-spr_array patc03 = {
+sprite_pattern patc03 = {
   1,
   { { -8, -8, 0, 486 } }
 };
-spr_array patc04 = {
+sprite_pattern patc04 = {
   1,
   { { -8, -8, 0, 487 } }
 };
-spr_array patc05 = {
+sprite_pattern patc05 = {
   1,
   { { -8, -8, 0, 488 } }
 };
-spr_array patc06 = {
+sprite_pattern patc06 = {
   1,
   { { -8, -24, 0, 489 } }
 };
-spr_array* patc[7] = {
+sprite_pattern* patc[7] = {
   &patc00,
   &patc01,
   &patc02,
@@ -62,27 +62,27 @@ spr_array* patc[7] = {
   &patc05,
   &patc06
 };
-spr_array patb00 = {
+sprite_pattern patb00 = {
   1,
   { { -48, -32, 0, 490 } }
 };
-spr_array patb01 = {
+sprite_pattern patb01 = {
   1,
   { { -72, -48, 0, 491 } }
 };
-spr_array patb02 = {
+sprite_pattern patb02 = {
   1,
   { { -40, -40, 0, 492 } }
 };
-spr_array patb03 = {
+sprite_pattern patb03 = {
   1,
   { { -40, -40, 0, 493 } }
 };
-spr_array patb04 = {
+sprite_pattern patb04 = {
   1,
   { { -80, -48, 0, 494 } }
 };
-spr_array* patbase_kuzure_b[6] = {
+sprite_pattern* patbase_kuzure_b[6] = {
   &patb00,
   &patb00,
   &patb01,
@@ -103,35 +103,35 @@ unsigned char* tblb[6] = {
   tblb03,
   tblb04
 };
-spr_array patd00 = {
+sprite_pattern patd00 = {
   1,
   { { -8, -32, 0, 495 } }
 };
-spr_array patd01 = {
+sprite_pattern patd01 = {
   1,
   { { -8, -48, 0, 496 } }
 };
-spr_array patd02 = {
+sprite_pattern patd02 = {
   1,
   { { -8, -48, 0, 497 } }
 };
-spr_array patd03 = {
+sprite_pattern patd03 = {
   1,
   { { -8, -48, 0, 498 } }
 };
-spr_array patd04 = {
+sprite_pattern patd04 = {
   1,
   { { -8, -40, 0, 499 } }
 };
-spr_array patd05 = {
+sprite_pattern patd05 = {
   1,
   { { -8, -40, 0, 500 } }
 };
-spr_array patd06 = {
+sprite_pattern patd06 = {
   1,
   { { -8, -40, 0, 501 } }
 };
-spr_array* patd[7] = {
+sprite_pattern* patd[7] = {
   &patd00,
   &patd01,
   &patd02,

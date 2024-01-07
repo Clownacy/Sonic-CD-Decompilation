@@ -1,342 +1,342 @@
 #include "..\TYPES.H"
 
-static spr_array tbl00 = {
+static sprite_pattern tbl00 = {
   1,
   { { -20, -48, 0, 1 } }
 };
-static spr_array tbl01 = {
+static sprite_pattern tbl01 = {
   1,
   { { -20, -48, 0, 2 } }
 };
-static spr_array tbl02 = {
+static sprite_pattern tbl02 = {
   1,
   { { -20, -48, 0, 3 } }
 };
-static spr_array tbl03 = {
+static sprite_pattern tbl03 = {
   1,
   { { -20, -48, 0, 4 } }
 };
-static spr_array tbl04 = {
+static sprite_pattern tbl04 = {
   1,
   { { -20, -48, 0, 5 } }
 };
-static spr_array tbl05 = {
+static sprite_pattern tbl05 = {
   1,
   { { -20, -48, 0, 6 } }
 };
-static spr_array tbl06 = {
+static sprite_pattern tbl06 = {
   1,
   { { -20, -48, 0, 7 } }
 };
-static spr_array tbl07 = {
+static sprite_pattern tbl07 = {
   1,
   { { -20, -48, 0, 8 } }
 };
-static spr_array tbl08 = {
+static sprite_pattern tbl08 = {
   1,
   { { -20, -48, 0, 9 } }
 };
-static spr_array tbl09 = {
+static sprite_pattern tbl09 = {
   1,
   { { -20, -40, 0, 10 } }
 };
-static spr_array tbl10 = {
+static sprite_pattern tbl10 = {
   1,
   { { -20, -40, 0, 11 } }
 };
-static spr_array tbl11 = {
+static sprite_pattern tbl11 = {
   1,
   { { -20, -40, 0, 12 } }
 };
-static spr_array tbl12 = {
+static sprite_pattern tbl12 = {
   1,
   { { -20, -40, 0, 13 } }
 };
-static spr_array tbl14 = {
+static sprite_pattern tbl14 = {
   1,
   { { -30, -48, 0, 14 } }
 };
-static spr_array tbl15 = {
+static sprite_pattern tbl15 = {
   1,
   { { -30, -32, 0, 15 } }
 };
-static spr_array tbl16 = {
+static sprite_pattern tbl16 = {
   1,
   { { -30, -32, 0, 16 } }
 };
-static spr_array tbl17 = {
+static sprite_pattern tbl17 = {
   1,
   { { -30, -32, 0, 17 } }
 };
-static spr_array tbl18 = {
+static sprite_pattern tbl18 = {
   1,
   { { -20, -48, 0, 18 } }
 };
-static spr_array tbl19 = {
+static sprite_pattern tbl19 = {
   1,
   { { -20, -48, 0, 19 } }
 };
-static spr_array tbl20 = {
+static sprite_pattern tbl20 = {
   1,
   { { -20, -48, 0, 20 } }
 };
-static spr_array tbl21 = {
+static sprite_pattern tbl21 = {
   1,
   { { -35, -32, 0, 21 } }
 };
-static spr_array tbl22 = {
+static sprite_pattern tbl22 = {
   1,
   { { -30, -32, 0, 22 } }
 };
-static spr_array tbl23 = {
+static sprite_pattern tbl23 = {
   1,
   { { -35, -32, 0, 23 } }
 };
-static spr_array tbl24 = {
+static sprite_pattern tbl24 = {
   1,
   { { -30, -32, 0, 24 } }
 };
-static spr_array tbl25 = {
+static sprite_pattern tbl25 = {
   1,
   { { -25, -48, 0, 25 } }
 };
-static spr_array tbl26 = {
+static sprite_pattern tbl26 = {
   1,
   { { -30, -48, 0, 26 } }
 };
-static spr_array tbl27 = {
+static sprite_pattern tbl27 = {
   1,
   { { -30, -20, 0, 27 } }
 };
-static spr_array tbl28 = {
+static sprite_pattern tbl28 = {
   1,
   { { -30, -40, 0, 28 } }
 };
-static spr_array tbl29 = {
+static sprite_pattern tbl29 = {
   1,
   { { -30, -40, 0, 29 } }
 };
-static spr_array tbl30 = {
+static sprite_pattern tbl30 = {
   1,
   { { -30, -40, 0, 30 } }
 };
-static spr_array tbl31 = {
+static sprite_pattern tbl31 = {
   1,
   { { -20, -48, 0, 31 } }
 };
-static spr_array tbl32 = {
+static sprite_pattern tbl32 = {
   1,
   { { -20, -48, 0, 32 } }
 };
-static spr_array tbl33 = {
+static sprite_pattern tbl33 = {
   1,
   { { -20, -48, 0, 33 } }
 };
-static spr_array tbl34 = {
+static sprite_pattern tbl34 = {
   1,
   { { -20, -48, 0, 34 } }
 };
-static spr_array tbl35 = {
+static sprite_pattern tbl35 = {
   1,
   { { -20, -48, 0, 35 } }
 };
-static spr_array tbl36 = {
+static sprite_pattern tbl36 = {
   1,
   { { -20, -48, 0, 36 } }
 };
-static spr_array tbl37 = {
+static sprite_pattern tbl37 = {
   1,
   { { -20, -48, 0, 37 } }
 };
-static spr_array tbl38 = {
+static sprite_pattern tbl38 = {
   1,
   { { -20, -48, 0, 38 } }
 };
-static spr_array tbl39 = {
+static sprite_pattern tbl39 = {
   1,
   { { -20, -48, 0, 39 } }
 };
-static spr_array tbl40 = {
+static sprite_pattern tbl40 = {
   1,
   { { -20, -48, 0, 40 } }
 };
-static spr_array tbl41 = {
+static sprite_pattern tbl41 = {
   1,
   { { -20, -48, 0, 41 } }
 };
-static spr_array tbl42 = {
+static sprite_pattern tbl42 = {
   1,
   { { -20, -48, 0, 42 } }
 };
-static spr_array tbl43 = {
+static sprite_pattern tbl43 = {
   1,
   { { -20, -48, 0, 43 } }
 };
-static spr_array tbl44 = {
+static sprite_pattern tbl44 = {
   1,
   { { -20, -48, 0, 44 } }
 };
-static spr_array tbl45 = {
+static sprite_pattern tbl45 = {
   1,
   { { -20, -48, 0, 45 } }
 };
-static spr_array tbl46 = {
+static sprite_pattern tbl46 = {
   1,
   { { -20, -48, 0, 46 } }
 };
-static spr_array tbl47 = {
+static sprite_pattern tbl47 = {
   1,
   { { -20, -48, 0, 47 } }
 };
-static spr_array tbl48 = {
+static sprite_pattern tbl48 = {
   1,
   { { -30, -56, 0, 48 } }
 };
-static spr_array tbl49 = {
+static sprite_pattern tbl49 = {
   1,
   { { -30, -56, 0, 49 } }
 };
-static spr_array tbl50 = {
+static sprite_pattern tbl50 = {
   1,
   { { -20, -48, 0, 50 } }
 };
-static spr_array tbl51 = {
+static sprite_pattern tbl51 = {
   1,
   { { -20, -48, 0, 51 } }
 };
-static spr_array tbl52 = {
+static sprite_pattern tbl52 = {
   1,
   { { -20, -48, 0, 52 } }
 };
-static spr_array tbl53 = {
+static sprite_pattern tbl53 = {
   1,
   { { -20, -48, 0, 53 } }
 };
-static spr_array tbl54 = {
+static sprite_pattern tbl54 = {
   1,
   { { -20, -48, 0, 54 } }
 };
-static spr_array tbl55 = {
+static sprite_pattern tbl55 = {
   1,
   { { -25, -56, 0, 55 } }
 };
-static spr_array tbl56 = {
+static sprite_pattern tbl56 = {
   1,
   { { -20, -48, 0, 56 } }
 };
-static spr_array tbl57 = {
+static sprite_pattern tbl57 = {
   1,
   { { -20, -48, 0, 57 } }
 };
-static spr_array tbl58 = {
+static sprite_pattern tbl58 = {
   1,
   { { -20, -48, 0, 58 } }
 };
-static spr_array tbl59 = {
+static sprite_pattern tbl59 = {
   1,
   { { -20, -48, 0, 59 } }
 };
-static spr_array tbl60 = {
+static sprite_pattern tbl60 = {
   1,
   { { -20, -48, 0, 60 } }
 };
-static spr_array tbl61 = {
+static sprite_pattern tbl61 = {
   1,
   { { -15, -48, 0, 61 } }
 };
-static spr_array tbl62 = {
+static sprite_pattern tbl62 = {
   1,
   { { -15, -48, 0, 62 } }
 };
-static spr_array tbl63 = {
+static sprite_pattern tbl63 = {
   1,
   { { -15, -48, 0, 63 } }
 };
-static spr_array rev00 = {
+static sprite_pattern rev00 = {
   1,
   { { -20, -48, 8, 1 } }
 };
-static spr_array rev01 = {
+static sprite_pattern rev01 = {
   1,
   { { -20, -48, 8, 2 } }
 };
-static spr_array rev02 = {
+static sprite_pattern rev02 = {
   1,
   { { -20, -48, 8, 3 } }
 };
-static spr_array rev37 = {
+static sprite_pattern rev37 = {
   1,
   { { -20, -48, 8, 37 } }
 };
-static spr_array rev38 = {
+static sprite_pattern rev38 = {
   1,
   { { -20, -48, 8, 38 } }
 };
-static spr_array rev03 = {
+static sprite_pattern rev03 = {
   1,
   { { -20, -48, 8, 4 } }
 };
-static spr_array rev04 = {
+static sprite_pattern rev04 = {
   1,
   { { -20, -48, 8, 5 } }
 };
-static spr_array rev05 = {
+static sprite_pattern rev05 = {
   1,
   { { -20, -48, 8, 6 } }
 };
-static spr_array rev06 = {
+static sprite_pattern rev06 = {
   1,
   { { -20, -48, 8, 7 } }
 };
-static spr_array rev07 = {
+static sprite_pattern rev07 = {
   1,
   { { -20, -48, 8, 8 } }
 };
-static spr_array rev08 = {
+static sprite_pattern rev08 = {
   1,
   { { -20, -48, 8, 9 } }
 };
-static spr_array rev31 = {
+static sprite_pattern rev31 = {
   1,
   { { -20, -48, 8, 31 } }
 };
-static spr_array rev32 = {
+static sprite_pattern rev32 = {
   1,
   { { -20, -48, 8, 32 } }
 };
-static spr_array rev33 = {
+static sprite_pattern rev33 = {
   1,
   { { -20, -48, 8, 33 } }
 };
-static spr_array rev34 = {
+static sprite_pattern rev34 = {
   1,
   { { -20, -48, 8, 34 } }
 };
-static spr_array rev35 = {
+static sprite_pattern rev35 = {
   1,
   { { -20, -48, 8, 35 } }
 };
-static spr_array rev36 = {
+static sprite_pattern rev36 = {
   1,
   { { -20, -48, 8, 36 } }
 };
-static spr_array rev21 = {
+static sprite_pattern rev21 = {
   1,
   { { -35, -32, 8, 21 } }
 };
-static spr_array rev23 = {
+static sprite_pattern rev23 = {
   1,
   { { -35, -32, 8, 23 } }
 };
-static spr_array rev25 = {
+static sprite_pattern rev25 = {
   1,
   { { -25, -48, 8, 25 } }
 };
-static spr_array rev26 = {
+static sprite_pattern rev26 = {
   1,
   { { -30, -48, 8, 26 } }
 };
-static spr_array rev27 = {
+static sprite_pattern rev27 = {
   1,
   { { -20, -48, 8, 27 } }
 };
@@ -590,31 +590,31 @@ sprite_patterns_sp* mpplayer[45] = {
   &table30, &table31, &table32, &table33, &table34, &table35, &table36, &table37, &table38, &table39,
   &table40, &table41, &table42, &table43, &table44
 };
-static spr_array sib00 = {
+static sprite_pattern sib00 = {
   1,
   { { -20, -32, 0, 64 } }
 };
-static spr_array sib01 = {
+static sprite_pattern sib01 = {
   1,
   { { -20, -32, 0, 65 } }
 };
-static spr_array sib02 = {
+static sprite_pattern sib02 = {
   1,
   { { -20, -32, 0, 66 } }
 };
-static spr_array sib03 = {
+static sprite_pattern sib03 = {
   1,
   { { -20, -48, 0, 67 } }
 };
-static spr_array sib04 = {
+static sprite_pattern sib04 = {
   1,
   { { -20, -64, 0, 68 } }
 };
-static spr_array sib05 = {
+static sprite_pattern sib05 = {
   1,
   { { -10, -8, 0, 69 } }
 };
-static spr_array sib06 = {
+static sprite_pattern sib06 = {
   1,
   { { -20, -8, 0, 70 } }
 };
@@ -629,43 +629,43 @@ static sprite_patterns_sp sib_tbl01 = {
   { &sib00, &sib01, &sib02 }
 };
 sprite_patterns_sp* mpsibuki[2] = { &sib_tbl00, &sib_tbl01 };
-static spr_array kag00 = {
+static sprite_pattern kag00 = {
   1,
   { { -40, -8, 0, 71 } }
 };
-static spr_array kag01 = {
+static sprite_pattern kag01 = {
   1,
   { { -40, -35, 0, 72 } }
 };
-static spr_array kag02 = {
+static sprite_pattern kag02 = {
   1,
   { { -30, -4, 0, 73 } }
 };
-static spr_array kag03 = {
+static sprite_pattern kag03 = {
   1,
   { { -30, -4, 0, 74 } }
 };
-static spr_array kag04 = {
+static sprite_pattern kag04 = {
   1,
   { { -25, -4, 0, 75 } }
 };
-static spr_array kag05 = {
+static sprite_pattern kag05 = {
   1,
   { { -20, -4, 0, 76 } }
 };
-static spr_array kag06 = {
+static sprite_pattern kag06 = {
   1,
   { { -15, -4, 0, 77 } }
 };
-static spr_array kag07 = {
+static sprite_pattern kag07 = {
   1,
   { { -15, -4, 0, 78 } }
 };
-static spr_array kag08 = {
+static sprite_pattern kag08 = {
   1,
   { { -10, -4, 0, 79 } }
 };
-static spr_array kag09 = {
+static sprite_pattern kag09 = {
   1,
   { { -5, -4, 0, 80 } }
 };
@@ -723,43 +723,43 @@ sprite_patterns_sp* mpkage[10] = {
   &kag_tbl00, &kag_tbl01, &kag_tbl02, &kag_tbl03, &kag_tbl04,
   &kag_tbl05, &kag_tbl06, &kag_tbl07, &kag_tbl08, &kag_tbl09
 };
-static spr_array uft00 = {
+static sprite_pattern uft00 = {
   1,
   { { -40, -56, 0, 81 } }
 };
-static spr_array uft01 = {
+static sprite_pattern uft01 = {
   1,
   { { -40, -48, 0, 82 } }
 };
-static spr_array uft02 = {
+static sprite_pattern uft02 = {
   1,
   { { -30, -40, 0, 83 } }
 };
-static spr_array uft03 = {
+static sprite_pattern uft03 = {
   1,
   { { -30, -40, 0, 84 } }
 };
-static spr_array uft04 = {
+static sprite_pattern uft04 = {
   1,
   { { -30, -32, 0, 85 } }
 };
-static spr_array uft05 = {
+static sprite_pattern uft05 = {
   1,
   { { -20, -32, 0, 86 } }
 };
-static spr_array uft06 = {
+static sprite_pattern uft06 = {
   1,
   { { -15, -28, 0, 87 } }
 };
-static spr_array uft07 = {
+static sprite_pattern uft07 = {
   1,
   { { -15, -16, 0, 88 } }
 };
-static spr_array uft08 = {
+static sprite_pattern uft08 = {
   1,
   { { -10, -16, 0, 89 } }
 };
-static spr_array uft09 = {
+static sprite_pattern uft09 = {
   1,
   { { -5, -8, 0, 90 } }
 };
@@ -817,43 +817,43 @@ sprite_patterns_sp* mptufo[10] = {
   &uft_tbl00, &uft_tbl01, &uft_tbl02, &uft_tbl03, &uft_tbl04,
   &uft_tbl05, &uft_tbl06, &uft_tbl07, &uft_tbl08, &uft_tbl09
 };
-static spr_array ufx00 = {
+static sprite_pattern ufx00 = {
   1,
   { { -40, -56, 0, 91 } }
 };
-static spr_array ufx01 = {
+static sprite_pattern ufx01 = {
   1,
   { { -40, -48, 0, 92 } }
 };
-static spr_array ufx02 = {
+static sprite_pattern ufx02 = {
   1,
   { { -30, -40, 0, 93 } }
 };
-static spr_array ufx03 = {
+static sprite_pattern ufx03 = {
   1,
   { { -30, -40, 0, 94 } }
 };
-static spr_array ufx04 = {
+static sprite_pattern ufx04 = {
   1,
   { { -30, -32, 0, 95 } }
 };
-static spr_array ufx05 = {
+static sprite_pattern ufx05 = {
   1,
   { { -20, -32, 0, 96 } }
 };
-static spr_array ufx06 = {
+static sprite_pattern ufx06 = {
   1,
   { { -15, -24, 0, 97 } }
 };
-static spr_array ufx07 = {
+static sprite_pattern ufx07 = {
   1,
   { { -15, -16, 0, 98 } }
 };
-static spr_array ufx08 = {
+static sprite_pattern ufx08 = {
   1,
   { { -10, -16, 0, 99 } }
 };
-static spr_array ufx09 = {
+static sprite_pattern ufx09 = {
   1,
   { { -5, -8, 0, 100 } }
 };
@@ -911,43 +911,43 @@ sprite_patterns_sp* mpufox[10] = {
   &ufx_tbl00, &ufx_tbl01, &ufx_tbl02, &ufx_tbl03, &ufx_tbl04,
   &ufx_tbl05, &ufx_tbl06, &ufx_tbl07, &ufx_tbl08, &ufx_tbl09
 };
-static spr_array ufy00 = {
+static sprite_pattern ufy00 = {
   1,
   { { -40, -56, 0, 101 } }
 };
-static spr_array ufy01 = {
+static sprite_pattern ufy01 = {
   1,
   { { -40, -48, 0, 102 } }
 };
-static spr_array ufy02 = {
+static sprite_pattern ufy02 = {
   1,
   { { -30, -40, 0, 103 } }
 };
-static spr_array ufy03 = {
+static sprite_pattern ufy03 = {
   1,
   { { -30, -40, 0, 104 } }
 };
-static spr_array ufy04 = {
+static sprite_pattern ufy04 = {
   1,
   { { -30, -32, 0, 105 } }
 };
-static spr_array ufy05 = {
+static sprite_pattern ufy05 = {
   1,
   { { -20, -32, 0, 106 } }
 };
-static spr_array ufy06 = {
+static sprite_pattern ufy06 = {
   1,
   { { -15, -24, 0, 107 } }
 };
-static spr_array ufy07 = {
+static sprite_pattern ufy07 = {
   1,
   { { -15, -16, 0, 108 } }
 };
-static spr_array ufy08 = {
+static sprite_pattern ufy08 = {
   1,
   { { -10, -16, 0, 109 } }
 };
-static spr_array ufy09 = {
+static sprite_pattern ufy09 = {
   1,
   { { -5, -8, 0, 110 } }
 };

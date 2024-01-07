@@ -1,74 +1,74 @@
 #include "TYPES.H"
 
-spr_array pat0 = {
+static sprite_pattern pat0 = {
   1,
   { { -16, -24, 0, 448 } }
 };
-spr_array pat1 = {
+static sprite_pattern pat1 = {
   1,
   { { -12, -24, 0, 449 } }
 };
-spr_array pat2 = {
+static sprite_pattern pat2 = {
   1,
   { { -16, -24, 0, 450 } }
 };
-spr_array pat3 = {
+static sprite_pattern pat3 = {
   1,
   { { -12, -24, 0, 451 } }
 };
-spr_array pat4 = {
+static sprite_pattern pat4 = {
   1,
   { { -12, -24, 0, 452 } }
 };
-spr_array pat5 = {
+static sprite_pattern pat5 = {
   1,
   { { -12, -24, 0, 453 } }
 };
-spr_array pat6 = {
+static sprite_pattern pat6 = {
   1,
   { { -16, -24, 0, 454 } }
 };
-spr_array pat7 = {
+static sprite_pattern pat7 = {
   1,
   { { -16, -24, 0, 455 } }
 };
-spr_array pat8 = {
+static sprite_pattern pat8 = {
   1,
   { { -8, -8, 0, 456 } }
 };
-spr_array pat9 = {
+static sprite_pattern pat9 = {
   1,
   { { -8, -8, 0, 457 } }
 };
-spr_array patA = {
+static sprite_pattern patA = {
   1,
   { { -8, -8, 0, 458 } }
 };
-spr_array patB = {
+static sprite_pattern patB = {
   1,
   { { -12, -24, 0, 459 } }
 };
-spr_array patC = {
+static sprite_pattern patC = {
   1,
   { { -12, -24, 0, 460 } }
 };
-spr_array patD = {
+static sprite_pattern patD = {
   1,
   { { -12, -24, 0, 461 } }
 };
-spr_array patE = {
+static sprite_pattern patE = {
   1,
   { { -16, -20, 0, 462 } }
 };
-spr_array patF = {
+static sprite_pattern patF = {
   1,
   { { -12, -24, 0, 463 } }
 };
-spr_array pat10 = {
+static sprite_pattern pat10 = {
   1,
   { { -16, -20, 0, 464 } }
 };
-spr_array* emie1pat[17] = {
+sprite_pattern* emie1pat[17] = {
   &pat0,
   &pat1,
   &pat2,
@@ -87,10 +87,10 @@ spr_array* emie1pat[17] = {
   &patF,
   &pat10
 };
-char moji_pchg[9] = { 3, 11, 4, 11, 5, 11, 4, 11, -1 };
-char run_pchg[9] = { 0, 3, 1, 2, 2, 3, 1, 2, -1 };
-char kiss_pchg[3] = { 14, 9, -1 };
-char stnd2_pchg[5] = { 11, 19, 12, 19, -1 };
-char moji2_pchg[5] = { 6, 9, 7, 9, -1 };
-char kyoro_pchg[9] = { 11, 29, 12, 29, 11, 29, 12, 49, -1 };
+static char moji_pchg[9] = { 3, 11, 4, 11, 5, 11, 4, 11, -1 };
+static char run_pchg[9] = { 0, 3, 1, 2, 2, 3, 1, 2, -1 };
+static char kiss_pchg[3] = { 14, 9, -1 };
+static char stnd2_pchg[5] = { 11, 19, 12, 19, -1 };
+static char moji2_pchg[5] = { 6, 9, 7, 9, -1 };
+static char kyoro_pchg[9] = { 11, 29, 12, 29, 11, 29, 12, 49, -1 };
 char* em_pchg[6] = { stnd2_pchg, moji_pchg, run_pchg, kiss_pchg, moji2_pchg, kyoro_pchg };

@@ -17,7 +17,7 @@ void(*gene_tbl[6])(sprite_status*) = {
   &goal_move3,
   &kira_move
 };
-extern spr_array* genepat[];
+extern sprite_pattern* genepat[];
 extern unsigned char* genechg[];
 extern map_init_data mapinittbl;
 void(*bring2_tbl[3])(sprite_status*) = {
@@ -25,21 +25,21 @@ void(*bring2_tbl[3])(sprite_status*) = {
   &bring2move0,
   &bring2move1
 };
-extern spr_array* bring2pat[];
+extern sprite_pattern* bring2pat[];
 extern unsigned char* bring2chg[];
 void(*bigring_tbl[3])(sprite_status*) = {
   &bring_init,
   &bring_move0,
   &bring_move1
 };
-extern spr_array* bringpat[];
+extern sprite_pattern* bringpat[];
 extern unsigned char* bringchg[];
 void(*mosugu_tbl[3])(sprite_status*, sprite_status*) = {
   &mosug_init,
   &mosug_move0,
   &mosug_move1
 };
-extern spr_array* goalpat[];
+extern sprite_pattern* goalpat[];
 void(*goal_tbl[5])(sprite_status*) = {
   &goal_init,
   &goal_move0,
