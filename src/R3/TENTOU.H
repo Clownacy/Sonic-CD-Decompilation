@@ -1,0 +1,16 @@
+void tentou(sprite_status* pActwk);
+void ten_a_init(sprite_status* pActwk);
+void ten_a_fall(sprite_status* pActwk);
+int abs(int i);
+void ten_a_wait(sprite_status* pActwk);
+void ten_a_lr(sprite_status* pActwk);
+void ten_a_up(sprite_status* pActwk);
+void ten_a_gake(sprite_status* pActwk);
+void ten_a_hover(sprite_status* pActwk);
+void ten_a_range(sprite_status* pActwk);
+void tentou1(sprite_status* pActwk);
+void ten_b_init(sprite_status* pActwk);
+void ten_b_fall(sprite_status* pActwk);
+void ten_b_wait(sprite_status* pActwk);
+void ten_b_blink(sprite_status* pActwk);
+void ten_b_die(sprite_status* pActwk);

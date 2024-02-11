@@ -1,0 +1,14 @@
+void playsp();
+void boyo();
+char bycol_sub0(short cal_x, short cal_y);
+void bob(short i, short cal_x, short cal_y, short block_back);
+void bob_s(short i, short cal_x, short cal_y, short block_back);
+void bob_j();
+void bob0(short i, short cal_x, short cal_y, short block_back);
+void bob1(short i, short cal_x, short cal_y, short block_back);
+void bob_s0(short i, short cal_x, short cal_y, short block_back);
+void bob2(short i, short cal_x, short cal_y, short block_back);
+void bob3(short i, short cal_x, short cal_y, short block_back);
+void bob4(short i, short cal_x, short cal_y, short block_back);
+void bob5(short i, short cal_x, short cal_y, short block_back);
+void bob6(short i, short cal_x, short cal_y, short block_back);

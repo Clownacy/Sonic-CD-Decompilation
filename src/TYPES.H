@@ -288,6 +288,20 @@ typedef struct tagPOINT {
 }
 POINT;
 
+typedef struct {
+  char tim;
+  char no;
+}
+tile_change_data;
+
+typedef struct {
+  char chgcnt;
+  char dmy;
+  tile_change_data dattbl[25];
+  int* TileNoTbl[8];
+  int TileStart;
+}
+tile_changes;
 
 
 /* SPECIAL STAGE */
