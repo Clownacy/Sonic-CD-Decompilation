@@ -1,0 +1,10 @@
+void movie4(sprite_status* pActwk);
+void die(sprite_status* pActwk);
+void mm_init(sprite_status* pActwk);
+void mm_wait(sprite_status* pActwk);
+void mm_die(sprite_status* pActwk);
+void m_baku(sprite_status* pActwk);
+void mm1wait(sprite_status* pActwk);
+void sub(sprite_status* pActwk);
+void s_init(sprite_status* pActwk);
+void s_move(sprite_status* pActwk);
