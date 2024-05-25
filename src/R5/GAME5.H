@@ -1,0 +1,15 @@
+void DLL_meminit(char*** pBufTbl, void** pFuncTbl);
+void DLL_memfree();
+int Get_vscroll();
+int Get_scra_h_posiw();
+int Get_scrb_h_posiw();
+void SetDebugFlag(unsigned int NewVal);
+int game();
+void game_init();
+void play_act_set();
+void flow_act_set();
+void scdset();
+void syspatchg();
+void sdfdout();
+void sdfdin();
+void da_set();

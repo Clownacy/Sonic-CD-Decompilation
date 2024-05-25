@@ -1,0 +1,14 @@
+void egg5(sprite_status* pActwk);
+void egg5meca1(sprite_status* pActwk);
+void egg5meca2(sprite_status* pActwk);
+void egg5meca3(sprite_status* pActwk);
+void egg5pipe(sprite_status* pActwk);
+void egg5catch(sprite_status* pActwk);
+void egg5bomb(sprite_status* pActwk);
+void egg5bomb2(sprite_status* pActwk);
+void egg5hibana(sprite_status* pActwk);
+void egg5hari(sprite_status* pActwk);
+void egg5belt(sprite_status* pActwk);
+void egg5bakuha(sprite_status* pActwk);
+void make_hibana1();
+void make_hibana2(sprite_status* pActwk);

@@ -1,0 +1,11 @@
+void clchgctr();
+void fadein0();
+int fadein0_new();
+void fadeout();
+void flashin();
+void flashout();
+void colorset(int ColorNo);
+void colorset2(int ColorNo);
+void colorset3(int ColorNo);
+void colorset4(int ColorNo);
+int FadeProc();
