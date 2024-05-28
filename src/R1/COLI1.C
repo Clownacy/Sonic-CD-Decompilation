@@ -1,11 +1,11 @@
 #include "..\EQU.H"
 #include "COLI1.H"
-#include "..\ACTSET.H"
 #include "..\FCOL.H"
+#include "..\LOADER2.H"
 #include "..\PLAYER.H"
 #include "..\SCORE.H"
 
-extern void soundset(short ReqNo);
+extern short actwkchk(sprite_status** ppActwk);
 
 unsigned short escoretbl[4] = { 10, 20, 50, 100 };
 unsigned char colitbl[64][2] =
@@ -138,7 +138,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
 
   iColiwk = pColliAct->xposi.w.h - iColiData; /* Line 139, Address: 0x101feb4 */
   bCarry = CCset(iColiwk, iXposi); /* Line 140, Address: 0x101fee0 */
-  iColiwk -= iXposi; /* Line 141, Address: 0x101ff04 */
+  iColiwk = iColiwk - iXposi; /* Line 141, Address: 0x101ff04 */
 
   if (bCarry == 1) /* Line 143, Address: 0x101ff2c */
   {
@@ -151,7 +151,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
       return 0; /* Line 151, Address: 0x101ffb4 */
   }
 
-  if (iColiwk >= 17) /* Line 154, Address: 0x101ffc0 */
+  if (iColiwk > 16) /* Line 154, Address: 0x101ffc0 */
     return 0; /* Line 155, Address: 0x101ffd4 */
 
 
@@ -187,7 +187,7 @@ short CollitblDataYchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
 
   iYwork = pColliAct->yposi.w.h - iColiData; /* Line 188, Address: 0x1020074 */
   bCarry = CCset(iYwork, iYposi); /* Line 189, Address: 0x10200a0 */
-  iYwork -= iYposi; /* Line 190, Address: 0x10200c4 */
+  iYwork = iYwork - iYposi; /* Line 190, Address: 0x10200c4 */
   if (bCarry == 1) /* Line 191, Address: 0x10200ec */
   {
     iColiData += iColiData; /* Line 193, Address: 0x1020104 */
@@ -597,7 +597,7 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
       break; /* Line 597, Address: 0x1020cc0 */
     default:
       if (cColiNo < 60) return -1; /* Line 599, Address: 0x1020cc8 */
-      if (cColiNo >= 64) return -1; /* Line 600, Address: 0x1020ce8 */
+      if (cColiNo > 63) return -1; /* Line 600, Address: 0x1020ce8 */
       eggman_chk(pActwk, pColliAct); /* Line 601, Address: 0x1020d08 */
   }
   return -1; /* Line 603, Address: 0x1020d18 */

@@ -2,11 +2,9 @@
 #include "SIKAKE.H"
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
-#include "..\DUMMY.H"
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
-
-extern short playdamageset(sprite_status* pActwk, sprite_status* pColliAct);
+#include "COLI1.H"
 
 static unsigned char tobita1chg0[16] = { 2, 0, 1, 0, 2, 0, 1, 0, 3, 4, 3, 5, 3, 4, 3, 255 };
 static unsigned char tobita1chg1[9] = { 2, 0, 1, 0, 2, 0, 1, 0, 255 };
@@ -66,6 +64,8 @@ static sprite_pattern pat0 =
   { { -16, -16, 0, 494 } }
 };
 sprite_pattern* hari12pat[1] = { &pat0 };
+
+
 
 
 
@@ -221,7 +221,7 @@ short colli_pl_sikake(sprite_status* pActwk, sprite_status* pPlayerwk, short col
 
 
   left = pPs_colli[1]; /* Line 223, Address: 0x101e29c */
-  left = -left; /* Line 224, Address: 0x101e2b0 */
+  left *= -1; /* Line 224, Address: 0x101e2b0 */
   xe_w = xe; /* Line 225, Address: 0x101e2bc */
   xp_w = xp; /* Line 226, Address: 0x101e2c8 */
   xe_w -= left; /* Line 227, Address: 0x101e2d4 */
@@ -235,14 +235,14 @@ short colli_pl_sikake(sprite_status* pActwk, sprite_status* pPlayerwk, short col
 
   down = pPs_colli[2]; /* Line 236, Address: 0x101e348 */
   ye_w = ye; /* Line 237, Address: 0x101e358 */
-  yp_w = ye_w; /* Line 238, Address: 0x101e364 */
+  yp_w = yp; /* Line 238, Address: 0x101e364 */
   ye_w += down; /* Line 239, Address: 0x101e36c */
   yp_w -= vp; /* Line 240, Address: 0x101e37c */
   if (yp_w - ye_w >= 0) goto label1; /* Line 241, Address: 0x101e388 */
 
 
   up = pPs_colli[3]; /* Line 244, Address: 0x101e3a4 */
-  up = -up; /* Line 245, Address: 0x101e3b8 */
+  up *= -1; /* Line 245, Address: 0x101e3b8 */
   ye_w = ye; /* Line 246, Address: 0x101e3c4 */
   yp_w = yp; /* Line 247, Address: 0x101e3d0 */
   ye_w -= up; /* Line 248, Address: 0x101e3d8 */
@@ -449,8 +449,8 @@ void tobita_yure_r(sprite_status* pActwk) { /* Line 438, Address: 0x101e930 */
   {
     d0 = pPlayerwk->yspeed.w; /* Line 450, Address: 0x101e980 */
     d0 += 256; /* Line 451, Address: 0x101e98c */
-    if (d0 >= 2561) d0 = 2560; /* Line 452, Address: 0x101e998 */
-    d0 = -d0; /* Line 453, Address: 0x101e9b8 */
+    if (d0 > 2560) d0 = 2560; /* Line 452, Address: 0x101e998 */
+    d0 *= -1; /* Line 453, Address: 0x101e9b8 */
     pPlayerwk->yspeed.w = d0; /* Line 454, Address: 0x101e9c4 */
     pActwk->actfree[0] = 64; /* Line 455, Address: 0x101e9c8 */
     zflag = (pPlayerwk->cddat & 2) ? 0 : 1; /* Line 456, Address: 0x101e9d4 */
@@ -506,8 +506,8 @@ void tobita_yure_l(sprite_status* pActwk) { /* Line 495, Address: 0x101eb30 */
   {
     d0 = pPlayerwk->yspeed.w; /* Line 507, Address: 0x101eb80 */
     d0 += 256; /* Line 508, Address: 0x101eb8c */
-    if (d0 >= 2561) d0 = 2560; /* Line 509, Address: 0x101eb98 */
-    d0 = -d0; /* Line 510, Address: 0x101ebb8 */
+    if (d0 > 2560) d0 = 2560; /* Line 509, Address: 0x101eb98 */
+    d0 *= -1; /* Line 510, Address: 0x101ebb8 */
     pPlayerwk->yspeed.w = d0; /* Line 511, Address: 0x101ebc4 */
     pActwk->actfree[0] = 64; /* Line 512, Address: 0x101ebc8 */
     zflag = (pPlayerwk->cddat & 2) ? 0 : 1; /* Line 513, Address: 0x101ebd4 */
@@ -595,7 +595,7 @@ void hari_normal(sprite_status* pActwk) { /* Line 591, Address: 0x101ee70 */
   pPlayerwk = &actwk[0]; /* Line 595, Address: 0x101ee84 */
   py = pPlayerwk->yposi.w.h; /* Line 596, Address: 0x101ee8c */
   py -= pActwk->yposi.w.h; /* Line 597, Address: 0x101ee98 */
-  if (py < 0) py = -py; /* Line 598, Address: 0x101eeac */
+  if (py < 0) py *= -1; /* Line 598, Address: 0x101eeac */
   if (py >= 32) goto label1; /* Line 599, Address: 0x101eec8 */
   if (pActwk->actflg & 2) /* Line 600, Address: 0x101eedc */
   {

@@ -45,7 +45,6 @@ void vramadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned shor
 void vramadrset0(unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
 void vramadrset2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
 void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
-void scr11a_test();
 void mapwrt();
 void mapwrt2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pMapWk, int VramBase);
 void mapwrt3(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pMapWk, int VramBase, unsigned short wD4, unsigned short wD6);

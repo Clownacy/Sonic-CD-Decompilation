@@ -1,6 +1,21 @@
 #include "..\EQU.H"
 #include "COL1A.H"
 
+static int fadein0_new();
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+static void colorset3(int ColorNo);
+static void colorset00(int ColorNo, int WorkOffs);
+
 palette_entry clst1_1a0[3][4] = {
   { { 192, 192, 224, 1 }, { 160, 192, 224, 1 }, { 224, 224, 224, 1 }, { 128, 160, 224, 1 } },
   { { 128, 160, 224, 1 }, { 192, 192, 224, 1 }, { 192, 192, 224, 1 }, { 160, 192, 224, 1 } },
@@ -96,12 +111,8 @@ palette_entry zone1colora[48] = {
   {  96, 128, 224, 1 }, {  32,  64,   0, 1 }, {  96, 160,   0, 1 }, {  64,  96,   0, 1 }
 };
 palette_part colortbl[6] = {
-  { advacolor, 0, 64 },
-  { advacolor, 0, 64 },
-  { advacolor2, 0, 64 },
-  { gamecolor, 0, 16 },
-  { zone1colora1, 16, 48 },
-  { zone1colora0, 16, 48 }
+  { advacolor, 0, 64 }, { advacolor,     0, 64 }, { advacolor2,    0, 64 },
+  { gamecolor, 0, 16 }, { zone1colora1, 16, 48 }, { zone1colora0, 16, 48 }
 };
 unsigned char col1a0cnt[8] = { 49, 3, 8, 0, 8, 1, 8, 2 };
 palette_entry col1a0col[3] = {
@@ -140,17 +151,6 @@ palette_entry col1a5col[3] = {
   { 128, 160, 224, 1 }
 };
 static int FadeCount;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,7 +269,7 @@ static int fadein0_new() { /* Line 265, Address: 0x101fdc0 */
   fadein1(); /* Line 269, Address: 0x101fdd4 */
 
 
-  if (++FadeCount >= 22) { /* Line 272, Address: 0x101fddc */
+  if (++FadeCount > 21) { /* Line 272, Address: 0x101fddc */
     FadeCount = 0; /* Line 273, Address: 0x101fdfc */
     return 1; /* Line 274, Address: 0x101fe04 */
   }
@@ -343,7 +343,7 @@ static int fadeout_new() { /* Line 339, Address: 0x1020140 */
   fadeout1(); /* Line 343, Address: 0x1020154 */
 
 
-  if (++FadeCount >= 22) { /* Line 346, Address: 0x102015c */
+  if (++FadeCount > 21) { /* Line 346, Address: 0x102015c */
     FadeCount = 0; /* Line 347, Address: 0x102017c */
     return 1; /* Line 348, Address: 0x1020184 */
   }
@@ -416,7 +416,7 @@ static int flashin_new() { /* Line 412, Address: 0x1020410 */
   flashin1(); /* Line 416, Address: 0x1020424 */
 
 
-  if (++FadeCount >= 22) { /* Line 419, Address: 0x102042c */
+  if (++FadeCount > 21) { /* Line 419, Address: 0x102042c */
     FadeCount = 0; /* Line 420, Address: 0x102044c */
     return 1; /* Line 421, Address: 0x1020454 */
   }
@@ -486,7 +486,7 @@ static int flashout_new() { /* Line 482, Address: 0x1020790 */
   flashout1(); /* Line 486, Address: 0x10207a4 */
 
 
-  if (++FadeCount >= 22) { /* Line 489, Address: 0x10207ac */
+  if (++FadeCount > 21) { /* Line 489, Address: 0x10207ac */
     FadeCount = 0; /* Line 490, Address: 0x10207cc */
     return 1; /* Line 491, Address: 0x10207d4 */
   }

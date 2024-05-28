@@ -1,6 +1,18 @@
 #include "..\EQU.H"
 #include "COL1C.H"
 
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+
 palette_entry clst1_1c0[3][4] = {
   { { 192, 192, 224, 1 }, { 160, 192, 224, 1 }, { 224, 224, 224, 1 }, { 128, 160, 224, 1 } },
   { { 128, 160, 224, 1 }, { 192, 192, 224, 1 }, { 192, 192, 224, 1 }, { 160, 192, 224, 1 } },
@@ -74,22 +86,10 @@ palette_entry zone1colboss1[16] = {
   { 224, 224,   0, 1 }, { 128, 128,   0, 1 }, {  64,  64,   0, 1 }, { 224,   0,   0, 1 }
 };
 palette_part colortbl[6] = {
-  { advacolor, 0, 64 },
-  { advacolor, 0, 64 },
-  { advacolor2, 0, 64 },
-  { gamecolor, 0, 16 },
-  { zone1colorc, 16, 48 },
-  { zone1colboss1, 16, 16 }
+  { advacolor,  0, 64 }, { advacolor,    0, 64 }, { advacolor2,     0, 64 },
+  { gamecolor,  0, 16 }, { zone1colorc, 16, 48 }, { zone1colboss1, 16, 16 }
 };
 static int FadeCount;
-
-
-
-
-
-
-
-
 
 void clchgctr() { /* Line 94, Address: 0x1021080 */
   palette_entry *lpPe, *lpPe2;
@@ -151,11 +151,11 @@ void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* 
 
       *pChgCnt = 0; /* Line 152, Address: 0x1021330 */
     }
-  }
-  pCntTbl = &pCntTbl[*pChgCnt * 2]; /* Line 155, Address: 0x1021338 */
-  *pChgTime = pCntTbl[0]; /* Line 156, Address: 0x1021354 */
-  *lpPe = pColTbl[pCntTbl[1]]; /* Line 157, Address: 0x1021364 */
 
+    pCntTbl = &pCntTbl[*pChgCnt * 2]; /* Line 155, Address: 0x1021338 */
+    *pChgTime = pCntTbl[0]; /* Line 156, Address: 0x1021354 */
+    *lpPe = pColTbl[pCntTbl[1]]; /* Line 157, Address: 0x1021364 */
+  }
 } /* Line 159, Address: 0x102139c */
 
 
@@ -186,7 +186,7 @@ int fadein0_new() { /* Line 182, Address: 0x1021460 */
   fadein1(); /* Line 186, Address: 0x1021474 */
 
 
-  if (++FadeCount >= 22) { /* Line 189, Address: 0x102147c */
+  if (++FadeCount > 21) { /* Line 189, Address: 0x102147c */
     FadeCount = 0; /* Line 190, Address: 0x102149c */
     return 1; /* Line 191, Address: 0x10214a4 */
   }
@@ -260,7 +260,7 @@ static int fadeout_new() { /* Line 256, Address: 0x10217e0 */
   fadeout1(); /* Line 260, Address: 0x10217f4 */
 
 
-  if (++FadeCount >= 22) { /* Line 263, Address: 0x10217fc */
+  if (++FadeCount > 21) { /* Line 263, Address: 0x10217fc */
     FadeCount = 0; /* Line 264, Address: 0x102181c */
     return 1; /* Line 265, Address: 0x1021824 */
   }
@@ -333,7 +333,7 @@ static int flashin_new() { /* Line 329, Address: 0x1021ab0 */
   flashin1(); /* Line 333, Address: 0x1021ac4 */
 
 
-  if (++FadeCount >= 22) { /* Line 336, Address: 0x1021acc */
+  if (++FadeCount > 21) { /* Line 336, Address: 0x1021acc */
     FadeCount = 0; /* Line 337, Address: 0x1021aec */
     return 1; /* Line 338, Address: 0x1021af4 */
   }
@@ -403,7 +403,7 @@ static int flashout_new() { /* Line 399, Address: 0x1021e30 */
   flashout1(); /* Line 403, Address: 0x1021e44 */
 
 
-  if (++FadeCount >= 22) { /* Line 406, Address: 0x1021e4c */
+  if (++FadeCount > 21) { /* Line 406, Address: 0x1021e4c */
     FadeCount = 0; /* Line 407, Address: 0x1021e6c */
     return 1; /* Line 408, Address: 0x1021e74 */
   }

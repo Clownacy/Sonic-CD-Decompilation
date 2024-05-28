@@ -1,6 +1,18 @@
 #include "..\EQU.H"
 #include "COL1B.H"
 
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+
 palette_entry clst1_1a0[12][4] = {
   { { 160, 224, 224, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
   { {  96, 224, 192, 1 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } },
@@ -91,18 +103,14 @@ palette_entry zone1colorb[48] = {
   {  64,   0,   0, 1 }, {  96,  32,  32, 1 }, { 160, 128,  64, 1 }, { 224, 192,  96, 1 }
 };
 palette_part colortbl[6] = {
-  { advacolor, 0, 64 },
-  { advacolor, 0, 64 },
-  { advacolor2, 0, 64 },
-  { gamecolor, 0, 16 },
-  { zone1colorb, 16, 48 },
-  { zone1colorb0, 16, 48 }
+  { advacolor, 0, 64 }, { advacolor,    0, 64 }, { advacolor2,    0, 64 },
+  { gamecolor, 0, 16 }, { zone1colorb, 16, 48 }, { zone1colorb0, 16, 48 }
 };
 unsigned char col1a0cnt[8] = { 49, 3, 8, 0, 8, 1, 8, 2 };
 palette_entry col1a0col[3] = {
   { 160, 224, 224, 1 },
   {  96, 224, 192, 1 },
-  { 10, 192, 50, 1 }
+  {  10, 192,  50, 1 }
 };
 unsigned char col1a1cnt[8] = { 50, 3, 8, 0, 8, 1, 8, 2 };
 palette_entry col1a1col[3] = {
@@ -135,14 +143,6 @@ palette_entry col1a5col[3] = {
   {  96, 224, 192, 1 }
 };
 static int FadeCount;
-
-
-
-
-
-
-
-
 
 void clchgctr() { /* Line 147, Address: 0x1024d50 */
 
@@ -219,7 +219,7 @@ int fadein0_new() { /* Line 215, Address: 0x1025060 */
   fadein1(); /* Line 219, Address: 0x1025074 */
 
 
-  if (++FadeCount >= 22) { /* Line 222, Address: 0x102507c */
+  if (++FadeCount > 21) { /* Line 222, Address: 0x102507c */
     FadeCount = 0; /* Line 223, Address: 0x102509c */
     return 1; /* Line 224, Address: 0x10250a4 */
   }
@@ -293,7 +293,7 @@ static int fadeout_new() { /* Line 289, Address: 0x10253e0 */
   fadeout1(); /* Line 293, Address: 0x10253f4 */
 
 
-  if (++FadeCount >= 22) { /* Line 296, Address: 0x10253fc */
+  if (++FadeCount > 21) { /* Line 296, Address: 0x10253fc */
     FadeCount = 0; /* Line 297, Address: 0x102541c */
     return 1; /* Line 298, Address: 0x1025424 */
   }
@@ -366,7 +366,7 @@ static int flashin_new() { /* Line 362, Address: 0x10256b0 */
   flashin1(); /* Line 366, Address: 0x10256c4 */
 
 
-  if (++FadeCount >= 22) { /* Line 369, Address: 0x10256cc */
+  if (++FadeCount > 21) { /* Line 369, Address: 0x10256cc */
     FadeCount = 0; /* Line 370, Address: 0x10256ec */
     return 1; /* Line 371, Address: 0x10256f4 */
   }
@@ -436,7 +436,7 @@ static int flashout_new() { /* Line 432, Address: 0x1025a30 */
   flashout1(); /* Line 436, Address: 0x1025a44 */
 
 
-  if (++FadeCount >= 22) { /* Line 439, Address: 0x1025a4c */
+  if (++FadeCount > 21) { /* Line 439, Address: 0x1025a4c */
     FadeCount = 0; /* Line 440, Address: 0x1025a6c */
     return 1; /* Line 441, Address: 0x1025a74 */
   }

@@ -2,16 +2,16 @@
 #include "KUZURE.H"
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
+#include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
-extern void soundset(short ReqNo);
+extern unsigned char* tblb[];
+extern sprite_pattern* patbase_kuzure_b[];
+extern unsigned char* tbla[];
+extern sprite_pattern* patbase_kuzure_a[];
+extern sprite_pattern* patc[];
+extern sprite_pattern* patd[];
 
-unsigned char* tblb[];
-sprite_pattern* patbase_kuzure_b[];
-unsigned char* tbla[];
-sprite_pattern* patbase_kuzure_a[];
-sprite_pattern* patc[];
-sprite_pattern* patd[];
 
 
 
@@ -95,7 +95,7 @@ void kuzureru_tikei(sprite_status* pActwk) { /* Line 77, Address: 0x101f240 */
 
 void acta_init(sprite_status* pActwk) { /* Line 96, Address: 0x101f300 */
   sprite_pattern** pPB_kuzure;
-  short_union id_no;
+  ushort_union id_no;
   unsigned char** pTbltbl;
   unsigned char* pTbl;
   char userflag;
@@ -199,7 +199,7 @@ void actb_down(sprite_status* pActwk) { /* Line 192, Address: 0x101f650 */
   yposi = pActwk->yposi.w.h; /* Line 199, Address: 0x101f68c */
   pPlayerwk = &actwk[0]; /* Line 200, Address: 0x101f69c */
   yposi -= pPlayerwk->yposi.w.h; /* Line 201, Address: 0x101f6a4 */
-  if (yposi >= 513) frameout(pActwk); /* Line 202, Address: 0x101f6b4 */
+  if (yposi > 512) frameout(pActwk); /* Line 202, Address: 0x101f6b4 */
 } /* Line 203, Address: 0x101f6d4 */
 
 
@@ -240,8 +240,8 @@ void actb_init_a(sprite_status* pActwk) { /* Line 211, Address: 0x101f6f0 */
   time_x = -16; /* Line 240, Address: 0x101f7ac */
   if (reverse_flag == 0) /* Line 241, Address: 0x101f7b8 */
   {
-    tmp.w = -tmp.w; /* Line 243, Address: 0x101f7c8 */
-    time_x = -time_x; /* Line 244, Address: 0x101f7d4 */
+    tmp.w *= -1; /* Line 243, Address: 0x101f7c8 */
+    time_x *= -1; /* Line 244, Address: 0x101f7d4 */
   }
   tmp.w += pActwk->xposi.w.h; /* Line 246, Address: 0x101f7e0 */
   posi_x_start = tmp.w; /* Line 247, Address: 0x101f7f4 */
@@ -275,7 +275,7 @@ void actb_init_a(sprite_status* pActwk) { /* Line 211, Address: 0x101f6f0 */
         pActwk_w->sprpri = 3; /* Line 275, Address: 0x101f90c */
         pActwk_w->sproffset = 17598; /* Line 276, Address: 0x101f918 */
         pActwk_w->patbase = patc; /* Line 277, Address: 0x101f924 */
-        ((int*)pActwk)[12] = 131072; /* Line 278, Address: 0x101f934 */
+        ((int*)pActwk_w)[12] = 131072; /* Line 278, Address: 0x101f934 */
         pActwk_w->actno = pActwk->actfree[21]; /* Line 279, Address: 0x101f940 */
         pActwk_w->r_no0 = pActwk->r_no0; /* Line 280, Address: 0x101f950 */
         if (reverse_flag) /* Line 281, Address: 0x101f960 */
@@ -331,12 +331,12 @@ void actb_init_b(sprite_status* pActwk) { /* Line 314, Address: 0x101faa0 */
   d5.b.l = pTblb++[0]; /* Line 331, Address: 0x101fb0c */
   sprvsize = pTblb++[0]; /* Line 332, Address: 0x101fb1c */
   ++sprvsize; /* Line 333, Address: 0x101fb2c */
-  sprvsize <<= 3; /* Line 334, Address: 0x101fb34 */
+  sprvsize = sprvsize * 8; /* Line 334, Address: 0x101fb34 */
   sprvsize += 2; /* Line 335, Address: 0x101fb44 */
   d5.w &= 255; /* Line 336, Address: 0x101fb4c */
   d4 = d5.w; /* Line 337, Address: 0x101fb58 */
   d4 <<= 3; /* Line 338, Address: 0x101fb64 */
-  d4 = -d4; /* Line 339, Address: 0x101fb70 */
+  d4 *= -1; /* Line 339, Address: 0x101fb70 */
   d3 = 16; /* Line 340, Address: 0x101fb7c */
   d6 = 1; /* Line 341, Address: 0x101fb88 */
   if ((userflag & 64) == 0) /* Line 342, Address: 0x101fb94 */
@@ -345,22 +345,22 @@ void actb_init_b(sprite_status* pActwk) { /* Line 314, Address: 0x101faa0 */
     if (userflag < 0) /* Line 345, Address: 0x101fbb4 */
     {
       pTblb += d5.w; /* Line 347, Address: 0x101fbc4 */
-      d4 = -d4; /* Line 348, Address: 0x101fbd4 */
-      d3 = -d3; /* Line 349, Address: 0x101fbe0 */
-      d6 = -d6; /* Line 350, Address: 0x101fbec */
+      d4 *= -1; /* Line 348, Address: 0x101fbd4 */
+      d3 *= -1; /* Line 349, Address: 0x101fbe0 */
+      d6 *= -1; /* Line 350, Address: 0x101fbec */
     }
   } /* Line 352, Address: 0x101fbf8 */
   else
   {
     pPlayerwk = &actwk[0]; /* Line 355, Address: 0x101fc00 */
     xspeed = pPlayerwk->xspeed.w; /* Line 356, Address: 0x101fc08 */
-    if (userflag & 32) xspeed = -xspeed; /* Line 357, Address: 0x101fc14 */
+    if (userflag & 32) xspeed *= -1; /* Line 357, Address: 0x101fc14 */
     if (xspeed < 0) /* Line 358, Address: 0x101fc34 */
     {
       pTblb += d5.w; /* Line 360, Address: 0x101fc44 */
-      d4 = -d4; /* Line 361, Address: 0x101fc54 */
-      d3 = -d3; /* Line 362, Address: 0x101fc60 */
-      d6 = -d6; /* Line 363, Address: 0x101fc6c */
+      d4 *= -1; /* Line 361, Address: 0x101fc54 */
+      d3 *= -1; /* Line 362, Address: 0x101fc60 */
+      d6 *= -1; /* Line 363, Address: 0x101fc6c */
     }
   }
   d4 += pActwk->xposi.w.h; /* Line 366, Address: 0x101fc78 */
@@ -380,7 +380,7 @@ void actb_init_b(sprite_status* pActwk) { /* Line 314, Address: 0x101faa0 */
     pActwk_w->sproffset = 17598; /* Line 380, Address: 0x101fd0c */
     pActwk_w->actflg |= 4; /* Line 381, Address: 0x101fd18 */
     pActwk_w->patbase = patd; /* Line 382, Address: 0x101fd28 */
-    ((int*)pActwk)[12] = 131072; /* Line 383, Address: 0x101fd38 */
+    ((int*)pActwk_w)[12] = 131072; /* Line 383, Address: 0x101fd38 */
     pActwk_w->actno = pActwk->actfree[21]; /* Line 384, Address: 0x101fd44 */
     pActwk_w->r_no0 = pActwk->r_no0; /* Line 385, Address: 0x101fd54 */
     pActwk_w->yposi.w.h = pActwk->yposi.w.h; /* Line 386, Address: 0x101fd64 */

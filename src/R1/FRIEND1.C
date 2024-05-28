@@ -7,6 +7,16 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+static void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk);
+static void rev_h(sprite_status* pActwk);
+static void set_sproffset(sprite_status* pActwk);
+static void t_init(sprite_status* pActwk);
+static void t_move(sprite_status* pActwk);
+static void t_movie(sprite_status* pActwk);
+static void p_init(sprite_status* pActwk);
+static void p_move(sprite_status* pActwk);
+static void p_movie(sprite_status* pActwk);
+
 static unsigned char pchg00[4] = { 29, 0, 1, 255 };
 static unsigned char pchg01[30] =
 {
@@ -193,16 +203,6 @@ static unsigned short tbl0sproffset[11] =
 
 
 
-
-
-
-
-
-
-
-
-
-
 static void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk) { /* Line 206, Address: 0x1031900 */
   unsigned short sin, cos;
 
@@ -252,7 +252,7 @@ void friend(sprite_status* pActwk) { /* Line 237, Address: 0x1031a70 */
   if ((pActwk->userflag.b.h & 127) == 0) /* Line 252, Address: 0x1031ad8 */
     tbl_f[pActwk->r_no0 / 2](pActwk); /* Line 253, Address: 0x1031af4 */
   else
-    tbl_f[pActwk->r_no0 / 2](pActwk); /* Line 255, Address: 0x1031b38 */
+    tbl_r[pActwk->r_no0 / 2](pActwk); /* Line 255, Address: 0x1031b38 */
 } /* Line 256, Address: 0x1031b74 */
 
 

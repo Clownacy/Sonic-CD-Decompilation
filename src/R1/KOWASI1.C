@@ -2,8 +2,8 @@
 #include "KOWASI1.H"
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
+#include "..\LOADER2.H"
 #include "..\RIDECHK.H"
-extern void soundset(short ReqNo);
 
 sprite_pattern spr_kowasi00 =
 {
@@ -202,7 +202,7 @@ void m_wait(sprite_status* pActwk) { /* Line 134, Address: 0x101ee10 */
   pActwk_w = pActwk; /* Line 202, Address: 0x101efac */
   pTbl0dposi = tbl0dposi; /* Line 203, Address: 0x101efb4 */
   pTbl0speed = tbl0speed; /* Line 204, Address: 0x101efb8 */
-  for (i = 0; i < 6; ++i) /* Line 205, Address: 0x101efbc */
+  for (i = 0; i <= 5; ++i) /* Line 205, Address: 0x101efbc */
   {
     if (i != 0) /* Line 207, Address: 0x101efc8 */
     {
@@ -224,7 +224,7 @@ void m_wait(sprite_status* pActwk) { /* Line 134, Address: 0x101ee10 */
     pActwk_w->yposi.w.h += *pTbl0dposi++; /* Line 224, Address: 0x101f0b8 */
     speedx = *pTbl0speed++; /* Line 225, Address: 0x101f0d4 */
     *(int*)&pActwk_w->actfree[4] = *pTbl0speed++; /* Line 226, Address: 0x101f0e0 */
-    if (pPlayerwk->xspeed.w < 0) speedx = -speedx; /* Line 227, Address: 0x101f0f8 */
+    if (pPlayerwk->xspeed.w < 0) speedx *= -1; /* Line 227, Address: 0x101f0f8 */
     *(int*)&pActwk_w->actfree[0] = speedx; /* Line 228, Address: 0x101f110 */
   } /* Line 229, Address: 0x101f11c */
   m_down(pActwk); /* Line 230, Address: 0x101f12c */
@@ -245,6 +245,6 @@ void m_down(sprite_status* pActwk) { /* Line 238, Address: 0x101f160 */
   pPlayerwk = &actwk[0]; /* Line 245, Address: 0x101f1c4 */
   y = pPlayerwk->yposi.w.h; /* Line 246, Address: 0x101f1cc */
   y -= pActwk->yposi.w.h; /* Line 247, Address: 0x101f1d8 */
-  if (y >= -223) actionsub(pActwk); /* Line 248, Address: 0x101f1ec */
+  if (y > -224) actionsub(pActwk); /* Line 248, Address: 0x101f1ec */
   else frameout(pActwk); /* Line 249, Address: 0x101f214 */
 } /* Line 250, Address: 0x101f220 */

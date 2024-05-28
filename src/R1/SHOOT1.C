@@ -2,8 +2,7 @@
 #include "SHOOT1.H"
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
-
-extern void soundset(short ReqNo);
+#include "..\LOADER2.H"
 
 static sprite_pattern eda00 = { 1, { { -16, -12, 0, 288 } } };
 static sprite_pattern eda01 = { 1, { { -20, -16, 0, 289 } } };
@@ -19,6 +18,7 @@ static unsigned short shooterposi_1[35] = { 68, 3848, 416, 3984, 416, 4040, 440,
 static unsigned short shooterposi_2[35] = { 68, 5680, 656, 5680, 792, 5688, 824, 5840, 976, 5888, 992, 5944, 968, 5976, 912, 5944, 856, 5880, 832, 5824, 864, 5800, 912, 5840, 976, 5888, 992, 5944, 968, 6072, 840, 6096, 800, 6096, 616 };
 unsigned short* shooterpositbl[3] = { shooterposi_0, shooterposi_1, shooterposi_2 };
 extern sprite_pattern* bariapat[];
+
 
 
 void eda(sprite_status* edawk) { /* Line 24, Address: 0x101cf50 */
@@ -161,7 +161,7 @@ unsigned char kage1_chk(sprite_status* anawk) { /* Line 160, Address: 0x101d490 
   short flag_no;
   unsigned char zero_flag;
 
-  flag_no = time_flag + anawk->cdsts * 3; /* Line 164, Address: 0x101d4a0 */
+  flag_no = (short)time_flag + (short)anawk->cdsts * 3; /* Line 164, Address: 0x101d4a0 */
   zero_flag = flagwork[flag_no] & 64; /* Line 165, Address: 0x101d4e4 */
   flagwork[flag_no] |= 64; /* Line 166, Address: 0x101d50c */
   return zero_flag; /* Line 167, Address: 0x101d52c */
@@ -171,7 +171,7 @@ unsigned char kage1_chk(sprite_status* anawk) { /* Line 160, Address: 0x101d490 
 void kage1_clr(sprite_status* anawk) { /* Line 171, Address: 0x101d550 */
   short flag_no;
 
-  flag_no = time_flag + anawk->cdsts * 3; /* Line 174, Address: 0x101d55c */
+  flag_no = (short)time_flag + (short)anawk->cdsts * 3; /* Line 174, Address: 0x101d55c */
   flagwork[flag_no] &= 191; /* Line 175, Address: 0x101d5a0 */
 } /* Line 176, Address: 0x101d5c0 */
 
@@ -265,7 +265,7 @@ void shooter(sprite_status* shootwk) { /* Line 262, Address: 0x101d5d0 */
   if (!(time_flag & 128)) goto label1; /* Line 265, Address: 0x101d5e4 */
   if ((flag_no = shootwk->cdsts) == 0) goto label1; /* Line 266, Address: 0x101d5fc */
   flag_no *= 3; /* Line 267, Address: 0x101d628 */
-  addition = (time_flag & 127) - time_item; /* Line 268, Address: 0x101d638 */
+  addition = (short)(time_flag & 127) - (short)time_item; /* Line 268, Address: 0x101d638 */
   if (addition < 0) addition = 0; /* Line 269, Address: 0x101d684 */
   else if (addition >= 3) addition = 2; /* Line 270, Address: 0x101d6a0 */
   flagwork[flag_no + addition] &= 127; /* Line 271, Address: 0x101d6c0 */
@@ -305,7 +305,7 @@ void shooterinit(sprite_status* shootwk) { /* Line 295, Address: 0x101d7c0 */
   shootwk->r_no0 += 2; /* Line 305, Address: 0x101d808 */
   movetbl = shooterpositbl[shootwk->userflag.b.h & 127]; /* Line 306, Address: 0x101d818 */
   shootwk->actfree[16] = *movetbl >> 8; /* Line 307, Address: 0x101d840 */
-  shootwk->actfree[17] = *movetbl; /* Line 308, Address: 0x101d858 */
+  shootwk->actfree[17] = *movetbl & 255; /* Line 308, Address: 0x101d858 */
   move = ((unsigned short**)shootwk + 16); /* Line 309, Address: 0x101d870 */
   *move = movetbl + 1; /* Line 310, Address: 0x101d878 */
   ((short*)shootwk)[29] = movetbl[1]; /* Line 311, Address: 0x101d880 */
@@ -398,7 +398,7 @@ void shooterspdset(sprite_status* shootwk) { /* Line 384, Address: 0x101dd00 */
     cal_position_y = -cal_position_y; /* Line 398, Address: 0x101ddd8 */
     ms_work1 = -ms_work1; /* Line 399, Address: 0x101ddf4 */
   }
-  if (cal_position_y <= cal_position_x) { /* Line 401, Address: 0x101de10 */
+  if (cal_position_x <= cal_position_y) { /* Line 401, Address: 0x101de10 */
 
     cal_position_y = ((short*)shootwk)[30]; /* Line 403, Address: 0x101de2c */
     cal_position_y -= actwk[0].yposi.w.h; /* Line 404, Address: 0x101de3c */

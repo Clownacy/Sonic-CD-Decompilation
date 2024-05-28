@@ -1,10 +1,1 @@
-void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk);
-void rev_h(sprite_status* pActwk);
-void set_sproffset(sprite_status* pActwk);
 void friend(sprite_status* pActwk);
-void t_init(sprite_status* pActwk);
-void t_move(sprite_status* pActwk);
-void t_movie(sprite_status* pActwk);
-void p_init(sprite_status* pActwk);
-void p_move(sprite_status* pActwk);
-void p_movie(sprite_status* pActwk);

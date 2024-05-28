@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT11A.H"
+#include "..\ACTION.H"
 #include "..\DAI_RD1.H"
 #include "..\ENEMY.H"
 #include "..\GOAL.H"
@@ -80,7 +81,6 @@ void(*act_tbl[64])(sprite_status*) = {
   &ene_ari,
   &ene_tagame_a,
 };
-
 
 
 
