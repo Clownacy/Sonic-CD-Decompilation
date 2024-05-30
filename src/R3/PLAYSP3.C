@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "PLAYSP3.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "SCR31A.H"
 
 static short fcol3a[17] = { 15, 316, 326, 411, 430, 131, 132, 137, 138, 119, 118, 128, 127, 126, 125, 124, 130 };
 static short fcol3b[3] = { 1, 325, 326 };
@@ -7,11 +12,6 @@ static short fcol3c[17] = { 15, 316, 326, 0, 0, 131, 132, 137, 138, 119, 118, 12
 static short fcol3d[17] = { 15, 316, 326, 357, 358, 131, 132, 137, 138, 119, 118, 128, 127, 126, 125, 124, 130 };
 static short* fcol_tbl[4] = { fcol3b, fcol3a, fcol3d, fcol3c };
 static unsigned char bump_sound_off;
-
-
-
-
-
 
 
 
@@ -24,38 +24,38 @@ void playsp() { /* Line 18, Address: 0x101e0b0 */
 void boyo() { /* Line 24, Address: 0x101e0f0 */
   unsigned char direc_speed;
 
-  direc_speed = atan_sonic(actwk[0].xspeed.w, actwk[0].yspeed.w); /* Line 27, Address: 0x101e0fc */
+  direc_speed = (char)atan_sonic(actwk[0].xspeed.w, actwk[0].yspeed.w); /* Line 27, Address: 0x101e0fc */
 
-  direc_speed -= 32; /* Line 29, Address: 0x101e124 */
+  direc_speed = direc_speed - 32 & 192; /* Line 29, Address: 0x101e124 */
   switch (direc_speed) { /* Line 30, Address: 0x101e138 */
 
     case 0:
-      if (!bycol_sub0(actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize)) { /* Line 33, Address: 0x101e170 */
+      if (!bycol_sub0(actwk[0].xposi.w.h - (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize)) { /* Line 33, Address: 0x101e170 */
 
-        bycol_sub0(actwk[0].xposi.w.h + actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize); /* Line 35, Address: 0x101e1e0 */
+        bycol_sub0(actwk[0].xposi.w.h + (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize); /* Line 35, Address: 0x101e1e0 */
       }
       break; /* Line 37, Address: 0x101e248 */
 
     case 128:
-      if (!bycol_sub0(actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h - actwk[0].sprvsize)) { /* Line 40, Address: 0x101e250 */
+      if (!bycol_sub0(actwk[0].xposi.w.h - (short)actwk[0].sprhs, actwk[0].yposi.w.h - (short)actwk[0].sprvsize)) { /* Line 40, Address: 0x101e250 */
 
-        bycol_sub0(actwk[0].xposi.w.h + actwk[0].sprhs, actwk[0].yposi.w.h - actwk[0].sprvsize); /* Line 42, Address: 0x101e2c0 */
+        bycol_sub0(actwk[0].xposi.w.h + (short)actwk[0].sprhs, actwk[0].yposi.w.h - (short)actwk[0].sprvsize); /* Line 42, Address: 0x101e2c0 */
       }
       break; /* Line 44, Address: 0x101e328 */
 
     case 192:
-      if (!bycol_sub0(actwk[0].xposi.w.h + actwk[0].sprhs, actwk[0].yposi.w.h - (actwk[0].sprvsize - 6))) { /* Line 47, Address: 0x101e330 */
+      if (!bycol_sub0(actwk[0].xposi.w.h + (short)actwk[0].sprhs, actwk[0].yposi.w.h - (short)(actwk[0].sprvsize - 6))) { /* Line 47, Address: 0x101e330 */
 
 
-        bycol_sub0(actwk[0].xposi.w.h + actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize); /* Line 50, Address: 0x101e3ac */
+        bycol_sub0(actwk[0].xposi.w.h + (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize); /* Line 50, Address: 0x101e3ac */
       }
       break; /* Line 52, Address: 0x101e414 */
 
     case 64:
-      if (!bycol_sub0(actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h - (actwk[0].sprvsize - 6))) { /* Line 55, Address: 0x101e41c */
+      if (!bycol_sub0(actwk[0].xposi.w.h - (short)actwk[0].sprhs, actwk[0].yposi.w.h - (short)(actwk[0].sprvsize - 6))) { /* Line 55, Address: 0x101e41c */
 
 
-        bycol_sub0(actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize); /* Line 58, Address: 0x101e498 */
+        bycol_sub0(actwk[0].xposi.w.h - (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize); /* Line 58, Address: 0x101e498 */
       }
       break;
   }
@@ -90,19 +90,19 @@ char bycol_sub0(short cal_x, short cal_y) { /* Line 84, Address: 0x101e520 */
   short block_no, block_back, *fcol3, i;
 
   block_no = block_back = scramapad(&actwk[0], cal_x, cal_y); /* Line 92, Address: 0x101e578 */
-  if ((block_no &= 2047) == 0) { bump_sound_off = 1; return; } /* Line 93, Address: 0x101e5a8 */
+  if ((block_no &= 2047) == 0) { bump_sound_off = 1; return 0; } /* Line 93, Address: 0x101e5a8 */
   if ((now_time = time_flag & 127) == 2) /* Line 94, Address: 0x101e5e4 */
-    now_time += generate_flag; /* Line 95, Address: 0x101e610 */
+    now_time = now_time + generate_flag; /* Line 95, Address: 0x101e610 */
   fcol3 = fcol_tbl[now_time]; /* Line 96, Address: 0x101e62c */
   for (i = 0; i <= *fcol3; ++i) if (block_no == fcol3[i + 1]) goto label1; /* Line 97, Address: 0x101e644 */
   bump_sound_off = 1; /* Line 98, Address: 0x101e6ac */
   return 0; /* Line 99, Address: 0x101e6b8 */
 
 label1:
-  if (actwk[0].r_no0 == 4) /* Line 102, Address: 0x101e6c4 */
+  if (actwk[0].r_no0 == 4) { /* Line 102, Address: 0x101e6c4 */
     actwk[0].r_no0 -= 2; /* Line 103, Address: 0x101e6dc */
-  ((short*)&actwk[0])[26] = 120; /* Line 104, Address: 0x101e6f0 */
-
+    ((short*)&actwk[0])[26] = 120; /* Line 104, Address: 0x101e6f0 */
+  }
   col_y.b.h = 0; /* Line 106, Address: 0x101e6fc */
   jump_no[i](i, cal_x, cal_y, block_back); /* Line 107, Address: 0x101e704 */
   if (i >= 2) { /* Line 108, Address: 0x101e730 */
@@ -127,7 +127,7 @@ void bob(short i, short cal_x, short cal_y, short block_back) { /* Line 120, Add
   cal_x = (unsigned short)cal_x & 65520; /* Line 127, Address: 0x101e854 */
   if (!(block_back & 2048)) cal_x += 16; /* Line 128, Address: 0x101e870 */
   tmp_x = cal_x, tmp_y = cal_y; /* Line 129, Address: 0x101e894 */
-  sinset(atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 130, Address: 0x101e8ac */
+  sinset((char)atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 130, Address: 0x101e8ac */
 
   cal_sin = tmp_sin * -1792 >> 8; /* Line 132, Address: 0x101e920 */
   cal_cos = tmp_cos * -1792 >> 8; /* Line 133, Address: 0x101e93c */
@@ -156,7 +156,7 @@ void bob_s(short i, short cal_x, short cal_y, short block_back) { /* Line 153, A
 
   cal_y = (unsigned short)cal_y & 65528; /* Line 157, Address: 0x101eab0 */
   cal_x = (unsigned short)cal_x & 65528; /* Line 158, Address: 0x101eacc */
-  sinset(atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 159, Address: 0x101eae8 */
+  sinset((char)atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 159, Address: 0x101eae8 */
 
   cal_sin = tmp_sin * -1792 >> 9; /* Line 161, Address: 0x101eb5c */
   cal_cos = tmp_cos * -1792 >> 9; /* Line 162, Address: 0x101eb78 */
@@ -196,7 +196,7 @@ void bob_s0(short i, short cal_x, short cal_y, short block_back) { /* Line 193, 
 
   cal_y = (unsigned short)cal_y & 65528; /* Line 197, Address: 0x101ed70 */
   cal_x = (unsigned short)cal_x & 65528; /* Line 198, Address: 0x101ed8c */
-  sinset(atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 199, Address: 0x101eda8 */
+  sinset((char)atan_sonic(cal_x - actwk[0].xposi.w.h, cal_y - actwk[0].yposi.w.h), &tmp_sin, &tmp_cos); /* Line 199, Address: 0x101eda8 */
 
   cal_sin = tmp_sin * -1792 >> 8; /* Line 201, Address: 0x101ee1c */
   cal_cos = tmp_cos * -1792 >> 8; /* Line 202, Address: 0x101ee38 */
@@ -239,11 +239,11 @@ void bob3(short i, short cal_x, short cal_y, short block_back) { /* Line 221, Ad
     cal_y = (unsigned short)cal_y & 15; /* Line 239, Address: 0x101f028 */
     cal_x = (unsigned short)cal_x & 15; /* Line 240, Address: 0x101f044 */
     if (!(block_back & 2048)) cal_x = 15 - cal_x; /* Line 241, Address: 0x101f060 */
-    if (cal_y < bydcol[cal_x]) { col_y.b.h = 1; return; } /* Line 242, Address: 0x101f098 */
+    if (cal_y < (short)bydcol[cal_x]) { col_y.b.h = 1; return; } /* Line 242, Address: 0x101f098 */
   }
 
   cal_direc = atan_sonic(actwk[0].xspeed.w, actwk[0].yspeed.w); /* Line 245, Address: 0x101f0e4 */
-  cal_direc = -(cal_direc + 128); /* Line 246, Address: 0x101f104 */
+  cal_direc = -(char)(cal_direc + 128); /* Line 246, Address: 0x101f104 */
   cal_direc -= 32; /* Line 247, Address: 0x101f128 */
   if (block_back & 2048) cal_direc += 64; /* Line 248, Address: 0x101f130 */
   sinset(cal_direc, &tmp_sin, &tmp_cos); /* Line 249, Address: 0x101f150 */

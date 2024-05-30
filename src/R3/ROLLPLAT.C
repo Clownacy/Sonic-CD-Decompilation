@@ -1,5 +1,12 @@
 #include "..\EQU.H"
 #include "ROLLPLAT.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\PLAYSUB.H"
+
+static void act_init(sprite_status* banwk);
+static void act_move(sprite_status* banwk);
+static void act_check(sprite_status* banwk);
 
 static unsigned char pchg00[6] = { 3, 1, 2, 3, 0, 255 };
 static unsigned char pchg01[6] = { 3, 3, 2, 1, 0, 255 };
@@ -9,13 +16,6 @@ static sprite_pattern kpat01 = { 1, { { -16, -16, 0, 317 } } };
 static sprite_pattern kpat02 = { 1, { { -16, -16, 0, 318 } } };
 static sprite_pattern kpat03 = { 1, { { -16, -16, 0, 319 } } };
 sprite_pattern* kaitenban_pat[4] = { &kpat00, &kpat01, &kpat02, &kpat03 };
-
-
-
-
-
-
-
 
 
 

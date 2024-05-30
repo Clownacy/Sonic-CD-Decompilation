@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "LIGHT.H"
+#include "..\ACTION.H"
+
+static void act_init(sprite_status* actionwk);
 
 static sprite_pattern light_pat0 =
 {
@@ -7,9 +10,6 @@ static sprite_pattern light_pat0 =
   { { -8, -8, 0, 570 } }
 };
 static sprite_pattern* light_pat[1] = { &light_pat0 };
-
-
-
 
 
 

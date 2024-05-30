@@ -1,17 +1,17 @@
 #include "..\EQU.H"
 #include "BANPA.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+
+static void act_init(sprite_status* bumperwk);
+static void act_move(sprite_status* bumperwk);
 
 static sprite_pattern bmp00 = {
   1,
-  { { 224, 240, 0, 315 } }
+  { { -32, -16, 0, 315 } }
 };
 sprite_pattern* banpa_pat[1] = { &bmp00 };
-
-
-
-
-
-
 
 
 
@@ -56,9 +56,9 @@ static void act_init(sprite_status* bumperwk) { /* Line 40, Address: 0x101a630 *
     ((short*)bumperwk)[25] = 80; /* Line 56, Address: 0x101a6e4 */
   }
   if (bumperwk->userflag.b.h & 64) /* Line 58, Address: 0x101a6f0 */
-    *(int*)&bumperwk->actfree[0] = 1; /* Line 59, Address: 0x101a70c */
+    *(int*)&bumperwk->actfree[0] = 65536; /* Line 59, Address: 0x101a70c */
   else
-    *(int*)&bumperwk->actfree[0] = -1; /* Line 61, Address: 0x101a724 */
+    *(int*)&bumperwk->actfree[0] = -65536; /* Line 61, Address: 0x101a724 */
 } /* Line 62, Address: 0x101a734 */
 
 
@@ -102,6 +102,6 @@ static void act_move(sprite_status* bumperwk) { /* Line 66, Address: 0x101a740 *
   if (--((unsigned short*)bumperwk)[25] == 0) { /* Line 102, Address: 0x101a988 */
     ((unsigned short*)bumperwk)[25] = ((unsigned short*)bumperwk)[26]; /* Line 103, Address: 0x101a9a8 */
 
-    *(int*)&bumperwk->actfree[0] = -*(int*)&bumperwk->actfree[0]; /* Line 105, Address: 0x101a9b8 */
+    *(int*)&bumperwk->actfree[0] *= -1; /* Line 105, Address: 0x101a9b8 */
   }
 } /* Line 107, Address: 0x101a9d0 */

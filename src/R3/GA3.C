@@ -1,5 +1,13 @@
 #include "..\EQU.H"
 #include "GA3.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\PLAYSUB.H"
+#include "..\SUICIDE.H"
+
+static void m_init(sprite_status* actionwk);
+static void m_wait(sprite_status* actionwk);
+static void s_init(sprite_status* actionwk);
 
 static sprite_pattern spat_b3 = {
   1,
@@ -64,14 +72,6 @@ static char* pchg[3] = {
 static char ringchg0[6] = { 5, 4, 5, 6, 7, -1 };
 static char* ringchg[1] = { ringchg0 };
 extern sprite_pattern* ringpat[];
-
-
-
-
-
-
-
-
 
 
 
@@ -166,7 +166,7 @@ void m_appear0(sprite_status* actionwk) { /* Line 157, Address: 0x101dba0 */
 } /* Line 166, Address: 0x101dc18 */
 
 void m_disp(sprite_status* actionwk) { /* Line 168, Address: 0x101dc30 */
-  patchg(actionwk, pchg); /* Line 169, Address: 0x101dc3c */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 169, Address: 0x101dc3c */
   actionsub(actionwk); /* Line 170, Address: 0x101dc50 */
 } /* Line 171, Address: 0x101dc5c */
 
@@ -272,7 +272,7 @@ void s_fall(sprite_status* actionwk) { /* Line 258, Address: 0x101e000 */
 
 
   actionwk->yposi.l += 65536; /* Line 274, Address: 0x101e048 */
-  patchg(actionwk, ringchg); /* Line 275, Address: 0x101e05c */
+  patchg(actionwk, (unsigned char**)ringchg); /* Line 275, Address: 0x101e05c */
 } /* Line 276, Address: 0x101e070 */
 
 void s_die(sprite_status* actionwk) { /* Line 278, Address: 0x101e080 */

@@ -1,6 +1,18 @@
 #include "..\EQU.H"
 #include "COL3B.H"
 
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+
 palette_entry advacolor[64] = {
   {   0,  32, 160, 1 }, {   0,   0,  96, 1 }, {   0,   0, 192, 1 }, {  64,  64, 224, 1 },
   {  96,  96, 224, 1 }, { 128, 128, 224, 1 }, { 224, 224, 224, 1 }, { 224, 160,   0, 1 },
@@ -68,18 +80,6 @@ static int FadeCount;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 void clchgctr() {} /* Line 83, Address: 0x1025bb0 */
 
 
@@ -142,7 +142,7 @@ int fadein0_new() { /* Line 138, Address: 0x1025da0 */
   fadein1(); /* Line 142, Address: 0x1025db4 */
 
 
-  if (++FadeCount >= 22) { /* Line 145, Address: 0x1025dbc */
+  if (++FadeCount > 21) { /* Line 145, Address: 0x1025dbc */
     FadeCount = 0; /* Line 146, Address: 0x1025ddc */
     return 1; /* Line 147, Address: 0x1025de4 */
   }
@@ -216,7 +216,7 @@ static int fadeout_new() { /* Line 212, Address: 0x1026120 */
   fadeout1(); /* Line 216, Address: 0x1026134 */
 
 
-  if (++FadeCount >= 22) { /* Line 219, Address: 0x102613c */
+  if (++FadeCount > 21) { /* Line 219, Address: 0x102613c */
     FadeCount = 0; /* Line 220, Address: 0x102615c */
     return 1; /* Line 221, Address: 0x1026164 */
   }
@@ -289,7 +289,7 @@ static int flashin_new() { /* Line 285, Address: 0x10263f0 */
   flashin1(); /* Line 289, Address: 0x1026404 */
 
 
-  if (++FadeCount >= 22) { /* Line 292, Address: 0x102640c */
+  if (++FadeCount > 21) { /* Line 292, Address: 0x102640c */
     FadeCount = 0; /* Line 293, Address: 0x102642c */
     return 1; /* Line 294, Address: 0x1026434 */
   }
@@ -359,7 +359,7 @@ static int flashout_new() { /* Line 355, Address: 0x1026770 */
   flashout1(); /* Line 359, Address: 0x1026784 */
 
 
-  if (++FadeCount >= 22) { /* Line 362, Address: 0x102678c */
+  if (++FadeCount > 21) { /* Line 362, Address: 0x102678c */
     FadeCount = 0; /* Line 363, Address: 0x10267ac */
     return 1; /* Line 364, Address: 0x10267b4 */
   }

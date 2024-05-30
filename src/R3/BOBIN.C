@@ -1,29 +1,36 @@
 #include "..\EQU.H"
 #include "BOBIN.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+#include "..\SCORE.H"
 
 static sprite_pattern bobinsp0 = {
   1,
-  { { 240, 240, 0, 550 } }
+  { { -16, -16, 0, 550 } }
 };
 static sprite_pattern bobinsp1 = {
   1,
-  { { 244, 244, 0, 551 } }
+  { { -12, -12, 0, 551 } }
 };
 static sprite_pattern bobinsp2 = {
   1,
-  { { 232, 236, 0, 552 } }
+  { { -24, -20, 0, 552 } }
 };
 static sprite_pattern fripsp0 = {
   1,
-  { { 224, 244, 0, 553 } }
+  { { -32, -12, 0, 553 } }
 };
 static sprite_pattern fripsp1 = {
   1,
-  { { 224, 244, 0, 554 } }
+  { { -32, -12, 0, 554 } }
 };
 static sprite_pattern fripsp2 = {
   1,
-  { { 224, 236, 0, 554 } }
+  { { -32, -20, 0, 554 } }
 };
 sprite_pattern* bobinpat[3] = { &bobinsp0, &bobinsp1, &bobinsp2 };
 sprite_pattern* frippat[3] = { &fripsp0, &fripsp1, &fripsp2 };
@@ -69,13 +76,6 @@ char frip_posi_r[64] = {
   11, 11, 10, 10,
    9,  8,  6,  4
 };
-
-
-
-
-
-
-
 
 
 
@@ -206,7 +206,7 @@ void bobinmove(sprite_status* actionwk) { /* Line 156, Address: 0x10266c0 */
       if (flagwork[actionwk->cdsts] < 138) /* Line 206, Address: 0x1026934 */
         ++flagwork[actionwk->cdsts]; /* Line 207, Address: 0x1026960 */
   }
-  patchg(actionwk, bobinchg); /* Line 209, Address: 0x1026984 */
+  patchg(actionwk, (unsigned char**)bobinchg); /* Line 209, Address: 0x1026984 */
   actionsub(actionwk); /* Line 210, Address: 0x1026998 */
   frameout_s00(actionwk, ((short*)actionwk)[27]); /* Line 211, Address: 0x10269a4 */
 } /* Line 212, Address: 0x10269b8 */
@@ -238,7 +238,7 @@ void frip_move(sprite_status* actionwk) { /* Line 235, Address: 0x1026ac0 */
     frip_chk(actionwk); /* Line 238, Address: 0x1026ae4 */
   }
 
-  patchg(actionwk, fripchg); /* Line 241, Address: 0x1026af0 */
+  patchg(actionwk, (unsigned char**)fripchg); /* Line 241, Address: 0x1026af0 */
   actionsub(actionwk); /* Line 242, Address: 0x1026b04 */
   frameout_s(actionwk); /* Line 243, Address: 0x1026b10 */
 } /* Line 244, Address: 0x1026b1c */
@@ -248,7 +248,7 @@ void frip_chk(sprite_status* actionwk) { /* Line 246, Address: 0x1026b30 */
   short d0, d1, d2, d3;
 
   a1 = &actwk[0]; /* Line 250, Address: 0x1026b50 */
-  if (actionwk->mstno.b.h == 43) goto label1; /* Line 251, Address: 0x1026b58 */
+  if (a1->mstno.b.h == 43) goto label1; /* Line 251, Address: 0x1026b58 */
 
   d0 = a1->xposi.w.h - actionwk->xposi.w.h; /* Line 253, Address: 0x1026b70 */
   d1 = actionwk->sprhsize; /* Line 254, Address: 0x1026ba0 */

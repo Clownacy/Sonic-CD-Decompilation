@@ -1,5 +1,12 @@
 #include "..\EQU.H"
 #include "GATE.H"
+#include "..\ACTION.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+
+static void act_init(sprite_status* actionwk);
+static void act_open(sprite_status* actionwk);
+static void act_move(sprite_status* actionwk);
 
 static sprite_pattern pat00 = { 1, { { 48, -16, 0, 619 } } };
 static sprite_pattern pat01 = { 1, { { 32, -16, 0, 620 } } };
@@ -21,13 +28,6 @@ sprite_pattern* gate_pat[8] = {
 };
 static char pchg0[10] = { 0, 0, 1, 2, 3, 4, 5, 6, 7, 7 };
 static char* pchg[1] = { pchg0 };
-
-
-
-
-
-
-
 
 
 
@@ -86,7 +86,7 @@ void act_init10(sprite_status* actionwk) { /* Line 77, Address: 0x102e690 */
 } /* Line 86, Address: 0x102e708 */
 
 static void act_open(sprite_status* actionwk) { /* Line 88, Address: 0x102e720 */
-  patchg(actionwk, pchg); /* Line 89, Address: 0x102e72c */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 89, Address: 0x102e72c */
   if (actionwk->patno == actionwk->actfree[0]) /* Line 90, Address: 0x102e740 */
   {
     actionwk->r_no0 += 2; /* Line 92, Address: 0x102e760 */

@@ -1,15 +1,25 @@
 #include "..\EQU.H"
 #include "COL3D.H"
 
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+
 unsigned char col3d0cnt[8] = { 42, 3, 2, 0, 1, 1, 2, 2 };
-palette_entry col3d0col[3] = {
-  {   0, 224, 224, 1 }, {   0, 192,  96, 1 }, {   0,   0,   0, 1 }
-};
+palette_entry col3d0col[3] = { {   0, 224, 224, 1 }, {   0, 192,  96, 1 }, {   0,   0,   0, 1 } };
 unsigned char col3d1cnt[36] = {
-  59, 17,  9,  0,  9,  1,  9,  2,  9,
-   3,  9,  4,  9,  5,  9,  6,  9,  7,
-   9,  8,  9,  7,  9,  6,  9,  5,  9,
-   4,  9,  3,  9,  2,  9,  1,  9,  0
+  59, 17,  9,  0,  9,  1,  9,  2,  9,  3,
+   9,  4,  9,  5,  9,  6,  9,  7,  9,  8,
+   9,  7,  9,  6,  9,  5,  9,  4,  9,  3,
+   9,  2,  9,  1,  9,  0
 };
 palette_entry col3d1col[9] = {
   { 224,   0, 224, 1 }, { 128,   0, 224, 1 }, {   0, 128, 224, 1 }, {   0, 224, 224, 1 },
@@ -96,20 +106,10 @@ palette_entry zone3colboss1[16] = {
   { 224, 224,   0, 1 }, { 128, 128,   0, 1 }, {  64,  64,   0, 1 }, { 224,   0,   0, 1 }
 };
 palette_part colortbl[7] = {
-  { advacolor, 0, 64 },
-  { advacolor, 0, 64 },
-  { advacolor2, 0, 64 },
-  { gamecolor, 0, 16 },
-  { zone3colord, 16, 48 },
-  { zone3colboss0, 16, 16 },
-  { zone3colboss1, 16, 16 }
+  { advacolor,    0, 64 }, { advacolor,      0, 64 }, { advacolor2,     0, 64 }, { gamecolor, 0, 16 },
+  { zone3colord, 16, 48 }, { zone3colboss0, 16, 16 }, { zone3colboss1, 16, 16 }
 };
 static int FadeCount;
-
-
-
-
-
 void clchgctr() { /* Line 113, Address: 0x1024aa0 */
   colchg3d(); /* Line 114, Address: 0x1024aa8 */
 } /* Line 115, Address: 0x1024ab0 */

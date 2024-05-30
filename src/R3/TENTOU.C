@@ -1,5 +1,12 @@
 #include "..\EQU.H"
 #include "TENTOU.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\SUICIDE.H"
 
 static unsigned char bCarry;
 void(*tentou_tbl[6])(sprite_status*) = {
@@ -82,13 +89,6 @@ sprite_pattern* tentou_bomten_b_pat[2] = {
 
 
 
-
-
-
-
-
-
-
 void tentou(sprite_status* pActwk) { /* Line 92, Address: 0x1023d50 */
   if (pActwk->userflag.b.h - 1 >= 0) /* Line 93, Address: 0x1023d5c */
   {
@@ -125,9 +125,9 @@ void ten_a_init(sprite_status* pActwk) { /* Line 116, Address: 0x1023e30 */
   {
     pActwk->patbase = pat_e_tentou; /* Line 126, Address: 0x1023eb0 */
     pActwk->actfree[21] = 255; /* Line 127, Address: 0x1023ec0 */
-    return; /* Line 128, Address: 0x1023ecc */
-  }
-  pActwk->patbase = pat_ten_b_tentou; /* Line 130, Address: 0x1023ed4 */
+  } /* Line 128, Address: 0x1023ecc */
+  else
+    pActwk->patbase = pat_ten_b_tentou; /* Line 130, Address: 0x1023ed4 */
   ten_a_fall(pActwk); /* Line 131, Address: 0x1023ee4 */
 } /* Line 132, Address: 0x1023ef0 */
 
@@ -144,7 +144,7 @@ void ten_a_init(sprite_status* pActwk) { /* Line 116, Address: 0x1023e30 */
 void ten_a_fall(sprite_status* pActwk) { /* Line 144, Address: 0x1023f00 */
   short iD1;
 
-  pActwk->yposi.l = 65536; /* Line 147, Address: 0x1023f10 */
+  pActwk->yposi.l += 65536; /* Line 147, Address: 0x1023f10 */
   iD1 = emycol_d(pActwk); /* Line 148, Address: 0x1023f24 */
   iD1 -= 8; /* Line 149, Address: 0x1023f38 */
   if (iD1 <= 0) /* Line 150, Address: 0x1023f44 */
@@ -154,7 +154,7 @@ void ten_a_fall(sprite_status* pActwk) { /* Line 144, Address: 0x1023f00 */
     *(int*)&pActwk->actfree[4] = 12288; /* Line 154, Address: 0x1023f78 */
     ((short*)pActwk)[29] = 8; /* Line 155, Address: 0x1023f88 */
     pActwk->r_no0 += 2; /* Line 156, Address: 0x1023f94 */
-    if (*(int*)&pActwk->actfree[0] != 0) /* Line 157, Address: 0x1023fa4 */
+    if ((long int)*(int*)&pActwk->actfree[0] != 0) /* Line 157, Address: 0x1023fa4 */
       pActwk->r_no0 += 2; /* Line 158, Address: 0x1023fc0 */
   }
 } /* Line 160, Address: 0x1023fd0 */
@@ -186,7 +186,7 @@ void ten_a_wait(sprite_status* pActwk) { /* Line 181, Address: 0x1024030 */
 
   iD0 = pActwk->yposi.w.h - pPlaywk->yposi.w.h; /* Line 187, Address: 0x102405c */
   iD0 = abs(iD0); /* Line 188, Address: 0x102408c */
-  if (iD0 < 81) /* Line 189, Address: 0x10240ac */
+  if (iD0 <= 80) /* Line 189, Address: 0x10240ac */
   {
 
 
@@ -196,7 +196,7 @@ void ten_a_wait(sprite_status* pActwk) { /* Line 181, Address: 0x1024030 */
     iD0 = pActwk->xposi.w.h - pPlaywk->xposi.w.h; /* Line 196, Address: 0x10240c0 */
     iD1 = iD0; /* Line 197, Address: 0x10240f0 */
     iD0 = abs(iD0); /* Line 198, Address: 0x10240f8 */
-    if (iD0 < 81) /* Line 199, Address: 0x1024118 */
+    if (iD0 <= 80) /* Line 199, Address: 0x1024118 */
     {
 
 
@@ -209,7 +209,7 @@ void ten_a_wait(sprite_status* pActwk) { /* Line 181, Address: 0x1024030 */
       {
         pActwk->actflg ^= 1; /* Line 210, Address: 0x1024160 */
         pActwk->cddat ^= 1; /* Line 211, Address: 0x1024170 */
-        *(int*)&pActwk->actfree[0] = -*(int*)&pActwk->actfree[0]; /* Line 212, Address: 0x1024180 */
+        *(int*)&pActwk->actfree[0] = -(long int)*(int*)&pActwk->actfree[0]; /* Line 212, Address: 0x1024180 */
       }
     }
   }
@@ -230,7 +230,7 @@ void ten_a_lr(sprite_status* pActwk) { /* Line 228, Address: 0x10241d0 */
   sprite_status* pActfree;
 
   pActwk->xposi.l += *(int*)&pActwk->actfree[0]; /* Line 232, Address: 0x10241e0 */
-  pActwk->yposi.l += *(int*)&pActwk->actfree[8]; /* Line 233, Address: 0x10241fc */
+  pActwk->yposi.l = *(int*)&pActwk->actfree[8]; /* Line 233, Address: 0x10241fc */
 
   if (*(int*)&pActwk->actfree[0] >= 0) /* Line 235, Address: 0x1024210 */
     iD1 = emycol_r(pActwk, pActwk->sprhs); /* Line 236, Address: 0x1024224 */
@@ -261,20 +261,20 @@ void ten_a_lr(sprite_status* pActwk) { /* Line 228, Address: 0x10241d0 */
           }
         }
       }
-      return; /* Line 264, Address: 0x1024370 */
+    } /* Line 264, Address: 0x1024370 */
+    else
+    {
+
+      pActwk->r_no0 += 4; /* Line 268, Address: 0x1024378 */
+      ten_a_hover(pActwk); /* Line 269, Address: 0x1024388 */
+      *(int*)&pActwk->actfree[8] = pActwk->yposi.l; /* Line 270, Address: 0x1024394 */
     }
+  } /* Line 272, Address: 0x10243a8 */
+  else
+  {
 
-
-    pActwk->r_no0 += 4; /* Line 268, Address: 0x1024378 */
-    ten_a_hover(pActwk); /* Line 269, Address: 0x1024388 */
-    *(int*)&pActwk->actfree[8] = pActwk->yposi.l; /* Line 270, Address: 0x1024394 */
-
-    return; /* Line 272, Address: 0x10243a8 */
+    pActwk->r_no0 += 2; /* Line 276, Address: 0x10243b0 */
   }
-
-
-  pActwk->r_no0 += 2; /* Line 276, Address: 0x10243b0 */
-
 } /* Line 278, Address: 0x10243c0 */
 
 
@@ -302,14 +302,14 @@ void ten_a_up(sprite_status* pActwk) { /* Line 290, Address: 0x10243e0 */
 
 
 void ten_a_gake(sprite_status* pActwk) { /* Line 304, Address: 0x1024410 */
-  char cRwk, cwk;
+  char cwk, cRwk;
   short iD1, iD3, iD4;
 
   pActwk->xposi.l += *(int*)&pActwk->actfree[0]; /* Line 308, Address: 0x1024430 */
   iD3 = pActwk->xposi.w.h; /* Line 309, Address: 0x102444c */
   iD4 = pActwk->sprhsize; /* Line 310, Address: 0x102445c */
   iD3 -= iD4; /* Line 311, Address: 0x1024470 */
-  if (*(int*)&pActwk->actfree[0] > 0) /* Line 312, Address: 0x102447c */
+  if ((long int)*(int*)&pActwk->actfree[0] > 0) /* Line 312, Address: 0x102447c */
     iD3 += iD4 + iD4; /* Line 313, Address: 0x1024498 */
   iD1 = emycol_d2(pActwk, iD3); /* Line 314, Address: 0x10244c0 */
   if (iD1 >= 16) /* Line 315, Address: 0x10244d8 */
@@ -318,7 +318,7 @@ void ten_a_gake(sprite_status* pActwk) { /* Line 304, Address: 0x1024410 */
     cwk = 2; /* Line 318, Address: 0x10244ec */
     cwk = -cwk * 4; /* Line 319, Address: 0x10244f8 */
     cRwk = pActwk->r_no0; /* Line 320, Address: 0x1024518 */
-    cRwk += cwk; /* Line 321, Address: 0x1024528 */
+    cRwk = cRwk + cwk; /* Line 321, Address: 0x1024528 */
     pActwk->r_no0 = cRwk; /* Line 322, Address: 0x102454c */
   }
 } /* Line 324, Address: 0x1024554 */
@@ -341,7 +341,7 @@ void ten_a_hover(sprite_status* pActwk) { /* Line 336, Address: 0x1024580 */
   wD0 = ((unsigned short*)pActwk)[29]; /* Line 341, Address: 0x10245b8 */
   wD0 &= 15; /* Line 342, Address: 0x10245c4 */
   if (wD0 != 0) return; /* Line 343, Address: 0x10245cc */
-  *(int*)&pActwk->actfree[4] = -*(int*)&pActwk->actfree[4]; /* Line 344, Address: 0x10245d8 */
+  *(int*)&pActwk->actfree[4] = -(long int)*(int*)&pActwk->actfree[4]; /* Line 344, Address: 0x10245d8 */
 } /* Line 345, Address: 0x1024604 */
 
 

@@ -1,10 +1,1 @@
 void movie(sprite_status* moviewk);
-void die(sprite_status* moviewk);
-void m_init(sprite_status* moviewk);
-void m_wait(sprite_status* moviewk);
-void m_die(sprite_status* moviewk);
-void m_baku(sprite_status* moviewk);
-void m1wait(sprite_status* moviewk);
-void sub(sprite_status* moviewk);
-void s_init(sprite_status* moviewk);
-void s_move(sprite_status* moviewk);

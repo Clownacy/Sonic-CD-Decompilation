@@ -1,5 +1,12 @@
 #include "..\EQU.H"
 #include "TRAP_R3.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+#include "COLI3.H"
 
 static sprite_pattern har00 = { 1, { { -16, -16, 0, 288 } } };
 static sprite_pattern har01 = { 1, { { -16, -16, 0, 289 } } };
@@ -55,13 +62,6 @@ sprite_pattern* drumr3pat[12] = {
 
 
 
-
-
-
-
-
-
-
 void harir3(sprite_status* hariwk) { /* Line 65, Address: 0x1020060 */
   void(*harir3_acttbl[2])(sprite_status*) = { /* Line 66, Address: 0x1020074 */
     &harir3_init,
@@ -73,14 +73,14 @@ void harir3(sprite_status* hariwk) { /* Line 65, Address: 0x1020060 */
   actionsub(hariwk); /* Line 73, Address: 0x10200cc */
 
   if ((ride_no = ((unsigned short*)hariwk)[28]) != 0) { /* Line 75, Address: 0x10200d8 */
-    hariwk->xposi.w.h = hariwk->actfree[14] + actwk[ride_no].xposi.w.h; /* Line 76, Address: 0x10200f0 */
+    hariwk->xposi.w.h = (short)hariwk->actfree[14] + actwk[ride_no].xposi.w.h; /* Line 76, Address: 0x10200f0 */
 
-    hariwk->yposi.w.h = hariwk->actfree[15] + actwk[ride_no].yposi.w.h; /* Line 78, Address: 0x1020140 */
+    hariwk->yposi.w.h = (short)hariwk->actfree[15] + actwk[ride_no].yposi.w.h; /* Line 78, Address: 0x1020140 */
   }
 
   cal_x = (((unsigned short*)hariwk)[29] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 81, Address: 0x1020190 */
 
-  if (cal_x >= 641) tr3_fout(hariwk); /* Line 83, Address: 0x10201cc */
+  if (cal_x > 640) tr3_fout(hariwk); /* Line 83, Address: 0x10201cc */
 } /* Line 84, Address: 0x10201e8 */
 
 
@@ -129,7 +129,7 @@ void harir3_move(sprite_status* hariwk) { /* Line 118, Address: 0x1020340 */
 
   if (actwk[0].r_no0 >= 4) return; /* Line 130, Address: 0x10203ec */
 
-  if (((short*)&actwk[0])[26] != 0) return; /* Line 132, Address: 0x1020404 */
+  if (((unsigned short*)&actwk[0])[26] != 0) return; /* Line 132, Address: 0x1020404 */
 
   actwk[0].yposi.l -= actwk[0].yspeed.w << 8; /* Line 134, Address: 0x1020418 */
   playdamageset(&actwk[0], hariwk); /* Line 135, Address: 0x1020440 */
@@ -152,7 +152,7 @@ void harir3_kind(sprite_status* hariwk) { /* Line 140, Address: 0x1020470 */
 
 void harir3_ymv1(sprite_status* hariwk) { /* Line 153, Address: 0x1020500 */
   harir3_sub(hariwk); /* Line 154, Address: 0x102050c */
-  hariwk->yposi.w.h = ((short*)hariwk)[27] + hariwk->actfree[17]; /* Line 155, Address: 0x1020518 */
+  hariwk->yposi.w.h = ((short*)hariwk)[27] + (short)hariwk->actfree[17]; /* Line 155, Address: 0x1020518 */
 
 } /* Line 157, Address: 0x1020550 */
 
@@ -160,7 +160,7 @@ void harir3_ymv1(sprite_status* hariwk) { /* Line 153, Address: 0x1020500 */
 
 void harir3_ymv2(sprite_status* hariwk) { /* Line 161, Address: 0x1020560 */
   harir3_sub(hariwk); /* Line 162, Address: 0x102056c */
-  hariwk->yposi.w.h = ((short*)hariwk)[27] - hariwk->actfree[17]; /* Line 163, Address: 0x1020578 */
+  hariwk->yposi.w.h = ((short*)hariwk)[27] - (short)hariwk->actfree[17]; /* Line 163, Address: 0x1020578 */
 
 } /* Line 165, Address: 0x10205b0 */
 
@@ -168,7 +168,7 @@ void harir3_ymv2(sprite_status* hariwk) { /* Line 161, Address: 0x1020560 */
 
 void harir3_xmv1(sprite_status* hariwk) { /* Line 169, Address: 0x10205c0 */
   harir3_sub(hariwk); /* Line 170, Address: 0x10205cc */
-  hariwk->xposi.w.h = ((short*)hariwk)[29] - hariwk->actfree[17]; /* Line 171, Address: 0x10205d8 */
+  hariwk->xposi.w.h = ((short*)hariwk)[29] - (short)hariwk->actfree[17]; /* Line 171, Address: 0x10205d8 */
 
 } /* Line 173, Address: 0x1020610 */
 
@@ -176,7 +176,7 @@ void harir3_xmv1(sprite_status* hariwk) { /* Line 169, Address: 0x10205c0 */
 
 void harir3_xmv2(sprite_status* hariwk) { /* Line 177, Address: 0x1020620 */
   harir3_sub(hariwk); /* Line 178, Address: 0x102062c */
-  hariwk->xposi.w.h = ((short*)hariwk)[29] + hariwk->actfree[17]; /* Line 179, Address: 0x1020638 */
+  hariwk->xposi.w.h = ((short*)hariwk)[29] + (short)hariwk->actfree[17]; /* Line 179, Address: 0x1020638 */
 
 } /* Line 181, Address: 0x1020670 */
 
@@ -255,7 +255,7 @@ void frdr3(sprite_status* floorwk) { /* Line 248, Address: 0x10207b0 */
   actionsub(floorwk); /* Line 255, Address: 0x1020818 */
   cal_x = (((unsigned short*)floorwk)[27] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 256, Address: 0x1020824 */
 
-  if (cal_x >= 641) tr3_fout(floorwk); /* Line 258, Address: 0x1020860 */
+  if (cal_x > 640) tr3_fout(floorwk); /* Line 258, Address: 0x1020860 */
 } /* Line 259, Address: 0x102087c */
 
 
@@ -375,7 +375,7 @@ void trapdr3(sprite_status* floorwk) { /* Line 370, Address: 0x1020c00 */
   actionsub(floorwk); /* Line 375, Address: 0x1020c68 */
   cal_x = (((unsigned short*)floorwk)[29] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 376, Address: 0x1020c74 */
 
-  if (cal_x >= 641) tr3_fout(floorwk); /* Line 378, Address: 0x1020cb0 */
+  if (cal_x > 640) tr3_fout(floorwk); /* Line 378, Address: 0x1020cb0 */
 } /* Line 379, Address: 0x1020ccc */
 
 
@@ -425,12 +425,12 @@ void trapdr3_kind(sprite_status* floorwk) { /* Line 424, Address: 0x1020f40 */
   if (!(floorwk->userflag.b.h & 4)) { /* Line 425, Address: 0x1020f4c */
 
     trapdr3_updown(floorwk); /* Line 427, Address: 0x1020f68 */
-    floorwk->yposi.w.h = ((short*)floorwk)[27] + floorwk->actfree[17]; /* Line 428, Address: 0x1020f74 */
+    floorwk->yposi.w.h = ((short*)floorwk)[27] + (short)floorwk->actfree[17]; /* Line 428, Address: 0x1020f74 */
 
   } /* Line 430, Address: 0x1020fac */
   else {
     trapdr3_updown(floorwk); /* Line 432, Address: 0x1020fb4 */
-    floorwk->yposi.w.h = ((short*)floorwk)[27] - floorwk->actfree[17]; /* Line 433, Address: 0x1020fc0 */
+    floorwk->yposi.w.h = ((short*)floorwk)[27] - (short)floorwk->actfree[17]; /* Line 433, Address: 0x1020fc0 */
   }
 
 } /* Line 436, Address: 0x1020ff8 */
@@ -440,7 +440,7 @@ void trapdr3_kind(sprite_status* floorwk) { /* Line 424, Address: 0x1020f40 */
 void trapdr3_updown(sprite_status* floorwk) { /* Line 440, Address: 0x1021010 */
   short cal_x;
 
-  cal_x = actwk[0].xposi.w.h - (floorwk->xposi.w.h - floorwk->sprhsize); /* Line 443, Address: 0x102101c */
+  cal_x = actwk[0].xposi.w.h - (floorwk->xposi.w.h - (short)floorwk->sprhsize); /* Line 443, Address: 0x102101c */
   if (cal_x >= 0) { /* Line 444, Address: 0x1021068 */
     if (cal_x < 80) return; /* Line 445, Address: 0x1021078 */
 
@@ -534,7 +534,7 @@ void for3_move(sprite_status* floorwk) { /* Line 521, Address: 0x1021230 */
   dai3sub(floorwk); /* Line 534, Address: 0x102129c */
   cal_x = (((unsigned short*)floorwk)[27] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 535, Address: 0x10212a8 */
 
-  if (cal_x >= 641) tr3_fout(floorwk); /* Line 537, Address: 0x10212e4 */
+  if (cal_x > 640) tr3_fout(floorwk); /* Line 537, Address: 0x10212e4 */
 } /* Line 538, Address: 0x1021300 */
 
 
@@ -775,7 +775,7 @@ void for3_rup2(sprite_status* floorwk) { /* Line 730, Address: 0x1021be0 */
     floorwk->yspeed.w = ((unsigned short*)floorwk)[28] & 65280; /* Line 775, Address: 0x1021eb0 */
     floorwk->yposi.l += floorwk->yspeed.w << 8; /* Line 776, Address: 0x1021ed0 */
 
-    if (--floorwk->actfree[14] != 0) break; /* Line 778, Address: 0x1021ef4 */
+    if (--floorwk->actfree[14] != 0) return; /* Line 778, Address: 0x1021ef4 */
   } while (++floorwk->actfree[15] != 3); /* Line 779, Address: 0x1021f14 */
 
   floorwk->yspeed.w = 0; /* Line 781, Address: 0x1021f38 */
@@ -839,7 +839,7 @@ void getdair3(sprite_status* floorwk) { /* Line 831, Address: 0x1021fb0 */
 
   cal_x = (((unsigned short*)floorwk)[29] & 65408) - ((unsigned short)scra_h_posit.w.h - 128 & 65408); /* Line 840, Address: 0x1022024 */
 
-  if (cal_x >= 641) tr3_fout(floorwk); /* Line 842, Address: 0x1022058 */
+  if (cal_x > 640) tr3_fout(floorwk); /* Line 842, Address: 0x1022058 */
 } /* Line 843, Address: 0x1022074 */
 
 
@@ -867,12 +867,12 @@ void getdair3_move(sprite_status* floorwk) { /* Line 866, Address: 0x1022180 */
   if (floorwk->userflag.b.h < 0) { /* Line 867, Address: 0x102218c */
 
     getdair3_move_sub(floorwk); /* Line 869, Address: 0x10221a4 */
-    floorwk->xposi.w.h = ((short*)floorwk)[29] + floorwk->actfree[17]; /* Line 870, Address: 0x10221b0 */
+    floorwk->xposi.w.h = ((short*)floorwk)[29] + (short)floorwk->actfree[17]; /* Line 870, Address: 0x10221b0 */
 
   } /* Line 872, Address: 0x10221e8 */
   else {
     getdair3_move_sub(floorwk); /* Line 874, Address: 0x10221f0 */
-    floorwk->xposi.w.h = ((short*)floorwk)[29] - floorwk->actfree[17]; /* Line 875, Address: 0x10221fc */
+    floorwk->xposi.w.h = ((short*)floorwk)[29] - (short)floorwk->actfree[17]; /* Line 875, Address: 0x10221fc */
   }
 
 
@@ -985,7 +985,7 @@ void gandair3(sprite_status* floorwk) { /* Line 976, Address: 0x1022360 */
 
   cal_x = (((unsigned short*)floorwk)[29] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 986, Address: 0x1022434 */
 
-  if (cal_x >= 641) tr3_fout(floorwk); /* Line 988, Address: 0x1022470 */
+  if (cal_x > 640) tr3_fout(floorwk); /* Line 988, Address: 0x1022470 */
 } /* Line 989, Address: 0x102248c */
 
 
@@ -1028,7 +1028,7 @@ void gandair3_core(sprite_status* corewk) { /* Line 1022, Address: 0x10225c0 */
   actionsub(corewk); /* Line 1028, Address: 0x1022638 */
   cal_x = (((unsigned short*)corewk)[29] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 1029, Address: 0x1022644 */
 
-  if (cal_x >= 641) tr3_fout(corewk); /* Line 1031, Address: 0x1022680 */
+  if (cal_x > 640) tr3_fout(corewk); /* Line 1031, Address: 0x1022680 */
 } /* Line 1032, Address: 0x102269c */
 
 
@@ -1082,7 +1082,7 @@ void gandair3_wait(sprite_status* corewk) { /* Line 1056, Address: 0x1022780 */
 
 void gandair3_fire(sprite_status* corewk) { /* Line 1083, Address: 0x1022910 */
   if ((corewk->actfree[17] += 8) >= 32) corewk->actfree[17] = 32; /* Line 1084, Address: 0x102291c */
-  corewk->yposi.w.h = ((short*)corewk)[27] - corewk->actfree[17]; /* Line 1085, Address: 0x102294c */
+  corewk->yposi.w.h = ((short*)corewk)[27] - (short)corewk->actfree[17]; /* Line 1085, Address: 0x102294c */
 
 
   if (corewk->actfree[17] != 32) { gandair3_ridechk(corewk); return; } /* Line 1088, Address: 0x1022984 */
@@ -1111,7 +1111,7 @@ void gandair3_end(sprite_status* corewk) { /* Line 1107, Address: 0x1022a70 */
     return; /* Line 1111, Address: 0x1022aac */
   }
   if ((char)(corewk->actfree[17] -= 4) < 0) corewk->actfree[16] = 0; /* Line 1113, Address: 0x1022ab4 */
-  corewk->yposi.w.h = ((short*)corewk)[27] - corewk->actfree[17]; /* Line 1114, Address: 0x1022ae8 */
+  corewk->yposi.w.h = ((short*)corewk)[27] - (short)corewk->actfree[17]; /* Line 1114, Address: 0x1022ae8 */
 
   if (corewk->actfree[17] == 0) { /* Line 1116, Address: 0x1022b20 */
     corewk->actfree[16] = 60; /* Line 1117, Address: 0x1022b34 */
@@ -1267,7 +1267,7 @@ void drumr3(sprite_status* drumwk) { /* Line 1257, Address: 0x1023000 */
 
   cal_x = (((unsigned short*)drumwk)[27] & 65408) - ((unsigned short)(scra_h_posit.w.h - 128) & 65408); /* Line 1268, Address: 0x1023084 */
 
-  if (cal_x >= 641) tr3_fout(drumwk); /* Line 1270, Address: 0x10230c0 */
+  if (cal_x > 640) tr3_fout(drumwk); /* Line 1270, Address: 0x10230c0 */
 } /* Line 1271, Address: 0x10230dc */
 
 
@@ -1276,7 +1276,7 @@ void drumr3_ridechk(sprite_status* drumwk) { /* Line 1274, Address: 0x10230f0 */
 
   if (time_flag == 0) { /* Line 1277, Address: 0x1023114 */
     if (drumwk->patno == 2) drumwk->sprvsize = 8; /* Line 1278, Address: 0x1023128 */
-    if (drumwk->patno >= 3 && drumwk->patno < 7) drumwk->sprvsize = 5; /* Line 1279, Address: 0x102314c */
+    if (drumwk->patno > 2 && drumwk->patno < 7) drumwk->sprvsize = 5; /* Line 1279, Address: 0x102314c */
   }
   ridechk(drumwk, &actwk[0]); /* Line 1281, Address: 0x1023188 */
 } /* Line 1282, Address: 0x102319c */
@@ -1411,7 +1411,7 @@ void tr3_fout(sprite_status* thingwk) { /* Line 1410, Address: 0x1023720 */
   unsigned short flagwork_no;
 
   if ((flagwork_no = thingwk->cdsts) != 0) { /* Line 1413, Address: 0x1023730 */
-    flagwork_no = time_flag + flagwork_no * 3; /* Line 1414, Address: 0x1023750 */
+    flagwork_no = (unsigned short)time_flag + flagwork_no * 3; /* Line 1414, Address: 0x1023750 */
     flagwork[flagwork_no] &= 127; /* Line 1415, Address: 0x1023778 */
   }
 

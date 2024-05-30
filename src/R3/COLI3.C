@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "COLI3.H"
+#include "..\ACTSET.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\PLAYER.H"
+#include "..\SCORE.H"
 
 static unsigned char bCarry;
 unsigned char colitbl[64][2] =
@@ -72,11 +77,6 @@ unsigned char colitbl[64][2] =
 unsigned short escoretbl[4] = { 10, 20, 50, 100 };
 
 
-
-
-
-
-
 short pcol(sprite_status* pActwk) { /* Line 80, Address: 0x101b500 */
   short iXwork = pActwk->xposi.w.h, /* Line 81, Address: 0x101b52c */
         iYwork = pActwk->yposi.w.h,
@@ -104,13 +104,13 @@ short pcol(sprite_status* pActwk) { /* Line 80, Address: 0x101b500 */
   for (i = 0; i < 96; ++i, ++pColliAct) /* Line 104, Address: 0x101b604 */
   {
 
-    if (pActwk->actflg & 128) /* Line 107, Address: 0x101b610 */
+    if (pColliAct->actflg & 128) /* Line 107, Address: 0x101b610 */
     {
-      iColino = pActwk->colino; /* Line 109, Address: 0x101b624 */
+      iColino = pColliAct->colino; /* Line 109, Address: 0x101b624 */
       if (iColino != 0) /* Line 110, Address: 0x101b634 */
       {
         iRet = CollitblDataXchk(pActwk, pColliAct, iXwork, iYwork, iSprvs); /* Line 112, Address: 0x101b644 */
-        if (iRet != 0) /* Line 113, Address: 0x101b668 */
+        if (iRet) /* Line 113, Address: 0x101b668 */
           return iRet; /* Line 114, Address: 0x101b670 */
       }
     }
@@ -137,7 +137,7 @@ short pcol(sprite_status* pActwk) { /* Line 80, Address: 0x101b500 */
 
 
 short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iXposi, short iYposi, short iD5) { /* Line 139, Address: 0x101b6e0 */
-  short iColiNo = pActwk->colino; /* Line 140, Address: 0x101b708 */
+  short iColiNo = pColliAct->colino; /* Line 140, Address: 0x101b708 */
   short iColiwk;
   short iColiData;
 
@@ -146,7 +146,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
 
   iColiData = pColliAct->xposi.w.h - iColiwk; /* Line 147, Address: 0x101b764 */
   bCarry = CCset(iColiData, iXposi); /* Line 148, Address: 0x101b790 */
-  iColiData -= iXposi; /* Line 149, Address: 0x101b7b4 */
+  iColiData = iColiData - iXposi; /* Line 149, Address: 0x101b7b4 */
   if (bCarry == 1) /* Line 150, Address: 0x101b7dc */
   {
     iColiwk += iColiwk; /* Line 152, Address: 0x101b7f4 */
@@ -158,7 +158,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
     return 0; /* Line 158, Address: 0x101b860 */
   }
 
-  if (iColiData >= 17) /* Line 161, Address: 0x101b86c */
+  if (iColiData > 16) /* Line 161, Address: 0x101b86c */
     return 0; /* Line 162, Address: 0x101b880 */
 
 
@@ -193,7 +193,7 @@ short CollitblDataYchk(sprite_status* pActwk, sprite_status* pColliAct, short iY
 
   iYwork = pColliAct->yposi.w.h - iColiData; /* Line 194, Address: 0x101b920 */
   bCarry = CCset(iYwork, iYposi); /* Line 195, Address: 0x101b94c */
-  iYwork -= iYposi; /* Line 196, Address: 0x101b970 */
+  iYwork = iYwork - iYposi; /* Line 196, Address: 0x101b970 */
   if (bCarry == 1) /* Line 197, Address: 0x101b998 */
   {
     iColiData += iColiData; /* Line 199, Address: 0x101b9b0 */
@@ -646,7 +646,7 @@ short eggman_chk(sprite_status* pActwk, sprite_status* pColliAct, char cColiNo) 
 
 
 void boss_1(sprite_status* pActwk, sprite_status* pColliAct, char cColiNo) { /* Line 648, Address: 0x101c5f0 */
-  if (cColiNo < 60 || cColiNo >= 64) /* Line 649, Address: 0x101c604 */
+  if (cColiNo < 60 || cColiNo > 63) /* Line 649, Address: 0x101c604 */
     return; /* Line 650, Address: 0x101c634 */
 
 
@@ -677,7 +677,7 @@ void boss_1(sprite_status* pActwk, sprite_status* pColliAct, char cColiNo) { /* 
 
 
 void boss_4(sprite_status* pActwk, sprite_status* pColliAct, char cColiNo) { /* Line 679, Address: 0x101c6a0 */
-  if (cColiNo >= 63) /* Line 680, Address: 0x101c6b4 */
+  if (cColiNo == 63) /* Line 680, Address: 0x101c6b4 */
   {
 
     if (!(pActwk->cddat & 20)) return; /* Line 683, Address: 0x101c6cc */

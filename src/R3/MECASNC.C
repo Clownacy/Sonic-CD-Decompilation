@@ -1,5 +1,13 @@
 #include "..\EQU.H"
 #include "MECASNC.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+#include "COLI3.H"
 
 static unsigned char bCarry;
 void(*msnc_tbl[6])(sprite_status*) = {
@@ -51,14 +59,6 @@ void(*msfire_tbl[2])(sprite_status*) = {
 };
 unsigned char fire_pchg0[6] = { 1, 12, 15, 13, 15, 255 };
 unsigned char* fire_pchg[1] = { fire_pchg0 };
-
-
-
-
-
-
-
-
 
 
 
@@ -259,7 +259,7 @@ void mecasnc3_come(sprite_status* pActwk) { /* Line 256, Address: 0x1025910 */
   emie_speedsetx(pActwk); /* Line 259, Address: 0x1025924 */
   iD0 = ((short*)pActwk)[33]; /* Line 260, Address: 0x1025930 */
   iD0 += pActwk->xspeed.w; /* Line 261, Address: 0x1025940 */
-  if (iD0 < -767) /* Line 262, Address: 0x1025954 */
+  if (iD0 <= -768) /* Line 262, Address: 0x1025954 */
     iD0 = -768; /* Line 263, Address: 0x1025968 */
 
   pActwk->xspeed.w = iD0; /* Line 265, Address: 0x1025974 */
@@ -334,7 +334,7 @@ void yposisetsub(sprite_status* pActwk) { /* Line 330, Address: 0x1025b80 */
 
   sinset(byR, &iSin, &iCos); /* Line 335, Address: 0x1025b9c */
   lD0.l = iSin << 2; /* Line 336, Address: 0x1025bb0 */
-  if (-2147483648 & lD0.l) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 337, Address: 0x1025bc4 */
+  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 337, Address: 0x1025bc4 */
 
   lD0.w.h += ((short*)pActwk)[27]; /* Line 339, Address: 0x1025c08 */
   pActwk->yposi.l = lD0.l; /* Line 340, Address: 0x1025c1c */
@@ -493,7 +493,7 @@ void emie_speedsety(sprite_status* pActwk) { /* Line 492, Address: 0x1025ff0 */
   int_union lD0;
 
   lD0.l = pActwk->yspeed.w; /* Line 495, Address: 0x1025ff8 */
-  if (lD0.l & -2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 496, Address: 0x102600c */
+  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 496, Address: 0x102600c */
   pActwk->yposi.l += lD0.l; /* Line 497, Address: 0x1026050 */
 } /* Line 498, Address: 0x1026064 */
 
@@ -501,7 +501,7 @@ void emie_speedsetx(sprite_status* pActwk) { /* Line 500, Address: 0x1026070 */
   int_union lD0;
 
   lD0.l = pActwk->xspeed.w; /* Line 503, Address: 0x1026078 */
-  if (lD0.l & -2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 504, Address: 0x102608c */
+  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 504, Address: 0x102608c */
   pActwk->xposi.l += lD0.l; /* Line 505, Address: 0x10260d0 */
 } /* Line 506, Address: 0x10260e4 */
 
@@ -786,7 +786,7 @@ void empatchg(sprite_status* pActwk, unsigned char** bppPtbl) { /* Line 780, Add
   byD0 = pActwk->mstno.b.h; /* Line 786, Address: 0x102688c */
   if (byD0 != pActwk->mstno.b.l) { /* Line 787, Address: 0x1026898 */
 
-    pActwk->mstno.b.l = byD0; /* Line 789, Address: 0x10268b4 */
+    pActwk->mstno.b.l = (unsigned char)byD0; /* Line 789, Address: 0x10268b4 */
     pActwk->patcnt = 0; /* Line 790, Address: 0x10268c4 */
     pActwk->pattim = 0; /* Line 791, Address: 0x10268cc */
   }
@@ -874,9 +874,9 @@ void heartset(sprite_status* pActwk) { /* Line 871, Address: 0x1026ae0 */
   sprite_status* pActfree;
 
   bywk = pActwk->actfree[17]; /* Line 876, Address: 0x1026af8 */
-  wk = bywk + 8; /* Line 877, Address: 0x1026b04 */
+  wk = (short)bywk + 8; /* Line 877, Address: 0x1026b04 */
   pActwk->actfree[17] += 8; /* Line 878, Address: 0x1026b24 */
-  if (wk < 256) return; /* Line 879, Address: 0x1026b34 */
+  if (wk <= 255) return; /* Line 879, Address: 0x1026b34 */
 
 
   if (actwkchk(&pActfree) != 0) return; /* Line 882, Address: 0x1026b48 */
@@ -958,8 +958,8 @@ void hari3x_ridechk(sprite_status* pActwk) { /* Line 946, Address: 0x1026d10 */
   if (!(pActwk->cddat & 8)) return; /* Line 958, Address: 0x1026d84 */
 
 
-  if (plpower_a == 0) /* Line 961, Address: 0x1026d9c */
-    if (plpower_m != 0) return; /* Line 962, Address: 0x1026db0 */
+  if (plpower_a != 0) return; /* Line 961, Address: 0x1026d9c */
+  if (plpower_m != 0) return; /* Line 962, Address: 0x1026db0 */
 
   pPlaywk = &actwk[0]; /* Line 964, Address: 0x1026dc4 */
   if (pPlaywk->r_no0 < 4) { /* Line 965, Address: 0x1026dcc */
@@ -968,7 +968,7 @@ void hari3x_ridechk(sprite_status* pActwk) { /* Line 946, Address: 0x1026d10 */
 
       lD3 = pPlaywk->yposi.l; /* Line 969, Address: 0x1026df0 */
       lD0 = pPlaywk->yspeed.w; /* Line 970, Address: 0x1026df4 */
-      if (-2147483648 & lD0) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 971, Address: 0x1026e00 */
+      if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 971, Address: 0x1026e00 */
       lD3 -= lD0; /* Line 972, Address: 0x1026e28 */
       pPlaywk->yposi.l = lD3; /* Line 973, Address: 0x1026e2c */
       playdamageset(pPlaywk, pActwk); /* Line 974, Address: 0x1026e30 */
@@ -1067,15 +1067,15 @@ void hari3x_move(sprite_status* pActwk) { /* Line 1038, Address: 0x1026ff0 */
     return; /* Line 1067, Address: 0x1027134 */
   }
   iD1 += iD1; /* Line 1069, Address: 0x102713c */
-  if (iD1 >= iD0) { /* Line 1070, Address: 0x1027148 */
+  if (iD0 >= iD1) { /* Line 1070, Address: 0x1027148 */
 
     hari3x_ridechk(pActwk); /* Line 1072, Address: 0x1027164 */
     return; /* Line 1073, Address: 0x1027170 */
   }
 
   iD1 = (char)pActwk->sprvsize; /* Line 1076, Address: 0x1027178 */
-  iD1 += iD1; /* Line 1077, Address: 0x1027198 */
-  iD0 = pActmsnc->xposi.w.h - pActwk->yposi.w.h; /* Line 1078, Address: 0x10271a4 */
+  iD1 += 16; /* Line 1077, Address: 0x1027198 */
+  iD0 = pActmsnc->yposi.w.h - pActwk->yposi.w.h; /* Line 1078, Address: 0x10271a4 */
   iD0 += iD1; /* Line 1079, Address: 0x10271d4 */
   if (iD0 < 0) { /* Line 1080, Address: 0x10271e0 */
 

@@ -1,5 +1,14 @@
 #include "..\EQU.H"
 #include "ET3.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+#include "..\SCORE.H"
+
+static void m_init(sprite_status* actionwk);
+static void m_wait(sprite_status* actionwk);
 
 static sprite_pattern tpat00 =
 {
@@ -133,15 +142,6 @@ static char* pchg[1] = { pchg0 };
 
 
 
-
-
-
-
-
-
-
-
-
 void et(sprite_status* actionwk) { /* Line 145, Address: 0x101c880 */
   switch (actionwk->r_no0) /* Line 146, Address: 0x101c88c */
   {
@@ -158,7 +158,7 @@ void et(sprite_status* actionwk) { /* Line 145, Address: 0x101c880 */
       break;
   }
   actionsub(actionwk); /* Line 160, Address: 0x101c90c */
-  if (actionwk->r_no0 < 3) /* Line 161, Address: 0x101c918 */
+  if (actionwk->r_no0 <= 2) /* Line 161, Address: 0x101c918 */
     frameout_s(actionwk); /* Line 162, Address: 0x101c930 */
 
 } /* Line 164, Address: 0x101c93c */
@@ -176,7 +176,7 @@ static void m_init(sprite_status* actionwk) { /* Line 167, Address: 0x101c950 */
   actionwk->sprvsize = 32; /* Line 176, Address: 0x101c9a4 */
 
   a1 = tbl0sproffset; /* Line 178, Address: 0x101c9b0 */
-  d0 = (stageno.w + 1) * 4 + time_flag; /* Line 179, Address: 0x101c9b8 */
+  d0 = (stageno.w + 1 << 2) + (unsigned short)time_flag; /* Line 179, Address: 0x101c9b8 */
   actionwk->sproffset = a1[d0]; /* Line 180, Address: 0x101c9ec */
 
 
@@ -217,11 +217,11 @@ static void m_wait(sprite_status* actionwk) { /* Line 204, Address: 0x101caf0 */
   d0 = 150; /* Line 217, Address: 0x101cb8c */
   scoreup(d0); /* Line 218, Address: 0x101cb90 */
   a1 = &actwk[0]; /* Line 219, Address: 0x101cb9c */
-  if (hitchk(actionwk, a1) != 0) ride_on_clr(actionwk, a1); /* Line 220, Address: 0x101cba4 */
+  if (hitchk(actionwk, a1)) ride_on_clr(actionwk, a1); /* Line 220, Address: 0x101cba4 */
   return; /* Line 221, Address: 0x101cbcc */
 label1:
   hitchk(actionwk, &actwk[0]); /* Line 223, Address: 0x101cbd4 */
-  patchg(actionwk, pchg); /* Line 224, Address: 0x101cbe8 */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 224, Address: 0x101cbe8 */
 } /* Line 225, Address: 0x101cbfc */
 
 void m_die(sprite_status* actionwk) { /* Line 227, Address: 0x101cc20 */

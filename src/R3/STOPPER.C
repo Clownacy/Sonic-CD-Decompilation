@@ -1,5 +1,11 @@
 #include "..\EQU.H"
 #include "STOPPER.H"
+#include "..\ACTION.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+
+static void act_init(sprite_status* actionwk);
+static void act_move(sprite_status* actionwk);
 
 static sprite_pattern patstop1 =
 {
@@ -29,12 +35,6 @@ static char* pchg[2] =
   pchg0,
   pchg1
 };
-
-
-
-
-
-
 
 
 
@@ -114,5 +114,5 @@ void act_close(sprite_status* actionwk) { /* Line 110, Address: 0x102f4c0 */
 } /* Line 114, Address: 0x102f4f4 */
 
 void act_move1(sprite_status* actionwk) { /* Line 116, Address: 0x102f510 */
-  patchg(actionwk, pchg); /* Line 117, Address: 0x102f51c */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 117, Address: 0x102f51c */
 } /* Line 118, Address: 0x102f530 */

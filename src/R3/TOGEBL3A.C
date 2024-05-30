@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "TOGEBL3A.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
 
 static sprite_pattern spat_chg0 = {
   1,
@@ -11,9 +14,6 @@ static sprite_pattern spat_chg1 = {
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* togeball_pat[1] = { &spat_chg1 };
-
-
-
 
 
 
@@ -133,7 +133,7 @@ void act_move(sprite_status* actionwk) { /* Line 125, Address: 0x1020480 */
   d0 = ((short*)actionwk)[23]; /* Line 133, Address: 0x10204cc */
   d0 >>= 8; /* Line 134, Address: 0x10204dc */
 
-  sinset(d0, &sin, &cos); /* Line 136, Address: 0x10204e8 */
+  sinset(d0, (short*)&sin, (short*)&cos); /* Line 136, Address: 0x10204e8 */
   d0l = d1l = 0; /* Line 137, Address: 0x10204fc */
   d0l = sin << 16; /* Line 138, Address: 0x1020504 */
   d1l = cos << 16; /* Line 139, Address: 0x1020510 */
@@ -154,8 +154,8 @@ void act_move(sprite_status* actionwk) { /* Line 125, Address: 0x1020480 */
   *(int*)&a1->actfree[4] = actionwk->yposi.l + d2l; /* Line 154, Address: 0x10205b4 */
   *(int*)&a1->actfree[0] = actionwk->xposi.l + d3l; /* Line 155, Address: 0x10205c8 */
   a1 = &actwk[((unsigned short*)actionwk)[27]]; /* Line 156, Address: 0x10205dc */
-  *(int*)&a1->actfree[4] = d2l + actionwk->yposi.l + d0l; /* Line 157, Address: 0x1020600 */
-  *(int*)&a1->actfree[0] = d3l + actionwk->xposi.l + d1l; /* Line 158, Address: 0x1020618 */
+  *(int*)&a1->actfree[4] = actionwk->yposi.l + d0l + d2l; /* Line 157, Address: 0x1020600 */
+  *(int*)&a1->actfree[0] = actionwk->xposi.l + d1l + d3l; /* Line 158, Address: 0x1020618 */
 } /* Line 159, Address: 0x1020630 */
 
 void togeball_opt(sprite_status* actionwk) { /* Line 161, Address: 0x1020660 */

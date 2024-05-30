@@ -1,5 +1,12 @@
 #include "..\EQU.H"
 #include "KAMA.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\SUICIDE.H"
 
 static unsigned char bCarry;
 static unsigned char jmp_flg;
@@ -11,87 +18,23 @@ unsigned char kama_pchg2[4] = { 7, 0, 4, 255 };
 unsigned char kama_pchg3[4] = { 7, 7, 4, 255 };
 unsigned char kama_pchg4[3] = { 7, 0, 255 };
 unsigned char* kama_pchg[5] = { kama_pchg0, kama_pchg1, kama_pchg2, kama_pchg3, kama_pchg4 };
-sprite_pattern kama_patA =
-{
-  3,
-  { { -18, -20, 0, 471 }, { -12, -4, 0, 472 }, { -2, 4, 0, 473 } }
-};
-sprite_pattern kama_patB =
-{
-  3,
-  { { -18, -19, 0, 474 }, { -12, -3, 0, 475 }, { -2, 4, 0, 476 } }
-};
-sprite_pattern kama_patC =
-{
-  3,
-  { { -18, -20, 0, 477 }, { -12, -4, 0, 478 }, { -2, 4, 0, 479 } }
-};
-sprite_pattern kama_patD =
-{
-  3,
-  { { -18, -19, 0, 480 }, { -12, -3, 0, 481 }, { -2, 4, 0, 482 } }
-};
-sprite_pattern kama_patE =
-{
-  3,
-  { { -18, -19, 0, 483 }, { -12, -3, 0, 484 }, { -2, 4, 0, 485 } }
-};
-sprite_pattern kama_patF =
-{
-  4,
-  { { -18, -19, 0, 486 }, { -24, -12, 0, 487 }, { -12, -4, 0, 488 }, { -2, 4, 0, 489 } }
-};
-sprite_pattern kama_patG =
-{
-  3,
-  { { -18, -19, 0, 490 }, { -24, -11, 0, 491 }, { -12, -3, 0, 492 }, { -2, 4, 0, 493 } }
-};
-sprite_pattern kama_patH =
-{
-  3,
-  { { -18, -20, 0, 494 }, { -12, -4, 0, 495 }, { -2, 4, 0, 496 } }
-};
+sprite_pattern kama_patA = { 3, { { -18, -20, 0, 471 }, { -12, -4, 0, 472 }, { -2, 4, 0, 473 } } };
+sprite_pattern kama_patB = { 3, { { -18, -19, 0, 474 }, { -12, -3, 0, 475 }, { -2, 4, 0, 476 } } };
+sprite_pattern kama_patC = { 3, { { -18, -20, 0, 477 }, { -12, -4, 0, 478 }, { -2, 4, 0, 479 } } };
+sprite_pattern kama_patD = { 3, { { -18, -19, 0, 480 }, { -12, -3, 0, 481 }, { -2, 4, 0, 482 } } };
+sprite_pattern kama_patE = { 3, { { -18, -19, 0, 483 }, { -12, -3, 0, 484 }, { -2, 4, 0, 485 } } };
+sprite_pattern kama_patF = { 4, { { -18, -19, 0, 486 }, { -24, -12, 0, 487 }, { -12, -4, 0, 488 }, { -2, 4, 0, 489 } } };
+sprite_pattern kama_patG = { 3, { { -18, -19, 0, 490 }, { -24, -11, 0, 491 }, { -12, -3, 0, 492 }, { -2, 4, 0, 493 } } };
+sprite_pattern kama_patH = { 3, { { -18, -20, 0, 494 }, { -12, -4, 0, 495 }, { -2, 4, 0, 496 } } };
 sprite_pattern* kamapat[8] = { &kama_patA, &kama_patB, &kama_patC, &kama_patD, &kama_patE, &kama_patF, &kama_patG, &kama_patH };
-sprite_pattern bkama_patA =
-{
-  3,
-  { { -18, -20, 0, 497 }, { -12, -4, 0, 498 }, { -2, 4, 0, 499 } }
-};
-sprite_pattern bkama_patB =
-{
-  3,
-  { { -18, -19, 0, 500 }, { -12, -3, 0, 501 }, { -2, 4, 0, 502 } }
-};
-sprite_pattern bkama_patC =
-{
-  3,
-  { { -18, -20, 0, 503 }, { -12, -4, 0, 504 }, { -2, 4, 0, 505 } }
-};
-sprite_pattern bkama_patD =
-{
-  3,
-  { { -18, -19, 0, 506 }, { -12, -3, 0, 507 }, { -2, 4, 0, 508 } }
-};
-sprite_pattern bkama_patE =
-{
-  3,
-  { { -18, -19, 0, 509 }, { -12, -3, 0, 510 }, { -2, 4, 0, 511 } }
-};
-sprite_pattern bkama_patF =
-{
-  3,
-  { { -18, -20, 0, 512 }, { -12, -4, 0, 513 }, { -2, 4, 0, 514 } }
-};
-sprite_pattern bkama_patG =
-{
-  3,
-  { { -18, -19, 0, 515 }, { -12, -3, 0, 516 }, { -2, 4, 0, 517 } }
-};
-sprite_pattern bkama_patH =
-{
-  3,
-  { { -18, -20, 0, 518 }, { -12, -4, 0, 519 }, { -2, 4, 0, 520 } }
-};
+sprite_pattern bkama_patA = { 3, { { -18, -20, 0, 497 }, { -12, -4, 0, 498 }, { -2, 4, 0, 499 } } };
+sprite_pattern bkama_patB = { 3, { { -18, -19, 0, 500 }, { -12, -3, 0, 501 }, { -2, 4, 0, 502 } } };
+sprite_pattern bkama_patC = { 3, { { -18, -20, 0, 503 }, { -12, -4, 0, 504 }, { -2, 4, 0, 505 } } };
+sprite_pattern bkama_patD = { 3, { { -18, -19, 0, 506 }, { -12, -3, 0, 507 }, { -2, 4, 0, 508 } } };
+sprite_pattern bkama_patE = { 3, { { -18, -19, 0, 509 }, { -12, -3, 0, 510 }, { -2, 4, 0, 511 } } };
+sprite_pattern bkama_patF = { 3, { { -18, -20, 0, 512 }, { -12, -4, 0, 513 }, { -2, 4, 0, 514 } } };
+sprite_pattern bkama_patG = { 3, { { -18, -19, 0, 515 }, { -12, -3, 0, 516 }, { -2, 4, 0, 517 } } };
+sprite_pattern bkama_patH = { 3, { { -18, -20, 0, 518 }, { -12, -4, 0, 519 }, { -2, 4, 0, 520 } } };
 sprite_pattern* bkamapat[8] = { &bkama_patA, &bkama_patB, &bkama_patC, &bkama_patD, &bkama_patE, &bkama_patF, &bkama_patG, &bkama_patH };
 unsigned char wpkama_pchg0[8] = { 3, 0, 1, 2, 3, 4, 5, 255 };
 unsigned char wpkama_pchg1[8] = { 0, 0, 1, 2, 3, 4, 5, 255 };
@@ -103,6 +46,63 @@ sprite_pattern bu3 = { 1, { { -8, -8, 0, 468 } } };
 sprite_pattern bu4 = { 1, { { -8, -8, 0, 469 } } };
 sprite_pattern bu5 = { 1, { { -8, -8, 0, 470 } } };
 sprite_pattern* wpkamapat[6] = { &bu0, &bu1, &bu2, &bu3, &bu4, &bu5 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void ene_kama(sprite_status* pActwk) { /* Line 108, Address: 0x1025bd0 */
@@ -230,7 +230,7 @@ void kama_wait(sprite_status* pActwk) { /* Line 200, Address: 0x1025e70 */
 
         pActwk->mstno.b.h = 2; /* Line 231, Address: 0x102600c */
         set_wpkama(pActwk); /* Line 232, Address: 0x1026018 */
-        ((short*)pActwk)[24] = 160; /* Line 233, Address: 0x1026024 */
+        ((short*)pActwk)[24] = 120; /* Line 233, Address: 0x1026024 */
         pActwk->r_no0 += 2; /* Line 234, Address: 0x1026030 */
         kama_atck(pActwk); /* Line 235, Address: 0x1026040 */
         return; /* Line 236, Address: 0x102604c */
@@ -326,7 +326,7 @@ void kama_move(sprite_status* pActwk) { /* Line 301, Address: 0x1026190 */
         kama_disp(pActwk); /* Line 326, Address: 0x1026298 */
         return; /* Line 327, Address: 0x10262a4 */
       }
-      if (iD1 < 7 && iD1 >= -6) /* Line 329, Address: 0x10262ac */
+      if (iD1 < 7 && iD1 > -7) /* Line 329, Address: 0x10262ac */
       {
         pActwk->yposi.w.h += iD1; /* Line 331, Address: 0x10262d4 */
         kama_disp(pActwk); /* Line 332, Address: 0x10262e4 */
@@ -376,11 +376,11 @@ void movement(sprite_status* pActwk) { /* Line 375, Address: 0x10263f0 */
   int lD0 = 0; /* Line 376, Address: 0x10263fc */
 
   lD0 = pActwk->xspeed.w; /* Line 378, Address: 0x1026400 */
-  if (-2147483648 & lD0) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 379, Address: 0x1026410 */
+  if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 379, Address: 0x1026410 */
   pActwk->xposi.l += lD0; /* Line 380, Address: 0x1026438 */
 
   lD0 = pActwk->yspeed.w; /* Line 382, Address: 0x1026448 */
-  if (-2147483648 & lD0) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 383, Address: 0x1026458 */
+  if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 383, Address: 0x1026458 */
   pActwk->yposi.l += lD0; /* Line 384, Address: 0x1026480 */
 } /* Line 385, Address: 0x1026490 */
 

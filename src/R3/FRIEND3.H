@@ -1,13 +1,6 @@
 void friend(sprite_status* actionwk);
 void inco(sprite_status* actionwk);
-void t_init(sprite_status* actionwk);
-void t_move(sprite_status* actionwk);
-void t_movie(sprite_status* actionwk);
-void t_roll(sprite_status* actionwk, short d2, short d3);
 void pocky(sprite_status* actionwk);
-void p_init(sprite_status* actionwk);
-void p_move(sprite_status* actionwk);
 void p_end(sprite_status* actionwk);
 void p_rev(sprite_status* actionwk);
-void p_movie(sprite_status* actionwk);
 void set_sproffset(sprite_status* actionwk);

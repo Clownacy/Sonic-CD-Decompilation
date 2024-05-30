@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT31A.H"
+#include "..\ACTION.H"
 #include "..\BLOCK.H"
 #include "..\PLAYER.H"
 #include "..\PLAYSUB.H"
@@ -85,7 +86,6 @@ void(*act_tbl[60])(sprite_status*) = {
   &over,
   &title
 };
-
 
 
 

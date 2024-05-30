@@ -1,8 +1,8 @@
 #include "..\EQU.H"
-
-
-
-
+#include "SIKAKE33.H"
+#include "LIGHT.H"
+#include "ROLLPLAT.H"
+#include "STOPPER.H"
 
 
 

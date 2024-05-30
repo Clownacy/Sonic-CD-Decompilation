@@ -1,12 +1,14 @@
 #include "..\EQU.H"
 #include "DEV32A.H"
 
+static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgTim, unsigned char** ppChgCnt, int* BmpNo, int* TileStart);
+
 map_init_data mapinittbl = { 0, 0, 0, 3, 2, 0, 0, 5, 5, 129 };
-int drum_re0cg[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-int drum_re1cg[6] = { 10, 11, 12, 13, 14, 15 };
-int drum_no0cg[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
-int drum_no1cg[6] = { 26, 27, 28, 29, 30, 31 };
-tile_changes tbl_drum00 = {
+static int drum_re0cg[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+static int drum_re1cg[6] = { 10, 11, 12, 13, 14, 15 };
+static int drum_no0cg[10] = { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
+static int drum_no1cg[6] = { 26, 27, 28, 29, 30, 31 };
+static tile_changes tbl_drum00 = {
   2,
   0,
   {
@@ -19,7 +21,7 @@ tile_changes tbl_drum00 = {
   },
   436
 };
-tile_changes tbl_drum01 = {
+static tile_changes tbl_drum01 = {
   2,
   0,
   {
@@ -33,8 +35,6 @@ tile_changes tbl_drum01 = {
   462
 };
 extern void(*ChangeTileBmp)(int, int);
-
-
 
 
 
@@ -180,7 +180,7 @@ static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgT
   **ppChgCnt = tblidx; /* Line 180, Address: 0x10299ac */
   **ppChgTim = pTbl->dattbl[tblidx].tim; /* Line 181, Address: 0x10299bc */
 
-  tblidx = pTbl->dattbl[tblidx].no; /* Line 183, Address: 0x10299d8 */
+  tblidx = (short)pTbl->dattbl[tblidx].no; /* Line 183, Address: 0x10299d8 */
   pNoTbl = pTbl->TileNoTbl[tblidx]; /* Line 184, Address: 0x10299f8 */
 
   for ( ; iNum >= 0; --iNum) { /* Line 186, Address: 0x1029a08 */

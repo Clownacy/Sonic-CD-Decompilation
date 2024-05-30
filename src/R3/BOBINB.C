@@ -1,27 +1,27 @@
 #include "..\EQU.H"
 #include "BOBINB.H"
+#include "..\ACTION.H"
+#include "..\PLAYSUB.H"
+#include "..\SCORE.H"
+
+static void a_init(sprite_status* bobinwk);
+static void a_move(sprite_status* bobinwk);
+static void a_die(sprite_status* bobinwk);
 
 static unsigned char pat00[7] = { 2, 0, 0, 0, 1, 1, 252 };
 static unsigned char* pchg[1] = { pat00 };
 static sprite_pattern bbb00 = {
   1,
-  { { 240, 240, 0, 313 } }
+  { { -16, -16, 0, 313 } }
 };
 static sprite_pattern bbb01 = {
   1,
-  { { 240, 240, 0, 314 } }
+  { { -16, -16, 0, 314 } }
 };
 sprite_pattern* pat_bobinbreak[2] = {
   &bbb00,
   &bbb01
 };
-
-
-
-
-
-
-
 
 
 

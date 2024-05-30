@@ -1,5 +1,20 @@
 #include "..\EQU.H"
 #include "FRIEND3.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\ETC.H"
+#include "..\PLAYSUB.H"
+#include "..\SUICIDE.H"
+
+static void t_init(sprite_status* actionwk);
+static void t_move(sprite_status* actionwk);
+static void t_movie(sprite_status* actionwk);
+static void t_roll(sprite_status* actionwk, short d2, short d3);
+static void p_init(sprite_status* actionwk);
+static void p_move(sprite_status* actionwk);
+static void p_movie(sprite_status* actionwk);
+static void set_sproffset(sprite_status* actionwk);
 
 static sprite_pattern patnull =
 {
@@ -100,21 +115,6 @@ static unsigned short tbl0sproffset[11] = { 1943, 986, 986, 0, 1943, 986, 986, 0
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void friend(sprite_status* actionwk) { /* Line 118, Address: 0x101cf40 */
 
   if (friend_suicide(actionwk) == -1) return; /* Line 120, Address: 0x101cf4c */
@@ -174,7 +174,7 @@ static void t_move(sprite_status* actionwk) { /* Line 173, Address: 0x101d190 */
   char d0, d1;
 
   t_roll(actionwk, 1, 1); /* Line 176, Address: 0x101d1a4 */
-  d1 = d0 = actionwk->actfree[4] + actionwk->actfree[5]; /* Line 177, Address: 0x101d1b8 */
+  d1 = d0 = (char)actionwk->actfree[4] + (char)actionwk->actfree[5]; /* Line 177, Address: 0x101d1b8 */
   d1 += 126; /* Line 178, Address: 0x101d20c */
   if (d1 >= 0) /* Line 179, Address: 0x101d218 */
   {
@@ -184,7 +184,7 @@ static void t_move(sprite_status* actionwk) { /* Line 173, Address: 0x101d190 */
   }
 
   actionwk->actfree[4] = d0; /* Line 186, Address: 0x101d274 */
-  patchg(actionwk, pchg0); /* Line 187, Address: 0x101d27c */
+  patchg(actionwk, (unsigned char**)pchg0); /* Line 187, Address: 0x101d27c */
   actionsub(actionwk); /* Line 188, Address: 0x101d290 */
   frameout_s00(actionwk, ((short*)actionwk)[23]); /* Line 189, Address: 0x101d29c */
 } /* Line 190, Address: 0x101d2b0 */
@@ -202,7 +202,7 @@ static void t_movie(sprite_status* actionwk) { /* Line 192, Address: 0x101d2d0 *
   actionwk->actfree[4] += 4; /* Line 202, Address: 0x101d34c */
   if (!(actionwk->actfree[4] & 127)) actionwk->actflg ^= 1, actionwk->cddat ^= 1; /* Line 203, Address: 0x101d35c */
 
-  patchg(actionwk, pchg0); /* Line 205, Address: 0x101d394 */
+  patchg(actionwk, (unsigned char**)pchg0); /* Line 205, Address: 0x101d394 */
   actionsub(actionwk); /* Line 206, Address: 0x101d3a8 */
 } /* Line 207, Address: 0x101d3b4 */
 
@@ -302,7 +302,7 @@ static void p_movie(sprite_status* actionwk) { /* Line 296, Address: 0x101d7f0 *
     frameout(actionwk); /* Line 302, Address: 0x101d844 */
     return; /* Line 303, Address: 0x101d850 */
   }
-  patchg(actionwk, pchg1); /* Line 305, Address: 0x101d858 */
+  patchg(actionwk, (unsigned char**)pchg1); /* Line 305, Address: 0x101d858 */
   actionsub(actionwk); /* Line 306, Address: 0x101d86c */
 } /* Line 307, Address: 0x101d878 */
 
@@ -311,6 +311,6 @@ static void set_sproffset(sprite_status* actionwk) { /* Line 309, Address: 0x101
   unsigned short d0;
 
   a1 = tbl0sproffset; /* Line 313, Address: 0x101d8a0 */
-  d0 = (stageno.w + 1) * 4 + time_flag; /* Line 314, Address: 0x101d8a8 */
+  d0 = (stageno.w + 1 << 2) + (unsigned short)time_flag; /* Line 314, Address: 0x101d8a8 */
   actionwk->sproffset = a1[d0]; /* Line 315, Address: 0x101d8dc */
 } /* Line 316, Address: 0x101d8f4 */

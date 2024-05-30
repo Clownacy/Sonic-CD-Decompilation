@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "SCR31A.H"
+#include "..\SAVE.H"
+#include "..\SCRCHK.H"
+#include "COL3C.H"
 
 static unsigned char z31cwrttbl[49] = {
   0, 0, 0, 0, 0, 0, 6, 6, 0, 0,
@@ -33,9 +36,6 @@ extern unsigned char mapwkb[8][64];
 extern unsigned char mapwka[8][64];
 extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
-
-
-
 
 
 
@@ -276,7 +276,7 @@ void playposiset() { /* Line 231, Address: 0x10278c0 */
   }
 
 
-  if ((unsigned short)xWk >= 161) { /* Line 279, Address: 0x1027a44 */
+  if ((unsigned short)xWk > 160) { /* Line 279, Address: 0x1027a44 */
     xWk -= 160; /* Line 280, Address: 0x1027a58 */
   } /* Line 281, Address: 0x1027a64 */
   else {
@@ -289,7 +289,7 @@ void playposiset() { /* Line 231, Address: 0x10278c0 */
   }
   scra_h_posit.w.h = xWk; /* Line 290, Address: 0x1027aa4 */
 
-  if ((unsigned short)yWk >= 97) { /* Line 292, Address: 0x1027aac */
+  if ((unsigned short)yWk > 96) { /* Line 292, Address: 0x1027aac */
     yWk -= 96; /* Line 293, Address: 0x1027ac0 */
   } /* Line 294, Address: 0x1027acc */
   else {
@@ -330,7 +330,7 @@ void scrbinit(short xWk, short yWk) { /* Line 326, Address: 0x1027bb0 */
 
   yWk = 536; /* Line 331, Address: 0x1027bc4 */
   wD2 = 1312 - scra_v_posit.w.h; /* Line 332, Address: 0x1027bcc */
-  if ((unsigned short)scra_v_posit.w.h < 1313) { /* Line 333, Address: 0x1027bf4 */
+  if ((unsigned short)scra_v_posit.w.h <= 1312) { /* Line 333, Address: 0x1027bf4 */
     yWk -= wD2 / 2; /* Line 334, Address: 0x1027c10 */
     if (yWk < 0) { /* Line 335, Address: 0x1027c44 */
       yWk = 0; /* Line 336, Address: 0x1027c58 */
@@ -397,9 +397,9 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
   vscroll.w.l = scrb_v_posit.w.h; /* Line 397, Address: 0x1027eac */
 
 
-  scrollz_h(scra_hz * 16, 64); /* Line 400, Address: 0x1027ebc */
-  scrollc_h(scra_hz * 8 * 3, 16); /* Line 401, Address: 0x1027ee0 */
-  scrollb_h(scra_hz * 4 * 3, 4); /* Line 402, Address: 0x1027f1c */
+  scrollz_h(scra_hz << 4, 64); /* Line 400, Address: 0x1027ebc */
+  scrollc_h((long int)(scra_hz << 3) * 3, 16); /* Line 401, Address: 0x1027ee0 */
+  scrollb_h((long int)(scra_hz << 2) * 3, 4); /* Line 402, Address: 0x1027f1c */
 
   lD0.w.l = 536; /* Line 404, Address: 0x1027f58 */
   wD1 = 1312; /* Line 405, Address: 0x1027f60 */
@@ -454,7 +454,7 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
   } /* Line 454, Address: 0x10280a8 */
   wD1 = 0; /* Line 455, Address: 0x10280b8 */
   for ( ; i < 78; ++i) { /* Line 456, Address: 0x10280bc */
-    lD2.l = (wD1 << 8) + 32767 + 1; /* Line 457, Address: 0x10280c4 */
+    lD2.l = ((long int)(int)wD1 << 8) + 32768; /* Line 457, Address: 0x10280c4 */
     pHscrWk->l += lD2.l; /* Line 458, Address: 0x10280e8 */
     ++pHscrWk; /* Line 459, Address: 0x10280f8 */
     ++wD1; /* Line 460, Address: 0x10280fc */
@@ -477,9 +477,9 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
   for (i = 0; i < 7; ++i) { /* Line 477, Address: 0x1028190 */
     lD0.w.l = -lD3.w.l; /* Line 478, Address: 0x102819c */
     *pHScrollWork-- = lD0.w.l; /* Line 479, Address: 0x10281b8 */
-    lD3.l = ((unsigned int)lD3.l >> 16) | (lD3.l << 16 & -65536); /* Line 480, Address: 0x10281cc */
+    lD3.l = (unsigned int)lD3.l >> 16 & 65535 | lD3.l << 16 & -65536; /* Line 480, Address: 0x10281cc */
     lD3.l += lD2.l; /* Line 481, Address: 0x10281f0 */
-    lD3.l = ((unsigned int)lD3.l >> 16) | (lD3.l << 16 & -65536); /* Line 482, Address: 0x1028200 */
+    lD3.l = (unsigned int)lD3.l >> 16 & 65535 | lD3.l << 16 & -65536; /* Line 482, Address: 0x1028200 */
   } /* Line 483, Address: 0x1028224 */
 
   pHScrollWork = &hscrollwork[163]; /* Line 485, Address: 0x1028234 */
@@ -543,7 +543,7 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
   } /* Line 543, Address: 0x10284a8 */
 
 
-  lD2.l = scra_h_posit.w.h - scrb_h_posit.w.h; /* Line 546, Address: 0x10284b8 */
+  lD2.l = (short)(scra_h_posit.w.h - scrb_h_posit.w.h); /* Line 546, Address: 0x10284b8 */
   lD2.l <<= 6; /* Line 547, Address: 0x10284f0 */
   lD2.l /= 44; /* Line 548, Address: 0x10284fc */
   lD2.l <<= 11; /* Line 549, Address: 0x102851c */
@@ -551,9 +551,9 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
 
   for (i = 0; i < 10; ++i) { /* Line 552, Address: 0x1028534 */
     *pHScrollWork++ = (unsigned short)-lD3.w.l; /* Line 553, Address: 0x1028540 */
-    lD3.l = ((unsigned int)lD3.l >> 16) | (lD3.l << 16 & -65536); /* Line 554, Address: 0x102856c */
+    lD3.l = (unsigned int)lD3.l >> 16 & 65535 | lD3.l << 16 & -65536; /* Line 554, Address: 0x102856c */
     lD3.l += lD2.l; /* Line 555, Address: 0x1028590 */
-    lD3.l = ((unsigned int)lD3.l >> 16) | (lD3.l << 16 & -65536); /* Line 556, Address: 0x10285a0 */
+    lD3.l = (unsigned int)lD3.l >> 16 & 65535 | lD3.l << 16 & -65536; /* Line 556, Address: 0x10285a0 */
   } /* Line 557, Address: 0x10285c4 */
 
   lD0.w.l = (unsigned short)-scrb_h_posit.w.h; /* Line 559, Address: 0x10285d4 */
@@ -579,7 +579,7 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
     }
 
     wD5 -= wD1; /* Line 581, Address: 0x10286dc */
-    pHScrollWork += lD0.w.l / 2U; /* Line 582, Address: 0x10286e8 */
+    pHScrollWork += (unsigned int)lD0.w.l / 2; /* Line 582, Address: 0x10286e8 */
     waterdirec.w += 64; /* Line 583, Address: 0x102870c */
 
     zonescrsetsub0(&pHScrollBuff, (unsigned short**)&pHScrollWork, z31c_kawatbl, awasintbl, wD1, (unsigned short*)&lD2.w.l, &wD4); /* Line 585, Address: 0x1028720 */
@@ -606,9 +606,9 @@ void scroll() { /* Line 367, Address: 0x1027d90 */
     wD3 = 1472 - scra_v_posit.w.h; /* Line 606, Address: 0x1028810 */
     if (wD3 <= wD4) { /* Line 607, Address: 0x1028830 */
       wD5 &= 255; /* Line 608, Address: 0x1028848 */
-      wD3 = (char)awasintbl[wD5]; /* Line 609, Address: 0x1028850 */
+      wD3 = (short)(char)awasintbl[wD5]; /* Line 609, Address: 0x1028850 */
       wD3 += scra_h_posit.w.h; /* Line 610, Address: 0x102887c */
-      wD3 = -wD3; /* Line 611, Address: 0x1028890 */
+      wD3 = -(short)wD3; /* Line 611, Address: 0x1028890 */
       lD0.w.h = wD3; /* Line 612, Address: 0x10288ac */
     }
 
@@ -678,14 +678,14 @@ label5:
 
 
 label6:
-  wD3 = *pA3++ + 32 - *pwD4; /* Line 681, Address: 0x1028af0 */
+  wD3 = *pA3++ + 24 - *pwD4; /* Line 681, Address: 0x1028af0 */
   if ((short)wD3 > 0) goto label8; /* Line 682, Address: 0x1028b20 */
 
 
   if (*pA3 > *pwD4) goto label1; /* Line 685, Address: 0x1028b38 */
 
 
-  wD3 = *pA3++ + 32 - *pwD4; /* Line 688, Address: 0x1028b5c */
+  wD3 = *pA3++ + 24 - *pwD4; /* Line 688, Address: 0x1028b5c */
   if ((short)wD3 > 0) goto label8; /* Line 689, Address: 0x1028b8c */
   goto label1; /* Line 690, Address: 0x1028ba4 */
 
@@ -782,7 +782,7 @@ void scrh_move() { /* Line 762, Address: 0x1028e40 */
 void right_check(unsigned short wD0) { /* Line 782, Address: 0x1028ef0 */
   unsigned short wD1;
 
-  if ((short)wD0 >= 17) { /* Line 785, Address: 0x1028efc */
+  if ((short)wD0 > 16) { /* Line 785, Address: 0x1028efc */
     wD0 = 16; /* Line 786, Address: 0x1028f1c */
   }
 
@@ -868,7 +868,7 @@ void scroll_v() { /* Line 840, Address: 0x10290f0 */
 
 
   wD0 -= scra_vline; /* Line 870, Address: 0x102921c */
-  if (wD0 != 0) { /* Line 871, Address: 0x1029230 */
+  if (wD0) { /* Line 871, Address: 0x1029230 */
     sv_move_main(wD0); /* Line 872, Address: 0x1029238 */
     return; /* Line 873, Address: 0x1029244 */
   }
@@ -897,14 +897,14 @@ void sv_move_main(unsigned short wD0) { /* Line 890, Address: 0x1029290 */
 
     wD1 = actwk[0].mspeed.w; /* Line 898, Address: 0x10292d0 */
     if ((short)wD1 < 0) { /* Line 899, Address: 0x10292dc */
-      wD1 = -wD1; /* Line 900, Address: 0x10292f4 */
+      wD1 = -(short)wD1; /* Line 900, Address: 0x10292f4 */
     }
 
     if (wD1 >= 2048) { /* Line 903, Address: 0x1029310 */
       sv_move_main2(wD0); /* Line 904, Address: 0x1029320 */
     } /* Line 905, Address: 0x102932c */
     else {
-      if ((short)wD0 >= 7) { /* Line 907, Address: 0x1029334 */
+      if ((short)wD0 > 6) { /* Line 907, Address: 0x1029334 */
         sv_move_plus(1536); /* Line 908, Address: 0x1029354 */
       } /* Line 909, Address: 0x1029360 */
       else if ((short)wD0 < -6) { /* Line 910, Address: 0x1029368 */
@@ -921,7 +921,7 @@ void sv_move_main(unsigned short wD0) { /* Line 890, Address: 0x1029290 */
 
 void sv_move_main1(unsigned short wD0) { /* Line 922, Address: 0x10293c0 */
 
-  if ((short)wD0 >= 3) { /* Line 924, Address: 0x10293cc */
+  if ((short)wD0 > 2) { /* Line 924, Address: 0x10293cc */
     sv_move_plus(512); /* Line 925, Address: 0x10293ec */
   } /* Line 926, Address: 0x10293f8 */
   else if ((short)wD0 < -2) { /* Line 927, Address: 0x1029400 */
@@ -936,7 +936,7 @@ void sv_move_main1(unsigned short wD0) { /* Line 922, Address: 0x10293c0 */
 
 void sv_move_main2(unsigned short wD0) { /* Line 937, Address: 0x1029450 */
 
-  if ((short)wD0 >= 17) { /* Line 939, Address: 0x102945c */
+  if ((short)wD0 > 16) { /* Line 939, Address: 0x102945c */
     sv_move_plus(4096); /* Line 940, Address: 0x102947c */
   } /* Line 941, Address: 0x1029488 */
   else if ((short)wD0 < -16) { /* Line 942, Address: 0x1029490 */
@@ -1464,7 +1464,7 @@ label1:
     WrtTblCnt = (unsigned short)(scrb_v_posit.w.h / 16); /* Line 1464, Address: 0x102a4cc */
 
     if (WrtTblCnt < 0) WrtTblCnt = 0; /* Line 1466, Address: 0x102a4fc */
-    if (WrtTblCnt >= 114) WrtTblCnt = 113; /* Line 1467, Address: 0x102a508 */
+    if (WrtTblCnt > 113) WrtTblCnt = 113; /* Line 1467, Address: 0x102a508 */
 
 
 

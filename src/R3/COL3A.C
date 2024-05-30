@@ -1,6 +1,19 @@
 #include "..\EQU.H"
 #include "COL3A.H"
 
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+static void colorset00(int ColorNo, int WorkOffs);
+
 palette_entry advacolor[64] = {
   {   0,  32, 160, 1 }, {   0,   0,  96, 1 }, {   0,   0, 192, 1 }, {  64,  64, 224, 1 },
   {  96,  96, 224, 1 }, { 128, 128, 224, 1 }, { 224, 224, 224, 1 }, { 224, 160,   0, 1 },
@@ -72,43 +85,30 @@ palette_entry zone3colora2[48] = {
   { 224, 224,   0, 1 }, { 224,   0, 224, 1 }, {   0,   0,   0, 1 }, {   0, 224,   0, 1 }
 };
 palette_part colortbl[6] = {
-  { advacolor, 0, 64 },
-  { advacolor, 0, 64 },
-  { advacolor2, 0, 64 },
-  { gamecolor, 0, 16 },
-  { zone3colora, 16, 48 },
-  { zone3colora2, 16, 48 }
+  { advacolor, 0, 64 }, { advacolor,    0, 64 }, { advacolor2,    0, 64 },
+  { gamecolor, 0, 16 }, { zone3colora, 16, 48 }, { zone3colora2, 16, 48 }
 };
 unsigned char col3a0cnt[8] = { 47, 3, 1, 0, 1, 1, 2, 2 };
-palette_entry col3a0col[3] = {
-  { 224, 224,   0, 1 },
-  { 224,   0,   0, 1 },
-  {   0,   0,   0, 1 }
-};
+palette_entry col3a0col[3] = { { 224, 224,   0, 1 }, { 224,   0,   0, 1 }, {   0,   0,   0, 1 } };
 unsigned char col3a1cnt[34] = {
-  60, 16, 1, 0,
-  2, 1, 1, 0, 2, 1, 1, 0, 2, 1, 1, 0, 2, 1, 1, 0, 2, 1, 1, 0, 2, 1, 1, 0, 2, 1, 1, 0,
-  8, 1
+  60, 16,  1,  0,  2,  1,  1,  0,  2,  1,
+   1,  0,  2,  1,  1,  0,  2,  1,  1,  0,
+   2,  1,  1,  0,  2,  1,  1,  0,  2,  1,
+   1,  0,  8,  1
 };
-palette_entry col3a1col[2] = {
-  { 224, 224,   0, 1 },
-  {   0,   0,   0, 1 }
-};
+palette_entry col3a1col[2] = { { 224, 224,   0, 1 }, {   0,   0,   0, 1 } };
 unsigned char col3a2cnt[32] = {
-  61, 15, 22, 0,
-  2, 1, 2, 0, 2, 1, 2, 0, 2, 1, 2, 0, 2, 1, 2, 0, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1
+  61, 15, 22,  0,  2,  1,  2,  0,  2,  1,
+   2,  0,  2,  1,  2,  0,  2,  1,  2,  0,
+   1,  2,  2,  1,  1,  2,  2,  1,  1,  2,
+   2,  1
 };
-palette_entry col3a2col[3] = {
-  {   0,   0,   0, 1 },
-  { 224,   0, 224, 1 },
-  { 224, 160, 224, 1 }
-};
+palette_entry col3a2col[3] = { {   0,   0,   0, 1 }, { 224,   0, 224, 1 }, { 224, 160, 224, 1 } };
 unsigned char col3a3cnt[6] = { 63, 2, 1, 0, 2, 1 };
-palette_entry col3a3col[2] = {
-  {   0, 224, 224, 1 },
-  {   0,   0,   0, 1 }
-};
+palette_entry col3a3col[2] = { {   0, 224, 224, 1 }, {   0,   0,   0, 1 } };
 static int FadeCount;
+
+
 
 
 unsigned short cntplus(unsigned char* work, unsigned short plus_data, unsigned short under_limit, unsigned short upper_limit) { /* Line 114, Address: 0x10244c0 */
@@ -188,7 +188,7 @@ int fadein0_new() { /* Line 184, Address: 0x1024800 */
   fadein1(); /* Line 188, Address: 0x1024814 */
 
 
-  if (++FadeCount >= 22) { /* Line 191, Address: 0x102481c */
+  if (++FadeCount > 21) { /* Line 191, Address: 0x102481c */
     FadeCount = 0; /* Line 192, Address: 0x102483c */
     return 1; /* Line 193, Address: 0x1024844 */
   }
@@ -262,7 +262,7 @@ static int fadeout_new() { /* Line 258, Address: 0x1024b80 */
   fadeout1(); /* Line 262, Address: 0x1024b94 */
 
 
-  if (++FadeCount >= 22) { /* Line 265, Address: 0x1024b9c */
+  if (++FadeCount > 21) { /* Line 265, Address: 0x1024b9c */
     FadeCount = 0; /* Line 266, Address: 0x1024bbc */
     return 1; /* Line 267, Address: 0x1024bc4 */
   }
@@ -335,7 +335,7 @@ static int flashin_new() { /* Line 331, Address: 0x1024e50 */
   flashin1(); /* Line 335, Address: 0x1024e64 */
 
 
-  if (++FadeCount >= 22) { /* Line 338, Address: 0x1024e6c */
+  if (++FadeCount > 21) { /* Line 338, Address: 0x1024e6c */
     FadeCount = 0; /* Line 339, Address: 0x1024e8c */
     return 1; /* Line 340, Address: 0x1024e94 */
   }
@@ -405,7 +405,7 @@ static int flashout_new() { /* Line 401, Address: 0x10251d0 */
   flashout1(); /* Line 405, Address: 0x10251e4 */
 
 
-  if (++FadeCount >= 22) { /* Line 408, Address: 0x10251ec */
+  if (++FadeCount > 21) { /* Line 408, Address: 0x10251ec */
     FadeCount = 0; /* Line 409, Address: 0x102520c */
     return 1; /* Line 410, Address: 0x1025214 */
   }

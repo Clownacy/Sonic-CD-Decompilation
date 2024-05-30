@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "TOGEBL3A.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
 
 static sprite_pattern spat_chg0 = {
   1,
@@ -11,9 +14,6 @@ static sprite_pattern spat_chg1 = {
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* togeball_pat[1] = { &spat_chg1 };
-
-
-
 
 
 
@@ -146,7 +146,7 @@ void act_move(sprite_status* actionwk) { /* Line 138, Address: 0x102b700 */
   d0 = ((short*)actionwk)[23]; /* Line 146, Address: 0x102b74c */
   d0 >>= 8; /* Line 147, Address: 0x102b75c */
 
-  sinset(d0, &sin, &cos); /* Line 149, Address: 0x102b768 */
+  sinset(d0, (short*)&sin, (short*)&cos); /* Line 149, Address: 0x102b768 */
   d0l = d1l = 0; /* Line 150, Address: 0x102b77c */
   d0l = sin << 16; /* Line 151, Address: 0x102b784 */
   d1l = cos << 16; /* Line 152, Address: 0x102b790 */
@@ -167,11 +167,11 @@ void act_move(sprite_status* actionwk) { /* Line 138, Address: 0x102b700 */
   *(int*)&a1->actfree[4] = actionwk->yposi.l + d2l; /* Line 167, Address: 0x102b834 */
   *(int*)&a1->actfree[0] = actionwk->xposi.l + d3l; /* Line 168, Address: 0x102b848 */
   a1 = &actwk[((unsigned short*)actionwk)[27]]; /* Line 169, Address: 0x102b85c */
-  *(int*)&a1->actfree[4] = actionwk->yposi.l + d2l; /* Line 170, Address: 0x102b880 */
-  *(int*)&a1->actfree[0] = actionwk->xposi.l + d3l; /* Line 171, Address: 0x102b898 */
+  *(int*)&a1->actfree[4] = actionwk->yposi.l + d0l + d2l; /* Line 170, Address: 0x102b880 */
+  *(int*)&a1->actfree[0] = actionwk->xposi.l + d1l + d3l; /* Line 171, Address: 0x102b898 */
   a1 = &actwk[((unsigned short*)actionwk)[28]]; /* Line 172, Address: 0x102b8b0 */
-  *(int*)&a1->actfree[4] = actionwk->yposi.l + d2l; /* Line 173, Address: 0x102b8d4 */
-  *(int*)&a1->actfree[0] = actionwk->xposi.l + d3l; /* Line 174, Address: 0x102b8e8 */
+  *(int*)&a1->actfree[4] = actionwk->yposi.l + d4l; /* Line 173, Address: 0x102b8d4 */
+  *(int*)&a1->actfree[0] = actionwk->xposi.l + d5l; /* Line 174, Address: 0x102b8e8 */
 } /* Line 175, Address: 0x102b8fc */
 
 void togeball_opt(sprite_status* actionwk) { /* Line 177, Address: 0x102b930 */

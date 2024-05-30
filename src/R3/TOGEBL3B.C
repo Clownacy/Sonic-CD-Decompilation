@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "TOGEBL3A.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
 
 static sprite_pattern spat_chg0 = {
   1,
@@ -11,9 +14,6 @@ static sprite_pattern spat_chg1 = {
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* togeball_pat[1] = { &spat_chg1 };
-
-
-
 
 
 
@@ -121,7 +121,7 @@ void act_move(sprite_status* actionwk) { /* Line 113, Address: 0x102c000 */
   d0 = ((short*)actionwk)[23]; /* Line 121, Address: 0x102c04c */
   d0 >>= 8; /* Line 122, Address: 0x102c05c */
 
-  sinset(d0, &sin, &cos); /* Line 124, Address: 0x102c068 */
+  sinset(d0, (short*)&sin, (short*)&cos); /* Line 124, Address: 0x102c068 */
   d0l = d1l = 0; /* Line 125, Address: 0x102c07c */
   d0l = sin << 16; /* Line 126, Address: 0x102c084 */
   d1l = cos << 16; /* Line 127, Address: 0x102c090 */

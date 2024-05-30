@@ -1,5 +1,20 @@
 #include "..\EQU.H"
 #include "MOVIE3.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\RIDECHK.H"
+
+static void die(sprite_status* moviewk);
+static void m_init(sprite_status* moviewk);
+static void m_wait(sprite_status* moviewk);
+static void m_die(sprite_status* moviewk);
+static void m_baku(sprite_status* moviewk);
+static void m1wait(sprite_status* moviewk);
+static void sub(sprite_status* moviewk);
+static void s_init(sprite_status* moviewk);
+static void s_move(sprite_status* moviewk);
 
 static unsigned char pchg00[6] = { 0, 2, 1, 3, 1, 255 };
 static unsigned char pchg01[58] = {
@@ -20,14 +35,7 @@ static sprite_pattern mov01 = { 1, { { -8, -4, 0, 317 } } };
 static sprite_pattern mov02 = { 1, { { -8, -4, 0, 318 } } };
 static sprite_pattern mov03 = { 1, { { -20, -24, 0, 319 } } };
 static sprite_pattern mov04 = { 1, { { -20, -24, 0, 320 } } };
-sprite_pattern* pat_movie[6] = {
-  &mov00,
-  &pat00,
-  &mov01,
-  &mov02,
-  &mov03,
-  &mov04
-};
+sprite_pattern* pat_movie[6] = { &mov00, &pat00, &mov01, &mov02, &mov03, &mov04 };
 static char tbl0[37] = {
     1,   0,   0,
     5, -18, -10,
@@ -44,14 +52,6 @@ static char tbl0[37] = {
    -1
 };
 
-
-
-
-
-
-
-
-
 void movie(sprite_status* moviewk) { /* Line 55, Address: 0x102e7e0 */
   void(*act_tbl[5])(sprite_status*) = { &m_init, &m_wait, &m_die, &m_baku, &m1wait }; /* Line 56, Address: 0x102e7ec */
 
@@ -59,7 +59,7 @@ void movie(sprite_status* moviewk) { /* Line 55, Address: 0x102e7e0 */
 
   act_tbl[moviewk->r_no0 / 2](moviewk); /* Line 60, Address: 0x102e844 */
   actionsub(moviewk); /* Line 61, Address: 0x102e880 */
-  if (moviewk->r_no0 >= 3) return; /* Line 62, Address: 0x102e88c */
+  if (moviewk->r_no0 > 2) return; /* Line 62, Address: 0x102e88c */
   frameout_s(moviewk); /* Line 63, Address: 0x102e8a4 */
   if (moviewk->actno == 0) divdevset(4); /* Line 64, Address: 0x102e8b0 */
 } /* Line 65, Address: 0x102e8d0 */
@@ -110,7 +110,7 @@ static void m_init(sprite_status* moviewk) { /* Line 74, Address: 0x102e910 */
   if (actwkchk(&new_actwk) != 0) { die(moviewk); return; } /* Line 110, Address: 0x102ec08 */
   new_actwk->actno = 57; /* Line 111, Address: 0x102ec30 */
   new_actwk->xposi.w.h = moviewk->xposi.w.h - 98; /* Line 112, Address: 0x102ec3c */
-  new_actwk->yposi.w.h = moviewk->yposi.w.h; /* Line 113, Address: 0x102ec60 */
+  new_actwk->yposi.w.h = (int)moviewk->yposi.w.h; /* Line 113, Address: 0x102ec60 */
   new_actwk->userflag.b.h = -127; /* Line 114, Address: 0x102ec80 */
   ((unsigned short*)new_actwk)[33] = moviewk - actwk; /* Line 115, Address: 0x102ec8c */
 } /* Line 116, Address: 0x102ecc0 */
@@ -158,8 +158,8 @@ static void m_baku(sprite_status* moviewk) { /* Line 142, Address: 0x102ede0 */
   if (actwkchk(&new_actwk) != 0) return; /* Line 158, Address: 0x102ee90 */
   new_actwk->actno = 24; /* Line 159, Address: 0x102eea4 */
   new_actwk->r_no1 = 1; /* Line 160, Address: 0x102eeb0 */
-  new_actwk->xposi.w.h = moviewk->xposi.w.h + x_add; /* Line 161, Address: 0x102eebc */
-  new_actwk->yposi.w.h = moviewk->yposi.w.h + y_add; /* Line 162, Address: 0x102eef0 */
+  new_actwk->xposi.w.h = moviewk->xposi.w.h + (short)x_add; /* Line 161, Address: 0x102eebc */
+  new_actwk->yposi.w.h = moviewk->yposi.w.h + (short)y_add; /* Line 162, Address: 0x102eef0 */
   soundset(158); /* Line 163, Address: 0x102ef24 */
 } /* Line 164, Address: 0x102ef30 */
 

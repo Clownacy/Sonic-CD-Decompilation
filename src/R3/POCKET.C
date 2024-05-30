@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "POCKET.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\PLAYSUB.H"
+#include "..\SCORE.H"
 
 static sprite_pattern pat_pocket1 =
 {
@@ -54,11 +59,6 @@ void(*pocket_move_tbl[11])(sprite_status*) =
   &a_move7,
   &a_move8
 };
-
-
-
-
-
 
 
 
@@ -297,7 +297,7 @@ void b_move(sprite_status* actionwk) { /* Line 291, Address: 0x101ffa0 */
     frameout(actionwk); /* Line 297, Address: 0x101ffe8 */
     return; /* Line 298, Address: 0x101fff4 */
   }
-  patchg(actionwk, pchg); /* Line 300, Address: 0x101fffc */
+  patchg(actionwk, (unsigned char**)pchg); /* Line 300, Address: 0x101fffc */
   actionsub(actionwk); /* Line 301, Address: 0x1020010 */
 } /* Line 302, Address: 0x102001c */
 
