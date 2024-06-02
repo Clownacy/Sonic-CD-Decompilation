@@ -1,12 +1,17 @@
 #include "..\EQU.H"
 #include "RBLK4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
 
-void rblk4_init(sprite_status* pActwk);
-void rblk4_wait(sprite_status* pActwk);
-void rblk4_move(sprite_status* pActwk);
-void rblk4_push(sprite_status* pActwk);
-void rblk4_ract_init(sprite_status* pActwk);
-void rblk4_ract_move(sprite_status* pActwk);
+static void rblk4_init(sprite_status* pActwk);
+static void rblk4_wait(sprite_status* pActwk);
+static void rblk4_move(sprite_status* pActwk);
+static void rblk4_push(sprite_status* pActwk);
+static void rblk4_ract_init(sprite_status* pActwk);
+static void rblk4_ract_move(sprite_status* pActwk);
 
 static sprite_pattern pat00 =
 {
@@ -142,11 +147,6 @@ sprite_pattern* rblk4pat[9] =
 
 
 
-
-
-
-
-
 void rblk4(sprite_status* pActwk) { /* Line 150, Address: 0x10244f0 */
   void(*tbl[4])(sprite_status*) = /* Line 151, Address: 0x10244fc */
   {
@@ -228,12 +228,12 @@ static void rblk4_wait(sprite_status* pActwk) { /* Line 216, Address: 0x1024810 
   if (pActwk->actfree[19] < 2) /* Line 228, Address: 0x1024878 */
   {
     d0 = pActwk->xposi.w.h; /* Line 230, Address: 0x1024890 */
-    d1 = pPlayerwk->sprhsize + 2 + pPlayerwk->xposi.w.h; /* Line 231, Address: 0x10248a0 */
+    d1 = pPlayerwk->xposi.w.h + (short)(pPlayerwk->sprhsize + 2); /* Line 231, Address: 0x10248a0 */
   } /* Line 232, Address: 0x10248dc */
   else
   {
     d1 = pActwk->xposi.w.h; /* Line 235, Address: 0x10248e4 */
-    d0 = -((char)pPlayerwk->sprhsize + 2) + pPlayerwk->xposi.w.h; /* Line 236, Address: 0x10248f4 */
+    d0 = pPlayerwk->xposi.w.h + (short)-((char)pPlayerwk->sprhsize + 2); /* Line 236, Address: 0x10248f4 */
   }
   if (d0 < d1) return; /* Line 238, Address: 0x1024940 */
   d0 -= d1; /* Line 239, Address: 0x102495c */
@@ -280,7 +280,7 @@ static void rblk4_move(sprite_status* pActwk) { /* Line 271, Address: 0x1024ab0 
 
   d0 = pActwk->actfree[19]; /* Line 281, Address: 0x1024af4 */
   d0 *= 4; /* Line 282, Address: 0x1024b00 */
-  d0 += pActwk->actfree[17]; /* Line 283, Address: 0x1024b10 */
+  d0 = d0 + pActwk->actfree[17]; /* Line 283, Address: 0x1024b10 */
   d0 = rkpchg0[d0]; /* Line 284, Address: 0x1024b2c */
   if (d0 & 128) /* Line 285, Address: 0x1024b3c */
   {
@@ -316,7 +316,7 @@ static void rblk4_push(sprite_status* pActwk) { /* Line 305, Address: 0x1024be0 
 
   d0 = pActwk->actfree[19]; /* Line 317, Address: 0x1024c2c */
   d0 *= 4; /* Line 318, Address: 0x1024c38 */
-  d0 += pActwk->actfree[17]; /* Line 319, Address: 0x1024c48 */
+  d0 = d0 + pActwk->actfree[17]; /* Line 319, Address: 0x1024c48 */
   d0 = pspchg0[d0]; /* Line 320, Address: 0x1024c64 */
   if (d0 & 128) /* Line 321, Address: 0x1024c74 */
   {
@@ -352,7 +352,7 @@ static void rblk4_push(sprite_status* pActwk) { /* Line 305, Address: 0x1024be0 
     sd0 = 16; /* Line 352, Address: 0x1024d88 */
     if (pActwk->actfree[19] & 2) /* Line 353, Address: 0x1024d94 */
     {
-      sd0 = -sd0; /* Line 355, Address: 0x1024dac */
+      sd0 *= -1; /* Line 355, Address: 0x1024dac */
     }
     sd0 += pActwk->xposi.w.h; /* Line 357, Address: 0x1024db8 */
     pPlayerwk->xposi.w.h = sd0; /* Line 358, Address: 0x1024dcc */
@@ -429,14 +429,14 @@ static void rblk4_ract_move(sprite_status* pActwk) { /* Line 406, Address: 0x102
     ride_on_clr(pActwk, &actwk[0]); /* Line 429, Address: 0x1025020 */
     return; /* Line 430, Address: 0x1025034 */
   }
-  d0 += d0; /* Line 432, Address: 0x102503c */
+  d0 = d0 + d0; /* Line 432, Address: 0x102503c */
   a2 = &xyofset_tbl1[d0]; /* Line 433, Address: 0x1025050 */
   if (pActwk->actfree[19]) /* Line 434, Address: 0x102505c */
   {
     a2 = &xyofset_tbl2[d0]; /* Line 436, Address: 0x102506c */
   }
-  pActwk->xposi.w.h = pRideact->xposi.w.h + *a2++; /* Line 438, Address: 0x1025078 */
-  pActwk->yposi.w.h = pRideact->yposi.w.h + *a2++; /* Line 439, Address: 0x10250b4 */
+  pActwk->xposi.w.h = pRideact->xposi.w.h + (short)*a2++; /* Line 438, Address: 0x1025078 */
+  pActwk->yposi.w.h = pRideact->yposi.w.h + (short)*a2++; /* Line 439, Address: 0x10250b4 */
 
   hitchk(pActwk, &actwk[0]); /* Line 441, Address: 0x10250f0 */
   if (pActwk->actfree[19] == 0) /* Line 442, Address: 0x1025104 */

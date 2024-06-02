@@ -1,18 +1,18 @@
 #include "..\EQU.H"
 #include "WALL42.H"
+#include "..\ACTION.H"
+#include "..\RIDECHK.H"
 
-void act_init(sprite_status* pActwk);
-void act_wait(sprite_status* pActwk);
-void act_move(sprite_status* pActwk);
-void act_stop(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_wait(sprite_status* pActwk);
+static void act_move(sprite_status* pActwk);
+static void act_stop(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   1,
   { { -32, -64, 0, 531 } }
 };
 sprite_pattern* pat_wall42[1] = { &pat00 };
-
-
 
 
 
@@ -66,7 +66,7 @@ void wall42(sprite_status* pActwk) { /* Line 52, Address: 0x102e010 */
   d0 = pActwk->xposi.w.h & -128; /* Line 66, Address: 0x102e09c */
   d1 = scra_h_posit.w.h - 128 & -128; /* Line 67, Address: 0x102e0c4 */
   d0 -= d1; /* Line 68, Address: 0x102e0f0 */
-  if (d0 >= 641) /* Line 69, Address: 0x102e0fc */
+  if (d0 > 640) /* Line 69, Address: 0x102e0fc */
   {
     a1 = ((unsigned char**)pActwk)[12]; /* Line 71, Address: 0x102e110 */
     *a1 &= 127; /* Line 72, Address: 0x102e118 */
@@ -88,9 +88,9 @@ static void act_init(sprite_status* pActwk) { /* Line 80, Address: 0x102e150 */
   pActwk->sproffset = 17514; /* Line 88, Address: 0x102e194 */
   pActwk->patbase = pat_wall42; /* Line 89, Address: 0x102e1a0 */
 
-  index = pActwk->cdsts; /* Line 91, Address: 0x102e1b0 */
+  index = (unsigned short)pActwk->cdsts; /* Line 91, Address: 0x102e1b0 */
   index *= 3; /* Line 92, Address: 0x102e1cc */
-  index += time_flag; /* Line 93, Address: 0x102e1dc */
+  index += (unsigned short)time_flag; /* Line 93, Address: 0x102e1dc */
   a1 = &flagwork[index]; /* Line 94, Address: 0x102e1fc */
   ((unsigned char**)pActwk)[12] = a1; /* Line 95, Address: 0x102e210 */
 
@@ -126,13 +126,13 @@ static void act_wait(sprite_status* pActwk) { /* Line 113, Address: 0x102e290 */
 static void act_move(sprite_status* pActwk) { /* Line 126, Address: 0x102e300 */
   int d0;
 
-  if (hitchk(pActwk, &actwk[0]) != 0) /* Line 129, Address: 0x102e310 */
+  if (hitchk(pActwk, &actwk[0])) /* Line 129, Address: 0x102e310 */
   {
     d0 = 32768; /* Line 131, Address: 0x102e32c */
     d0 <<= 8; /* Line 132, Address: 0x102e330 */
     actwk[0].mspeed.w = d0 & 65535; /* Line 133, Address: 0x102e334 */
   }
-  pActwk->xposi.l += 32767 + 1; /* Line 135, Address: 0x102e348 */
+  pActwk->xposi.l += 32768; /* Line 135, Address: 0x102e348 */
   if (((short*)pActwk)[23] == -1) /* Line 136, Address: 0x102e35c */
   {
     pActwk->r_no0 += 2; /* Line 138, Address: 0x102e378 */

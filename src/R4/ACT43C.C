@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT41A.H"
+#include "..\ACTION.H"
 #include "..\GOAL.H"
 #include "..\ITEM.H"
 #include "..\PLAYER.H"
@@ -99,7 +100,6 @@ void(*act_tbl[80])(sprite_status*) = {
   &egg4awa,
   &noact
 };
-
 
 
 

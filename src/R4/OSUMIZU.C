@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "OSUMIZU.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "PLAYSUB4.H"
 
 sprite_pattern osumizu_pat0 = {
   1,
@@ -30,9 +33,6 @@ sprite_pattern* pat_osumizu1[4] = {
 };
 unsigned char osumizu_chg0[6] = { 9, 0, 1, 2, 3, 255 };
 unsigned char* osumizu_chg[1] = { osumizu_chg0 };
-
-
-
 
 
 

@@ -1,4 +1,7 @@
 #include "..\EQU.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
 #include "BANEIWA.H"
 
 typedef struct {
@@ -8,8 +11,8 @@ typedef struct {
 }
 move_data;
 
-void baneiwa_init(sprite_status* pActwk);
-void baneiwa_move(sprite_status* pActwk);
+static void baneiwa_init(sprite_status* pActwk);
+static void baneiwa_move(sprite_status* pActwk);
 
 static sprite_pattern pat0 =
 {
@@ -17,9 +20,6 @@ static sprite_pattern pat0 =
   { { -16, -32, 0, 500 } }
 };
 sprite_pattern* baneiwapat[1] = { &pat0 };
-
-
-
 
 
 
@@ -161,8 +161,8 @@ static void baneiwa_move(sprite_status* pActwk) { /* Line 112, Address: 0x1029ec
   d1 = baneiwa_mvtbl[index].c; /* Line 161, Address: 0x102a020 */
   if (pActwk->actfree[18]) /* Line 162, Address: 0x102a038 */
   {
-    d0 = -d0; /* Line 164, Address: 0x102a048 */
-    d1 = -d1; /* Line 165, Address: 0x102a054 */
+    d0 *= -1; /* Line 164, Address: 0x102a048 */
+    d1 *= -1; /* Line 165, Address: 0x102a054 */
   }
   ((short*)pActwk)[33] = d0; /* Line 167, Address: 0x102a060 */
   pActwk->yspeed.w = d1; /* Line 168, Address: 0x102a068 */

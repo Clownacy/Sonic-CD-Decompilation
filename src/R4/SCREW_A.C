@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "SCREW_A.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "PLAYSUB4.H"
 
 static unsigned char pchg_00[7] = { 1, 0, 1, 2, 3, 4, 255 };
 static unsigned char* pchg[1] = { pchg_00 };
@@ -57,9 +60,6 @@ sprite_pattern* pat_screw1[5] = {
   &screw1_pat03,
   &screw1_pat04
 };
-
-
-
 
 
 

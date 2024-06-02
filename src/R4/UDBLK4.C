@@ -1,5 +1,9 @@
 #include "..\EQU.H"
 #include "UDBLK4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\RIDECHK.H"
 
 typedef struct {
   unsigned char kakudo;
@@ -14,41 +18,41 @@ typedef struct {
 }
 xofs_yofs_yspd;
 
-void sin_move(sprite_status* pActwk, short d2, short d3);
-void udblk4_type1(sprite_status* pActwk);
-void type1_init(sprite_status* pActwk);
-void type1_move(sprite_status* pActwk);
-void udblk4_type2();
-void udblk4_type3(sprite_status* pActwk);
-void type3_init(sprite_status* pActwk);
-void type3_move(sprite_status* pActwk);
-void udblk4_type4(sprite_status* pActwk);
-void type4_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1);
-void type4_init(sprite_status* pActwk);
-void type4_move(sprite_status* pActwk);
-void udblk4_type5(sprite_status* pActwk);
-void type5_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1, unsigned char d2, short d3);
-void type5_init(sprite_status* pActwk);
-void type5_move(sprite_status* pActwk);
-void udblk4_type6(sprite_status* pActwk);
-void type6_init(sprite_status* pActwk);
-void type6_move(sprite_status* pActwk);
-void udblk4_type7(sprite_status* pActwk);
-void type7_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1, unsigned char d2);
-void type7_init(sprite_status* pActwk);
-void type7_move(sprite_status* pActwk);
-void udblk4_type8(sprite_status* pActwk);
-void type8_init(sprite_status* pActwk);
-void type8_move(sprite_status* pActwk);
-void udblk4_type9(sprite_status* pActwk);
-void type9_init(sprite_status* pActwk);
-void type9_move(sprite_status* pActwk);
-void udblk4_typeA(sprite_status* pActwk);
-void typeA_init(sprite_status* pActwk);
-void typeA_move(sprite_status* pActwk);
-void udblk4_typeB(sprite_status* pActwk);
-void typeB_init(sprite_status* pActwk);
-void typeB_move(sprite_status* pActwk);
+static void sin_move(sprite_status* pActwk, short d2, short d3);
+static void udblk4_type1(sprite_status* pActwk);
+static void type1_init(sprite_status* pActwk);
+static void type1_move(sprite_status* pActwk);
+static void udblk4_type2(sprite_status* pActwk);
+static void udblk4_type3(sprite_status* pActwk);
+static void type3_init(sprite_status* pActwk);
+static void type3_move(sprite_status* pActwk);
+static void udblk4_type4(sprite_status* pActwk);
+static void type4_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1);
+static void type4_init(sprite_status* pActwk);
+static void type4_move(sprite_status* pActwk);
+static void udblk4_type5(sprite_status* pActwk);
+static void type5_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1, unsigned char d2, short d3);
+static void type5_init(sprite_status* pActwk);
+static void type5_move(sprite_status* pActwk);
+static void udblk4_type6(sprite_status* pActwk);
+static void type6_init(sprite_status* pActwk);
+static void type6_move(sprite_status* pActwk);
+static void udblk4_type7(sprite_status* pActwk);
+static void type7_coset(sprite_status* pActwk, sprite_status* pNewActwk, unsigned char d0, short d1, unsigned char d2);
+static void type7_init(sprite_status* pActwk);
+static void type7_move(sprite_status* pActwk);
+static void udblk4_type8(sprite_status* pActwk);
+static void type8_init(sprite_status* pActwk);
+static void type8_move(sprite_status* pActwk);
+static void udblk4_type9(sprite_status* pActwk);
+static void type9_init(sprite_status* pActwk);
+static void type9_move(sprite_status* pActwk);
+static void udblk4_typeA(sprite_status* pActwk);
+static void typeA_init(sprite_status* pActwk);
+static void typeA_move(sprite_status* pActwk);
+static void udblk4_typeB(sprite_status* pActwk);
+static void typeB_init(sprite_status* pActwk);
+static void typeB_move(sprite_status* pActwk);
 
 static sprite_pattern pat00 =
 {
@@ -107,10 +111,6 @@ sprite_pattern* udblk4pat9[2] =
   &pat06
 };
 sprite_pattern* udblk4patA[1] = { &pat07 };
-
-
-
-
 
 
 
@@ -238,9 +238,9 @@ static void type1_init(sprite_status* pActwk) { /* Line 234, Address: 0x102cc60 
   kakudo_xofst tbl[7] = /* Line 238, Address: 0x102cc78 */
   {
     { 192,   0 },
-    { 168, 224 },
-    { 144, 192 },
-    { 120, 160 },
+    { 168, -32 },
+    { 144, -64 },
+    { 120, -96 },
     { 216,  32 },
     { 240,  64 },
     {   8,  96 }
@@ -259,7 +259,7 @@ static void type1_init(sprite_status* pActwk) { /* Line 234, Address: 0x102cc60 
   {
     ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 260, Address: 0x102cd44 */
     d1 = 1; /* Line 261, Address: 0x102cd54 */
-    for (i = 0; i < 6; ++i) /* Line 262, Address: 0x102cd5c */
+    for (i = 0; i <= 5; ++i) /* Line 262, Address: 0x102cd5c */
     {
       if (actwkchk(&pNewActwk) == 0) /* Line 264, Address: 0x102cd68 */
       {
@@ -482,7 +482,7 @@ static void type5_init(sprite_status* pActwk) { /* Line 471, Address: 0x102d610 
 
   if (pActwk->actfree[18] == 0) /* Line 483, Address: 0x102d6a0 */
   {
-    
+
     ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 486, Address: 0x102d6b4 */
     pActwk->actfree[16] = 0; /* Line 487, Address: 0x102d6c4 */
     if (actwkchk(&pNewActwk) == 0) /* Line 488, Address: 0x102d6cc */
@@ -526,9 +526,9 @@ static void type6_init(sprite_status* pActwk) { /* Line 523, Address: 0x102d810 
   kakudo_xofst tbl[7] = /* Line 526, Address: 0x102d824 */
   {
     {   0,   0 },
-    {  32, 224 },
-    {  64, 192 },
-    {  96, 160 },
+    {  32, -32 },
+    {  64, -64 },
+    {  96, -96 },
     {  32,  32 },
     {  64,  64 },
     {  96,  96 }
@@ -537,7 +537,7 @@ static void type6_init(sprite_status* pActwk) { /* Line 523, Address: 0x102d810 
   pActwk->r_no0 += 2; /* Line 537, Address: 0x102d858 */
   ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 538, Address: 0x102d868 */
   d1 = 0; /* Line 539, Address: 0x102d878 */
-  for (i = 0; i < 7; ++i) /* Line 540, Address: 0x102d87c */
+  for (i = 0; i <= 6; ++i) /* Line 540, Address: 0x102d87c */
   {
     if (actwkchk(&pNewActwk) == 0) /* Line 542, Address: 0x102d888 */
     {
@@ -547,7 +547,7 @@ static void type6_init(sprite_status* pActwk) { /* Line 523, Address: 0x102d810 
       ((short*)pNewActwk)[28] = (unsigned short)(pActwk - actwk); /* Line 547, Address: 0x102d8c4 */
       pNewActwk->actfree[19] = 255; /* Line 548, Address: 0x102d900 */
       pNewActwk->actfree[16] = tbl[d1].kakudo; /* Line 549, Address: 0x102d90c */
-      pNewActwk->xposi.w.h = pActwk->xposi.w.h + tbl[d1].xofst; /* Line 550, Address: 0x102d928 */
+      pNewActwk->xposi.w.h = pActwk->xposi.w.h + (short)tbl[d1].xofst; /* Line 550, Address: 0x102d928 */
     }
     ++d1; /* Line 552, Address: 0x102d970 */
   } /* Line 553, Address: 0x102d97c */
@@ -699,7 +699,7 @@ static void type8_init(sprite_status* pActwk) { /* Line 668, Address: 0x102ddf0 
       if (pActwk->actfree[19] == 0) /* Line 699, Address: 0x102df60 */
       {
         d1 = 1; /* Line 701, Address: 0x102df74 */
-        for (i = 0; i < 2; ++i) /* Line 702, Address: 0x102df7c */
+        for (i = 0; i <= 1; ++i) /* Line 702, Address: 0x102df7c */
         {
           if (actwkchk(&pNewActwk) == 0) /* Line 704, Address: 0x102df88 */
           {
@@ -708,7 +708,7 @@ static void type8_init(sprite_status* pActwk) { /* Line 668, Address: 0x102ddf0 
             pNewActwk->actfree[19] = d1; /* Line 708, Address: 0x102dfb4 */
             pNewActwk->actfree[16] = 128; /* Line 709, Address: 0x102dfbc */
             d0 = -64; /* Line 710, Address: 0x102dfc8 */
-            if (d1 != 1) d0 = -d0; /* Line 711, Address: 0x102dfd4 */
+            if (d1 != 1) d0 *= -1; /* Line 711, Address: 0x102dfd4 */
             pNewActwk->xposi.w.h = pActwk->xposi.w.h + d0; /* Line 712, Address: 0x102dff0 */
             pNewActwk->yposi.w.h = pActwk->yposi.w.h; /* Line 713, Address: 0x102e01c */
             ((short*)pNewActwk)[29] = ((short*)pActwk)[29]; /* Line 714, Address: 0x102e02c */
@@ -859,9 +859,9 @@ static void typeA_init(sprite_status* pActwk) { /* Line 855, Address: 0x102e550 
   kakudo_xofst tbl[7] = /* Line 859, Address: 0x102e564 */
   {
     {   0,   0 },
-    { 224, 224 },
-    { 192, 192 },
-    { 160, 160 },
+    { 224, -32 },
+    { 192, -64 },
+    { 160, -96 },
     { 224,  32 },
     { 192,  64 },
     { 160,  96 }
@@ -880,7 +880,7 @@ static void typeA_init(sprite_status* pActwk) { /* Line 855, Address: 0x102e550 
   {
     ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 881, Address: 0x102e61c */
     d1 = 1; /* Line 882, Address: 0x102e62c */
-    for (i = 0; i < 6; ++i) /* Line 883, Address: 0x102e634 */
+    for (i = 0; i <= 5; ++i) /* Line 883, Address: 0x102e634 */
     {
       if (actwkchk(&pNewActwk) == 0) /* Line 885, Address: 0x102e640 */
       {
@@ -891,7 +891,7 @@ static void typeA_init(sprite_status* pActwk) { /* Line 855, Address: 0x102e550 
         pNewActwk->actfree[18] = d1; /* Line 891, Address: 0x102e68c */
         pNewActwk->actfree[16] = tbl[d1].kakudo; /* Line 892, Address: 0x102e694 */
 
-        pNewActwk->xposi.w.h = pActwk->xposi.w.h + tbl[d1].xofst; /* Line 894, Address: 0x102e6ac */
+        pNewActwk->xposi.w.h = pActwk->xposi.w.h + (short)tbl[d1].xofst; /* Line 894, Address: 0x102e6ac */
       }
       ++d1; /* Line 896, Address: 0x102e6f0 */
     } /* Line 897, Address: 0x102e6f8 */
@@ -974,7 +974,7 @@ static void typeB_init(sprite_status* pActwk) { /* Line 940, Address: 0x102e870 
     ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 974, Address: 0x102e938 */
     ((short*)pActwk)[27] = pActwk->yposi.w.h; /* Line 975, Address: 0x102e948 */
     d1 = 1; /* Line 976, Address: 0x102e958 */
-    for (i = 0; i < 5; ++i) /* Line 977, Address: 0x102e960 */
+    for (i = 0; i <= 4; ++i) /* Line 977, Address: 0x102e960 */
     {
       if (actwkchk(&pNewActwk) == 0) /* Line 979, Address: 0x102e96c */
       {
@@ -988,8 +988,8 @@ static void typeB_init(sprite_status* pActwk) { /* Line 940, Address: 0x102e870 
     } /* Line 988, Address: 0x102e9c8 */
   }
   a1 = &tbl[pActwk->actfree[18]]; /* Line 990, Address: 0x102e9e8 */
-  pActwk->xposi.w.h = ((short*)pActwk)[29] + a1->xofs; /* Line 991, Address: 0x102ea00 */
-  pActwk->yposi.w.h = ((short*)pActwk)[27] + a1->yofs; /* Line 992, Address: 0x102ea38 */
+  pActwk->xposi.w.h = ((short*)pActwk)[29] + (short)a1->xofs; /* Line 991, Address: 0x102ea00 */
+  pActwk->yposi.w.h = ((short*)pActwk)[27] + (short)a1->yofs; /* Line 992, Address: 0x102ea38 */
   pActwk->yspeed.w += a1->yspd; /* Line 993, Address: 0x102ea70 */
 } /* Line 994, Address: 0x102ea84 */
 
@@ -999,7 +999,7 @@ static void typeB_init(sprite_status* pActwk) { /* Line 940, Address: 0x102e870 
 static void typeB_move(sprite_status* pActwk) { /* Line 999, Address: 0x102eaa0 */
   short d0;
 
-  pActwk->yposi.l += pActwk->yspeed.w << 8; /* Line 1002, Address: 0x102eaac */
+  pActwk->yposi.l = pActwk->yposi.l + (pActwk->yspeed.w << 8); /* Line 1002, Address: 0x102eaac */
 
 
   if (pActwk->yspeed.w < 0) /* Line 1005, Address: 0x102ead4 */

@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "MOVIE4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
+#include "PLAYSUB4.H"
 
 unsigned char movie1_pchg00[6] = { 0, 2, 1, 3, 1, 255 };
 unsigned char movie1_pchg01[58] =
@@ -152,11 +157,6 @@ char tbl0[37] =
 
 
 
-
-
-
-
-
 void movie4(sprite_status* pActwk) { /* Line 160, Address: 0x1022340 */
   void(*tbl_m[5])(sprite_status*) = /* Line 161, Address: 0x102234c */
   {
@@ -173,7 +173,7 @@ void movie4(sprite_status* pActwk) { /* Line 160, Address: 0x1022340 */
   {
     tbl_m[pActwk->r_no0 / 2](pActwk); /* Line 174, Address: 0x102239c */
     actionsub(pActwk); /* Line 175, Address: 0x10223d8 */
-    if (pActwk->r_no0 < 3) /* Line 176, Address: 0x10223e4 */
+    if (pActwk->r_no0 <= 2) /* Line 176, Address: 0x10223e4 */
       frameout_s(pActwk); /* Line 177, Address: 0x10223fc */
   }
 } /* Line 179, Address: 0x1022408 */
@@ -218,7 +218,7 @@ void mm_init(sprite_status* pActwk) { /* Line 191, Address: 0x1022450 */
   subactwk->xposi.w.h = pActwk->xposi.w.h - 21; /* Line 218, Address: 0x1022540 */
   subactwk->yposi.w.h = pActwk->yposi.w.h - 7; /* Line 219, Address: 0x1022564 */
   subactwk->userflag.b.h = -1; /* Line 220, Address: 0x1022588 */
-  ((short*)subactwk)[33] = (unsigned char)(pActwk - actwk); /* Line 221, Address: 0x1022594 */
+  ((short*)subactwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 221, Address: 0x1022594 */
 
   if (actwkchk(&subactwk) != 0) /* Line 223, Address: 0x10225d4 */
   {
@@ -229,7 +229,7 @@ void mm_init(sprite_status* pActwk) { /* Line 191, Address: 0x1022450 */
   subactwk->xposi.w.h = pActwk->xposi.w.h - 88; /* Line 229, Address: 0x102260c */
   subactwk->yposi.w.h = pActwk->yposi.w.h - 4; /* Line 230, Address: 0x1022630 */
   subactwk->userflag.b.h = 1; /* Line 231, Address: 0x1022654 */
-  ((short*)subactwk)[33] = (unsigned char)(pActwk - actwk); /* Line 232, Address: 0x1022660 */
+  ((short*)subactwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 232, Address: 0x1022660 */
 
   if (actwkchk(&subactwk) != 0) /* Line 234, Address: 0x10226a0 */
   {
@@ -240,7 +240,7 @@ void mm_init(sprite_status* pActwk) { /* Line 191, Address: 0x1022450 */
   subactwk->xposi.w.h = pActwk->xposi.w.h - 76; /* Line 240, Address: 0x10226d4 */
   subactwk->yposi.w.h = pActwk->yposi.w.h - 28; /* Line 241, Address: 0x10226f8 */
   subactwk->userflag.b.h = -128; /* Line 242, Address: 0x102271c */
-  ((short*)subactwk)[33] = (unsigned char)(pActwk - actwk); /* Line 243, Address: 0x1022728 */
+  ((short*)subactwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 243, Address: 0x1022728 */
 
   if (actwkchk(&subactwk) != 0) /* Line 245, Address: 0x1022768 */
   {
@@ -251,7 +251,7 @@ void mm_init(sprite_status* pActwk) { /* Line 191, Address: 0x1022450 */
   subactwk->xposi.w.h = pActwk->xposi.w.h - 84; /* Line 251, Address: 0x102279c */
   subactwk->yposi.w.h = pActwk->yposi.w.h - 17; /* Line 252, Address: 0x10227c0 */
   subactwk->userflag.b.h = -127; /* Line 253, Address: 0x10227e4 */
-  ((short*)subactwk)[33] = (unsigned char)(pActwk - actwk); /* Line 254, Address: 0x10227f0 */
+  ((short*)subactwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 254, Address: 0x10227f0 */
 } /* Line 255, Address: 0x1022830 */
 
 
@@ -273,7 +273,7 @@ void mm_die(sprite_status* pActwk) { /* Line 271, Address: 0x10228a0 */
   pActwk->patno = 1; /* Line 273, Address: 0x10228bc */
   pActwk->actfree[21] = 255; /* Line 274, Address: 0x10228c8 */
 
-  if (hitchk(pActwk, &actwk[0]) != 0) ride_on_clr(pActwk, &actwk[0]); /* Line 276, Address: 0x10228d4 */
+  if (hitchk(pActwk, &actwk[0])) ride_on_clr(pActwk, &actwk[0]); /* Line 276, Address: 0x10228d4 */
 } /* Line 277, Address: 0x1022904 */
 
 
@@ -287,8 +287,8 @@ void m_baku(sprite_status* pActwk) { /* Line 281, Address: 0x1022920 */
   temp = ((char**)pActwk)[12]; /* Line 287, Address: 0x102293c */
   if (*temp >= 0) /* Line 288, Address: 0x1022944 */
   {
-    ((short*)pActwk)[23] += 256; /* Line 290, Address: 0x1022958 */
-    timeb = ((short*)pActwk)[23] >> 8; /* Line 291, Address: 0x1022968 */
+    ((unsigned short*)pActwk)[23] += 256; /* Line 290, Address: 0x1022958 */
+    timeb = ((unsigned short*)pActwk)[23] >> 8; /* Line 291, Address: 0x1022968 */
     if (timeb == *temp) /* Line 292, Address: 0x1022980 */
     {
       ++temp; /* Line 294, Address: 0x1022998 */
@@ -303,8 +303,8 @@ void m_baku(sprite_status* pActwk) { /* Line 281, Address: 0x1022920 */
         subactwk->r_no1 = 1; /* Line 303, Address: 0x10229e4 */
         subactwk->xposi.w.h = pActwk->xposi.w.h; /* Line 304, Address: 0x10229f0 */
         subactwk->yposi.w.h = pActwk->yposi.w.h; /* Line 305, Address: 0x1022a00 */
-        subactwk->xposi.w.h += xx; /* Line 306, Address: 0x1022a10 */
-        subactwk->yposi.w.h += yy; /* Line 307, Address: 0x1022a30 */
+        subactwk->xposi.w.h += (unsigned short)xx; /* Line 306, Address: 0x1022a10 */
+        subactwk->yposi.w.h += (unsigned short)yy; /* Line 307, Address: 0x1022a30 */
         soundset(158); /* Line 308, Address: 0x1022a50 */
       }
     }

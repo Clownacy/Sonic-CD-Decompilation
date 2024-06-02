@@ -1,5 +1,9 @@
 #include "..\EQU.H"
 #include "RENKETU4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\RIDECHK.H"
 
 sprite_pattern renketu4_pat0 = {
   1,
@@ -72,10 +76,6 @@ sprite_pattern* renketu4pat[2] = {
 
 
 
-
-
-
-
 void renketu4(sprite_status* pActwk) { /* Line 79, Address: 0x1025cc0 */
   unsigned short xwk1;
   unsigned short xwk2;
@@ -89,7 +89,7 @@ void renketu4(sprite_status* pActwk) { /* Line 79, Address: 0x1025cc0 */
 
   xwk1 = ((unsigned short*)pActwk)[29] & 65408; /* Line 90, Address: 0x1025d38 */
   xwk2 = (unsigned short)scra_h_posit.w.h - 128 & 65408; /* Line 91, Address: 0x1025d50 */
-  if ((unsigned short)(xwk1 - xwk2) >= 641) { /* Line 92, Address: 0x1025d70 */
+  if ((unsigned short)(xwk1 - xwk2) > 640) { /* Line 92, Address: 0x1025d70 */
     frameout(pActwk); /* Line 93, Address: 0x1025d90 */
   }
 } /* Line 95, Address: 0x1025d9c */
@@ -102,9 +102,9 @@ void renketu4(sprite_status* pActwk) { /* Line 79, Address: 0x1025cc0 */
 
 
 void renketu4_ridechk(sprite_status* pActwk) { /* Line 104, Address: 0x1025dc0 */
-  if (ridechk(pActwk, &actwk[0]) != 0) { /* Line 105, Address: 0x1025dcc */
+  if (ridechk(pActwk, &actwk[0])) { /* Line 105, Address: 0x1025dcc */
 
-    actwk[0].yposi.w.h = pActwk->yposi.w.h - pActwk->sprvsize - actwk[0].sprvsize + 2; /* Line 107, Address: 0x1025de8 */
+    actwk[0].yposi.w.h = pActwk->yposi.w.h - (short)pActwk->sprvsize - (short)actwk[0].sprvsize + 2; /* Line 107, Address: 0x1025de8 */
   }
 
 } /* Line 110, Address: 0x1025e3c */
@@ -148,7 +148,7 @@ void renketu4_init(sprite_status* pActwk) { /* Line 119, Address: 0x1025e50 */
     ((short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 148, Address: 0x1025f28 */
     ((short*)pActwk)[27] = pActwk->yposi.w.h; /* Line 149, Address: 0x1025f38 */
 
-    for (i = 1; i < 9; ++i) { /* Line 151, Address: 0x1025f48 */
+    for (i = 1; i <= 8; ++i) { /* Line 151, Address: 0x1025f48 */
       if (actwkchk(&pNewactwk) == 0) { /* Line 152, Address: 0x1025f58 */
         pNewactwk->actno = 62; /* Line 153, Address: 0x1025f6c */
         pNewactwk->userflag.b.h = pActwk->userflag.b.h; /* Line 154, Address: 0x1025f78 */
@@ -192,7 +192,7 @@ void renketu4_move(sprite_status* pActwk) { /* Line 186, Address: 0x10260a0 */
 
   ((short*)pActwk)[33] += ((short*)pActwk)[26]; /* Line 193, Address: 0x10260bc */
 
-  sinset(pActwk->actfree[21], &wD0, &wD1); /* Line 195, Address: 0x10260d4 */
+  sinset(pActwk->actfree[21], (short*)&wD0, (short*)&wD1); /* Line 195, Address: 0x10260d4 */
 
   lD0.l = (short)wD0 * 6 >> 4; /* Line 197, Address: 0x10260ec */
   lD1.l = (short)wD1 * 6 >> 4; /* Line 198, Address: 0x1026114 */
@@ -200,7 +200,7 @@ void renketu4_move(sprite_status* pActwk) { /* Line 186, Address: 0x10260a0 */
   lD0.w.h = lD0.w.l; /* Line 200, Address: 0x1026148 */
   lD0.w.l = wk; /* Line 201, Address: 0x1026150 */
   wk = lD1.w.h; /* Line 202, Address: 0x1026154 */
-  lD1.w.h = lD0.w.l; /* Line 203, Address: 0x1026160 */
+  lD1.w.h = lD1.w.l; /* Line 203, Address: 0x1026160 */
   lD1.w.l = wk; /* Line 204, Address: 0x1026168 */
 
   lD4.w.l = lD5.w.l = 0; /* Line 206, Address: 0x102616c */

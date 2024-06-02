@@ -1,14 +1,19 @@
 #include "..\EQU.H"
 #include "AMENBO.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\SUICIDE.H"
+#include "PLAYSUB4.H"
 
-void act_init(sprite_status* pActwk);
-void act_accel(sprite_status* pActwk);
-void act_decel(sprite_status* pActwk);
-void act_stop(sprite_status* pActwk);
-void act_stop1(sprite_status* pActwk);
-void act_move0(sprite_status* pActwk);
-void act_tama(sprite_status* pActwk);
-int act_check(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_accel(sprite_status* pActwk);
+static void act_decel(sprite_status* pActwk);
+static void act_stop(sprite_status* pActwk);
+static void act_stop1(sprite_status* pActwk);
+static void act_move0(sprite_status* pActwk);
+static void act_tama(sprite_status* pActwk);
+static int act_check(sprite_status* pActwk);
 
 static unsigned char pchg_b0[4] = { 20, 0, 1, 255 };
 static unsigned char pchg_e0[4] = { 10, 0, 1, 255 };
@@ -169,11 +174,6 @@ sprite_pattern* pat_amenbo_e[4] =
 
 
 
-
-
-
-
-
 void amenbo(sprite_status* pActwk) { /* Line 177, Address: 0x101e950 */
   static void(*act_tbl[5])(sprite_status*) =
   {
@@ -196,7 +196,7 @@ void amenbo(sprite_status* pActwk) { /* Line 177, Address: 0x101e950 */
     frameout_s(pActwk); /* Line 196, Address: 0x101e9d8 */
     return; /* Line 197, Address: 0x101e9e4 */
   }
-  if (enemy_suicide(pActwk) != 0) return; /* Line 199, Address: 0x101e9ec */
+  if (enemy_suicide(pActwk)) return; /* Line 199, Address: 0x101e9ec */
   act_tbl[pActwk->r_no0 / 2](pActwk); /* Line 200, Address: 0x101ea00 */
   actionsub(pActwk); /* Line 201, Address: 0x101ea44 */
   frameout_s(pActwk); /* Line 202, Address: 0x101ea50 */
@@ -243,7 +243,7 @@ static void act_accel(sprite_status* pActwk) { /* Line 237, Address: 0x101eba0 *
   else
     lD5 = -49152; /* Line 244, Address: 0x101ebe8 */
 
-  if (lD5 >= lD6) /* Line 246, Address: 0x101ebf0 */
+  if (lD6 <= lD5) /* Line 246, Address: 0x101ebf0 */
   {
     lD6 = lD5; /* Line 248, Address: 0x101ebfc */
 

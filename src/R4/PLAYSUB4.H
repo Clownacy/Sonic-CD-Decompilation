@@ -54,5 +54,5 @@ void bou(sprite_status* pActwk);
 void bou_init(sprite_status* pActwk);
 void bou_move0(sprite_status* pActwk);
 void bou_move1(sprite_status* pActwk);
-void bou_move2();
+void bou_move2(sprite_status* pActwk);
 int bou_coli(sprite_status* pActwk);

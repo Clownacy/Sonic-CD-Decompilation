@@ -1,10 +1,14 @@
 #include "..\EQU.H"
 #include "KOWASI4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
 
-void m_init(sprite_status* pActwk);
-void m_wait(sprite_status* pActwk);
-void m_down(sprite_status* pActwk);
-void m_make(sprite_status* pActwk);
+static void m_init(sprite_status* pActwk);
+static void m_wait(sprite_status* pActwk);
+static void m_down(sprite_status* pActwk);
+static void m_make(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   1,
@@ -23,10 +27,6 @@ static void(*kowasi4_act_tbl[3])(sprite_status*) = {
   &m_wait,
   &m_down
 };
-
-
-
-
 
 
 
@@ -121,7 +121,7 @@ static void m_wait(sprite_status* pActwk) { /* Line 118, Address: 0x102a920 */
     pActwk->r_no0 += 2; /* Line 121, Address: 0x102a950 */
     ((short*)pActwk)[23] = actwk[0].xspeed.w; /* Line 122, Address: 0x102a960 */
     ((short*)pActwk)[25] = actwk[0].yspeed.w; /* Line 123, Address: 0x102a970 */
-    if (hitchk(pActwk, &actwk[0]) != 0) { /* Line 124, Address: 0x102a980 */
+    if (hitchk(pActwk, &actwk[0])) { /* Line 124, Address: 0x102a980 */
       ride_on_clr(pActwk, &actwk[0]); /* Line 125, Address: 0x102a99c */
     }
 
@@ -184,16 +184,16 @@ static void m_make(sprite_status* pActwk) { /* Line 159, Address: 0x102aac0 */
   pSpeed = tbl0speed; /* Line 184, Address: 0x102ab5c */
   spdwk1 = spdwk2 = ((short*)pActwk)[23]; /* Line 185, Address: 0x102ab60 */
   if (spdwk1 < 0) { /* Line 186, Address: 0x102ab78 */
-    spdwk1 = -spdwk1; /* Line 187, Address: 0x102ab88 */
+    spdwk1 *= -1; /* Line 187, Address: 0x102ab88 */
   }
 
 
   if ((yspdwk = ((short*)pActwk)[25]) < 0) { /* Line 191, Address: 0x102ab94 */
-    yspdwk = -yspdwk; /* Line 192, Address: 0x102abb4 */
+    yspdwk *= -1; /* Line 192, Address: 0x102abb4 */
   }
 
 
-  if (spdwk1 <= yspdwk) { /* Line 196, Address: 0x102abc0 */
+  if (yspdwk <= spdwk1) { /* Line 196, Address: 0x102abc0 */
     pSpeed += 8; /* Line 197, Address: 0x102abdc */
     if (spdwk2 < 0) { /* Line 198, Address: 0x102abe0 */
       pSpeed += 8; /* Line 199, Address: 0x102abf0 */
@@ -223,8 +223,8 @@ static void m_make(sprite_status* pActwk) { /* Line 159, Address: 0x102aac0 */
     pNewact->sprhs = pNewact->sprhsize = pNewact->sprvsize = 8; /* Line 223, Address: 0x102acd8 */
     pNewact->xposi.w.h += *pPosi++; /* Line 224, Address: 0x102acfc */
     pNewact->yposi.w.h += *pPosi++; /* Line 225, Address: 0x102ad18 */
-    *(int*)&pActwk->actfree[0] = *pSpeed++; /* Line 226, Address: 0x102ad34 */
-    *(int*)&pActwk->actfree[4] = *pSpeed++; /* Line 227, Address: 0x102ad4c */
+    *(int*)&pNewact->actfree[0] = *pSpeed++; /* Line 226, Address: 0x102ad34 */
+    *(int*)&pNewact->actfree[4] = *pSpeed++; /* Line 227, Address: 0x102ad4c */
   } /* Line 228, Address: 0x102ad64 */
 
 

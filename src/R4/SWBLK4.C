@@ -1,11 +1,15 @@
 #include "..\EQU.H"
 #include "SWBLK4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\RIDECHK.H"
 
-void switchr4_init(sprite_status* pActwk);
-void switchr4_move(sprite_status* pActwk);
-unsigned int switchr4_colichk(sprite_status* pActwk, sprite_status* pPlayerwk);
-void swblkr4_init(sprite_status* pActwk);
-void swblkr4_move(sprite_status* pActwk);
+static void switchr4_init(sprite_status* pActwk);
+static void switchr4_move(sprite_status* pActwk);
+static unsigned int switchr4_colichk(sprite_status* pActwk, sprite_status* pPlayerwk);
+static void swblkr4_init(sprite_status* pActwk);
+static void swblkr4_move(sprite_status* pActwk);
 
 static sprite_pattern switchr4_pat0 = {
   1,
@@ -102,10 +106,6 @@ static void(*swblkr4_jmp_tbl[2])(sprite_status*) = {
 
 
 
-
-
-
-
 void switchr4(sprite_status* pActwk) { /* Line 109, Address: 0x1016f30 */
   sprite_status* pRideact;
   short actidx;
@@ -114,9 +114,9 @@ void switchr4(sprite_status* pActwk) { /* Line 109, Address: 0x1016f30 */
   ride_on_chk(pActwk, &actwk[0]); /* Line 114, Address: 0x1016f88 */
   if ((actidx = ((short*)pActwk)[28]) != 0) { /* Line 115, Address: 0x1016f9c */
     pRideact = &actwk[actidx]; /* Line 116, Address: 0x1016fbc */
-    pActwk->xposi.w.h = (char)pActwk->actfree[14] /* Line 117, Address: 0x1016fdc */
+    pActwk->xposi.w.h = (short)(char)pActwk->actfree[14] /* Line 117, Address: 0x1016fdc */
                       + pRideact->xposi.w.h;
-    pActwk->yposi.w.h = (char)pActwk->actfree[15] /* Line 119, Address: 0x101701c */
+    pActwk->yposi.w.h = (short)(char)pActwk->actfree[15] /* Line 119, Address: 0x101701c */
                       + pRideact->yposi.w.h;
   }
 
@@ -188,14 +188,14 @@ static unsigned int switchr4_colichk(sprite_status* pActwk, sprite_status* pPlay
   short szwk;
   short poswk;
 
-  szwk = (char)pActwk->sprhsize + 8; /* Line 191, Address: 0x10171f4 */
+  szwk = (short)(char)pActwk->sprhsize + 8; /* Line 191, Address: 0x10171f4 */
   poswk = szwk + (pPlayerwk->xposi.w.h - pActwk->xposi.w.h); /* Line 192, Address: 0x1017228 */
   if (poswk < 0 || poswk >= szwk * 2) { /* Line 193, Address: 0x1017268 */
     return 0; /* Line 194, Address: 0x1017298 */
   }
 
 
-  poswk = (char)pPlayerwk->sprvsize + pPlayerwk->yposi.w.h; /* Line 198, Address: 0x10172a4 */
+  poswk = (short)(char)pPlayerwk->sprvsize + pPlayerwk->yposi.w.h; /* Line 198, Address: 0x10172a4 */
   szwk = pActwk->yposi.w.h - 16 - poswk; /* Line 199, Address: 0x10172e8 */
   if (szwk > 0 || szwk < -16) { /* Line 200, Address: 0x1017318 */
     return 0; /* Line 201, Address: 0x101733c */
@@ -269,7 +269,7 @@ void swblkr4(sprite_status* pActwk) { /* Line 246, Address: 0x1017360 */
 
   xwk = ((short*)pActwk)[29] & -128; /* Line 270, Address: 0x1017498 */
   hwk = scra_h_posit.w.h - 128 & -128; /* Line 271, Address: 0x10174c0 */
-  if ((unsigned short)(xwk - hwk) >= 641) { /* Line 272, Address: 0x10174ec */
+  if ((unsigned short)(xwk - hwk) > 640) { /* Line 272, Address: 0x10174ec */
     frameout(pActwk); /* Line 273, Address: 0x1017514 */
   }
 } /* Line 275, Address: 0x1017520 */
@@ -396,7 +396,7 @@ static void swblkr4_move(sprite_status* pActwk) { /* Line 344, Address: 0x101783
     }
   } /* Line 397, Address: 0x10179d4 */
   else {
-    if ((pActwk->yspeed.w += 8) >= 257) { /* Line 399, Address: 0x10179dc */
+    if ((pActwk->yspeed.w += 8) > 256) { /* Line 399, Address: 0x10179dc */
       pActwk->yspeed.w = 256; /* Line 400, Address: 0x1017a08 */
     }
   }

@@ -1,75 +1,75 @@
 #include "..\EQU.H"
 #include "COLI4.H"
+#include "..\FCOL.H"
+#include "..\LOADER2.H"
+#include "..\PLAYER.H"
+#include "..\SCORE.H"
+#include "PLAYSUB4.H"
+
+extern short actwkchk(sprite_status** ppActwk);
 
 static unsigned char bCarry;
 unsigned char colitbl[64][2] =
 {
-  { 20, 20 },
-  { 18, 12 },
-  { 12, 16 },
-  {  4, 16 },
-  { 12, 18 },
-  { 16, 16 },
-  {  6,  6 },
-  { 24, 12 },
-  { 12, 16 },
-  { 16, 12 },
-  {  8,  8 },
-  { 20, 16 },
-  { 20,  8 },
-  { 14, 14 },
-  { 24, 24 },
-  { 40, 16 },
-  { 16, 24 },
-  {  8, 16 },
-  { 32, 112 },
-  { 64, 32 },
-  { 128, 32 },
-  { 32, 32 },
-  {  8,  8 },
-  {  4,  4 },
-  { 32,  8 },
-  { 12, 12 },
-  {  8,  4 },
-  { 24,  4 },
-  { 40,  4 },
-  {  4,  8 },
-  {  4, 24 },
-  {  4, 40 },
-  {  4, 32 },
-  { 24, 24 },
-  { 12, 24 },
-  { 72,  8 },
-  {  8, 12 },
-  { 16,  8 },
-  { 32, 16 },
-  { 32, 16 },
-  { 12, 12 },
-  {  0,  0 },
-  {  0,  0 },
-  { 24,  8 },
-  { 20,  8 },
-  {  2,  2 },
-  { 24, 12 },
-  { 14, 19 },
-  { 12,  8 },
-  {  4,  4 },
-  { 22, 18 },
-  {  0,  0 },
-  {  0,  0 },
-  {  0,  0 },
-  {  0,  0 },
-  {  0,  0 },
-  {  0,  0 },
-  { 40, 36 },
-  { 18, 17 },
-  { 32, 20 },
-  { 32, 24 },
-  {  3,  3 },
-  {  4,  4 },
-  {  0,  0 }
+  {  20,  20 }, {  18,  12 },
+  {  12,  16 }, {   4,  16 },
+  {  12,  18 }, {  16,  16 },
+  {   6,   6 }, {  24,  12 },
+  {  12,  16 }, {  16,  12 },
+  {   8,   8 }, {  20,  16 },
+  {  20,   8 }, {  14,  14 },
+  {  24,  24 }, {  40,  16 },
+  {  16,  24 }, {   8,  16 },
+  {  32, 112 }, {  64,  32 },
+  { 128,  32 }, {  32,  32 },
+  {   8,   8 }, {   4,   4 },
+  {  32,   8 }, {  12,  12 },
+  {   8,   4 }, {  24,   4 },
+  {  40,   4 }, {   4,   8 },
+  {   4,  24 }, {   4,  40 },
+  {   4,  32 }, {  24,  24 },
+  {  12,  24 }, {  72,   8 },
+  {   8,  12 }, {  16,   8 },
+  {  32,  16 }, {  32,  16 },
+  {  12,  12 }, {   0,   0 },
+  {   0,   0 }, {  24,   8 },
+  {  20,   8 }, {   2,   2 },
+  {  24,  12 }, {  14,  19 },
+  {  12,   8 }, {   4,   4 },
+  {  22,  18 }, {   0,   0 },
+  {   0,   0 }, {   0,   0 },
+  {   0,   0 }, {   0,   0 },
+  {   0,   0 }, {  40,  36 },
+  {  18,  17 }, {  32,  20 },
+  {  32,  24 }, {   3,   3 },
+  {   4,   4 }, {   0,   0 }
 };
 unsigned short escoretbl[4] = { 10, 20, 50, 100 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 short pcol(sprite_status* pActwk) { /* Line 74, Address: 0x1015640 */
   short iXwork = pActwk->xposi.w.h, /* Line 75, Address: 0x101566c */
@@ -139,7 +139,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
 
   iColiData = pColliAct->xposi.w.h - iColiwk; /* Line 140, Address: 0x1015884 */
   bCarry = CCset(iColiData, iXposi); /* Line 141, Address: 0x10158b0 */
-  iColiData -= iXposi; /* Line 142, Address: 0x10158d4 */
+  iColiData = iColiData - iXposi; /* Line 142, Address: 0x10158d4 */
 
   if (bCarry == 1) /* Line 144, Address: 0x10158fc */
   {
@@ -152,7 +152,7 @@ short CollitblDataXchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
       return 0; /* Line 152, Address: 0x1015984 */
   }
 
-  if (iColiData >= 17) /* Line 155, Address: 0x1015990 */
+  if (iColiData > 16) /* Line 155, Address: 0x1015990 */
     return 0; /* Line 156, Address: 0x10159a4 */
 
 
@@ -186,9 +186,9 @@ short CollitblDataYchk(sprite_status* pActwk, sprite_status* pColliAct, short iX
 
   iColiData = colitbl[iColiNo][1]; /* Line 187, Address: 0x1015a18 */
 
-  iYwork = pActwk->yposi.w.h - iColiData; /* Line 189, Address: 0x1015a44 */
+  iYwork = pColliAct->yposi.w.h - iColiData; /* Line 189, Address: 0x1015a44 */
   bCarry = CCset(iYwork, iYposi); /* Line 190, Address: 0x1015a70 */
-  iYwork -= iYposi; /* Line 191, Address: 0x1015a94 */
+  iYwork = iYwork - iYposi; /* Line 191, Address: 0x1015a94 */
   if (bCarry == 1) /* Line 192, Address: 0x1015abc */
   {
     iColiData += iColiData; /* Line 194, Address: 0x1015ad4 */
@@ -275,7 +275,7 @@ short pcolitem(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 272, A
   if ((pColliAct->colino & 63) != 6) /* Line 275, Address: 0x1015cb4 */
   {
 
-    if (((short*)pActwk)[26] < 90) /* Line 278, Address: 0x1015cd0 */
+    if (((unsigned short*)pActwk)[26] < 90) /* Line 278, Address: 0x1015cd0 */
       pColliAct->r_no0 += 2; /* Line 279, Address: 0x1015ce8 */
   } /* Line 280, Address: 0x1015cf8 */
   else
@@ -437,7 +437,7 @@ short pcolplay(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 419, A
 
 
 short pcole(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 439, Address: 0x1016210 */
-  if (((short*)pActwk)[26] != 0) /* Line 440, Address: 0x1016220 */
+  if (((unsigned short*)pActwk)[26] != 0) /* Line 440, Address: 0x1016220 */
     return -1; /* Line 441, Address: 0x1016234 */
   else
     return playdamageset(pActwk, pColliAct); /* Line 443, Address: 0x1016240 */
@@ -599,7 +599,7 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
 
     case 1:
       if (cColiNo < 60) return -1; /* Line 601, Address: 0x101668c */
-      if (cColiNo >= 64) return -1; /* Line 602, Address: 0x10166ac */
+      if (cColiNo > 63) return -1; /* Line 602, Address: 0x10166ac */
       eggman_chk(pActwk, pColliAct); /* Line 603, Address: 0x10166cc */
       goto label1; /* Line 604, Address: 0x10166dc */
 

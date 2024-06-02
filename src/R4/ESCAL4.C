@@ -1,5 +1,7 @@
 #include "..\EQU.H"
 #include "ESCAL4.H"
+#include "..\ACTION.H"
+#include "..\RIDECHK.H"
 
 sprite_pattern escal4_pat0 = {
   1,
@@ -67,8 +69,6 @@ sprite_pattern* escal4pat[2] = {
 
 
 
-
-
 void escal4(sprite_status* pActwk) { /* Line 72, Address: 0x1021c90 */
   void(*escal4_acttbl[3])(sprite_status*) = { /* Line 73, Address: 0x1021c9c */
     &escal4_init,
@@ -79,7 +79,7 @@ void escal4(sprite_status* pActwk) { /* Line 72, Address: 0x1021c90 */
   escal4_acttbl[pActwk->r_no0 / 2](pActwk); /* Line 79, Address: 0x1021cc0 */
   actionsub(pActwk); /* Line 80, Address: 0x1021cfc */
 
-  if ((pActwk->xposi.w.h & 65408) - ((scra_h_posit.w.h - 128) & 65408) < 641) return; /* Line 82, Address: 0x1021d08 */
+  if ((pActwk->xposi.w.h & 65408) - ((scra_h_posit.w.h - 128) & 65408) <= 640) return; /* Line 82, Address: 0x1021d08 */
 
 
 

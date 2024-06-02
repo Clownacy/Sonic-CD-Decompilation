@@ -33,7 +33,7 @@ void scrchk() { /* Line 26, Address: 0x101c090 */
   {
     if (scralim_n_down < scralim_down) /* Line 34, Address: 0x101c0d8 */
     {
-      wD1 = -wD1; /* Line 36, Address: 0x101c104 */
+      wD1 *= -1; /* Line 36, Address: 0x101c104 */
       if (scra_v_posit.w.h >= scralim_n_down) /* Line 37, Address: 0x101c110 */
       {
         scralim_down = scra_v_posit.w.h; /* Line 39, Address: 0x101c13c */
@@ -45,7 +45,7 @@ void scrchk() { /* Line 26, Address: 0x101c090 */
     }
 
 
-    temp1.l = scra_v_posit.w.h + 8; /* Line 48, Address: 0x101c18c */
+    temp1.w.l = scra_v_posit.w.h + 8; /* Line 48, Address: 0x101c18c */
     temp2.w.l = scralim_down; /* Line 49, Address: 0x101c1ac */
     if (temp1.l >= temp2.l) /* Line 50, Address: 0x101c1b8 */
     {
@@ -125,7 +125,7 @@ int bossclr_scrset(short DownLim) { /* Line 122, Address: 0x101c410 */
   scralim_n_down = DownLim; /* Line 125, Address: 0x101c41c */
   DownLim -= scralim_down; /* Line 126, Address: 0x101c428 */
   if (DownLim < 0) /* Line 127, Address: 0x101c43c */
-    DownLim = -DownLim; /* Line 128, Address: 0x101c450 */
+    DownLim *= -1; /* Line 128, Address: 0x101c450 */
 
   if (DownLim < 4) /* Line 130, Address: 0x101c45c */
     scralim_down = scralim_n_down; /* Line 131, Address: 0x101c474 */

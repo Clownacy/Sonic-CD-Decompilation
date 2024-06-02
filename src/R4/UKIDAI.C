@@ -1,11 +1,15 @@
 #include "..\EQU.H"
 #include "UKIDAI.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\RIDECHK.H"
 
-void a_init(sprite_status* pActwk);
-void a_moving(sprite_status* pActwk);
-void a_wait(sprite_status* pActwk);
-void a_move(sprite_status* pActwk);
-void a_move1(sprite_status* pActwk);
+static void a_init(sprite_status* pActwk);
+static void a_moving(sprite_status* pActwk);
+static void a_wait(sprite_status* pActwk);
+static void a_move(sprite_status* pActwk);
+static void a_move1(sprite_status* pActwk);
 
 static sprite_pattern pat00 =
 {
@@ -13,10 +17,6 @@ static sprite_pattern pat00 =
   { { -16, -8, 0, 530 } }
 };
 sprite_pattern* pat_ukidai[1] = { &pat00 };
-
-
-
-
 
 
 
@@ -125,7 +125,7 @@ static void a_moving(sprite_status* pActwk) { /* Line 98, Address: 0x102d350 */
 static void a_wait(sprite_status* pActwk) { /* Line 125, Address: 0x102d430 */
   pActwk->yposi.w.h = waterposi; /* Line 126, Address: 0x102d43c */
 
-  if (ridechk(pActwk, &actwk[0]) != 0) /* Line 128, Address: 0x102d44c */
+  if (ridechk(pActwk, &actwk[0])) /* Line 128, Address: 0x102d44c */
   {
     pActwk->r_no0 += 2; /* Line 130, Address: 0x102d468 */
     pActwk->xposi.w.h = actwk[0].xposi.w.h; /* Line 131, Address: 0x102d478 */
@@ -169,13 +169,13 @@ static void a_move1(sprite_status* pActwk) { /* Line 153, Address: 0x102d530 */
     a6 = 2; /* Line 169, Address: 0x102d5bc */
     d6 = 1; /* Line 170, Address: 0x102d5c0 */
     d5 = 0; /* Line 171, Address: 0x102d5cc */
-    d5 = pActwk->sprhs; /* Line 172, Address: 0x102d5d0 */
+    d5 = (unsigned short)pActwk->sprhs; /* Line 172, Address: 0x102d5d0 */
     if (d4 < 0) /* Line 173, Address: 0x102d5ec */
     {
       a6 = 1; /* Line 175, Address: 0x102d5fc */
-      d6 = -d6; /* Line 176, Address: 0x102d600 */
-      d5 = -d5; /* Line 177, Address: 0x102d60c */
-      d4 = -d4; /* Line 178, Address: 0x102d618 */
+      d6 *= -1; /* Line 176, Address: 0x102d600 */
+      d5 *= -1; /* Line 177, Address: 0x102d60c */
+      d4 *= -1; /* Line 178, Address: 0x102d618 */
     }
     *(int*)&pActwk->actfree[0] = a6; /* Line 180, Address: 0x102d624 */
     ((short*)pActwk)[25] = d6; /* Line 181, Address: 0x102d630 */
@@ -206,7 +206,7 @@ static void a_move1(sprite_status* pActwk) { /* Line 153, Address: 0x102d530 */
       pActwk->xposi.w.h += ((short*)pActwk)[25]; /* Line 206, Address: 0x102d770 */
     } while (1); /* Line 207, Address: 0x102d788 */
   }
-  if (ridechk(pActwk, pPlayerwk) != 0) /* Line 209, Address: 0x102d790 */
+  if (ridechk(pActwk, pPlayerwk)) /* Line 209, Address: 0x102d790 */
   {
     pPlayerwk->xposi.w.h = pActwk->xposi.w.h; /* Line 211, Address: 0x102d7a8 */
   }

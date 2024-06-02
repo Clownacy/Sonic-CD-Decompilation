@@ -1,10 +1,14 @@
 #include "..\EQU.H"
 #include "BRUNKO4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\RIDECHK.H"
 
-void brunko4_ridechk(sprite_status* pActwk);
-void brunko_init(sprite_status* pActwk);
-void brunko_move(sprite_status* pActwk);
-void brunko4_posiset(sprite_status* pActwk);
+static void brunko4_ridechk(sprite_status* pActwk);
+static void brunko_init(sprite_status* pActwk);
+static void brunko_move(sprite_status* pActwk);
+static void brunko4_posiset(sprite_status* pActwk);
 
 static sprite_pattern pat0 =
 {
@@ -91,10 +95,6 @@ sprite_pattern* brunko4pat[3] =
 
 
 
-
-
-
-
 void brunko4(sprite_status* pActwk) { /* Line 98, Address: 0x1022080 */
   short wD0, wD1;
   static void(*tbl[2])(sprite_status*) =
@@ -110,17 +110,17 @@ void brunko4(sprite_status* pActwk) { /* Line 98, Address: 0x1022080 */
   wD0 = ((short*)pActwk)[29] & -128; /* Line 110, Address: 0x10220e4 */
   wD1 = (scra_h_posit.w.h - 128) & -128; /* Line 111, Address: 0x102210c */
   wD0 -= wD1; /* Line 112, Address: 0x1022138 */
-  if ((unsigned short)wD0 < 641) return; /* Line 113, Address: 0x1022144 */
+  if ((unsigned short)wD0 <= 640) return; /* Line 113, Address: 0x1022144 */
   frameout(pActwk); /* Line 114, Address: 0x1022158 */
 } /* Line 115, Address: 0x1022164 */
 
 
 
 static void brunko4_ridechk(sprite_status* pActwk) { /* Line 119, Address: 0x1022180 */
-  if (ridechk(pActwk, &actwk[0]) != 0) /* Line 120, Address: 0x102218c */
+  if (ridechk(pActwk, &actwk[0])) /* Line 120, Address: 0x102218c */
   {
 
-    actwk[0].yposi.w.h = (pActwk->yposi.w.h - pActwk->sprvsize) - actwk[0].sprvsize + 2; /* Line 123, Address: 0x10221a8 */
+    actwk[0].yposi.w.h = (pActwk->yposi.w.h - (short)pActwk->sprvsize) - (short)actwk[0].sprvsize + 2; /* Line 123, Address: 0x10221a8 */
   }
 } /* Line 125, Address: 0x10221fc */
 
@@ -149,7 +149,7 @@ static void brunko_init(sprite_status* pActwk) { /* Line 130, Address: 0x1022210
     if (actwkchk2(pActwk, &subActwk) == 0) /* Line 149, Address: 0x10222d0 */
     {
       subActwk->actno = 39; /* Line 151, Address: 0x10222e8 */
-      ((short*)subActwk)[28] = (unsigned char)(pActwk - actwk); /* Line 152, Address: 0x10222f4 */
+      ((short*)subActwk)[28] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 152, Address: 0x10222f4 */
       ((char*)subActwk)[61] = -16; /* Line 153, Address: 0x1022334 */
       subActwk->actfree[14] = 16; /* Line 154, Address: 0x1022340 */
       subActwk->userflag.b.h = (unsigned char)(pActwk->userflag.b.h & 15); /* Line 155, Address: 0x102234c */
@@ -196,8 +196,8 @@ static void brunko_move(sprite_status* pActwk) { /* Line 187, Address: 0x1022480
   {
     xposi_bak.l = pActwk->xposi.l - xposi_bak.l; /* Line 197, Address: 0x10224d4 */
     yposi_bak.l = pActwk->yposi.l - yposi_bak.l; /* Line 198, Address: 0x10224e8 */
-    xposi_f = xposi_bak.l & -2147483648; /* Line 199, Address: 0x10224fc */
-    yposi_f = yposi_bak.l & -2147483648; /* Line 200, Address: 0x1022508 */
+    xposi_f = xposi_bak.l & (int)-2147483648; /* Line 199, Address: 0x10224fc */
+    yposi_f = yposi_bak.l & (int)-2147483648; /* Line 200, Address: 0x1022508 */
     for (i = 0; i < 8; ++i) /* Line 201, Address: 0x1022514 */
       xposi_bak.l = xposi_bak.l >> 1 | xposi_f; /* Line 202, Address: 0x1022520 */
     for (i = 0; i < 8; ++i) /* Line 203, Address: 0x1022540 */
@@ -227,7 +227,7 @@ static void brunko4_posiset(sprite_status* pActwk) { /* Line 213, Address: 0x102
 
 
 
-  sinset(pActwk->actfree[16], &sin, &cos); /* Line 230, Address: 0x1022640 */
+  sinset(pActwk->actfree[16], (short*)&sin, (short*)&cos); /* Line 230, Address: 0x1022640 */
   wD3 = wD4 = 0; /* Line 231, Address: 0x1022658 */
   bD0 = pActwk->actfree[18]; /* Line 232, Address: 0x1022664 */
   if (bD0) /* Line 233, Address: 0x1022670 */

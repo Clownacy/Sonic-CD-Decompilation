@@ -1,7 +1,7 @@
 #include "..\EQU.H"
 #include "DEV41A.H"
 
-unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgTim, unsigned char** ppChgCnt, int* BmpNo, int* TileStart);
+static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgTim, unsigned char** ppChgCnt, int* BmpNo, int* TileStart);
 
 map_init_data mapinittbl = { 0, 0, 0, 3, 2, 0, 0, 4, 4, 129 };
 static int fire0cg[16] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -299,7 +299,7 @@ static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgT
   **ppChgCnt = tblidx; /* Line 299, Address: 0x1017f7c */
   **ppChgTim = pTbl->dattbl[tblidx].tim; /* Line 300, Address: 0x1017f8c */
 
-  tblidx = pTbl->dattbl[tblidx].no; /* Line 302, Address: 0x1017fa8 */
+  tblidx = (short)pTbl->dattbl[tblidx].no; /* Line 302, Address: 0x1017fa8 */
   pNoTbl = pTbl->TileNoTbl[tblidx]; /* Line 303, Address: 0x1017fc8 */
 
   for ( ; iNum >= 0; --iNum) { /* Line 305, Address: 0x1017fd8 */

@@ -1,22 +1,27 @@
 #include "..\EQU.H"
 #include "YAGO.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\SUICIDE.H"
+#include "PLAYSUB4.H"
 
-void act_disp(sprite_status* pActwk);
-void yago_e(sprite_status* pActwk);
-void act_init(sprite_status* pActwk);
-void act_fall(sprite_status* pActwk);
-void act_lr(sprite_status* pActwk);
-void act_rev(sprite_status* pActwk);
-void act_rev1(sprite_status* pActwk);
-void act_jet(sprite_status* pActwk);
-void act_jet1(sprite_status* pActwk);
-void act_jet2(sprite_status* pActwk);
-void act_fall1(sprite_status* pActwk);
-void yago_b(sprite_status* pActwk);
-void act_init_(sprite_status* pActwk);
-void act_fall_(sprite_status* pActwk);
-void act_jet1_(sprite_status* pActwk);
-void act_jet2_(sprite_status* pActwk);
+static void act_disp(sprite_status* pActwk);
+static void yago_e(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_fall(sprite_status* pActwk);
+static void act_lr(sprite_status* pActwk);
+static void act_rev(sprite_status* pActwk);
+static void act_rev1(sprite_status* pActwk);
+static void act_jet(sprite_status* pActwk);
+static void act_jet1(sprite_status* pActwk);
+static void act_jet2(sprite_status* pActwk);
+static void act_fall1(sprite_status* pActwk);
+static void yago_b(sprite_status* pActwk);
+static void act_init_(sprite_status* pActwk);
+static void act_fall_(sprite_status* pActwk);
+static void act_jet1_(sprite_status* pActwk);
+static void act_jet2_(sprite_status* pActwk);
 
 static unsigned char pat_chg0[4] = { 9, 0, 1, 255 };
 static unsigned char* pat_chg[1] = { pat_chg0 };
@@ -144,11 +149,6 @@ sprite_pattern* pat_yago_b[2] =
 
 
 
-
-
-
-
-
 void yago(sprite_status* pActwk) { /* Line 152, Address: 0x10205f0 */
   if (!pActwk->userflag.b.h) /* Line 153, Address: 0x10205fc */
     yago_e(pActwk); /* Line 154, Address: 0x102060c */
@@ -180,7 +180,7 @@ static void yago_e(sprite_status* pActwk) { /* Line 169, Address: 0x1020690 */
     &act_fall1
   };
 
-  if (enemy_suicide(pActwk) == 0) /* Line 183, Address: 0x102069c */
+  if (!enemy_suicide(pActwk)) /* Line 183, Address: 0x102069c */
     act_tbl[pActwk->r_no0 / 2](pActwk); /* Line 184, Address: 0x10206b0 */
 } /* Line 185, Address: 0x10206f4 */
 
@@ -224,7 +224,7 @@ static void act_lr(sprite_status* pActwk) { /* Line 223, Address: 0x1020850 */
   short temp;
 
   *(int*)&pActwk->actfree[0] += -16384; /* Line 226, Address: 0x1020860 */
-  if (*(int*)&pActwk->actfree[0] >= 0) /* Line 227, Address: 0x1020878 */
+  if ((long int)*(int*)&pActwk->actfree[0] >= 0) /* Line 227, Address: 0x1020878 */
   {
     pActwk->xposi.l += *(int*)&pActwk->actfree[4]; /* Line 229, Address: 0x1020894 */
     pActwk->yposi.w.h += emycol_d(pActwk) - 5; /* Line 230, Address: 0x10208b0 */
@@ -236,9 +236,9 @@ static void act_lr(sprite_status* pActwk) { /* Line 223, Address: 0x1020850 */
     {
       temp = pActwk->xposi.w.h - actwk[0].xposi.w.h; /* Line 237, Address: 0x1020964 */
       if (pActwk->actflg & 1) /* Line 238, Address: 0x1020998 */
-        temp = -temp; /* Line 239, Address: 0x10209b0 */
+        temp *= -1; /* Line 239, Address: 0x10209b0 */
 
-      if ((unsigned short)temp >= 81) /* Line 241, Address: 0x10209bc */
+      if ((unsigned short)temp > 80) /* Line 241, Address: 0x10209bc */
       {
         temp -= 16; /* Line 243, Address: 0x10209d0 */
         temp -= 64; /* Line 244, Address: 0x10209dc */
@@ -392,7 +392,7 @@ static void yago_b(sprite_status* pActwk) { /* Line 381, Address: 0x1020f00 */
     &act_fall1
   };
 
-  if (enemy_suicide(pActwk) == 0) /* Line 395, Address: 0x1020f0c */
+  if (!enemy_suicide(pActwk)) /* Line 395, Address: 0x1020f0c */
     act_tbl[pActwk->r_no0 / 2](pActwk); /* Line 396, Address: 0x1020f20 */
 } /* Line 397, Address: 0x1020f64 */
 
@@ -461,7 +461,7 @@ static void act_jet2_(sprite_status* pActwk) { /* Line 458, Address: 0x10211c0 *
   pActwk->xposi.l += ((int*)pActwk)[15]; /* Line 461, Address: 0x10211d0 */
   if (pActwk->actflg & 1) /* Line 462, Address: 0x10211e8 */
     temp = emycol_r(pActwk, pActwk->sprhs); /* Line 463, Address: 0x1021200 */
-  else 
+  else
     temp = emycol_l(pActwk, -(char)pActwk->sprhs); /* Line 465, Address: 0x1021224 */
   if (temp >= 0) /* Line 466, Address: 0x1021258 */
   {

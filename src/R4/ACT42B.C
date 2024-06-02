@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT41A.H"
+#include "..\ACTION.H"
 #include "..\GOAL.H"
 #include "..\ITEM.H"
 #include "..\PLAYER.H"
@@ -109,7 +110,6 @@ void(*act_tbl[82])(sprite_status*) = {
   &et,
   &movie4
 };
-
 
 
 

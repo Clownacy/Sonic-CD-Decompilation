@@ -1,13 +1,13 @@
 #include "..\EQU.H"
 #include "WALL4.H"
+#include "..\ACTION.H"
+#include "..\RIDECHK.H"
 
 sprite_pattern wall4_pat0 = {
   1,
   { { -64, -64, 0, 492 } }
 };
 sprite_pattern* pat_wall4[1] = { &wall4_pat0 };
-
-
 
 
 
@@ -182,7 +182,7 @@ void wall4_down(sprite_status* pActwk) { /* Line 168, Address: 0x1020810 */
 
 void frameout_s_(sprite_status* pActwk) { /* Line 183, Address: 0x1020870 */
   if (pActwk->userflag.b.h != 1) { /* Line 184, Address: 0x102087c */
-    if ((pActwk->xposi.w.h & 65408) - (scra_h_posit.w.h - 128 & 65408) >= 641) { /* Line 185, Address: 0x1020898 */
+    if ((pActwk->xposi.w.h & 65408) - (scra_h_posit.w.h - 128 & 65408) > 640) { /* Line 185, Address: 0x1020898 */
       flagwork[((unsigned short*)pActwk)[24]] &= 127; /* Line 186, Address: 0x10208d4 */
       frameout(pActwk); /* Line 187, Address: 0x10208f8 */
     }

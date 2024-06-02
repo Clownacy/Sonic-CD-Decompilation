@@ -1,12 +1,15 @@
 #include "..\EQU.H"
 #include "TEKKYU.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
 
-void tekkyu_main(sprite_status* pActwk);
-void act_init(sprite_status* pActwk);
-void act_move(sprite_status* pActwk);
-void tekkyu_opt(sprite_status* pActwk);
-void opt_act_init(sprite_status* pActwk);
-void opt_act_move(sprite_status* pActwk);
+static void tekkyu_main(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_move(sprite_status* pActwk);
+static void tekkyu_opt(sprite_status* pActwk);
+static void opt_act_init(sprite_status* pActwk);
+static void opt_act_move(sprite_status* pActwk);
 
 static sprite_pattern tekkyu_pat00 = {
   1,
@@ -32,9 +35,6 @@ static void(*opt_act_tbl[2])(sprite_status*) = {
   &opt_act_init,
   &opt_act_move
 };
-
-
-
 
 
 
@@ -197,20 +197,20 @@ static void act_move(sprite_status* pActwk) { /* Line 168, Address: 0x101f170 */
   *(int*)&pSubact->actfree[0] = pActwk->xposi.l + cossv2; /* Line 197, Address: 0x101f2bc */
 
   pSubact = &actwk[((short*)pActwk)[27]]; /* Line 199, Address: 0x101f2d0 */
-  *(int*)&pSubact->actfree[4] = sinsv2 + pActwk->yposi.l + ldSin.l; /* Line 200, Address: 0x101f2f8 */
-  *(int*)&pSubact->actfree[0] = cossv2 + pActwk->xposi.l + ldCos.l; /* Line 201, Address: 0x101f314 */
+  *(int*)&pSubact->actfree[4] = pActwk->yposi.l + ldSin.l + sinsv2; /* Line 200, Address: 0x101f2f8 */
+  *(int*)&pSubact->actfree[0] = pActwk->xposi.l + ldCos.l + cossv2; /* Line 201, Address: 0x101f314 */
 
   pSubact = &actwk[((short*)pActwk)[28]]; /* Line 203, Address: 0x101f330 */
   *(int*)&pSubact->actfree[4] = pActwk->yposi.l + sinsv1; /* Line 204, Address: 0x101f358 */
   *(int*)&pSubact->actfree[0] = pActwk->xposi.l + cossv1; /* Line 205, Address: 0x101f36c */
 
   pSubact = &actwk[((short*)pActwk)[29]]; /* Line 207, Address: 0x101f380 */
-  *(int*)&pSubact->actfree[4] = sinsv1 + pActwk->yposi.l + ldSin.l; /* Line 208, Address: 0x101f3a8 */
-  *(int*)&pSubact->actfree[0] = cossv1 + pActwk->xposi.l + ldCos.l; /* Line 209, Address: 0x101f3c4 */
+  *(int*)&pSubact->actfree[4] = pActwk->yposi.l + ldSin.l + sinsv1; /* Line 208, Address: 0x101f3a8 */
+  *(int*)&pSubact->actfree[0] = pActwk->xposi.l + ldCos.l + cossv1; /* Line 209, Address: 0x101f3c4 */
 
   pSubact = &actwk[((short*)pActwk)[30]]; /* Line 211, Address: 0x101f3e0 */
-  *(int*)&pSubact->actfree[4] = sinsv1 + pActwk->yposi.l + sinsv2; /* Line 212, Address: 0x101f408 */
-  *(int*)&pSubact->actfree[0] = cossv1 + pActwk->xposi.l + cossv2; /* Line 213, Address: 0x101f420 */
+  *(int*)&pSubact->actfree[4] = pActwk->yposi.l + sinsv2 + sinsv1; /* Line 212, Address: 0x101f408 */
+  *(int*)&pSubact->actfree[0] = pActwk->xposi.l + cossv2 + cossv1; /* Line 213, Address: 0x101f420 */
 } /* Line 214, Address: 0x101f438 */
 
 

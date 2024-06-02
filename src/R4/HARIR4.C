@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "HARIR4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
+#include "COLI4.H"
 
 sprite_pattern harir4_pat0 = {
   1,
@@ -13,11 +18,6 @@ sprite_pattern* harir4pat[2] = {
   &harir4_pat0,
   &harir4_pat1
 };
-
-
-
-
-
 
 
 
@@ -89,13 +89,13 @@ void harir4(sprite_status* pActwk) { /* Line 76, Address: 0x101d940 */
     pRideactwk = &actwk[((short*)pActwk)[28]]; /* Line 89, Address: 0x101d9c4 */
     if (!pRideactwk->actno) { /* Line 90, Address: 0x101d9ec */
       frameout(pActwk); /* Line 91, Address: 0x101d9f8 */
-    } /* Line 92, Address: 0x101da04 */
-    else {
-
-      pActwk->xposi.w.h = pRideactwk->xposi.w.h + pActwk->actfree[14]; /* Line 95, Address: 0x101da0c */
-      pActwk->yposi.w.h = pRideactwk->yposi.w.h + pActwk->actfree[15]; /* Line 96, Address: 0x101da40 */
+      return; /* Line 92, Address: 0x101da04 */
     }
+
+    pActwk->xposi.w.h = pRideactwk->xposi.w.h + (short)pActwk->actfree[14]; /* Line 95, Address: 0x101da0c */
+    pActwk->yposi.w.h = pRideactwk->yposi.w.h + (short)pActwk->actfree[15]; /* Line 96, Address: 0x101da40 */
   }
+
   frameout_s00(pActwk, ((short*)pActwk)[29]); /* Line 99, Address: 0x101da74 */
 } /* Line 100, Address: 0x101da88 */
 
@@ -113,7 +113,7 @@ void harir4_ridechk(sprite_status* pActwk) { /* Line 109, Address: 0x101daa0 */
   }
 
 
-  if (hitchk(pActwk, &actwk[0]) != 0) { /* Line 116, Address: 0x101dad8 */
+  if (hitchk(pActwk, &actwk[0])) { /* Line 116, Address: 0x101dad8 */
     if (pActwk->cddat & 8) { /* Line 117, Address: 0x101daf4 */
       if (!plpower_a) { /* Line 118, Address: 0x101db0c */
         if (!plpower_m) { /* Line 119, Address: 0x101db1c */

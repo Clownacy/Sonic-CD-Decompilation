@@ -1,18 +1,18 @@
 #include "..\EQU.H"
 #include "COL4A.H"
 
-void fadein1();
-void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
-int fadeout_new();
-void fadeout1();
-void fadeout2(palette_entry* lpPeDest);
-int flashin_new();
-void flashin1();
-void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
-int flashout_new();
-void flashout1();
-void flashout2(palette_entry* lpPeDest);
-void colorset00(int ColorNo, int WorkOffs);
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
+static void colorset00(int ColorNo, int WorkOffs);
 
 palette_entry advacolor[64] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {  32,   0, 160, 1 }, {  64,   0, 192, 1 },
@@ -186,7 +186,7 @@ int fadein0_new() { /* Line 182, Address: 0x1026570 */
   fadein1(); /* Line 186, Address: 0x1026584 */
 
 
-  if (++FadeCount >= 22) { /* Line 189, Address: 0x102658c */
+  if (++FadeCount > 21) { /* Line 189, Address: 0x102658c */
     FadeCount = 0; /* Line 190, Address: 0x10265ac */
     return 1; /* Line 191, Address: 0x10265b4 */
   }
@@ -260,7 +260,7 @@ static int fadeout_new() { /* Line 256, Address: 0x10268f0 */
   fadeout1(); /* Line 260, Address: 0x1026904 */
 
 
-  if (++FadeCount >= 22) { /* Line 263, Address: 0x102690c */
+  if (++FadeCount > 21) { /* Line 263, Address: 0x102690c */
     FadeCount = 0; /* Line 264, Address: 0x102692c */
     return 1; /* Line 265, Address: 0x1026934 */
   }
@@ -333,7 +333,7 @@ static int flashin_new() { /* Line 329, Address: 0x1026bc0 */
   flashin1(); /* Line 333, Address: 0x1026bd4 */
 
 
-  if (++FadeCount >= 22) { /* Line 336, Address: 0x1026bdc */
+  if (++FadeCount > 21) { /* Line 336, Address: 0x1026bdc */
     FadeCount = 0; /* Line 337, Address: 0x1026bfc */
     return 1; /* Line 338, Address: 0x1026c04 */
   }
@@ -405,7 +405,7 @@ static int flashout_new() { /* Line 401, Address: 0x1026f40 */
   flashout1(); /* Line 405, Address: 0x1026f54 */
 
 
-  if (++FadeCount >= 22) { /* Line 408, Address: 0x1026f5c */
+  if (++FadeCount > 21) { /* Line 408, Address: 0x1026f5c */
     FadeCount = 0; /* Line 409, Address: 0x1026f7c */
     return 1; /* Line 410, Address: 0x1026f84 */
   }

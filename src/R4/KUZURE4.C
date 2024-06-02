@@ -1,14 +1,18 @@
 #include "..\EQU.H"
 #include "KUZURE4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
 
-void main_ini(sprite_status* pActwk);
-void main_check(sprite_status* pActwk);
-void main_wait(sprite_status* pActwk);
-void main_break(sprite_status* pActwk);
-void parts(sprite_status* pActwk);
-void parts_ini(sprite_status* pActwk);
-void parts_wait(sprite_status* pActwk);
-void parts_fall(sprite_status* pActwk);
+static void main_ini(sprite_status* pActwk);
+static void main_check(sprite_status* pActwk);
+static void main_wait(sprite_status* pActwk);
+static void main_break(sprite_status* pActwk);
+static void parts(sprite_status* pActwk);
+static void parts_ini(sprite_status* pActwk);
+static void parts_wait(sprite_status* pActwk);
+static void parts_fall(sprite_status* pActwk);
 
 static sprite_pattern pat_kuzure_00 = {
   1,
@@ -134,10 +138,6 @@ static void(*parts_act_tbl[3])(sprite_status*) = {
 
 
 
-
-
-
-
 void kuzure4(sprite_status* pActwk) { /* Line 141, Address: 0x102a0c0 */
   if (pActwk->userflag.b.l) { /* Line 142, Address: 0x102a0cc */
     parts(pActwk); /* Line 143, Address: 0x102a0dc */
@@ -168,7 +168,7 @@ static void main_ini(sprite_status* pActwk) { /* Line 153, Address: 0x102a150 */
 
 
 static void main_check(sprite_status* pActwk) { /* Line 170, Address: 0x102a220 */
-  if (ridechk(pActwk, &actwk[0]) != 0) { /* Line 171, Address: 0x102a22c */
+  if (ridechk(pActwk, &actwk[0])) { /* Line 171, Address: 0x102a22c */
     pActwk->r_no0 += 2; /* Line 172, Address: 0x102a248 */
     pActwk->cdsts = 0; /* Line 173, Address: 0x102a258 */
     ((short*)pActwk)[23] = 8; /* Line 174, Address: 0x102a260 */
@@ -215,10 +215,10 @@ static void main_break(sprite_status* pActwk) { /* Line 208, Address: 0x102a360 
 
   flagwk = 255; /* Line 216, Address: 0x102a378 */
   ywk = 8; /* Line 217, Address: 0x102a380 */
-  xwk = (pActwk->userflag.b.h - 1) * 8; /* Line 218, Address: 0x102a38c */
+  xwk = ((short)pActwk->userflag.b.h - 1) * 8; /* Line 218, Address: 0x102a38c */
 
   if (((short*)pActwk)[24] >= 0) { /* Line 220, Address: 0x102a3bc */
-    xwk = -xwk; /* Line 221, Address: 0x102a3d4 */
+    xwk *= -1; /* Line 221, Address: 0x102a3d4 */
   }
 
 
@@ -338,8 +338,8 @@ static void parts_fall(sprite_status* pActwk) { /* Line 335, Address: 0x102a770 
   if (!(pActwk->actflg & 128)) { /* Line 338, Address: 0x102a780 */
     frameout(pActwk); /* Line 339, Address: 0x102a798 */
   } else { /* Line 340, Address: 0x102a7a4 */
-    spdwk = ((int*)pActwk)[12] + 16384; /* Line 341, Address: 0x102a7ac */
-    if (spdwk >= 1441793) { /* Line 342, Address: 0x102a7c8 */
+    spdwk = (long int)((int*)pActwk)[12] + 16384; /* Line 341, Address: 0x102a7ac */
+    if ((long int)spdwk > 1441792) { /* Line 342, Address: 0x102a7c8 */
       spdwk = 1441792; /* Line 343, Address: 0x102a7e4 */
     }
     ((int*)pActwk)[12] = spdwk; /* Line 345, Address: 0x102a7e8 */

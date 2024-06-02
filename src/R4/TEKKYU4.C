@@ -1,14 +1,14 @@
 #include "..\EQU.H"
 #include "TEKKYU4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
 
 sprite_pattern tekkyu4_pat0 = {
   1,
   { { -16, -16, 0, 469 } }
 };
 sprite_pattern* pat_tekkyu4[1] = { &tekkyu4_pat0 };
-
-
-
 
 
 
@@ -84,13 +84,13 @@ void tekkyu4(sprite_status* pActwk) { /* Line 74, Address: 0x1024f00 */
     pMainactwk = &actwk[((short*)pActwk)[33]]; /* Line 84, Address: 0x1024f3c */
     if (pMainactwk->actno != 56) { /* Line 85, Address: 0x1024f64 */
       frameout(pActwk); /* Line 86, Address: 0x1024f78 */
-    } /* Line 87, Address: 0x1024f84 */
-    else {
-
-
-      tekkyu4_acttbl[pActwk->r_no0 / 2](pActwk); /* Line 91, Address: 0x1024f8c */
+      return; /* Line 87, Address: 0x1024f84 */
     }
+
   }
+  tekkyu4_acttbl[pActwk->r_no0 / 2](pActwk); /* Line 91, Address: 0x1024f8c */
+
+
 
 
 
@@ -140,16 +140,16 @@ void tekkyu4init(sprite_status* pActwk) { /* Line 108, Address: 0x1024fe0 */
 
   wD0 = -2048; /* Line 141, Address: 0x1025174 */
 
-  if (pActwk->userflag.b.h & 128) wD0 = -wD0; /* Line 143, Address: 0x1025180 */
+  if (pActwk->userflag.b.h & 128) wD0 *= -1; /* Line 143, Address: 0x1025180 */
 
-  ((short*)pNewactwk1)[25] = wD0; /* Line 145, Address: 0x10251a8 */
+  ((short*)pNewactwk1)[25] = (int)wD0; /* Line 145, Address: 0x10251a8 */
   ((short*)pNewactwk2)[25] = wD0 * 2; /* Line 146, Address: 0x10251c0 */
   ((short*)pNewactwk3)[25] = wD0 * 3; /* Line 147, Address: 0x10251dc */
 
   ((short*)pActwk)[26] = 256; /* Line 149, Address: 0x10251fc */
   if (pActwk->userflag.b.h & 128) ((short*)pActwk)[26] *= -1; /* Line 150, Address: 0x1025208 */
 
-  if ((wD0 = pActwk->userflag.b.h) & 128) wD0 = -wD0; /* Line 152, Address: 0x1025234 */
+  if ((wD0 = pActwk->userflag.b.h) & 128) wD0 *= -1; /* Line 152, Address: 0x1025234 */
 
   ((short*)pActwk)[27] = wD0 & 127; /* Line 154, Address: 0x1025274 */
 
@@ -193,7 +193,7 @@ void tekkyu4move(sprite_status* pActwk) { /* Line 190, Address: 0x10253e0 */
   ((unsigned short*)pActwk)[25] += ((unsigned short*)pActwk)[26]; /* Line 193, Address: 0x10253ec */
 
 
-  sinset(((short*)pActwk)[25] >> 8, &wD0, &wD1); /* Line 196, Address: 0x1025404 */
+  sinset(((short*)pActwk)[25] >> 8, (short*)&wD0, (short*)&wD1); /* Line 196, Address: 0x1025404 */
 
 
 

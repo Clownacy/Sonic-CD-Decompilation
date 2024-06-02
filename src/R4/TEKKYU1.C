@@ -1,13 +1,13 @@
 #include "..\EQU.H"
 #include "TEKKYU1.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
 
 static sprite_pattern pat0 = {
   1,
   { { -16, -16, 0, 532 } }
 };
 static sprite_pattern* pat_tekkyu1[1] = { &pat0 };
-
-
 
 
 

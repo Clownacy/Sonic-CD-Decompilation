@@ -1,21 +1,29 @@
 #include "..\EQU.H"
 #include "SWGUN4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
+#include "..\RING.H"
+#include "..\SCORE.H"
+#include "PLAYSUB4.H"
 
-void swgun4_init(sprite_status* pActwk);
-void swgun4_move(sprite_status* pActwk);
-void swgun4_move1(sprite_status* pActwk);
-void switch_move(sprite_status* pActwk);
-void hariset(sprite_status* pActwk);
-void awaset(sprite_status* pActwk);
-void ring4set(sprite_status* pActwk);
-void bp1000(sprite_status* pActwk);
-void ring4_init(sprite_status* pActwk);
-void ring4_move(sprite_status* pActwk);
-void ring4_get(sprite_status* pActwk);
-void ring4_die(sprite_status* pActwk);
-void ring4_erase(sprite_status* pActwk);
-void tensu4_init(sprite_status* pActwk);
-void tensu4_move(sprite_status* pActwk);
+static void swgun4_init(sprite_status* pActwk);
+static void swgun4_move(sprite_status* pActwk);
+static void swgun4_move1(sprite_status* pActwk);
+static void switch_move(sprite_status* pActwk);
+static void hariset(sprite_status* pActwk);
+static void awaset(sprite_status* pActwk);
+static void ring4set(sprite_status* pActwk);
+static void bp1000(sprite_status* pActwk);
+static void ring4_init(sprite_status* pActwk);
+static void ring4_move(sprite_status* pActwk);
+static void ring4_get(sprite_status* pActwk);
+static void ring4_die(sprite_status* pActwk);
+static void ring4_erase(sprite_status* pActwk);
+static void tensu4_init(sprite_status* pActwk);
+static void tensu4_move(sprite_status* pActwk);
 
 static sprite_pattern pat0 =
 {
@@ -38,14 +46,6 @@ sprite_pattern* swgun4pat[3] =
   &pat1,
   &pat2
 };
-
-
-
-
-
-
-
-
 
 
 
@@ -129,7 +129,7 @@ static void swgun4_init(sprite_status* pActwk) { /* Line 102, Address: 0x102a960
     ((short*)pActwk)[31] = (unsigned short)(pActwk - actwk); /* Line 129, Address: 0x102aa40 */
 
     d1 = 1; /* Line 131, Address: 0x102aa7c */
-    for (i = 0; i < 5; ++i) /* Line 132, Address: 0x102aa84 */
+    for (i = 0; i <= 4; ++i) /* Line 132, Address: 0x102aa84 */
     {
       if (actwkchk(&pNewActwk) == 0) /* Line 134, Address: 0x102aa90 */
       {
@@ -223,7 +223,7 @@ static void switch_move(sprite_status* pActwk) { /* Line 206, Address: 0x102adc0
 
   pPlayerwk = &actwk[0]; /* Line 224, Address: 0x102ae24 */
   r = hitchk_u(pActwk, pPlayerwk); /* Line 225, Address: 0x102ae2c */
-  if (r != 0) /* Line 226, Address: 0x102ae44 */
+  if (r) /* Line 226, Address: 0x102ae44 */
   {
     pActwk->actfree[7] = 255; /* Line 228, Address: 0x102ae4c */
   } /* Line 229, Address: 0x102ae58 */
@@ -312,14 +312,14 @@ static void awaset(sprite_status* pActwk) { /* Line 306, Address: 0x102b190 */
   pSlave = &actwk[((short*)pMaster)[32]]; /* Line 312, Address: 0x102b1cc */
   if (pActwk == pSlave) /* Line 313, Address: 0x102b1f0 */
   {
-    if ((unsigned short)((unsigned short)pActwk->actfree[14] + 1) >= 256) /* Line 315, Address: 0x102b1fc */
+    if ((unsigned short)((unsigned short)pActwk->actfree[14] + 1) > 255) /* Line 315, Address: 0x102b1fc */
     {
       frameout(pActwk); /* Line 317, Address: 0x102b224 */
     }
     ++pActwk->actfree[14]; /* Line 319, Address: 0x102b230 */
     return; /* Line 320, Address: 0x102b240 */
   }
-  if ((unsigned short)((unsigned short)pActwk->actfree[15] + 4) < 256) /* Line 322, Address: 0x102b248 */
+  if ((unsigned short)((unsigned short)pActwk->actfree[15] + 4) <= 255) /* Line 322, Address: 0x102b248 */
   {
     pActwk->actfree[15] += 4; /* Line 324, Address: 0x102b270 */
     return; /* Line 325, Address: 0x102b280 */
@@ -421,6 +421,8 @@ static void bp1000(sprite_status* pActwk) { /* Line 391, Address: 0x102b4e0 */
 
 
 
+
+
 static sprite_pattern ringsp0 =
 {
   1,
@@ -476,8 +478,6 @@ static sprite_pattern* ringpat[9] =
 };
 static unsigned char pchg0[6] = { 5, 4, 5, 6, 7, 252 };
 static unsigned char* ringchg[1] = { pchg0 };
-
-
 
 
 void ring4(sprite_status* pActwk) { /* Line 483, Address: 0x102b5e0 */

@@ -1,18 +1,15 @@
 #include "..\EQU.H"
 #include "PLAYSUB4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\DUMMY.H"
+#include "..\ETC.H"
+#include "..\IO.H"
+#include "..\LOADER2.H"
+#include "..\PLAYER.H"
 
 extern sprite_pattern* markerpat[]; extern unsigned char* markerchg[]; extern sprite_pattern* bakupat[]; extern unsigned char* bakuchg[]; extern sprite_pattern* exit2pat[]; extern unsigned char* exit2chg[]; extern sprite_pattern* bariapat[]; extern unsigned char* bariachg[]; extern unsigned char awasintbl[];
-static unsigned char flowchg0[4] = { 3, 0, 1, 255 }, flowchg1[6] = { 3, 2, 3, 2, 3, 252 }, flowchg2[6] = { 1, 5, 5, 4, 6, 252 }, flowchg3[4] = { 19, 6, 7, 255 };
-unsigned char* flowchg[4] = { flowchg0, flowchg1, flowchg2, flowchg3 };
-static sprite_pattern flo00 = { 1, { { -4, -16, 0, 264 } } };
-static sprite_pattern flo01 = { 1, { { -4, -16, 0, 265 } } };
-static sprite_pattern flo02 = { 1, { { -8, -16, 0, 266 } } };
-static sprite_pattern flo03 = { 1, { { -8, -16, 0, 267 } } };
-static sprite_pattern flo04 = { 1, { { -12, -24, 0, 268 } } };
-static sprite_pattern flo05 = { 1, { { -8, -16, 0, 269 } } };
-static sprite_pattern flo06 = { 1, { { -12, -48, 0, 270 } } };
-static sprite_pattern flo07 = { 1, { { -12, -48, 0, 271 } } };
-sprite_pattern* flow_pat[8] = { &flo00, &flo01, &flo02, &flo03, &flo04, &flo05, &flo06, &flo07 };
 sprite_pattern boupat0 = { 1, { { -4, -46, 0, 423 } } }, boupat1 = { 1, { { -4, -46, 0, 424 } } };
 sprite_pattern* boupat[2] = { &boupat0, &boupat1 };
 sprite_pattern wavepat0 = { 1, { { -96, -8, 0, 425 } } }, wavepat1 = { 1, { { -96, -8, 0, 426 } } }, wavepat2 = { 1, { { -96, -8, 0, 427 } } }, wavepat3 = { 1, { { -96, -8, 0, 428 } } };
@@ -23,6 +20,9 @@ unsigned char plawachg0[9] = { 5, 0, 1, 2, 3, 4, 9, 13, 252 }, plawachg1[9] = { 
 unsigned char* plawachg[16] = { plawachg0, plawachg1, plawachg2, plawachg3, plawachg4, plawachg5, plawachg6, plawachg7, plawachg8, plawachg9, plawachg10, plawachg11, plawachg12, plawachg13, plawachg14, plawachg13 };
 unsigned char wavechg0[50] = { 2, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 6, 7, 255 };
 unsigned char* wavechg[1] = { wavechg0 };
+
+
+
 
 
 
@@ -66,10 +66,10 @@ label1:
 
         case 254:
           pat_no = sprpat_adr[patchgwk->patcnt + 2]; /* Line 68, Address: 0x101a4d0 */
-          patchgwk->patcnt -= pat_no; /* Line 69, Address: 0x101a4ec */
+          patchgwk->patcnt = patchgwk->patcnt - pat_no; /* Line 69, Address: 0x101a4ec */
           pat_no = sprpat_adr[patchgwk->patcnt + 1]; /* Line 70, Address: 0x101a50c */
           goto label1; /* Line 71, Address: 0x101a528 */
-          
+
         case 253:
           patchgwk->mstno.b.h = sprpat_adr[patchgwk->patcnt + 2]; /* Line 74, Address: 0x101a530 */
           break; /* Line 75, Address: 0x101a550 */
@@ -360,50 +360,50 @@ void baku_die(sprite_status* bakuhawk) { /* Line 356, Address: 0x101ae60 */
 } /* Line 360, Address: 0x101aea8 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+static unsigned char flowchg0[4] = { 3, 0, 1, 255 };
+static unsigned char flowchg1[6] = { 3, 2, 3, 2, 3, 252 };
+static unsigned char flowchg2[6] = { 1, 5, 5, 4, 6, 252 };
+static unsigned char flowchg3[4] = { 19, 6, 7, 255 };
+unsigned char* flowchg[4] = {
+  flowchg0,
+  flowchg1,
+  flowchg2,
+  flowchg3
+};
+static sprite_pattern flo00 = {
+  1, { { -4, -16, 0, 264 } }
+};
+static sprite_pattern flo01 = {
+  1, { { -4, -16, 0, 265 } }
+};
+static sprite_pattern flo02 = {
+  1, { { -8, -16, 0, 266 } }
+};
+static sprite_pattern flo03 = {
+  1, { { -8, -16, 0, 267 } }
+};
+static sprite_pattern flo04 = {
+  1, { { -12, -24, 0, 268 } }
+};
+static sprite_pattern flo05 = {
+  1, { { -8, -16, 0, 269 } }
+};
+static sprite_pattern flo06 = {
+  1, { { -12, -48, 0, 270 } }
+};
+static sprite_pattern flo07 = {
+  1, { { -12, -48, 0, 271 } }
+};
+sprite_pattern* flow_pat[8] = {
+  &flo00,
+  &flo01,
+  &flo02,
+  &flo03,
+  &flo04,
+  &flo05,
+  &flo06,
+  &flo07
+};
 
 
 void flower(sprite_status* flowerwk) { /* Line 409, Address: 0x101aec0 */
@@ -490,7 +490,7 @@ void flow_move1(sprite_status* flowerwk) { /* Line 485, Address: 0x101b210 */
 unsigned char* flow_sub(sprite_status* flowerwk) { /* Line 490, Address: 0x101b240 */
   short index;
 
-  index = (time_flag & 127) + flowerwk->cdsts * 2; /* Line 493, Address: 0x101b24c */
+  index = (short)(time_flag & 127) + flowerwk->cdsts * 3; /* Line 493, Address: 0x101b24c */
   return &flagwork[index]; /* Line 494, Address: 0x101b294 */
 } /* Line 495, Address: 0x101b2a8 */
 
@@ -808,9 +808,9 @@ void muteki_sub(sprite_status* bariawk) { /* Line 796, Address: 0x101b880 */
   cal_no = bariawk->mstno.b.h - 1; /* Line 808, Address: 0x101b89c */
   if (cal_no >= 4) cal_no -= 4; /* Line 809, Address: 0x101b8b8 */
   cal_no = cal_no * 24 + 4; /* Line 810, Address: 0x101b8d0 */
-  ppw_offset.b.l -= cal_no; /* Line 811, Address: 0x101b8ec */
+  ppw_offset.b.l = ppw_offset.b.l - cal_no; /* Line 811, Address: 0x101b8ec */
   cal_no = bariawk->actfree[6]; /* Line 812, Address: 0x101b904 */
-  ppw_offset.b.l -= cal_no; /* Line 813, Address: 0x101b910 */
+  ppw_offset.b.l = ppw_offset.b.l - cal_no; /* Line 813, Address: 0x101b910 */
   if ((cal_no += 4) >= 24) cal_no = 0; /* Line 814, Address: 0x101b928 */
   bariawk->actfree[6] = cal_no; /* Line 815, Address: 0x101b948 */
 
@@ -825,7 +825,7 @@ void muteki_sub(sprite_status* bariawk) { /* Line 796, Address: 0x101b880 */
 
 
 void actionsub0(sprite_status* bariawk) { /* Line 827, Address: 0x101ba10 */
-  if (plsubchg_flag >= 8) return; /* Line 828, Address: 0x101ba1c */
+  if ((plsubchg_flag & 15) >= 8) return; /* Line 828, Address: 0x101ba1c */
 
   if (bariawk->r_no0 != 0) plsubchg_flag = bariawk->r_no0 | 128; /* Line 830, Address: 0x101ba38 */
   actionsub(bariawk); /* Line 831, Address: 0x101ba68 */
@@ -1289,13 +1289,13 @@ void plawamaster_jump2(sprite_status* pActwk) { /* Line 1288, Address: 0x101bfb0
   sprite_status* pNewactwk;
   short wD0;
 
-  ((short*)pActwk)[31] = random() & 15; /* Line 1292, Address: 0x101bfc0 */
+  ((short*)pActwk)[31] = (unsigned short)random() & 15; /* Line 1292, Address: 0x101bfc0 */
   if (actwkchk(&pNewactwk) == 0) { /* Line 1293, Address: 0x101bfe4 */
     pNewactwk->actno = 33; /* Line 1294, Address: 0x101bff8 */
     pNewactwk->xposi.w.h = actwk[0].xposi.w.h; /* Line 1295, Address: 0x101c004 */
     wD0 = 6; /* Line 1296, Address: 0x101c014 */
     if (actwk[0].cddat & 1) { /* Line 1297, Address: 0x101c020 */
-      wD0 = -wD0; /* Line 1298, Address: 0x101c038 */
+      wD0 *= -1; /* Line 1298, Address: 0x101c038 */
       pNewactwk->direc.b.h = 64; /* Line 1299, Address: 0x101c044 */
     }
 
@@ -1305,7 +1305,7 @@ void plawamaster_jump2(sprite_status* pActwk) { /* Line 1288, Address: 0x101bfb0
 
     if (((unsigned short*)pActwk)[24]) { /* Line 1306, Address: 0x101c07c */
       ((unsigned short*)pActwk)[31] &= 7; /* Line 1307, Address: 0x101c08c */
-      pActwk; /* Line 1308, Address: 0x101c09c */
+      pActwk + 1; /* Line 1308, Address: 0x101c09c */
       pNewactwk->yposi.w.h = actwk[0].yposi.w.h - 12; /* Line 1309, Address: 0x101c0a0 */
       pNewactwk->direc.b.h = random() & 255; /* Line 1310, Address: 0x101c0c4 */
       if (!(gametimer.w & 3)) pNewactwk->userflag.b.h = 14; /* Line 1311, Address: 0x101c0e0 */
@@ -1415,7 +1415,7 @@ void plawamove2(sprite_status* pActwk) { /* Line 1412, Address: 0x101c450 */
 
     pActwk->r_no0 = 6; /* Line 1416, Address: 0x101c488 */
     pActwk->mstno.b.h += 7; /* Line 1417, Address: 0x101c494 */
-    if (pActwk->mstno.b.h >= 16) pActwk->mstno.b.h = 15; /* Line 1418, Address: 0x101c4a4 */
+    if (pActwk->mstno.b.h > 15) pActwk->mstno.b.h = 15; /* Line 1418, Address: 0x101c4a4 */
 
     plawamove3(pActwk); /* Line 1420, Address: 0x101c4cc */
     return; /* Line 1421, Address: 0x101c4d8 */
@@ -1424,7 +1424,7 @@ void plawamove2(sprite_status* pActwk) { /* Line 1412, Address: 0x101c450 */
 
   if (watercoliflag) ((short*)pActwk)[26] += 4; /* Line 1425, Address: 0x101c4e0 */
 
-  pActwk->xposi.w.h = (char)awasintbl[pActwk->direc.b.h++ + 1 & 127] + ((short*)pActwk)[26]; /* Line 1427, Address: 0x101c500 */
+  pActwk->xposi.w.h = (short)(char)awasintbl[pActwk->direc.b.h++ + 1 & 127] + ((short*)pActwk)[26]; /* Line 1427, Address: 0x101c500 */
 
   plawasub(pActwk); /* Line 1429, Address: 0x101c56c */
   speedset2(pActwk); /* Line 1430, Address: 0x101c578 */
@@ -1465,14 +1465,14 @@ void plawamove4(sprite_status* pActwk) { /* Line 1456, Address: 0x101c620 */
 
 
 void plawamove5(sprite_status* pActwk) { /* Line 1467, Address: 0x101c650 */
-  if (pl_air >= 13) { /* Line 1468, Address: 0x101c65c */
+  if (pl_air > 12) { /* Line 1468, Address: 0x101c65c */
     frameout(pActwk); /* Line 1469, Address: 0x101c678 */
     return; /* Line 1470, Address: 0x101c684 */
   }
   if (!(--((short*)pActwk)[30])) { /* Line 1472, Address: 0x101c68c */
     pActwk->r_no0 = 14; /* Line 1473, Address: 0x101c6ac */
     pActwk->mstno.b.h += 7; /* Line 1474, Address: 0x101c6b8 */
-    if (pActwk->mstno.b.h >= 16) pActwk->mstno.b.h = 15; /* Line 1475, Address: 0x101c6c8 */
+    if (pActwk->mstno.b.h > 15) pActwk->mstno.b.h = 15; /* Line 1475, Address: 0x101c6c8 */
 
     plawamove3(pActwk); /* Line 1477, Address: 0x101c6f0 */
     return; /* Line 1478, Address: 0x101c6fc */
@@ -1614,7 +1614,7 @@ void bou_move0(sprite_status* pActwk) { /* Line 1604, Address: 0x101cb60 */
 
     if (actwk[0].xspeed.w < 0) { /* Line 1615, Address: 0x101cbbc */
       wD1 = 1; /* Line 1616, Address: 0x101cbd4 */
-      wD0 = -wD0; /* Line 1617, Address: 0x101cbe0 */
+      wD0 *= -1; /* Line 1617, Address: 0x101cbe0 */
     }
 
     actwk[0].cddat &= 254; /* Line 1620, Address: 0x101cbec */

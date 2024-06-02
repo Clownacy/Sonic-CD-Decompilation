@@ -1,5 +1,11 @@
 #include "..\EQU.H"
 #include "BOSS_4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\LOADER2.H"
+#include "COL4A.H"
+#include "PLAYSUB4.H"
 
 typedef struct {
   char E4A_VEC;
@@ -9,26 +15,26 @@ typedef struct {
 }
 E4A;
 
-unsigned int egg4air_ini(sprite_status* pActwk);
-void make_airhead(sprite_status* pActwk);
-unsigned int egg4air_01(sprite_status* pActwk);
-void egg4air_01_next(sprite_status* pActwk, E4A* pEscRoot);
-void egg4air_yure(sprite_status* pActwk);
-void egg4air_yurenai(sprite_status* pActwk);
-void egg4air_hitchk(sprite_status* pActwk);
-unsigned int egg4air_02(sprite_status* pActwk);
-unsigned int egg4air_03(sprite_status* pActwk);
-void egg4air_bom(sprite_status* pActwk);
-void e4a_03_far(sprite_status* pActwk);
-void e4a_03_most_near(sprite_status* pActwk);
-void e4a_03_near(sprite_status* pActwk);
-void e4a_03_normal(sprite_status* pActwk);
-void egg4_make_bom(sprite_status* pActwk);
-unsigned int egg4air_04(sprite_status* pActwk);
-void egg4airhead_ini(sprite_status* pActwk);
-void egg4airhead_01(sprite_status* pActwk);
-void egg4airhead_02(sprite_status* pActwk);
-void make_gate(sprite_status* pActwk);
+static unsigned int egg4air_ini(sprite_status* pActwk);
+static void make_airhead(sprite_status* pActwk);
+static unsigned int egg4air_01(sprite_status* pActwk);
+static void egg4air_01_next(sprite_status* pActwk, E4A* pEscRoot);
+static void egg4air_yure(sprite_status* pActwk);
+static void egg4air_yurenai(sprite_status* pActwk);
+static void egg4air_hitchk(sprite_status* pActwk);
+static unsigned int egg4air_02(sprite_status* pActwk);
+static unsigned int egg4air_03(sprite_status* pActwk);
+static void egg4air_bom(sprite_status* pActwk);
+static void e4a_03_far(sprite_status* pActwk);
+static void e4a_03_most_near(sprite_status* pActwk);
+static void e4a_03_near(sprite_status* pActwk);
+static void e4a_03_normal(sprite_status* pActwk);
+static void egg4_make_bom(sprite_status* pActwk);
+static unsigned int egg4air_04(sprite_status* pActwk);
+static void egg4airhead_ini(sprite_status* pActwk);
+static void egg4airhead_01(sprite_status* pActwk);
+static void egg4airhead_02(sprite_status* pActwk);
+static void make_gate(sprite_status* pActwk);
 
 static unsigned char air_pchg0[4] = { 3, 0, 1, 255 };
 static unsigned char air_pchg1[4] = { 3, 2, 3, 255 };
@@ -163,12 +169,6 @@ static void(*e4ahead_act_tbl[3])(sprite_status*) = {
   &egg4airhead_01,
   &egg4airhead_02
 };
-
-
-
-
-
-
 
 
 
@@ -592,7 +592,7 @@ static void egg4air_01_next(sprite_status* pActwk, E4A* pEscRoot) { /* Line 589,
   if (!pEscRoot->E4A_ETC || pActwk->colicnt) { /* Line 592, Address: 0x1021310 */
 
     ++pActwk->r_no1; /* Line 594, Address: 0x1021330 */
-    if ((pActwk->r_no1 & 63) >= 19) { /* Line 595, Address: 0x1021340 */
+    if ((pActwk->r_no1 & 63) > 18) { /* Line 595, Address: 0x1021340 */
       pActwk->r_no1 &= 192; /* Line 596, Address: 0x102135c */
     }
   } /* Line 598, Address: 0x102136c */
@@ -812,7 +812,7 @@ static void e4a_03_far(sprite_status* pActwk) { /* Line 801, Address: 0x1021af0 
 
 
 static void e4a_03_most_near(sprite_status* pActwk) { /* Line 814, Address: 0x1021b50 */
-  if (pActwk->yspeed.w >= 2049 || pActwk->xspeed.w >= 2049) { /* Line 815, Address: 0x1021b5c */
+  if ((long int)(int)pActwk->yspeed.w > 2048 || (long int)(int)pActwk->xspeed.w > 2048) { /* Line 815, Address: 0x1021b5c */
 
 
     ((int*)pActwk)[16] = 1048576; /* Line 818, Address: 0x1021ba4 */

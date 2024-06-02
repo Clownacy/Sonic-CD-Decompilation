@@ -1,11 +1,15 @@
 #include "..\EQU.H"
 #include "FUNSUI4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
+#include "PLAYSUB4.H"
 
-void funsui4_init(sprite_status* pActwk);
-void funsui4_move(sprite_status* pActwk);
-void sibuki_set(sprite_status* pActwk);
-void sibuki_init(sprite_status* pActwk);
-void sibuki_move(sprite_status* pActwk);
+static void funsui4_init(sprite_status* pActwk);
+static void funsui4_move(sprite_status* pActwk);
+static void sibuki_set(sprite_status* pActwk);
+static void sibuki_init(sprite_status* pActwk);
+static void sibuki_move(sprite_status* pActwk);
 
 unsigned char pchg0[7] = { 0, 0, 1, 2, 3, 4, 255 };
 unsigned char pchg1[6] = { 0, 5, 6, 7, 8, 255 };
@@ -86,10 +90,6 @@ sprite_pattern* funsui4pat[9] =
   &pat7,
   &pat8
 };
-
-
-
-
 
 
 
@@ -276,7 +276,7 @@ static void sibuki_init(sprite_status* pActwk) { /* Line 260, Address: 0x1026890
 static void sibuki_move(sprite_status* pActwk) { /* Line 276, Address: 0x1026930 */
   int d0;
 
-  if ((unsigned short)pActwk->actfree[17] + 2 >= 256) /* Line 279, Address: 0x1026940 */
+  if ((unsigned short)pActwk->actfree[17] + 2 > 255) /* Line 279, Address: 0x1026940 */
   {
     pActwk->actfree[17] += 2; /* Line 281, Address: 0x1026960 */
     frameout(pActwk); /* Line 282, Address: 0x1026970 */

@@ -1,5 +1,8 @@
 #include "..\EQU.H"
 #include "TOBIRA4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
 
 static sprite_pattern pat0 = {
   1,
@@ -18,9 +21,6 @@ sprite_pattern* tobira4pat[3] = {
   &pat1,
   &pat2
 };
-
-
-
 
 
 
@@ -169,7 +169,7 @@ void cl_type1(sprite_status* pActwk) { /* Line 160, Address: 0x101d280 */
     d0 += pPlayerwk->yposi.w.h; /* Line 169, Address: 0x101d2dc */
     if (d0 >= pActwk->yposi.w.h) return; /* Line 170, Address: 0x101d2ec */
     d0 -= pActwk->yposi.w.h; /* Line 171, Address: 0x101d310 */
-    d0 = -d0; /* Line 172, Address: 0x101d324 */
+    d0 *= -1; /* Line 172, Address: 0x101d324 */
     if (d0 < 16) return; /* Line 173, Address: 0x101d330 */
   } /* Line 174, Address: 0x101d344 */
   else
@@ -198,7 +198,7 @@ void cl_type2(sprite_status* pActwk) { /* Line 189, Address: 0x101d3e0 */
     d0 += pPlayerwk->xposi.w.h; /* Line 198, Address: 0x101d43c */
     if (d0 >= pActwk->xposi.w.h) return; /* Line 199, Address: 0x101d44c */
     d0 -= pActwk->xposi.w.h; /* Line 200, Address: 0x101d470 */
-    d0 = -d0; /* Line 201, Address: 0x101d484 */
+    d0 *= -1; /* Line 201, Address: 0x101d484 */
     if (d0 < 8) return; /* Line 202, Address: 0x101d490 */
   } /* Line 203, Address: 0x101d4a4 */
   else
@@ -249,8 +249,8 @@ void type1(sprite_status* pActwk) { /* Line 248, Address: 0x101d640 */
   short d0;
 
   tobira4_sub(pActwk); /* Line 251, Address: 0x101d650 */
-  d0 = pActwk->actfree[16]; /* Line 252, Address: 0x101d65c */
-  d0 = -d0; /* Line 253, Address: 0x101d678 */
+  d0 = (unsigned short)pActwk->actfree[16]; /* Line 252, Address: 0x101d65c */
+  d0 *= -1; /* Line 253, Address: 0x101d678 */
   d0 += ((short*)pActwk)[29]; /* Line 254, Address: 0x101d684 */
   pActwk->xposi.w.h = d0; /* Line 255, Address: 0x101d698 */
 } /* Line 256, Address: 0x101d6a0 */
@@ -262,7 +262,7 @@ void type2(sprite_status* pActwk) { /* Line 261, Address: 0x101d6c0 */
   short d0;
 
   tobira4_sub(pActwk); /* Line 264, Address: 0x101d6d0 */
-  d0 = pActwk->actfree[16]; /* Line 265, Address: 0x101d6dc */
+  d0 = (unsigned short)pActwk->actfree[16]; /* Line 265, Address: 0x101d6dc */
   d0 += ((short*)pActwk)[29]; /* Line 266, Address: 0x101d6f8 */
   pActwk->xposi.w.h = d0; /* Line 267, Address: 0x101d70c */
 } /* Line 268, Address: 0x101d714 */
@@ -274,8 +274,8 @@ void type3(sprite_status* pActwk) { /* Line 273, Address: 0x101d730 */
   short d0;
 
   tobira4_sub(pActwk); /* Line 276, Address: 0x101d740 */
-  d0 = pActwk->actfree[16]; /* Line 277, Address: 0x101d74c */
-  d0 = -d0; /* Line 278, Address: 0x101d768 */
+  d0 = (unsigned short)pActwk->actfree[16]; /* Line 277, Address: 0x101d74c */
+  d0 *= -1; /* Line 278, Address: 0x101d768 */
   d0 += ((short*)pActwk)[27]; /* Line 279, Address: 0x101d774 */
   pActwk->yposi.w.h = d0; /* Line 280, Address: 0x101d788 */
 } /* Line 281, Address: 0x101d790 */
@@ -287,7 +287,7 @@ void type4(sprite_status* pActwk) { /* Line 286, Address: 0x101d7b0 */
   short d0;
 
   tobira4_sub(pActwk); /* Line 289, Address: 0x101d7c0 */
-  d0 = pActwk->actfree[16]; /* Line 290, Address: 0x101d7cc */
+  d0 = (unsigned short)pActwk->actfree[16]; /* Line 290, Address: 0x101d7cc */
   d0 += ((short*)pActwk)[27]; /* Line 291, Address: 0x101d7e8 */
   pActwk->yposi.w.h = d0; /* Line 292, Address: 0x101d7fc */
 } /* Line 293, Address: 0x101d804 */

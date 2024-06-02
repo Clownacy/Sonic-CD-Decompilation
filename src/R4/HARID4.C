@@ -1,13 +1,17 @@
 #include "..\EQU.H"
 #include "HARID4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\DIRCOL.H"
+#include "..\RIDECHK.H"
 
-void act_init(sprite_status* pActwk);
-void act_wait(sprite_status* pActwk);
-void act_slide(sprite_status* pActwk);
-void act_slide1(sprite_status* pActwk);
-void act_down(sprite_status* pActwk);
-void act_down1(sprite_status* pActwk);
-void act_stop(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_wait(sprite_status* pActwk);
+static void act_slide(sprite_status* pActwk);
+static void act_slide1(sprite_status* pActwk);
+static void act_down(sprite_status* pActwk);
+static void act_down1(sprite_status* pActwk);
+static void act_stop(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   2,
@@ -30,10 +34,6 @@ static void(*hari4_act_tbl[7])(sprite_status*) = {
   &act_down1,
   &act_stop
 };
-
-
-
-
 
 
 
@@ -247,14 +247,14 @@ static void act_down(sprite_status* pActwk) { /* Line 244, Address: 0x101d4d0 */
 
   spdwk = *(int*)&pActwk->actfree[0]; /* Line 248, Address: 0x101d4e4 */
   pActwk->yposi.l += spdwk; /* Line 249, Address: 0x101d4f0 */
-  actwk[((short*)pActwk)[32]].yposi.w.l += spdwk; /* Line 250, Address: 0x101d500 */
+  actwk[((short*)pActwk)[32]].yposi.l += spdwk; /* Line 250, Address: 0x101d500 */
   *(int*)&pActwk->actfree[0] += ((int*)pActwk)[14]; /* Line 251, Address: 0x101d534 */
 
   if ((ret = emycol_d(pActwk)) < 0) { /* Line 253, Address: 0x101d554 */
     pActwk->r_no0 += 2; /* Line 254, Address: 0x101d580 */
     pActwk->yposi.w.h += ret; /* Line 255, Address: 0x101d590 */
     pActwk->yspeed.w = 0; /* Line 256, Address: 0x101d5a0 */
-    *(int*)&pActwk->actfree[4] = 32; /* Line 257, Address: 0x101d5a8 */
+    *(int*)&pActwk->actfree[4] = 2097152; /* Line 257, Address: 0x101d5a8 */
 
     frameout(&actwk[((short*)pActwk)[32]]); /* Line 259, Address: 0x101d5b8 */
   }

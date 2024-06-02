@@ -1,9 +1,13 @@
 #include "..\EQU.H"
 #include "SW4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
 
-void act_init(sprite_status* pActwk);
-void act_move(sprite_status* pActwk);
-short hosei(sprite_status* pActwk, sprite_status* pActwk2);
+static void act_init(sprite_status* pActwk);
+static void act_move(sprite_status* pActwk);
+static short hosei(sprite_status* pActwk, sprite_status* pActwk2);
 
 static sprite_pattern pat00 =
 {
@@ -20,10 +24,6 @@ sprite_pattern* pat_sw[2] =
   &pat00,
   &pat01
 };
-
-
-
-
 
 
 
@@ -72,7 +72,7 @@ static void act_init(sprite_status* pActwk) { /* Line 66, Address: 0x1016960 */
   pActwk->patbase = pat_sw; /* Line 72, Address: 0x10169b0 */
   pActwk->sprvsize = 10; /* Line 73, Address: 0x10169c0 */
 
-  ((short*)pActwk)[32] = pActwk->userflag.b.h; /* Line 75, Address: 0x10169cc */
+  ((short*)pActwk)[32] = (unsigned short)pActwk->userflag.b.h; /* Line 75, Address: 0x10169cc */
 
   pActwk->actfree[20] = 0; /* Line 77, Address: 0x10169ec */
   pActwk->actfree[21] = 0; /* Line 78, Address: 0x10169f4 */
@@ -109,7 +109,7 @@ static void act_move(sprite_status* pActwk) { /* Line 86, Address: 0x1016a20 */
   d3 = pActwk->xposi.w.h; /* Line 109, Address: 0x1016b24 */
   d4 = pActwk->yposi.w.h; /* Line 110, Address: 0x1016b34 */
   pPlayerwk = &actwk[0]; /* Line 111, Address: 0x1016b44 */
-  if (hitchk(pActwk, pPlayerwk) != 0) /* Line 112, Address: 0x1016b4c */
+  if (hitchk(pActwk, pPlayerwk)) /* Line 112, Address: 0x1016b4c */
   {
     z = hosei(pActwk, pPlayerwk); /* Line 114, Address: 0x1016b64 */
   } /* Line 115, Address: 0x1016b7c */
@@ -179,7 +179,7 @@ static void act_move(sprite_status* pActwk) { /* Line 86, Address: 0x1016a20 */
   d1 -= 128; /* Line 179, Address: 0x1016dec */
   d1 &= -128; /* Line 180, Address: 0x1016df8 */
   d0 -= d1; /* Line 181, Address: 0x1016e08 */
-  if ((unsigned short)d0 >= 641) frameout_s0(pActwk); /* Line 182, Address: 0x1016e14 */
+  if ((unsigned short)d0 > 640) frameout_s0(pActwk); /* Line 182, Address: 0x1016e14 */
 } /* Line 183, Address: 0x1016e34 */
 
 

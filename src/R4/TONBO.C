@@ -1,8 +1,13 @@
 #include "..\EQU.H"
 #include "TONBO.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\SUICIDE.H"
+#include "PLAYSUB4.H"
 
-void act_init(sprite_status* pActwk);
-void act_lr(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_lr(sprite_status* pActwk);
 
 static unsigned char pchg0[4] = { 2, 0, 1, 255 };
 static unsigned char pchg1[4] = { 4, 0, 2, 255 };
@@ -140,11 +145,6 @@ sprite_pattern* pat_tonbo_b[3] =
 
 
 
-
-
-
-
-
 void tonbo(sprite_status* pActwk) { /* Line 148, Address: 0x101e480 */
   short temp;
   static void(*act_tbl[2])(sprite_status*) =
@@ -153,7 +153,7 @@ void tonbo(sprite_status* pActwk) { /* Line 148, Address: 0x101e480 */
     &act_lr
   };
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 156, Address: 0x101e490 */
+  if (enemy_suicide(pActwk)) return; /* Line 156, Address: 0x101e490 */
   act_tbl[pActwk->r_no0 / 2](pActwk); /* Line 157, Address: 0x101e4a4 */
   actionsub(pActwk); /* Line 158, Address: 0x101e4e8 */
   temp = ((short*)pActwk)[33]; /* Line 159, Address: 0x101e4f4 */

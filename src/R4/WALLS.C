@@ -1,9 +1,12 @@
 #include "..\EQU.H"
 #include "WALLS.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
 
-void main_init(sprite_status* pActwk);
-void main_move(sprite_status* pActwk);
-void opt_check(sprite_status* pActwk);
+static void main_init(sprite_status* pActwk);
+static void main_move(sprite_status* pActwk);
+static void opt_check(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   1,
@@ -162,20 +165,17 @@ static int data_tbl[8] = {
 
 
 
-
-
-
 void walls(sprite_status* pActwk) { /* Line 168, Address: 0x101da50 */
   if (pActwk->userflag.b.h & 128) { /* Line 169, Address: 0x101da5c */
 
     opt_check(pActwk); /* Line 171, Address: 0x101da78 */
-  } /* Line 172, Address: 0x101da84 */
-  else if (!pActwk->r_no0) { /* Line 173, Address: 0x101da8c */
+    return; /* Line 172, Address: 0x101da84 */
+  } else if (!pActwk->r_no0) { /* Line 173, Address: 0x101da8c */
     main_init(pActwk); /* Line 174, Address: 0x101da9c */
-
-
-    main_move(pActwk); /* Line 177, Address: 0x101daa8 */
   }
+
+  main_move(pActwk); /* Line 177, Address: 0x101daa8 */
+
 } /* Line 179, Address: 0x101dab4 */
 
 
@@ -216,15 +216,15 @@ static void main_init(sprite_status* pActwk) { /* Line 185, Address: 0x101dad0 *
 
       *pOptwk++ = pNewact - actwk; /* Line 217, Address: 0x101dc38 */
       pNewact->userflag.b.h = (j - 2) & 255; /* Line 218, Address: 0x101dc70 */
-      pNewact->yposi.w.h = pActwk->yposi.w.h - 48 + i * 32; /* Line 219, Address: 0x101dc88 */
+      pNewact->yposi.w.h = pActwk->yposi.w.h - 48 + (short)(i * 32); /* Line 219, Address: 0x101dc88 */
 
       pNewact->patno = patnowk = *--pPatno; /* Line 221, Address: 0x101dcc4 */
       pNewact->sprhsize = pNewact->sprhs = (patnowk + 1) * 16; /* Line 222, Address: 0x101dcd8 */
       if (j != 0) { /* Line 223, Address: 0x101dcfc */
-        pNewact->xposi.w.h = pActwk->xposi.w.h + 64 - patnowk * 16; /* Line 224, Address: 0x101dd04 */
+        pNewact->xposi.w.h = pActwk->xposi.w.h + 64 - (short)(patnowk * 16); /* Line 224, Address: 0x101dd04 */
 
       } else { /* Line 226, Address: 0x101dd44 */
-        pNewact->xposi.w.h = pActwk->xposi.w.h - 64 + patnowk * 16; /* Line 227, Address: 0x101dd4c */
+        pNewact->xposi.w.h = pActwk->xposi.w.h - 64 + (short)(patnowk * 16); /* Line 227, Address: 0x101dd4c */
       }
 
       ((short*)pNewact)[27] = pActwk - actwk; /* Line 230, Address: 0x101dd8c */

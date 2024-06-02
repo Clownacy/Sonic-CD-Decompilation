@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCREW_A.H"
+#include "..\ACTION.H"
 
 sprite_pattern pat_screw00 = {
   1,
@@ -25,7 +26,6 @@ sprite_pattern* pat_screw1[2] = {
   &pat_screw02,
   &pat_screw03
 };
-
 
 
 

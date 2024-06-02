@@ -1,5 +1,10 @@
 #include "..\EQU.H"
 #include "AWA.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\IO.H"
+#include "PLAYSUB4.H"
 
 unsigned char awachg0[5] = { 14, 0, 1, 2, 252 };
 unsigned char awachg1[6] = { 14, 1, 2, 3, 4, 252 };
@@ -18,11 +23,6 @@ unsigned char* awachg[7] = {
 };
 extern sprite_pattern* awapat[];
 extern unsigned char awasintbl[];
-
-
-
-
-
 
 
 
@@ -179,7 +179,7 @@ void awamove2(sprite_status* pActwk) { /* Line 171, Address: 0x101d1b0 */
   }
 
 
-  pActwk->xposi.w.h = (char)awasintbl[pActwk->direc.b.h++ & 127] + ((short*)pActwk)[26]; /* Line 182, Address: 0x101d218 */
+  pActwk->xposi.w.h = (short)(char)awasintbl[pActwk->direc.b.h++ & 127] + ((short*)pActwk)[26]; /* Line 182, Address: 0x101d218 */
 
   if (pActwk->actfree[4]) { /* Line 184, Address: 0x101d280 */
     if (awacoli(pActwk) != 0) { /* Line 185, Address: 0x101d290 */
@@ -191,7 +191,7 @@ void awamove2(sprite_status* pActwk) { /* Line 171, Address: 0x101d1b0 */
       actwk[0].mspeed.w = 0; /* Line 191, Address: 0x101d2c8 */
       actwk[0].mstno.b.h = 21; /* Line 192, Address: 0x101d2d0 */
       ((short*)&actwk[0])[33] = 35; /* Line 193, Address: 0x101d2dc */
-      ((short*)&actwk[0])[32] = 0; /* Line 194, Address: 0x101d2e8 */
+      actwk[0].actfree[18] = 0; /* Line 194, Address: 0x101d2e8 */
       actwk[0].cddat &= 223; /* Line 195, Address: 0x101d2f0 */
       actwk[0].cddat &= 239; /* Line 196, Address: 0x101d304 */
 
@@ -277,7 +277,7 @@ void awamaster(sprite_status* pActwk) { /* Line 249, Address: 0x101d4a0 */
       bD0 = wD1 & 7; /* Line 277, Address: 0x101d5b0 */
     } while (bD0 >= 6); /* Line 278, Address: 0x101d5c4 */
 
-    ((short*)pActwk)[28] = bD0; /* Line 280, Address: 0x101d5d4 */
+    pActwk->actfree[10] = bD0; /* Line 280, Address: 0x101d5d4 */
     wD1 &= 12; /* Line 281, Address: 0x101d5dc */
 
     pActwk->actfree[18] = wD1; /* Line 283, Address: 0x101d5e8 */
@@ -297,7 +297,7 @@ label1:
   if (pActwk->actflg & 128) { /* Line 297, Address: 0x101d684 */
     if (actwkchk(&pNewactwk) == 0) { /* Line 298, Address: 0x101d69c */
       pNewactwk->actno = 32; /* Line 299, Address: 0x101d6b0 */
-      pNewactwk->xposi.w.h = pActwk->xposi.w.h + ((random() & 15) - 8); /* Line 300, Address: 0x101d6bc */
+      pNewactwk->xposi.w.h = pActwk->xposi.w.h + (short)((random() & 15) - 8); /* Line 300, Address: 0x101d6bc */
       pNewactwk->yposi.w.h = pActwk->yposi.w.h; /* Line 301, Address: 0x101d700 */
       pNewactwk->userflag.b.h = awatbl[pActwk->actfree[18] + pActwk->actfree[10]]; /* Line 302, Address: 0x101d710 */
 
@@ -336,7 +336,7 @@ label3:
 
 void awafoutchk(sprite_status* pActwk) { /* Line 337, Address: 0x101d870 */
   if (!(pActwk->actflg & 128)) { /* Line 338, Address: 0x101d87c */
-    if ((pActwk->xposi.w.h & 65408) - (scra_h_posit.w.h - 128 & 65408) >= 641) { /* Line 339, Address: 0x101d894 */
+    if ((pActwk->xposi.w.h & 65408) - (scra_h_posit.w.h - 128 & 65408) > 640) { /* Line 339, Address: 0x101d894 */
       frameout(pActwk); /* Line 340, Address: 0x101d8d0 */
       return; /* Line 341, Address: 0x101d8dc */
     }

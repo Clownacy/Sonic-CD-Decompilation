@@ -1,8 +1,11 @@
 #include "..\EQU.H"
 #include "WALL1.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
 
-void act_init(sprite_status* pActwk);
-void act_move(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_move(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   1,
@@ -49,9 +52,6 @@ static unsigned char tbl0[14] = {
   64, 16,
   16, 64
 };
-
-
-
 
 
 

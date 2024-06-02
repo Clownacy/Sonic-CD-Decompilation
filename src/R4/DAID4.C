@@ -1,12 +1,16 @@
 #include "..\EQU.H"
 #include "DAID4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
 
-void a_ini(sprite_status* pActwk);
-void a_born(sprite_status* pActwk);
-void a_off(sprite_status* pActwk);
-void a_off1(sprite_status* pActwk);
-void a_on(sprite_status* pActwk);
-void a_on1(sprite_status* pActwk);
+static void a_ini(sprite_status* pActwk);
+static void a_born(sprite_status* pActwk);
+static void a_off(sprite_status* pActwk);
+static void a_off1(sprite_status* pActwk);
+static void a_on(sprite_status* pActwk);
+static void a_on1(sprite_status* pActwk);
 
 static sprite_pattern pat0 =
 {
@@ -29,10 +33,6 @@ sprite_pattern* pat_daid4[2] =
   &pat0,
   &pat1
 };
-
-
-
-
 
 
 
@@ -141,7 +141,7 @@ static void a_off1(sprite_status* pActwk) { /* Line 139, Address: 0x102afd0 */
 
   pActwk->yposi.l += ((int*)pActwk)[12]; /* Line 142, Address: 0x102afe0 */
   ((int*)pActwk)[12] += 1024; /* Line 143, Address: 0x102aff8 */
-  if (((int*)pActwk)[12] >= 65537) /* Line 144, Address: 0x102b008 */
+  if ((long int)((int*)pActwk)[12] > 65536) /* Line 144, Address: 0x102b008 */
   {
     ((int*)pActwk)[12] = 65536; /* Line 146, Address: 0x102b02c */
   }
@@ -151,15 +151,15 @@ static void a_off1(sprite_status* pActwk) { /* Line 139, Address: 0x102afd0 */
     d0 -= actwk[0].yposi.w.h; /* Line 151, Address: 0x102b060 */
     if (d0 < 0) /* Line 152, Address: 0x102b074 */
     {
-      d0 = -d0; /* Line 154, Address: 0x102b084 */
+      d0 *= -1; /* Line 154, Address: 0x102b084 */
     }
-    if (d0 >= 225) /* Line 156, Address: 0x102b090 */
+    if (d0 > 224) /* Line 156, Address: 0x102b090 */
     {
       pActwk->r_no0 = 2; /* Line 158, Address: 0x102b0a4 */
       goto label1; /* Line 159, Address: 0x102b0b0 */
     }
   }
-  if (ridechk(pActwk, &actwk[0]) != 0) /* Line 162, Address: 0x102b0b8 */
+  if (ridechk(pActwk, &actwk[0])) /* Line 162, Address: 0x102b0b8 */
   {
     pActwk->r_no0 = 8; /* Line 164, Address: 0x102b0d4 */
     ride_on_clr(pActwk, &actwk[0]); /* Line 165, Address: 0x102b0e0 */

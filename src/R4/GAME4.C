@@ -1,12 +1,22 @@
 #include "..\EQU.H"
 #include "GAME4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\FCOL.H"
 #include "..\IO.H"
 #include "..\LOADER2.H"
+#include "..\SCORE.H"
+#include "COL4A.H"
 
-void back_to_cnt();
-void bye_cnt();
+extern void scr_set();
+extern void scroll();
+extern void scrollwrt();
+extern void mapwrt();
+extern void mapinit();
 
-extern int FadeProc();
+static void back_to_cnt();
+static void bye_cnt();
 
 static short Interupt_Counter;
 static unsigned int PauseIcon;
@@ -32,7 +42,7 @@ extern unsigned char zone1scd[1000];
 extern short_union watercolitbl[];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*))&game,
+  (void (*)())&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -45,16 +55,6 @@ dlink_export ExportedFunctions = {
   0
 };
 int(*sGetFileSize)(int);
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -282,7 +282,7 @@ int game() { /* Line 232, Address: 0x1018120 */
     actsetchk(); /* Line 282, Address: 0x1018330 */
     action(); /* Line 283, Address: 0x1018338 */
   }
-  (demo_cnt ^ 2048U) < 1; /* Line 285, Address: 0x1018340 */
+  ((unsigned int)demo_cnt ^ 2048) < 1; /* Line 285, Address: 0x1018340 */
 
 
   if (gameflag.w) { /* Line 288, Address: 0x1018358 */
@@ -313,7 +313,7 @@ int game() { /* Line 232, Address: 0x1018120 */
 
     if (gameflag.w == 2) { /* Line 314, Address: 0x10184f4 */
 
-      lpKeepWork->ta_time = pltime.b.b3 * 60+ pltime.b.b2 * 60 * 60 + pltime.b.b4; /* Line 316, Address: 0x1018510 */
+      lpKeepWork->ta_time = (unsigned long int)(unsigned int)pltime.b.b3 * 60 + (unsigned long int)(unsigned int)pltime.b.b2 * 60 * 60 + (unsigned long int)(unsigned int)pltime.b.b4; /* Line 316, Address: 0x1018510 */
     } /* Line 317, Address: 0x1018598 */
     else if (gameflag.w == 1) { /* Line 318, Address: 0x10185a0 */
       lpKeepWork->ta_time = -1; /* Line 319, Address: 0x10185bc */
@@ -345,7 +345,7 @@ int game() { /* Line 232, Address: 0x1018120 */
 
 
   watercnt(); /* Line 347, Address: 0x101867c */
-#if defined(R41A)
+#if defined(CG_CHANGE)
   if (!time_stop) {
     cg_change();
   }
@@ -671,7 +671,7 @@ void game_init() { /* Line 380, Address: 0x10187a0 */
   swbufcnt = 0; /* Line 671, Address: 0x1019230 */
   startcolor = 32; /* Line 672, Address: 0x1019238 */
   colorcnt = 47; /* Line 673, Address: 0x1019244 */
-#if defined(R41A)
+#if defined(CG_CHANGE)
   cg_change();
 #endif
   tv_flag = 1; /* Line 677, Address: 0x1019250 */
@@ -757,7 +757,7 @@ void syspatchg() {
     if (++sys_patno3 >= 6) sys_patno3 = 0; /* Line 757, Address: 0x101945c */
   }
   if (sys_pattim4) { /* Line 759, Address: 0x101948c */
-    sys_ringtimer += sys_pattim4; /* Line 760, Address: 0x101949c */
+    sys_ringtimer += (unsigned short)sys_pattim4; /* Line 760, Address: 0x101949c */
 
 
     sys_patno4 = sys_ringtimer >> 9 & 3; /* Line 763, Address: 0x10194c4 */
@@ -854,7 +854,7 @@ void da_set() { /* Line 838, Address: 0x10196f0 */
     }
   }
 
-  sub_sync(da_tbl[stageno.b.h][wD0]); /* Line 857, Address: 0x1019748 */
+  sub_sync((unsigned short)da_tbl[stageno.b.h][wD0]); /* Line 857, Address: 0x1019748 */
 
 
 } /* Line 860, Address: 0x1019788 */
@@ -998,7 +998,7 @@ void watercnt() { /* Line 992, Address: 0x1019ce0 */
     waterflag = 0; /* Line 998, Address: 0x1019d18 */
     sysdirec += 2; /* Line 999, Address: 0x1019d20 */
     sinset(sysdirec, &wD0, &wD1); /* Line 1000, Address: 0x1019d34 */
-    waterposi = (char)((unsigned short)wD0 >> 6) + waterposi_m; /* Line 1001, Address: 0x1019d4c */
+    waterposi = (short)(char)((unsigned short)wD0 >> 6) + waterposi_m; /* Line 1001, Address: 0x1019d4c */
 
     wD0 = waterposi - scra_v_posit.w.h; /* Line 1003, Address: 0x1019d98 */
     if ((unsigned short)waterposi < (unsigned short)scra_v_posit.w.h) { /* Line 1004, Address: 0x1019dc8 */
@@ -1010,7 +1010,7 @@ void watercnt() { /* Line 992, Address: 0x1019ce0 */
 
     if ((unsigned short)wD0 >= 223) wD0 = 223; /* Line 1011, Address: 0x1019e20 */
 
-    hintposi.b.l = wD0; /* Line 1013, Address: 0x1019e40 */
+    hintposi.b.l = (unsigned char)wD0; /* Line 1013, Address: 0x1019e40 */
   }
 
   lpKeepWork->hintposi.w = hintposi.w; /* Line 1016, Address: 0x1019e58 */
@@ -1057,8 +1057,8 @@ void watercoli() { /* Line 1022, Address: 0x1019e90 */
 
     if (((char*)&watercolitbl[i + 6])[1] == 2) { /* Line 1058, Address: 0x101a108 */
       if (switchflag[((char*)&watercolitbl[i + 6])[0]] & 32) { /* Line 1059, Address: 0x101a134 */
-        actwk[0].xspeed.w = -actwk[0].xspeed.w; /* Line 1060, Address: 0x101a174 */
-        actwk[0].yspeed.w = -actwk[0].yspeed.w; /* Line 1061, Address: 0x101a188 */
+        actwk[0].xspeed.w *= -1; /* Line 1060, Address: 0x101a174 */
+        actwk[0].yspeed.w *= -1; /* Line 1061, Address: 0x101a188 */
       }
     }
 

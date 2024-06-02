@@ -1,19 +1,24 @@
 #include "..\EQU.H"
 #include "TAGAMEB4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\SUICIDE.H"
+#include "PLAYSUB4.H"
 
-void tagameb0(sprite_status* pActwk);
-void a_init(sprite_status* pActwk);
-void make_toge(sprite_status* pActwk);
-void a_init_sub(short subact, sprite_status* pActwk);
-void a_move(sprite_status* pActwk);
-int a_check(sprite_status* pActwk);
-void a_stop(sprite_status* pActwk);
-void a_stop1(sprite_status* pActwk);
-void a_dash(sprite_status* pActwk);
-void tagameb1(sprite_status* pActwk);
-void b_init(sprite_status* pActwk);
-void b_follow(sprite_status* pActwk);
-void b_move(sprite_status* pActwk);
+static void tagameb0(sprite_status* pActwk);
+static void a_init(sprite_status* pActwk);
+static void make_toge(sprite_status* pActwk);
+static void a_init_sub(short subact, sprite_status* pActwk);
+static void a_move(sprite_status* pActwk);
+static int a_check(sprite_status* pActwk);
+static void a_stop(sprite_status* pActwk);
+static void a_stop1(sprite_status* pActwk);
+static void a_dash(sprite_status* pActwk);
+static void tagameb1(sprite_status* pActwk);
+static void b_init(sprite_status* pActwk);
+static void b_follow(sprite_status* pActwk);
+static void b_move(sprite_status* pActwk);
 
 static unsigned char pchg0[4] = { 30, 0, 1, 255 };
 static unsigned char* pchg[1] = { pchg0 };
@@ -166,11 +171,6 @@ static sprite_pattern* pat[1] = { &spr_tagame_99 };
 
 
 
-
-
-
-
-
 void tagameb(sprite_status* pActwk) { /* Line 174, Address: 0x101f2d0 */
   if (pActwk->userflag.b.h >= 0) /* Line 175, Address: 0x101f2dc */
     tagameb0(pActwk); /* Line 176, Address: 0x101f2f4 */
@@ -191,7 +191,7 @@ static void tagameb0(sprite_status* pActwk) { /* Line 184, Address: 0x101f330 */
     &a_dash
   };
 
-  if (enemy_suicide(pActwk) != 0) return; /* Line 194, Address: 0x101f33c */
+  if (enemy_suicide(pActwk)) return; /* Line 194, Address: 0x101f33c */
   tbl[pActwk->r_no0 / 2](pActwk); /* Line 195, Address: 0x101f350 */
   actionsub(pActwk); /* Line 196, Address: 0x101f394 */
   frameout_s(pActwk); /* Line 197, Address: 0x101f3a0 */
@@ -235,8 +235,8 @@ static void make_toge(sprite_status* pActwk) { /* Line 230, Address: 0x101f4d0 *
     subActwk->actno = pActwk->actno; /* Line 235, Address: 0x101f4f0 */
     subActwk->userflag.b.h = -1; /* Line 236, Address: 0x101f500 */
     subActwk->actfree[19] = pActwk->cdsts; /* Line 237, Address: 0x101f50c */
-    ((short*)subActwk)[33] = (unsigned char)(pActwk - actwk); /* Line 238, Address: 0x101f51c */
-    ((short*)pActwk)[26] = (unsigned char)(subActwk - actwk); /* Line 239, Address: 0x101f55c */
+    ((short*)subActwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 238, Address: 0x101f51c */
+    ((short*)pActwk)[26] = (unsigned short)(unsigned char)(subActwk - actwk); /* Line 239, Address: 0x101f55c */
   } /* Line 240, Address: 0x101f59c */
   else
   {
@@ -248,8 +248,8 @@ static void make_toge(sprite_status* pActwk) { /* Line 230, Address: 0x101f4d0 *
     subActwk->actno = pActwk->actno; /* Line 248, Address: 0x101f5cc */
     subActwk->userflag.b.h = -1; /* Line 249, Address: 0x101f5dc */
     subActwk->actfree[19] = pActwk->cdsts; /* Line 250, Address: 0x101f5e8 */
-    ((short*)subActwk)[33] = (unsigned char)(pActwk - actwk); /* Line 251, Address: 0x101f5f8 */
-    ((short*)pActwk)[27] = (unsigned char)(subActwk - actwk); /* Line 252, Address: 0x101f638 */
+    ((short*)subActwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 251, Address: 0x101f5f8 */
+    ((short*)pActwk)[27] = (unsigned short)(unsigned char)(subActwk - actwk); /* Line 252, Address: 0x101f638 */
   } /* Line 253, Address: 0x101f678 */
   else
   {
@@ -261,8 +261,8 @@ static void make_toge(sprite_status* pActwk) { /* Line 230, Address: 0x101f4d0 *
     subActwk->actno = pActwk->actno; /* Line 261, Address: 0x101f6a8 */
     subActwk->userflag.b.h = -1; /* Line 262, Address: 0x101f6b8 */
     subActwk->actfree[19] = pActwk->cdsts; /* Line 263, Address: 0x101f6c4 */
-    ((short*)subActwk)[33] = (unsigned char)(pActwk - actwk); /* Line 264, Address: 0x101f6d4 */
-    ((short*)pActwk)[28] = (unsigned char)(subActwk - actwk); /* Line 265, Address: 0x101f714 */
+    ((short*)subActwk)[33] = (unsigned short)(unsigned char)(pActwk - actwk); /* Line 264, Address: 0x101f6d4 */
+    ((short*)pActwk)[28] = (unsigned short)(unsigned char)(subActwk - actwk); /* Line 265, Address: 0x101f714 */
   } /* Line 266, Address: 0x101f754 */
   else
   {
@@ -361,7 +361,7 @@ static int a_check(sprite_status* pActwk) { /* Line 351, Address: 0x101fe50 */
   {
     wD0 = actwk[0].xposi.w.h - pActwk->xposi.w.h; /* Line 362, Address: 0x101feac */
     if (!(pActwk->actflg & 1)) /* Line 363, Address: 0x101fee0 */
-      wD0 = -wD0; /* Line 364, Address: 0x101fef8 */
+      wD0 *= -1; /* Line 364, Address: 0x101fef8 */
     wD0 += 80; /* Line 365, Address: 0x101ff04 */
     if (wD0 >= 0) /* Line 366, Address: 0x101ff10 */
       ret = -1; /* Line 367, Address: 0x101ff20 */
@@ -492,7 +492,7 @@ static void b_move(sprite_status* pActwk) { /* Line 489, Address: 0x1020500 */
   *(int*)&pActwk->actfree[0] += *(int*)&pActwk->actfree[8]; /* Line 492, Address: 0x1020544 */
   *(int*)&pActwk->actfree[4] += *(int*)&pActwk->actfree[12]; /* Line 493, Address: 0x1020568 */
 
-  if (pActwk->yposi.w.h - actwk[0].yposi.w.h >= 225) /* Line 495, Address: 0x102058c */
+  if (pActwk->yposi.w.h - actwk[0].yposi.w.h > 224) /* Line 495, Address: 0x102058c */
   {
     frameout(pActwk); /* Line 497, Address: 0x10205bc */
     return; /* Line 498, Address: 0x10205c8 */

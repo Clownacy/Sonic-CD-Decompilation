@@ -1,9 +1,14 @@
 #include "..\EQU.H"
 #include "FRIEND4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\SUICIDE.H"
+#include "PLAYSUB4.H"
 
-void m_init(sprite_status* pActwk);
-void m0move(sprite_status* pActwk);
-void m1move(sprite_status* pActwk);
+static void m_init(sprite_status* pActwk);
+static void m0move(sprite_status* pActwk);
+static void m1move(sprite_status* pActwk);
 
 static unsigned char pchg0[30] = {
   0, 0, 0, 2, 0, 0, 2, 1, 1, 2,
@@ -144,13 +149,8 @@ static unsigned short tbl0sproffset[11] = {
 
 
 
-
-
-
-
-
 void friend4(sprite_status* pActwk) { /* Line 152, Address: 0x101e780 */
-  if (friend_suicide(pActwk) == 0) { /* Line 153, Address: 0x101e78c */
+  if (!friend_suicide(pActwk)) { /* Line 153, Address: 0x101e78c */
     if ((char)pActwk->r_no0 < 0) { /* Line 154, Address: 0x101e7a0 */
       m0move(pActwk); return; /* Line 155, Address: 0x101e7c0 */
     }
@@ -176,7 +176,7 @@ static void m_init(sprite_status* pActwk) { /* Line 167, Address: 0x101e820 */
   temp.w = 0; /* Line 176, Address: 0x101e868 */
   temp.b.l = stageno.b.l; /* Line 177, Address: 0x101e86c */
   temp.w <<= 2; /* Line 178, Address: 0x101e878 */
-  temp.b.l = temp.b.l + time_flag; /* Line 179, Address: 0x101e884 */
+  temp.b.l = temp.b.l + (char)time_flag; /* Line 179, Address: 0x101e884 */
   temp.w <<= 1; /* Line 180, Address: 0x101e8b8 */
   pActwk->sproffset = tbl0sproffset[temp.w]; /* Line 181, Address: 0x101e8c4 */
   if (pActwk->userflag.b.h & 1) { /* Line 182, Address: 0x101e8ec */
@@ -231,7 +231,7 @@ static void m0move(sprite_status* pActwk) { /* Line 217, Address: 0x101ea70 */
     return; /* Line 231, Address: 0x101eaf0 */
   }
 
-  sinset(((char*)pActwk)[53], &sin, &cos); /* Line 234, Address: 0x101eaf8 */
+  sinset(((char*)pActwk)[53], (short*)&sin, (short*)&cos); /* Line 234, Address: 0x101eaf8 */
   cosl = 0, sinl = 0; /* Line 235, Address: 0x101eb14 */
   cosl = cos; /* Line 236, Address: 0x101eb1c */
   sinl = sin; /* Line 237, Address: 0x101eb24 */
@@ -239,12 +239,12 @@ static void m0move(sprite_status* pActwk) { /* Line 217, Address: 0x101ea70 */
   sinl = (unsigned int)sinl >> 16 & 65535 | sinl << 16 & -65536; /* Line 239, Address: 0x101eb44 */
   cosl >>= 3; /* Line 240, Address: 0x101eb5c */
   sinl >>= 4; /* Line 241, Address: 0x101eb60 */
-  cosl = cosl + 32767 + 1; /* Line 242, Address: 0x101eb64 */
-  sinl = sinl + 32767 + 1; /* Line 243, Address: 0x101eb6c */
+  cosl = cosl + 32768; /* Line 242, Address: 0x101eb64 */
+  sinl = sinl + 32768; /* Line 243, Address: 0x101eb6c */
   cosl = (unsigned int)cosl >> 16 & 65535 | cosl << 16 & -65536; /* Line 244, Address: 0x101eb74 */
   sinl = (unsigned int)sinl >> 16 & 65535 | sinl << 16 & -65536; /* Line 245, Address: 0x101eb8c */
-  pActwk->xposi.w.h = ((short*)pActwk)[30] + (cosl & 65535); /* Line 246, Address: 0x101eba4 */
-  pActwk->yposi.w.h = ((short*)pActwk)[25] + (sinl & 65535); /* Line 247, Address: 0x101ebdc */
+  pActwk->xposi.w.h = ((short*)pActwk)[30] + (short)(cosl & 65535); /* Line 246, Address: 0x101eba4 */
+  pActwk->yposi.w.h = ((short*)pActwk)[25] + (short)(sinl & 65535); /* Line 247, Address: 0x101ebdc */
 
   ((int*)pActwk)[13] += ((int*)pActwk)[14]; /* Line 249, Address: 0x101ec14 */
   if (!(((int*)pActwk)[13] & 32767)) { /* Line 250, Address: 0x101ec2c */
@@ -275,21 +275,21 @@ static void m1move(sprite_status* pActwk) { /* Line 272, Address: 0x101ece0 */
 
   pActwk->xposi.l += *(int*)&pActwk->actfree[0]; /* Line 276, Address: 0x101ecf0 */
 
-  sinset(((char*)pActwk)[53], &sin, &cos); /* Line 278, Address: 0x101ed0c */
+  sinset(((char*)pActwk)[53], (short*)&sin, (short*)&cos); /* Line 278, Address: 0x101ed0c */
   sinl = 0; /* Line 279, Address: 0x101ed28 */
-  sinl = ((unsigned short*)pActwk)[23]; /* Line 280, Address: 0x101ed2c */
+  sinl = sin; /* Line 280, Address: 0x101ed2c */
   sinl = (unsigned int)sinl >> 16 & 65535 | sinl << 16 & -65536; /* Line 281, Address: 0x101ed34 */
   sinl >>= 3; /* Line 282, Address: 0x101ed4c */
-  sinl = sinl + 32767 + 1; /* Line 283, Address: 0x101ed50 */
+  sinl = sinl + 32768; /* Line 283, Address: 0x101ed50 */
   sinl = (unsigned int)sinl >> 16 & 65535 | sinl << 16 & -65536; /* Line 284, Address: 0x101ed58 */
-  pActwk->yposi.w.h = ((short*)pActwk)[25] + (sinl & 65535); /* Line 285, Address: 0x101ed70 */
+  pActwk->yposi.w.h = ((short*)pActwk)[25] + (short)(sinl & 65535); /* Line 285, Address: 0x101ed70 */
 
   ((int*)pActwk)[13] += ((int*)pActwk)[14]; /* Line 287, Address: 0x101eda8 */
   if (((int*)pActwk)[13] < 0) { /* Line 288, Address: 0x101edc0 */
 
 
     ((int*)pActwk)[14] *= -1; /* Line 291, Address: 0x101edd0 */
-    *(int*)&pActwk->actfree[0] = -*(int*)&pActwk->actfree[0]; /* Line 292, Address: 0x101ede0 */
+    *(int*)&pActwk->actfree[0] *= -1; /* Line 292, Address: 0x101ede0 */
     pActwk->actflg ^= 1; /* Line 293, Address: 0x101edf8 */
     pActwk->cddat ^= 1; /* Line 294, Address: 0x101ee08 */
   } /* Line 295, Address: 0x101ee18 */
@@ -299,7 +299,7 @@ static void m1move(sprite_status* pActwk) { /* Line 272, Address: 0x101ece0 */
 
 
       ((int*)pActwk)[14] *= -1; /* Line 301, Address: 0x101ee38 */
-      *(int*)&pActwk->actfree[0] = -*(int*)&pActwk->actfree[0]; /* Line 302, Address: 0x101ee48 */
+      *(int*)&pActwk->actfree[0] *= -1; /* Line 302, Address: 0x101ee48 */
       pActwk->actflg ^= 1; /* Line 303, Address: 0x101ee60 */
       pActwk->cddat ^= 1; /* Line 304, Address: 0x101ee70 */
     }

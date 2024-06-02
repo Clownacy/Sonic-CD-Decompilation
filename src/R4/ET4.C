@@ -1,11 +1,11 @@
 #include "..\EQU.H"
 #include "ET4.H"
 
-void m_init(sprite_status* pActwk);
-void m_wait(sprite_status* pActwk);
-void m_die(sprite_status* pActwk);
-void m1wait(sprite_status* pActwk);
-void a_hover(sprite_status* pActwk);
+static void m_init(sprite_status* pActwk);
+static void m_wait(sprite_status* pActwk);
+static void m_die(sprite_status* pActwk);
+static void m1wait(sprite_status* pActwk);
+static void a_hover(sprite_status* pActwk);
 
 static char p_a[6] = { 3, 3, 4, 5, 6, -1 };
 static char* pchg[1] = { p_a };
@@ -194,7 +194,7 @@ void et(sprite_status* pActwk) { /* Line 193, Address: 0x1021b90 */
   et_jmp_tbl[pActwk->r_no0 / 2](pActwk); /* Line 194, Address: 0x1021b9c */
   actionsub(pActwk); /* Line 195, Address: 0x1021be0 */
 
-  if (pActwk->r_no0 < 3) { /* Line 197, Address: 0x1021bec */
+  if (pActwk->r_no0 <= 2) { /* Line 197, Address: 0x1021bec */
     frameout_s(pActwk); /* Line 198, Address: 0x1021c04 */
   }
 } /* Line 200, Address: 0x1021c10 */

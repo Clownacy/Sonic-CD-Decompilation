@@ -1,5 +1,13 @@
 #include "..\EQU.H"
 #include "BOSS_4_2.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\ETC.H"
+#include "..\GOAL.H"
+#include "..\IO.H"
+#include "..\LOADER2.H"
+#include "..\SCORE.H"
+#include "PLAYSUB4.H"
 
 typedef struct {
   char xpos;
@@ -9,49 +17,49 @@ typedef struct {
 }
 tama;
 
-void egg4_warai_chk(sprite_status* pActwk);
-void egg4_warai(sprite_status* pActwk);
-unsigned int egg4_ini(sprite_status* pActwk);
-void make_egg4meca(sprite_status* pActwk);
-unsigned int egg4_scrset(sprite_status* pActwk);
-unsigned int egg4_scrreset(sprite_status* pActwk);
-unsigned int egg4_awademo1(sprite_status* pActwk);
-void egg4_posiini(sprite_status* pActwk);
-void make_awa(sprite_status* pActwk, sprite_status** pNewact);
-void make_awa2(sprite_status* pActwk, sprite_status** pNewact);
-unsigned int egg4_awademo2(sprite_status* pActwk);
-unsigned int egg4_awademo3(sprite_status* pActwk);
-unsigned int egg4_movel(sprite_status* pActwk);
-void egg4_hitchk(sprite_status* pActwk);
-void make_tama(sprite_status* pActwk);
-void egg4_posiset(sprite_status* pActwk);
-unsigned int egg4_mover(sprite_status* pActwk);
-unsigned int egg4_wait(sprite_status* pActwk);
-unsigned int egg4_die(sprite_status* pActwk);
-void bom_set(sprite_status* pActwk);
-unsigned int egg4_esc(sprite_status* pActwk);
-unsigned int egg4_movec(sprite_status* pActwk);
-unsigned int egg4_movec2(sprite_status* pActwk);
-unsigned int egg4_movec3(sprite_status* pActwk);
-void egg4meca_ini(sprite_status* pActwk);
-void egg4meca_01(sprite_status* pActwk);
-unsigned int egg4awa_ini(sprite_status* pActwk);
-unsigned int egg4awa_deru(sprite_status* pActwk);
-unsigned int egg4awa_tuku(sprite_status* pActwk);
-unsigned int egg4awa_hiro(sprite_status* pActwk);
-void awa_hitchk(sprite_status* pActwk);
-unsigned int egg4awa_roll(sprite_status* pActwk);
-unsigned int egg4awa_ychg(sprite_status* pActwk);
-void ychg_ret(sprite_status* pActwk, sprite_status* pEggwk);
-void ychg_rad_endproc(sprite_status* pActwk);
-unsigned int egg4awa_del(sprite_status* pActwk);
-unsigned int egg4awa_out(sprite_status* pActwk);
-unsigned int egg4awa_chi(sprite_status* pActwk);
-unsigned int egg4tama_ini(sprite_status* pActwk);
-unsigned int egg4tama_01(sprite_status* pActwk);
-unsigned int egg4tama_02(sprite_status* pActwk);
-unsigned int egg4tama_kill(sprite_status* pActwk);
-unsigned int frameout_chk(sprite_status* pActwk);
+static void egg4_warai_chk(sprite_status* pActwk);
+static void egg4_warai(sprite_status* pActwk);
+static unsigned int egg4_ini(sprite_status* pActwk);
+static void make_egg4meca(sprite_status* pActwk);
+static unsigned int egg4_scrset(sprite_status* pActwk);
+static unsigned int egg4_scrreset(sprite_status* pActwk);
+static unsigned int egg4_awademo1(sprite_status* pActwk);
+static void egg4_posiini(sprite_status* pActwk);
+static void make_awa(sprite_status* pActwk, sprite_status** pNewact);
+static void make_awa2(sprite_status* pActwk, sprite_status** pNewact);
+static unsigned int egg4_awademo2(sprite_status* pActwk);
+static unsigned int egg4_awademo3(sprite_status* pActwk);
+static unsigned int egg4_movel(sprite_status* pActwk);
+static void egg4_hitchk(sprite_status* pActwk);
+static void make_tama(sprite_status* pActwk);
+static void egg4_posiset(sprite_status* pActwk);
+static unsigned int egg4_mover(sprite_status* pActwk);
+static unsigned int egg4_wait(sprite_status* pActwk);
+static unsigned int egg4_die(sprite_status* pActwk);
+static void bom_set(sprite_status* pActwk);
+static unsigned int egg4_esc(sprite_status* pActwk);
+static unsigned int egg4_movec(sprite_status* pActwk);
+static unsigned int egg4_movec2(sprite_status* pActwk);
+static unsigned int egg4_movec3(sprite_status* pActwk);
+static void egg4meca_ini(sprite_status* pActwk);
+static void egg4meca_01(sprite_status* pActwk);
+static unsigned int egg4awa_ini(sprite_status* pActwk);
+static unsigned int egg4awa_deru(sprite_status* pActwk);
+static unsigned int egg4awa_tuku(sprite_status* pActwk);
+static unsigned int egg4awa_hiro(sprite_status* pActwk);
+static void awa_hitchk(sprite_status* pActwk);
+static unsigned int egg4awa_roll(sprite_status* pActwk);
+static unsigned int egg4awa_ychg(sprite_status* pActwk);
+static void ychg_ret(sprite_status* pActwk, sprite_status* pEggwk);
+static void ychg_rad_endproc(sprite_status* pActwk);
+static unsigned int egg4awa_del(sprite_status* pActwk);
+static unsigned int egg4awa_out(sprite_status* pActwk);
+static unsigned int egg4awa_chi(sprite_status* pActwk);
+static unsigned int egg4tama_ini(sprite_status* pActwk);
+static unsigned int egg4tama_01(sprite_status* pActwk);
+static unsigned int egg4tama_02(sprite_status* pActwk);
+static unsigned int egg4tama_kill(sprite_status* pActwk);
+static unsigned int frameout_chk(sprite_status* pActwk);
 
 static sprite_pattern egg4_pat0 = {
   1,
@@ -222,14 +230,6 @@ static unsigned int(*egg4tama_act_tbl[3])(sprite_status*) = {
   &egg4tama_01,
   &egg4tama_02
 };
-
-
-
-
-
-
-
-
 
 
 
@@ -772,7 +772,7 @@ static unsigned int egg4_wait(sprite_status* pActwk) { /* Line 764, Address: 0x1
   egg4_hitchk(pActwk); /* Line 772, Address: 0x10230c8 */
   ++pActwk->actfree[0]; /* Line 773, Address: 0x10230d4 */
 
-  if (pActwk->actfree[0] == 48) { /* Line 775, Address: 0x10230e4 */
+  if ((long int)(int)pActwk->actfree[0] == 48) { /* Line 775, Address: 0x10230e4 */
 
     pChildact = &actwk[((short*)pActwk)[26]]; /* Line 777, Address: 0x1023104 */
     pChildact->actflg ^= 1; /* Line 778, Address: 0x102312c */
@@ -947,15 +947,15 @@ static unsigned int egg4_movec(sprite_status* pActwk) { /* Line 914, Address: 0x
   }
 
 
-  pActwk->xposi.l += -32768 + -32768; /* Line 950, Address: 0x1023768 */
-  if (pActwk->xposi.w.h < 2545) goto label1; /* Line 951, Address: 0x102377c */
+  pActwk->xposi.l -= 65536; /* Line 950, Address: 0x1023768 */
+  if (pActwk->xposi.w.h <= 2544) goto label1; /* Line 951, Address: 0x102377c */
   return 1; /* Line 952, Address: 0x1023798 */
 
 
 
 label1:
   ((int*)pActwk)[15] *= -1; /* Line 957, Address: 0x10237a4 */
-  ((unsigned short*)pActwk)[28] += 32767 + 1; /* Line 958, Address: 0x10237b4 */
+  ((unsigned short*)pActwk)[28] += 32768; /* Line 958, Address: 0x10237b4 */
   pActwk->xposi.w.h = 2640; /* Line 959, Address: 0x10237c8 */
   pActwk->xposi.w.l = 0; /* Line 960, Address: 0x10237d4 */
 
@@ -1207,7 +1207,7 @@ static unsigned int egg4awa_ini(sprite_status* pActwk) { /* Line 1183, Address: 
 
   uRndNum.l = random(); /* Line 1208, Address: 0x1023b5c */
   uRndNum.w.h = 0; /* Line 1209, Address: 0x1023b68 */
-  uRndNum.w.l = uRndNum.l % 16 + 10; /* Line 1210, Address: 0x1023b6c */
+  uRndNum.w.l = (short)(uRndNum.l % 16 + 10); /* Line 1210, Address: 0x1023b6c */
   ((short*)pActwk)[33] = uRndNum.w.l; /* Line 1211, Address: 0x1023b8c */
 
   egg4awa_deru(pActwk); /* Line 1213, Address: 0x1023b98 */
@@ -1289,7 +1289,7 @@ static unsigned int egg4awa_tuku(sprite_status* pActwk) { /* Line 1282, Address:
   egg4_posiset(pActwk); /* Line 1289, Address: 0x1023e44 */
 
   if ((RadSpd = ((short*)pActwk)[29]) >= 0) { /* Line 1291, Address: 0x1023e50 */
-    RadSpd = -RadSpd; /* Line 1292, Address: 0x1023e70 */
+    RadSpd *= -1; /* Line 1292, Address: 0x1023e70 */
   }
 
 
@@ -1334,7 +1334,7 @@ static unsigned int egg4awa_hiro(sprite_status* pActwk) { /* Line 1322, Address:
   pActwk->xposi.l = pEggact->xposi.l; /* Line 1334, Address: 0x1023fb4 */
   pActwk->yposi.l = pEggact->yposi.l; /* Line 1335, Address: 0x1023fc0 */
 
-  if (((short*)pActwk)[33] < 48) { /* Line 1337, Address: 0x1023fcc */
+  if ((long int)(int)((short*)pActwk)[33] < 48) { /* Line 1337, Address: 0x1023fcc */
     ((int*)pActwk)[16] += 16384; /* Line 1338, Address: 0x1023ff0 */
   } /* Line 1339, Address: 0x1024000 */
   else {
@@ -1343,7 +1343,7 @@ static unsigned int egg4awa_hiro(sprite_status* pActwk) { /* Line 1322, Address:
   }
 
 
-  if (pActwk->yspeed.w < 48) { /* Line 1346, Address: 0x1024018 */
+  if ((long int)(int)pActwk->yspeed.w < 48) { /* Line 1346, Address: 0x1024018 */
     ((int*)pActwk)[4] += 16384; /* Line 1347, Address: 0x102403c */
   } /* Line 1348, Address: 0x102404c */
   else {
@@ -1479,8 +1479,8 @@ static unsigned int egg4awa_ychg(sprite_status* pActwk) { /* Line 1471, Address:
 
   if (pActwk->r_no1) { /* Line 1480, Address: 0x102441c */
 
-    ((int*)pActwk)[16] += -32768 + -32768; /* Line 1482, Address: 0x102442c */
-    if (((int*)pActwk)[16] >= -3145727) { /* Line 1483, Address: 0x1024440 */
+    ((int*)pActwk)[16] -= 65536; /* Line 1482, Address: 0x102442c */
+    if ((long int)((int*)pActwk)[16] > -3145728) { /* Line 1483, Address: 0x1024440 */
       ychg_ret(pActwk, pEggact); /* Line 1484, Address: 0x1024464 */
     } /* Line 1485, Address: 0x1024474 */
     else {
@@ -1494,7 +1494,7 @@ static unsigned int egg4awa_ychg(sprite_status* pActwk) { /* Line 1471, Address:
     }
   } /* Line 1495, Address: 0x10244b8 */
   else {
-    if ((((int*)pActwk)[16] += -32768 + -32768) < 0) { /* Line 1497, Address: 0x10244c0 */
+    if ((((int*)pActwk)[16] -= 65536) < 0) { /* Line 1497, Address: 0x10244c0 */
 
       ++pActwk->r_no1; /* Line 1499, Address: 0x10244dc */
     }
@@ -1516,7 +1516,7 @@ static void ychg_ret(sprite_status* pActwk, sprite_status* pEggwk) { /* Line 151
   spdwk = 1152; /* Line 1516, Address: 0x1024538 */
 
   if (!(pEggwk->actfree[2]) & 8) { /* Line 1518, Address: 0x1024544 */
-    spdwk = -spdwk; /* Line 1519, Address: 0x1024560 */
+    spdwk *= -1; /* Line 1519, Address: 0x1024560 */
   }
 
 
@@ -1627,10 +1627,10 @@ static unsigned int egg4awa_chi(sprite_status* pActwk) { /* Line 1602, Address: 
   pEggact = &actwk[((short*)pActwk)[25]]; /* Line 1627, Address: 0x1024714 */
   pActwk->xposi.l = pEggact->xposi.l; /* Line 1628, Address: 0x102473c */
   pActwk->yposi.l = pEggact->yposi.l; /* Line 1629, Address: 0x1024748 */
-  ((int*)pActwk)[16] += -32768 + -32768; /* Line 1630, Address: 0x1024754 */
-  ((int*)pActwk)[4] += -32768 + -32768; /* Line 1631, Address: 0x1024768 */
+  ((int*)pActwk)[16] -= 65536; /* Line 1630, Address: 0x1024754 */
+  ((int*)pActwk)[4] -= 65536; /* Line 1631, Address: 0x1024768 */
 
-  if (((int*)pActwk)[16] < 1048577) { /* Line 1633, Address: 0x102477c */
+  if ((long int)((int*)pActwk)[16] <= 1048576) { /* Line 1633, Address: 0x102477c */
 
     cntwk = pEggact->actfree[3]; /* Line 1635, Address: 0x10247a0 */
     radwk = rad_tbl[cntwk]; /* Line 1636, Address: 0x10247b0 */
@@ -1795,8 +1795,8 @@ static unsigned int egg4tama_kill(sprite_status* pActwk) { /* Line 1786, Address
 
 static unsigned int frameout_chk(sprite_status* pActwk) { /* Line 1796, Address: 0x1024bd0 */
   if (pActwk->xposi.w.h < 2464 /* Line 1797, Address: 0x1024bd8 */
-      || pActwk->xposi.w.h >= 2817
-      || pActwk->yposi.w.h >= 1489) {
+      || pActwk->xposi.w.h > 2816
+      || pActwk->yposi.w.h > 1488) {
     return 1; /* Line 1800, Address: 0x1024c2c */
   }
 

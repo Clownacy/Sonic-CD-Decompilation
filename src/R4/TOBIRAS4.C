@@ -1,10 +1,13 @@
 #include "..\EQU.H"
 #include "TOBIRAS4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\RIDECHK.H"
 
-void act_init(sprite_status* pActwk);
-void act_sense(sprite_status* pActwk);
-void act_down(sprite_status* pActwk);
-void act_disp(sprite_status* pActwk);
+static void act_init(sprite_status* pActwk);
+static void act_sense(sprite_status* pActwk);
+static void act_down(sprite_status* pActwk);
+static void act_disp(sprite_status* pActwk);
 
 static sprite_pattern pat00 =
 {
@@ -28,9 +31,6 @@ sprite_pattern* pat_tobiras4[3] =
   &pat02
 };
 extern void(*sMemCpy)(void*, void*, int);
-
-
-
 
 
 
@@ -131,7 +131,7 @@ static void act_sense(sprite_status* pActwk) { /* Line 95, Address: 0x1025690 */
       ((int*)pNewActwk)[12] *= -1; /* Line 131, Address: 0x10257e0 */
       ++pNewActwk->patno; /* Line 132, Address: 0x10257f0 */
     }
-  } while (d6-- >= 0); /* Line 134, Address: 0x1025800 */
+  } while (--d6 >= 0); /* Line 134, Address: 0x1025800 */
 
   act_disp(pActwk); /* Line 136, Address: 0x1025824 */
 } /* Line 137, Address: 0x1025830 */
