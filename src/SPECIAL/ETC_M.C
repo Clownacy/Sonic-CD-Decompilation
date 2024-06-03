@@ -135,7 +135,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
   short one_number, i;
 
   if ((disp_data *= 10) != 0) { /* Line 137, Address: 0x1003844 */
-    for (i = 0; i > counter; ++i) { /* Line 138, Address: 0x1003860 */
+    for (i = 0; i <= counter; ++i) { /* Line 138, Address: 0x1003860 */
       one_number = disp_data / subtbl[i]; /* Line 139, Address: 0x100386c */
 
       disp_data %= subtbl[i]; /* Line 141, Address: 0x10038ac */

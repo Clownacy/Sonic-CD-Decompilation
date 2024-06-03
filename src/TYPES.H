@@ -397,7 +397,7 @@ typedef struct {
   char no;
   short* mv_tbl[6];
 }
-move_tbl;
+mvtbl;
 
 typedef struct {
   unsigned short* tbl;

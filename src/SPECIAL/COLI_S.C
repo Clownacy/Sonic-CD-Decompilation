@@ -2,6 +2,7 @@
 #include "COMMON.H"
 #include "SPS_EQU.H"
 #include "COLI_S.H"
+#include "ACT_S.H"
 
 static unsigned short sm_cnt;
 extern void(*sOutputDebugString)(char*);
@@ -36,7 +37,6 @@ unsigned char* colliadr_tbl[8] = {
 
 
 
-
 void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   sprite_status_sp* pPlaywk;
   short iD0, iD1, iD2;
@@ -48,7 +48,7 @@ void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   iD0 = pActwk->x_posi.w.h - 16; /* Line 48, Address: 0x1000f30 */
   iD1 = iD0 + 32; /* Line 49, Address: 0x1000f54 */
   iD2 = pPlaywk->x_posi.w.h - 16; /* Line 50, Address: 0x1000f70 */
-  if (iD1 > iD2) return; /* Line 51, Address: 0x1000f90 */
+  if (iD2 > iD1) return; /* Line 51, Address: 0x1000f90 */
 
   if (iD2 + 32 < iD0) return; /* Line 53, Address: 0x1000fac */
 
@@ -56,7 +56,7 @@ void ufovspl(sprite_status_sp* pActwk) { /* Line 40, Address: 0x1000ef0 */
   iD0 = pActwk->y_posi.w.h - 12; /* Line 56, Address: 0x1000fcc */
   iD1 = iD0 + 24; /* Line 57, Address: 0x1000ff0 */
   iD2 = pPlaywk->y_posi.w.h - 16; /* Line 58, Address: 0x100100c */
-  if (iD1 > iD2) return; /* Line 59, Address: 0x100102c */
+  if (iD2 > iD1) return; /* Line 59, Address: 0x100102c */
 
   if (iD2 + 32 < iD0) return; /* Line 61, Address: 0x1001048 */
 
@@ -100,7 +100,7 @@ void plcolli(sprite_status_sp* pActwk) { /* Line 86, Address: 0x10010d0 */
 
   iD1 >>= 12; /* Line 101, Address: 0x1001120 */
   iD1 &= 15; /* Line 102, Address: 0x100112c */
-  pActwk->scno_sdir = (char)iD1; /* Line 103, Address: 0x1001138 */
+  pActwk->scno_sdir = iD1; /* Line 103, Address: 0x1001138 */
 
   stpnmget(pActwk->x_posi.w.h - 8, pActwk->y_posi.w.h - 8, &iD1, &iD2); /* Line 105, Address: 0x1001148 */
 

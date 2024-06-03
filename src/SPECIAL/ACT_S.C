@@ -59,7 +59,7 @@ void action() { /* Line 38, Address: 0x1000000 */
 
   for (i = 0; i < 8; ++i) actmain(&actwk[i + 40]); /* Line 60, Address: 0x10000f4 */
 
-  for (i = linkdata; i < 80; ++i) { /* Line 62, Address: 0x100014c */
+  for (i = (unsigned short)linkdata; i < 80; ++i) { /* Line 62, Address: 0x100014c */
     EAsprset(0, 0, 0, i, 0); /* Line 63, Address: 0x100016c */
   } /* Line 64, Address: 0x1000190 */
 } /* Line 65, Address: 0x10001b0 */
@@ -212,27 +212,27 @@ void n_patset(sprite_status_sp* work, sprite_pattern* sprpat_adr) { /* Line 200,
 
     switch (sprdat.etc & 24) { /* Line 213, Address: 0x10008ac */
       case 0:
-        y_posi = sy + sprdat.yoff; /* Line 215, Address: 0x10008ec */
-        x_posi = sx + sprdat.xoff; /* Line 216, Address: 0x100091c */
+        y_posi = sy + (short)sprdat.yoff; /* Line 215, Address: 0x10008ec */
+        x_posi = sx + (short)sprdat.xoff; /* Line 216, Address: 0x100091c */
         rev = 0; /* Line 217, Address: 0x100094c */
         break; /* Line 218, Address: 0x1000950 */
       case 8:
-        y_posi = sy + sprdat.yoff; /* Line 220, Address: 0x1000958 */
-        x_posi = sx - sprdat.xoff /* Line 221, Address: 0x1000988 */
-                    - SprBmp[sprdat.index].xs;
+        y_posi = sy + (short)sprdat.yoff; /* Line 220, Address: 0x1000958 */
+        x_posi = sx - (short)sprdat.xoff /* Line 221, Address: 0x1000988 */
+                    - (short)SprBmp[sprdat.index].xs;
         rev = 1; /* Line 223, Address: 0x10009e8 */
         break; /* Line 224, Address: 0x10009f0 */
       case 16:
-        y_posi = sy - sprdat.yoff /* Line 226, Address: 0x10009f8 */
-                    - SprBmp[sprdat.index].ys;
-        x_posi = sx + sprdat.xoff; /* Line 228, Address: 0x1000a58 */
+        y_posi = sy - (short)sprdat.yoff /* Line 226, Address: 0x10009f8 */
+                    - (short)SprBmp[sprdat.index].ys;
+        x_posi = sx + (short)sprdat.xoff; /* Line 228, Address: 0x1000a58 */
         rev = 2; /* Line 229, Address: 0x1000a88 */
         break; /* Line 230, Address: 0x1000a90 */
       case 24:
-        y_posi = sy - sprdat.yoff /* Line 232, Address: 0x1000a98 */
-                    - SprBmp[sprdat.index].ys;
-        x_posi = sx - sprdat.xoff /* Line 234, Address: 0x1000af8 */
-                    - SprBmp[sprdat.index].xs;
+        y_posi = sy - (short)sprdat.yoff /* Line 232, Address: 0x1000a98 */
+                    - (short)SprBmp[sprdat.index].ys;
+        x_posi = sx - (short)sprdat.xoff /* Line 234, Address: 0x1000af8 */
+                    - (short)SprBmp[sprdat.index].xs;
         rev = 3; /* Line 236, Address: 0x1000b58 */
         break; /* Line 237, Address: 0x1000b60 */
       default:
@@ -241,9 +241,9 @@ void n_patset(sprite_status_sp* work, sprite_pattern* sprpat_adr) { /* Line 200,
         break;
     }
 
-    if (y_posi + SprBmp[sprdat.index].ys >= 129 /* Line 244, Address: 0x1000b80 */
+    if (y_posi + (short)SprBmp[sprdat.index].ys > 128 /* Line 244, Address: 0x1000b80 */
         && y_posi < 384
-        && x_posi + SprBmp[sprdat.index].xs >= 129
+        && x_posi + (short)SprBmp[sprdat.index].xs > 128
         && x_posi < 448) {
       EAsprset(x_posi, y_posi, sprdat.index, linkdata++, rev); /* Line 248, Address: 0x1000c30 */
     }

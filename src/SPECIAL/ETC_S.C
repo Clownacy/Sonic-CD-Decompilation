@@ -2,21 +2,19 @@
 #include "COMMON.H"
 #include "SPS_EQU.H"
 #include "ETC_S.H"
+#include "ENS.H"
 
 unsigned short sincostbl[130] = {
-    255, 65535,  1024, 65528,  2047, 65504,  3069, 65464,  4088, 65408,
-   5104, 65337,  6117, 65250,  7126, 65147,  8129, 65030,  9126, 64897,
-  10117, 64750, 11101, 64589, 12078, 64414, 13046, 64224, 14005, 64022,
-  14955, 63807, 15895, 63579, 16825, 63340, 17744, 63088, 18651, 62826,
-  19548, 62553, 20432, 62270, 21304, 61977, 22164, 61674, 23011, 61363,
-  23845, 61044, 24666, 60717, 25474, 60383, 26268, 60041, 27049, 59694,
-  27816, 59340, 28569, 58981, 29309, 58617, 30034, 58249, 30747, 57876,
-  31445, 57499, 32130, 57120, 32801, 56737, 33459, 56351, 34103, 55964,
-  34734, 55574, 35352, 55183, 35957, 54791, 36549, 54398, 37128, 54004,
-  37695, 53610, 38249, 53216, 38791, 52822, 39322, 52429, 39840, 52036,
-  40347, 51644, 40842, 51253, 41327, 50863, 41800, 50475, 42262, 50089,
-  42714, 49704, 43156, 49321, 43587, 48940, 44009, 48561, 44420, 48185,
-  44823, 47811, 45216, 47439, 45600, 47071, 45975, 46704, 46341, 46341
+    255, 65535,  1024, 65528,  2047, 65504,  3069, 65464,  4088, 65408,  5104, 65337,  6117,
+  65250,  7126, 65147,  8129, 65030,  9126, 64897, 10117, 64750, 11101, 64589, 12078, 64414,
+  13046, 64224, 14005, 64022, 14955, 63807, 15895, 63579, 16825, 63340, 17744, 63088, 18651,
+  62826, 19548, 62553, 20432, 62270, 21304, 61977, 22164, 61674, 23011, 61363, 23845, 61044,
+  24666, 60717, 25474, 60383, 26268, 60041, 27049, 59694, 27816, 59340, 28569, 58981, 29309,
+  58617, 30034, 58249, 30747, 57876, 31445, 57499, 32130, 57120, 32801, 56737, 33459, 56351,
+  34103, 55964, 34734, 55574, 35352, 55183, 35957, 54791, 36549, 54398, 37128, 54004, 37695,
+  53610, 38249, 53216, 38791, 52822, 39322, 52429, 39840, 52036, 40347, 51644, 40842, 51253,
+  41327, 50863, 41800, 50475, 42262, 50089, 42714, 49704, 43156, 49321, 43587, 48940, 44009,
+  48561, 44420, 48185, 44823, 47811, 45216, 47439, 45600, 47071, 45975, 46704, 46341, 46341
 };
 unsigned short acostbl[65] = {
   255, 256, 256, 256, 256, 256, 257, 257, 257, 258,
@@ -28,6 +26,8 @@ unsigned short acostbl[65] = {
   350, 353, 356, 359, 362
 };
 
+
+
 void ufo_dec() {
   --ufoleft; /* Line 32, Address: 0x10040a0 */
 } /* Line 33, Address: 0x10040b4 */
@@ -36,7 +36,7 @@ void ufo_dec() {
 
 void ring_add(unsigned short iD0) { /* Line 37, Address: 0x10040c0 */
   ringno += iD0; /* Line 38, Address: 0x10040c8 */
-  if (ringno < 1000) return; /* Line 39, Address: 0x10040e0 */
+  if (ringno <= 999) return; /* Line 39, Address: 0x10040e0 */
   ringno = 999; /* Line 40, Address: 0x10040f8 */
 } /* Line 41, Address: 0x1004104 */
 
@@ -170,8 +170,8 @@ label2:
   if ((unsigned short)iD1 >= 64) /* Line 170, Address: 0x1004558 */
     iD1 = 63; /* Line 171, Address: 0x100456c */
 
-  *iAngle = (char)iD1; /* Line 173, Address: 0x1004578 */
-  *iDirflg = (char)iD2; /* Line 174, Address: 0x1004584 */
+  *iAngle = iD1; /* Line 173, Address: 0x1004578 */
+  *iDirflg = iD2; /* Line 174, Address: 0x1004584 */
 } /* Line 175, Address: 0x1004590 */
 
 
@@ -214,9 +214,9 @@ void speedget(unsigned char bAngle, unsigned char bDirflg, short iBaseSpd, int* 
     lD1.w.l = sincostbl[lD1.w.l]; /* Line 214, Address: 0x100464c */
 
     lD0.l = iBaseSpd * lD0.w.l; /* Line 216, Address: 0x1004670 */
-    lD0.l = lD0.l >> 16 | lD0.l << 16; /* Line 217, Address: 0x1004690 */
+    lD0.l = (long int)((unsigned int)lD0.l >> 16) & 65535 | (long int)((unsigned int)lD0.l << 16) & (unsigned int)65535 << 16; /* Line 217, Address: 0x1004690 */
     lD1.l = iBaseSpd * lD1.w.l; /* Line 218, Address: 0x10046d0 */
-    lD1.l = lD1.l >> 16 | lD1.l << 16; /* Line 219, Address: 0x10046f0 */
+    lD1.l = (long int)((unsigned int)lD1.l >> 16) & 65535 | (long int)((unsigned int)lD1.l << 16) & (unsigned int)65535 << 16; /* Line 219, Address: 0x10046f0 */
   }
 
   if (bDirflg & 4) /* Line 222, Address: 0x1004730 */
@@ -227,15 +227,15 @@ void speedget(unsigned char bAngle, unsigned char bDirflg, short iBaseSpd, int* 
   }
 
   if (bDirflg & 2) /* Line 229, Address: 0x1004754 */
-    lD0.l = -lD0.l; /* Line 230, Address: 0x1004768 */
+    lD0.l = -(long int)lD0.l; /* Line 230, Address: 0x1004768 */
 
-  lD0.l = lD0.l >> 16 | lD0.l << 16; /* Line 232, Address: 0x1004784 */
+  lD0.l = (long int)((unsigned int)lD0.l >> 16) & 65535 | (long int)((unsigned int)lD0.l << 16) & (unsigned int)65535 << 16; /* Line 232, Address: 0x1004784 */
   lD0.w.l = 0; /* Line 233, Address: 0x10047c4 */
   lD0.l >>= 8; /* Line 234, Address: 0x10047c8 */
   if (bDirflg & 1) /* Line 235, Address: 0x10047d4 */
     lD1.w.l = -lD1.w.l; /* Line 236, Address: 0x10047e8 */
 
-  lD1.l = lD1.l >> 16 | lD1.l << 16; /* Line 238, Address: 0x1004804 */
+  lD1.l = (long int)((unsigned int)lD1.l >> 16) & 65535 | (long int)((unsigned int)lD1.l << 16) & (unsigned int)65535 << 16; /* Line 238, Address: 0x1004804 */
   lD1.w.l = 0; /* Line 239, Address: 0x1004844 */
   lD1.l >>= 8; /* Line 240, Address: 0x1004848 */
 
@@ -306,19 +306,19 @@ int random() { /* Line 305, Address: 0x10049a0 */
   int_union lD0, lD1;
 
   lD1.l = ranum; /* Line 308, Address: 0x10049a4 */
-  if (lD1.l == 0) /* Line 309, Address: 0x10049b0 */
+  if ((long int)lD1.l == 0) /* Line 309, Address: 0x10049b0 */
     lD1.l = 711800410; /* Line 310, Address: 0x10049c4 */
 
   lD0.l = lD1.l; /* Line 312, Address: 0x10049d0 */
-  if (lD1.l & 32768) lD1.l *= 4, lD1.l |= 2147483648; else lD1.l *= 4; /* Line 313, Address: 0x10049d8 */
+  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 4, lD1.l |= 2147483648; else lD1.l *= 4; /* Line 313, Address: 0x10049d8 */
   lD1.l += lD0.l; /* Line 314, Address: 0x1004a28 */
-  if (lD1.l & 32768) lD1.l *= 8, lD1.l |= 2147483648; else lD1.l *= 8; /* Line 315, Address: 0x1004a38 */
+  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 8, lD1.l |= 2147483648; else lD1.l *= 8; /* Line 315, Address: 0x1004a38 */
   lD1.l += lD0.l; /* Line 316, Address: 0x1004a88 */
   lD0.w.l = lD1.w.l; /* Line 317, Address: 0x1004a98 */
-  lD1.l = lD1.l >> 16 | lD1.l << 16; /* Line 318, Address: 0x1004aa0 */
+  lD1.l = (long int)((unsigned int)lD1.l >> 16) & 65535 | (long int)((unsigned int)lD1.l << 16) & (unsigned int)65535 << 16; /* Line 318, Address: 0x1004aa0 */
   lD0.w.l += lD1.w.l; /* Line 319, Address: 0x1004ae0 */
   lD1.w.l = lD0.w.l; /* Line 320, Address: 0x1004af0 */
-  lD1.l = lD1.l >> 16 | lD1.l << 16; /* Line 321, Address: 0x1004af8 */
+  lD1.l = (long int)((unsigned int)lD1.l >> 16) & 65535 | (long int)((unsigned int)lD1.l << 16) & (unsigned int)65535 << 16; /* Line 321, Address: 0x1004af8 */
   ranum = lD1.l; /* Line 322, Address: 0x1004b38 */
   return lD0.l; /* Line 323, Address: 0x1004b44 */
 } /* Line 324, Address: 0x1004b48 */

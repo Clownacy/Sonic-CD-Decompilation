@@ -2,761 +2,61 @@
 #include "COMMON.H"
 #include "SPS_EQU.H"
 #include "ENS.H"
+#include "ACT_S.H"
+#include "COLI_S.H"
+#include "ETC_S.H"
+#include "GAME.H"
+#include "KAITEN.H"
 
-static sprite_pattern seexp00 = {
-  1,
-  { { -10, -8, 0, 127 } }
-};
-static sprite_pattern seexp01 = {
-  1,
-  { { -20, -16, 0, 128 } }
-};
-static sprite_pattern seexp02 = {
-  1,
-  { { -20, -16, 0, 129 } }
-};
-static sprite_pattern seexp03 = {
-  1,
-  { { -25, -8, 0, 130 } }
-};
-static sprite_pattern seexp04 = {
-  1,
-  { { -25, -24, 0, 131 } }
-};
-static sprite_pattern stitle00 = {
-  1,
-  { { -90, -56, 0, 132 } }
-};
-static sprite_pattern spress00 = {
-  1,
-  { { 0, 0, 0, 1 } }
-};
-static sprite_pattern sobi00 = {
-  1,
-  { { -15, -112, 0, 133 } }
-};
-static sprite_pattern sitem00 = {
-  1,
-  { { -10, -16, 0, 119 } }
-};
-static sprite_pattern sitem01 = {
-  1,
-  { { -10, -16, 0, 120 } }
-};
-static sprite_pattern sitem02 = {
-  1,
-  { { -10, -16, 0, 121 } }
-};
-static sprite_pattern sitem03 = {
-  1,
-  { { -10, -16, 0, 122 } }
-};
-static sprite_pattern sitem04 = {
-  1,
-  { { -10, -24, 0, 123 } }
-};
-static sprite_pattern sitem05 = {
-  1,
-  { { -10, -24, 0, 124 } }
-};
-static sprite_pattern sitem06 = {
-  1,
-  { { -5, -24, 0, 125 } }
-};
-static sprite_pattern sitem07 = {
-  1,
-  { { -10, -24, 0, 126 } }
-};
-static sprite_pattern skage00 = {
-  1,
-  { { -40, -8, 0, 71 } }
-};
-static sprite_pattern skage01 = {
-  1,
-  { { -35, -8, 0, 72 } }
-};
-static sprite_pattern skage02 = {
-  1,
-  { { -30, -4, 0, 73 } }
-};
-static sprite_pattern skage03 = {
-  1,
-  { { -30, -4, 0, 74 } }
-};
-static sprite_pattern skage04 = {
-  1,
-  { { -25, -4, 0, 75 } }
-};
-static sprite_pattern skage05 = {
-  1,
-  { { -20, -4, 0, 76 } }
-};
-static sprite_pattern skage06 = {
-  1,
-  { { -15, -4, 0, 77 } }
-};
-static sprite_pattern skage07 = {
-  1,
-  { { -15, -4, 0, 78 } }
-};
-static sprite_pattern skage08 = {
-  1,
-  { { -10, -4, 0, 79 } }
-};
-static sprite_pattern skage09 = {
-  1,
-  { { -5, -4, 0, 80 } }
-};
-static sprite_pattern Tufo00 = {
-  1,
-  { { -40, -56, 0, 81 } }
-};
-static sprite_pattern Tufo01 = {
-  1,
-  { { -30, -48, 0, 82 } }
-};
-static sprite_pattern Tufo02 = {
-  1,
-  { { -30, -40, 0, 83 } }
-};
-static sprite_pattern Tufo03 = {
-  1,
-  { { -30, -40, 0, 84 } }
-};
-static sprite_pattern Tufo04 = {
-  1,
-  { { -30, -32, 0, 85 } }
-};
-static sprite_pattern Tufo05 = {
-  1,
-  { { -20, -32, 0, 86 } }
-};
-static sprite_pattern Tufo06 = {
-  1,
-  { { -20, -32, 0, 87 } }
-};
-static sprite_pattern Tufo07 = {
-  1,
-  { { -15, -24, 0, 88 } }
-};
-static sprite_pattern Tufo08 = {
-  1,
-  { { -10, -16, 0, 89 } }
-};
-static sprite_pattern Tufo09 = {
-  1,
-  { { -5, -8, 0, 90 } }
-};
-static sprite_pattern sufo00 = {
-  1,
-  { { -40, -56, 0, 91 } }
-};
-static sprite_pattern sufo01 = {
-  1,
-  { { -30, -48, 0, 92 } }
-};
-static sprite_pattern sufo02 = {
-  1,
-  { { -30, -40, 0, 93 } }
-};
-static sprite_pattern sufo03 = {
-  1,
-  { { -30, -40, 0, 94 } }
-};
-static sprite_pattern sufo04 = {
-  1,
-  { { -30, -32, 0, 95 } }
-};
-static sprite_pattern sufo05 = {
-  1,
-  { { -20, -32, 0, 96 } }
-};
-static sprite_pattern sufo06 = {
-  1,
-  { { -20, -32, 0, 97 } }
-};
-static sprite_pattern sufo07 = {
-  1,
-  { { -15, -24, 0, 98 } }
-};
-static sprite_pattern sufo08 = {
-  1,
-  { { -10, -16, 0, 99 } }
-};
-static sprite_pattern sufo09 = {
-  1,
-  { { -5, -8, 0, 100 } }
-};
-static sprite_pattern sufo10 = {
-  1,
-  { { -40, -8, 0, 101 } }
-};
-static sprite_pattern sufo11 = {
-  1,
-  { { -30, -48, 0, 102 } }
-};
-static sprite_pattern sufo12 = {
-  1,
-  { { -30, -40, 0, 103 } }
-};
-static sprite_pattern sufo13 = {
-  1,
-  { { -30, -40, 0, 104 } }
-};
-static sprite_pattern sufo14 = {
-  1,
-  { { -30, -32, 0, 105 } }
-};
-static sprite_pattern sufo15 = {
-  1,
-  { { -20, -32, 0, 106 } }
-};
-static sprite_pattern sufo16 = {
-  1,
-  { { -20, -32, 0, 107 } }
-};
-static sprite_pattern sufo17 = {
-  1,
-  { { -15, -24, 0, 108 } }
-};
-static sprite_pattern sufo18 = {
-  1,
-  { { -10, -16, 0, 109 } }
-};
-static sprite_pattern sufo19 = {
-  1,
-  { { -5, -8, 0, 110 } }
-};
-sprite_patterns_sp mpeexpTBL0 = {
-  5,
-  2,
-  { &seexp00, &seexp01, &seexp02, &seexp03, &seexp04 }
-};
+static sprite_pattern seexp00 =  { 1, { { -10,   -8, 0, 127 } } };
+static sprite_pattern seexp01 =  { 1, { { -20,  -16, 0, 128 } } };
+static sprite_pattern seexp02 =  { 1, { { -20,  -16, 0, 129 } } };
+static sprite_pattern seexp03 =  { 1, { { -25,   -8, 0, 130 } } };
+static sprite_pattern seexp04 =  { 1, { { -25,  -24, 0, 131 } } };
+static sprite_pattern stitle00 = { 1, { { -90,  -56, 0, 132 } } };
+static sprite_pattern spress00 = { 1, { {   0,    0, 0,   1 } } };
+static sprite_pattern sobi00 =   { 1, { { -15, -112, 0, 133 } } };
+static sprite_pattern sitem00 =  { 1, { { -10,  -16, 0, 119 } } };
+static sprite_pattern sitem01 =  { 1, { { -10,  -16, 0, 120 } } };
+static sprite_pattern sitem02 =  { 1, { { -10,  -16, 0, 121 } } };
+static sprite_pattern sitem03 =  { 1, { { -10,  -16, 0, 122 } } };
+static sprite_pattern sitem04 =  { 1, { { -10,  -24, 0, 123 } } };
+static sprite_pattern sitem05 =  { 1, { { -10,  -24, 0, 124 } } };
+static sprite_pattern sitem06 =  { 1, { {  -5,  -24, 0, 125 } } };
+static sprite_pattern sitem07 =  { 1, { { -10,  -24, 0, 126 } } };
+static sprite_pattern Tufo00 =   { 1, { { -40,  -56, 0,  81 } } };
+static sprite_pattern Tufo01 =   { 1, { { -30,  -48, 0,  82 } } };
+static sprite_pattern Tufo02 =   { 1, { { -30,  -40, 0,  83 } } };
+static sprite_pattern Tufo03 =   { 1, { { -30,  -40, 0,  84 } } };
+static sprite_pattern Tufo04 =   { 1, { { -30,  -32, 0,  85 } } };
+static sprite_pattern Tufo05 =   { 1, { { -20,  -32, 0,  86 } } };
+static sprite_pattern Tufo06 =   { 1, { { -20,  -32, 0,  87 } } };
+static sprite_pattern Tufo07 =   { 1, { { -15,  -24, 0,  88 } } };
+static sprite_pattern Tufo08 =   { 1, { { -10,  -16, 0,  89 } } };
+static sprite_pattern Tufo09 =   { 1, { {  -5,   -8, 0,  90 } } };
+sprite_patterns_sp mpeexpTBL0 = { 5,  2, { &seexp00, &seexp01, &seexp02, &seexp03, &seexp04 } };
 sprite_patterns_sp* mpeexp[1] = { &mpeexpTBL0 };
-sprite_patterns_sp mpitemTBL0 = {
-  1,
-  255,
-  { &sitem00 }
-};
-sprite_patterns_sp mpitemTBL1 = {
-  1,
-  255,
-  { &sitem01 }
-};
-sprite_patterns_sp mpitemTBL2 = {
-  1,
-  255,
-  { &sitem02 }
-};
-sprite_patterns_sp mpitemTBL3 = {
-  1,
-  255,
-  { &sitem03 }
-};
-sprite_patterns_sp mpitemTBL4 = {
-  4,
-  4,
-  { &sitem04, &sitem05, &sitem06, &sitem07 }
-};
+sprite_patterns_sp mpitemTBL0 = { 1, -1, { &sitem00 } }, mpitemTBL1 = { 1, -1, { &sitem01 } }, mpitemTBL2 = { 1, -1, { &sitem02 } }, mpitemTBL3 = { 1, -1, { &sitem03 } }, mpitemTBL4 = { 4,  4, { &sitem04, &sitem05, &sitem06, &sitem07 } };
 sprite_patterns_sp* mpitem[5] = { &mpitemTBL0, &mpitemTBL1, &mpitemTBL2, &mpitemTBL3, &mpitemTBL4 };
-sprite_patterns_sp mptlogoTBL0 = {
-  1,
-  255,
-  { &stitle00 }
-};
+sprite_patterns_sp mptlogoTBL0 = { 1, -1, { &stitle00 } };
 sprite_patterns_sp* mptlogo[1] = { &mptlogoTBL0 };
-sprite_patterns_sp mptobiTBL0 = {
-  1,
-  255,
-  { &sobi00 }
-};
+sprite_patterns_sp mptobiTBL0 =  { 1, -1, { &sobi00 } };
 sprite_patterns_sp* mptobi[1] = { &mptobiTBL0 };
-sprite_patterns_sp mppressTBL0 = {
-  1,
-  255,
-  { &spress00 }
-};
+sprite_patterns_sp mppressTBL0 = { 1, -1, { &spress00 } };
 sprite_patterns_sp* mppress[1] = { &mppressTBL0 };
-sprite_patterns_sp mpkageTBL0 = {
-  1,
-  255,
-  { &skage00 }
-};
-sprite_patterns_sp mpkageTBL1 = {
-  1,
-  255,
-  { &skage01 }
-};
-sprite_patterns_sp mpkageTBL2 = {
-  1,
-  255,
-  { &skage02 }
-};
-sprite_patterns_sp mpkageTBL3 = {
-  1,
-  255,
-  { &skage03 }
-};
-sprite_patterns_sp mpkageTBL4 = {
-  1,
-  255,
-  { &skage04 }
-};
-sprite_patterns_sp mpkageTBL5 = {
-  1,
-  255,
-  { &skage05 }
-};
-sprite_patterns_sp mpkageTBL6 = {
-  1,
-  255,
-  { &skage06 }
-};
-sprite_patterns_sp mpkageTBL7 = {
-  1,
-  255,
-  { &skage07 }
-};
-sprite_patterns_sp mpkageTBL8 = {
-  1,
-  255,
-  { &skage08 }
-};
-sprite_patterns_sp mpkageTBL9 = {
-  1,
-  255,
-  { &skage09 }
-};
-sprite_patterns_sp mpufoxTBL0 = {
-  1,
-  255,
-  { &sufo00 }
-};
-sprite_patterns_sp mpufoxTBL1 = {
-  1,
-  255,
-  { &sufo01 }
-};
-sprite_patterns_sp mpufoxTBL2 = {
-  1,
-  255,
-  { &sufo02 }
-};
-sprite_patterns_sp mpufoxTBL3 = {
-  1,
-  255,
-  { &sufo03 }
-};
-sprite_patterns_sp mpufoxTBL4 = {
-  1,
-  255,
-  { &sufo04 }
-};
-sprite_patterns_sp mpufoxTBL5 = {
-  1,
-  255,
-  { &sufo05 }
-};
-sprite_patterns_sp mpufoxTBL6 = {
-  1,
-  255,
-  { &sufo06 }
-};
-sprite_patterns_sp mpufoxTBL7 = {
-  1,
-  255,
-  { &sufo07 }
-};
-sprite_patterns_sp mpufoxTBL8 = {
-  1,
-  255,
-  { &sufo08 }
-};
-sprite_patterns_sp mpufoxTBL9 = {
-  1,
-  255,
-  { &sufo09 }
-};
-sprite_patterns_sp tpufoxTBL0 = {
-  1,
-  255,
-  { &Tufo00 }
-};
-sprite_patterns_sp tpufoxTBL1 = {
-  1,
-  255,
-  { &Tufo01 }
-};
-sprite_patterns_sp tpufoxTBL2 = {
-  1,
-  255,
-  { &Tufo02 }
-};
-sprite_patterns_sp tpufoxTBL3 = {
-  1,
-  255,
-  { &Tufo03 }
-};
-sprite_patterns_sp tpufoxTBL4 = {
-  1,
-  255,
-  { &Tufo04 }
-};
-sprite_patterns_sp tpufoxTBL5 = {
-  1,
-  255,
-  { &Tufo05 }
-};
-sprite_patterns_sp tpufoxTBL6 = {
-  1,
-  255,
-  { &Tufo06 }
-};
-sprite_patterns_sp tpufoxTBL7 = {
-  1,
-  255,
-  { &Tufo07 }
-};
-sprite_patterns_sp tpufoxTBL8 = {
-  1,
-  255,
-  { &Tufo08 }
-};
-sprite_patterns_sp tpufoxTBL9 = {
-  1,
-  255,
-  { &Tufo09 }
-};
-sprite_patterns_sp* tpufox[10] = {
-  &tpufoxTBL0, &tpufoxTBL1, &tpufoxTBL2, &tpufoxTBL3, &tpufoxTBL4,
-  &tpufoxTBL5, &tpufoxTBL6, &tpufoxTBL7, &tpufoxTBL8, &tpufoxTBL9
-};
-sprite_patterns_sp mpufoyTBL0 = {
-  1,
-  255,
-  { &sufo10 }
-};
-sprite_patterns_sp mpufoyTBL1 = {
-  1,
-  255,
-  { &sufo11 }
-};
-sprite_patterns_sp mpufoyTBL2 = {
-  1,
-  255,
-  { &sufo12 }
-};
-sprite_patterns_sp mpufoyTBL3 = {
-  1,
-  255,
-  { &sufo13 }
-};
-sprite_patterns_sp mpufoyTBL4 = {
-  1,
-  255,
-  { &sufo14 }
-};
-sprite_patterns_sp mpufoyTBL5 = {
-  1,
-  255,
-  { &sufo15 }
-};
-sprite_patterns_sp mpufoyTBL6 = {
-  1,
-  255,
-  { &sufo16 }
-};
-sprite_patterns_sp mpufoyTBL7 = {
-  1,
-  255,
-  { &sufo17 }
-};
-sprite_patterns_sp mpufoyTBL8 = {
-  1,
-  255,
-  { &sufo18 }
-};
-sprite_patterns_sp mpufoyTBL9 = {
-  1,
-  255,
-  { &sufo19 }
-};
-short mvtbl0_0[13] = {
-  0, 0, 144, 1920, 2880, 2304, 2560, 96, 2304, 2560,
-  1920, 2880, -1
-};
-short mvtbl0_1[18] = {
-  0, 0, 144, 1536, 2176, 1920, 1664, 96, 1920, 1664,
-  1408, 1920, 96, 1408, 1920, 1536, 2176, -1
-};
-short mvtbl0_2[18] = {
-  1, 0, 144, 2688, 1408, 2304, 1280, 96, 2304, 1280,
-  2432, 1664, 240, 2432, 1664, 2688, 1408, -1
-};
-short mvtbl0_3[13] = {
-  0, 0, 240, 1920, 1152, 1408, 1280, 96, 1408, 1280,
-  1920, 1152, -1
-};
-short mvtbl0_4[23] = {
-  0, 0, 48, 2816, 2560, 2816, 2432, 144, 2816, 2432,
-  2560, 2560, 96, 2560, 2560, 2688, 2816, 96, 2688, 2816,
-  2816, 2560, -1
-};
-short mvtbl0_5[18] = {
-  1, 0, 144, 2432, 2176, 2304, 2432, 96, 2304, 2432,
-  2816, 2176, 240, 2816, 2176, 2432, 2176, -1
-};
-short mvtbl1_0[23] = {
-  0, 0, 240, 2816, 1408, 2240, 1216, 240, 2240, 1216,
-  2048, 1536, 240, 2048, 1536, 2560, 1728, 240, 2560, 1728,
-  2816, 1408, -1
-};
-short mvtbl1_1[18] = {
-  0, 0, 144, 1408, 1280, 1280, 1408, 240, 1280, 1408,
-  1664, 1664, 240, 1664, 1664, 1408, 1280, -1
-};
-short mvtbl1_2[23] = {
-  1, 0, 240, 1664, 1792, 1408, 1792, 300, 1408, 1792,
-  1216, 2048, 300, 1216, 2048, 1664, 2048, 360, 1664, 2048,
-  1664, 1792, -1
-};
-short mvtbl1_3[13] = {
-  0, 0, 96, 1536, 2432, 1792, 2560, 48, 1792, 2560,
-  1536, 2432, -1
-};
-short mvtbl1_4[18] = {
-  0, 0, 300, 2560, 2304, 2112, 2752, 300, 2112, 2752,
-  2560, 2816, 240, 2560, 2816, 2560, 2304, -1
-};
-short mvtbl1_5[18] = {
-  1, 0, 240, 2880, 2048, 2560, 1920, 96, 2560, 1920,
-  2432, 2240, 240, 2432, 2240, 2880, 2048, -1
-};
-short mvtbl2_0[23] = {
-  0, 0, 64, 2816, 1280, 2560, 1280, 200, 2560, 1280,
-  2304, 1792, 96, 2304, 1792, 2560, 1664, 160, 2560, 1664,
-  2816, 1280, -1
-};
-short mvtbl2_1[18] = {
-  0, 0, 200, 1728, 1216, 1280, 1536, 160, 1280, 1536,
-  1600, 1408, 160, 1600, 1408, 1728, 1216, -1
-};
-short mvtbl2_2[23] = {
-  1, 0, 96, 1536, 1920, 1280, 1920, 200, 1280, 1920,
-  1280, 2176, 160, 1280, 2176, 1536, 2176, 160, 1536, 2176,
-  1536, 1920, -1
-};
-short mvtbl2_3[18] = {
-  0, 0, 96, 1536, 2432, 1280, 2432, 200, 1280, 2432,
-  1280, 2816, 96, 1280, 2816, 1536, 2432, -1
-};
-short mvtbl2_4[23] = {
-  0, 0, 200, 2240, 2560, 1792, 2496, 200, 1792, 2496,
-  1792, 2816, 160, 1792, 2816, 2240, 2816, 160, 2240, 2816,
-  2240, 2560, -1
-};
-short mvtbl2_5[23] = {
-  1, 0, 200, 2816, 2432, 2560, 2176, 200, 2560, 2176,
-  2432, 2560, 96, 2432, 2560, 2432, 2816, 240, 2432, 2816,
-  2816, 2432, -1
-};
-short mvtbl3_0[18] = {
-  0, 0, 160, 2752, 1216, 2176, 1280, 200, 2176, 1280,
-  2816, 1536, 160, 2816, 1536, 2752, 1216, -1
-};
-short mvtbl3_1[23] = {
-  0, 0, 200, 2208, 1472, 1856, 1472, 200, 1856, 1472,
-  1856, 1792, 200, 1856, 1792, 2208, 1792, 200, 2208, 1792,
-  2208, 1472, -1
-};
-short mvtbl3_2[23] = {
-  1, 0, 200, 1536, 1792, 1280, 2048, 200, 1280, 2048,
-  1536, 2304, 96, 1536, 2304, 1664, 2048, 96, 1664, 2048,
-  1536, 1792, -1
-};
-short mvtbl3_3[13] = {
-  0, 0, 200, 1536, 2688, 1088, 2688, 160, 1088, 2688,
-  1536, 2688, -1
-};
-short mvtbl3_4[18] = {
-  0, 0, 96, 2432, 2304, 2176, 2304, 160, 2176, 2304,
-  1856, 2688, 200, 1856, 2688, 2432, 2304, -1
-};
-short mvtbl3_5[18] = {
-  1, 0, 160, 2688, 1728, 2432, 1792, 160, 2432, 1792,
-  2816, 1920, 96, 2816, 1920, 2688, 1728, -1
-};
-short mvtbl4_0[23] = {
-  0, 0, 16, 2944, 1088, 2816, 1088, 80, 2816, 1088,
-  2560, 1408, 80, 2560, 1408, 3008, 1408, 48, 3008, 1408,
-  2944, 1088, -1
-};
-short mvtbl4_1[23] = {
-  0, 0, 48, 1792, 1088, 1472, 1088, 100, 1472, 1088,
-  1920, 1600, 48, 1920, 1600, 2112, 1408, 100, 2112, 1408,
-  1792, 1088, -1
-};
-short mvtbl4_2[13] = {
-  1, 0, 100, 2752, 1792, 2112, 1792, 100, 2112, 1792,
-  2752, 1792, -1
-};
-short mvtbl4_3[28] = {
-  0, 0, 48, 1472, 1920, 1344, 2176, 48, 1344, 2176,
-  1280, 2368, 48, 1280, 2368, 1472, 2432, 80, 1472, 2432,
-  1536, 2112, 48, 1536, 2112, 1472, 1920, -1
-};
-short mvtbl4_4[23] = {
-  0, 0, 32, 1856, 2176, 1696, 2304, 100, 1696, 2304,
-  1696, 3008, 48, 1696, 3008, 1856, 3008, 100, 1856, 3008,
-  1856, 2176, -1
-};
-short mvtbl4_5[18] = {
-  1, 0, 80, 2432, 2112, 2112, 2432, 100, 2112, 2432,
-  2752, 2432, 80, 2752, 2432, 2432, 2112, -1
-};
-short mvtbl5_0[23] = {
-  0, 0, 80, 2816, 1280, 2816, 1664, 80, 2816, 1664,
-  2688, 1984, 48, 2688, 1984, 3072, 1984, 120, 3072, 1984,
-  2816, 1280, -1
-};
-short mvtbl5_1[18] = {
-  0, 0, 100, 2432, 1152, 1984, 1408, 100, 1984, 1408,
-  2560, 1408, 48, 2560, 1408, 2432, 1152, -1
-};
-short mvtbl5_2[23] = {
-  1, 0, 48, 1216, 1152, 960, 1152, 100, 960, 1152,
-  960, 1536, 48, 960, 1536, 1216, 1536, 100, 1216, 1536,
-  1216, 1152, -1
-};
-short mvtbl5_3[18] = {
-  0, 0, 100, 1408, 2496, 1024, 2944, 100, 1024, 2944,
-  1664, 2688, 48, 1664, 2688, 1408, 2496, -1
-};
-short mvtbl5_4[13] = {
-  0, 0, 120, 2560, 2368, 1536, 2368, 80, 1536, 2368,
-  2560, 2368, -1
-};
-short mvtbl5_5[18] = {
-  1, 0, 100, 3072, 2176, 2688, 2176, 120, 2688, 2176,
-  3072, 2944, 80, 3072, 2944, 3072, 2176, -1
-};
-short mvtbl6_0[33] = {
-  0, 0, 32, 2560, 1792, 2816, 1536, 32, 2816, 1536,
-  2560, 1792, 48, 2560, 1792, 2688, 1536, 48, 2688, 1536,
-  2560, 1792, 80, 2560, 1792, 2560, 1536, 48, 2560, 1536,
-  2560, 1792, -1
-};
-short mvtbl6_1[23] = {
-  0, 0, 32, 1280, 1792, 1024, 1792, 80, 1024, 1792,
-  1280, 2368, 32, 1280, 2368, 1024, 2368, 80, 1024, 2368,
-  1280, 1792, -1
-};
-short mvtbl6_2[23] = {
-  1, 0, 48, 1216, 2944, 1408, 2816, 48, 1408, 2816,
-  1216, 2944, 48, 1216, 2944, 1024, 2816, 48, 1024, 2816,
-  1216, 2944, -1
-};
-short mvtbl6_3[23] = {
-  0, 0, 80, 1664, 2560, 1664, 2816, 80, 1664, 2816,
-  1664, 2560, 120, 1664, 2560, 2176, 2944, 120, 2176, 2944,
-  1664, 2560, -1
-};
-short mvtbl6_4[18] = {
-  0, 0, 80, 2688, 2432, 2304, 2816, 100, 2304, 2816,
-  3008, 3008, 100, 3008, 3008, 2688, 2432, -1
-};
-short mvtbl6_5[18] = {
-  1, 0, 80, 3072, 1664, 2816, 2048, 32, 2816, 2048,
-  3072, 2048, 48, 3072, 2048, 3072, 1664, -1
-};
-short mvtbl7_0[18] = {
-  0, 0, 120, 2816, 2944, 3072, 2432, 48, 3072, 2432,
-  3072, 2688, 80, 3072, 2688, 2816, 2944, -1
-};
-short mvtbl7_1[18] = {
-  1, 0, 120, 3072, 1792, 2560, 1280, 80, 2560, 1280,
-  2944, 1088, 120, 2944, 1088, 3072, 1792, -1
-};
-short mvtbl7_2[53] = {
-  0, 0, 120, 2432, 2368, 2688, 2176, 120, 2688, 2176,
-  2432, 2048, 120, 2432, 2048, 2688, 1920, 48, 2688, 1920,
-  2560, 1792, 80, 2560, 1792, 2560, 1536, 80, 2560, 1536,
-  2560, 1792, 48, 2560, 1792, 2688, 1920, 120, 2688, 1920,
-  2432, 2048, 120, 2432, 2048, 2688, 2176, 120, 2688, 2176,
-  2432, 2368, -1
-};
-short mvtbl7_3[23] = {
-  0, 0, 80, 2048, 1792, 1664, 1920, 120, 1664, 1920,
-  1792, 1280, 80, 1792, 1280, 1408, 1408, 120, 1408, 1408,
-  2048, 1792, -1
-};
-short mvtbl7_4[23] = {
-  1, 0, 80, 1664, 2944, 1024, 2688, 48, 1024, 2688,
-  1024, 2176, 48, 1024, 2176, 1536, 2304, 80, 1536, 2304,
-  1664, 2944, -1
-};
-short mvtbl7_5[13] = {
-  0, 0, 80, 1536, 1152, 1024, 1536, 80, 1024, 1536,
-  1536, 1152, -1
-};
-move_tbl mvtbl0 = {
-  6,
-  { mvtbl0_0, mvtbl0_1, mvtbl0_2, mvtbl0_3, mvtbl0_4, mvtbl0_5 }
-};
-move_tbl mvtbl1 = {
-  6,
-  { mvtbl1_0, mvtbl1_1, mvtbl1_2, mvtbl1_3, mvtbl1_4, mvtbl1_5 }
-};
-move_tbl mvtbl2 = {
-  6,
-  { mvtbl2_0, mvtbl2_1, mvtbl2_2, mvtbl2_3, mvtbl2_4, mvtbl2_5 }
-};
-move_tbl mvtbl3 = {
-  6,
-  { mvtbl3_0, mvtbl3_1, mvtbl3_2, mvtbl3_3, mvtbl3_4, mvtbl3_5 }
-};
-move_tbl mvtbl4 = {
-  6,
-  { mvtbl4_0, mvtbl4_1, mvtbl4_2, mvtbl4_3, mvtbl4_4, mvtbl4_5 }
-};
-move_tbl mvtbl5 = {
-  6,
-  { mvtbl5_0, mvtbl5_1, mvtbl5_2, mvtbl5_3, mvtbl5_4, mvtbl5_5 }
-};
-move_tbl mvtbl6 = {
-  6,
-  { mvtbl6_0, mvtbl6_1, mvtbl6_2, mvtbl6_3, mvtbl6_4, mvtbl6_5 }
-};
-move_tbl mvtbl7 = {
-  6,
-  { mvtbl7_0, mvtbl7_1, mvtbl7_2, mvtbl7_3, mvtbl7_4, mvtbl7_5 }
-};
+sprite_patterns_sp tpufoxTBL0 = { 1, -1, { &Tufo00 } }, tpufoxTBL1 = { 1, -1, { &Tufo01 } }, tpufoxTBL2 = { 1, -1, { &Tufo02 } }, tpufoxTBL3 = { 1, -1, { &Tufo03 } }, tpufoxTBL4 = { 1, -1, { &Tufo04 } }, tpufoxTBL5 = { 1, -1, { &Tufo05 } }, tpufoxTBL6 = { 1, -1, { &Tufo06 } }, tpufoxTBL7 = { 1, -1, { &Tufo07 } }, tpufoxTBL8 = { 1, -1, { &Tufo08 } }, tpufoxTBL9 = { 1, -1, { &Tufo09 } };
+sprite_patterns_sp* tpufox[10] = { &tpufoxTBL0, &tpufoxTBL1, &tpufoxTBL2, &tpufoxTBL3, &tpufoxTBL4, &tpufoxTBL5, &tpufoxTBL6, &tpufoxTBL7, &tpufoxTBL8, &tpufoxTBL9 };
+short mvtbl0_0[13] = { 0, 0, 144, 1920, 2880, 2304, 2560, 96, 2304, 2560, 1920, 2880, -1 }, mvtbl0_1[18] = { 0, 0, 144, 1536, 2176, 1920, 1664, 96, 1920, 1664, 1408, 1920, 96, 1408, 1920, 1536, 2176, -1 }, mvtbl0_2[18] = { 1, 0, 144, 2688, 1408, 2304, 1280, 96, 2304, 1280, 2432, 1664, 240, 2432, 1664, 2688, 1408, -1 }, mvtbl0_3[13] = { 0, 0, 240, 1920, 1152, 1408, 1280, 96, 1408, 1280, 1920, 1152, -1 }, mvtbl0_4[23] = { 0, 0, 48, 2816, 2560, 2816, 2432, 144, 2816, 2432, 2560, 2560, 96, 2560, 2560, 2688, 2816, 96, 2688, 2816, 2816, 2560, -1 }, mvtbl0_5[18] = { 1, 0, 144, 2432, 2176, 2304, 2432, 96, 2304, 2432, 2816, 2176, 240, 2816, 2176, 2432, 2176, -1 }, mvtbl1_0[23] = { 0, 0, 240, 2816, 1408, 2240, 1216, 240, 2240, 1216, 2048, 1536, 240, 2048, 1536, 2560, 1728, 240, 2560, 1728, 2816, 1408, -1 };
+short mvtbl1_1[18] = { 0, 0, 144, 1408, 1280, 1280, 1408, 240, 1280, 1408, 1664, 1664, 240, 1664, 1664, 1408, 1280, -1 }, mvtbl1_2[23] = { 1, 0, 240, 1664, 1792, 1408, 1792, 300, 1408, 1792, 1216, 2048, 300, 1216, 2048, 1664, 2048, 360, 1664, 2048, 1664, 1792, -1 }, mvtbl1_3[13] = { 0, 0, 96, 1536, 2432, 1792, 2560, 48, 1792, 2560, 1536, 2432, -1 }, mvtbl1_4[18] = { 0, 0, 300, 2560, 2304, 2112, 2752, 300, 2112, 2752, 2560, 2816, 240, 2560, 2816, 2560, 2304, -1 }, mvtbl1_5[18] = { 1, 0, 240, 2880, 2048, 2560, 1920, 96, 2560, 1920, 2432, 2240, 240, 2432, 2240, 2880, 2048, -1 };
+short mvtbl2_0[23] = { 0, 0, 64, 2816, 1280, 2560, 1280, 200, 2560, 1280, 2304, 1792, 96, 2304, 1792, 2560, 1664, 160, 2560, 1664, 2816, 1280, -1 }, mvtbl2_1[18] = { 0, 0, 200, 1728, 1216, 1280, 1536, 160, 1280, 1536, 1600, 1408, 160, 1600, 1408, 1728, 1216, -1 }, mvtbl2_2[23] = { 1, 0, 96, 1536, 1920, 1280, 1920, 200, 1280, 1920, 1280, 2176, 160, 1280, 2176, 1536, 2176, 160, 1536, 2176, 1536, 1920, -1 }, mvtbl2_3[18] = { 0, 0, 96, 1536, 2432, 1280, 2432, 200, 1280, 2432, 1280, 2816, 96, 1280, 2816, 1536, 2432, -1 }, mvtbl2_4[23] = { 0, 0, 200, 2240, 2560, 1792, 2496, 200, 1792, 2496, 1792, 2816, 160, 1792, 2816, 2240, 2816, 160, 2240, 2816, 2240, 2560, -1 }, mvtbl2_5[23] = { 1, 0, 200, 2816, 2432, 2560, 2176, 200, 2560, 2176, 2432, 2560, 96, 2432, 2560, 2432, 2816, 240, 2432, 2816, 2816, 2432, -1 };
+short mvtbl3_0[18] = { 0, 0, 160, 2752, 1216, 2176, 1280, 200, 2176, 1280, 2816, 1536, 160, 2816, 1536, 2752, 1216, -1 }, mvtbl3_1[23] = { 0, 0, 200, 2208, 1472, 1856, 1472, 200, 1856, 1472, 1856, 1792, 200, 1856, 1792, 2208, 1792, 200, 2208, 1792, 2208, 1472, -1 }, mvtbl3_2[23] = { 1, 0, 200, 1536, 1792, 1280, 2048, 200, 1280, 2048, 1536, 2304, 96, 1536, 2304, 1664, 2048, 96, 1664, 2048, 1536, 1792, -1 }, mvtbl3_3[13] = { 0, 0, 200, 1536, 2688, 1088, 2688, 160, 1088, 2688, 1536, 2688, -1 }, mvtbl3_4[18] = { 0, 0, 96, 2432, 2304, 2176, 2304, 160, 2176, 2304, 1856, 2688, 200, 1856, 2688, 2432, 2304, -1 }, mvtbl3_5[18] = { 1, 0, 160, 2688, 1728, 2432, 1792, 160, 2432, 1792, 2816, 1920, 96, 2816, 1920, 2688, 1728, -1 };
+short mvtbl4_0[23] = { 0, 0, 16, 2944, 1088, 2816, 1088, 80, 2816, 1088, 2560, 1408, 80, 2560, 1408, 3008, 1408, 48, 3008, 1408, 2944, 1088, -1 }, mvtbl4_1[23] = { 0, 0, 48, 1792, 1088, 1472, 1088, 100, 1472, 1088, 1920, 1600, 48, 1920, 1600, 2112, 1408, 100, 2112, 1408, 1792, 1088, -1 }, mvtbl4_2[13] = { 1, 0, 100, 2752, 1792, 2112, 1792, 100, 2112, 1792, 2752, 1792, -1 }, mvtbl4_3[28] = { 0, 0, 48, 1472, 1920, 1344, 2176, 48, 1344, 2176, 1280, 2368, 48, 1280, 2368, 1472, 2432, 80, 1472, 2432, 1536, 2112, 48, 1536, 2112, 1472, 1920, -1 }, mvtbl4_4[23] = { 0, 0, 32, 1856, 2176, 1696, 2304, 100, 1696, 2304, 1696, 3008, 48, 1696, 3008, 1856, 3008, 100, 1856, 3008, 1856, 2176, -1 }, mvtbl4_5[18] = { 1, 0, 80, 2432, 2112, 2112, 2432, 100, 2112, 2432, 2752, 2432, 80, 2752, 2432, 2432, 2112, -1 };
+short mvtbl5_0[23] = { 0, 0, 80, 2816, 1280, 2816, 1664, 80, 2816, 1664, 2688, 1984, 48, 2688, 1984, 3072, 1984, 120, 3072, 1984, 2816, 1280, -1 }, mvtbl5_1[18] = { 0, 0, 100, 2432, 1152, 1984, 1408, 100, 1984, 1408, 2560, 1408, 48, 2560, 1408, 2432, 1152, -1 }, mvtbl5_2[23] = { 1, 0, 48, 1216, 1152, 960, 1152, 100, 960, 1152, 960, 1536, 48, 960, 1536, 1216, 1536, 100, 1216, 1536, 1216, 1152, -1 }, mvtbl5_3[18] = { 0, 0, 100, 1408, 2496, 1024, 2944, 100, 1024, 2944, 1664, 2688, 48, 1664, 2688, 1408, 2496, -1 }, mvtbl5_4[13] = { 0, 0, 120, 2560, 2368, 1536, 2368, 80, 1536, 2368, 2560, 2368, -1 }, mvtbl5_5[18] = { 1, 0, 100, 3072, 2176, 2688, 2176, 120, 2688, 2176, 3072, 2944, 80, 3072, 2944, 3072, 2176, -1 };
+short mvtbl6_0[33] = { 0, 0, 32, 2560, 1792, 2816, 1536, 32, 2816, 1536, 2560, 1792, 48, 2560, 1792, 2688, 1536, 48, 2688, 1536, 2560, 1792, 80, 2560, 1792, 2560, 1536, 48, 2560, 1536, 2560, 1792, -1 }, mvtbl6_1[23] = { 0, 0, 32, 1280, 1792, 1024, 1792, 80, 1024, 1792, 1280, 2368, 32, 1280, 2368, 1024, 2368, 80, 1024, 2368, 1280, 1792, -1 }, mvtbl6_2[23] = { 1, 0, 48, 1216, 2944, 1408, 2816, 48, 1408, 2816, 1216, 2944, 48, 1216, 2944, 1024, 2816, 48, 1024, 2816, 1216, 2944, -1 }, mvtbl6_3[23] = { 0, 0, 80, 1664, 2560, 1664, 2816, 80, 1664, 2816, 1664, 2560, 120, 1664, 2560, 2176, 2944, 120, 2176, 2944, 1664, 2560, -1 }, mvtbl6_4[18] = { 0, 0, 80, 2688, 2432, 2304, 2816, 100, 2304, 2816, 3008, 3008, 100, 3008, 3008, 2688, 2432, -1 }, mvtbl6_5[18] = { 1, 0, 80, 3072, 1664, 2816, 2048, 32, 2816, 2048, 3072, 2048, 48, 3072, 2048, 3072, 1664, -1 };
+short mvtbl7_0[18] = { 0, 0, 120, 2816, 2944, 3072, 2432, 48, 3072, 2432, 3072, 2688, 80, 3072, 2688, 2816, 2944, -1 }, mvtbl7_1[18] = { 1, 0, 120, 3072, 1792, 2560, 1280, 80, 2560, 1280, 2944, 1088, 120, 2944, 1088, 3072, 1792, -1 }, mvtbl7_2[53] = { 0, 0, 120, 2432, 2368, 2688, 2176, 120, 2688, 2176, 2432, 2048, 120, 2432, 2048, 2688, 1920, 48, 2688, 1920, 2560, 1792, 80, 2560, 1792, 2560, 1536, 80, 2560, 1536, 2560, 1792, 48, 2560, 1792, 2688, 1920, 120, 2688, 1920, 2432, 2048, 120, 2432, 2048, 2688, 2176, 120, 2688, 2176, 2432, 2368, -1 }, mvtbl7_3[23] = { 0, 0, 80, 2048, 1792, 1664, 1920, 120, 1664, 1920, 1792, 1280, 80, 1792, 1280, 1408, 1408, 120, 1408, 1408, 2048, 1792, -1 }, mvtbl7_4[23] = { 1, 0, 80, 1664, 2944, 1024, 2688, 48, 1024, 2688, 1024, 2176, 48, 1024, 2176, 1536, 2304, 80, 1536, 2304, 1664, 2944, -1 }, mvtbl7_5[13] = { 0, 0, 80, 1536, 1152, 1024, 1536, 80, 1024, 1536, 1536, 1152, -1 };
 extern sprite_patterns_sp* mpufoy[10];
 extern sprite_patterns_sp* mpufox[10];
-move_tbl* mvtbl_tbl[8] = { &mvtbl0, &mvtbl1, &mvtbl2, &mvtbl3, &mvtbl4, &mvtbl5, &mvtbl6, &mvtbl7 };
-short tufo_tbl[43] = {
-  2, 0, 90, 2048, 2048, 1920, 2048, 90, 1920, 2048,
-  2048, 2048, 90, 2048, 2048, 2048, 1920, 90, 2048, 1920,
-  2048, 2048, 90, 2048, 2048, 2176, 2048, 90, 2176, 2048,
-  2048, 2048, 90, 2048, 2048, 2048, 2176, 90, 2048, 2176,
-  2048, 2048, -1
-};
 extern sprite_patterns_sp* mpkage[10];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -834,16 +134,16 @@ void i_ring00(sprite_status_sp* actionwk) { /* Line 131, Address: 0x10017d0 */
   actionwk->actfree[2] = actionwk->actfree[1]; /* Line 134, Address: 0x10017f8 */
   patinit(actionwk, actionwk->actfree[2]); /* Line 135, Address: 0x1001808 */
   ++actionwk->exeno; /* Line 136, Address: 0x100181c */
-  actionwk->actfree[2] = 16; /* Line 137, Address: 0x100182c */
+  actionwk->actfree[0] = 16; /* Line 137, Address: 0x100182c */
   actionwk->sy_speed.w.h = -16; /* Line 138, Address: 0x1001838 */
   key_set(149); /* Line 139, Address: 0x1001844 */
 } /* Line 140, Address: 0x1001850 */
 
 void i_ring01(sprite_status_sp* actionwk) { /* Line 142, Address: 0x1001860 */
-  if (--actionwk->actfree[0] == 0) actionwk->actflg &= 1; /* Line 143, Address: 0x1001868 */
+  if (--actionwk->actfree[0] == 0) actionwk->actflg |= 1; /* Line 143, Address: 0x1001868 */
 
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 145, Address: 0x1001898 */
-  actionwk->sy_speed.l = actionwk->sy_speed.l + 2; /* Line 146, Address: 0x10018b0 */
+  actionwk->sy_speed.l += 131072; /* Line 146, Address: 0x10018b0 */
 } /* Line 147, Address: 0x10018c4 */
 
 void timeufo(sprite_status_sp* actionwk) { /* Line 149, Address: 0x10018d0 */
@@ -903,7 +203,7 @@ void tufo01(sprite_status_sp* actionwk) { /* Line 182, Address: 0x1001a30 */
   a1->actflg |= 1; /* Line 203, Address: 0x1001b1c */
   ((short*)actionwk)[36] = 60; /* Line 204, Address: 0x1001b28 */
   d0 = random() & 1; /* Line 205, Address: 0x1001b34 */
-  d0 = actionwk->actfree[3]; /* Line 206, Address: 0x1001b48 */
+  actionwk->actfree[3] = d0; /* Line 206, Address: 0x1001b48 */
   patinit(actionwk, 0); /* Line 207, Address: 0x1001b50 */
   spe_time.l += 30; /* Line 208, Address: 0x1001b60 */
   a1 = &actwk[16]; /* Line 209, Address: 0x1001b74 */
@@ -957,7 +257,7 @@ void ufo0(sprite_status_sp* actionwk) { /* Line 242, Address: 0x1001d40 */
   }
   actionwk->z_posi.w.h = actwk[0].z_posi.w.h; /* Line 258, Address: 0x1001dac */
   actionwk->z_posi.w.h -= 320; /* Line 259, Address: 0x1001dbc */
-  if (actionwk->actfree[20] != 0) /* Line 260, Address: 0x1001dcc */
+  if (actionwk->actfree[20]) /* Line 260, Address: 0x1001dcc */
   {
     --actionwk->actfree[20]; /* Line 262, Address: 0x1001ddc */
     actionwk->actflg |= 4; /* Line 263, Address: 0x1001dec */
@@ -1020,10 +320,10 @@ void ufo01(sprite_status_sp* actionwk) { /* Line 285, Address: 0x1001ed0 */
     case 2:
     case 3:
       rufo_getnm *= 2; /* Line 322, Address: 0x1002088 */
-      ring_add(rufo_getnm >> 1 & 65535); /* Line 323, Address: 0x100209c */
+      ring_add(rufo_getnm >> 1); /* Line 323, Address: 0x100209c */
       break; /* Line 324, Address: 0x10020bc */
     case 1:
-      ((short*)actwk)[45] = 200; /* Line 326, Address: 0x10020c4 */
+      ((short*)&actwk[0])[45] = 200; /* Line 326, Address: 0x10020c4 */
       rufo_getnm = 20; /* Line 327, Address: 0x10020d0 */
   }
 
@@ -1051,7 +351,7 @@ void ufo02(sprite_status_sp* actionwk) { /* Line 332, Address: 0x1002100 */
   d0 = (unsigned char)random(); /* Line 351, Address: 0x1002208 */
   a1->sx_posi.w.h += d0 & 31; /* Line 352, Address: 0x100221c */
 
-  a1->sy_posi.w.h += d0 & 31; /* Line 354, Address: 0x100223c */
+  a1->sy_posi.w.h -= d0 & 31; /* Line 354, Address: 0x100223c */
 } /* Line 355, Address: 0x100225c */
 
 void mvtblset(sprite_status_sp* actionwk) { /* Line 357, Address: 0x1002280 */
@@ -1144,9 +444,9 @@ void ptset_ufo(sprite_status_sp* actionwk) { /* Line 418, Address: 0x10024e0 */
   zbuf_set(actionwk, d0l); /* Line 444, Address: 0x10025f4 */
 
 
-  if (d0l >= 1280U) d0l = 1280; /* Line 447, Address: 0x1002604 */
+  if ((unsigned int)d0l >= 1280) d0l = 1280; /* Line 447, Address: 0x1002604 */
   d0l >>= 4; /* Line 448, Address: 0x1002614 */
-  if (d0l >= 81) d0l = 80; /* Line 449, Address: 0x1002618 */
+  if (d0l > 80) d0l = 80; /* Line 449, Address: 0x1002618 */
 
   if (actionwk->actfree[2] == tbl[d0l]) return; /* Line 451, Address: 0x1002628 */
   actionwk->actfree[2] = tbl[d0l]; /* Line 452, Address: 0x1002648 */
@@ -1165,20 +465,20 @@ void ptset_ufo(sprite_status_sp* actionwk) { /* Line 418, Address: 0x10024e0 */
 
 
 
-
-
-
-
-
-
-
-
-
-
+mvtbl mvtbl0 = { 6, { mvtbl0_0, mvtbl0_1, mvtbl0_2, mvtbl0_3, mvtbl0_4, mvtbl0_5 } };
+mvtbl mvtbl1 = { 6, { mvtbl1_0, mvtbl1_1, mvtbl1_2, mvtbl1_3, mvtbl1_4, mvtbl1_5 } };
+mvtbl mvtbl2 = { 6, { mvtbl2_0, mvtbl2_1, mvtbl2_2, mvtbl2_3, mvtbl2_4, mvtbl2_5 } };
+mvtbl mvtbl3 = { 6, { mvtbl3_0, mvtbl3_1, mvtbl3_2, mvtbl3_3, mvtbl3_4, mvtbl3_5 } };
+mvtbl mvtbl4 = { 6, { mvtbl4_0, mvtbl4_1, mvtbl4_2, mvtbl4_3, mvtbl4_4, mvtbl4_5 } };
+mvtbl mvtbl5 = { 6, { mvtbl5_0, mvtbl5_1, mvtbl5_2, mvtbl5_3, mvtbl5_4, mvtbl5_5 } };
+mvtbl mvtbl6 = { 6, { mvtbl6_0, mvtbl6_1, mvtbl6_2, mvtbl6_3, mvtbl6_4, mvtbl6_5 } };
+mvtbl mvtbl7 = { 6, { mvtbl7_0, mvtbl7_1, mvtbl7_2, mvtbl7_3, mvtbl7_4, mvtbl7_5 } };
+mvtbl* mvtbl_tbl[8] = { &mvtbl0, &mvtbl1, &mvtbl2, &mvtbl3, &mvtbl4, &mvtbl5, &mvtbl6, &mvtbl7 };
+short tufo_tbl[43] = { 2, 0, 90, 2048, 2048, 1920, 2048, 90, 1920, 2048, 2048, 2048, 90, 2048, 2048, 2048, 1920, 90, 2048, 1920, 2048, 2048, 90, 2048, 2048, 2176, 2048, 90, 2176, 2048, 2048, 2048, 90, 2048, 2048, 2048, 2176, 90, 2048, 2176, 2048, 2048, -1 };
 
 
 void ufo_initial() { /* Line 480, Address: 0x10026a0 */
-  move_tbl* a1;
+  mvtbl* a1;
   sprite_status_sp* a2;
   char d7;
   short cnt;
@@ -1208,8 +508,8 @@ void u_init(short cnt, sprite_status_sp* a2) { /* Line 501, Address: 0x1002780 *
   dummy = a2 - actwk; /* Line 508, Address: 0x10027d0 */
   a4 = &actwk[dummy + 8]; /* Line 509, Address: 0x1002800 */
   a2->actno = 2; /* Line 510, Address: 0x1002820 */
-  a2->actfree[18] = a1tbl[0]; /* Line 511, Address: 0x100282c */
-  a2->actfree[19] = a1tbl[1]; /* Line 512, Address: 0x1002844 */
+  a2->actfree[18] = (char)a1tbl[0]; /* Line 511, Address: 0x100282c */
+  a2->actfree[19] = (char)a1tbl[1]; /* Line 512, Address: 0x1002844 */
   a1tbl += 2; /* Line 513, Address: 0x100285c */
   ((short**)a2)[20] = a1tbl; /* Line 514, Address: 0x1002860 */
   ((short**)a2)[21] = a1tbl; /* Line 515, Address: 0x1002868 */
@@ -1231,8 +531,8 @@ void tufo_initial() { /* Line 521, Address: 0x10028e0 */
 
   a2->actno = 3; /* Line 532, Address: 0x1002980 */
 
-  a2->actfree[18] = (char)tufo_tbl[0]; /* Line 534, Address: 0x1002988 */
-  a2->actfree[19] = (char)tufo_tbl[1]; /* Line 535, Address: 0x1002998 */
+  a2->actfree[18] = tufo_tbl[0]; /* Line 534, Address: 0x1002988 */
+  a2->actfree[19] = tufo_tbl[1]; /* Line 535, Address: 0x1002998 */
   a3 += 2; /* Line 536, Address: 0x10029a8 */
   ((short**)a2)[20] = a3; /* Line 537, Address: 0x10029ac */
   ((short**)a2)[21] = a3; /* Line 538, Address: 0x10029b0 */
@@ -1488,3 +788,65 @@ void eexp01(sprite_status_sp* actionwk) { /* Line 787, Address: 0x10034c0 */
   if (--((unsigned short*)actionwk)[36]) return; /* Line 788, Address: 0x10034c8 */
   actionwk->actflg |= 1; /* Line 789, Address: 0x10034e4 */
 } /* Line 790, Address: 0x10034f4 */
+
+
+static sprite_pattern skage00 =  { 1, { { -40,   -8, 0,  71 } } };
+static sprite_pattern skage01 =  { 1, { { -35,   -8, 0,  72 } } };
+static sprite_pattern skage02 =  { 1, { { -30,   -4, 0,  73 } } };
+static sprite_pattern skage03 =  { 1, { { -30,   -4, 0,  74 } } };
+static sprite_pattern skage04 =  { 1, { { -25,   -4, 0,  75 } } };
+static sprite_pattern skage05 =  { 1, { { -20,   -4, 0,  76 } } };
+static sprite_pattern skage06 =  { 1, { { -15,   -4, 0,  77 } } };
+static sprite_pattern skage07 =  { 1, { { -15,   -4, 0,  78 } } };
+static sprite_pattern skage08 =  { 1, { { -10,   -4, 0,  79 } } };
+static sprite_pattern skage09 =  { 1, { {  -5,   -4, 0,  80 } } };
+static sprite_pattern sufo00 = { 1, { { -40, -56, 0,  91 } } };
+static sprite_pattern sufo01 = { 1, { { -30, -48, 0,  92 } } };
+static sprite_pattern sufo02 = { 1, { { -30, -40, 0,  93 } } };
+static sprite_pattern sufo03 = { 1, { { -30, -40, 0,  94 } } };
+static sprite_pattern sufo04 = { 1, { { -30, -32, 0,  95 } } };
+static sprite_pattern sufo05 = { 1, { { -20, -32, 0,  96 } } };
+static sprite_pattern sufo06 = { 1, { { -20, -32, 0,  97 } } };
+static sprite_pattern sufo07 = { 1, { { -15, -24, 0,  98 } } };
+static sprite_pattern sufo08 = { 1, { { -10, -16, 0,  99 } } };
+static sprite_pattern sufo09 = { 1, { {  -5,  -8, 0, 100 } } };
+static sprite_pattern sufo10 = { 1, { { -40,  -8, 0, 101 } } };
+static sprite_pattern sufo11 = { 1, { { -30, -48, 0, 102 } } };
+static sprite_pattern sufo12 = { 1, { { -30, -40, 0, 103 } } };
+static sprite_pattern sufo13 = { 1, { { -30, -40, 0, 104 } } };
+static sprite_pattern sufo14 = { 1, { { -30, -32, 0, 105 } } };
+static sprite_pattern sufo15 = { 1, { { -20, -32, 0, 106 } } };
+static sprite_pattern sufo16 = { 1, { { -20, -32, 0, 107 } } };
+static sprite_pattern sufo17 = { 1, { { -15, -24, 0, 108 } } };
+static sprite_pattern sufo18 = { 1, { { -10, -16, 0, 109 } } };
+static sprite_pattern sufo19 = { 1, { {  -5,  -8, 0, 110 } } };
+sprite_patterns_sp mpkageTBL0 = { 1, -1, { &skage00 } };
+sprite_patterns_sp mpkageTBL1 = { 1, -1, { &skage01 } };
+sprite_patterns_sp mpkageTBL2 = { 1, -1, { &skage02 } };
+sprite_patterns_sp mpkageTBL3 = { 1, -1, { &skage03 } };
+sprite_patterns_sp mpkageTBL4 = { 1, -1, { &skage04 } };
+sprite_patterns_sp mpkageTBL5 = { 1, -1, { &skage05 } };
+sprite_patterns_sp mpkageTBL6 = { 1, -1, { &skage06 } };
+sprite_patterns_sp mpkageTBL7 = { 1, -1, { &skage07 } };
+sprite_patterns_sp mpkageTBL8 = { 1, -1, { &skage08 } };
+sprite_patterns_sp mpkageTBL9 = { 1, -1, { &skage09 } };
+sprite_patterns_sp mpufoxTBL0 = { 1, -1, { &sufo00 } };
+sprite_patterns_sp mpufoxTBL1 = { 1, -1, { &sufo01 } };
+sprite_patterns_sp mpufoxTBL2 = { 1, -1, { &sufo02 } };
+sprite_patterns_sp mpufoxTBL3 = { 1, -1, { &sufo03 } };
+sprite_patterns_sp mpufoxTBL4 = { 1, -1, { &sufo04 } };
+sprite_patterns_sp mpufoxTBL5 = { 1, -1, { &sufo05 } };
+sprite_patterns_sp mpufoxTBL6 = { 1, -1, { &sufo06 } };
+sprite_patterns_sp mpufoxTBL7 = { 1, -1, { &sufo07 } };
+sprite_patterns_sp mpufoxTBL8 = { 1, -1, { &sufo08 } };
+sprite_patterns_sp mpufoxTBL9 = { 1, -1, { &sufo09 } };
+sprite_patterns_sp mpufoyTBL0 = { 1, -1, { &sufo10 } };
+sprite_patterns_sp mpufoyTBL1 = { 1, -1, { &sufo11 } };
+sprite_patterns_sp mpufoyTBL2 = { 1, -1, { &sufo12 } };
+sprite_patterns_sp mpufoyTBL3 = { 1, -1, { &sufo13 } };
+sprite_patterns_sp mpufoyTBL4 = { 1, -1, { &sufo14 } };
+sprite_patterns_sp mpufoyTBL5 = { 1, -1, { &sufo15 } };
+sprite_patterns_sp mpufoyTBL6 = { 1, -1, { &sufo16 } };
+sprite_patterns_sp mpufoyTBL7 = { 1, -1, { &sufo17 } };
+sprite_patterns_sp mpufoyTBL8 = { 1, -1, { &sufo18 } };
+sprite_patterns_sp mpufoyTBL9 = { 1, -1, { &sufo19 } };

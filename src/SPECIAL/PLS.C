@@ -2,6 +2,11 @@
 #include "COMMON.H"
 #include "SPS_EQU.H"
 #include "PLS.H"
+#include "ACT_S.H"
+#include "COLI_S.H"
+#include "ETC_S.H"
+#include "GAME.H"
+#include "SIN.H"
 
 void(*pl_acttbl[24])(sprite_status_sp*) = {
   &play0, &play1, &play2, &play3, &play4, &play5, &play6, &play7,
@@ -31,11 +36,6 @@ static sprite_patterns_sp stone00 = { 4, 3, { &stn00, &stn01, &stn03, &stn02 } }
 static sprite_patterns_sp stone01 = { 4, 1, { &stn04, &stn05, &stn06, &stn07 } };
 static sprite_patterns_sp stone02 = { 4, 1, { &stn0b, &stn0a, &stn09, &stn08 } };
 static sprite_patterns_sp* mpstone[3] = { &stone00, &stone01, &stone02 };
-
-
-
-
-
 
 
 
@@ -137,7 +137,7 @@ void play2(sprite_status_sp* plwk) { /* Line 134, Address: 0x100a300 */
   if (jmpswcnt != 0) { /* Line 137, Address: 0x100a338 */
     plwk->sy_speed.l += 32767 + 8193; /* Line 138, Address: 0x100a350 */
     --jmpswcnt; /* Line 139, Address: 0x100a364 */
-    if (swdata_pl.b.h & 112) plwk->sy_speed.l += -32768 + -8192; /* Line 140, Address: 0x100a378 */
+    if (swdata_pl.b.h & 112) plwk->sy_speed.l -= 40960; /* Line 140, Address: 0x100a378 */
   }
   if (plwk->sy_posi.w.h >= 344) { /* Line 142, Address: 0x100a3a4 */
     plwk->exeno = 1; /* Line 143, Address: 0x100a3c0 */
@@ -444,7 +444,7 @@ void evt05(sprite_status_sp* plwk) { /* Line 438, Address: 0x100b160 */
   patinit(plwk, 13); /* Line 444, Address: 0x100b1c0 */
   cal_ring = ringno - (ringno >> 1); /* Line 445, Address: 0x100b1d0 */
   ringno >>= 1; /* Line 446, Address: 0x100b200 */
-  if (cal_ring >= 8) cal_ring = 7; /* Line 447, Address: 0x100b214 */
+  if (cal_ring > 7) cal_ring = 7; /* Line 447, Address: 0x100b214 */
   if (cal_ring > 0) { /* Line 448, Address: 0x100b234 */
     key_set(148); /* Line 449, Address: 0x100b244 */
   }
@@ -649,13 +649,13 @@ void jumpset(sprite_status_sp* plwk) { /* Line 633, Address: 0x100b9b0 */
 void rlmove(sprite_status_sp* plwk) { /* Line 649, Address: 0x100ba50 */
   if (game_start != 0) return; /* Line 650, Address: 0x100ba58 */
   if (swdata_pl.b.h & 8) { /* Line 651, Address: 0x100ba6c */
-    ((int*)plwk)[19] += -393216; /* Line 652, Address: 0x100ba84 */
-    ((int*)plwk)[19] = (((int*)plwk)[19] << 39) >> 39; /* Line 653, Address: 0x100ba98 */
+    ((int*)plwk)[19] -= 393216; /* Line 652, Address: 0x100ba84 */
+    ((int*)plwk)[19] &= 33554431; /* Line 653, Address: 0x100ba98 */
     rlscrflg |= 8; /* Line 654, Address: 0x100baac */
   }
   if (swdata_pl.b.h & 4) { /* Line 656, Address: 0x100bac0 */
     ((int*)plwk)[19] += 393216; /* Line 657, Address: 0x100bad8 */
-    ((int*)plwk)[19] = (((int*)plwk)[19] << 39) >> 39; /* Line 658, Address: 0x100baec */
+    ((int*)plwk)[19] &= 33554431; /* Line 658, Address: 0x100baec */
     rlscrflg |= 4; /* Line 659, Address: 0x100bb00 */
   }
 } /* Line 661, Address: 0x100bb14 */
@@ -664,13 +664,13 @@ void rlmove(sprite_status_sp* plwk) { /* Line 649, Address: 0x100ba50 */
 void rlmove_j(sprite_status_sp* plwk) { /* Line 664, Address: 0x100bb20 */
   if (game_start != 0) return; /* Line 665, Address: 0x100bb28 */
   if (swdata_pl.b.h & 8) { /* Line 666, Address: 0x100bb3c */
-    ((int*)plwk)[19] += -262144; /* Line 667, Address: 0x100bb54 */
-    ((int*)plwk)[19] = (((int*)plwk)[19] << 39) >> 39; /* Line 668, Address: 0x100bb68 */
+    ((int*)plwk)[19] -= 262144; /* Line 667, Address: 0x100bb54 */
+    ((int*)plwk)[19] &= 33554431; /* Line 668, Address: 0x100bb68 */
     rlscrflg |= 8; /* Line 669, Address: 0x100bb7c */
   }
   if (swdata_pl.b.h & 4) { /* Line 671, Address: 0x100bb90 */
-    ((int*)plwk)[19] = 262144; /* Line 672, Address: 0x100bba8 */
-    ((int*)plwk)[19] = (((int*)plwk)[19] << 39) >> 39; /* Line 673, Address: 0x100bbbc */
+    ((int*)plwk)[19] += 262144; /* Line 672, Address: 0x100bba8 */
+    ((int*)plwk)[19] &= 33554431; /* Line 673, Address: 0x100bbbc */
     rlscrflg |= 4; /* Line 674, Address: 0x100bbd0 */
   }
 } /* Line 676, Address: 0x100bbe4 */
@@ -731,11 +731,11 @@ void go_x_plus(sprite_status_sp* plwk, unsigned short cal_plus, short cal_speed)
   cal_plus_position = sp_cos(cal_z_kaku); /* Line 731, Address: 0x100be80 */
   cal_plus_position *= cal_speed; /* Line 732, Address: 0x100be94 */
   plwk->x_posi.l += cal_plus_position; /* Line 733, Address: 0x100bea4 */
-  plwk->x_posi.l = (plwk->x_posi.l << 36) >> 36; /* Line 734, Address: 0x100beb4 */
+  plwk->x_posi.l = plwk->x_posi.l & 268435455; /* Line 734, Address: 0x100beb4 */
   cal_plus_position = sp_sin(cal_z_kaku); /* Line 735, Address: 0x100becc */
   cal_plus_position *= cal_speed; /* Line 736, Address: 0x100bee0 */
   plwk->y_posi.l += cal_plus_position; /* Line 737, Address: 0x100bef0 */
-  plwk->y_posi.l = (plwk->y_posi.l << 36) >> 36; /* Line 738, Address: 0x100bf00 */
+  plwk->y_posi.l = plwk->y_posi.l & 268435455; /* Line 738, Address: 0x100bf00 */
 } /* Line 739, Address: 0x100bf18 */
 
 

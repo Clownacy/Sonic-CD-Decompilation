@@ -112,8 +112,8 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
 
   ptv_adr = (short*)&tv_adr[0]; /* Line 113, Address: 0x1009490 */
 
-  lD0.w.l = zoomwk.x << 3; /* Line 115, Address: 0x100949c */
-  lD1.w.l = zoomwk.y << 3; /* Line 116, Address: 0x10094bc */
+  lD0.w.l = (unsigned short)zoomwk.x << 3; /* Line 115, Address: 0x100949c */
+  lD1.w.l = (unsigned short)zoomwk.y << 3; /* Line 116, Address: 0x10094bc */
 
   lD2.w.l = -3; /* Line 118, Address: 0x10094dc */
   iD6 = 8; /* Line 119, Address: 0x10094e4 */
