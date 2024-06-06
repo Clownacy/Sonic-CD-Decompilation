@@ -3,6 +3,9 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "OPNENTRY.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "OPNDO.H"
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -70,10 +73,10 @@ void*(*sMemAlloc)(int);
 unsigned short swData2;
 unsigned short swData1;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -84,9 +87,6 @@ dlink_export ExportedFunctions = {
   0
 };
 unsigned int hWnd;
-
-
-
 
 
 

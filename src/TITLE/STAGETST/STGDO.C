@@ -1,8 +1,12 @@
 #include "..\..\TYPES.H"
 #include "STGITEM.H"
 #include "STGDO.H"
+#include "..\COMMON\GRID.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "STGENTRY.H"
+#include "STGSPRT.H"
 
-void UpdateMenu();
+static void UpdateMenu();
 
 extern unsigned short nSequenceNum;
 extern stgitem menuTbl[];
@@ -39,12 +43,8 @@ extern int nTimerCunt;
 
 
 
-
-
-
-
 void STGDraw() { /* Line 46, Address: 0x1000900 */
-  if (nSequenceNum >= 2) /* Line 47, Address: 0x1000908 */
+  if (nSequenceNum > 1) /* Line 47, Address: 0x1000908 */
   {
     srfDraw(); /* Line 49, Address: 0x1000920 */
   }

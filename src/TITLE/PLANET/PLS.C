@@ -174,7 +174,7 @@ void play1() { /* Line 91, Address: 0x1008640 */
   if (iD0 <= playwk.y_posi.w.h) /* Line 174, Address: 0x1008940 */
     playwk.y_posi.w.h = iD0; /* Line 175, Address: 0x1008964 */
 
-  iD0 = playwk.z_posi.w.h - 336; /* Line 177, Address: 0x100896c */
+  iD0 = -playwk.z_posi.w.h - 336; /* Line 177, Address: 0x100896c */
   if (iD0 >= playwk.y_posi.w.h) /* Line 178, Address: 0x1008994 */
     playwk.y_posi.w.h = iD0; /* Line 179, Address: 0x10089b8 */
 
@@ -194,14 +194,14 @@ void check_Bbtn() {
 
   if (rotspeed.l != 0) /* Line 195, Address: 0x1008a40 */
   {
-    if (!(push_flg_s & 16)) /* Line 197, Address: 0x1008a50 */
-    {
-      rotspeed.l = 0; /* Line 199, Address: 0x1008a68 */
-      rotflg = -rotflg; /* Line 200, Address: 0x1008a70 */
-      push_flg_s |= 16; /* Line 201, Address: 0x1008a8c */
-      return; /* Line 202, Address: 0x1008aa0 */
-    }
+    if (push_flg_s & 16) goto label1; /* Line 197, Address: 0x1008a50 */
+
+    rotspeed.l = 0; /* Line 199, Address: 0x1008a68 */
+    rotflg = -rotflg; /* Line 200, Address: 0x1008a70 */
+    push_flg_s |= 16; /* Line 201, Address: 0x1008a8c */
+    return; /* Line 202, Address: 0x1008aa0 */
   }
+
 
 
 
@@ -211,7 +211,7 @@ void check_Bbtn() {
     return; /* Line 211, Address: 0x1008ad4 */
   }
 
-
+label1:
   if ((short)rotflg >= 0) /* Line 215, Address: 0x1008adc */
     rotspeed.l += 32767 + 1; /* Line 216, Address: 0x1008afc */
   else
@@ -243,7 +243,7 @@ void check_Cbtn() {
 
 
   zoomflg = 1; /* Line 245, Address: 0x1008bd0 */
-  if (playwk.z_posi.w.h < 1793) /* Line 246, Address: 0x1008bdc */
+  if (playwk.z_posi.w.h <= 1792) /* Line 246, Address: 0x1008bdc */
     playwk.z_posi.w.h += 8; /* Line 247, Address: 0x1008bf8 */
   push_flg_s |= 32; /* Line 248, Address: 0x1008c0c */
   return; /* Line 249, Address: 0x1008c20 */

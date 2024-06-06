@@ -3,8 +3,12 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "VMDENTRY.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "VMDDO.H"
+#include "VMDSPRT.H"
 
-void VMDWait();
+static void VMDWait();
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -62,10 +66,10 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -85,10 +89,6 @@ unsigned int(*ReadScore)(int, char*, unsigned int);
 void(*WaveRequest)(short);
 unsigned int hWnd;
 unsigned int hSurf;
-
-
-
-
 
 
 

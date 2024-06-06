@@ -2,8 +2,14 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SVDDO.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "SVDEDIT.H"
+#include "SVDENTRY.H"
+#include "SVDFILE.H"
+#include "SVDMENU.H"
+#include "SVDSPRT.H"
 
-void UpdateMenu(unsigned short nMenuKind, unsigned short nMenuKindOld);
+static void UpdateMenu(unsigned short nMenuKind, unsigned short nMenuKindOld);
 
 extern unsigned short nSequenceNum;
 extern sprite_bmp infoSprtBmp[];
@@ -68,14 +74,8 @@ extern unsigned short swData2;
 
 
 
-
-
-
-
-
-
 void SDDraw() { /* Line 77, Address: 0x1000000 */
-  if (nSequenceNum >= 2) { /* Line 78, Address: 0x1000008 */
+  if (nSequenceNum > 1) { /* Line 78, Address: 0x1000008 */
 
     srfDraw(); /* Line 80, Address: 0x1000020 */
   }
@@ -227,7 +227,7 @@ void SDMenu() { /* Line 206, Address: 0x10004a0 */
     else if (swData1 & 256) { /* Line 227, Address: 0x1000614 */
 
       nMenuKindOld = nMenuKind; /* Line 229, Address: 0x100062c */
-      nMenuKind = nMenuKind - 1 >= 2 ? nMenuKind - 1 : 1; /* Line 230, Address: 0x1000638 */
+      nMenuKind = nMenuKind - 1 > 1 ? nMenuKind - 1 : 1; /* Line 230, Address: 0x1000638 */
       if (nMenuKind == nMenuKindOld) return; /* Line 231, Address: 0x100067c */
 
       WaveRequest(9); /* Line 233, Address: 0x1000694 */
@@ -340,10 +340,10 @@ int CheckAutoEnd() { /* Line 339, Address: 0x1000bb0 */
   static int inputKeyTime;
   int ret = 0; /* Line 341, Address: 0x1000bb8 */
 
-  if (swData1 != 0 || swData2 != 0) /* Line 343, Address: 0x1000bbc */
+  if (swData1 || swData2) /* Line 343, Address: 0x1000bbc */
     inputKeyTime = nTimerCunt; /* Line 344, Address: 0x1000bdc */
-  if (nTimerCunt - keybordInputTime >= 36001 /* Line 345, Address: 0x1000bec */
-      && nTimerCunt -inputKeyTime >= 36001) {
+  if (nTimerCunt - keybordInputTime > 36000 /* Line 345, Address: 0x1000bec */
+      && nTimerCunt -inputKeyTime > 36000) {
 
 
     ret = 4; /* Line 349, Address: 0x1000c34 */

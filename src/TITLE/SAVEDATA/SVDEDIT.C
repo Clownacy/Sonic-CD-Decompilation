@@ -1,6 +1,10 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "SVDEDIT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "SVDDO.H"
+#include "SVDENTRY.H"
+#include "SVDSPRT.H"
 
 static unsigned int bEditMode;
 extern unsigned short swData1;
@@ -10,10 +14,6 @@ extern void(*WaveRequest)(short);
 extern void(*sPrintf)(char*, const char*, ...);
 extern score_data saveData[6];
 extern int nSelectFileNumber;
-
-
-
-
 
 
 
@@ -166,7 +166,7 @@ void DispSaveData(int indx) { /* Line 154, Address: 0x1001150 */
     CreateStringSprt(str, 0, indx + 2, 19); /* Line 166, Address: 0x1001270 */
 
     round = saveData[indx].roundNo + 1; /* Line 168, Address: 0x100128c */
-    if (round >= 8) round = 7; /* Line 169, Address: 0x10012b8 */
+    if (round > 7) round = 7; /* Line 169, Address: 0x10012b8 */
     sPrintf(str, "ROUND-%1d", round); /* Line 170, Address: 0x10012c8 */
     CreateStringSprt(str, 2, indx + 2, 12); /* Line 171, Address: 0x10012e8 */
 

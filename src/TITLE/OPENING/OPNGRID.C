@@ -62,7 +62,7 @@ int OEGridCreate(unsigned short indx) { /* Line 36, Address: 0x1003370 */
     } /* Line 62, Address: 0x10034bc */
 
 
-    hmx_grid_set_position_module(s_ctx->grids[indx], infoGridBmp[indx].point.x, infoGridBmp[indx].point.x); /* Line 65, Address: 0x10034d8 */
+    hmx_grid_set_position_module(s_ctx->grids[indx], infoGridBmp[indx].point.x, infoGridBmp[indx].point.y); /* Line 65, Address: 0x10034d8 */
 
     rectwh.x = 0; /* Line 67, Address: 0x100354c */
     rectwh.y = 0; /* Line 68, Address: 0x1003550 */

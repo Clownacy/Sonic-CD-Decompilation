@@ -1,3 +1,5 @@
+#include "HMX_TYPES.H"
+
 void EAError();
 void srfDraw();
 void ld_bitmap_file(char* fname, void* dst, int wx, int wy, int palet, int unknown);

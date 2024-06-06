@@ -1,9 +1,11 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
+#include "BESTSPRT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
 
-void DeleteCharSprt(int y, int colom);
-unsigned int CreateCharSprt(int colom, int y, char code);
-unsigned int CreateCharSprt2(int colom, int y, char code);
+static void DeleteCharSprt(int y, int colom);
+static unsigned int CreateCharSprt(int colom, int y, char code);
+static unsigned int CreateCharSprt2(int colom, int y, char code);
 
 int menu_y[11] = { 7, 31, 55, 79, 103, 127, 151, 175, 199, 0, 0 };
 unsigned int hSprMenu[11][28];
@@ -13,8 +15,6 @@ extern void(*hmx_sprite_set_bitmap_module)(hmx_sprite*, hmx_bitmap*);
 extern void(*hmx_sprite_set_position_module)(hmx_sprite*, int, int);
 extern int ScrollCount;
 extern sprite_bmp infoSprtBmp[];
-
-
 
 
 
@@ -82,7 +82,7 @@ static unsigned int CreateCharSprt(int colom, int y, char code) { /* Line 69, Ad
   else if (code < 65) indx = code - 48; /* Line 82, Address: 0x10010dc */
   else indx = code - 55; /* Line 83, Address: 0x100110c */
 
-  sprCreate(&hSprMenu[y][colom]); /* Line 85, Address: 0x100111c */
+  sprCreate((int*)&hSprMenu[y][colom]); /* Line 85, Address: 0x100111c */
 
 
   s_ctx->spr_level[hSprMenu[y][colom]] = 60 - infoSprtBmp[indx].order; /* Line 88, Address: 0x100114c */
@@ -116,7 +116,7 @@ static unsigned int CreateCharSprt2(int colom, int y, char code) { /* Line 103, 
   else if (code < 65) indx = code - 12; /* Line 116, Address: 0x100140c */
   else indx = code - 19; /* Line 117, Address: 0x100143c */
 
-  sprCreate(&hSprMenu[y][colom]); /* Line 119, Address: 0x100144c */
+  sprCreate((int*)&hSprMenu[y][colom]); /* Line 119, Address: 0x100144c */
 
 
   s_ctx->spr_level[hSprMenu[y][colom]] = 60 - infoSprtBmp[indx].order; /* Line 122, Address: 0x100147c */

@@ -2,6 +2,10 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SVDMENU.H"
+#include "SVDDO.H"
+#include "SVDEDIT.H"
+#include "SVDENTRY.H"
+#include "SVDSPRT.H"
 
 extern sprite_bmp infoSprtBmp[];
 extern unsigned short nMenuKind;
@@ -18,10 +22,6 @@ unsigned int bDestFileChosed;
 extern char editBuf[];
 extern int nTimerCunt;
 extern void(*sMemSet)(void*, unsigned char, int);
-
-
-
-
 
 
 
@@ -194,7 +194,7 @@ void SDMenuCopy() { /* Line 175, Address: 0x1002a30 */
       bFileChosed = 0; /* Line 194, Address: 0x1002b04 */
     }
     WaitKeyOff(); /* Line 196, Address: 0x1002b0c */
-    
+
   } /* Line 198, Address: 0x1002b14 */
   else if (bDestFileChosed == 0) { /* Line 199, Address: 0x1002b1c */
 

@@ -167,7 +167,7 @@ void TAColorChgSP6() { /* Line 148, Address: 0x1002080 */
   d5 = 2; /* Line 167, Address: 0x10020a0 */
   d6 = 0; /* Line 168, Address: 0x10020a8 */
   d7 = 24; /* Line 169, Address: 0x10020ac */
-  d0 = cntplus((unsigned short*)clchgcnt, d5, d6, d7) & 65534; /* Line 170, Address: 0x10020b4 */
+  d0 = (short)(cntplus((unsigned short*)clchgcnt, d5, d6, d7) & 65534); /* Line 170, Address: 0x10020b4 */
 
   d0 >>= 1; /* Line 172, Address: 0x10020e8 */
   lpPeDest = &lpcolorwk[33]; /* Line 173, Address: 0x10020f0 */

@@ -3,8 +3,12 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SVDENTRY.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "SVDDO.H"
+#include "SVDSPRT.H"
 
-void SDWait();
+static void SDWait();
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -72,10 +76,10 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -86,10 +90,6 @@ dlink_export ExportedFunctions = {
   0
 };
 int keybordInputTime;
-
-
-
-
 
 
 

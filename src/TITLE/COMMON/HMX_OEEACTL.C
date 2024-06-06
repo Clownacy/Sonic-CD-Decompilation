@@ -168,16 +168,16 @@ void ld_bitmap_file(char* fname, void* dst, int wx, int wy, int palet, int unkno
           iLength = iWidth; /* Line 168, Address: 0x1001408 */
         else
           iLength = iWidth + (4 - iWidth % 4); /* Line 170, Address: 0x1001414 */
-        for (y = wy; wy > 0; --y) { /* Line 171, Address: 0x100143c */
+        for (y = wy; y > 0; --y) { /* Line 171, Address: 0x100143c */
           for (x = 0; x < wx; ++x) { /* Line 172, Address: 0x1001448 */
             if (x < wx - 1) { /* Line 173, Address: 0x1001454 */
               if (palet != 0) { /* Line 174, Address: 0x1001468 */
-                if (src[iWidth + x + (y - 1) * iLength] != 0) /* Line 175, Address: 0x1001474 */
-                  *pDst = palet + src[iWidth + x + (y - 1) * iLength]; /* Line 176, Address: 0x1001498 */
+                if (src[offset + x + (y - 1) * iLength] != 0) /* Line 175, Address: 0x1001474 */
+                  *pDst = palet + src[offset + x + (y - 1) * iLength]; /* Line 176, Address: 0x1001498 */
                 else
                   *pDst = 0; /* Line 178, Address: 0x10014cc */
               } /* Line 179, Address: 0x10014d0 */
-              else *pDst = src[iWidth + x + (y - 1) * iLength]; /* Line 180, Address: 0x10014d8 */
+              else *pDst = src[offset + x + (y - 1) * iLength]; /* Line 180, Address: 0x10014d8 */
 
               if (*pDst == 0) /* Line 182, Address: 0x10014f4 */
                 *pDst = 255; /* Line 183, Address: 0x1001504 */
@@ -207,13 +207,13 @@ void ld_bitmap_file(char* fname, void* dst, int wx, int wy, int palet, int unkno
 
 
 void ld_bitmap_file2(char* fname, void* dst, int sx, int sy, int wx, int wy, int dx, int dy) { /* Line 209, Address: 0x10015b0 */
+  unsigned char* pDst;
   int fp;
-  int fsize;
   void* fbuf = 0; /* Line 212, Address: 0x10015f4 */
+  unsigned char* src;
+  int i, fsize, x, y, iWidth, iHeight, iLength;
   unsigned int offset;
-  int iWidth, iHeight, iLength, y, x;
-  int i;
-  unsigned char *src, *pDst = dst; /* Line 216, Address: 0x10015f8 */
+  pDst = dst; /* Line 216, Address: 0x10015f8 */
 
   if (dx != 0) { /* Line 218, Address: 0x10015fc */
     for (i = 0; i < dx; ++pDst, ++i) { /* Line 219, Address: 0x1001608 */
@@ -376,7 +376,7 @@ int ld_load_sprite2(hmx_environment* buffer, char* file, hmx_environment* env, h
 
       flag4 = 0; /* Line 377, Address: 0x1001cc8 */
 
-      if (i >= 32) /* Line 379, Address: 0x1001ccc */
+      if (i > 31) /* Line 379, Address: 0x1001ccc */
         s = &header->spr[i - 1]; /* Line 380, Address: 0x1001cd8 */
       else
         s = &header->spr[i]; /* Line 382, Address: 0x1001cf8 */
@@ -391,9 +391,9 @@ int ld_load_sprite2(hmx_environment* buffer, char* file, hmx_environment* env, h
 
 
 
-      if (i == 3) { /* Line 394, Address: 0x1001d24 */
+      if (i == 3) /* Line 394, Address: 0x1001d24 */
         bmp = hmx_bitmap_create_module(env, 248, 8); /* Line 395, Address: 0x1001d30 */
-      } else if (i == 31) { /* Line 396, Address: 0x1001d58 */
+      else if (i == 31) { /* Line 396, Address: 0x1001d58 */
         bmp = hmx_bitmap_create_module(env, 40, 16); /* Line 397, Address: 0x1001d64 */
         wx = wy = 0; /* Line 398, Address: 0x1001d84 */
       } else { /* Line 399, Address: 0x1001d8c */
@@ -496,16 +496,16 @@ int ld_load_sprite2(hmx_environment* buffer, char* file, hmx_environment* env, h
 
 
 int ld_load_sprite1(hmx_environment* buffer, char* file, hmx_environment* env, hmx_bitmap** bitmaps, int size) { /* Line 498, Address: 0x1002050 */
-  int count = -1, read_count; /* Line 499, Address: 0x1002090 */
-  unsigned char* pixbuf;
+  int count = -1; /* Line 499, Address: 0x1002090 */
+
   void* expbuf = 0; /* Line 501, Address: 0x1002098 */
   ld_sprite_header* header;
+  int read_count;
+  unsigned char* pixbuf;
   int i;
   ld_sprite_inf* s;
-  int flag4;
-  int wx, wy;
+  int flag4, wx, wy;
   hmx_bitmap* bmp;
-
   for (i = 0; i < size; ++i) { /* Line 509, Address: 0x100209c */
     bitmaps[i] = 0; /* Line 510, Address: 0x10020a8 */
   } /* Line 511, Address: 0x10020b8 */
@@ -673,18 +673,18 @@ int ld_load_sprite1(hmx_environment* buffer, char* file, hmx_environment* env, h
 
 int ld_load_grid2(hmx_environment* buffer, char* file, hmx_environment* env, hmx_bitmap** bitmaps, int size) { /* Line 674, Address: 0x10022d0 */
   int count = -1; /* Line 675, Address: 0x1002310 */
-  unsigned char* pixbuf;
+
   void* expbuf = 0; /* Line 677, Address: 0x1002318 */
   ld_scroll_header* header;
-  hmx_bitmap* bmp;
   int read_count;
-  int i;
-  int n;
-  int wx;
-  int wy;
-  int palet = 0; /* Line 685, Address: 0x100231c */
-  int paletcnt = 0; /* Line 686, Address: 0x1002320 */
-  int palet_offs = 0; /* Line 687, Address: 0x1002324 */
+  unsigned char* pixbuf;
+  int i, n, palet, paletcnt, palet_offs;
+  int wx, wy;
+  hmx_bitmap* bmp;
+
+  palet = 0; /* Line 685, Address: 0x100231c */
+  paletcnt = 0; /* Line 686, Address: 0x1002320 */
+  palet_offs = 0; /* Line 687, Address: 0x1002324 */
 
   for (i = 0; i < size; ++i) { /* Line 689, Address: 0x1002328 */
     bitmaps[i] = 0; /* Line 690, Address: 0x1002334 */

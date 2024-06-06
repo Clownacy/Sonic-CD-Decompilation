@@ -1,3 +1,5 @@
+#include "..\COMMON\ENGINE_DLL.H"
+
 void OESetSequenceNum(unsigned short num);
 void KeyWait();
 void WaitKeyOff();

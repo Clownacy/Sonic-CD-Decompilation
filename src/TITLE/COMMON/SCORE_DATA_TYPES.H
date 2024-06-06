@@ -1,3 +1,6 @@
+#ifndef SCORE_DATA_TYPES_H
+#define SCORE_DATA_TYPES_H
+
 typedef struct {
   unsigned int time;
   char name[4];
@@ -25,3 +28,5 @@ typedef struct {
   unsigned int checkSum;
 }
 score_data;
+
+#endif

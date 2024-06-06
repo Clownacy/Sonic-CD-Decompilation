@@ -2,6 +2,8 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "PLM.H"
+#include "ACTM.H"
+#include "ETC.H"
 
 static short fpat0[8] = { 0, 0, -24, 8, -48, -8, -34, 20 };
 static short fpat1[8] = { 0, 0, -16, -24, -16, 24, -32, 0 };
@@ -52,8 +54,6 @@ short actset_tbl[12] =
 extern sprite_patterns_title flicky_tbl;
 extern sprite_patterns_title flicky_tbl1;
 extern sprite_patterns_title flicky_tbl3;
-
-
 
 
 
@@ -306,7 +306,7 @@ label1:
     pActwk->SPR_FLG |= 128; /* Line 306, Address: 0x1007740 */
     pActwk->SPR_FLG &= 247; /* Line 307, Address: 0x1007750 */
     iD0 = -iD0; /* Line 308, Address: 0x1007760 */
-    pActwk->X_SPEED.l = -pActwk->X_SPEED.l; /* Line 309, Address: 0x100777c */
+    pActwk->X_SPEED.l = -(long int)pActwk->X_SPEED.l; /* Line 309, Address: 0x100777c */
   }
   pActwk->XPOSI.w.h += iD0; /* Line 311, Address: 0x10077a0 */
   pActwk->YPOSI.w.h += pFoffset->inipat[iNormal * 2 + 1]; /* Line 312, Address: 0x10077b0 */
@@ -328,7 +328,7 @@ void star_set() { /* Line 325, Address: 0x1007800 */
   sprite_status_lpl* pActwk;
   ini_pats* pSoffset;
 
-  if (colorno < 11) return; /* Line 331, Address: 0x1007824 */
+  if (colorno <= 10) return; /* Line 331, Address: 0x1007824 */
   if (colorno >= 24) return; /* Line 332, Address: 0x1007840 */
 
 
@@ -355,7 +355,7 @@ void star_set() { /* Line 325, Address: 0x1007800 */
   lD0.w.l = lD0.l % 128; /* Line 355, Address: 0x1007910 */
   iD5 = lD0.w.l; /* Line 356, Address: 0x100793c */
 
-  if (iD5 < 129) /* Line 358, Address: 0x1007948 */
+  if (iD5 <= 128) /* Line 358, Address: 0x1007948 */
     iD3 = 1; /* Line 359, Address: 0x100795c */
 
   iD6 = 0; /* Line 361, Address: 0x1007968 */
@@ -506,8 +506,8 @@ void ufo_set() { /* Line 439, Address: 0x1007c20 */
       pActwk->SPR_FLG |= 128; /* Line 506, Address: 0x1007ea4 */
       pActwk->SPR_FLG &= 247; /* Line 507, Address: 0x1007eb4 */
       lD0.w.l = -lD0.w.l; /* Line 508, Address: 0x1007ec4 */
-      pActwk->X_SPEED.l = -pActwk->X_SPEED.l; /* Line 509, Address: 0x1007ee0 */
-      pActwk->Y_SPEED.l = -pActwk->Y_SPEED.l; /* Line 510, Address: 0x1007f04 */
+      pActwk->X_SPEED.l = -(long int)pActwk->X_SPEED.l; /* Line 509, Address: 0x1007ee0 */
+      pActwk->Y_SPEED.l = -(long int)pActwk->Y_SPEED.l; /* Line 510, Address: 0x1007f04 */
     }
 
     pActwk->XPOSI.w.h += lD0.w.l; /* Line 513, Address: 0x1007f28 */
@@ -619,13 +619,13 @@ void metals_set() { /* Line 582, Address: 0x1008180 */
     if (pActwk->XPOSI.w.h >= 128) /* Line 619, Address: 0x10082d4 */
     {
       pActwk->SPR_FLG |= 128; /* Line 621, Address: 0x10082f0 */
-      pActwk->X_SPEED.l = (long int)-pActwk->X_SPEED.l; /* Line 622, Address: 0x1008300 */
+      pActwk->X_SPEED.l = -(long int)pActwk->X_SPEED.l; /* Line 622, Address: 0x1008300 */
     }
 
     if (pActwk->YPOSI.w.h >= 100) /* Line 625, Address: 0x1008324 */
     {
       pActwk->SPR_FLG &= 247; /* Line 627, Address: 0x1008340 */
-      pActwk->Y_SPEED.l = (long int)-pActwk->Y_SPEED.l; /* Line 628, Address: 0x1008350 */
+      pActwk->Y_SPEED.l = -(long int)pActwk->Y_SPEED.l; /* Line 628, Address: 0x1008350 */
     }
   }
   actset_wk = 0; /* Line 631, Address: 0x1008374 */
@@ -679,8 +679,8 @@ void tails_set() { /* Line 644, Address: 0x10083a0 */
     if (iD7 < 0) /* Line 679, Address: 0x10084e4 */
     {
       pActwk->SPR_FLG |= 128; /* Line 681, Address: 0x10084f4 */
-      pActwk->X_SPEED.l = (long int)-pActwk->X_SPEED.l; /* Line 682, Address: 0x1008504 */
-      pActwk->Y_SPEED.l = (long int)-pActwk->Y_SPEED.l; /* Line 683, Address: 0x1008528 */
+      pActwk->X_SPEED.l = -(long int)pActwk->X_SPEED.l; /* Line 682, Address: 0x1008504 */
+      pActwk->Y_SPEED.l = -(long int)pActwk->Y_SPEED.l; /* Line 683, Address: 0x1008528 */
     }
   }
   actset_wk = 0; /* Line 686, Address: 0x100854c */

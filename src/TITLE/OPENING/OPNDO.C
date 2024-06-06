@@ -2,15 +2,19 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "OPNDO.H"
+#include "..\COMMON\GRID.H"
+#include "..\COMMON\PALT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "OPNENTRY.H"
 
-void OEUpdateHand();
-void OEUpdateMayu();
-void OEUpdatePlanet();
-void OEUpdateMizu();
-void OEUpdateKumo();
-void GetEnabeMenu(unsigned int* menuTable);
-int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext);
-void OEUpdateMsg();
+static void OEUpdateHand();
+static void OEUpdateMayu();
+static void OEUpdatePlanet();
+static void OEUpdateMizu();
+static void OEUpdateKumo();
+static void GetEnabeMenu(unsigned int* menuTable);
+static int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext);
+static void OEUpdateMsg();
 
 typedef struct {
   unsigned short wrap;
@@ -173,12 +177,8 @@ static char KeyState[256];
 
 
 
-
-
-
-
 void OEDraw() { /* Line 180, Address: 0x1000000 */
-  if (nSequenceNum >= 2 && bDrawDisable == 0) { /* Line 181, Address: 0x1000008 */
+  if (nSequenceNum > 1 && bDrawDisable == 0) { /* Line 181, Address: 0x1000008 */
 
     srfDraw(); /* Line 183, Address: 0x1000030 */
   }
@@ -246,7 +246,7 @@ static void OEUpdatePlanet() { /* Line 234, Address: 0x1000290 */
     hmx_sprite_set_position_module(s_ctx->sprites[14], ptPlnt[num].point.x, ptPlnt[num].point.y); /* Line 246, Address: 0x10002cc */
     if (ptPlnt[num].time == nTimerCunt - staTime) { /* Line 247, Address: 0x1000334 */
 
-      if (++num >= 8U) /* Line 249, Address: 0x1000374 */
+      if ((unsigned int)++num > 7) /* Line 249, Address: 0x1000374 */
       {
         num = 0; /* Line 251, Address: 0x1000394 */
       }
@@ -287,7 +287,7 @@ static void OEUpdateMizu() { /* Line 266, Address: 0x1000470 */
 
         inc = i * 10 + 40; /* Line 288, Address: 0x1000544 */
         fHorizShearArray[i] += inc; /* Line 289, Address: 0x1000554 */
-        if (fHorizShearArray[i] >= 32001) /* Line 290, Address: 0x1000570 */
+        if (fHorizShearArray[i] > 32000) /* Line 290, Address: 0x1000570 */
           fHorizShearArray[i] -= 32000; /* Line 291, Address: 0x1000590 */
         nHorizShearArray[i] = -(fHorizShearArray[i] / 100); /* Line 292, Address: 0x10005ac */
       } /* Line 293, Address: 0x10005f0 */
@@ -434,8 +434,8 @@ static int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext) { 
     for (n = 0; n < 7; ++n) { /* Line 434, Address: 0x1000b50 */
 
       ++indx; /* Line 436, Address: 0x1000b5c */
-      if (indx >= 7) indx = 0; /* Line 437, Address: 0x1000b60 */
-      if (menuTable[n] != 0) return n; /* Line 438, Address: 0x1000b70 */
+      if (indx > 6) indx = 0; /* Line 437, Address: 0x1000b60 */
+      if (menuTable[indx] != 0) return indx; /* Line 438, Address: 0x1000b70 */
     } /* Line 439, Address: 0x1000b94 */
   } /* Line 440, Address: 0x1000ba4 */
   else {
@@ -444,7 +444,7 @@ static int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext) { 
 
       --indx; /* Line 445, Address: 0x1000bb8 */
       if (indx < 0) indx = 6; /* Line 446, Address: 0x1000bbc */
-      if (menuTable[n] != 0) return n; /* Line 447, Address: 0x1000bc8 */
+      if (menuTable[indx] != 0) return indx; /* Line 447, Address: 0x1000bc8 */
     } /* Line 448, Address: 0x1000bec */
   }
 
@@ -476,10 +476,10 @@ unsigned int ChkNewSlot() { /* Line 474, Address: 0x1000c10 */
   score_data dummyData;
 
   for (i = 0; i < 6; ++i) { /* Line 478, Address: 0x1000c1c */
-    if (ReadScore(i, (char*)&dummyData, 0) != 0) { /* Line 479, Address: 0x1000c28 */
+    if (ReadScore(i, (char*)&dummyData, 0) == 0) break; /* Line 479, Address: 0x1000c28 */
 
-      if (dummyData.saved == 0) break; /* Line 481, Address: 0x1000c4c */
-    }
+    if (dummyData.saved == 0) break; /* Line 481, Address: 0x1000c4c */
+
   } /* Line 483, Address: 0x1000c58 */
   if (i == 6) { /* Line 484, Address: 0x1000c68 */
 
@@ -679,7 +679,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
 
     OEClrset(tblPal2a, 1); /* Line 680, Address: 0x1001638 */
     point.x += 32; /* Line 681, Address: 0x100164c */
-    if (point.x <= infoSprtBmp[kind].point.x) { /* Line 682, Address: 0x1001660 */
+    if (point.x >= infoSprtBmp[kind].point.x) { /* Line 682, Address: 0x1001660 */
 
       if (GetNextMenu(menuEnable, kind - 25, 0) + 25 < kind) LArrow = 1; /* Line 684, Address: 0x1001690 */
       if (GetNextMenu(menuEnable, kind - 25, 1) + 25 < kind) RArrow = 1; /* Line 685, Address: 0x10016d4 */
@@ -736,7 +736,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
         arrowPoint.y = infoSprtBmp[33].point.y; /* Line 736, Address: 0x1001b00 */
         rPosi = 1; /* Line 737, Address: 0x1001b0c */
       }
-      if (++arrowKind >= 3) arrowKind = 0; /* Line 739, Address: 0x1001b14 */
+      if (++arrowKind > 2) arrowKind = 0; /* Line 739, Address: 0x1001b14 */
     }
 
     if (swData1 & 20480) { /* Line 742, Address: 0x1001b3c */
@@ -771,7 +771,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
   } /* Line 771, Address: 0x1001ce8 */
   else if (nSeqNo == 7) { /* Line 772, Address: 0x1001cf0 */
 
-    if (nTimerCunt - timeOld >= 7) { /* Line 774, Address: 0x1001d04 */
+    if (nTimerCunt - timeOld > 6) { /* Line 774, Address: 0x1001d04 */
 
       nSeqNo = nSeqNoNext; /* Line 776, Address: 0x1001d24 */
     }
@@ -1058,6 +1058,6 @@ int OEEnd() { /* Line 1017, Address: 0x10029a0 */
         break;
     }
   }
-  
+
   return ret; /* Line 1062, Address: 0x1002a84 */
 } /* Line 1063, Address: 0x1002a88 */

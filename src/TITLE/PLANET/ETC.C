@@ -51,10 +51,10 @@ int random() { /* Line 44, Address: 0x1003310 */
   lD1.l <<= 3; /* Line 51, Address: 0x1003358 */
   lD1.l += lD0.l; /* Line 52, Address: 0x1003364 */
   lD0.w.l = lD1.w.l; /* Line 53, Address: 0x1003374 */
-  lD1.l = lD1.l & 65535 | (lD1.l & 65535); /* Line 54, Address: 0x100337c */
+  lD1.l = ((long int)lD1.l & 65535) << 16 | ((long int)lD1.l & (unsigned int)65535 << 16) >> 16; /* Line 54, Address: 0x100337c */
   lD0.w.l += lD1.w.l; /* Line 55, Address: 0x10033bc */
   lD1.w.l = lD0.w.l; /* Line 56, Address: 0x10033cc */
-  lD1.l = lD1.l & 65535 | (lD1.l & 65535); /* Line 57, Address: 0x10033d4 */
+  lD1.l = ((long int)lD1.l & 65535) << 16 | ((long int)lD1.l & (unsigned int)65535 << 16) >> 16; /* Line 57, Address: 0x10033d4 */
   ranum = lD1.l; /* Line 58, Address: 0x1003414 */
   return lD0.l; /* Line 59, Address: 0x1003420 */
 } /* Line 60, Address: 0x1003424 */

@@ -60,3 +60,5 @@ extern short_union stageno;
 extern unsigned char music_selflg;
 extern unsigned char m2save[22528];
 extern bmp_info SprBmp[700];
+
+void WorkRamClear();

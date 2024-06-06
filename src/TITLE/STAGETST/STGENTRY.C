@@ -3,8 +3,12 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "STGENTRY.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "STGDO.H"
+#include "STGSPRT.H"
 
-void STGWait();
+static void STGWait();
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -62,10 +66,10 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -75,10 +79,6 @@ dlink_export ExportedFunctions = {
   0,
   0
 };
-
-
-
-
 
 
 

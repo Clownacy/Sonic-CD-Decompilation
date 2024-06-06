@@ -1,12 +1,12 @@
 #include "..\..\TYPES.H"
 #include "THANKS_TYPES.H"
 #include "CHRSET.H"
+#include "ACT.H"
+#include "ETC_M.H"
 
 extern unsigned char animal_flg;
 extern short actset_tm[8];
 extern sprite_status_thanks actwk[66];
-
-
 
 
 

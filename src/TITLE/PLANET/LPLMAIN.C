@@ -2,24 +2,28 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "LPLMAIN.H"
+#include "ACTM.H"
+#include "ASCIISET.H"
 #include "FLASH.H"
+#include "KAITEN.H"
+#include "PLS.H"
 
-void ram_clear();
-void cgdata_unlze();
-void kaiten_req();
-void m2copy();
-void cgchange_chk();
-void lp_makeup();
-int init_dsp();
-void end_proc();
-void prg_init();
-void patchg_init();
-void prgend_chk();
-void cgdata_change();
-void SubCpuMain();
-void cgmwrt_a();
-void cgmwrt_b();
-void cd_call();
+static void ram_clear();
+static void cgdata_unlze();
+static void kaiten_req();
+static void m2copy();
+static void cgchange_chk();
+static void lp_makeup();
+static int init_dsp();
+static void end_proc();
+static void prg_init();
+static void patchg_init();
+static void prgend_chk();
+static void cgdata_change();
+static void SubCpuMain();
+static void cgmwrt_a();
+static void cgmwrt_b();
+static void cd_call();
 
 static char* ScrAMapFileName[3] =
 {
@@ -84,10 +88,6 @@ dlink_export ExportedFunctions =
 int(*sGetFileSize)(int);
 static unsigned int hSmAdr;
 static unsigned int hWordRAM;
-
-
-
-
 
 
 
@@ -330,85 +330,85 @@ void game_init() { /* Line 320, Address: 0x10055c0 */
 
 
     sCloseFile(hf); /* Line 332, Address: 0x100564c */
-
-
-
-
-
-
-    ProcEnd = 0; /* Line 339, Address: 0x1005660 */
-    do
-    {
-      switch (InitMode) /* Line 342, Address: 0x1005664 */
-      {
-
-
-
-        case 0:
-          WorkRamClear(); /* Line 348, Address: 0x1005694 */
-
-          comdata_m0 = 0; /* Line 350, Address: 0x100569c */
-          comdata_m1 = 0; /* Line 351, Address: 0x10056a4 */
-          comdata_m2 = 0; /* Line 352, Address: 0x10056ac */
-          comdata_m3 = 0; /* Line 353, Address: 0x10056b4 */
-          comdata_m4 = 0; /* Line 354, Address: 0x10056bc */
-          comdata_m5 = 0; /* Line 355, Address: 0x10056c4 */
-          comdata_m6 = 0; /* Line 356, Address: 0x10056cc */
-          comdata_m7 = 0; /* Line 357, Address: 0x10056d4 */
-          swdata1.w = 32768; /* Line 358, Address: 0x10056dc */
-          main_lpcnt = 1; /* Line 359, Address: 0x10056e8 */
-
-
-
-
-          comdata_s0 = 0; /* Line 364, Address: 0x10056f4 */
-          comdata_s1 = 0; /* Line 365, Address: 0x10056fc */
-          comdata_s2 = 0; /* Line 366, Address: 0x1005704 */
-          comdata_s3 = 0; /* Line 367, Address: 0x100570c */
-          comdata_s4 = 0; /* Line 368, Address: 0x1005714 */
-          comdata_s5 = 0; /* Line 369, Address: 0x100571c */
-          comdata_s6 = 0; /* Line 370, Address: 0x1005724 */
-          comdata_s7 = 0; /* Line 371, Address: 0x100572c */
-          comflag_s &= 3; /* Line 372, Address: 0x1005734 */
-          ram_clear(); /* Line 373, Address: 0x1005748 */
-          kaiten_init(); /* Line 374, Address: 0x1005750 */
-          cgdata_unlze(); /* Line 375, Address: 0x1005758 */
-
-
-
-
-          patchg_init(); /* Line 380, Address: 0x1005760 */
-
-          cgmwrt_a(); /* Line 382, Address: 0x1005768 */
-          cgmwrt_b(); /* Line 383, Address: 0x1005770 */
-
-          flash_flg = 1; /* Line 385, Address: 0x1005778 */
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-          if (init_dsp() == 0) break; /* Line 390, Address: 0x1005784 */
-          comflag_m = 0; /* Line 391, Address: 0x1005794 */
-          ProcEnd = 1; /* Line 392, Address: 0x100579c */
-
-          break; /* Line 394, Address: 0x10057a0 */
-
-        case 5:
-          prg_init(); /* Line 397, Address: 0x10057a8 */
-          lpSrc = init_col; /* Line 398, Address: 0x10057b0 */
-          lpDst = lpcolorwk1; /* Line 399, Address: 0x10057b8 */
-          for (i = 0; i < 64; ++i) *lpDst++ = *lpSrc++; /* Line 400, Address: 0x10057c0 */
-          fadein(); /* Line 401, Address: 0x100580c */
-
-        default:
-          ProcEnd = 1; /* Line 404, Address: 0x1005814 */
-      }
-
-      v_int(); /* Line 407, Address: 0x1005818 */
-    } while (ProcEnd == 0); /* Line 408, Address: 0x1005820 */
-    CDPlay(33); /* Line 409, Address: 0x1005828 */
-    bGameInit = 0; /* Line 410, Address: 0x100583c */
   }
+
+
+
+
+
+  ProcEnd = 0; /* Line 339, Address: 0x1005660 */
+  do
+  {
+    switch (InitMode) /* Line 342, Address: 0x1005664 */
+    {
+
+
+
+      case 0:
+        WorkRamClear(); /* Line 348, Address: 0x1005694 */
+
+        comdata_m0 = 0; /* Line 350, Address: 0x100569c */
+        comdata_m1 = 0; /* Line 351, Address: 0x10056a4 */
+        comdata_m2 = 0; /* Line 352, Address: 0x10056ac */
+        comdata_m3 = 0; /* Line 353, Address: 0x10056b4 */
+        comdata_m4 = 0; /* Line 354, Address: 0x10056bc */
+        comdata_m5 = 0; /* Line 355, Address: 0x10056c4 */
+        comdata_m6 = 0; /* Line 356, Address: 0x10056cc */
+        comdata_m7 = 0; /* Line 357, Address: 0x10056d4 */
+        swdata1.w = 32768; /* Line 358, Address: 0x10056dc */
+        main_lpcnt = 1; /* Line 359, Address: 0x10056e8 */
+
+
+
+
+        comdata_s0 = 0; /* Line 364, Address: 0x10056f4 */
+        comdata_s1 = 0; /* Line 365, Address: 0x10056fc */
+        comdata_s2 = 0; /* Line 366, Address: 0x1005704 */
+        comdata_s3 = 0; /* Line 367, Address: 0x100570c */
+        comdata_s4 = 0; /* Line 368, Address: 0x1005714 */
+        comdata_s5 = 0; /* Line 369, Address: 0x100571c */
+        comdata_s6 = 0; /* Line 370, Address: 0x1005724 */
+        comdata_s7 = 0; /* Line 371, Address: 0x100572c */
+        comflag_s &= 3; /* Line 372, Address: 0x1005734 */
+        ram_clear(); /* Line 373, Address: 0x1005748 */
+        kaiten_init(); /* Line 374, Address: 0x1005750 */
+        cgdata_unlze(); /* Line 375, Address: 0x1005758 */
+
+
+
+
+        patchg_init(); /* Line 380, Address: 0x1005760 */
+
+        cgmwrt_a(); /* Line 382, Address: 0x1005768 */
+        cgmwrt_b(); /* Line 383, Address: 0x1005770 */
+
+        flash_flg = 1; /* Line 385, Address: 0x1005778 */
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        if (init_dsp() == 0) break; /* Line 390, Address: 0x1005784 */
+        comflag_m = 0; /* Line 391, Address: 0x1005794 */
+        ProcEnd = 1; /* Line 392, Address: 0x100579c */
+
+        break; /* Line 394, Address: 0x10057a0 */
+
+      case 5:
+        prg_init(); /* Line 397, Address: 0x10057a8 */
+        lpSrc = init_col; /* Line 398, Address: 0x10057b0 */
+        lpDst = lpcolorwk1; /* Line 399, Address: 0x10057b8 */
+        for (i = 0; i < 64; ++i) *lpDst++ = *lpSrc++; /* Line 400, Address: 0x10057c0 */
+        fadein(); /* Line 401, Address: 0x100580c */
+
+      default:
+        ProcEnd = 1; /* Line 404, Address: 0x1005814 */
+    }
+
+    v_int(); /* Line 407, Address: 0x1005818 */
+  } while (ProcEnd == 0); /* Line 408, Address: 0x1005820 */
+  CDPlay(33); /* Line 409, Address: 0x1005828 */
+  bGameInit = 0; /* Line 410, Address: 0x100583c */
+
 } /* Line 412, Address: 0x1005844 */
 
 
@@ -803,7 +803,7 @@ static void cgdata_change() { /* Line 745, Address: 0x10065e0 */
         offs = 0; /* Line 803, Address: 0x100680c */
     }
     pA0 = (unsigned short*)funka_map_tbl[0]; /* Line 805, Address: 0x1006810 */
-    pA2 = lpKeepWork->sm_adr0 + 12; /* Line 806, Address: 0x100681c */
+    pA2 = lpKeepWork->sm_adr0 + 6; /* Line 806, Address: 0x100681c */
     for (i = 1; i >= 0; --i) /* Line 807, Address: 0x100682c */
     {
       pA1 = pA2; /* Line 809, Address: 0x1006838 */
@@ -936,7 +936,7 @@ static void cgmwrt_b() { /* Line 919, Address: 0x1006eb0 */
       ++pA1; /* Line 936, Address: 0x1006f6c */
     } /* Line 937, Address: 0x1006f70 */
     pA1 -= 11; /* Line 938, Address: 0x1006f80 */
-    for (i = 1; i < 9; ++i) /* Line 939, Address: 0x1006f84 */
+    for (i = 1; i <= 8; ++i) /* Line 939, Address: 0x1006f84 */
     {
       SetGrid(0, x, y, pA1[i], 0); /* Line 941, Address: 0x1006f90 */
       ++x; /* Line 942, Address: 0x1006fc4 */
@@ -945,7 +945,7 @@ static void cgmwrt_b() { /* Line 919, Address: 0x1006eb0 */
   } /* Line 945, Address: 0x1006fdc */
   for ( ; y < 28; ++y) /* Line 946, Address: 0x1006fec */
   {
-    for (x = 0; i < 40; ++i) /* Line 948, Address: 0x1006ff4 */
+    for (x = 0; x < 40; ++x) /* Line 948, Address: 0x1006ff4 */
     {
       SetGrid(1, x, y, 49, 0); /* Line 950, Address: 0x1007000 */
     } /* Line 951, Address: 0x1007024 */

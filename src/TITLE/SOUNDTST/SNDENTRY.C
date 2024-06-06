@@ -3,9 +3,13 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SNDENTRY.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "SNDDO.H"
+#include "SNDSPRT.H"
 
-void SNDWait();
-void SetKeybordKey1();
+static void SNDWait();
+static void SetKeybordKey1();
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -66,10 +70,10 @@ void*(*sMemAlloc)(int);
 extern int bKakusi;
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -79,10 +83,6 @@ dlink_export ExportedFunctions = {
   0,
   0
 };
-
-
-
-
 
 
 

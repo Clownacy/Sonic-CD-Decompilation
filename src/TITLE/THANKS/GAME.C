@@ -2,6 +2,10 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "THANKS_TYPES.H"
 #include "GAME.H"
+#include "BM_M.H"
+#include "ETC_M.H"
+#include "IO.H"
+#include "SPM.H"
 
 static palette_entry endingcol[64] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0, 224, 1 },
@@ -81,10 +85,6 @@ dlink_export ExportedFunctions = {
   0
 };
 int(*sGetFileSize)(int);
-
-
-
-
 
 
 
@@ -318,7 +318,7 @@ void v_int() { /* Line 299, Address: 0x1002560 */
     animal_timer = 900; /* Line 318, Address: 0x100260c */
     ld0.l = random(); /* Line 319, Address: 0x1002618 */
     ld0.l &= 32767; /* Line 320, Address: 0x1002624 */
-    ld0.w.l %= 4096; /* Line 321, Address: 0x1002630 */
+    ld0.w.l = (int)ld0.w.l % 4096; /* Line 321, Address: 0x1002630 */
     ld0.w.l += 8192; /* Line 322, Address: 0x1002664 */
     posetimer = ld0.w.l; /* Line 323, Address: 0x1002670 */
   }
@@ -412,7 +412,7 @@ void soundset(short ReqNo) { /* Line 398, Address: 0x1002a30 */
 
 
   ReqNo -= 144; /* Line 414, Address: 0x1002a54 */
-  ReqNo = SeToWavTbl[ReqNo]; /* Line 415, Address: 0x1002a60 */
+  ReqNo = (unsigned short)SeToWavTbl[ReqNo]; /* Line 415, Address: 0x1002a60 */
 
   WaveRequest(ReqNo); /* Line 417, Address: 0x1002a8c */
 } /* Line 418, Address: 0x1002aa0 */
@@ -434,7 +434,7 @@ int EndingMes() { /* Line 433, Address: 0x1002b40 */
   int i;
 
   ++gEndingMesTimer; /* Line 436, Address: 0x1002b4c */
-  if (gEndingMesTimer >= 361) { /* Line 437, Address: 0x1002b60 */
+  if (gEndingMesTimer > 360) { /* Line 437, Address: 0x1002b60 */
     gEndingMesTimer = 360; /* Line 438, Address: 0x1002b78 */
     return 0; /* Line 439, Address: 0x1002b84 */
   }

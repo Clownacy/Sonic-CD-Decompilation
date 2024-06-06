@@ -1,5 +1,6 @@
 #include "..\..\TYPES.H"
 #include "AVIGODDO.H"
+#include "AVIGODEN.H"
 
 #if defined(AVIBAD)
 static char* fileName[2] = {
@@ -40,7 +41,6 @@ static int nDispBMPFileNum;
 extern unsigned int* lpbFullScreen;
 extern unsigned short swData1;
 static int hBmp[2];
-
 
 
 
@@ -142,7 +142,7 @@ void AVIEndWait() { /* Line 140, Address: 0x1000130 */
   if (*lpbFullScreen != 0) { /* Line 142, Address: 0x1000138 */
     OESetSequenceNum(3); /* Line 143, Address: 0x100014c */
   } /* Line 144, Address: 0x1000158 */
-  else if (nTimerCunt >= 121) { /* Line 145, Address: 0x1000160 */
+  else if (nTimerCunt > 120) { /* Line 145, Address: 0x1000160 */
 
 
     OESetSequenceNum(3); /* Line 148, Address: 0x1000174 */

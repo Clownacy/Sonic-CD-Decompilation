@@ -3,6 +3,7 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "AVIGODEN.H"
+#include "AVIGODDO.H"
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -55,10 +56,10 @@ void*(*sMemAlloc)(int);
 unsigned short swData2;
 unsigned short swData1;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -78,7 +79,6 @@ unsigned int(*ReadScore)(int, char*, unsigned int);
 void(*WaveRequest)(short);
 void(*CDPause)();
 void(*CDPlay)(short);
-
 
 
 

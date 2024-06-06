@@ -1,6 +1,11 @@
+#include "..\..\TYPES.H"
 #include "VMDDO.H"
+#include "..\COMMON\GRID.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "VMDENTRY.H"
+#include "VMDSPRT.H"
 
-void UpdateMenu();
+static void UpdateMenu();
 
 extern unsigned short nSequenceNum;
 unsigned short nMenuKind;
@@ -38,13 +43,8 @@ extern int nTimerCunt;
 
 
 
-
-
-
-
-
 void VMDDraw() { /* Line 46, Address: 0x1000000 */
-  if (nSequenceNum >= 2) /* Line 47, Address: 0x1000008 */
+  if (nSequenceNum > 1) /* Line 47, Address: 0x1000008 */
   {
     srfDraw(); /* Line 49, Address: 0x1000020 */
   }
@@ -102,14 +102,14 @@ void VMDMenu() { /* Line 89, Address: 0x10001f0 */
   else if (swData1 & 256) /* Line 102, Address: 0x100029c */
   {
     nMenuKindOld = nMenuKind; /* Line 104, Address: 0x10002b4 */
-    nMenuKind = nMenuKind - 1 >= 2 ? nMenuKind - 1 : 1; /* Line 105, Address: 0x10002c0 */
+    nMenuKind = nMenuKind - 1 > 1 ? nMenuKind - 1 : 1; /* Line 105, Address: 0x10002c0 */
     if (nMenuKind == nMenuKindOld) return; /* Line 106, Address: 0x1000304 */
 
     UpdateMenu(); /* Line 108, Address: 0x100031c */
     KeyWait(); /* Line 109, Address: 0x1000324 */
 
   } /* Line 111, Address: 0x100032c */
-  else if (!(swData1 & 16384) && swData1 & 4096) /* Line 112, Address: 0x1000334 */
+  else if (swData1 & 16384 || swData1 & 4096) /* Line 112, Address: 0x1000334 */
   {
     OESetSequenceNum(999); /* Line 114, Address: 0x1000364 */
   }

@@ -2,21 +2,21 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "ASCIISET.H"
+#include "ACTM.H"
 
-void ascchk(sprite_status_lpl* pActwk);
-void set_music(sprite_status_lpl* pActwk);
-void ascset(sprite_status_lpl* pActwk);
-void ascchg(sprite_status_lpl* pActwk);
-void ascspr_init(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
-void ascspr_set(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
-void ascspr_chk(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
-void ascspr_exit(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
+static void ascchk(sprite_status_lpl* pActwk);
+static void set_music(sprite_status_lpl* pActwk);
+static void ascset(sprite_status_lpl* pActwk);
+static void ascchg(sprite_status_lpl* pActwk);
+static void ascspr_init(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
+static void ascspr_set(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
+static void ascspr_chk(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
+static void ascspr_exit(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk);
 
 static unsigned char bit_SPACE;
 static unsigned char space_flg;
 extern short ascii_xposi_tbl[];
 extern sprite_patterns_title* asciispr_tbl[];
-
 
 
 
@@ -368,8 +368,8 @@ static void ascspr_exit(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk) { 
       music_selflg |= 4; /* Line 368, Address: 0x1000fb8 */
       pAscwk->XPOSI.b.b3 &= -2; /* Line 369, Address: 0x1000fcc */
       actset_flg ^= pActwk->ACT_FLG; /* Line 370, Address: 0x1000fe0 */
-      pActwk->SPR_FLG &= 16; /* Line 371, Address: 0x1000ffc */
-      if (++pAscwk->EXE_NO >= 32) pAscwk->EXE_NO = 0; /* Line 372, Address: 0x100100c */
+      pActwk->SPR_FLG |= 16; /* Line 371, Address: 0x1000ffc */
+      if (++pAscwk->EXE_NO > 31) pAscwk->EXE_NO = 0; /* Line 372, Address: 0x100100c */
     }
   } /* Line 374, Address: 0x1001038 */
   else {

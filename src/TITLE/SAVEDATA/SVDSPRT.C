@@ -2,10 +2,11 @@
 #include "..\COMMON\HMX_TYPES.H"
 #include "SVDBMP.H"
 #include "SVDSPRT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
 
-int GetMarkfontIndx(char c, int kind);
-void MovSonicCursol(POINT point);
-int isqrt(int xx);
+static int GetMarkfontIndx(char c, int kind);
+static void MovSonicCursol(POINT point);
+static int isqrt(int xx);
 
 static int SONICMOVEM_MAG = 4;
 extern mark_info markTable[];
@@ -34,7 +35,6 @@ static int_union posiStartXOld;
 static int fSonicIncY;
 static POINT posiTarget;
 static unsigned int hFxh[120];
-
 
 
 
@@ -158,7 +158,7 @@ unsigned int CreateCharSprt(char c, int kind, int nBlockNo, int nSprNum) { /* Li
     if (hSprMes[nSprNum] != 0) /* Line 158, Address: 0x1003934 */
       return 0; /* Line 159, Address: 0x1003954 */
 
-    sprCreate(&hSprMes[nSprNum]); /* Line 161, Address: 0x1003960 */
+    sprCreate((int*)&hSprMes[nSprNum]); /* Line 161, Address: 0x1003960 */
 
 
     point.x = nPosiXSprMes[nSprNum]; /* Line 164, Address: 0x100397c */
@@ -179,7 +179,7 @@ unsigned int CreateCharSprt(char c, int kind, int nBlockNo, int nSprNum) { /* Li
       return 0; /* Line 179, Address: 0x1003b30 */
 
 
-    sprCreate(&hSprFile[nBlockNo - 2][nSprNum]); /* Line 182, Address: 0x1003b3c */
+    sprCreate((int*)&hSprFile[nBlockNo - 2][nSprNum]); /* Line 182, Address: 0x1003b3c */
 
 
     point.x = nPosiXSprFile[nSprNum].x; /* Line 185, Address: 0x1003b70 */
@@ -203,8 +203,8 @@ unsigned int CreateStringSprt(char* str, int kind, int nBlockNo, int nStartSprNu
 
   while (*str) /* Line 204, Address: 0x1003d90 */
   {
-    if (*str == 32) continue; /* Line 206, Address: 0x1003d98 */
-    CreateCharSprt(*str, kind, nBlockNo, n); /* Line 207, Address: 0x1003db4 */
+    if (*str != 32) /* Line 206, Address: 0x1003d98 */
+      CreateCharSprt(*str, kind, nBlockNo, n); /* Line 207, Address: 0x1003db4 */
     ++str; /* Line 208, Address: 0x1003dd0 */
     ++n; /* Line 209, Address: 0x1003ddc */
   } /* Line 210, Address: 0x1003de0 */
@@ -422,7 +422,7 @@ void UpdateSonicCursol() { /* Line 420, Address: 0x1004890 */
   {
     if (nTimerCunt % 20 != 0) return; /* Line 423, Address: 0x10048ac */
 
-    if (nTimerCunt - nStandStartTimerCunt < 61) return; /* Line 425, Address: 0x10048c8 */
+    if (nTimerCunt - nStandStartTimerCunt <= 60) return; /* Line 425, Address: 0x10048c8 */
 
     HideSonicCursol(); /* Line 427, Address: 0x10048e8 */
     if (nSonicKind == 203) nSonicKind = 204; /* Line 428, Address: 0x10048f0 */
@@ -459,10 +459,10 @@ void UpdateSonicCursol() { /* Line 420, Address: 0x1004890 */
     posiSonicCursol.y = posiStartYOld.w.h; /* Line 459, Address: 0x1004b00 */
 
     if ((fSonicIncX >= 0 && posiSonicCursol.x >= posiTarget.x) /* Line 461, Address: 0x1004b18 */
-        || fSonicIncX < 0 && posiSonicCursol.x >= posiTarget.x)
+        || fSonicIncX < 0 && posiSonicCursol.x <= posiTarget.x)
       posiSonicCursol.x = posiTarget.x; /* Line 463, Address: 0x1004b70 */
     if ((fSonicIncY >= 0 && posiSonicCursol.y >= posiTarget.y) /* Line 464, Address: 0x1004b80 */
-        || fSonicIncY < 0 && posiSonicCursol.y >= posiTarget.y)
+        || fSonicIncY < 0 && posiSonicCursol.y <= posiTarget.y)
       posiSonicCursol.y = posiTarget.y; /* Line 466, Address: 0x1004bd8 */
     if (posiSonicCursol.x == posiTarget.x && posiSonicCursol.y == posiTarget.y) /* Line 467, Address: 0x1004be8 */
     {

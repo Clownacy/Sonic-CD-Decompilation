@@ -1,3 +1,8 @@
+#ifndef ENGINE_DLL_H
+#define ENGINE_DLL_H
+
+#include "SCORE_DATA_TYPES.H"
+
 typedef struct {
   unsigned int hWnd;
   unsigned int hSurf;
@@ -42,3 +47,5 @@ typedef struct {
   unsigned short* lpUserKey;
 }
 engine_dll;
+
+#endif

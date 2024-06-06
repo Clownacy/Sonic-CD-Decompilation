@@ -87,7 +87,7 @@ short sign(short d3) { /* Line 65, Address: 0x1001650 */
   d4 = sin_tbl[d4 / 2]; /* Line 87, Address: 0x10016f4 */
   if (d3 & 256) /* Line 88, Address: 0x1001728 */
   {
-    d4 = -d4; /* Line 90, Address: 0x1001740 */
+    d4 *= -1; /* Line 90, Address: 0x1001740 */
   }
   d3 = d4; /* Line 92, Address: 0x100174c */
 

@@ -1,9 +1,10 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "STGSPRT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
 
-void DeleteCharSprt(int colom);
-unsigned int CreateCharSprt(int colom, char code);
+static void DeleteCharSprt(int colom);
+static unsigned int CreateCharSprt(int colom, char code);
 
 unsigned int hSprMenu[12];
 extern draw_context* s_ctx;
@@ -11,7 +12,6 @@ extern void(*hmx_sprite_set_flags_module)(hmx_sprite*, int);
 extern void(*hmx_sprite_set_bitmap_module)(hmx_sprite*, hmx_bitmap*);
 extern void(*hmx_sprite_set_position_module)(hmx_sprite*, int, int);
 extern sprite_bmp infoSprtBmp[];
-
 
 
 
@@ -63,7 +63,7 @@ static unsigned int CreateCharSprt(int colom, char code) { /* Line 51, Address: 
   else if (code < 65) indx = code - 37; /* Line 63, Address: 0x1000e54 */
   else indx = code - 44; /* Line 64, Address: 0x1000e84 */
 
-  sprCreate(&hSprMenu[colom]); /* Line 66, Address: 0x1000e94 */
+  sprCreate((int*)&hSprMenu[colom]); /* Line 66, Address: 0x1000e94 */
 
 
 

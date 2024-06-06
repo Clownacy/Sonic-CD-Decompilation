@@ -39,7 +39,7 @@ void ReadDataFile() { /* Line 33, Address: 0x1001ed0 */
 
 
   indx = ReadIndx(hFile); /* Line 41, Address: 0x1001efc */
-  if (indx < 0 || indx >= 6) /* Line 42, Address: 0x1001f14 */
+  if (indx < 0 || indx > 5) /* Line 42, Address: 0x1001f14 */
     return; /* Line 43, Address: 0x1001f28 */
   nSelectFileNumber = indx; /* Line 44, Address: 0x1001f30 */
   CloseScore(hFile); /* Line 45, Address: 0x1001f38 */

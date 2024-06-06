@@ -1,3 +1,5 @@
+#ifndef TA_TYPES_H
+#define TA_TYPES_H
 typedef struct {
   unsigned char grid;
   unsigned char x;
@@ -23,3 +25,5 @@ typedef struct {
   unsigned int dwOff;
 }
 bmp_header;
+
+#endif

@@ -4,6 +4,7 @@
 #include "..\COMMON\LD_TYPES.H"
 #include "TA_TYPES.H"
 #include "TAEACTRL.H"
+#include "TACOLOR.H"
 
 static int TileCnt;
 static int SprBmpCnt;
@@ -499,7 +500,6 @@ static int ErrRet;
 
 
 
-
 void EAError(int ret, int line, char* str) { /* Line 503, Address: 0x10021a0 */
   char tmpstr[20];
 
@@ -567,13 +567,13 @@ int ld_load_grid_module(hmx_environment* buffer, char* file, hmx_environment* en
   ld_scroll_header* header;
   int read_count;
   unsigned char* pixbuf;
-  int i;
+  int i, palet, paletcnt, palet_offs;
   ld_bitmap_inf* s;
   int wx, wy;
   hmx_bitmap* bmp;
-  int palet = 0; /* Line 574, Address: 0x100252c */
-  int paletcnt = 0; /* Line 575, Address: 0x1002530 */
-  int palet_offs = 0; /* Line 576, Address: 0x1002534 */
+  palet = 0; /* Line 574, Address: 0x100252c */
+  paletcnt = 0; /* Line 575, Address: 0x1002530 */
+  palet_offs = 0; /* Line 576, Address: 0x1002534 */
 
   for (i = 0; i < size; ++i) { /* Line 578, Address: 0x1002538 */
     bitmaps[i] = 0; /* Line 579, Address: 0x1002544 */
@@ -732,7 +732,7 @@ int GridInitSub(char* path, map_info* pInfo) { /* Line 706, Address: 0x1002ad0 *
   grid = 1; /* Line 732, Address: 0x1002c04 */
   for (y = 0; y < pInfo->ys; ++y) { /* Line 733, Address: 0x1002c08 */
     if (pInfo->grid == 3) { /* Line 734, Address: 0x1002c14 */
-      if (y < 3 || y >= 24) grid = 1; /* Line 735, Address: 0x1002c2c */
+      if (y < 3 || y > 23) grid = 1; /* Line 735, Address: 0x1002c2c */
       else grid = 3; /* Line 736, Address: 0x1002c50 */
     }
     loc.nTile = y + pInfo->y; /* Line 738, Address: 0x1002c54 */
@@ -828,7 +828,7 @@ int LoadPicBmp() { /* Line 812, Address: 0x1002fb0 */
 
     for (mode = 0; mode < 2; ++mode) { /* Line 829, Address: 0x1003010 */
       for (round = 0; round < 8; ++round) { /* Line 830, Address: 0x100301c */
-        if (mode == 1 && round != 0) { /* Line 831, Address: 0x1003028 */
+        if (mode != 1 || round != 0) { /* Line 831, Address: 0x1003028 */
           lp1 = lpPicBits4[mode][round]; /* Line 832, Address: 0x100303c */
           for (i = 0; i < 9216; ++i) { /* Line 833, Address: 0x1003058 */
             *lp1 = *p; /* Line 834, Address: 0x1003064 */
@@ -838,7 +838,7 @@ int LoadPicBmp() { /* Line 812, Address: 0x1002fb0 */
         }
       } /* Line 839, Address: 0x1003084 */
     } /* Line 840, Address: 0x1003094 */
-    
+
     hmx_free_module(g_loader_module, expbuf); /* Line 842, Address: 0x10030a4 */
   }
   return 0; /* Line 844, Address: 0x10030c0 */
@@ -856,7 +856,7 @@ unsigned int CreatePic() { /* Line 851, Address: 0x10030f0 */
 
   for (i = 0; i < 2; ++i) { /* Line 857, Address: 0x1003160 */
     for (j = 0; j < 8; ++j) { /* Line 858, Address: 0x100316c */
-      if (i == 0 && j == 0) { /* Line 859, Address: 0x1003178 */
+      if (i == 1 && j == 0) { /* Line 859, Address: 0x1003178 */
         lpPicBits4[i][j] = lpPicBits4[0][0]; /* Line 860, Address: 0x100318c */
       } /* Line 861, Address: 0x10031b0 */
       else {
@@ -875,8 +875,8 @@ unsigned int CreatePic() { /* Line 851, Address: 0x10030f0 */
   if (LoadPicBmp() != 0) return 0; /* Line 875, Address: 0x1003270 */
 
   for (i = 0; i < 2; ++i) { /* Line 877, Address: 0x100328c */
-    for (j = 0; j < 8; ++i) { /* Line 878, Address: 0x1003298 */
-      if (i == 0) j == 0; /* Line 879, Address: 0x10032a4 */
+    for (j = 0; j < 8; ++j) { /* Line 878, Address: 0x1003298 */
+      if (i == 1) j == 0; /* Line 879, Address: 0x10032a4 */
 
 
 
@@ -947,7 +947,7 @@ void SetPic(int mode, int round, int zurasi) { /* Line 918, Address: 0x10033f0 *
       } /* Line 947, Address: 0x1003550 */
       for (i = 4; i < 8; ++i) { /* Line 948, Address: 0x1003560 */
         j = i + zurasi; /* Line 949, Address: 0x100356c */
-        if (j >= 8) j -= 4; /* Line 950, Address: 0x1003574 */
+        if (j > 7) j -= 4; /* Line 950, Address: 0x1003574 */
         buf2[i] = buf[j]; /* Line 951, Address: 0x1003584 */
       } /* Line 952, Address: 0x1003594 */
       for (i = 0; i < 8; ++i) { /* Line 953, Address: 0x10035a4 */
@@ -1001,8 +1001,8 @@ unsigned int TA_EACreate() { /* Line 970, Address: 0x10036d0 */
     GridRect[1].x = GridRect[0].x = GridRect[2].x = GridRect[3].x = 144; /* Line 1001, Address: 0x1003920 */
   }
 
-  for (i = 0; i < 2; ++i) { /* Line 1004, Address: 0x1003944 */
-    for (j = 0; j < 8; ++j) { /* Line 1005, Address: 0x1003950 */
+  for (i = 0; i <= 1; ++i) { /* Line 1004, Address: 0x1003944 */
+    for (j = 0; j <= 7; ++j) { /* Line 1005, Address: 0x1003950 */
       PrintRoundName(i, j, 1, 3); /* Line 1006, Address: 0x100395c */
     } /* Line 1007, Address: 0x1003974 */
     PrintTotalTime(i, 1); /* Line 1008, Address: 0x1003984 */
@@ -1075,7 +1075,7 @@ void DeleteEA() { /* Line 1035, Address: 0x1003a80 */
     if (hGrid[i] != 0) { /* Line 1075, Address: 0x1003c70 */
       hmx_grid_release_module(g_env_module, s_ctx->grids[i]); /* Line 1076, Address: 0x1003c8c */
       s_ctx->grids[i] = 0; /* Line 1077, Address: 0x1003cb8 */
-      
+
     }
   } /* Line 1080, Address: 0x1003ccc */
 
@@ -1165,7 +1165,7 @@ void TimeToAsc8(unsigned int Time, char* p) { /* Line 1164, Address: 0x1004260 *
   unsigned short min, sec, msec;
 
   min = Time / 3600; /* Line 1167, Address: 0x1004278 */
-  if (min >= 100) { /* Line 1168, Address: 0x100429c */
+  if (min > 99) { /* Line 1168, Address: 0x100429c */
     min = 99; /* Line 1169, Address: 0x10042ac */
     sec = 99; /* Line 1170, Address: 0x10042b4 */
     msec = 99; /* Line 1171, Address: 0x10042bc */
@@ -1190,7 +1190,7 @@ void TimeToAsc9(unsigned int Time, char* p) { /* Line 1189, Address: 0x1004470 *
   unsigned short min, sec, msec;
 
   min = Time / 3600; /* Line 1192, Address: 0x1004488 */
-  if (min >= 1000) { /* Line 1193, Address: 0x10044ac */
+  if (min > 999) { /* Line 1193, Address: 0x10044ac */
     min = 999; /* Line 1194, Address: 0x10044bc */
     sec = 99; /* Line 1195, Address: 0x10044c4 */
     msec = 99; /* Line 1196, Address: 0x10044cc */
@@ -1283,10 +1283,10 @@ void PrintRoundName(int mode, int round, unsigned int b, int grid) { /* Line 126
         MapBuf[y][x] = MapRound[mode][round][y][x] + 531; /* Line 1283, Address: 0x10049e0 */
       } /* Line 1284, Address: 0x1004a54 */
     } /* Line 1285, Address: 0x1004a64 */
-    if (round != 0) { /* Line 1286, Address: 0x1004a74 */
-      if (mode == 0) x = 7; /* Line 1287, Address: 0x1004a80 */
-      else x = 3; /* Line 1288, Address: 0x1004a98 */
-    }
+    if (round == 0) goto label1; /* Line 1286, Address: 0x1004a74 */
+    if (mode == 0) x = 7; /* Line 1287, Address: 0x1004a80 */
+    else x = 3; /* Line 1288, Address: 0x1004a98 */
+
 
     TimeToAsc8(Time, buf); /* Line 1291, Address: 0x1004a9c */
 
@@ -1309,7 +1309,7 @@ void PrintRoundName(int mode, int round, unsigned int b, int grid) { /* Line 126
       } /* Line 1309, Address: 0x1004bb4 */
     } /* Line 1310, Address: 0x1004bc4 */
   }
-
+label1:
   for (y = 0; y < 2; ++y) { /* Line 1313, Address: 0x1004bd4 */
     loc.nTile = round * 2 + y + 3; /* Line 1314, Address: 0x1004be0 */
     for (x = 0; x < 18; ++x) { /* Line 1315, Address: 0x1004bf8 */
@@ -1461,7 +1461,7 @@ void PrintMenu2(int mode, int cur, unsigned int b) { /* Line 1441, Address: 0x10
         case 2:
           j = 6, k = 9; break; /* Line 1462, Address: 0x1005554 */
         case 3:
-
+        default:
           j = 11, k = 12; break; /* Line 1465, Address: 0x1005564 */
       }
     } /* Line 1467, Address: 0x100556c */
@@ -1470,7 +1470,7 @@ void PrintMenu2(int mode, int cur, unsigned int b) { /* Line 1441, Address: 0x10
         case 3:
           j = 3, k = 4; break; /* Line 1471, Address: 0x1005598 */
         case 1:
-
+        default:
           j = 6, k = 9; break; /* Line 1474, Address: 0x10055a8 */
       }
     }
@@ -1791,7 +1791,7 @@ int TAMove() { /* Line 1598, Address: 0x1005d70 */
       }
       gMove = 0; /* Line 1792, Address: 0x100692c */
       break; /* Line 1793, Address: 0x1006934 */
-    case 0:
+    default:
       gMove = 0; /* Line 1795, Address: 0x100693c */
       break;
   }

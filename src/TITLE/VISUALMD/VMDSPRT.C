@@ -1,6 +1,7 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "VMDSPRT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
 
 static int nMenuPosiY[5] = { 112, 128, 144, 160, 176 };
 extern draw_context* s_ctx;
@@ -9,7 +10,6 @@ extern sprite_bmp infoSprtBmp[];
 extern void(*hmx_sprite_set_flags_module)(hmx_sprite*, int);
 extern void(*hmx_sprite_set_bitmap_module)(hmx_sprite*, hmx_bitmap*);
 extern void(*hmx_sprite_set_position_module)(hmx_sprite*, int, int);
-
 
 
 
@@ -63,7 +63,7 @@ unsigned int CreateCharSprt(int nMenuNum, int colom, int code) { /* Line 56, Add
   if (hSprMenu[nMenuNum][colom] != 0) /* Line 63, Address: 0x1003514 */
     return 0; /* Line 64, Address: 0x1003550 */
 
-  sprCreate(&hSprMenu[nMenuNum][colom]); /* Line 66, Address: 0x100355c */
+  sprCreate((int*)&hSprMenu[nMenuNum][colom]); /* Line 66, Address: 0x100355c */
 
 
   point.x = colom * 8 + 192; /* Line 69, Address: 0x1003594 */

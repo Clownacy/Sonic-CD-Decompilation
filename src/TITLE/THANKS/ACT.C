@@ -3,10 +3,10 @@
 #include "ACT.H"
 #include "SPRMOVE.H"
 
-void actloop(short id);
-void priact(sprite_status_thanks* pActwk, short ActNo);
-void dummy(sprite_status_thanks* pActwk);
-void pattern_chg(sprite_status_thanks* pActwk, sprite_patterns_title* pPatTbl);
+static void actloop(short id);
+static void priact(sprite_status_thanks* pActwk, short ActNo);
+static void dummy(sprite_status_thanks* pActwk);
+static void pattern_chg(sprite_status_thanks* pActwk, sprite_patterns_title* pPatTbl);
 
 static void(*act_tbl[31])(sprite_status_thanks*) = {
   &sonic_ctrl,
@@ -83,7 +83,7 @@ short get_actwk(sprite_status_thanks** pNewActwk) { /* Line 82, Address: 0x10000
   sprite_status_thanks* pActwk;
   short i;
 
-  for (i = 0; i < 61; ++i) /* Line 86, Address: 0x1000010 */
+  for (i = 0; i <= 60; ++i) /* Line 86, Address: 0x1000010 */
   {
     pActwk = &actwk[i + 3]; /* Line 88, Address: 0x100001c */
     if (pActwk->ACT_NO == 0) /* Line 89, Address: 0x1000040 */
@@ -103,7 +103,7 @@ short chk_actwk() { /* Line 102, Address: 0x10000a0 */
   sprite_status_thanks* pActwk;
   short i;
 
-  for (i = 0; i < 61; ++i) /* Line 106, Address: 0x10000ac */
+  for (i = 0; i <= 60; ++i) /* Line 106, Address: 0x10000ac */
   {
     pActwk = &actwk[i]; /* Line 108, Address: 0x10000b8 */
     if (pActwk->ACT_NO == 0) /* Line 109, Address: 0x10000d8 */
@@ -135,7 +135,7 @@ void priset() { /* Line 120, Address: 0x1000130 */
   pribuf0[2] = 0; /* Line 135, Address: 0x10001a0 */
   pribuf0[3] = 0; /* Line 136, Address: 0x10001a8 */
 
-  for (i = 0; i < 64; ++i) /* Line 138, Address: 0x10001b0 */
+  for (i = 0; i <= 63; ++i) /* Line 138, Address: 0x10001b0 */
   {
     pActwk = &actwk[i]; /* Line 140, Address: 0x10001bc */
     if (pActwk->ACT_NO) /* Line 141, Address: 0x10001dc */
@@ -168,7 +168,7 @@ static void actloop(short id) { /* Line 167, Address: 0x1000300 */
   sprite_status_thanks* pActwk;
   short i;
 
-  for (i = 0; i < 64; ++i) /* Line 171, Address: 0x1000314 */
+  for (i = 0; i <= 63; ++i) /* Line 171, Address: 0x1000314 */
   {
     pActwk = &actwk[id++]; /* Line 173, Address: 0x1000320 */
     if (pActwk->ACT_NO) /* Line 174, Address: 0x100034c */
@@ -214,14 +214,14 @@ void spr_set() { /* Line 202, Address: 0x1000460 */
   priptr[2] = pribuf2; /* Line 214, Address: 0x10004b4 */
   priptr[3] = pribuf3; /* Line 215, Address: 0x10004c4 */
 
-  for (pri = 0; pri < 4; ++pri) /* Line 217, Address: 0x10004d4 */
+  for (pri = 0; pri <= 3; ++pri) /* Line 217, Address: 0x10004d4 */
   {
     pPribuf = priptr[pri]; /* Line 219, Address: 0x10004e0 */
     for (i = 0; i < 64; ++i) /* Line 220, Address: 0x10004fc */
     {
       if (*pPribuf == 0) break; /* Line 222, Address: 0x1000508 */
       pActwk = *pPribuf++; /* Line 223, Address: 0x1000514 */
-      if (pActwk->ACT_NO == 0) break; /* Line 224, Address: 0x1000520 */
+      if (pActwk->ACT_NO == 0) continue; /* Line 224, Address: 0x1000520 */
 
       pPatTbl = pActwk->PAT_ADR; /* Line 226, Address: 0x1000530 */
       pattern_chg(pActwk, pPatTbl); /* Line 227, Address: 0x1000534 */

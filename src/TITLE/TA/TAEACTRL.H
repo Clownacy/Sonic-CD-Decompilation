@@ -1,3 +1,5 @@
+#include "TA_TYPES.H"
+
 void EAError(int ret, int line, char* str);
 void srfDraw();
 int ld_load_grid_module(hmx_environment* buffer, char* file, hmx_environment* env, hmx_bitmap** bitmaps, int size);

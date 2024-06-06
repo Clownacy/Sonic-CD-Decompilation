@@ -1,3 +1,6 @@
+#ifndef HMX_TYPES_H
+#define HMX_TYPES_H
+
 typedef struct hmx_environment hmx_environment;
 typedef struct hmx_sprite hmx_sprite;
 typedef struct hmx_grid hmx_grid;
@@ -88,3 +91,5 @@ typedef struct {
   unsigned short nTile;
 }
 tile_location;
+
+#endif

@@ -1,9 +1,10 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SNDSPRT.H"
+#include "..\COMMON\HMX_OEEACTL.H"
 
-void DeleteCharSprt(int nMenuNum, int colom);
-unsigned int CreateCharSprt(int nMenuNum, int colom, char code, int color);
+static void DeleteCharSprt(int nMenuNum, int colom);
+static unsigned int CreateCharSprt(int nMenuNum, int colom, char code, int color);
 
 static int nMenuPosiX[2] = { 44, 208 };
 unsigned int hSprMenu[3][10];
@@ -14,7 +15,6 @@ extern void(*hmx_sprite_set_position_module)(hmx_sprite*, int, int);
 extern sprite_bmp infoSprtBmp[];
 extern void(*sPrintf)(char*, const char*, ...);
 unsigned int hMesMenu;
-
 
 
 
@@ -81,7 +81,7 @@ static unsigned int CreateCharSprt(int nMenuNum, int colom, char code, int color
     else indx = code - 46; /* Line 81, Address: 0x1001e00 */
   }
 
-  sprCreate(&hSprMenu[nMenuNum][colom]); /* Line 84, Address: 0x1001e10 */
+  sprCreate((int*)&hSprMenu[nMenuNum][colom]); /* Line 84, Address: 0x1001e10 */
 
 
   s_ctx->spr_level[hSprMenu[nMenuNum][colom]] = infoSprtBmp[indx].order; /* Line 87, Address: 0x1001e40 */
@@ -165,7 +165,7 @@ void StrWelcome() { /* Line 161, Address: 0x10022a0 */
 
   indx = 99; /* Line 166, Address: 0x10022ac */
 
-  sprCreate(&hMesMenu); /* Line 168, Address: 0x10022b0 */
+  sprCreate((int*)&hMesMenu); /* Line 168, Address: 0x10022b0 */
 
 
 

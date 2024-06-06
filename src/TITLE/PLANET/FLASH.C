@@ -2,21 +2,21 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "FLASH.H"
+#include "LPLMAIN.H"
 
-void fadein1();
-void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
-int fadeout_new();
-void fadeout1();
-void fadeout2(palette_entry* lpPeDest);
-int flashin_new();
-void flashin1();
-void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
-int flashout_new();
-void flashout1();
-void flashout2(palette_entry* lpPeDest);
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
+static int flashin_new();
+static void flashin1();
+static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int flashout_new();
+static void flashout1();
+static void flashout2(palette_entry* lpPeDest);
 
 static int FadeCount;
-
 
 
 
@@ -77,7 +77,7 @@ int fadein0_new() { /* Line 73, Address: 0x1003ae0 */
   fadein1(); /* Line 77, Address: 0x1003af4 */
 
 
-  if (++FadeCount >= 22) { /* Line 80, Address: 0x1003afc */
+  if (++FadeCount > 21) { /* Line 80, Address: 0x1003afc */
     FadeCount = 0; /* Line 81, Address: 0x1003b1c */
     return 1; /* Line 82, Address: 0x1003b24 */
   }
@@ -148,7 +148,7 @@ static int fadeout_new() { /* Line 144, Address: 0x1003da0 */
   fadeout1(); /* Line 148, Address: 0x1003db4 */
 
 
-  if (++FadeCount >= 22) { /* Line 151, Address: 0x1003dbc */
+  if (++FadeCount > 21) { /* Line 151, Address: 0x1003dbc */
     FadeCount = 0; /* Line 152, Address: 0x1003ddc */
     return 1; /* Line 153, Address: 0x1003de4 */
   }
@@ -221,7 +221,7 @@ static int flashin_new() { /* Line 217, Address: 0x1004070 */
   flashin1(); /* Line 221, Address: 0x1004084 */
 
 
-  if (++FadeCount >= 22) { /* Line 224, Address: 0x100408c */
+  if (++FadeCount > 21) { /* Line 224, Address: 0x100408c */
     FadeCount = 0; /* Line 225, Address: 0x10040ac */
     return 1; /* Line 226, Address: 0x10040b4 */
   }
@@ -259,13 +259,13 @@ static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc) { /* Line 
       || lpPeSrc->peGreen != lpPeDest->peGreen
       || lpPeSrc->peRed != lpPeDest->peRed) {
     if (lpPeSrc->peBlue < lpPeDest->peBlue) { /* Line 261, Address: 0x100422c */
-      lpPeSrc->peBlue -= 32; /* Line 262, Address: 0x1004250 */
+      lpPeDest->peBlue -= 32; /* Line 262, Address: 0x1004250 */
     } /* Line 263, Address: 0x1004260 */
     else if (lpPeSrc->peGreen < lpPeDest->peGreen) { /* Line 264, Address: 0x1004268 */
-      lpPeSrc->peGreen -= 32; /* Line 265, Address: 0x100428c */
+      lpPeDest->peGreen -= 32; /* Line 265, Address: 0x100428c */
     } /* Line 266, Address: 0x100429c */
     else if (lpPeSrc->peRed < lpPeDest->peRed) { /* Line 267, Address: 0x10042a4 */
-      lpPeSrc->peRed -= 32; /* Line 268, Address: 0x10042c8 */
+      lpPeDest->peRed -= 32; /* Line 268, Address: 0x10042c8 */
     }
   }
 
@@ -288,7 +288,7 @@ static int flashout_new() { /* Line 284, Address: 0x1004330 */
   flashout1(); /* Line 288, Address: 0x1004344 */
 
 
-  if (++FadeCount >= 22) { /* Line 291, Address: 0x100434c */
+  if (++FadeCount > 21) { /* Line 291, Address: 0x100434c */
     FadeCount = 0; /* Line 292, Address: 0x100436c */
     return 1; /* Line 293, Address: 0x1004374 */
   }

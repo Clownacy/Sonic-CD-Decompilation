@@ -2,13 +2,14 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "ACTM.H"
-#include "CHAMOV.H"
 #include "ASCIISET.H"
+#include "CHAMOV.H"
+#include "PLM.H"
 
-void actloop(sprite_status_lpl* pActwk);
-void priact(sprite_status_lpl* pActwk, int ActNo);
-void dummy(sprite_status_lpl* pActwk);
-void pattern_chg(sprite_status_lpl* pActwk, sprite_patterns_title* pPatTbl);
+static void actloop(sprite_status_lpl* pActwk);
+static void priact(sprite_status_lpl* pActwk, int ActNo);
+static void dummy(sprite_status_lpl* pActwk);
+static void pattern_chg(sprite_status_lpl* pActwk, sprite_patterns_title* pPatTbl);
 
 static void(*act_tbl[31])(sprite_status_lpl*) =
 {
@@ -35,7 +36,6 @@ static void(*act_tbl[31])(sprite_status_lpl*) =
 extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 static unsigned short LinkData;
 extern void(*sMemSet)(void*, unsigned char, int);
-
 
 
 
@@ -143,7 +143,7 @@ static void actloop(sprite_status_lpl* pActwk) { /* Line 140, Address: 0x1000160
   i = 15; /* Line 143, Address: 0x1000174 */
   do
   {
-    if (ActNo = pActwk->ACT_NO, ActNo != 0) priact(pActwk, ActNo); /* Line 146, Address: 0x1000178 */
+    if ((ActNo = pActwk->ACT_NO) != 0) priact(pActwk, ActNo); /* Line 146, Address: 0x1000178 */
     ++pActwk; /* Line 147, Address: 0x100019c */
   } while (--i >= 0); /* Line 148, Address: 0x10001a8 */
 
@@ -180,7 +180,7 @@ void spr_set() { /* Line 170, Address: 0x1000290 */
   for (i = 15; i >= 0 && LinkData < 80; --i, ++pActwk) /* Line 180, Address: 0x10002c8 */
   {
     if (pActwk->ACT_NO == 0) continue; /* Line 182, Address: 0x10002d4 */
-    if (pPatTbl = pActwk->PAT_ADR, pPatTbl == 0) continue; /* Line 183, Address: 0x10002e4 */
+    if ((pPatTbl = pActwk->PAT_ADR) == 0) continue; /* Line 183, Address: 0x10002e4 */
     pattern_chg(pActwk, pPatTbl); /* Line 184, Address: 0x10002f0 */
     j = pPatTbl->aPatDat[pActwk->PAT_NO].paMapTbl->mapnum; /* Line 185, Address: 0x1000300 */
     pMapDat = pPatTbl->aPatDat[pActwk->PAT_NO].paMapTbl->aMapDat; /* Line 186, Address: 0x1000324 */

@@ -1,8 +1,13 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SNDDO.H"
+#include "..\COMMON\GRID.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "..\COMMON\PALT.H"
+#include "SNDENTRY.H"
+#include "SNDSPRT.H"
 
-void UpdateMenu();
+static void UpdateMenu();
 
 static unsigned char tblPCM[80] = {
    0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
@@ -84,13 +89,8 @@ static char ErrBuf[250];
 
 
 
-
-
-
-
-
 void SNDDraw() { /* Line 92, Address: 0x10009b0 */
-  if (nSequenceNum >= 2) { /* Line 93, Address: 0x10009b8 */
+  if (nSequenceNum > 1) { /* Line 93, Address: 0x10009b8 */
 
     srfDraw(); /* Line 95, Address: 0x10009d0 */
   }
@@ -148,7 +148,7 @@ void SNDMenu() { /* Line 135, Address: 0x1000b60 */
   else if (swData1 & 1024) { /* Line 148, Address: 0x1000c0c */
 
     nMenuKindOld = nMenuKind; /* Line 150, Address: 0x1000c24 */
-    nMenuKind = nMenuKind - 1 >= 2 ? nMenuKind - 1 : 1; /* Line 151, Address: 0x1000c30 */
+    nMenuKind = nMenuKind - 1 > 1 ? nMenuKind - 1 : 1; /* Line 151, Address: 0x1000c30 */
     if (nMenuKind == nMenuKindOld) return; /* Line 152, Address: 0x1000c74 */
 
     UpdateMenu(); /* Line 154, Address: 0x1000c8c */
@@ -233,7 +233,7 @@ void SNDMenu() { /* Line 135, Address: 0x1000b60 */
       OESetSequenceNum(4); /* Line 233, Address: 0x10010f0 */
       return; /* Line 234, Address: 0x10010fc */
     }
-    
+
     if (nPCMNumberIndx == 7 && nDANumberIndx == 7) { /* Line 237, Address: 0x1001104 */
       CDPause(2); /* Line 238, Address: 0x1001134 */
       StrWelcome(); /* Line 239, Address: 0x1001148 */
@@ -268,7 +268,7 @@ void SNDMenu() { /* Line 135, Address: 0x1000b60 */
   else if (swData1 & 4096) { /* Line 268, Address: 0x100129c */
 
     CDPause(2); /* Line 270, Address: 0x10012b4 */
-    nMenuKindOld = OESetSequenceNum(999); /* Line 271, Address: 0x10012cc */
+    OESetSequenceNum(999); /* Line 271, Address: 0x10012cc */
   }
 } /* Line 273, Address: 0x10012dc */
 
@@ -434,7 +434,7 @@ int MC_SONICCreate(short cgno) { /* Line 360, Address: 0x10013c0 */
 
     case 4:
       ld_bitmap_file2("YAMA_L3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect2.right, rect2.bottom, 0, 0); /* Line 436, Address: 0x10016d4 */
-      ld_bitmap_file2("YAMA_R3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect3.right, rect3.bottom, 0, 0); /* Line 437, Address: 0x100171c */
+      ld_bitmap_file2("YAMA_R3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect3.right, rect3.bottom, 160, 0); /* Line 437, Address: 0x100171c */
       break;
   }
 

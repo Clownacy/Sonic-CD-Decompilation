@@ -3,6 +3,8 @@
 #include "..\COMMON\HMX_TYPES.H"
 #include "TA.H"
 #include "FADEIN.H"
+#include "TACOLOR.H"
+#include "TAEACTRL.H"
 
 int gMove;
 int gRankY;
@@ -72,7 +74,7 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*))&game,
+  (void (*)())&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -86,8 +88,6 @@ dlink_export ExportedFunctions = {
 };
 unsigned int ghWnd;
 unsigned int hSurf;
-
-
 
 
 
@@ -171,7 +171,7 @@ int GetPlayRound() { /* Line 167, Address: 0x1000080 */
 
   if (lpScoreData->roundNo != 0) { /* Line 172, Address: 0x100008c */
     ret = lpScoreData->roundNo; /* Line 173, Address: 0x10000a0 */
-    if (ret >= 8) ret = 7; /* Line 174, Address: 0x10000b0 */
+    if (ret > 7) ret = 7; /* Line 174, Address: 0x10000b0 */
   }
 
 
@@ -319,7 +319,7 @@ int game() { /* Line 196, Address: 0x10000e0 */
           KeyRepTimer = 15; /* Line 319, Address: 0x100063c */
         }
 
-        if (KeyRepTimer >= 16) { /* Line 322, Address: 0x1000648 */
+        if (KeyRepTimer > 15) { /* Line 322, Address: 0x1000648 */
           KeyRepTimer = 0; /* Line 323, Address: 0x1000660 */
           if (gMenu1 == 0) { /* Line 324, Address: 0x1000668 */
             c = lpScoreData->timeattack[gMenuRound - 1][gMenuZone][gRankY].name[gRankX]; /* Line 325, Address: 0x1000678 */
@@ -332,7 +332,7 @@ int game() { /* Line 196, Address: 0x10000e0 */
 
 
           if (c < 48) c = 90; /* Line 334, Address: 0x1000768 */
-          else if (c >= 91) c = 48; /* Line 335, Address: 0x1000790 */
+          else if (c > 90) c = 48; /* Line 335, Address: 0x1000790 */
           else if (c == 58) c = 65; /* Line 336, Address: 0x10007b8 */
           else if (c == 64) c = 57; /* Line 337, Address: 0x10007e0 */
 
@@ -364,7 +364,7 @@ int game() { /* Line 196, Address: 0x10000e0 */
           if (gMenu1 == 0) { /* Line 364, Address: 0x1000974 */
 
             gMove = 9; /* Line 366, Address: 0x1000984 */
-            if (++gNewMenuZone >= 3) { /* Line 367, Address: 0x1000990 */
+            if (++gNewMenuZone > 2) { /* Line 367, Address: 0x1000990 */
               gNewMenuZone = 0; /* Line 368, Address: 0x10009b0 */
             }
           }
@@ -503,7 +503,7 @@ void game_init() { /* Line 442, Address: 0x1000cf0 */
         gRankY = i; /* Line 503, Address: 0x1000f04 */
         gNewRankX = gRankX = 0; /* Line 504, Address: 0x1000f0c */
         gMenu2 = gNewMenu2 = 4; /* Line 505, Address: 0x1000f1c */
-        for (j = 2; i < j; --j) { /* Line 506, Address: 0x1000f30 */
+        for (j = 2; j > i; --j) { /* Line 506, Address: 0x1000f30 */
 
           if (gMenu1 == 0) { /* Line 508, Address: 0x1000f3c */
             lpScoreData->timeattack[round][zone][j].time = lpScoreData->timeattack[round][zone][j - 1].time; /* Line 509, Address: 0x1000f4c */

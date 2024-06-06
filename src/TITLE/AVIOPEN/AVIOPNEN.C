@@ -3,6 +3,7 @@
 #include "..\COMMON\ENGINE_DLL.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "AVIOPNEN.H"
+#include "AVIOPNDO.H"
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -59,10 +60,10 @@ void*(*sMemAlloc)(int);
 unsigned short swData2;
 unsigned short swData1;
 dlink_export ExportedFunctions = {
-  &DLLInit,
-  (void (*))&DLLMain,
-  &DLLEnd,
-  &SWdataSet,
+  (void (*)())&DLLInit,
+  (void (*)())&DLLMain,
+  (void (*)(char***, void**))&DLLEnd,
+  (void (*)())&SWdataSet,
   0,
   0,
   0,
@@ -84,12 +85,6 @@ void(*CDPause)();
 void(*CDPlay)(short);
 unsigned int* lpbFullScreen;
 unsigned int hWnd;
-
-
-
-
-
-
 
 
 
@@ -240,7 +235,7 @@ void DLLPaint(unsigned int hdc) { /* Line 232, Address: 0x1000700 */
 
 
 
-int DLLNotify() { /* Line 238, Address: 0x1000730 */
+int DLLNotify(int, int, int) { /* Line 238, Address: 0x1000730 */
 
 
 
@@ -321,12 +316,12 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 304, Address: 0x100
 int DLLMain() { /* Line 316, Address: 0x10007c0 */
   int ret = 0; /* Line 317, Address: 0x10007cc */
 
-  if (nSequenceNum == 1) { /* Line 319, Address: 0x10007d0 */
+  switch (nSequenceNum) { /* Line 319, Address: 0x10007d0 */
 
-
-    AVIOpeningMove(); /* Line 322, Address: 0x10007f0 */
+    case 1:
+      AVIOpeningMove(); /* Line 322, Address: 0x10007f0 */
+      break;
   }
-
   if (nTimerCunt == 2147483647) /* Line 325, Address: 0x10007f8 */
     nTimerCunt = 5184000; /* Line 326, Address: 0x1000810 */
   else

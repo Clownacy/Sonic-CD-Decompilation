@@ -1,8 +1,12 @@
 #include "..\..\TYPES.H"
 #include "BESTITEM.H"
+#include "..\COMMON\GRID.H"
+#include "..\COMMON\HMX_OEEACTL.H"
+#include "BESENTRY.H"
+#include "BESTSPRT.H"
 
-void UpdateMenu();
-int STGMenuMaxCheck(int index);
+static void UpdateMenu();
+static int STGMenuMaxCheck(int index);
 
 extern unsigned short nSequenceNum;
 extern bestitem menuTbl[];
@@ -41,12 +45,8 @@ extern int nTimerCunt;
 
 
 
-
-
-
-
 void STGDraw() { /* Line 48, Address: 0x1000900 */
-  if (nSequenceNum >= 2) /* Line 49, Address: 0x1000908 */
+  if (nSequenceNum > 1) /* Line 49, Address: 0x1000908 */
   {
     srfDraw(); /* Line 51, Address: 0x1000920 */
   }

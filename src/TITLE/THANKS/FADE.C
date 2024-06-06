@@ -1,11 +1,12 @@
 #include "..\..\TYPES.H"
 #include "FADE.H"
+#include "GAME.H"
 
-void fadein1();
-void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
-int fadeout_new();
-void fadeout1();
-void fadeout2(palette_entry* lpPeDest);
+static void fadein1();
+static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static int fadeout_new();
+static void fadeout1();
+static void fadeout2(palette_entry* lpPeDest);
 
 extern unsigned char colorcnt;
 extern unsigned char startcolor;
@@ -16,7 +17,6 @@ extern palette_entry* lpcolorwk0;
 extern unsigned char int_flg;
 extern palette_entry* lpcolorwk1;
 extern palette_entry* lpcolorwk3;
-
 
 
 
@@ -72,7 +72,7 @@ int fadein0_new() { /* Line 68, Address: 0x1001870 */
   fadein1(); /* Line 72, Address: 0x1001884 */
 
 
-  if (++FadeCount >= 22) { /* Line 75, Address: 0x100188c */
+  if (++FadeCount > 21) { /* Line 75, Address: 0x100188c */
     FadeCount = 0; /* Line 76, Address: 0x10018ac */
     return 1; /* Line 77, Address: 0x10018b4 */
   }
@@ -146,7 +146,7 @@ static int fadeout_new() { /* Line 142, Address: 0x1001b30 */
   fadeout1(); /* Line 146, Address: 0x1001b44 */
 
 
-  if (++FadeCount >= 22) { /* Line 149, Address: 0x1001b4c */
+  if (++FadeCount > 21) { /* Line 149, Address: 0x1001b4c */
     FadeCount = 0; /* Line 150, Address: 0x1001b6c */
     return 1; /* Line 151, Address: 0x1001b74 */
   }

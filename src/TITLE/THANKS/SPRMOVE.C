@@ -1,78 +1,81 @@
 #include "..\..\TYPES.H"
 #include "THANKS_TYPES.H"
 #include "SPRMOVE.H"
+#include "ACT.H"
+#include "ETC_M.H"
+#include "GAME.H"
 
-void sonicinit(sprite_status_thanks* pActwk);
-void s_runset(sprite_status_thanks* pActwk);
-void sonicrun(sprite_status_thanks* pActwk);
-short s_metalchk(sprite_status_thanks* pActwk);
-void s_turnset(sprite_status_thanks* pActwk);
-void sonicturn(sprite_status_thanks* pActwk);
-void s_standset(sprite_status_thanks* pActwk);
-void sonicstand(sprite_status_thanks* pActwk);
-void s_waitset(sprite_status_thanks* pActwk);
-void sonicwait(sprite_status_thanks* pActwk);
-void s_ballset(sprite_status_thanks* pActwk);
-void sonicball(sprite_status_thanks* pActwk);
-void sonicexit(sprite_status_thanks* pActwk);
-void sonicpit(sprite_status_thanks* pActwk);
-void sonicesc(sprite_status_thanks* pActwk);
-void emmy_exeset(sprite_status_thanks* pActwk, sprite_status_thanks* pSonic);
-void emmyinit(sprite_status_thanks* pActwk);
-void e_runinit(sprite_status_thanks* pActwk);
-void emmymove(sprite_status_thanks* pActwk);
-void e_kissset(sprite_status_thanks* pActwk);
-void emmykiss(sprite_status_thanks* pActwk);
-void e_jumpset(sprite_status_thanks* pActwk);
-void emmyjump(sprite_status_thanks* pActwk);
-void e_catchset(sprite_status_thanks* pActwk);
-void emmy_catch(sprite_status_thanks* pActwk);
-void e_turnset(sprite_status_thanks* pActwk);
-void emmyturn(sprite_status_thanks* pActwk);
-void e_standset(sprite_status_thanks* pActwk);
-void emmymoji(sprite_status_thanks* pActwk);
-void emmyexit(sprite_status_thanks* pActwk);
-void emmypose(sprite_status_thanks* pActwk);
-void emmyesc(sprite_status_thanks* pActwk);
-void metalsinit(sprite_status_thanks* pActwk);
-void m_flyset(sprite_status_thanks* pActwk);
-void metalsfly(sprite_status_thanks* pActwk);
-void m_brakeset(sprite_status_thanks* pActwk);
-void metalsbrake(sprite_status_thanks* pActwk);
-void m_stopset(sprite_status_thanks* pActwk);
-void metalsstop(sprite_status_thanks* pActwk);
-void m_standset(sprite_status_thanks* pActwk);
-void metalstand(sprite_status_thanks* pActwk);
-void m_startset(sprite_status_thanks* pActwk);
-void metalstartcttbl(sprite_status_thanks* pActwk);
-void m_eraset(sprite_status_thanks* pActwk);
-void metalsera(sprite_status_thanks* pActwk);
-void metalsexit(sprite_status_thanks* pActwk);
-void metalspit(sprite_status_thanks* pActwk);
-void metalsesc(sprite_status_thanks* pActwk);
-void heartinit(sprite_status_thanks* pActwk);
-void heartmove(sprite_status_thanks* pActwk);
-void pockyinit(sprite_status_thanks* pActwk);
-void peckyinit(sprite_status_thanks* pActwk);
-void rickyinit(sprite_status_thanks* pActwk);
-void sheepinit(sprite_status_thanks* pActwk);
-void animalmove(sprite_status_thanks* pActwk);
-void flickyinit(sprite_status_thanks* pActwk);
-void incoinit(sprite_status_thanks* pActwk);
-void hatoinit(sprite_status_thanks* pActwk);
-void birdmove(sprite_status_thanks* pActwk);
-short killchk(sprite_status_thanks* pActwk);
-void sinhmove(sprite_status_thanks* pActwk);
-void sinvmove(sprite_status_thanks* pActwk);
-void hbt_move(sprite_status_thanks* pActwk);
-short chk_sonicposi(sprite_status_thanks* pActwk, sprite_status_thanks* pA6, short* d5, short* d6);
-short myposichk(sprite_status_thanks* pActwk);
-short centerchk(sprite_status_thanks* pActwk);
-short dsplaychk(sprite_status_thanks* pActwk);
-void waitmode(sprite_status_thanks* pActwk);
-void escape_chk(sprite_status_thanks* pActwk);
-void pit_in(sprite_status_thanks* pActwk);
-void m_sndchk(sprite_status_thanks* pActwk);
+static void sonicinit(sprite_status_thanks* pActwk);
+static void s_runset(sprite_status_thanks* pActwk);
+static void sonicrun(sprite_status_thanks* pActwk);
+static short s_metalchk(sprite_status_thanks* pActwk);
+static void s_turnset(sprite_status_thanks* pActwk);
+static void sonicturn(sprite_status_thanks* pActwk);
+static void s_standset(sprite_status_thanks* pActwk);
+static void sonicstand(sprite_status_thanks* pActwk);
+static void s_waitset(sprite_status_thanks* pActwk);
+static void sonicwait(sprite_status_thanks* pActwk);
+static void s_ballset(sprite_status_thanks* pActwk);
+static void sonicball(sprite_status_thanks* pActwk);
+static void sonicexit(sprite_status_thanks* pActwk);
+static void sonicpit(sprite_status_thanks* pActwk);
+static void sonicesc(sprite_status_thanks* pActwk);
+static void emmy_exeset(sprite_status_thanks* pActwk, sprite_status_thanks* pSonic);
+static void emmyinit(sprite_status_thanks* pActwk);
+static void e_runinit(sprite_status_thanks* pActwk);
+static void emmymove(sprite_status_thanks* pActwk);
+static void e_kissset(sprite_status_thanks* pActwk);
+static void emmykiss(sprite_status_thanks* pActwk);
+static void e_jumpset(sprite_status_thanks* pActwk);
+static void emmyjump(sprite_status_thanks* pActwk);
+static void e_catchset(sprite_status_thanks* pActwk);
+static void emmy_catch(sprite_status_thanks* pActwk);
+static void e_turnset(sprite_status_thanks* pActwk);
+static void emmyturn(sprite_status_thanks* pActwk);
+static void e_standset(sprite_status_thanks* pActwk);
+static void emmymoji(sprite_status_thanks* pActwk);
+static void emmyexit(sprite_status_thanks* pActwk);
+static void emmypose(sprite_status_thanks* pActwk);
+static void emmyesc(sprite_status_thanks* pActwk);
+static void metalsinit(sprite_status_thanks* pActwk);
+static void m_flyset(sprite_status_thanks* pActwk);
+static void metalsfly(sprite_status_thanks* pActwk);
+static void m_brakeset(sprite_status_thanks* pActwk);
+static void metalsbrake(sprite_status_thanks* pActwk);
+static void m_stopset(sprite_status_thanks* pActwk);
+static void metalsstop(sprite_status_thanks* pActwk);
+static void m_standset(sprite_status_thanks* pActwk);
+static void metalstand(sprite_status_thanks* pActwk);
+static void m_startset(sprite_status_thanks* pActwk);
+static void metalstartcttbl(sprite_status_thanks* pActwk);
+static void m_eraset(sprite_status_thanks* pActwk);
+static void metalsera(sprite_status_thanks* pActwk);
+static void metalsexit(sprite_status_thanks* pActwk);
+static void metalspit(sprite_status_thanks* pActwk);
+static void metalsesc(sprite_status_thanks* pActwk);
+static void heartinit(sprite_status_thanks* pActwk);
+static void heartmove(sprite_status_thanks* pActwk);
+static void pockyinit(sprite_status_thanks* pActwk);
+static void peckyinit(sprite_status_thanks* pActwk);
+static void rickyinit(sprite_status_thanks* pActwk);
+static void sheepinit(sprite_status_thanks* pActwk);
+static void animalmove(sprite_status_thanks* pActwk);
+static void flickyinit(sprite_status_thanks* pActwk);
+static void incoinit(sprite_status_thanks* pActwk);
+static void hatoinit(sprite_status_thanks* pActwk);
+static void birdmove(sprite_status_thanks* pActwk);
+static short killchk(sprite_status_thanks* pActwk);
+static void sinhmove(sprite_status_thanks* pActwk);
+static void sinvmove(sprite_status_thanks* pActwk);
+static void hbt_move(sprite_status_thanks* pActwk);
+static short chk_sonicposi(sprite_status_thanks* pActwk, sprite_status_thanks* pA6, short* d5, short* d6);
+static short myposichk(sprite_status_thanks* pActwk);
+static short centerchk(sprite_status_thanks* pActwk);
+static short dsplaychk(sprite_status_thanks* pActwk);
+static void waitmode(sprite_status_thanks* pActwk);
+static void escape_chk(sprite_status_thanks* pActwk);
+static void pit_in(sprite_status_thanks* pActwk);
+static void m_sndchk(sprite_status_thanks* pActwk);
 
 extern unsigned char animal_flg;
 extern sprite_patterns_title s_run_map;
@@ -107,9 +110,6 @@ extern sprite_patterns_title sheep_map;
 extern sprite_patterns_title flick_map;
 extern sprite_patterns_title inco_map;
 extern sprite_patterns_title hato_map;
-
-
-
 
 
 
@@ -233,7 +233,7 @@ static void s_runset(sprite_status_thanks* pActwk) { /* Line 232, Address: 0x100
   sprite_status_thanks* pMetal;
   int_union ld0;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 236, Address: 0x1003360 */
+  pActwk->XPOSI.l &= 33554431; /* Line 236, Address: 0x1003360 */
   pActwk->X_SPEED.l = 196608; /* Line 237, Address: 0x1003374 */
   if (pActwk->SPR_FLG & 128) /* Line 238, Address: 0x1003380 */
   {
@@ -277,7 +277,7 @@ static void sonicrun(sprite_status_thanks* pActwk) { /* Line 267, Address: 0x100
   }
   if (pActwk->XPOSI.w.h >= 376) /* Line 278, Address: 0x10034f8 */
   {
-    if (pActwk->XPOSI.w.h < 393) /* Line 280, Address: 0x1003514 */
+    if (pActwk->XPOSI.w.h <= 392) /* Line 280, Address: 0x1003514 */
     {
       ((short*)pActwk)[31] = 128; /* Line 282, Address: 0x1003530 */
       pActwk->EXE_NO = 12; /* Line 283, Address: 0x100353c */
@@ -287,7 +287,7 @@ static void sonicrun(sprite_status_thanks* pActwk) { /* Line 267, Address: 0x100
 
   ld0.l = random(); /* Line 288, Address: 0x1003550 */
   ld0.l &= 32767; /* Line 289, Address: 0x100355c */
-  ld0.w.l %= 1536; /* Line 290, Address: 0x1003568 */
+  ld0.w.l = (int)ld0.w.l % 1536; /* Line 290, Address: 0x1003568 */
 
 
 
@@ -299,7 +299,7 @@ static void sonicrun(sprite_status_thanks* pActwk) { /* Line 267, Address: 0x100
 
   ld0.l = random(); /* Line 300, Address: 0x100358c */
   ld0.l &= 32767; /* Line 301, Address: 0x1003598 */
-  ld0.w.l %= 512; /* Line 302, Address: 0x10035a4 */
+  ld0.w.l = (int)ld0.w.l % 512; /* Line 302, Address: 0x10035a4 */
   if (ld0.w.l == 0) /* Line 303, Address: 0x10035d8 */
   {
     pActwk->EXE_NO = 9; /* Line 305, Address: 0x10035ec */
@@ -330,7 +330,7 @@ static short s_metalchk(sprite_status_thanks* pActwk) { /* Line 327, Address: 0x
 
   pMetal = &actwk[2]; /* Line 331, Address: 0x1003690 */
   if (pMetal->EXE_NO < 2) return 0; /* Line 332, Address: 0x1003698 */
-  if (pMetal->EXE_NO >= 5) return 0; /* Line 333, Address: 0x10036b8 */
+  if (pMetal->EXE_NO > 4) return 0; /* Line 333, Address: 0x10036b8 */
 
   pActwk->XPOSI.w.h &= 511; /* Line 335, Address: 0x10036d8 */
   pMetal->XPOSI.w.h &= 511; /* Line 336, Address: 0x10036e8 */
@@ -346,9 +346,9 @@ static short s_metalchk(sprite_status_thanks* pActwk) { /* Line 327, Address: 0x
   d5 -= pActwk->XPOSI.w.h; /* Line 346, Address: 0x1003740 */
   if (d5 < 0) /* Line 347, Address: 0x1003754 */
   {
-    d5 = -d5; /* Line 349, Address: 0x1003764 */
+    d5 *= -1; /* Line 349, Address: 0x1003764 */
   }
-  if (d5 >= 9) return 0; /* Line 351, Address: 0x1003770 */
+  if (d5 > 8) return 0; /* Line 351, Address: 0x1003770 */
   return -1; /* Line 352, Address: 0x1003790 */
 } /* Line 353, Address: 0x1003794 */
 
@@ -356,7 +356,7 @@ static short s_metalchk(sprite_status_thanks* pActwk) { /* Line 327, Address: 0x
 
 
 static void s_turnset(sprite_status_thanks* pActwk) { /* Line 358, Address: 0x10037b0 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 359, Address: 0x10037bc */
+  pActwk->XPOSI.l &= 33554431; /* Line 359, Address: 0x10037bc */
   if (pActwk->X_SPEED.l < 0) /* Line 360, Address: 0x10037d0 */
   {
     pActwk->X_OFFSET = 10240; /* Line 362, Address: 0x10037e0 */
@@ -400,7 +400,7 @@ static void sonicturn(sprite_status_thanks* pActwk) { /* Line 384, Address: 0x10
   else
   {
     chk_sonicposi(pActwk, pMetal, &d5, &d6); /* Line 402, Address: 0x1003920 */
-    if (d5 < 25) /* Line 403, Address: 0x1003938 */
+    if (d5 <= 24) /* Line 403, Address: 0x1003938 */
     {
       pActwk->EXE_NO = 9; /* Line 405, Address: 0x1003950 */
     } /* Line 406, Address: 0x100395c */
@@ -462,7 +462,7 @@ static void sonicstand(sprite_status_thanks* pActwk) { /* Line 438, Address: 0x1
 static void s_waitset(sprite_status_thanks* pActwk) { /* Line 462, Address: 0x1003af0 */
   int_union ld0;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 465, Address: 0x1003afc */
+  pActwk->XPOSI.l &= 33554431; /* Line 465, Address: 0x1003afc */
   pActwk->free[3] = 0; /* Line 466, Address: 0x1003b10 */
   pActwk->PAT_ADR = &s_wait_map; /* Line 467, Address: 0x1003b18 */
   pActwk->SPR_TIMER = s_wait_map.aPatDat[0].timer; /* Line 468, Address: 0x1003b28 */
@@ -490,7 +490,7 @@ static void sonicwait(sprite_status_thanks* pActwk) { /* Line 482, Address: 0x10
   if (chk_sonicposi(pActwk, pMetal, &d5, &d6)) pActwk->SPR_FLG |= 128; /* Line 490, Address: 0x1003be0 */
   else pActwk->SPR_FLG &= 127; /* Line 491, Address: 0x1003c18 */
   pMetal->SPR_FLG &= 251; /* Line 492, Address: 0x1003c28 */
-  if (d5 >= 9) /* Line 493, Address: 0x1003c34 */
+  if (d5 > 8) /* Line 493, Address: 0x1003c34 */
   {
     --pActwk->TM_CNT; /* Line 495, Address: 0x1003c4c */
     if (pActwk->TM_CNT <= 0) /* Line 496, Address: 0x1003c5c */
@@ -508,7 +508,7 @@ static void sonicwait(sprite_status_thanks* pActwk) { /* Line 482, Address: 0x10
 
 
 static void s_ballset(sprite_status_thanks* pActwk) { /* Line 510, Address: 0x1003cb0 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 511, Address: 0x1003cbc */
+  pActwk->XPOSI.l &= 33554431; /* Line 511, Address: 0x1003cbc */
   pActwk->X_SPEED.l = 131072; /* Line 512, Address: 0x1003cd0 */
   if (pActwk->SPR_FLG & 128) /* Line 513, Address: 0x1003cdc */
   {
@@ -659,7 +659,7 @@ void emie_ctrl(sprite_status_thanks* pActwk) { /* Line 634, Address: 0x1004090 *
     pActwk->SPR_FLG |= 4; /* Line 659, Address: 0x10040ec */
   }
   emmy_exeset(pActwk, pSonic); /* Line 661, Address: 0x10040fc */
-  acttbl[pActwk->EXE_NO](pSonic); /* Line 662, Address: 0x100410c */
+  acttbl[pActwk->EXE_NO](pActwk); /* Line 662, Address: 0x100410c */
   pActwk->XPOSI.w.h &= 511; /* Line 663, Address: 0x1004130 */
 } /* Line 664, Address: 0x1004140 */
 
@@ -678,7 +678,7 @@ static void emmy_exeset(sprite_status_thanks* pActwk, sprite_status_thanks* pSon
     return; /* Line 678, Address: 0x10041a8 */
   }
   chk_sonicposi(pActwk, pSonic, &d5, &d6); /* Line 680, Address: 0x10041b0 */
-  if (d5 < 41) /* Line 681, Address: 0x10041c8 */
+  if (d5 <= 40) /* Line 681, Address: 0x10041c8 */
   {
     if (pSonic->EXE_NO >= 5) /* Line 683, Address: 0x10041e0 */
     {
@@ -691,7 +691,7 @@ static void emmy_exeset(sprite_status_thanks* pActwk, sprite_status_thanks* pSon
   }
   ld0.l = random(); /* Line 692, Address: 0x1004224 */
   ld0.l &= 32767; /* Line 693, Address: 0x1004230 */
-  ld0.w.l %= 256; /* Line 694, Address: 0x100423c */
+  ld0.w.l = (int)ld0.w.l % 256; /* Line 694, Address: 0x100423c */
   if (ld0.w.l == 0) /* Line 695, Address: 0x1004270 */
   {
     if (pActwk->XPOSI.w.h == 384) /* Line 697, Address: 0x1004284 */
@@ -748,7 +748,7 @@ static void emmyinit(sprite_status_thanks* pActwk) { /* Line 726, Address: 0x100
 static void e_runinit(sprite_status_thanks* pActwk) { /* Line 748, Address: 0x1004410 */
   short d5, d6;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 751, Address: 0x100441c */
+  pActwk->XPOSI.l &= 33554431; /* Line 751, Address: 0x100441c */
   pActwk->X_SPEED.l = 147456; /* Line 752, Address: 0x1004430 */
   pActwk->Y_SPEED.l = 0; /* Line 753, Address: 0x1004440 */
 
@@ -796,7 +796,7 @@ static void e_kissset(sprite_status_thanks* pActwk) { /* Line 795, Address: 0x10
   sprite_status_thanks* pNewActwk;
   short d5, d6;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 799, Address: 0x10045ac */
+  pActwk->XPOSI.l &= 33554431; /* Line 799, Address: 0x10045ac */
   pActwk->YPOSI.w.h = 141; /* Line 800, Address: 0x10045c0 */
 
   pActwk->X_SPEED.l = 0; /* Line 802, Address: 0x10045cc */
@@ -872,7 +872,7 @@ static void e_jumpset(sprite_status_thanks* pActwk) { /* Line 871, Address: 0x10
   sprite_status_thanks* pNewActwk;
   short d5, d6;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 875, Address: 0x100483c */
+  pActwk->XPOSI.l &= 33554431; /* Line 875, Address: 0x100483c */
   pActwk->YPOSI.w.h = 141; /* Line 876, Address: 0x1004850 */
 
   pActwk->X_SPEED.l = 98304; /* Line 878, Address: 0x100485c */
@@ -962,7 +962,7 @@ static void e_catchset(sprite_status_thanks* pActwk) { /* Line 959, Address: 0x1
 
   pSonic = &actwk[0]; /* Line 963, Address: 0x1004b00 */
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 965, Address: 0x1004b08 */
+  pActwk->XPOSI.l &= 33554431; /* Line 965, Address: 0x1004b08 */
   pActwk->YPOSI.w.h = 141; /* Line 966, Address: 0x1004b1c */
 
   if (pActwk->SPR_FLG & 128) /* Line 968, Address: 0x1004b28 */
@@ -1024,7 +1024,7 @@ static void emmy_catch(sprite_status_thanks* pActwk) { /* Line 1007, Address: 0x
     pActwk->XPOSI.w.h -= 16; /* Line 1024, Address: 0x1004cfc */
   }
 
-  if (pSonic->EXE_NO >= 2) /* Line 1027, Address: 0x1004d0c */
+  if (pSonic->EXE_NO >= 5) /* Line 1027, Address: 0x1004d0c */
   {
     if (pSonic->EXE_NO < 9) /* Line 1029, Address: 0x1004d20 */
     {
@@ -1101,7 +1101,7 @@ static void e_standset(sprite_status_thanks* pActwk) { /* Line 1099, Address: 0x
   int_union ld0;
   short d5, d6;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1104, Address: 0x1004f9c */
+  pActwk->XPOSI.l &= 33554431; /* Line 1104, Address: 0x1004f9c */
   pActwk->YPOSI.w.h = 141; /* Line 1105, Address: 0x1004fb0 */
   pActwk->X_SPEED.l = 0; /* Line 1106, Address: 0x1004fbc */
   pActwk->Y_SPEED.l = 0; /* Line 1107, Address: 0x1004fc4 */
@@ -1113,7 +1113,7 @@ static void e_standset(sprite_status_thanks* pActwk) { /* Line 1099, Address: 0x
 
   ld0.l = random(); /* Line 1114, Address: 0x1004fec */
   ld0.l &= 32767; /* Line 1115, Address: 0x1004ff8 */
-  ld0.w.l %= 2; /* Line 1116, Address: 0x1005004 */
+  ld0.w.l = (int)ld0.w.l % 2; /* Line 1116, Address: 0x1005004 */
   if (ld0.w.l == 0) /* Line 1117, Address: 0x1005038 */
   {
     pActwk->PAT_ADR = &estand_map; /* Line 1119, Address: 0x100504c */
@@ -1271,7 +1271,7 @@ static void metalsinit(sprite_status_thanks* pActwk) { /* Line 1250, Address: 0x
 
   ld0.l = random(); /* Line 1272, Address: 0x100551c */
   ld0.l &= 32767; /* Line 1273, Address: 0x1005528 */
-  ld0.w.l %= 128; /* Line 1274, Address: 0x1005534 */
+  ld0.w.l = (int)ld0.w.l % 128; /* Line 1274, Address: 0x1005534 */
   pActwk->TM_CNT = ld0.w.l; /* Line 1275, Address: 0x1005568 */
   pActwk->TM_CNT += 128; /* Line 1276, Address: 0x1005574 */
 
@@ -1307,7 +1307,7 @@ static void m_flyset(sprite_status_thanks* pActwk) { /* Line 1284, Address: 0x10
 
   ld0.l = random(); /* Line 1308, Address: 0x1005658 */
   ld0.l &= 32767; /* Line 1309, Address: 0x1005664 */
-  ld0.w.l %= 192; /* Line 1310, Address: 0x1005670 */
+  ld0.w.l = (int)ld0.w.l % 192; /* Line 1310, Address: 0x1005670 */
   pActwk->TM_CNT = ld0.w.l; /* Line 1311, Address: 0x1005694 */
   pActwk->TM_CNT += 128; /* Line 1312, Address: 0x10056a0 */
 
@@ -1346,7 +1346,7 @@ static void metalsfly(sprite_status_thanks* pActwk) { /* Line 1324, Address: 0x1
   }
   if (pActwk->XPOSI.w.h >= 376) /* Line 1347, Address: 0x10057b4 */
   {
-    if (pActwk->XPOSI.w.h < 393) /* Line 1349, Address: 0x10057d0 */
+    if (pActwk->XPOSI.w.h <= 392) /* Line 1349, Address: 0x10057d0 */
     {
       pActwk->free[2] = 0; /* Line 1351, Address: 0x10057ec */
       ((short*)pActwk)[31] = 128; /* Line 1352, Address: 0x10057f4 */
@@ -1357,7 +1357,7 @@ static void metalsfly(sprite_status_thanks* pActwk) { /* Line 1324, Address: 0x1
   --pActwk->TM_CNT; /* Line 1357, Address: 0x1005814 */
   if (pActwk->TM_CNT < 0) /* Line 1358, Address: 0x1005824 */
   {
-    pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1360, Address: 0x100583c */
+    pActwk->XPOSI.l &= 33554431; /* Line 1360, Address: 0x100583c */
     pActwk->TM_CNT = 0; /* Line 1361, Address: 0x1005850 */
 
     chk_sonicposi(pActwk, &actwk[0], &d5, &d6); /* Line 1363, Address: 0x1005858 */
@@ -1413,7 +1413,7 @@ static void metalsbrake(sprite_status_thanks* pActwk) { /* Line 1400, Address: 0
 
 
 static void m_stopset(sprite_status_thanks* pActwk) { /* Line 1415, Address: 0x1005a10 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1416, Address: 0x1005a18 */
+  pActwk->XPOSI.l &= 33554431; /* Line 1416, Address: 0x1005a18 */
 
   if (pActwk->XPOSI.w.h == 384) /* Line 1418, Address: 0x1005a2c */
   {
@@ -1465,7 +1465,7 @@ label2:
 
 
 static void m_standset(sprite_status_thanks* pActwk) { /* Line 1467, Address: 0x1005b90 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1468, Address: 0x1005b98 */
+  pActwk->XPOSI.l &= 33554431; /* Line 1468, Address: 0x1005b98 */
   pActwk->X_SPEED.l = 0; /* Line 1469, Address: 0x1005bac */
   pActwk->Y_SPEED.l = 0; /* Line 1470, Address: 0x1005bb4 */
 
@@ -1503,7 +1503,7 @@ static void metalstand(sprite_status_thanks* pActwk) { /* Line 1488, Address: 0x
 static void m_startset(sprite_status_thanks* pActwk) { /* Line 1503, Address: 0x1005cd0 */
   short d5, d6;
 
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1506, Address: 0x1005cdc */
+  pActwk->XPOSI.l &= 33554431; /* Line 1506, Address: 0x1005cdc */
   pActwk->X_SPEED.l = 0; /* Line 1507, Address: 0x1005cf0 */
   pActwk->Y_SPEED.l = 0; /* Line 1508, Address: 0x1005cf8 */
 
@@ -1558,7 +1558,7 @@ static void metalstartcttbl(sprite_status_thanks* pActwk) { /* Line 1532, Addres
 
 
 static void m_eraset(sprite_status_thanks* pActwk) { /* Line 1560, Address: 0x1005ee0 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 1561, Address: 0x1005ee8 */
+  pActwk->XPOSI.l &= 33554431; /* Line 1561, Address: 0x1005ee8 */
   pActwk->X_SPEED.l = 0; /* Line 1562, Address: 0x1005efc */
   pActwk->Y_SPEED.l = 0; /* Line 1563, Address: 0x1005f04 */
 
@@ -1928,7 +1928,7 @@ static void flickyinit(sprite_status_thanks* pActwk) { /* Line 1925, Address: 0x
   pActwk->XPOSI.w.h = -10; /* Line 1928, Address: 0x1006b6c */
   ld0.l = random(); /* Line 1929, Address: 0x1006b78 */
   ld0.l &= 32767; /* Line 1930, Address: 0x1006b84 */
-  ld0.w.l %= 120; /* Line 1931, Address: 0x1006b90 */
+  ld0.w.l = (int)ld0.w.l % 120; /* Line 1931, Address: 0x1006b90 */
   pActwk->YPOSI.w.h = ld0.w.l; /* Line 1932, Address: 0x1006bb4 */
 
   pActwk->X_SPEED.l = 65536; /* Line 1934, Address: 0x1006bc0 */
@@ -1971,7 +1971,7 @@ static void incoinit(sprite_status_thanks* pActwk) { /* Line 1968, Address: 0x10
   pActwk->XPOSI.w.h = -10; /* Line 1971, Address: 0x1006ccc */
   ld0.l = random(); /* Line 1972, Address: 0x1006cd8 */
   ld0.l &= 32767; /* Line 1973, Address: 0x1006ce4 */
-  ld0.w.l %= 120; /* Line 1974, Address: 0x1006cf0 */
+  ld0.w.l = (int)ld0.w.l % 120; /* Line 1974, Address: 0x1006cf0 */
   pActwk->YPOSI.w.h = ld0.w.l; /* Line 1975, Address: 0x1006d14 */
 
   pActwk->X_SPEED.l = 32768; /* Line 1977, Address: 0x1006d20 */
@@ -2020,7 +2020,7 @@ static void hatoinit(sprite_status_thanks* pActwk) { /* Line 2017, Address: 0x10
   pActwk->XPOSI.w.h = -10; /* Line 2020, Address: 0x1006e8c */
   ld0.l = random(); /* Line 2021, Address: 0x1006e98 */
   ld0.l &= 32767; /* Line 2022, Address: 0x1006ea4 */
-  ld0.w.l %= 120; /* Line 2023, Address: 0x1006eb0 */
+  ld0.w.l = (int)ld0.w.l % 120; /* Line 2023, Address: 0x1006eb0 */
   pActwk->YPOSI.w.h = ld0.w.l; /* Line 2024, Address: 0x1006ed4 */
 
   pActwk->X_SPEED.l = 32768; /* Line 2026, Address: 0x1006ee0 */
@@ -2100,7 +2100,7 @@ static void sinhmove(sprite_status_thanks* pActwk) { /* Line 2084, Address: 0x10
 
   ld0.l = random(); /* Line 2101, Address: 0x10071b0 */
   ld0.l &= 32767; /* Line 2102, Address: 0x10071bc */
-  ld0.w.l %= pActwk->X_WIDE; /* Line 2103, Address: 0x10071c8 */
+  ld0.w.l = (int)ld0.w.l % pActwk->X_WIDE; /* Line 2103, Address: 0x10071c8 */
   pActwk->SIN_CNT += ld0.w.l; /* Line 2104, Address: 0x1007204 */
   if (pActwk->SIN_CNT >= 511) /* Line 2105, Address: 0x1007218 */
   {
@@ -2128,7 +2128,7 @@ static void sinvmove(sprite_status_thanks* pActwk) { /* Line 2117, Address: 0x10
 
   ld0.l = random(); /* Line 2129, Address: 0x1007320 */
   ld0.l &= 32767; /* Line 2130, Address: 0x100732c */
-  ld0.w.l %= pActwk->Y_WIDE; /* Line 2131, Address: 0x1007338 */
+  ld0.w.l = (int)ld0.w.l % pActwk->Y_WIDE; /* Line 2131, Address: 0x1007338 */
   pActwk->SIN_CNT += ld0.w.l; /* Line 2132, Address: 0x1007374 */
   if (pActwk->SIN_CNT >= 511) /* Line 2133, Address: 0x1007388 */
   {
@@ -2159,7 +2159,7 @@ static short chk_sonicposi(sprite_status_thanks* pActwk, sprite_status_thanks* p
   *d5 -= pActwk->XPOSI.w.h; /* Line 2159, Address: 0x10074c4 */
   if (*d5 < 0) /* Line 2160, Address: 0x10074e0 */
   {
-    *d5 = -*d5; /* Line 2162, Address: 0x10074f8 */
+    *d5 *= -1; /* Line 2162, Address: 0x10074f8 */
     *d6 = 1; /* Line 2163, Address: 0x100750c */
     return -1; /* Line 2164, Address: 0x1007518 */
   }
@@ -2188,7 +2188,7 @@ static short myposichk(sprite_status_thanks* pActwk) { /* Line 2176, Address: 0x
     if (pActwk->XPOSI.w.h < 40) return -1; /* Line 2188, Address: 0x1007634 */
     if (pActwk->XPOSI.w.h < 304) return 0; /* Line 2189, Address: 0x100765c */
     if (pActwk->XPOSI.w.h < 352) return -1; /* Line 2190, Address: 0x1007684 */
-    if (pActwk->XPOSI.w.h >= 497) return -1; /* Line 2191, Address: 0x10076ac */
+    if (pActwk->XPOSI.w.h > 496) return -1; /* Line 2191, Address: 0x10076ac */
     return 0; /* Line 2192, Address: 0x10076d4 */
   }
 } /* Line 2194, Address: 0x10076d8 */
@@ -2197,18 +2197,18 @@ static short myposichk(sprite_status_thanks* pActwk) { /* Line 2176, Address: 0x
 
 
 static short centerchk(sprite_status_thanks* pActwk) { /* Line 2199, Address: 0x10076f0 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 2200, Address: 0x10076f8 */
+  pActwk->XPOSI.l &= 33554431; /* Line 2200, Address: 0x10076f8 */
 
   if (!(pActwk->SPR_FLG & 128)) /* Line 2202, Address: 0x100770c */
   {
     if (pActwk->XPOSI.w.h < 112) return 0; /* Line 2204, Address: 0x1007724 */
-    if (pActwk->XPOSI.w.h >= 121) return 0; /* Line 2205, Address: 0x100774c */
+    if (pActwk->XPOSI.w.h > 120) return 0; /* Line 2205, Address: 0x100774c */
     return -1; /* Line 2206, Address: 0x1007774 */
   }
   else
   {
     if (pActwk->XPOSI.w.h < 168) return 0; /* Line 2210, Address: 0x1007780 */
-    if (pActwk->XPOSI.w.h >= 177) return 0; /* Line 2211, Address: 0x10077a8 */
+    if (pActwk->XPOSI.w.h > 176) return 0; /* Line 2211, Address: 0x10077a8 */
     return -1; /* Line 2212, Address: 0x10077d0 */
   }
 } /* Line 2214, Address: 0x10077d4 */
@@ -2217,8 +2217,8 @@ static short centerchk(sprite_status_thanks* pActwk) { /* Line 2199, Address: 0x
 
 
 static short dsplaychk(sprite_status_thanks* pActwk) { /* Line 2219, Address: 0x10077e0 */
-  pActwk->XPOSI.l = (pActwk->XPOSI.l << 39) >> 39; /* Line 2220, Address: 0x10077e8 */
-  if (pActwk->XPOSI.w.h < 305) return 0; /* Line 2221, Address: 0x10077fc */
+  pActwk->XPOSI.l &= 33554431; /* Line 2220, Address: 0x10077e8 */
+  if (pActwk->XPOSI.w.h <= 304) return 0; /* Line 2221, Address: 0x10077fc */
   return -1; /* Line 2222, Address: 0x1007824 */
 } /* Line 2223, Address: 0x1007828 */
 
@@ -2230,7 +2230,7 @@ static void waitmode(sprite_status_thanks* pActwk) { /* Line 2228, Address: 0x10
   pActwk->XPOSI.w.h &= 511; /* Line 2230, Address: 0x1007858 */
   if (pActwk->XPOSI.w.h >= 336) /* Line 2231, Address: 0x1007868 */
   {
-    if (pActwk->XPOSI.w.h < 353) /* Line 2233, Address: 0x1007884 */
+    if (pActwk->XPOSI.w.h <= 352) /* Line 2233, Address: 0x1007884 */
     {
       pActwk->X_SPEED.l = 0; /* Line 2235, Address: 0x10078a0 */
       pActwk->Y_SPEED.l = 0; /* Line 2236, Address: 0x10078a8 */
@@ -2256,7 +2256,7 @@ static void escape_chk(sprite_status_thanks* pActwk) { /* Line 2253, Address: 0x
   {
     if (pActwk->XPOSI.w.h >= 304) /* Line 2257, Address: 0x1007948 */
     {
-      if (pActwk->XPOSI.w.h < 369) /* Line 2259, Address: 0x1007964 */
+      if (pActwk->XPOSI.w.h <= 368) /* Line 2259, Address: 0x1007964 */
       {
         pActwk->SPR_FLG |= 16; /* Line 2261, Address: 0x1007980 */
         return; /* Line 2262, Address: 0x1007990 */
@@ -2267,7 +2267,7 @@ static void escape_chk(sprite_status_thanks* pActwk) { /* Line 2253, Address: 0x
   {
     if (pActwk->XPOSI.w.h >= 448) /* Line 2268, Address: 0x1007998 */
     {
-      if (pActwk->XPOSI.w.h < 481) /* Line 2270, Address: 0x10079b4 */
+      if (pActwk->XPOSI.w.h <= 480) /* Line 2270, Address: 0x10079b4 */
       {
         pActwk->SPR_FLG |= 16; /* Line 2272, Address: 0x10079d0 */
         return; /* Line 2273, Address: 0x10079e0 */
@@ -2315,7 +2315,7 @@ static void m_sndchk(sprite_status_thanks* pActwk) { /* Line 2308, Address: 0x10
   else
   {
     if (pActwk->XPOSI.w.h < 304) return; /* Line 2317, Address: 0x1007b28 */
-    if (pActwk->XPOSI.w.h >= 313) return; /* Line 2318, Address: 0x1007b44 */
+    if (pActwk->XPOSI.w.h > 312) return; /* Line 2318, Address: 0x1007b44 */
     pActwk->free[2] = 1; /* Line 2319, Address: 0x1007b60 */
   }
 } /* Line 2321, Address: 0x1007b6c */
