@@ -1,8 +1,11 @@
 #include "..\EQU.H"
 #include "WARP.H"
+#include "..\ACTION.H"
 #include "..\IO.H"
 
-static unsigned short clchg_cnt[2] = { 65535, 0 };
+static unsigned short clchg_cnt[2] = {
+  65535, 0
+};
 static palette_entry colortbl[32] = {
   {   0,   0,   0, 1 }, {   0, 224,   0, 1 }, {  32,  32, 192, 1 }, {  64,  64, 224, 1 },
   {  96,  96, 224, 1 }, { 128, 128, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
@@ -41,49 +44,46 @@ int(*SetGrid)(int, int, int, int);
 static unsigned short gmtime0;
 static unsigned short setcnt;
 static unsigned short gmtime1;
-static sprite_pattern snc0 = { 1, { { -16, -24, 0, 0 } } };
-static sprite_pattern snc1 = { 1, { { -16, -24, 0, 1 } } };
-static sprite_pattern snc2 = { 1, { { -16, -24, 0, 2 } } };
-static sprite_pattern snc3 = { 1, { { -16, -24, 0, 3 } } };
-static sprite_pattern snc4 = { 1, { { -16, -24, 0, 4 } } };
-static sprite_pattern* ptsonic[5] = { &snc0, &snc1, &snc2, &snc3, &snc4 };
-static sprite_pattern atm0 = { 1, { { -16, -16, 0, 5 } } };
-static sprite_pattern atm1 = { 1, { { -16, -16, 0, 6 } } };
-static sprite_pattern atm2 = { 1, { { -24, -24, 0, 7 } } };
-static sprite_pattern atm3 = { 1, { { -16, -16, 0, 8 } } };
-static sprite_pattern atm4 = { 1, { { -16, -24, 0, 9 } } };
-static sprite_pattern* spr_atom[5] = { &atm0, &atm1, &atm2, &atm3, &atm4 };
-static unsigned short code_tbl[3] = { 1, 5, 9 };
 static unsigned short wColwk;
 static int FadeCount;
 static unsigned char clfflg;
 static palette_entry colorsave[64];
 static unsigned char byMskwk;
-static unsigned char SeToWavTbl[80] = {
-   0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
-  10, 11, 11, 12, 13, 14, 15, 16, 17, 18,
-  19, 20, 20, 21, 22, 22, 23, 23, 24, 25,
-  26, 27, 28, 29, 30, 31, 43, 44, 45, 46,
-  47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
-  57, 58, 58, 59, 60, 61, 62, 63, 64, 65,
-  67, 68, 69, 70, 71, 71, 72, 73, 74, 32,
-  33, 34, 35, 36, 37, 38, 39, 40, 41, 42
-};
-dlink_export ExportedFunctions = {
-  &game_init,
-  (void (*))&game,
-  &DLL_meminit,
-  &DLL_memfree,
-  (void (*)(short, short))&SWdataSet,
-  &Get_vscroll,
-  &Get_scra_h_posiw,
-  &Get_scrb_h_posiw,
-  &FadeProc,
-  &SetDebugFlag,
-  0,
-  0
-};
 int(*sGetFileSize)(int);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -241,28 +241,28 @@ int game() { /* Line 208, Address: 0x1000510 */
 } /* Line 241, Address: 0x1000670 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+static sprite_pattern snc0 = {
+  1, { { -16, -24, 0, 0 } }
+};
+static sprite_pattern snc1 = {
+  1, { { -16, -24, 0, 1 } }
+};
+static sprite_pattern snc2 = {
+  1, { { -16, -24, 0, 2 } }
+};
+static sprite_pattern snc3 = {
+  1, { { -16, -24, 0, 3 } }
+};
+static sprite_pattern snc4 = {
+  1, { { -16, -24, 0, 4 } }
+};
+static sprite_pattern* ptsonic[5] = {
+  &snc0,
+  &snc1,
+  &snc2,
+  &snc3,
+  &snc4
+};
 
 void sonic0(sprite_status* pActwk) { /* Line 267, Address: 0x1000690 */
   pActwk->sproffset = 32768; /* Line 268, Address: 0x1000698 */
@@ -300,7 +300,7 @@ void sonic3(sprite_status* pActwk) { /* Line 292, Address: 0x10007a0 */
 void sonic_act(sprite_status* pActwk) { /* Line 300, Address: 0x10007f0 */
   if (gmtime1 & 1) { /* Line 301, Address: 0x10007fc */
     ++pActwk->patno; /* Line 302, Address: 0x1000814 */
-    if (pActwk->patno >= 5) pActwk->patno = 0; /* Line 303, Address: 0x1000824 */
+    if (pActwk->patno > 4) pActwk->patno = 0; /* Line 303, Address: 0x1000824 */
   }
   pActwk->patno = actwk[0].patno; /* Line 305, Address: 0x1000844 */
 
@@ -327,28 +327,28 @@ void sonic_act(sprite_status* pActwk) { /* Line 300, Address: 0x10007f0 */
 
 } /* Line 328, Address: 0x10008e8 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+static sprite_pattern atm0 = {
+  1, { { -16, -16, 0, 5 } }
+};
+static sprite_pattern atm1 = {
+  1, { { -16, -16, 0, 6 } }
+};
+static sprite_pattern atm2 = {
+  1, { { -24, -24, 0, 7 } }
+};
+static sprite_pattern atm3 = {
+  1, { { -16, -16, 0, 8 } }
+};
+static sprite_pattern atm4 = {
+  1, { { -16, -24, 0, 9 } }
+};
+static sprite_pattern* spr_atom[5] = {
+  &atm0,
+  &atm1,
+  &atm2,
+  &atm3,
+  &atm4
+};
 
 void atom1(sprite_status* pActwk) { /* Line 353, Address: 0x1000900 */
   int lD0;
@@ -378,7 +378,7 @@ void atom0(sprite_status* pActwk) { /* Line 373, Address: 0x10009a0 */
 
 
   lD0.l = lD1.l = sRandom(); /* Line 380, Address: 0x10009d8 */
-  lD0.l = ((lD0.l << 46) >> 46); /* Line 381, Address: 0x10009f0 */
+  lD0.l &= 262143; /* Line 381, Address: 0x10009f0 */
   *(int*)&pActwk->actfree[4] = lD0.l; /* Line 382, Address: 0x1000a00 */
   lD1.w.l &= 31; /* Line 383, Address: 0x1000a10 */
   pActwk->xposi.w.h = actwk[0].xposi.w.h - 16 + lD1.w.l; /* Line 384, Address: 0x1000a1c */
@@ -391,7 +391,7 @@ void atom0(sprite_status* pActwk) { /* Line 373, Address: 0x10009a0 */
 void atom(sprite_status* pActwk) { /* Line 391, Address: 0x1000aa0 */
   if (gmtime1 & 1) { /* Line 392, Address: 0x1000aac */
     ++pActwk->patno; /* Line 393, Address: 0x1000ac4 */
-    if (pActwk->patno >= 5) pActwk->patno = 0; /* Line 394, Address: 0x1000ad4 */
+    if (pActwk->patno > 4) pActwk->patno = 0; /* Line 394, Address: 0x1000ad4 */
   }
   switch (pActwk->r_no0) { /* Line 396, Address: 0x1000af4 */
     case 0:
@@ -450,9 +450,9 @@ void clchg() { /* Line 410, Address: 0x1000b50 */
 
 
 
-
-
-
+static unsigned short code_tbl[3] = {
+  1, 5, 9
+};
 
 void clwout() {
   clfflg = 1; /* Line 458, Address: 0x1000c50 */
@@ -540,7 +540,7 @@ void clwin_init() { /* Line 532, Address: 0x1000e40 */
   for (i = 0; i < 64; ++i) { /* Line 540, Address: 0x1000e74 */
 
     *lpSavewk++ = *lpColwk; /* Line 542, Address: 0x1000e80 */
-    *lpSavewk++ = tmp; /* Line 543, Address: 0x1000ea8 */
+    *lpColwk++ = tmp; /* Line 543, Address: 0x1000ea8 */
   } /* Line 544, Address: 0x1000ed4 */
 } /* Line 545, Address: 0x1000ef4 */
 
@@ -651,16 +651,16 @@ int FadeProc() { /* Line 639, Address: 0x1001180 */
 
 
 
-
-
-
-
-
-
-
-
-
-
+static unsigned char SeToWavTbl[80] = {
+   0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
+  10, 11, 11, 12, 13, 14, 15, 16, 17, 18,
+  19, 20, 20, 21, 22, 22, 23, 23, 24, 25,
+  26, 27, 28, 29, 30, 31, 43, 44, 45, 46,
+  47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+  57, 58, 58, 59, 60, 61, 62, 63, 64, 65,
+  67, 68, 69, 70, 71, 71, 72, 73, 74, 32,
+  33, 34, 35, 36, 37, 38, 39, 40, 41, 42
+};
 
 void soundset(short ReqNo) { /* Line 665, Address: 0x10011e0 */
   if (ReqNo == 171) return; /* Line 666, Address: 0x10011ec */
@@ -668,7 +668,23 @@ void soundset(short ReqNo) { /* Line 665, Address: 0x10011e0 */
 
 
   ReqNo -= 144; /* Line 670, Address: 0x1001204 */
-  ReqNo = SeToWavTbl[ReqNo]; /* Line 671, Address: 0x1001210 */
+  ReqNo = (unsigned short)SeToWavTbl[ReqNo]; /* Line 671, Address: 0x1001210 */
 
   WaveRequest(ReqNo); /* Line 673, Address: 0x100123c */
 } /* Line 674, Address: 0x1001250 */
+
+
+dlink_export ExportedFunctions = {
+  &game_init,
+  (void (*)())&game,
+  &DLL_meminit,
+  &DLL_memfree,
+  (void (*)(short, short))&SWdataSet,
+  &Get_vscroll,
+  &Get_scra_h_posiw,
+  &Get_scrb_h_posiw,
+  &FadeProc,
+  &SetDebugFlag,
+  0,
+  0
+};
