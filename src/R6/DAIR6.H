@@ -1,0 +1,9 @@
+void dair6(sprite_status* actionwk);
+void dair6_ridechk(sprite_status* actionwk);
+void dair6_init(sprite_status* actionwk);
+void dair6_move(sprite_status* actionwk);
+void mv_up(sprite_status* actionwk);
+void mv_down(sprite_status* actionwk);
+void mv_right(sprite_status* actionwk);
+void mv_left(sprite_status* actionwk);
+short dair6_sub2(sprite_status* actionwk);

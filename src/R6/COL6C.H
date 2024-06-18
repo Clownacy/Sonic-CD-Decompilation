@@ -1,0 +1,16 @@
+void clchgctr();
+void colchg6a();
+void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, palette_entry* pColTbl);
+void fadein0();
+int fadein0_new();
+void fadeout();
+void flashin();
+void flashout();
+void colorset(int ColorNo);
+void colorset2(int ColorNo);
+void colorset3(int ColorNo);
+int FadeProc();
+void fin_boss6(unsigned char* pChgTime, unsigned char* pChgCnt);
+void fout_boss6(unsigned char* pChgTime, unsigned char* pChgCnt);
+void fset_boss6(char d0, unsigned char* pChgCnt);
+void flashin_boss6();

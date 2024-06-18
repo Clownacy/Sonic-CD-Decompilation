@@ -1,0 +1,14 @@
+void hachi6(sprite_status* actionwk);
+void act_move1(sprite_status* actionwk);
+void act_rev(sprite_status* actionwk);
+void act_rev1(sprite_status* actionwk);
+void act_rev2(sprite_status* actionwk);
+void act_shot(sprite_status* actionwk);
+void act_shot1(sprite_status* actionwk);
+void act_shot2(sprite_status* actionwk);
+void act_shot3(sprite_status* actionwk);
+void tama(sprite_status* actionwk);
+void tam_move(sprite_status* actionwk);
+void tam_move1(sprite_status* actionwk);
+void tam_move2(sprite_status* actionwk);
+void tam_move3(sprite_status* actionwk);

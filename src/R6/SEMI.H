@@ -1,0 +1,12 @@
+void semi(sprite_status* actionwk);
+void act_wait(sprite_status* actionwk);
+void act_wait1(sprite_status* actionwk);
+void act_movea(sprite_status* actionwk);
+void act_movea1(sprite_status* actionwk);
+void act_moveb(sprite_status* actionwk);
+void act_moveb1(sprite_status* actionwk);
+void bomb_init(sprite_status* actionwk);
+void bomb_fall(sprite_status* actionwk);
+void bomb_wait(sprite_status* actionwk);
+void bomb_blink(sprite_status* actionwk);
+void bomb_die(sprite_status* actionwk);

@@ -1,0 +1,14 @@
+void kdai6(sprite_status* pActwk);
+short kdai6_ridechk(sprite_status* pActwk);
+void kdai6_init(sprite_status* pActwk);
+void kdai6_move(sprite_status* pActwk);
+short kdai6_rangecheck(sprite_status* pActwk);
+void kaiten_play(sprite_status* pActwk);
+void k_move(sprite_status* pActwk);
+void jumpchk_d(sprite_status* pActwk);
+void dai6_move(sprite_status* pActwk);
+void kd_mv_up(sprite_status* pActwk);
+void kd_mv_down(sprite_status* pActwk);
+void kd_mv_right(sprite_status* pActwk);
+void kd_mv_left(sprite_status* pActwk);
+short kd_dair6_sub2(sprite_status* pActwk);

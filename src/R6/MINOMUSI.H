@@ -1,0 +1,13 @@
+void minomusi(sprite_status* actionwk);
+void body(sprite_status* actionwk);
+void body_init(sprite_status* actionwk);
+void body_wait(sprite_status* actionwk);
+void body_wait1(sprite_status* actionwk);
+void body_down(sprite_status* actionwk);
+void body_down1(sprite_status* actionwk);
+void body_up(sprite_status* actionwk);
+void body_up1(sprite_status* actionwk);
+void body_stay(sprite_status* actionwk);
+void body_stay1(sprite_status* actionwk);
+void hari(sprite_status* actionwk);
+void ito(sprite_status* actionwk);
