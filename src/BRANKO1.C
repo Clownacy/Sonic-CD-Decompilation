@@ -147,9 +147,9 @@ static void branko1_init(sprite_status* pActwk) { /* Line 132, Address: 0x102860
   if (pActwk->actfree[18] == 0) { /* Line 147, Address: 0x1028670 */
     ((unsigned short*)pActwk)[29] = pActwk->xposi.w.h; /* Line 148, Address: 0x1028684 */
     ((unsigned short*)pActwk)[27] = pActwk->yposi.w.h; /* Line 149, Address: 0x1028694 */
-    pActwk->actfree[5] = i = (unsigned char)(pActwk->userflag.b.h & 15); /* Line 150, Address: 0x10286a4 */
+    pActwk->actfree[5] = knum = (unsigned char)(pActwk->userflag.b.h & 15); /* Line 150, Address: 0x10286a4 */
 
-    for ( ; (i & 255) > 0; i = i - 1 & 255) { /* Line 152, Address: 0x10286cc */
+    for ( ; knum > 0; --knum) { /* Line 152, Address: 0x10286cc */
       if (actwkchk(&pNewact) == 0) { /* Line 153, Address: 0x10286d4 */
 
         pNewact->actno = 41; /* Line 155, Address: 0x10286e8 */
@@ -159,9 +159,9 @@ static void branko1_init(sprite_status* pActwk) { /* Line 132, Address: 0x102860
 
         pNewact->userflag.b.h = pActwk->userflag.b.h; /* Line 160, Address: 0x1028714 */
         pNewact->actfree[5] = pActwk->actfree[5]; /* Line 161, Address: 0x1028724 */
-        pNewact->actfree[18] = i; /* Line 162, Address: 0x1028734 */
+        pNewact->actfree[18] = knum; /* Line 162, Address: 0x1028734 */
 
-        if (pActwk->actfree[5] == (i & 255)) { /* Line 164, Address: 0x102873c */
+        if (pActwk->actfree[5] == knum) { /* Line 164, Address: 0x102873c */
 
           pNewact->patno = 1; /* Line 166, Address: 0x1028754 */
         } /* Line 167, Address: 0x1028760 */
@@ -173,11 +173,11 @@ static void branko1_init(sprite_status* pActwk) { /* Line 132, Address: 0x102860
   }
 
 
-  knum = (unsigned char)(pActwk->userflag.b.h & 112) >> 4; /* Line 176, Address: 0x1028788 */
-  ((short*)pActwk)[31] = branko1_initbl[knum].angle; /* Line 177, Address: 0x10287a8 */
-  ((short*)pActwk)[33] = branko1_initbl[knum].accel; /* Line 178, Address: 0x10287c4 */
-  ((short*)pActwk)[28] = branko1_initbl[knum].area1; /* Line 179, Address: 0x10287e0 */
-  ((short*)pActwk)[30] = branko1_initbl[knum].area2; /* Line 180, Address: 0x10287fc */
+  i = (unsigned char)(pActwk->userflag.b.h & 112) >> 4; /* Line 176, Address: 0x1028788 */
+  ((short*)pActwk)[31] = branko1_initbl[i].angle; /* Line 177, Address: 0x10287a8 */
+  ((short*)pActwk)[33] = branko1_initbl[i].accel; /* Line 178, Address: 0x10287c4 */
+  ((short*)pActwk)[28] = branko1_initbl[i].area1; /* Line 179, Address: 0x10287e0 */
+  ((short*)pActwk)[30] = branko1_initbl[i].area2; /* Line 180, Address: 0x10287fc */
 
   branko1_move(pActwk); /* Line 182, Address: 0x1028818 */
 } /* Line 183, Address: 0x1028824 */
@@ -239,7 +239,7 @@ static void branko1_posiset(sprite_status* pActwk) { /* Line 214, Address: 0x102
 
   direc.w = ((unsigned short*)pActwk)[31]; /* Line 240, Address: 0x1028a20 */
   sinset(direc.b.h, &sinwk, &coswk); /* Line 241, Address: 0x1028a2c */
-  spdwk = ((char*)pActwk)[64] << 4; /* Line 242, Address: 0x1028a40 */
+  spdwk = (short)((char*)pActwk)[64] << 4; /* Line 242, Address: 0x1028a40 */
   lSinwk = sinwk * spdwk; /* Line 243, Address: 0x1028a6c */
   lCoswk = coswk * spdwk; /* Line 244, Address: 0x1028a84 */
   sinwk = (short)((int)lSinwk >> 4) >> 4; /* Line 245, Address: 0x1028a9c */
@@ -279,7 +279,7 @@ static void branko1_ridechk(sprite_status* pActwk) { /* Line 260, Address: 0x102
 
 
 
-      pPlayerwk->yposi.w.h = pActwk->yposi.w.h - ((char*)pActwk)[23] - ((char*)pPlayerwk)[23] + 2; /* Line 282, Address: 0x1028c14 */
+      pPlayerwk->yposi.w.h = pActwk->yposi.w.h - (short)((char*)pActwk)[23] - (short)((char*)pPlayerwk)[23] + 2; /* Line 282, Address: 0x1028c14 */
     }
 
 

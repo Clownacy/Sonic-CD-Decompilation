@@ -71,7 +71,7 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
 
   if ((unsigned short)scralim_n_down < (unsigned short)scralim_down) { /* Line 72, Address: 0x1017b2c */
 
-    sD1 = -sD1; /* Line 74, Address: 0x1017b58 */
+    sD1 *= -1; /* Line 74, Address: 0x1017b58 */
     if ((unsigned short)scralim_n_down < (unsigned short)scra_v_posit.w.h) { /* Line 75, Address: 0x1017b64 */
       scralim_down = scra_v_posit.w.h & 65534; /* Line 76, Address: 0x1017b90 */
     }
@@ -198,11 +198,11 @@ void zone6chk() { /* Line 188, Address: 0x1017f90 */
 
 
 
-    if (actwk[0].yposi.w.h < 665) { /* Line 201, Address: 0x1017fe4 */
+    if (actwk[0].yposi.w.h <= 664) { /* Line 201, Address: 0x1017fe4 */
 
       wD0 = 464; /* Line 203, Address: 0x1018000 */
     } /* Line 204, Address: 0x1018008 */
-    else if (actwk[0].yposi.w.h < 1177) { /* Line 205, Address: 0x1018010 */
+    else if (actwk[0].yposi.w.h <= 1176) { /* Line 205, Address: 0x1018010 */
 
       wD0 = 976; /* Line 207, Address: 0x101802c */
     } /* Line 208, Address: 0x1018034 */
@@ -215,7 +215,7 @@ void zone6chk() { /* Line 188, Address: 0x1017f90 */
     scralim_n_down = wD0; /* Line 215, Address: 0x1018048 */
     wD0 -= scralim_down; /* Line 216, Address: 0x1018050 */
     if ((short)wD0 < 0) { /* Line 217, Address: 0x1018064 */
-      wD0 = -wD0; /* Line 218, Address: 0x101807c */
+      wD0 = -(short)wD0; /* Line 218, Address: 0x101807c */
     }
     if (wD0 < 3) { /* Line 220, Address: 0x1018098 */
       scralim_down = wD1; /* Line 221, Address: 0x10180a8 */
@@ -391,7 +391,7 @@ void zone73chk() { /* Line 377, Address: 0x1018560 */
     scralim_n_down = 288; /* Line 391, Address: 0x10185c8 */
     wD1 = 288 - (unsigned short)scralim_down; /* Line 392, Address: 0x10185d4 */
     if ((short)wD1 < 0) { /* Line 393, Address: 0x10185f4 */
-      wD1 = -wD1; /* Line 394, Address: 0x101860c */
+      wD1 = -(short)wD1; /* Line 394, Address: 0x101860c */
     }
     if (wD1 < 4) { /* Line 396, Address: 0x1018628 */
       scralim_down = 288; /* Line 397, Address: 0x1018638 */
@@ -422,7 +422,7 @@ int bossclr_scrset(unsigned short wD1) { /* Line 419, Address: 0x10186d0 */
   scralim_n_down = wD1; /* Line 422, Address: 0x10186dc */
   wD1 -= scralim_down; /* Line 423, Address: 0x10186e8 */
   if ((short)wD1 < 0) { /* Line 424, Address: 0x1018700 */
-    wD1 = -wD1; /* Line 425, Address: 0x101871c */
+    wD1 = -(short)wD1; /* Line 425, Address: 0x101871c */
   }
   if (wD1 < 4) { /* Line 427, Address: 0x101873c */
     scralim_down = scralim_n_down; /* Line 428, Address: 0x1018750 */

@@ -24,7 +24,7 @@
 
 
 unsigned int swap(int lSrc) { /* Line 26, Address: 0x100dab0 */
-  unsigned short iLow, iHi = (unsigned int)(lSrc & -65536) >> 16; /* Line 27, Address: 0x100dac0 */
+  unsigned short iHi = (unsigned int)(lSrc & -65536) >> 16, iLow; /* Line 27, Address: 0x100dac0 */
   iLow = lSrc & 65535; /* Line 28, Address: 0x100dad8 */
   return (iHi << 16) | iLow; /* Line 29, Address: 0x100dae8 */
 } /* Line 30, Address: 0x100daf8 */
@@ -86,7 +86,7 @@ short dircol(sprite_status* pActwk, char* cpDirec) { /* Line 50, Address: 0x100d
   if (bDirwk == 128) /* Line 86, Address: 0x100dcb0 */
     return dircol_u3(pActwk, iXposi, iYposi); /* Line 87, Address: 0x100dcc0 */
   bDirSave &= 56; /* Line 88, Address: 0x100dcdc */
-  if (bDirSave == 0) iYposi = iYposi + 8; /* Line 89, Address: 0x100dce4 */
+  if (bDirSave == 0) iYposi += 8; /* Line 89, Address: 0x100dce4 */
   if (bDirwk == 64) /* Line 90, Address: 0x100dcfc */
     return dircol_l3(pActwk, iXposi, iYposi); /* Line 91, Address: 0x100dd0c */
 
@@ -111,7 +111,7 @@ short dircol2(sprite_status* pActwk, char* cpDirec) { /* Line 107, Address: 0x10
 
   dirstk[0] = *cpDirec; /* Line 112, Address: 0x100dd78 */
   dirstk[2] = *cpDirec; /* Line 113, Address: 0x100dd88 */
-  *cpDirec += 32; /* Line 114, Address: 0x100dd98 */
+  *cpDirec = *cpDirec + 32; /* Line 114, Address: 0x100dd98 */
   *cpDirec = *cpDirec & 192; /* Line 115, Address: 0x100ddbc */
   bDirwk = *cpDirec; /* Line 116, Address: 0x100dde0 */
 
@@ -156,8 +156,8 @@ short dircol_d(sprite_status* pActwk, short* ipD0, short* ipD1, short* ipD3) { /
   char cDirect;
   char* cpDirStk;
 
-  iYwork = pActwk->yposi.w.h + pActwk->sprvsize; /* Line 159, Address: 0x100def4 */
-  iXwork = pActwk->xposi.w.h + pActwk->sprhs; /* Line 160, Address: 0x100df2c */
+  iYwork = pActwk->yposi.w.h + (short)pActwk->sprvsize; /* Line 159, Address: 0x100def4 */
+  iXwork = pActwk->xposi.w.h + (short)pActwk->sprhs; /* Line 160, Address: 0x100df2c */
   cpDirStk = &dirstk[0]; /* Line 161, Address: 0x100df64 */
   *ipD0 = scdchk(pActwk, iXwork, iYwork, 16, 0, 13, cpDirStk); /* Line 162, Address: 0x100df6c */
 
@@ -219,14 +219,14 @@ short dircol_r(sprite_status* pActwk, short* ipD0, short* ipD1, short* ipD3) { /
   char cDirect;
   char* cpDirStk;
 
-  iYwork = pActwk->yposi.w.h - pActwk->sprhs; /* Line 222, Address: 0x100e124 */
-  iXwork = pActwk->xposi.w.h + pActwk->sprvsize; /* Line 223, Address: 0x100e15c */
+  iYwork = pActwk->yposi.w.h - (short)pActwk->sprhs; /* Line 222, Address: 0x100e124 */
+  iXwork = pActwk->xposi.w.h + (short)pActwk->sprvsize; /* Line 223, Address: 0x100e15c */
   cpDirStk = &dirstk[0]; /* Line 224, Address: 0x100e194 */
   *ipD0 = scdchk_r(pActwk, iXwork, iYwork, 16, 0, 14, cpDirStk); /* Line 225, Address: 0x100e19c */
 
 
-  iYwork = pActwk->yposi.w.h + pActwk->sprhs; /* Line 228, Address: 0x100e1c8 */
-  iXwork = pActwk->xposi.w.h + pActwk->sprvsize; /* Line 229, Address: 0x100e200 */
+  iYwork = pActwk->yposi.w.h + (short)pActwk->sprhs; /* Line 228, Address: 0x100e1c8 */
+  iXwork = pActwk->xposi.w.h + (short)pActwk->sprvsize; /* Line 229, Address: 0x100e200 */
   cpDirStk = &dirstk[2]; /* Line 230, Address: 0x100e238 */
   *ipD1 = scdchk_r(pActwk, iXwork, iYwork, 16, 0, 14, cpDirStk); /* Line 231, Address: 0x100e240 */
 
@@ -297,14 +297,14 @@ short dircol_l(sprite_status* pActwk, short* ipD0, short* ipD1, short* ipD3) { /
   char cDirect;
   char* cpDirstk;
 
-  iYwork = pActwk->yposi.w.h - pActwk->sprhs; /* Line 300, Address: 0x100e3a4 */
-  iXwork = (pActwk->xposi.w.h - pActwk->sprvsize) ^ 15; /* Line 301, Address: 0x100e3dc */
+  iYwork = pActwk->yposi.w.h - (short)pActwk->sprhs; /* Line 300, Address: 0x100e3a4 */
+  iXwork = (pActwk->xposi.w.h - (short)pActwk->sprvsize) ^ 15; /* Line 301, Address: 0x100e3dc */
   cpDirstk = &dirstk[0]; /* Line 302, Address: 0x100e418 */
   *ipD0 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 303, Address: 0x100e420 */
 
 
-  iYwork = pActwk->yposi.w.h + pActwk->sprhs; /* Line 306, Address: 0x100e44c */
-  iXwork = (pActwk->xposi.w.h - pActwk->sprvsize) ^ 15; /* Line 307, Address: 0x100e484 */
+  iYwork = pActwk->yposi.w.h + (short)pActwk->sprhs; /* Line 306, Address: 0x100e44c */
+  iXwork = (pActwk->xposi.w.h - (short)pActwk->sprvsize) ^ 15; /* Line 307, Address: 0x100e484 */
   cpDirstk = &dirstk[2]; /* Line 308, Address: 0x100e4c0 */
   *ipD1 = scdchk_r(pActwk, iXwork, iYwork, -16, 2048, 14, cpDirstk); /* Line 309, Address: 0x100e4c8 */
 
@@ -374,14 +374,14 @@ short dircol_u(sprite_status* pActwk, short* ipD0, short* ipD1, short* ipD3) { /
   char cDirect;
   char* cpDirStk;
 
-  iYwork = (pActwk->yposi.w.h - pActwk->sprvsize) ^ 15; /* Line 377, Address: 0x100e634 */
-  iXwork = pActwk->xposi.w.h + pActwk->sprhs; /* Line 378, Address: 0x100e670 */
+  iYwork = (pActwk->yposi.w.h - (short)pActwk->sprvsize) ^ 15; /* Line 377, Address: 0x100e634 */
+  iXwork = pActwk->xposi.w.h + (short)pActwk->sprhs; /* Line 378, Address: 0x100e670 */
   cpDirStk = &dirstk[0]; /* Line 379, Address: 0x100e6a8 */
   *ipD0 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 380, Address: 0x100e6b0 */
 
 
-  iYwork = (pActwk->yposi.w.h - pActwk->sprvsize) ^ 15; /* Line 383, Address: 0x100e6dc */
-  iXwork = pActwk->xposi.w.h - pActwk->sprhs; /* Line 384, Address: 0x100e718 */
+  iYwork = (pActwk->yposi.w.h - (short)pActwk->sprvsize) ^ 15; /* Line 383, Address: 0x100e6dc */
+  iXwork = pActwk->xposi.w.h - (short)pActwk->sprhs; /* Line 384, Address: 0x100e718 */
   cpDirStk = &dirstk[2]; /* Line 385, Address: 0x100e750 */
   *ipD1 = scdchk(pActwk, iXwork, iYwork, -16, 4096, 14, cpDirStk); /* Line 386, Address: 0x100e758 */
 
@@ -477,7 +477,7 @@ short emycol_d(sprite_status* pActwk) { /* Line 463, Address: 0x100e960 */
 short emycol_d2(sprite_status* pActwk, short iXposi) { /* Line 477, Address: 0x100e990 */
   short iYposi;
 
-  iYposi = pActwk->yposi.w.h + (char)pActwk->sprvsize; /* Line 480, Address: 0x100e9a4 */
+  iYposi = pActwk->yposi.w.h + (short)(char)pActwk->sprvsize; /* Line 480, Address: 0x100e9a4 */
   return emycol_d3(pActwk, iXposi, iYposi); /* Line 481, Address: 0x100e9e8 */
 } /* Line 482, Address: 0x100e9fc */
 
@@ -519,7 +519,7 @@ short emycol_l(sprite_status* pActwk, unsigned char sprhs) { /* Line 517, Addres
   char cSprhs;
 
   cSprhs = sprhs; /* Line 521, Address: 0x100ea98 */
-  iXwork = pActwk->xposi.w.h + cSprhs; /* Line 522, Address: 0x100eaa4 */
+  iXwork = pActwk->xposi.w.h + (short)cSprhs; /* Line 522, Address: 0x100eaa4 */
   return emycol_l3(pActwk, iXwork, pActwk->yposi.w.h); /* Line 523, Address: 0x100ead8 */
 } /* Line 524, Address: 0x100eaf0 */
 
@@ -561,7 +561,7 @@ short emycol_r(sprite_status* pActwk, unsigned char sprhs) { /* Line 559, Addres
   char cSprhs;
 
   cSprhs = sprhs; /* Line 563, Address: 0x100eb98 */
-  iXwork = pActwk->xposi.w.h + cSprhs; /* Line 564, Address: 0x100eba4 */
+  iXwork = pActwk->xposi.w.h + (short)cSprhs; /* Line 564, Address: 0x100eba4 */
   return emycol_r3(pActwk, iXwork, pActwk->yposi.w.h); /* Line 565, Address: 0x100ebd8 */
 } /* Line 566, Address: 0x100ebf0 */
 
@@ -608,7 +608,7 @@ short dircolchk(short* ipD0, short* ipD1, short* ipD3, char* cpDirec) { /* Line 
   short iWork;
 
 
-  if (*ipD1 < *ipD0) /* Line 611, Address: 0x100ec98 */
+  if (*ipD1 > *ipD0) /* Line 611, Address: 0x100ec98 */
   {
     iWork = *ipD1; /* Line 613, Address: 0x100ecc4 */
     *ipD1 = *ipD0; /* Line 614, Address: 0x100ecd4 */

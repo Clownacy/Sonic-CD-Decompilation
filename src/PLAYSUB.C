@@ -60,7 +60,7 @@ label1:
 
       case 254:
         pat_no = sprpat_adr[patchgwk->patcnt + 2]; /* Line 62, Address: 0x1015300 */
-        patchgwk->patcnt -= pat_no; /* Line 63, Address: 0x101531c */
+        patchgwk->patcnt = patchgwk->patcnt - pat_no; /* Line 63, Address: 0x101531c */
         pat_no = sprpat_adr[patchgwk->patcnt + 1]; /* Line 64, Address: 0x101533c */
         goto label1; /* Line 65, Address: 0x1015358 */
 
@@ -271,7 +271,7 @@ void test_move(sprite_status* testwk) { /* Line 269, Address: 0x1015b90 */
 
   cal0 = ((unsigned short*)testwk)[26] & 65408; /* Line 272, Address: 0x1015ba4 */
   cal1 = (unsigned short)(scra_h_posit.w.h - 128) & 65408; /* Line 273, Address: 0x1015bbc */
-  if ((cal0 - cal1) >= 641) { frameout(testwk); return; } /* Line 274, Address: 0x1015be4 */
+  if ((cal0 - cal1) > 640) { frameout(testwk); return; } /* Line 274, Address: 0x1015be4 */
 
   patchg(testwk, bariachg); /* Line 276, Address: 0x1015c10 */
   actionsub(testwk); /* Line 277, Address: 0x1015c24 */
@@ -653,10 +653,10 @@ void exit2_set(sprite_status* testwk) { /* Line 641, Address: 0x1016960 */
 char col_chk(sprite_status* thingwk, sprite_status* sonicwk) { /* Line 653, Address: 0x10169a0 */
   short cal_posi;
 
-  cal_posi = thingwk->sprhsize + (sonicwk->xposi.w.h - thingwk->xposi.w.h); /* Line 656, Address: 0x10169b0 */
+  cal_posi = (short)thingwk->sprhsize + (sonicwk->xposi.w.h - thingwk->xposi.w.h); /* Line 656, Address: 0x10169b0 */
   if (cal_posi < 0) return 0; /* Line 657, Address: 0x10169fc */
   if (cal_posi >= (thingwk->sprhsize * 2)) return 0; /* Line 658, Address: 0x1016a18 */
-  cal_posi = thingwk->sprvsize + (sonicwk->yposi.w.h - thingwk->yposi.w.h); /* Line 659, Address: 0x1016a48 */
+  cal_posi = (short)thingwk->sprvsize + (sonicwk->yposi.w.h - thingwk->yposi.w.h); /* Line 659, Address: 0x1016a48 */
   if (cal_posi < 0) return 0; /* Line 660, Address: 0x1016a94 */
   if (cal_posi >= (thingwk->sprvsize * 2)) return 0; /* Line 661, Address: 0x1016ab0 */
   return 1; /* Line 662, Address: 0x1016ae0 */
@@ -797,14 +797,14 @@ void muteki_sub(sprite_status* bariawk) { /* Line 786, Address: 0x1017070 */
   cal_no = bariawk->mstno.b.h - 1; /* Line 797, Address: 0x10170dc */
   if (cal_no >= 4) cal_no -= 4; /* Line 798, Address: 0x10170f8 */
   cal_no = cal_no * 24 + 4; /* Line 799, Address: 0x1017110 */
-  ppw_offset.b.l -= cal_no; /* Line 800, Address: 0x101712c */
+  ((ushort_union*)&ppw_offset)->b.l = ((ushort_union*)&ppw_offset)->b.l - cal_no; /* Line 800, Address: 0x101712c */
   cal_no = bariawk->actfree[6]; /* Line 801, Address: 0x1017144 */
-  ppw_offset.b.l -= cal_no; /* Line 802, Address: 0x1017150 */
+  ((ushort_union*)&ppw_offset)->b.l = ((ushort_union*)&ppw_offset)->b.l - cal_no; /* Line 802, Address: 0x1017150 */
   if ((cal_no += 4) >= 24) cal_no = 0; /* Line 803, Address: 0x1017168 */
   bariawk->actfree[6] = cal_no; /* Line 804, Address: 0x1017188 */
 
-  bariawk->xposi.w.h = playposiwk[ppw_offset.w / 2]; /* Line 806, Address: 0x1017190 */
-  bariawk->yposi.w.h = playposiwk[ppw_offset.w / 2 + 1]; /* Line 807, Address: 0x10171cc */
+  bariawk->xposi.w.h = playposiwk[((ushort_union*)&ppw_offset)->w / 2]; /* Line 806, Address: 0x1017190 */
+  bariawk->yposi.w.h = playposiwk[((ushort_union*)&ppw_offset)->w / 2 + 1]; /* Line 807, Address: 0x10171cc */
 
   bariawk->cddat = actwk[0].cddat; /* Line 809, Address: 0x101720c */
   patchg(bariawk, bariachg); /* Line 810, Address: 0x101721c */
@@ -877,7 +877,7 @@ void ball_move(sprite_status* ballwk) { /* Line 863, Address: 0x10173d0 */
     if (((unsigned char)actwk[0].direc.b.h + 32 & 192) == 128) /* Line 877, Address: 0x1017520 */
       actwk[0].mspeed.w = -actwk[0].mspeed.w; /* Line 878, Address: 0x1017544 */
     goto label1; /* Line 879, Address: 0x1017568 */
-  } else if (ballwk->userflag.b.h >= 2) { ball_rd7(ballwk); return; } /* Line 880, Address: 0x1017570 */
+  } else if ((unsigned char)ballwk->userflag.b.h >= 2) { ball_rd7(ballwk); return; } /* Line 880, Address: 0x1017570 */
   if ((cal_speed0 = actwk[0].yspeed.w) < 0) cal_speed0 = -cal_speed0; /* Line 881, Address: 0x10175a0 */
   if (cal_speed0 < 3328) cal_speed0 = 3328; /* Line 882, Address: 0x10175dc */
   if (actwk[0].yspeed.w < 0) cal_speed0 = -cal_speed0; /* Line 883, Address: 0x10175fc */

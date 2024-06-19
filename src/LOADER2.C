@@ -33,12 +33,12 @@ extern void(*CDPlay)(short);
 void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /* Line 33, Address: 0x10136b0 */
   unsigned char stage, round;
 
-  round = (char)(StageNo >> 8) + 1; /* Line 36, Address: 0x10136c8 */
-  if (round >= 2) ++round; /* Line 37, Address: 0x10136e0 */
-  stage = (char)StageNo + 1; /* Line 38, Address: 0x10136f8 */
+  round = ((short_union*)&StageNo)->b.h + 1; /* Line 36, Address: 0x10136c8 */
+  if (round > 1) ++round; /* Line 37, Address: 0x10136e0 */
+  stage = ((short_union*)&StageNo)->b.l + 1; /* Line 38, Address: 0x10136f8 */
 
-  *buf++ = round + 48; /* Line 40, Address: 0x1013710 */
-  *buf++ = stage + 48; /* Line 41, Address: 0x1013734 */
+  *buf++ = (unsigned char)(round + 48); /* Line 40, Address: 0x1013710 */
+  *buf++ = (unsigned char)(stage + 48); /* Line 41, Address: 0x1013734 */
   switch (Time_Flag & 127) { /* Line 42, Address: 0x1013758 */
     case 0:
       *buf++ = 66; /* Line 44, Address: 0x101378c */
@@ -183,7 +183,7 @@ void sub_sync(short ReqNo) { /* Line 177, Address: 0x1013bd0 */
     WaveRequest(ReqNo - 43); /* Line 183, Address: 0x1013c30 */
     return; /* Line 184, Address: 0x1013c58 */
   }
-  if ((ReqNo >= 15 && ReqNo < 35) || (ReqNo >= 48 && ReqNo < 55)) { /* Line 186, Address: 0x1013c60 */
+  if ((ReqNo >= 15 && ReqNo <= 34) || (ReqNo >= 48 && ReqNo < 55)) { /* Line 186, Address: 0x1013c60 */
     CDPlay(ReqNo - 12); /* Line 187, Address: 0x1013cc0 */
   } /* Line 188, Address: 0x1013ce8 */
   else if (ReqNo >= 102 && ReqNo < 113) { /* Line 189, Address: 0x1013cf0 */

@@ -324,7 +324,7 @@ int actnoset(unsigned char cnt, unsigned short* pIndex) { /* Line 298, Address: 
 
   pActwk->xposi.w.h = pAsetadr_w->x; /* Line 325, Address: 0x10009e4 */
   pActwk->yposi.w.h = pAsetadr_w->y & 4095; /* Line 326, Address: 0x10009f8 */
-  revflg = pAsetadr_w->y >> 14 & 3; /* Line 327, Address: 0x1000a1c */
+  revflg = (unsigned short)(pAsetadr_w->y >> 14) & 3; /* Line 327, Address: 0x1000a1c */
   pActwk->actflg = revflg; /* Line 328, Address: 0x1000a44 */
   pActwk->cddat = revflg; /* Line 329, Address: 0x1000a4c */
   an = pAsetadr_w->a; /* Line 330, Address: 0x1000a54 */
@@ -410,7 +410,7 @@ int actwkchk2(sprite_status* pActwk, sprite_status** ppNewActwk) { /* Line 403, 
 
   while (1)
   {
-    if (pLastActwk < pNextActwk) break; /* Line 413, Address: 0x1000ba4 */
+    if (pNextActwk > pLastActwk) break; /* Line 413, Address: 0x1000ba4 */
     if (pNextActwk->actno == 0) /* Line 414, Address: 0x1000bb0 */
     {
       *ppNewActwk = pNextActwk; /* Line 416, Address: 0x1000bc0 */
@@ -455,7 +455,7 @@ int frameout_s00(sprite_status* pActwk, short xposi) { /* Line 441, Address: 0x1
     scra_h -= 128; /* Line 455, Address: 0x1000cac */
     scra_h &= -128; /* Line 456, Address: 0x1000cb8 */
     xposi -= scra_h; /* Line 457, Address: 0x1000cc8 */
-    if ((unsigned short)xposi < 641) /* Line 458, Address: 0x1000cd4 */
+    if ((unsigned short)xposi <= 640) /* Line 458, Address: 0x1000cd4 */
     {
       if (!(time_flag & 128)) return 0; /* Line 460, Address: 0x1000cec */
     }
@@ -471,7 +471,7 @@ int frameout_s00(sprite_status* pActwk, short xposi) { /* Line 441, Address: 0x1
     tflag.w &= -129; /* Line 471, Address: 0x1000d7c */
     if (zflag == 0) /* Line 472, Address: 0x1000d8c */
     {
-      tflag.w += -time_item; /* Line 474, Address: 0x1000d9c */
+      tflag.w += -(short)time_item; /* Line 474, Address: 0x1000d9c */
       if (tflag.w < 0) tflag.w = 0; /* Line 475, Address: 0x1000dcc */
       else if (tflag.w >= 3) tflag.w = 2; /* Line 476, Address: 0x1000dec */
     }
@@ -503,7 +503,7 @@ int frameout_s0(sprite_status* pActwk) { /* Line 491, Address: 0x1000e70 */
     tflag.w &= -129; /* Line 503, Address: 0x1000ef4 */
     if (zflag == 0) /* Line 504, Address: 0x1000f04 */
     {
-      tflag.w += -time_item; /* Line 506, Address: 0x1000f14 */
+      tflag.w += -(short)time_item; /* Line 506, Address: 0x1000f14 */
       if (tflag.w < 0) tflag.w = 0; /* Line 507, Address: 0x1000f44 */
       else if (tflag.w >= 3) tflag.w = 2; /* Line 508, Address: 0x1000f64 */
     }

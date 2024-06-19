@@ -589,10 +589,10 @@ void ari_move(sprite_status* pActwk) { /* Line 583, Address: 0x1004e60 */
   do
   {
     spd_x = *(int*)&pActwk->actfree[0]; /* Line 591, Address: 0x1004e7c */
-    pActwk->xposi.l += spd_x; /* Line 592, Address: 0x1004e88 */
+    pActwk->xposi.l = pActwk->xposi.l + spd_x; /* Line 592, Address: 0x1004e88 */
     xpos = pActwk->xposi.w.h; /* Line 593, Address: 0x1004e9c */
     xpos_m = ((short*)pActwk)[25]; /* Line 594, Address: 0x1004eac */
-    xpos -= xpos_m; /* Line 595, Address: 0x1004ebc */
+    xpos = xpos - xpos_m; /* Line 595, Address: 0x1004ebc */
     if (xpos < 0) xpos = -xpos; /* Line 596, Address: 0x1004ee0 */
     if (xpos < 128) /* Line 597, Address: 0x1004f0c */
     {
@@ -601,7 +601,7 @@ void ari_move(sprite_status* pActwk) { /* Line 583, Address: 0x1004e60 */
       {
         if (c < 8) /* Line 602, Address: 0x1004f48 */
         {
-          pActwk->yposi.w.h += c; /* Line 604, Address: 0x1004f5c */
+          pActwk->yposi.w.h = pActwk->yposi.w.h + c; /* Line 604, Address: 0x1004f5c */
           patchg(pActwk, ari_pchg); /* Line 605, Address: 0x1004f88 */
           break; /* Line 606, Address: 0x1004f9c */
         }
@@ -687,7 +687,7 @@ void chou_move(sprite_status* pActwk) { /* Line 681, Address: 0x10051e0 */
   pActwk->xposi.l += ((int*)pActwk)[13]; /* Line 687, Address: 0x10051f4 */
   xpos = pActwk->xposi.w.h; /* Line 688, Address: 0x100520c */
   xpos -= ((short*)pActwk)[23]; /* Line 689, Address: 0x100521c */
-  if (xpos < 0) xpos = -xpos; /* Line 690, Address: 0x1005230 */
+  if (xpos < 0) xpos *= -1; /* Line 690, Address: 0x1005230 */
   if (xpos >= 128) /* Line 691, Address: 0x100524c */
   {
     ((int*)pActwk)[13] *= -1; /* Line 693, Address: 0x1005260 */
@@ -817,7 +817,7 @@ void ka_move(sprite_status* pActwk) { /* Line 792, Address: 0x10055a0 */
     pActwk->xposi.l += ((int*)pActwk)[12]; /* Line 817, Address: 0x1005678 */
     d0 = pActwk->xposi.w.h; /* Line 818, Address: 0x1005690 */
     d0 -= ((short*)pActwk)[23]; /* Line 819, Address: 0x10056a0 */
-    if (d0 < 0) d0 = -d0; /* Line 820, Address: 0x10056b4 */
+    if (d0 < 0) d0 *= -1; /* Line 820, Address: 0x10056b4 */
     if (d0 < 128) break; /* Line 821, Address: 0x10056d0 */
     ((int*)pActwk)[12] *= -1; /* Line 822, Address: 0x10056e4 */
     pActwk->actflg = pActwk->actflg ^ 1; /* Line 823, Address: 0x10056f4 */
@@ -990,7 +990,7 @@ void kamemusi_move(sprite_status* pActwk) { /* Line 967, Address: 0x1005b20 */
     pActwk->xposi.l += ((int*)pActwk)[12]; /* Line 990, Address: 0x1005bb8 */
     d0 = pActwk->xposi.w.h; /* Line 991, Address: 0x1005bd0 */
     d0 -= ((short*)pActwk)[23]; /* Line 992, Address: 0x1005be0 */
-    if (d0 < 0) d0 = -d0; /* Line 993, Address: 0x1005bf4 */
+    if (d0 < 0) d0 *= -1; /* Line 993, Address: 0x1005bf4 */
     if (d0 < 128) /* Line 994, Address: 0x1005c10 */
     {
       d1 = emycol_d(pActwk); /* Line 996, Address: 0x1005c24 */

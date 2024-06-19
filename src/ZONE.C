@@ -405,7 +405,7 @@ static void title_init(sprite_status* pAct) { /* Line 375, Address: 0x1012750 */
     if (i == 5) { /* Line 405, Address: 0x101288c */
       pTmpAct->patno = pTmpAct->patno + (unsigned char)stageno.b.l; /* Line 406, Address: 0x1012898 */
     }
-    pTmpAct->pattim = *wp++; /* Line 408, Address: 0x10128c4 */
+    pTmpAct->pattim = *wp++ & 255; /* Line 408, Address: 0x10128c4 */
   } /* Line 409, Address: 0x10128e4 */
 
 } /* Line 411, Address: 0x10128f4 */
@@ -585,7 +585,7 @@ label1:
       pTmpAct->yposi.w.h = *wp++; /* Line 585, Address: 0x101300c */
       pTmpAct->xposi.w.h = *wp++; /* Line 586, Address: 0x1013020 */
       ((short*)pTmpAct)[23] = *wp++; /* Line 587, Address: 0x1013034 */
-      pTmpAct->patno = *wp++; /* Line 588, Address: 0x1013048 */
+      pTmpAct->patno = *wp++ & 255; /* Line 588, Address: 0x1013048 */
 
       if (i == 2) {  /* Line 590, Address: 0x1013068 */
         pTmpAct->patno = pTmpAct->patno + stageno.b.l; /* Line 591, Address: 0x1013074 */

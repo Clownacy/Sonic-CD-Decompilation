@@ -29,4 +29,4 @@ void tagame_wait(sprite_status* pActwk);
 void tagame_wait1(sprite_status* pActwk);
 void tagame_jump(sprite_status* pActwk);
 void tagame_jump1(sprite_status* pActwk);
-void ene_tama();
+void ene_tama(sprite_status* pActwk);

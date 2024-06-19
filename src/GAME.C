@@ -21,6 +21,10 @@ extern void mapwrt();
 extern void flashin();
 extern void fadein0();
 
+static void Print_Msg();
+static void back_to_cnt();
+static void bye_cnt();
+
 static short Interupt_Counter;
 static unsigned int PauseIcon;
 extern bmp_info SprBmp[700];
@@ -44,7 +48,7 @@ int(*SetGrid)(int, int, int, int);
 extern unsigned char zone1scd[];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*))&game,
+  (void (*)())&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -57,10 +61,6 @@ dlink_export ExportedFunctions = {
   0
 };
 int(*sGetFileSize)(int);
-
-
-
-
 
 
 
@@ -457,9 +457,9 @@ int game() { /* Line 323, Address: 0x1017f70 */
   scrflagzw.w = scrflagz.w; /* Line 457, Address: 0x1018554 */
   scrollwrt(); /* Line 458, Address: 0x1018564 */
   scoreset(); /* Line 459, Address: 0x101856c */
-
-  /*cg_change(); */ /* Line 461, Address: 0x1018574 */
-
+#if defined(CG_CHANGE)
+  cg_change();  /* Line 461, Address: 0x1018574 */
+#endif
 
   if (!pauseflag.b.h) { /* Line 464, Address: 0x101857c */
     bye_cnt(); /* Line 465, Address: 0x101858c */
@@ -745,9 +745,9 @@ void game_init() { /* Line 475, Address: 0x10185d0 */
   swbufcnt = 0; /* Line 745, Address: 0x1018f2c */
   startcolor = 32; /* Line 746, Address: 0x1018f34 */
   colorcnt = 47; /* Line 747, Address: 0x1018f40 */
-
-  /* cg_change(); */ /* Line 749, Address: 0x1018f4c */
-
+#if defined(CG_CHANGE)
+  cg_change(); /* Line 749, Address: 0x1018f4c */
+#endif
   tv_flag = 1; /* Line 751, Address: 0x1018f54 */
 
 
@@ -792,7 +792,7 @@ void flow_act_set() { /* Line 787, Address: 0x1019030 */
   fcnt = flowercnt[time]; /* Line 792, Address: 0x1019054 */
   if (fcnt != 0) { /* Line 793, Address: 0x1019068 */
     --fcnt; /* Line 794, Address: 0x1019070 */
-    pAct = &actwk[20]; /* Line 795, Address: 0x1019074 */
+    pAct = &actwk[32]; /* Line 795, Address: 0x1019074 */
     i = 0; /* Line 796, Address: 0x101907c */
     do {
       pAct->actno = 31; /* Line 798, Address: 0x1019080 */
@@ -886,7 +886,7 @@ void sdfdout() { /* Line 869, Address: 0x1019340 */
 
 
 void sdfdin() { /* Line 888, Address: 0x10193f0 */
-  if ((pauseflag.b.h & 128)) { /* Line 889, Address: 0x10193f8 */
+  if (pauseflag.b.h & 128) { /* Line 889, Address: 0x10193f8 */
 
 
     pauseflag.b.h &= 127; /* Line 892, Address: 0x1019410 */

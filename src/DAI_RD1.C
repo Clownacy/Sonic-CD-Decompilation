@@ -204,9 +204,9 @@ static void dodai_init(sprite_status* pActwk) { /* Line 158, Address: 0x1002100 
 
 
       pNewact->userflag.b.h = pActwk->userflag.b.l & 2; /* Line 206, Address: 0x10022f0 */
-      wk = pActwk->userflag.b.l & 255 & 248U; /* Line 207, Address: 0x1002314 */
+      wk = (unsigned char)pActwk->userflag.b.l & 248; /* Line 207, Address: 0x1002314 */
       pNewact->actfree[14] = wk; /* Line 208, Address: 0x1002338 */
-      pNewact->xposi.w.h += wk; /* Line 209, Address: 0x1002340 */
+      pNewact->xposi.w.h += (unsigned short)wk; /* Line 209, Address: 0x1002340 */
     }
   }
 } /* Line 212, Address: 0x1002360 */
@@ -247,7 +247,7 @@ static void dodai_move(sprite_status* pActwk) { /* Line 234, Address: 0x1002380 
 
   xlen = ((unsigned short*)pActwk)[30] & 65408; /* Line 248, Address: 0x1002404 */
   xlen -= (scra_h_posit.w.h - 128) & -128; /* Line 249, Address: 0x100241c */
-  if (xlen >= 641) { /* Line 250, Address: 0x1002444 */
+  if (xlen > 640) { /* Line 250, Address: 0x1002444 */
     ride_on_clr(pActwk, &actwk[0]); /* Line 251, Address: 0x1002454 */
     dai_fout(pActwk); /* Line 252, Address: 0x1002468 */
   }
@@ -685,7 +685,7 @@ static void vfuta_move2(sprite_status* pActwk) { /* Line 681, Address: 0x1003370
   wk += 8; /* Line 685, Address: 0x1003390 */
   pActwk->actfree[16] += 8; /* Line 686, Address: 0x100339c */
 
-  if (wk >= 256) { /* Line 688, Address: 0x10033ac */
+  if (wk > 255) { /* Line 688, Address: 0x10033ac */
     pActwk->r_no0 -= 2; /* Line 689, Address: 0x10033c0 */
     pActwk->patno = 0; /* Line 690, Address: 0x10033d0 */
   }

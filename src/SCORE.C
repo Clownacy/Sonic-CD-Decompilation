@@ -409,7 +409,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
   plscore_f = 1; /* Line 409, Address: 0x100547c */
 
   plscore += updata; /* Line 411, Address: 0x1005488 */
-  if (plscore >= 1000000U) { /* Line 412, Address: 0x10054a0 */
+  if ((unsigned int)plscore > 999999) { /* Line 412, Address: 0x10054a0 */
 
     plscore = 999999; /* Line 414, Address: 0x10054bc */
   }
@@ -458,7 +458,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
       }
 
       plring_f = 0; /* Line 460, Address: 0x1005640 */
-      if (plring >= 1000) plring = 999; /* Line 461, Address: 0x1005648 */
+      if (plring > 999) plring = 999; /* Line 461, Address: 0x1005648 */
 
       pSprdat = &scorepat0.spra[16]; /* Line 463, Address: 0x1005670 */
       ringwrt(pSprdat, plring); /* Line 464, Address: 0x1005678 */
@@ -606,7 +606,7 @@ static void scorewrt2(sprite_data* pSprdat, unsigned int lDispVal, unsigned int*
       wrt = 1; /* Line 606, Address: 0x1005ba0 */
     }
     if (wrt != 0 || (sD6 == 0 && zero_disp)) { /* Line 608, Address: 0x1005ba4 */
-      pSprdat->index = lDisp1 + 308; /* Line 609, Address: 0x1005bcc */
+      pSprdat->index = (unsigned short)lDisp1 + 308; /* Line 609, Address: 0x1005bcc */
     } /* Line 610, Address: 0x1005be4 */
     else {
       pSprdat->index = 0; /* Line 612, Address: 0x1005bec */
@@ -630,7 +630,7 @@ static void posiwrt0(sprite_data* pSprdat, unsigned int lDispVal) { /* Line 624,
 static void playsuuwrt(sprite_data* pSprdat) { /* Line 630, Address: 0x1005c80 */
   unsigned int lDispVal;
 
-  if (pl_suu >= 10) /* Line 633, Address: 0x1005c90 */
+  if (pl_suu > 9) /* Line 633, Address: 0x1005c90 */
     lDispVal = 9; /* Line 634, Address: 0x1005ca8 */
   else
     lDispVal = pl_suu; /* Line 636, Address: 0x1005cb4 */

@@ -171,7 +171,7 @@ void hoshi_move(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 155, Ad
 
     iXwork >>= 1; /* Line 172, Address: 0x101b33c */
     if (pPlaywk->xposi.w.h < ((short*)pActwk)[23]) /* Line 173, Address: 0x101b348 */
-      iXwork = -iXwork; /* Line 174, Address: 0x101b374 */
+      iXwork *= -1; /* Line 174, Address: 0x101b374 */
 
   }
   iXwork += ((unsigned short*)pActwk)[24]; /* Line 177, Address: 0x101b380 */
@@ -376,7 +376,7 @@ void kasoku_move(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 340, A
   iD1 >>= 2; /* Line 376, Address: 0x101b980 */
   iD2 = iD1 >> 1; /* Line 377, Address: 0x101b98c */
   iD1 += iD2; /* Line 378, Address: 0x101b9a8 */
-  if (pActwk->userflag.b.h != 0) iD1 = -iD1; /* Line 379, Address: 0x101b9b4 */
+  if (pActwk->userflag.b.h != 0) iD1 *= -1; /* Line 379, Address: 0x101b9b4 */
 label1:
   pActwk->xposi.w.h = ((short*)pActwk)[23] + iD1; /* Line 381, Address: 0x101b9d8 */
 

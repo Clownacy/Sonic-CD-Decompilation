@@ -258,7 +258,7 @@ short hitchk(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 243, Add
   if (editmode.b.h != 0) /* Line 258, Address: 0x1019bf4 */
     return hit_e(pActwk, pPlayerwk); /* Line 259, Address: 0x1019c0c */
 
-  iD1 = pActwk->sprhsize + 10; /* Line 261, Address: 0x1019c24 */
+  iD1 = (short)pActwk->sprhsize + 10; /* Line 261, Address: 0x1019c24 */
   iD0 = pPlayerwk->xposi.w.h - pActwk->xposi.w.h; /* Line 262, Address: 0x1019c4c */
   iD0 += iD1; /* Line 263, Address: 0x1019c80 */
   if (iD0 < 0) /* Line 264, Address: 0x1019c8c */
@@ -314,7 +314,7 @@ short hit_v(sprite_status* pActwk, sprite_status* pPlayerwk, short iHitXs, short
     iwk = 2; /* Line 314, Address: 0x1019eb0 */
 
 
-  iHitVs = (unsigned short)pActwk->sprvsize + (unsigned short)pPlayerwk->sprvsize + iwk; /* Line 317, Address: 0x1019ebc */
+  iHitVs = (short)pActwk->sprvsize + (short)pPlayerwk->sprvsize + iwk; /* Line 317, Address: 0x1019ebc */
 
 
 
@@ -504,7 +504,7 @@ short hit_y(sprite_status* pActwk, sprite_status* pPlayerwk, short iHitYs) { /* 
     if (iDirCol < 0) /* Line 504, Address: 0x101a590 */
     {
       if (pActwk->xspeed.w < 0) /* Line 506, Address: 0x101a5a0 */
-        iDirCol = -iDirCol; /* Line 507, Address: 0x101a5b8 */
+        iDirCol *= -1; /* Line 507, Address: 0x101a5b8 */
       pPlayerwk->xposi.w.h += iDirCol; /* Line 508, Address: 0x101a5c4 */
     }
   }
@@ -705,9 +705,9 @@ void hit_set(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 682, Add
 
     if (pActwk->actno == 21) return; /* Line 706, Address: 0x101aba8 */
 
-
-
-
+#if defined(R41A)
+    if (pActwk->actno == 40 && pHitAct->actno == 39) return;
+#endif
 
     if (stageno.w == 768 && pActwk->actno == 39 && pHitAct->actno == 39) return; /* Line 712, Address: 0x101abc0 */
 

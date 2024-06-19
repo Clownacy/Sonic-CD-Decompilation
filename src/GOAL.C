@@ -159,13 +159,13 @@ void gene_move0(sprite_status* pActwk) { /* Line 139, Address: 0x100f3d0 */
   if (iD0 >= iD1) goto label1; /* Line 159, Address: 0x100f4c4 */
 
   iD0 = actwk[0].yspeed.w; /* Line 161, Address: 0x100f4e0 */
-  iD0 = -iD0; /* Line 162, Address: 0x100f4f0 */
+  iD0 *= -1; /* Line 162, Address: 0x100f4f0 */
   iD0 >>= 2; /* Line 163, Address: 0x100f4fc */
   actwk[0].yspeed.w = iD0; /* Line 164, Address: 0x100f508 */
   return; /* Line 165, Address: 0x100f510 */
 label1:
   iD0 = actwk[0].xspeed.w; /* Line 167, Address: 0x100f518 */
-  iD0 = -iD0; /* Line 168, Address: 0x100f528 */
+  iD0 *= -1; /* Line 168, Address: 0x100f528 */
   iD0 >>= 2; /* Line 169, Address: 0x100f534 */
   actwk[0].xspeed.w = iD0; /* Line 170, Address: 0x100f540 */
 } /* Line 171, Address: 0x100f548 */
@@ -199,7 +199,7 @@ void gene_move1(sprite_status* pActwk) { /* Line 183, Address: 0x100f570 */
   bywk = pActwk->actfree[0]; /* Line 199, Address: 0x100f5c4 */
   iD0 = bywk; /* Line 200, Address: 0x100f5d0 */
   --iD0; /* Line 201, Address: 0x100f5dc */
-  pActwk->actfree[0] = (unsigned short)iD0; /* Line 202, Address: 0x100f5e8 */
+  pActwk->actfree[0] = iD0; /* Line 202, Address: 0x100f5e8 */
   if (iD0 >= 0) { /* Line 203, Address: 0x100f5f4 */
     iD1 = iD0; /* Line 204, Address: 0x100f604 */
     iD1 &= 3; /* Line 205, Address: 0x100f60c */
@@ -630,7 +630,7 @@ void mosug_move0(sprite_status* pActwk, sprite_status* pPlaywk) { /* Line 616, A
     pPlaywk->sproffset &= 32767; /* Line 630, Address: 0x10103d0 */
   }
 
-  if (stageno.w == 1280 && scralim_left >= 11352 && pPlaywk->yposi.w.h >= 620 && pPlaywk->yposi.w.h < 653) { /* Line 633, Address: 0x10103e0 */
+  if (stageno.w == 1280 && scralim_left >= 11352 && pPlaywk->yposi.w.h >= 620 && pPlaywk->yposi.w.h <= 652) { /* Line 633, Address: 0x10103e0 */
 
     pPlaywk->sproffset &= 32767; /* Line 635, Address: 0x1010450 */
   }
@@ -716,7 +716,7 @@ void offset_set(sprite_status* pActwk) { /* Line 697, Address: 0x1010640 */
   short_union stagewk;
 
   stagewk.w = stageno.w; /* Line 718, Address: 0x1010684 */
-  stagewk.b.l = stagewk.b.l << 7; /* Line 719, Address: 0x1010690 */
+  stagewk.b.l <<= 7; /* Line 719, Address: 0x1010690 */
   stagewk.w >>= 4; /* Line 720, Address: 0x101069c */
   iD0 = stagewk.b.l; /* Line 721, Address: 0x10106a8 */
   iD1 = time_flag; /* Line 722, Address: 0x10106bc */
@@ -877,7 +877,7 @@ void goal_move2(sprite_status* pActwk) { /* Line 841, Address: 0x1010a70 */
   bonus_f = 1; /* Line 877, Address: 0x1010bbc */
   iD0 = pltime.b.b3 + pltime.b.b2 * 60; /* Line 878, Address: 0x1010bc8 */
   iD0 /= 15; /* Line 879, Address: 0x1010c08 */
-  if (iD0 >= 21) { /* Line 880, Address: 0x1010c28 */
+  if (iD0 > 20) { /* Line 880, Address: 0x1010c28 */
     iD0 = 20; /* Line 881, Address: 0x1010c3c */
   }
 

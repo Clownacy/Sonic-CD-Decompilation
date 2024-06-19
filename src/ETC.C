@@ -31,7 +31,7 @@ void frameoutchk(sprite_status* pActwk) { /* Line 23, Address: 0x1000fe0 */
   scra_h -= 128; /* Line 31, Address: 0x1001028 */
   scra_h &= -128; /* Line 32, Address: 0x1001034 */
   xposi -= scra_h; /* Line 33, Address: 0x1001044 */
-  if (xposi < 641) /* Line 34, Address: 0x1001050 */
+  if (xposi <= 640) /* Line 34, Address: 0x1001050 */
    {
     actionsub(pActwk); /* Line 36, Address: 0x1001064 */
   } /* Line 37, Address: 0x1001070 */
@@ -166,16 +166,16 @@ short atan_sonic(short x, short y) { /* Line 130, Address: 0x10011b0 */
     {
       xl = (xl << 8) & -256; /* Line 167, Address: 0x100127c */
       xl /= yl; /* Line 168, Address: 0x1001288 */
-      ret = 64 - atantbl[xl]; /* Line 169, Address: 0x100129c */
+      ret = 64 - (short)atantbl[xl]; /* Line 169, Address: 0x100129c */
     }
     if (x < 0) /* Line 171, Address: 0x10012cc */
     {
-      ret = -ret; /* Line 173, Address: 0x10012e0 */
+      ret *= -1; /* Line 173, Address: 0x10012e0 */
       ret += 128; /* Line 174, Address: 0x10012ec */
     }
     if (y < 0) /* Line 176, Address: 0x10012f8 */
     {
-      ret = -ret; /* Line 178, Address: 0x100130c */
+      ret *= -1; /* Line 178, Address: 0x100130c */
       ret += 256; /* Line 179, Address: 0x1001318 */
     }
     return ret; /* Line 181, Address: 0x1001324 */

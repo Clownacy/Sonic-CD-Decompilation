@@ -49,21 +49,21 @@ void play00(sprite_status* actionwk) { /* Line 47, Address: 0x10209a0 */
 
   Brake_Req = 0; /* Line 50, Address: 0x10209b0 */
 
-  if (actwk[0].actno != 32) return; /* Line 52, Address: 0x10209b8 */
+  if (actionwk != &actwk[0]) return; /* Line 52, Address: 0x10209b8 */
 
   if (ta_flag == 0 && editmode.b.h != 0) { edit(&actwk[0]); return; } /* Line 54, Address: 0x10209cc */
 
   d0 = actwk[0].actfree[0]; /* Line 56, Address: 0x1020a10 */
-  if (d0 != 0) /* Line 57, Address: 0x1020a1c */
+  if (d0 != 0) { /* Line 57, Address: 0x1020a1c */
     ++d0; /* Line 58, Address: 0x1020a28 */
-  if (actwk[0].cddat & 4) { /* Line 59, Address: 0x1020a30 */
-    if (d0 >= 45) d0 = 45; /* Line 60, Address: 0x1020a48 */
-  } /* Line 61, Address: 0x1020a60 */
-  else if (d0 >= 30) d0 = 30; /* Line 62, Address: 0x1020a68 */
+    if (actwk[0].cddat & 4) { /* Line 59, Address: 0x1020a30 */
+      if (d0 >= 45) d0 = 45; /* Line 60, Address: 0x1020a48 */
+    } /* Line 61, Address: 0x1020a60 */
+    else if (d0 >= 30) d0 = 30; /* Line 62, Address: 0x1020a68 */
 
 
-  actwk[0].actfree[0] = d0; /* Line 65, Address: 0x1020a80 */
-
+    actwk[0].actfree[0] = d0; /* Line 65, Address: 0x1020a80 */
+  }
 
 
   switch (actwk[0].r_no0) { /* Line 69, Address: 0x1020a88 */
@@ -144,9 +144,9 @@ void play00init() {
 
 
 void mizuki_set() { /* Line 146, Address: 0x1020cc0 */
- short d2, d3;
- unsigned int d1;
- sprite_status* new_actwk;
+  short d2, d3;
+  unsigned int d1;
+  sprite_status* new_actwk;
 
   if (stageno.b.h != 0) return; /* Line 151, Address: 0x1020cd4 */
   if (gametimer.b.l & 3) return; /* Line 152, Address: 0x1020cec */
@@ -154,7 +154,7 @@ void mizuki_set() { /* Line 146, Address: 0x1020cc0 */
   d2 += actwk[0].yposi.w.h; /* Line 154, Address: 0x1020d1c */
   d3 = actwk[0].xposi.w.h; /* Line 155, Address: 0x1020d30 */
   d1 = mapno_chk(d2, d3); /* Line 156, Address: 0x1020d40 */
-  if (d1 != 47) return; /* Line 157, Address: 0x1020d54 */
+  if ((d1 & 255) != 47) return; /* Line 157, Address: 0x1020d54 */
   if (actwk[0].xposi.w.h >= 5568) return; /* Line 158, Address: 0x1020d64 */
 
   if (actwk[0].actfree[2] == 0) return; /* Line 160, Address: 0x1020d80 */
@@ -174,8 +174,8 @@ void mizuki_set() { /* Line 146, Address: 0x1020cc0 */
 unsigned int mapno_chk(short d2, short d3) { /* Line 174, Address: 0x1020e40 */
   unsigned int d1;
 
-  d1 = 33; /* Line 177, Address: 0x1020e50 */
-  d1 = mapwka[d2 >> 8][d3 >> 8]; /* Line 178, Address: 0x1020e54 */
+  d1 = 2162688; /* Line 177, Address: 0x1020e50 */
+  d1 += mapwka[d2 >> 8][d3 >> 8]; /* Line 178, Address: 0x1020e54 */
   return d1; /* Line 179, Address: 0x1020e94 */
 } /* Line 180, Address: 0x1020e98 */
 
@@ -187,7 +187,7 @@ void kuru2() { /* Line 184, Address: 0x1020eb0 */
   if (actwk[0].mstno.b.h == 43 || actwk[0].r_no0 >= 4 || actwk[0].actfree[2] & 8) /* Line 187, Address: 0x1020ec0 */
     return; /* Line 188, Address: 0x1020f0c */
 
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h) % 2048 != 259) return; /* Line 190, Address: 0x1020f14 */
+  if ((scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h) & 2047) != 259) return; /* Line 190, Address: 0x1020f14 */
 
 
   actwk[0].actfree[2] |= 8; /* Line 193, Address: 0x1020f4c */
@@ -195,7 +195,7 @@ void kuru2() { /* Line 184, Address: 0x1020eb0 */
   actwk[0].yspeed.w = actwk[0].yspeed.w < 0 ? -512 : 512; /* Line 195, Address: 0x1020f68 */
   actwk[0].actfree[1] = 64; /* Line 196, Address: 0x1020fa0 */
   tmp_xposi = actwk[0].xposi.w.h; /* Line 197, Address: 0x1020fac */
-  tmp_xposi = (tmp_xposi & -16) + 8; /* Line 198, Address: 0x1020fb8 */
+  tmp_xposi = (tmp_xposi & 65520) + 8; /* Line 198, Address: 0x1020fb8 */
   *(short*)&actwk[0].actfree[20] = actwk[0].xposi.w.h = tmp_xposi; /* Line 199, Address: 0x1020fcc */
 
   actwk[0].mstno.b.h = 2; /* Line 201, Address: 0x1020fdc */
@@ -212,7 +212,7 @@ void bura() { /* Line 209, Address: 0x1021030 */
   if (actwk[0].mstno.b.h == 43 || plflag == 2 || actwk[0].actfree[2] & 5) /* Line 212, Address: 0x102103c */
     return; /* Line 213, Address: 0x1021088 */
 
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h) % 2048 != 345) return; /* Line 215, Address: 0x1021090 */
+  if ((scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h - 24) & 2047) != 345) return; /* Line 215, Address: 0x1021090 */
 
 
   if (backto_cnt != 0) { /* Line 218, Address: 0x10210dc */
@@ -227,7 +227,7 @@ void bura() { /* Line 209, Address: 0x1021030 */
   actwk[0].actfree[2] |= 4; /* Line 227, Address: 0x1021170 */
   actwk[0].pattimm = 7; /* Line 228, Address: 0x1021184 */
   tmp_yposi = actwk[0].yposi.w.h; /* Line 229, Address: 0x1021190 */
-  tmp_yposi = (tmp_yposi - 24 & -16) + 24; /* Line 230, Address: 0x102119c */
+  tmp_yposi = (tmp_yposi - 24 & 65520) + 24; /* Line 230, Address: 0x102119c */
   actwk[0].yposi.w.h = tmp_yposi; /* Line 231, Address: 0x10211b4 */
 } /* Line 232, Address: 0x10211bc */
 
@@ -243,12 +243,12 @@ void sibi2() { /* Line 239, Address: 0x10211d0 */
 
   if (actwk[0].mstno.b.h == 43 || actwk[0].r_no0 >= 4 /* Line 244, Address: 0x1021204 */
       || plpower_a != 0 || plpower_m != 0
-      || actwk[0].actfree[6] != 0 || st6clrchg == 0)
+      || ((short*)&actwk[0])[26] != 0 || st6clrchg == 0)
     return; /* Line 247, Address: 0x102128c */
 
   block_tbl = tbl[st6clrchg - 1]; /* Line 249, Address: 0x1021294 */
   block_no = scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h); /* Line 250, Address: 0x10212b4 */
-  block_no %= 2048; /* Line 251, Address: 0x10212dc */
+  block_no &= 2047; /* Line 251, Address: 0x10212dc */
   i = 0; /* Line 252, Address: 0x10212e8 */
   while (block_tbl[i] >= 0) { /* Line 253, Address: 0x10212ec */
     if (block_no == block_tbl[i++]) { /* Line 254, Address: 0x10212f4 */
@@ -258,30 +258,30 @@ void sibi2() { /* Line 239, Address: 0x10211d0 */
 } /* Line 258, Address: 0x102137c */
 
 
-/* TODO: Recheck the weird assembly for lines 275 and 278. */
+
 void sibi() { /* Line 262, Address: 0x10213a0 */
   short block_no, i;
   short* block_tbl;
   short tbl[3] = { 579, 580, 581 }; /* Line 265, Address: 0x10213b4 */
   short tbl0[3] = { 647, 648, 649 }; /* Line 266, Address: 0x10213d8 */
 
-  if (actwk[0].mstno.b.h == 43 || plpower_a != 0 || plpower_m != 0) return; /* Line 268, Address: 0x10213fc */
+  if (actwk[0].mstno.b.h == 43 || plpower_a || plpower_m) return; /* Line 268, Address: 0x10213fc */
   if (actwk[0].xposi.w.h >= 2432 && actwk[0].xposi.w.h < 2592) return; /* Line 269, Address: 0x1021440 */
 
-  if (bossflag & 128 || actwk[0].actfree[6] != 0) return; /* Line 271, Address: 0x1021478 */
+  if (bossflag & 128 || ((short*)&actwk[0])[26]) return; /* Line 271, Address: 0x1021478 */
   if (stageno.b.l == 2) { /* Line 272, Address: 0x10214a8 */
     if (actwk[0].xposi.w.h < 2576) goto label1; /* Line 273, Address: 0x10214c4 */
     if (boss_sound == 0) return; /* Line 274, Address: 0x10214e0 */
-    if (generate_flag == 0) goto label1; /* Line 275, Address: 0x10214f4 */
+    if (generate_flag) goto label1; /* Line 275, Address: 0x10214f4 */
   } /* Line 276, Address: 0x1021504 */
   else {
-    if (time_flag == 2) generate_flag < 1; /* Line 278, Address: 0x102150c */
+    if (time_flag == 2) generate_flag == 0; /* Line 278, Address: 0x102150c */
   }
 
 label1:
   block_no = scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h); /* Line 282, Address: 0x1021538 */
-  block_no %= 2048; /* Line 283, Address: 0x1021560 */
-  if (time_flag != 2 || generate_flag != 0) block_tbl = tbl; /* Line 284, Address: 0x102156c */
+  block_no &= 2047; /* Line 283, Address: 0x1021560 */
+  if (time_flag != 2 || generate_flag) block_tbl = tbl; /* Line 284, Address: 0x102156c */
   else block_tbl = tbl0; /* Line 285, Address: 0x10215a0 */
   for (i = 0; i < 3; ++i) { /* Line 286, Address: 0x10215a4 */
     if (block_tbl[i] == block_no) { /* Line 287, Address: 0x10215b0 */
@@ -295,17 +295,17 @@ label1:
 void bfloor() { /* Line 295, Address: 0x1021640 */
   unsigned char counter;
 
-  if (actwk[0].mstno.b.h == 43 || bossflag != 0) return; /* Line 298, Address: 0x102164c */
+  if (actwk[0].mstno.b.h == 43 || bossflag) return; /* Line 298, Address: 0x102164c */
   if (time_flag < 2) { /* Line 299, Address: 0x1021680 */
-    if (time_flag != 0) counter = 90; /* Line 300, Address: 0x1021698 */
+    if (time_flag) counter = 90; /* Line 300, Address: 0x1021698 */
     else counter = 60; /* Line 301, Address: 0x10216b8 */
     if (clchgcnt[3] == counter) return; /* Line 302, Address: 0x10216c0 */
   }
 
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize + 2) == 543) goto label1; /* Line 305, Address: 0x10216d8 */
+  if ((scramapad(&actwk[0], actwk[0].xposi.w.h - (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize + 2) & 2047) == 543) goto label1; /* Line 305, Address: 0x10216d8 */
 
 
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h - actwk[0].sprhs, actwk[0].yposi.w.h + actwk[0].sprvsize + 2) != 543) return; /* Line 308, Address: 0x1021764 */
+  if ((scramapad(&actwk[0], actwk[0].xposi.w.h + (short)actwk[0].sprhs, actwk[0].yposi.w.h + (short)actwk[0].sprvsize + 2) & 2047) != 543) return; /* Line 308, Address: 0x1021764 */
 
 
 label1:
@@ -339,7 +339,7 @@ void play00move() { /* Line 334, Address: 0x10218e0 */
     return; /* Line 339, Address: 0x1021934 */
   }
 
-  if (plautoflag == 0) swdata = swdata1; /* Line 342, Address: 0x102193c */
+  if (plautoflag == 0) swdata.w = swdata1.w; /* Line 342, Address: 0x102193c */
   else swdata.b.l |= swdata1.b.l & 128; /* Line 343, Address: 0x1021968 */
 
   if (actwk[0].actfree[2] & 1) { /* Line 345, Address: 0x1021990 */
@@ -375,7 +375,7 @@ void play00move() { /* Line 334, Address: 0x10218e0 */
   actwk[0].actfree[13] = dirstk[2]; /* Line 375, Address: 0x1021a7c */
 
   patchgmain(); /* Line 377, Address: 0x1021a8c */
-  if (actwk[0].actfree[2] >= 0 && actwk[0].mstno.b.h != 43) { /* Line 378, Address: 0x1021a94 */
+  if ((char)actwk[0].actfree[2] >= 0 && actwk[0].mstno.b.h != 43) { /* Line 378, Address: 0x1021a94 */
 
     pcol(&actwk[0]); /* Line 380, Address: 0x1021ad0 */
   }
@@ -392,26 +392,26 @@ void playpowercnt() { /* Line 390, Address: 0x1021b00 */
   unsigned short cal;
 
   if (backto_cnt < 157) { /* Line 394, Address: 0x1021b10 */
-    d0 = *(short*)&actwk[0].actfree[6]; /* Line 395, Address: 0x1021b2c */
+    d0 = ((unsigned short*)&actwk[0])[26]; /* Line 395, Address: 0x1021b2c */
     if (d0 != 0) { /* Line 396, Address: 0x1021b38 */
-      --*(short*)&actwk[0].actfree[6]; /* Line 397, Address: 0x1021b44 */
+      --((unsigned short*)&actwk[0])[26]; /* Line 397, Address: 0x1021b44 */
       if (d0 & 4) { /* Line 398, Address: 0x1021b58 */
-        d0 = d0 >> 3; /* Line 399, Address: 0x1021b68 */
-        if ((actwk[0].actfree[2] & 64) == 0) /* Line 400, Address: 0x1021b70 */
+        d0 >>= 3; /* Line 399, Address: 0x1021b68 */
+        if (!(actwk[0].actfree[2] & 64)) /* Line 400, Address: 0x1021b70 */
           actionsub(&actwk[0]); /* Line 401, Address: 0x1021b88 */
-      } else d0 = d0 >> 3; /* Line 402, Address: 0x1021b98 */
+      } else d0 >>= 3; /* Line 402, Address: 0x1021b98 */
     } /* Line 403, Address: 0x1021ba8 */
-    else if ((actwk[0].actfree[2] & 64) == 0) { /* Line 404, Address: 0x1021bb0 */
+    else if (!(actwk[0].actfree[2] & 64)) { /* Line 404, Address: 0x1021bb0 */
       actionsub(&actwk[0]); /* Line 405, Address: 0x1021bc8 */
     }
   }
 
 
   if (plpower_m != 0) { /* Line 410, Address: 0x1021bd8 */
-    d0 = *(short*)&actwk[0].actfree[8]; /* Line 411, Address: 0x1021bec */
+    d0 = ((unsigned short*)&actwk[0])[27]; /* Line 411, Address: 0x1021bec */
     if (d0 != 0) { /* Line 412, Address: 0x1021bf8 */
       cal = d0 - 1; /* Line 413, Address: 0x1021c04 */
-      --*(short*)&actwk[0].actfree[8]; /* Line 414, Address: 0x1021c14 */
+      --((unsigned short*)&actwk[0])[27]; /* Line 414, Address: 0x1021c14 */
       if (cal == 0) { /* Line 415, Address: 0x1021c28 */
         if (plpower_s == 0 && boss_sound == 0) { /* Line 416, Address: 0x1021c34 */
           if (time_flag == 0) { /* Line 417, Address: 0x1021c5c */
@@ -428,10 +428,10 @@ void playpowercnt() { /* Line 390, Address: 0x1021b00 */
 
 
   if (plpower_s != 0) { /* Line 430, Address: 0x1021c8c */
-    d0 = *(short*)&actwk[0].actfree[10]; /* Line 431, Address: 0x1021ca0 */
+    d0 = ((unsigned short*)&actwk[0])[28]; /* Line 431, Address: 0x1021ca0 */
     if (d0 != 0) { /* Line 432, Address: 0x1021cac */
       cal = d0 - 1; /* Line 433, Address: 0x1021cb8 */
-      --*(short*)&actwk[0].actfree[10]; /* Line 434, Address: 0x1021cc8 */
+      --((unsigned short*)&actwk[0])[28]; /* Line 434, Address: 0x1021cc8 */
       if (cal == 0) { /* Line 435, Address: 0x1021cdc */
         plmaxspdwk = 1536; /* Line 436, Address: 0x1021ce8 */
         pladdspdwk = 12; /* Line 437, Address: 0x1021cf4 */
@@ -456,7 +456,7 @@ void playpowercnt() { /* Line 390, Address: 0x1021b00 */
 
 void playposiwkset() {
   playposiwk[plposiwkadr.w / 2] = actwk[0].xposi.w.h; /* Line 458, Address: 0x1021d80 */
-  playposiwk[plposiwkadr.w / 2] = actwk[0].yposi.w.h; /* Line 459, Address: 0x1021dc0 */
+  playposiwk[plposiwkadr.w / 2 + 1] = actwk[0].yposi.w.h; /* Line 459, Address: 0x1021dc0 */
   plposiwkadr.b.l += 4; /* Line 460, Address: 0x1021e04 */
 } /* Line 461, Address: 0x1021e18 */
 
@@ -495,7 +495,7 @@ void playsave() {
   plring_s = plring; /* Line 495, Address: 0x1021fe8 */
   lpKeepWork->plring_f2_s = plring_f2; /* Line 496, Address: 0x1021ff8 */
   plring_f2_s = plring_f2; /* Line 497, Address: 0x102200c */
-  if (pltime.l >= (5 | 1)) lpKeepWork->pltime_sb = 5; /* Line 498, Address: 0x102201c */
+  if (pltime.l > 327680) lpKeepWork->pltime_sb = 327680; /* Line 498, Address: 0x102201c */
   else lpKeepWork->pltime_sb = pltime.l; /* Line 499, Address: 0x1022050 */
 
 } /* Line 501, Address: 0x1022064 */
@@ -512,47 +512,47 @@ void backto_chk() { /* Line 507, Address: 0x1022070 */
 
   if (actwk[0].actfree[0] != 0) return; /* Line 513, Address: 0x102209c */
   if (time_item == 0) return; /* Line 514, Address: 0x10220b0 */
-  d1 = 1536; /* Line 515, Address: 0x10220c8 */
+  d2 = 1536; /* Line 515, Address: 0x10220c8 */
   d0 = actwk[0].mspeed.w; /* Line 516, Address: 0x10220d4 */
   if (d0 < 0) d0 = -d0; /* Line 517, Address: 0x10220e4 */
   if (backto_cnt == 0) backto_cnt = 1; /* Line 518, Address: 0x1022110 */
-  if ((d2 = backto_cnt) >= 165) { /* Line 519, Address: 0x1022134 */
+  if ((d1 = backto_cnt) >= 165) { /* Line 519, Address: 0x1022134 */
     if (plflag != 2) { /* Line 520, Address: 0x1022158 */
       cal = time_flag; /* Line 521, Address: 0x1022170 */
-      cal += time_item; /* Line 522, Address: 0x1022180 */
+      cal = cal + time_item; /* Line 522, Address: 0x1022180 */
       if (cal < 0) cal = 0; /* Line 523, Address: 0x10221ac */
-      else if (cal >= 3) cal = 2; /* Line 524, Address: 0x10221c8 */
-      time_flag = cal | 128; /* Line 525, Address: 0x10221e8 */
+      else if (cal > 2) cal = 2; /* Line 524, Address: 0x10221c8 */
+      time_flag = (unsigned char)cal | 128; /* Line 525, Address: 0x10221e8 */
       playsave(); /* Line 526, Address: 0x1022200 */
     }
     gameflag.b.h = 1; /* Line 528, Address: 0x1022208 */
     fadeout_s(); /* Line 529, Address: 0x1022214 */
     return; /* Line 530, Address: 0x102221c */
   }
-  if (d2 >= 157) { /* Line 532, Address: 0x1022224 */
+  if (d1 >= 157) { /* Line 532, Address: 0x1022224 */
     if (plflag == 2) return; /* Line 533, Address: 0x1022238 */
     scroll_start.b.h = 1; /* Line 534, Address: 0x1022250 */
     cal = time_flag; /* Line 535, Address: 0x102225c */
-    if (cal == 0) /* Line 536, Address: 0x102226c */
+    if (cal == 0) { /* Line 536, Address: 0x102226c */
       sub_sync(130); /* Line 537, Address: 0x102227c */
+    }
 
-
-    cal += time_item; /* Line 540, Address: 0x1022288 */
+    cal = cal + time_item; /* Line 540, Address: 0x1022288 */
     if (cal < 0) cal = 0; /* Line 541, Address: 0x10222b4 */
-    else if (cal >= 3) cal = 2; /* Line 542, Address: 0x10222d0 */
-    time_flag = cal | 128; /* Line 543, Address: 0x10222f0 */
+    else if (cal > 2) cal = 2; /* Line 542, Address: 0x10222d0 */
+    time_flag = (unsigned char)cal | 128; /* Line 543, Address: 0x10222f0 */
     playsave(); /* Line 544, Address: 0x1022308 */
     plflag = 2; /* Line 545, Address: 0x1022310 */
     return; /* Line 546, Address: 0x102231c */
   }
 
-  if (d2 < 90) { /* Line 549, Address: 0x1022324 */
-    if (d0 >= d1) { muteki_set(); return; } /* Line 550, Address: 0x1022338 */
+  if (d1 < 90) { /* Line 549, Address: 0x1022324 */
+    if (d0 >= d2) { muteki_set(); return; } /* Line 550, Address: 0x1022338 */
     backto_cnt = 0; /* Line 551, Address: 0x1022364 */
     plpower_a = 0; /* Line 552, Address: 0x102236c */
     return; /* Line 553, Address: 0x1022374 */
   }
-  if (d0 < d1) { /* Line 555, Address: 0x102237c */
+  if (d0 < d2) { /* Line 555, Address: 0x102237c */
     backto_cnt = 0; /* Line 556, Address: 0x1022398 */
     time_item = 0; /* Line 557, Address: 0x10223a0 */
     plpower_a = 0; /* Line 558, Address: 0x10223a8 */
@@ -565,7 +565,7 @@ void backto_chk() { /* Line 507, Address: 0x1022070 */
 
 void play00walk() { /* Line 566, Address: 0x10223d0 */
   if (kusya_flag != 0) { /* Line 567, Address: 0x10223d8 */
-    if (actwk[0].mstno.b.h == 5) return; /* Line 568, Address: 0x10223ec */
+    if (actwk[0].mstno.b.h != 5) return; /* Line 568, Address: 0x10223ec */
     kusya_flag = 0; /* Line 569, Address: 0x1022408 */
   }
   bye_chk(); /* Line 571, Address: 0x1022410 */
@@ -662,15 +662,15 @@ void ball00jump() { /* Line 636, Address: 0x10226b0 */
 } /* Line 662, Address: 0x102279c */
 
 
+
 void kuru2move() { /* Line 666, Address: 0x10227b0 */
-  short tmp_sin;
-  short tmp_cos;
+  short tmp_sin, tmp_cos;
 
   if (actwk[0].actfree[2] & 16) { /* Line 669, Address: 0x10227bc */
-    if ((actwk[0].actfree[1] % 128) == 0) { /* Line 670, Address: 0x10227d4 */
-      actwk[0].mspeed.w = actwk[0].actfree[1] < 0 ? -3072 : 3072; /* Line 671, Address: 0x10227ec */
+    if ((actwk[0].actfree[1] & 127) == 0) { /* Line 670, Address: 0x10227d4 */
+      actwk[0].mspeed.w = (char)actwk[0].actfree[1] < 0 ? -3072 : 3072; /* Line 671, Address: 0x10227ec */
 
-      actwk[0].sproffset %= 32768; /* Line 673, Address: 0x102282c */
+      actwk[0].sproffset &= 32767; /* Line 673, Address: 0x102282c */
       actwk[0].actfree[2] &= 231; /* Line 674, Address: 0x1022840 */
       *(short*)&actwk[0].actfree[20] = 0; /* Line 675, Address: 0x1022854 */
       return; /* Line 676, Address: 0x102285c */
@@ -678,8 +678,8 @@ void kuru2move() { /* Line 666, Address: 0x10227b0 */
   }
   else if (swdata.b.l & 112) actwk[0].actfree[2] |= 16; /* Line 679, Address: 0x1022864 */
 
-  if ((actwk[0].actfree[1] += 8) >= 0) actwk[0].sproffset |= 32768; /* Line 681, Address: 0x1022890 */
-  else actwk[0].sproffset %= 32768; /* Line 682, Address: 0x10228dc */
+  if ((char)(actwk[0].actfree[1] += 8) >= 0) actwk[0].sproffset |= 32768; /* Line 681, Address: 0x1022890 */
+  else actwk[0].sproffset &= 32767; /* Line 682, Address: 0x10228dc */
 
   sinset(actwk[0].actfree[2], &tmp_sin, &tmp_cos); /* Line 684, Address: 0x10228f0 */
   tmp_cos = (tmp_cos * 23) / 256; /* Line 685, Address: 0x1022908 */
@@ -687,14 +687,14 @@ void kuru2move() { /* Line 666, Address: 0x10227b0 */
 
   actwk[0].yposi.l += actwk[0].yspeed.w << 8; /* Line 688, Address: 0x1022978 */
 
-  if (scramapad(&actwk[0], *(short*)&actwk[0].actfree[20], actwk[0].yposi.w.h) % 2048) /* Line 690, Address: 0x10229a0 */
+  if ((scramapad(&actwk[0], *(short*)&actwk[0].actfree[20], actwk[0].yposi.w.h) & 2047) != 259) /* Line 690, Address: 0x10229a0 */
     actwk[0].yspeed.w = -actwk[0].yspeed.w; /* Line 691, Address: 0x10229d8 */
 } /* Line 692, Address: 0x10229fc */
 
 
 
 void buramove() { /* Line 696, Address: 0x1022a10 */
-  if (scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h - 24) % 2048 == 345 || swdata.b.l & 112) { /* Line 697, Address: 0x1022a18 */
+  if ((scramapad(&actwk[0], actwk[0].xposi.w.h, actwk[0].yposi.w.h - 24) & 2047) != 345 || (swdata.b.l & 112)) { /* Line 697, Address: 0x1022a18 */
 
 
     actwk[0].actfree[2] &= 251; /* Line 700, Address: 0x1022a7c */
@@ -713,7 +713,7 @@ void buramove() { /* Line 696, Address: 0x1022a10 */
     actwk[0].actflg &= 254; /* Line 713, Address: 0x1022b4c */
     actwk[0].xposi.w.h += 2; /* Line 714, Address: 0x1022b60 */
   } else return; /* Line 715, Address: 0x1022b74 */
-  if (--actwk[0].pattimm >= 0) return; /* Line 716, Address: 0x1022b84 */
+  if ((char)--actwk[0].pattimm >= 0) return; /* Line 716, Address: 0x1022b84 */
   actwk[0].pattimm = 7; /* Line 717, Address: 0x1022bb4 */
   if (++actwk[0].patcnt >= 4) actwk[0].patcnt = 0; /* Line 718, Address: 0x1022bc0 */
 } /* Line 719, Address: 0x1022bf0 */
@@ -726,22 +726,22 @@ void chk11() { /* Line 723, Address: 0x1022c00 */
   char chk11tbl[7] = { 6, 7, 8, 68, 69, 70, 73 }; /* Line 726, Address: 0x1022c0c */
 
   if (time_flag != 1) return; /* Line 728, Address: 0x1022c38 */
-  if (stageno.b.l != 0) return; /* Line 729, Address: 0x1022c50 */
-  d0 = ((actwk[0].yposi.w.h >> 1) & 896) + (actwk[0].xposi.b.b1 % 127); /* Line 730, Address: 0x1022c68 */
+  if (stageno.w != 0) return; /* Line 729, Address: 0x1022c50 */
+  d0 = ((actwk[0].yposi.w.h >> 1) & 896) + (short)(actwk[0].xposi.b.b1 & 127); /* Line 730, Address: 0x1022c68 */
 
-  mapdata = mapwka[d0 / 128][d0 % 64]; /* Line 732, Address: 0x1022cb8 */
+  mapdata = mapwka[d0 / 128][d0 & 63]; /* Line 732, Address: 0x1022cb8 */
   for (d0 = 0; d0 < 7; ++d0) { /* Line 733, Address: 0x1022d04 */
     if (mapdata == chk11tbl[d0]) { /* Line 734, Address: 0x1022d10 */
       actwk[0].actfree[2] |= 2; /* Line 735, Address: 0x1022d38 */
       return; /* Line 736, Address: 0x1022d4c */
     }
   } /* Line 738, Address: 0x1022d54 */
-  if ((actwk[0].actfree[2] & 2) == 0) return; /* Line 739, Address: 0x1022d74 */
+  if (!(actwk[0].actfree[2] & 2)) return; /* Line 739, Address: 0x1022d74 */
   actwk[0].actfree[2] &= 253; /* Line 740, Address: 0x1022d8c */
   if (actwk[0].yspeed.w >= 0) return; /* Line 741, Address: 0x1022da0 */
-  if (actwk[0].yspeed.w >= 63488) return; /* Line 742, Address: 0x1022db8 */
+  if ((unsigned short)actwk[0].yspeed.w >= 63488) return; /* Line 742, Address: 0x1022db8 */
   actwk[0].xspeed.w = 1536; /* Line 743, Address: 0x1022dd8 */
-  if (actwk[0].cddat == 0) return; /* Line 744, Address: 0x1022de4 */
+  if (!(actwk[0].cddat & 1)) return; /* Line 744, Address: 0x1022de4 */
   actwk[0].xspeed.w = -actwk[0].xspeed.w; /* Line 745, Address: 0x1022dfc */
 } /* Line 746, Address: 0x1022e20 */
 
@@ -763,171 +763,171 @@ void levermove() { /* Line 753, Address: 0x1022e40 */
 
 
 
-  if (mizuflag != 0) goto label7; /* Line 766, Address: 0x1022e60 */
-  if (actwk[0].actfree[20] != 0) goto label5; /* Line 767, Address: 0x1022e74 */
+  if (mizuflag != 0) goto label12; /* Line 766, Address: 0x1022e60 */
+  if (((unsigned short*)&actwk[0])[33] != 0) goto label10; /* Line 767, Address: 0x1022e74 */
   if (swdata.b.h & 4) plwalk_l(); /* Line 768, Address: 0x1022e88 */
   if (swdata.b.h & 8) plwalk_r(); /* Line 769, Address: 0x1022ea8 */
 
-  if (actwk[0].direc.b.h + 32 & 192) goto label5; /* Line 771, Address: 0x1022ec8 */
-  if (actwk[0].mspeed.w != 0 && actwk[0].actfree[0] == 0) goto label5; /* Line 772, Address: 0x1022ee8 */
+  if ((unsigned char)actwk[0].direc.b.h + 32 & 192) goto label10; /* Line 771, Address: 0x1022ec8 */
+  if (actwk[0].mspeed.w != 0 && actwk[0].actfree[0] == 0) goto label10; /* Line 772, Address: 0x1022ee8 */
 
   if (actwk[0].mspeed.w == 0) { /* Line 774, Address: 0x1022f14 */
     actwk[0].cddat &= 223; /* Line 775, Address: 0x1022f2c */
     actwk[0].mstno.b.h = 5; /* Line 776, Address: 0x1022f40 */
   }
-  if (actwk[0].cddat & 8) { /* Line 778, Address: 0x1022f4c */
+  if (!(actwk[0].cddat & 8)) goto label1; /* Line 778, Address: 0x1022f4c */
 
-    ride_number = actwk[0].actfree[19]; /* Line 780, Address: 0x1022f64 */
-    if (actwk[ride_number].cddat < 0) { /* Line 781, Address: 0x1022f70 */
-      if (actwk[ride_number].actno == 30) { /* Line 782, Address: 0x1022fa8 */
-        actwk[0].mstno.b.h = 0; /* Line 783, Address: 0x1022fd8 */
-        goto label5; /* Line 784, Address: 0x1022fe0 */
-      }
-
-      d0 = actwk[0].sprhsize; /* Line 787, Address: 0x1022fe8 */
-      d2 = d0 * 2 - 4; /* Line 788, Address: 0x1023014 */
-      d0 += actwk[0].xposi.w.h - actwk[ride_number].yposi.w.h; /* Line 789, Address: 0x1023034 */
-      if (d0 < 4) goto label2; /* Line 790, Address: 0x102308c */
-      if (d0 >= d2) goto label1; /* Line 791, Address: 0x10230a0 */
-    } /* Line 792, Address: 0x10230bc */
+  ride_number = actwk[0].actfree[19]; /* Line 780, Address: 0x1022f64 */
+  if ((char)actwk[ride_number].cddat < 0) goto label4; /* Line 781, Address: 0x1022f70 */
+  if (actwk[ride_number].actno == 30) { /* Line 782, Address: 0x1022fa8 */
+    actwk[0].mstno.b.h = 0; /* Line 783, Address: 0x1022fd8 */
+    goto label10; /* Line 784, Address: 0x1022fe0 */
   }
-  else {
-    d0 = emycol_d(&actwk[0]); /* Line 795, Address: 0x10230c4 */
-    if (d0 >= 12) { /* Line 796, Address: 0x10230dc */
-      if (actwk[0].actfree[12] == 3) { /* Line 797, Address: 0x10230f0 */
+
+  d1 = actwk[ride_number].sprhsize; /* Line 787, Address: 0x1022fe8 */
+  d2 = d1 * 2 - 4; /* Line 788, Address: 0x1023014 */
+  d1 = d1 + actwk[0].xposi.w.h - actwk[ride_number].xposi.w.h; /* Line 789, Address: 0x1023034 */
+  if (d1 < 4) goto label3; /* Line 790, Address: 0x102308c */
+  if (d1 >= d2) goto label2; /* Line 791, Address: 0x10230a0 */
+  goto label4; /* Line 792, Address: 0x10230bc */
 
 label1:
-        if (actwk[0].cddat & 1) actwk[0].mstno.b.h = 50; /* Line 800, Address: 0x1023108 */
-        else actwk[0].mstno.b.h = 6; /* Line 801, Address: 0x1023134 */
-        goto label5; /* Line 802, Address: 0x1023140 */
-      }
-
-      if (actwk[0].actfree[13] == 3) { /* Line 805, Address: 0x1023148 */
+  d1 = emycol_d(&actwk[0]); /* Line 795, Address: 0x10230c4 */
+  if (d1 < 12) goto label4; /* Line 796, Address: 0x10230dc */
+  if (actwk[0].actfree[12] == 3) { /* Line 797, Address: 0x10230f0 */
 
 label2:
-        if ((actwk[0].cddat & 1) == 0) actwk[0].mstno.b.h = 50; /* Line 808, Address: 0x1023160 */
-        else actwk[0].mstno.b.h = 6; /* Line 809, Address: 0x102318c */
-        goto label5; /* Line 810, Address: 0x1023198 */
-      }
-    }
+    if (actwk[0].cddat & 1) actwk[0].mstno.b.h = 50; /* Line 800, Address: 0x1023108 */
+    else actwk[0].mstno.b.h = 6; /* Line 801, Address: 0x1023134 */
+    goto label10; /* Line 802, Address: 0x1023140 */
   }
 
-  if (scr_cnt % 16) ++scr_cnt, scr_cnt &= 207; /* Line 815, Address: 0x10231a0 */
-  if (scr_cnt & 128) goto label3; /* Line 816, Address: 0x10231e0 */
-  if ((scr_cnt & 64) || (swdata.b.h & 2)) goto label4; /* Line 817, Address: 0x10231f8 */
-  if ((scr_cnt %= 16) == 0) { /* Line 818, Address: 0x1023228 */
-    if (swdata.b.l & 1) { scr_cnt = 1; goto label6; } /* Line 819, Address: 0x102324c */
+  if (actwk[0].actfree[13] == 3) { /* Line 805, Address: 0x1023148 */
+
+label3:
+    if (!(actwk[0].cddat & 1)) actwk[0].mstno.b.h = 50; /* Line 808, Address: 0x1023160 */
+    else actwk[0].mstno.b.h = 6; /* Line 809, Address: 0x102318c */
+    goto label10; /* Line 810, Address: 0x1023198 */
+  }
+
+
+label4:
+  if (scr_cnt & 15) ++scr_cnt, scr_cnt &= 207; /* Line 815, Address: 0x10231a0 */
+  if (scr_cnt & 128) goto label7; /* Line 816, Address: 0x10231e0 */
+  if ((scr_cnt & 64) || (swdata.b.h & 2)) goto label8; /* Line 817, Address: 0x10231f8 */
+  if ((scr_cnt &= 15) == 0) { /* Line 818, Address: 0x1023228 */
+    if (swdata.b.l & 1) { scr_cnt = 1; goto label11; } /* Line 819, Address: 0x102324c */
   } else {
-    if (swdata.b.l & 1) { scr_cnt |= 128; goto label6; } /* Line 821, Address: 0x1023278 */
+    if (swdata.b.l & 1) { scr_cnt |= 128; goto label11; } /* Line 821, Address: 0x1023278 */
   }
 
-  if (swdata.b.h & 1) { /* Line 824, Address: 0x10232ac */
-    actwk[0].mstno.b.h = 7; /* Line 825, Address: 0x10232c4 */
-    if (actwk[0].actfree[0] != 0) { /* Line 826, Address: 0x10232d0 */
-      actwk[0].mstno.b.h = 0; /* Line 827, Address: 0x10232e4 */
-      d1 = 100; /* Line 828, Address: 0x10232ec */
-      d0 = d2 = plmaxspdwk; /* Line 829, Address: 0x10232f8 */
-      d0 = d0 & 32768 ? d0 * 2 | -32768 : d0 * 2; /* Line 830, Address: 0x1023310 */
-      if (plpower_s != 0) d0 -= d2 /= 2; /* Line 831, Address: 0x1023354 */
-      if (actwk[0].cddat & 1) d1 = -d1, d0 = -d0; /* Line 832, Address: 0x1023394 */
+  if (!(swdata.b.h & 1)) goto label6; /* Line 824, Address: 0x10232ac */
+  actwk[0].mstno.b.h = 7; /* Line 825, Address: 0x10232c4 */
+  if (actwk[0].actfree[0] == 0) goto label5; /* Line 826, Address: 0x10232d0 */
+  actwk[0].mstno.b.h = 0; /* Line 827, Address: 0x10232e4 */
+  d0 = 100; /* Line 828, Address: 0x10232ec */
+  d1 = d2 = plmaxspdwk; /* Line 829, Address: 0x10232f8 */
+  if (d1 & 32768) d1 *= 2, d1 |= -32768; else d1 *= 2; /* Line 830, Address: 0x1023310 */
+  if (plpower_s != 0) d2 /= 2, d1 -= d2; /* Line 831, Address: 0x1023354 */
+  if (actwk[0].cddat & 1) d0 = -d0, d1 = -d1; /* Line 832, Address: 0x1023394 */
 
-      actwk[0].mspeed.w += d1; /* Line 834, Address: 0x10233e4 */
-      d1 = actwk[0].mspeed.w; /* Line 835, Address: 0x10233f8 */
-      if (actwk[0].cddat & 1) { /* Line 836, Address: 0x1023408 */
-        if (d1 < d0) d1 = d0; /* Line 837, Address: 0x1023420 */
-      } /* Line 838, Address: 0x1023444 */
-      else if (d0 < d1) d1 = d0; /* Line 839, Address: 0x102344c */
-
-      actwk[0].mspeed.w = d1; /* Line 841, Address: 0x1023470 */
-      return; /* Line 842, Address: 0x1023478 */
-    }
-
-    if (swdata.b.l & 112) { /* Line 845, Address: 0x1023480 */
-      actwk[0].actfree[0] = 1; /* Line 846, Address: 0x1023498 */
-      soundset(156); /* Line 847, Address: 0x10234a4 */
-      WaveClear = 1; /* Line 848, Address: 0x10234b0 */
-    }
-    goto label6; /* Line 850, Address: 0x10234bc */
+  actwk[0].mspeed.w += d0; /* Line 834, Address: 0x10233e4 */
+  d0 = actwk[0].mspeed.w; /* Line 835, Address: 0x10233f8 */
+  if (actwk[0].cddat & 1) { /* Line 836, Address: 0x1023408 */
+    if (d0 < d1) d0 = d1; /* Line 837, Address: 0x1023420 */
+  } else { /* Line 838, Address: 0x1023444 */
+    if (d0 > d1) d0 = d1; /* Line 839, Address: 0x102344c */
   }
+  actwk[0].mspeed.w = d0; /* Line 841, Address: 0x1023470 */
+  return; /* Line 842, Address: 0x1023478 */
 
+label5:
+  if (!(swdata.b.l & 112)) goto label11; /* Line 845, Address: 0x1023480 */
+  actwk[0].actfree[0] = 1; /* Line 846, Address: 0x1023498 */
+  soundset(156); /* Line 847, Address: 0x10234a4 */
+  WaveClear = 1; /* Line 848, Address: 0x10234b0 */
+
+  goto label11; /* Line 850, Address: 0x10234bc */
+
+label6:
   if (actwk[0].actfree[0] != 30) { /* Line 853, Address: 0x10234c4 */
     soundset(171); /* Line 854, Address: 0x10234dc */
     if (WaveClear != 0) WaveAllStop(), WaveClear = 0; /* Line 855, Address: 0x10234e8 */
     actwk[0].actfree[0] = 0; /* Line 856, Address: 0x1023510 */
     actwk[0].mspeed.w = 0; /* Line 857, Address: 0x1023518 */
-    goto label4; /* Line 858, Address: 0x1023520 */
+    goto label8; /* Line 858, Address: 0x1023520 */
   }
   actwk[0].actfree[0] = 0; /* Line 860, Address: 0x1023528 */
   soundset(145); /* Line 861, Address: 0x1023530 */
   WaveClear = 0; /* Line 862, Address: 0x102353c */
-  goto label5; /* Line 863, Address: 0x1023544 */
+  goto label10; /* Line 863, Address: 0x1023544 */
 
 
 
-label3:
+label7:
   if (swdata.b.h & 1) { /* Line 868, Address: 0x102354c */
     actwk[0].mstno.b.h = 7; /* Line 869, Address: 0x1023564 */
     if (scra_vline != 200) scra_vline += 2; /* Line 870, Address: 0x1023570 */
-    goto label6; /* Line 871, Address: 0x10235a0 */
+    goto label11; /* Line 871, Address: 0x10235a0 */
   }
-label4:
-  if (scr_cnt & 64) { /* Line 874, Address: 0x10235a8 */
-    if ((scr_cnt %= 16) == 0) { /* Line 875, Address: 0x10235c0 */
-      if (swdata.b.l & 2) { scr_cnt = 1; goto label6; } /* Line 876, Address: 0x10235e4 */
-    } else {
-      if (swdata.b.l & 2) { scr_cnt |= 64; goto label6; } /* Line 878, Address: 0x1023610 */
-    }
+label8:
+  if (scr_cnt & 64) goto label9; /* Line 874, Address: 0x10235a8 */
+  if ((scr_cnt &= 15) == 0) { /* Line 875, Address: 0x10235c0 */
+    if (swdata.b.l & 2) { scr_cnt = 1; goto label11; } /* Line 876, Address: 0x10235e4 */
+  }
+  else if (swdata.b.l & 2) { scr_cnt |= 64; goto label11; } /* Line 878, Address: 0x1023610 */
 
-    if (swdata.b.h & 2) { /* Line 881, Address: 0x1023644 */
-      actwk[0].mstno.b.h = 8; /* Line 882, Address: 0x102365c */
-      if (actwk[0].actfree[0] != 0) goto label6; /* Line 883, Address: 0x1023668 */
-      if ((swdata.b.l & 112) == 0) goto label6; /* Line 884, Address: 0x102367c */
-      actwk[0].actfree[0] = 1; /* Line 885, Address: 0x1023694 */
-      actwk[0].mspeed.w = 22; /* Line 886, Address: 0x10236a0 */
-      if (actwk[0].cddat & 1) actwk[0].mspeed.w = -actwk[0].mspeed.w; /* Line 887, Address: 0x10236ac */
-      soundset(156); /* Line 888, Address: 0x10236e8 */
-      WaveClear = 1; /* Line 889, Address: 0x10236f8 */
-      ballset(); /* Line 890, Address: 0x1023704 */
-      goto label6; /* Line 891, Address: 0x1023710 */
-    }
-  }
-  if ((swdata.b.h & 2) == 0) { /* Line 894, Address: 0x1023718 */
+
+  if (!(swdata.b.h & 2)) goto label10; /* Line 881, Address: 0x1023644 */
+  actwk[0].mstno.b.h = 8; /* Line 882, Address: 0x102365c */
+  if (actwk[0].actfree[0] != 0) goto label11; /* Line 883, Address: 0x1023668 */
+  if (!(swdata.b.l & 112)) goto label11; /* Line 884, Address: 0x102367c */
+  actwk[0].actfree[0] = 1; /* Line 885, Address: 0x1023694 */
+  actwk[0].mspeed.w = 22; /* Line 886, Address: 0x10236a0 */
+  if (actwk[0].cddat & 1) actwk[0].mspeed.w = -actwk[0].mspeed.w; /* Line 887, Address: 0x10236ac */
+  soundset(156); /* Line 888, Address: 0x10236e8 */
+  WaveClear = 1; /* Line 889, Address: 0x10236f8 */
+  ballset(); /* Line 890, Address: 0x1023704 */
+  goto label11; /* Line 891, Address: 0x1023710 */
+
+label9:
+  if (swdata.b.h & 2) { /* Line 894, Address: 0x1023718 */
     actwk[0].mstno.b.h = 8; /* Line 895, Address: 0x1023730 */
     if (scra_vline != 8) scra_vline -= 2; /* Line 896, Address: 0x102373c */
-    goto label6; /* Line 897, Address: 0x102376c */
+    goto label11; /* Line 897, Address: 0x102376c */
   }
-label5:
+label10:
   if (scra_vline == 96) { /* Line 900, Address: 0x1023774 */
-    if (scr_cnt % 16 == 0) scr_cnt = 0; /* Line 901, Address: 0x1023790 */
-  } /* Line 902, Address: 0x10237b0 */
-  else {
-    if (scra_vline < 96) scra_vline += 4; /* Line 904, Address: 0x10237b8 */
-    scra_vline -= 2; /* Line 905, Address: 0x10237e8 */
+    if (!(scr_cnt & 15)) scr_cnt = 0; /* Line 901, Address: 0x1023790 */
+    goto label11; /* Line 902, Address: 0x10237b0 */
   }
+  if (scra_vline < 96) scra_vline += 4; /* Line 904, Address: 0x10237b8 */
+  scra_vline -= 2; /* Line 905, Address: 0x10237e8 */
 
 
-label6:
-  if ((swdata.b.h & 12) == 0 && actwk[0].mspeed.w != 0) { /* Line 910, Address: 0x10237fc */
 
-    if (actwk[0].mspeed.w >= 0) { /* Line 912, Address: 0x102382c */
+label11:
+  if (!(swdata.b.h & 12) && actwk[0].mspeed.w != 0) { /* Line 910, Address: 0x10237fc */
+
+    if (actwk[0].mspeed.w > 0) { /* Line 912, Address: 0x102382c */
 
       if ((actwk[0].mspeed.w -= pladdspdwk) < 0) actwk[0].mspeed.w = 0; /* Line 914, Address: 0x1023844 */
     } /* Line 915, Address: 0x1023880 */
     else {
-      if ((actwk[0].mspeed.w += pladdspdwk) >= 0) actwk[0].mspeed.w = 0;; /* Line 917, Address: 0x1023888 */
+      if ((actwk[0].mspeed.w += pladdspdwk) >= 0) actwk[0].mspeed.w = 0; /* Line 917, Address: 0x1023888 */
     }
   }
-label7:
+label12:
   sinset(actwk[0].direc.b.h, &sin_tmp, &cos_tmp); /* Line 921, Address: 0x10238c4 */
   sin_data = sin_tmp; /* Line 922, Address: 0x10238e4 */
   cos_data = cos_tmp; /* Line 923, Address: 0x10238f0 */
 
   cos_data *= actwk[0].mspeed.w; /* Line 925, Address: 0x10238fc */
-  cos_data = cos_data >> 8; /* Line 926, Address: 0x1023914 */
+  cos_data >>= 8; /* Line 926, Address: 0x1023914 */
 
   actwk[0].xspeed.w = cos_data; /* Line 928, Address: 0x102391c */
   sin_data *= actwk[0].mspeed.w; /* Line 929, Address: 0x102392c */
-  sin_data = sin_data >> 8; /* Line 930, Address: 0x1023940 */
+  sin_data >>= 8; /* Line 930, Address: 0x1023940 */
 
   actwk[0].yspeed.w = sin_data; /* Line 932, Address: 0x1023944 */
 
@@ -947,9 +947,9 @@ void lmovecol() { /* Line 938, Address: 0x1023990 */
 
   sonic_dir = actwk[0].direc.b.h + add_dir; /* Line 948, Address: 0x1023a24 */
   tmp_dir = sonic_dir; /* Line 949, Address: 0x1023a48 */
-  if ((add_speed = (char)dircolm(&actwk[0], &tmp_dir)) >=0) return; /* Line 950, Address: 0x1023a4c */
+  if ((add_speed = (char)dircolm(&actwk[0], &tmp_dir)) >= 0) return; /* Line 950, Address: 0x1023a4c */
   sonic_dir = tmp_dir; /* Line 951, Address: 0x1023a90 */
-  add_speed = (add_speed & 32768) ? (add_speed << 8) | -32768 : add_speed << 8; /* Line 952, Address: 0x1023a98 */
+  if (add_speed & 32768) add_speed <<= 8, add_speed |= -32768; else add_speed <<= 8; /* Line 952, Address: 0x1023a98 */
   sonic_dir = sonic_dir + 32 & 192; /* Line 953, Address: 0x1023adc */
   switch (sonic_dir) { /* Line 954, Address: 0x1023af0 */
 
@@ -987,15 +987,15 @@ void plwalk_l() { /* Line 983, Address: 0x1023bf0 */
   cal_speed = actwk[0].mspeed.w; /* Line 987, Address: 0x1023c10 */
   if (cal_speed <= 0) { /* Line 988, Address: 0x1023c20 */
 
-    if ((actwk[0].cddat & 1) == 0) { /* Line 990, Address: 0x1023c30 */
+    if (!(actwk[0].cddat & 1)) { /* Line 990, Address: 0x1023c30 */
       actwk[0].cddat |= 1; /* Line 991, Address: 0x1023c48 */
       actwk[0].cddat &= 223; /* Line 992, Address: 0x1023c5c */
       actwk[0].mstno.b.l = 1; /* Line 993, Address: 0x1023c70 */
     }
 
-    if (-plmaxspdwk < cal_speed) { /* Line 996, Address: 0x1023c7c */
+    if (cal_speed > -plmaxspdwk) { /* Line 996, Address: 0x1023c7c */
       cal_speed -= pladdspdwk; /* Line 997, Address: 0x1023ca4 */
-      if (-plmaxspdwk >= cal_speed) cal_speed = -plmaxspdwk; /* Line 998, Address: 0x1023cb8 */
+      if (cal_speed <= -plmaxspdwk) cal_speed = -plmaxspdwk; /* Line 998, Address: 0x1023cb8 */
     }
 
     actwk[0].mspeed.w = cal_speed; /* Line 1001, Address: 0x1023d04 */
@@ -1005,7 +1005,7 @@ void plwalk_l() { /* Line 983, Address: 0x1023bf0 */
     if ((cal_speed -= plretspdwk) < 0) cal_speed = -128; /* Line 1005, Address: 0x1023d1c */
 
     actwk[0].mspeed.w = cal_speed; /* Line 1007, Address: 0x1023d54 */
-    if (actwk[0].direc.b.h + 32 & 192) return; /* Line 1008, Address: 0x1023d5c */
+    if ((unsigned char)actwk[0].direc.b.h + 32 & 192) return; /* Line 1008, Address: 0x1023d5c */
     if (cal_speed < 1024) return; /* Line 1009, Address: 0x1023d7c */
     actwk[0].mstno.b.h = 13; /* Line 1010, Address: 0x1023d90 */
     actwk[0].cddat &= 254; /* Line 1011, Address: 0x1023d9c */
@@ -1044,8 +1044,8 @@ void plwalk_r() { /* Line 1023, Address: 0x1023e00 */
   else {
     if ((cal_speed += plretspdwk) >= 0) cal_speed = 128; /* Line 1045, Address: 0x1023f10 */
     actwk[0].mspeed.w = cal_speed; /* Line 1046, Address: 0x1023f48 */
-    if (actwk[0].direc.b.h + 32 & 192) return; /* Line 1047, Address: 0x1023f50 */
-    if (cal_speed >= -1023) return; /* Line 1048, Address: 0x1023f70 */
+    if ((unsigned char)actwk[0].direc.b.h + 32 & 192) return; /* Line 1047, Address: 0x1023f50 */
+    if (cal_speed > -1024) return; /* Line 1048, Address: 0x1023f70 */
     actwk[0].mstno.b.h = 13; /* Line 1049, Address: 0x1023f84 */
     actwk[0].cddat |= 1; /* Line 1050, Address: 0x1023f90 */
 
@@ -1074,16 +1074,16 @@ void balllmove() { /* Line 1066, Address: 0x1023ff0 */
 
 
   if (mizuflag != 0) goto label3; /* Line 1076, Address: 0x102400c */
-  if (*(short*)&actwk[0].actfree[20] == 0) { /* Line 1077, Address: 0x1024020 */
+  if (((unsigned short*)&actwk[0])[33] == 0) { /* Line 1077, Address: 0x1024020 */
     if (swdata.b.h & 4) ballwalk_l(); /* Line 1078, Address: 0x1024034 */
-    else if (swdata.b.h & 8) ballwalk_r(); /* Line 1079, Address: 0x1024054 */
+    if (swdata.b.h & 8) ballwalk_r(); /* Line 1079, Address: 0x1024054 */
   }
 
   if (actwk[0].actfree[0] == 0) goto label1; /* Line 1082, Address: 0x1024074 */
   d0 = 50; /* Line 1083, Address: 0x1024088 */
   d1 = d2 = plmaxspdwk; /* Line 1084, Address: 0x1024094 */
-  d1 = (d1 & 32768) ? (d1 << 1) | -32768 : d1 << 1; /* Line 1085, Address: 0x10240ac */
-  if (plpower_s != 0) d1 -= d2 /= 2; /* Line 1086, Address: 0x10240f0 */
+  if (d1 & 32768) d1 <<= 1, d1 |= -32768; else d1 <<= 1; /* Line 1085, Address: 0x10240ac */
+  if (plpower_s != 0) d2 /= 2, d1 -= d2; /* Line 1086, Address: 0x10240f0 */
   if (actwk[0].cddat & 1) d0 = -d0, d1 = -d1; /* Line 1087, Address: 0x1024130 */
 
   actwk[0].mspeed.w += d0; /* Line 1089, Address: 0x1024180 */
@@ -1095,7 +1095,7 @@ void balllmove() { /* Line 1066, Address: 0x1023ff0 */
 
 
   actwk[0].mspeed.w = d0; /* Line 1097, Address: 0x102420c */
-  if (swdata.b.h & 2 != 0) return; /* Line 1098, Address: 0x1024214 */
+  if ((swdata.b.h & 2) != 0) return; /* Line 1098, Address: 0x1024214 */
 
   if (actwk[0].actfree[0] != 45) { /* Line 1100, Address: 0x102422c */
     soundset(171); /* Line 1101, Address: 0x1024244 */
@@ -1107,7 +1107,7 @@ void balllmove() { /* Line 1066, Address: 0x1023ff0 */
   actwk[0].actfree[0] = 0; /* Line 1107, Address: 0x10242b0 */
   soundset(145); /* Line 1108, Address: 0x10242b8 */
   WaveClear = 0; /* Line 1109, Address: 0x10242c4 */
-  if ((actwk[0].cddat & 1) == 0) ballwalk_r(); /* Line 1110, Address: 0x10242cc */
+  if (!(actwk[0].cddat & 1)) ballwalk_r(); /* Line 1110, Address: 0x10242cc */
   else ballwalk_l(); /* Line 1111, Address: 0x10242f4 */
 
 label1:
@@ -1116,12 +1116,12 @@ label1:
 
     if (d0 > 0) { /* Line 1117, Address: 0x102431c */
 
-      d0 -= pladdspdwk / 2; /* Line 1119, Address: 0x102432c */
+      d0 = d0 - pladdspdwk / 2; /* Line 1119, Address: 0x102432c */
       if (d0 < 0) d0 = 0; /* Line 1120, Address: 0x1024370 */
       actwk[0].mspeed.w = d0; /* Line 1121, Address: 0x1024384 */
     } /* Line 1122, Address: 0x102438c */
     else {
-      d0 += pladdspdwk / 2; /* Line 1124, Address: 0x1024394 */
+      d0 = d0 + pladdspdwk / 2; /* Line 1124, Address: 0x1024394 */
       if (d0 > 0) d0 = 0; /* Line 1125, Address: 0x10243d8 */
       actwk[0].mspeed.w = d0; /* Line 1126, Address: 0x10243ec */
     }
@@ -1154,7 +1154,7 @@ label3:
   actwk[0].yspeed.w = sin_data; /* Line 1154, Address: 0x10244d8 */
   cos_data *= actwk[0].mspeed.w; /* Line 1155, Address: 0x10244e8 */
   cos_data = cos_data >> 8; /* Line 1156, Address: 0x10244fc */
-  if (cos_data >= 4097) cos_data = 4096; /* Line 1157, Address: 0x1024500 */
+  if (cos_data > 4096) cos_data = 4096; /* Line 1157, Address: 0x1024500 */
   if (cos_data < -4096) cos_data = -4096; /* Line 1158, Address: 0x1024510 */
   actwk[0].xspeed.w = cos_data; /* Line 1159, Address: 0x1024520 */
 
@@ -1172,7 +1172,7 @@ void ballwalk_l() { /* Line 1166, Address: 0x1024560 */
     actwk[0].mstno.b.h = 2; /* Line 1172, Address: 0x102459c */
   } /* Line 1173, Address: 0x10245a8 */
   else {
-    cal_speed -= plretspdwk / 4; /* Line 1175, Address: 0x10245b0 */
+    cal_speed = cal_speed - plretspdwk / 4; /* Line 1175, Address: 0x10245b0 */
     if (cal_speed < 0) cal_speed = -128; /* Line 1176, Address: 0x10245f4 */
     actwk[0].mspeed.w = cal_speed; /* Line 1177, Address: 0x1024610 */
   }
@@ -1188,11 +1188,12 @@ void ballwalk_r() { /* Line 1182, Address: 0x1024630 */
     actwk[0].mstno.b.h = 2; /* Line 1188, Address: 0x102466c */
   } /* Line 1189, Address: 0x1024678 */
   else {
-    cal_speed -= plretspdwk / 4; /* Line 1191, Address: 0x1024680 */
+    cal_speed = cal_speed + plretspdwk / 4; /* Line 1191, Address: 0x1024680 */
     if (cal_speed > 0) cal_speed = 128; /* Line 1192, Address: 0x10246c4 */
     actwk[0].mspeed.w = cal_speed; /* Line 1193, Address: 0x10246e0 */
   }
 } /* Line 1195, Address: 0x10246e8 */
+
 
 
 void jumpmove() { /* Line 1199, Address: 0x1024700 */
@@ -1203,48 +1204,47 @@ void jumpmove() { /* Line 1199, Address: 0x1024700 */
 
 
 
-
   cal_speed = actwk[0].xspeed.w; /* Line 1207, Address: 0x102470c */
   if (stageno.w == 0) { /* Line 1208, Address: 0x102471c */
 
     if (actwk[0].xposi.w.h < 1736 || actwk[0].xposi.w.h >= 2112) { /* Line 1210, Address: 0x1024734 */
-      if (actwk[0].actfree[2] & 2) goto label1; /* Line 1211, Address: 0x102476c */
+      if (actwk[0].actfree[2] & 2) goto label2; else goto label1; /* Line 1211, Address: 0x102476c */
     }
     else {
-      if (actwk[0].actfree[2] & 2) goto label1; /* Line 1214, Address: 0x102478c */
+      if (actwk[0].actfree[2] & 2) goto label2; /* Line 1214, Address: 0x102478c */
     }
   }
 
-
+label1:
   cal_speed = actwk[0].xspeed.w; /* Line 1219, Address: 0x10247a4 */
   if (swdata.b.h & 4) { /* Line 1220, Address: 0x10247b4 */
     actwk[0].cddat |= 1; /* Line 1221, Address: 0x10247cc */
-    cal_speed -= pladdspdwk * 2; /* Line 1222, Address: 0x10247e0 */
+    cal_speed = cal_speed - pladdspdwk * 2; /* Line 1222, Address: 0x10247e0 */
     cmp_speed = -plmaxspdwk; /* Line 1223, Address: 0x1024810 */
-    if (cmp_speed >= cal_speed) cal_speed = cmp_speed; /* Line 1224, Address: 0x1024834 */
+    if (cal_speed <= cmp_speed) cal_speed = cmp_speed; /* Line 1224, Address: 0x1024834 */
   }
 
   if (swdata.b.h & 8) { /* Line 1227, Address: 0x1024858 */
     actwk[0].cddat &= 254; /* Line 1228, Address: 0x1024870 */
-    cal_speed += pladdspdwk * 2; /* Line 1229, Address: 0x1024884 */
+    cal_speed = cal_speed + pladdspdwk * 2; /* Line 1229, Address: 0x1024884 */
     if (cal_speed >= plmaxspdwk) cal_speed = plmaxspdwk; /* Line 1230, Address: 0x10248b4 */
   }
 
-label1:
+label2:
   actwk[0].xspeed.w = cal_speed; /* Line 1234, Address: 0x10248e8 */
 
   if (scra_vline < 96) scra_vline += 2; /* Line 1236, Address: 0x10248f0 */
-  else if (scra_vline >= 97) scra_vline -= 2; /* Line 1237, Address: 0x1024928 */
-  if (actwk[0].yspeed.w < -1024) return; /* Line 1238, Address: 0x1024958 */
+  else if (scra_vline > 96) scra_vline -= 2; /* Line 1237, Address: 0x1024928 */
+  if ((unsigned short)actwk[0].yspeed.w < 64512) return; /* Line 1238, Address: 0x1024958 */
   cal_speed = actwk[0].xspeed.w; /* Line 1239, Address: 0x1024978 */
   if (cal_speed / 32 == 0) return; /* Line 1240, Address: 0x1024988 */
   if (cal_speed > 0) { /* Line 1241, Address: 0x10249b0 */
 
-    cal_speed -= cal_speed / 32; /* Line 1243, Address: 0x10249c0 */
+    cal_speed = cal_speed - cal_speed / 32; /* Line 1243, Address: 0x10249c0 */
     if (cal_speed < 0) cal_speed = 0; /* Line 1244, Address: 0x10249fc */
   } /* Line 1245, Address: 0x1024a10 */
   else {
-    cal_speed -= cal_speed / 32; /* Line 1247, Address: 0x1024a18 */
+    cal_speed = cal_speed - cal_speed / 32; /* Line 1247, Address: 0x1024a18 */
     if (cal_speed >= 0) cal_speed = 0; /* Line 1248, Address: 0x1024a54 */
   }
   actwk[0].xspeed.w = cal_speed; /* Line 1250, Address: 0x1024a68 */
@@ -1257,7 +1257,7 @@ void hedcolchk() { /* Line 1256, Address: 0x1024a90 */
   short tmp_d0, tmp_d1, tmp_d3;
   unsigned char cal_direc;
 
-  cal_direc = actwk[0].direc.b.h + 32 & 192; /* Line 1260, Address: 0x1024a9c */
+  cal_direc = (unsigned char)actwk[0].direc.b.h + 32 & 192; /* Line 1260, Address: 0x1024a9c */
   if (cal_direc == 0) { /* Line 1261, Address: 0x1024abc */
     if (dircol_u(&actwk[0], &tmp_d0, &tmp_d1, &tmp_d3) < 0) { /* Line 1262, Address: 0x1024ac8 */
 
@@ -1276,9 +1276,9 @@ void limitchk() { /* Line 1273, Address: 0x1024b40 */
 
   cal_position = actwk[0].xposi.l; /* Line 1277, Address: 0x1024b5c */
   cal_speed = actwk[0].xspeed.w; /* Line 1278, Address: 0x1024b64 */
-  cal_speed = (cal_speed & -32768) ? (cal_speed << 8) | -32768 : cal_speed << 8; /* Line 1279, Address: 0x1024b74 */
+  if (cal_speed & (int)-2147483648) cal_speed <<= 8, cal_speed |= -2147483648; else cal_speed <<= 8; /* Line 1279, Address: 0x1024b74 */
   cal_position += cal_speed; /* Line 1280, Address: 0x1024b9c */
-  position_wk = cal_position; /* Line 1281, Address: 0x1024ba0 */
+  position_wk = cal_position >> 16; /* Line 1281, Address: 0x1024ba0 */
   cal_limit_l = scralim_left + 16; /* Line 1282, Address: 0x1024bb4 */
   cal_limit_r = scralim_right + 304; /* Line 1283, Address: 0x1024bd8 */
   if (bossstart == 0) cal_limit_r += 56; /* Line 1284, Address: 0x1024bfc */
@@ -1305,14 +1305,14 @@ void limitchk() { /* Line 1273, Address: 0x1024b40 */
 void ballchk() { /* Line 1305, Address: 0x1024d50 */
   if (mizuflag != 0) return; /* Line 1306, Address: 0x1024d58 */
 
-  if (actwk[0].mspeed.w < 128 && actwk[0].mspeed.w >= -127) return; /* Line 1308, Address: 0x1024d6c */
-  if ((swdata.b.h & 12) == 0 && (swdata.b.h & 2) == 0) return; /* Line 1309, Address: 0x1024da4 */
+  if (actwk[0].mspeed.w < 128 && actwk[0].mspeed.w > -128) return; /* Line 1308, Address: 0x1024d6c */
+  if ((swdata.b.h & 12) || !(swdata.b.h & 2)) return; /* Line 1309, Address: 0x1024da4 */
   ballset(); /* Line 1310, Address: 0x1024ddc */
 } /* Line 1311, Address: 0x1024de4 */
 
 
 void ballset() {
-  if ((actwk[0].cddat & 4) == 0) { /* Line 1315, Address: 0x1024e00 */
+  if (!(actwk[0].cddat & 4)) { /* Line 1315, Address: 0x1024e00 */
 
     actwk[0].cddat |= 4; /* Line 1317, Address: 0x1024e18 */
     if (chibi_flag != 0) { /* Line 1318, Address: 0x1024e2c */
@@ -1346,17 +1346,17 @@ unsigned char jumpchk() { /* Line 1336, Address: 0x1024ee0 */
   if (actwk[0].actfree[0] != 0) return ret_flag; /* Line 1346, Address: 0x1024f00 */
   if ((swdata.b.h & 3) && actwk[0].mspeed.w == 0) return ret_flag; /* Line 1347, Address: 0x1024f20 */
 
-  if ((swdata.b.l & 112) == 0) return ret_flag; /* Line 1349, Address: 0x1024f5c */
+  if (!(swdata.b.l & 112)) return ret_flag; /* Line 1349, Address: 0x1024f5c */
   if ((actwk[0].cddat & 8) && frip_spd(&cal_jump, &cal_direc) == 0) goto label1; /* Line 1350, Address: 0x1024f80 */
 
 
-  cal_direc = actwk[0].direc.b.h + 128; /* Line 1353, Address: 0x1024fb4 */
+  cal_direc = (unsigned char)actwk[0].direc.b.h + 128; /* Line 1353, Address: 0x1024fb4 */
   cal_char = cal_direc; /* Line 1354, Address: 0x1024fd0 */
   if (dircol2(&actwk[0], &cal_char) < 6) return ret_flag; /* Line 1355, Address: 0x1024fd8 */
 
   cal_jump = 1664; /* Line 1357, Address: 0x102500c */
   if (actwk[0].cddat & 64) cal_jump = 896; /* Line 1358, Address: 0x1025014 */
-  cal_direc = actwk[0].direc.b.h - 64; /* Line 1359, Address: 0x1025034 */
+  cal_direc = (unsigned char)actwk[0].direc.b.h - 64; /* Line 1359, Address: 0x1025034 */
 
 label1:
   sinset(cal_direc, &sin_tmp, &cos_tmp); /* Line 1362, Address: 0x1025050 */
@@ -1374,9 +1374,9 @@ label1:
   ret_flag = 255; /* Line 1374, Address: 0x10250f4 */
 
   actwk[0].actfree[18] = 1; /* Line 1376, Address: 0x10250fc */
-  scr_cnt = actwk[0].actfree[14] = 0; /* Line 1377, Address: 0x1025108 */
+  actwk[0].actfree[14] = 0; /* Line 1377, Address: 0x1025108 */
 
-
+  scr_cnt = 0; /* Line 1379, Address: 0x1025110 */
   soundset(146); /* Line 1380, Address: 0x1025118 */
 
   if (actwk[0].cddat & 4) { /* Line 1382, Address: 0x1025124 */
@@ -1403,8 +1403,8 @@ void jumpchk2() { /* Line 1400, Address: 0x1025200 */
   if (actwk[0].actfree[2] != 0) { /* Line 1403, Address: 0x1025208 */
     cal_speed = -1024; /* Line 1404, Address: 0x102521c */
     if (actwk[0].cddat & 64) cal_speed = -512; /* Line 1405, Address: 0x1025228 */
-    if (actwk[0].yspeed.w < cal_speed) { /* Line 1406, Address: 0x102524c */
-      if ((swdata.b.h & 112) == 0) { /* Line 1407, Address: 0x1025270 */
+    if (cal_speed > actwk[0].yspeed.w) { /* Line 1406, Address: 0x102524c */
+      if (!(swdata.b.h & 112)) { /* Line 1407, Address: 0x1025270 */
         actwk[0].actfree[0] = 0; /* Line 1408, Address: 0x1025288 */
         actwk[0].yspeed.w = cal_speed; /* Line 1409, Address: 0x1025290 */
       }
@@ -1422,7 +1422,7 @@ void keispd() { /* Line 1419, Address: 0x10252b0 */
   short sin_tmp, cos_tmp;
 
   if (actwk[0].actfree[0] != 0) return; /* Line 1424, Address: 0x10252c0 */
-  cal_direc = actwk[0].direc.b.h + 96; /* Line 1425, Address: 0x10252d4 */
+  cal_direc = (unsigned char)actwk[0].direc.b.h + 96; /* Line 1425, Address: 0x10252d4 */
   if (cal_direc >= 192) return; /* Line 1426, Address: 0x10252f0 */
   cal_direc = actwk[0].direc.b.h; /* Line 1427, Address: 0x1025300 */
 
@@ -1446,7 +1446,7 @@ void keispd2() { /* Line 1443, Address: 0x10253d0 */
   short sin_tmp, cos_tmp;
 
   if (actwk[0].actfree[0] != 0) return; /* Line 1448, Address: 0x10253e0 */
-  cal_direc = actwk[0].direc.b.h + 96; /* Line 1449, Address: 0x10253f4 */
+  cal_direc = (unsigned char)actwk[0].direc.b.h + 96; /* Line 1449, Address: 0x10253f4 */
   if (cal_direc >= 192) return; /* Line 1450, Address: 0x1025410 */
   cal_direc = actwk[0].direc.b.h; /* Line 1451, Address: 0x1025420 */
 
@@ -1469,15 +1469,15 @@ void keispd2() { /* Line 1443, Address: 0x10253d0 */
 
 void fallchk() {
   if (actwk[0].actfree[14] != 0) return; /* Line 1471, Address: 0x1025520 */
-  if (*(short*)&actwk[0].actfree[20] == 0) { /* Line 1472, Address: 0x1025534 */
-    if ((actwk[0].direc.b.h + 32 & 192) == 0) return; /* Line 1473, Address: 0x1025548 */
-    if (actwk[0].mspeed.w < 641 || actwk[0].mspeed.w >= -640) /* Line 1474, Address: 0x1025568 */
+  if (((unsigned short*)&actwk[0])[33] == 0) { /* Line 1472, Address: 0x1025534 */
+    if (!((unsigned char)actwk[0].direc.b.h + 32 & 192)) return; /* Line 1473, Address: 0x1025548 */
+    if (actwk[0].mspeed.w > 640 || actwk[0].mspeed.w < -640) /* Line 1474, Address: 0x1025568 */
       return; /* Line 1475, Address: 0x10255a0 */
     actwk[0].mspeed.w = 0; /* Line 1476, Address: 0x10255a8 */
     actwk[0].cddat |= 2; /* Line 1477, Address: 0x10255b0 */
-    *(short*)&actwk[0].actfree[20] = 30; /* Line 1478, Address: 0x10255c4 */
+    ((unsigned short*)&actwk[0])[33] = 30; /* Line 1478, Address: 0x10255c4 */
   } else { /* Line 1479, Address: 0x10255d0 */
-    --*(short*)&actwk[0].actfree[20]; /* Line 1480, Address: 0x10255d8 */
+    --((unsigned short*)&actwk[0])[33]; /* Line 1480, Address: 0x10255d8 */
   }
 } /* Line 1482, Address: 0x10255ec */
 
@@ -1487,7 +1487,7 @@ void fallchk() {
 void direcchg() { /* Line 1487, Address: 0x1025600 */
   char cal_direc;
 
-  if (actwk[0].actfree[2] & 2 != 0) return; /* Line 1490, Address: 0x1025608 */
+  if ((actwk[0].actfree[2] & 2) != 0) return; /* Line 1490, Address: 0x1025608 */
   if ((cal_direc = actwk[0].direc.b.h) == 0) return; /* Line 1491, Address: 0x1025620 */
   if (cal_direc < 0) { /* Line 1492, Address: 0x1025640 */
     if ((cal_direc += 2) > 0) cal_direc = 0; /* Line 1493, Address: 0x1025650 */
@@ -1534,24 +1534,24 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
       chk_d3 = tmp_d3; /* Line 1534, Address: 0x1025800 */
 
       debugwork.b.b4 = chk_d1; /* Line 1536, Address: 0x1025814 */
-      if (chk_d1 >= 0) break; /* Line 1537, Address: 0x1025824 */
+      if (chk_d1 >= 0) return; /* Line 1537, Address: 0x1025824 */
       chk_d2 = -(actwk[0].yspeed.b.h + 8); /* Line 1538, Address: 0x1025838 */
-      if ((char)chk_d1 >= chk_d2 && (char)chk_d1 < chk_d2) return; /* Line 1539, Address: 0x1025860 */
+      if ((char)chk_d1 < chk_d2 && (char)chk_d0 < chk_d2) return; /* Line 1539, Address: 0x1025860 */
 
       actwk[0].yposi.w.h += chk_d1; /* Line 1541, Address: 0x10258b0 */
       actwk[0].direc.b.h = chk_d3; /* Line 1542, Address: 0x10258c8 */
       jumpcolsub(); /* Line 1543, Address: 0x10258d0 */
       actwk[0].mstno.b.h = 0; /* Line 1544, Address: 0x10258d8 */
-      if (chk_d3 + 32 & 64) { /* Line 1545, Address: 0x10258e0 */
+      if ((unsigned char)chk_d3 + 32 & 64) { /* Line 1545, Address: 0x10258e0 */
 
         actwk[0].xspeed.w = 0; /* Line 1547, Address: 0x10258f8 */
-        if (actwk[0].yspeed.w >= 4033) actwk[0].yspeed.w = 4032; /* Line 1548, Address: 0x1025900 */
+        if (actwk[0].yspeed.w > 4032) actwk[0].yspeed.w = 4032; /* Line 1548, Address: 0x1025900 */
       } else { /* Line 1549, Address: 0x1025928 */
-        if ((chk_d3 + 16 & 32) == 0) { /* Line 1550, Address: 0x1025930 */
+        if (!((unsigned char)chk_d3 + 16 & 32)) { /* Line 1550, Address: 0x1025930 */
 
           actwk[0].yspeed.w = 0; /* Line 1552, Address: 0x1025948 */
           actwk[0].mspeed.w = actwk[0].xspeed.w; /* Line 1553, Address: 0x1025950 */
-          break; /* Line 1554, Address: 0x1025960 */
+          return; /* Line 1554, Address: 0x1025960 */
         }
         actwk[0].yspeed.w /= 2; /* Line 1556, Address: 0x1025968 */
       }
@@ -1568,21 +1568,21 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
         actwk[0].xposi.w.h -= chk_d1; /* Line 1568, Address: 0x1025a04 */
         actwk[0].xspeed.w = 0; /* Line 1569, Address: 0x1025a1c */
         actwk[0].mspeed.w = actwk[0].yspeed.w; /* Line 1570, Address: 0x1025a24 */
-        break; /* Line 1571, Address: 0x1025a34 */
+        return; /* Line 1571, Address: 0x1025a34 */
       }
       dircol_u(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1573, Address: 0x1025a3c */
 
       if (chk_d1 < 0) { /* Line 1575, Address: 0x1025a58 */
         actwk[0].yposi.w.h -= chk_d1; /* Line 1576, Address: 0x1025a6c */
         if (actwk[0].yspeed.w < 0) actwk[0].yspeed.w = 0; /* Line 1577, Address: 0x1025a84 */
-        break; /* Line 1578, Address: 0x1025aa4 */
+        return; /* Line 1578, Address: 0x1025aa4 */
       }
 
-      if (actwk[0].yspeed.w < 0) break; /* Line 1581, Address: 0x1025aac */
+      if (actwk[0].yspeed.w < 0) return; /* Line 1581, Address: 0x1025aac */
       dircol_d(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1582, Address: 0x1025ac4 */
       chk_d3 = tmp_d3; /* Line 1583, Address: 0x1025ae0 */
 
-      if (chk_d1 >= 0) break; /* Line 1585, Address: 0x1025af4 */
+      if (chk_d1 >= 0) return; /* Line 1585, Address: 0x1025af4 */
       actwk[0].yposi.w.h += chk_d1; /* Line 1586, Address: 0x1025b08 */
       actwk[0].direc.b.h = chk_d3; /* Line 1587, Address: 0x1025b20 */
       jumpcolsub(); /* Line 1588, Address: 0x1025b28 */
@@ -1609,11 +1609,11 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
       dircol_u(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1609, Address: 0x1025be8 */
       chk_d3 = tmp_d3; /* Line 1610, Address: 0x1025c04 */
 
-      if (chk_d1 >= 0) break; /* Line 1612, Address: 0x1025c18 */
+      if (chk_d1 >= 0) return; /* Line 1612, Address: 0x1025c18 */
       actwk[0].yposi.w.h -= chk_d1; /* Line 1613, Address: 0x1025c2c */
-      if ((chk_d3 + 32 & 64) == 0) { /* Line 1614, Address: 0x1025c44 */
+      if (!((unsigned char)chk_d3 + 32 & 64)) { /* Line 1614, Address: 0x1025c44 */
         actwk[0].yspeed.w = 0; /* Line 1615, Address: 0x1025c5c */
-        break; /* Line 1616, Address: 0x1025c64 */
+        return; /* Line 1616, Address: 0x1025c64 */
       }
       actwk[0].direc.b.h = chk_d3; /* Line 1618, Address: 0x1025c6c */
       jumpcolsub0(); /* Line 1619, Address: 0x1025c74 */
@@ -1629,21 +1629,21 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
         actwk[0].xposi.w.h += chk_d1; /* Line 1629, Address: 0x1025cf0 */
         actwk[0].xspeed.w = 0; /* Line 1630, Address: 0x1025d08 */
         actwk[0].mspeed.w = actwk[0].xspeed.w; /* Line 1631, Address: 0x1025d10 */
-        break; /* Line 1632, Address: 0x1025d20 */
+        return; /* Line 1632, Address: 0x1025d20 */
       }
       dircol_u(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1634, Address: 0x1025d28 */
 
       if (chk_d1 < 0) { /* Line 1636, Address: 0x1025d44 */
         actwk[0].yposi.w.h -= chk_d1; /* Line 1637, Address: 0x1025d58 */
         if (actwk[0].yspeed.w < 0) actwk[0].yspeed.w = 0; /* Line 1638, Address: 0x1025d70 */
-        break; /* Line 1639, Address: 0x1025d90 */
+        return; /* Line 1639, Address: 0x1025d90 */
       }
 
-      if (actwk[0].yspeed.w) break; /* Line 1642, Address: 0x1025d98 */
+      if (actwk[0].yspeed.w < 0) return; /* Line 1642, Address: 0x1025d98 */
       dircol_d(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1643, Address: 0x1025db0 */
       chk_d3 = tmp_d3; /* Line 1644, Address: 0x1025dcc */
 
-      if (chk_d1 >= 0) break; /* Line 1646, Address: 0x1025de0 */
+      if (chk_d1 >= 0) return; /* Line 1646, Address: 0x1025de0 */
       actwk[0].yposi.w.h += chk_d1; /* Line 1647, Address: 0x1025df4 */
       actwk[0].direc.b.h = chk_d3; /* Line 1648, Address: 0x1025e0c */
       jumpcolsub(); /* Line 1649, Address: 0x1025e14 */
@@ -1662,18 +1662,18 @@ void jumpcolchk() { /* Line 1506, Address: 0x10256c0 */
 
 void jumpcolsub() {
   actwk[0].cddat &= 205; /* Line 1664, Address: 0x1025e60 */
-  if ((actwk[0].cddat & 4) == 0) return; /* Line 1665, Address: 0x1025e74 */
-  actwk[0].cddat &= 251; /* Line 1666, Address: 0x1025e8c */
-  if (chibi_flag != 0) { /* Line 1667, Address: 0x1025ea0 */
-    actwk[0].sprvsize = 10; /* Line 1668, Address: 0x1025eb4 */
-    actwk[0].sprhs = 5; /* Line 1669, Address: 0x1025ec0 */
-  } else { /* Line 1670, Address: 0x1025ecc */
-    actwk[0].sprvsize = 19; /* Line 1671, Address: 0x1025ed4 */
-    actwk[0].sprhs = 9; /* Line 1672, Address: 0x1025ee0 */
-    actwk[0].yposi.w.h -= 5; /* Line 1673, Address: 0x1025eec */
+  if (actwk[0].cddat & 4) { /* Line 1665, Address: 0x1025e74 */
+    actwk[0].cddat &= 251; /* Line 1666, Address: 0x1025e8c */
+    if (chibi_flag != 0) { /* Line 1667, Address: 0x1025ea0 */
+      actwk[0].sprvsize = 10; /* Line 1668, Address: 0x1025eb4 */
+      actwk[0].sprhs = 5; /* Line 1669, Address: 0x1025ec0 */
+    } else { /* Line 1670, Address: 0x1025ecc */
+      actwk[0].sprvsize = 19; /* Line 1671, Address: 0x1025ed4 */
+      actwk[0].sprhs = 9; /* Line 1672, Address: 0x1025ee0 */
+      actwk[0].yposi.w.h -= 5; /* Line 1673, Address: 0x1025eec */
+    }
+    actwk[0].mstno.b.h = 0; /* Line 1675, Address: 0x1025f00 */
   }
-  actwk[0].mstno.b.h = 0; /* Line 1675, Address: 0x1025f00 */
-
 
   actwk[0].actfree[18] = 0; /* Line 1678, Address: 0x1025f08 */
   emyscorecnt = 0; /* Line 1679, Address: 0x1025f10 */
@@ -1709,8 +1709,8 @@ void play00damage_sub() { /* Line 1703, Address: 0x1025ff0 */
   if (actwk[0].cddat & 2) return; /* Line 1709, Address: 0x1026048 */
   actwk[0].yspeed.w = actwk[0].xspeed.w = actwk[0].mspeed.w = 0; /* Line 1710, Address: 0x1026060 */
   actwk[0].mstno.b.h = 0; /* Line 1711, Address: 0x1026088 */
-  actwk[0].r_no0 = -2; /* Line 1712, Address: 0x1026090 */
-  *(short*)&actwk[0].actfree[6] = 120; /* Line 1713, Address: 0x10260a4 */
+  actwk[0].r_no0 -= 2; /* Line 1712, Address: 0x1026090 */
+  ((short*)&actwk[0])[26] = 120; /* Line 1713, Address: 0x10260a4 */
 } /* Line 1714, Address: 0x10260b0 */
 
 
@@ -1732,25 +1732,25 @@ void play00die_sub() { /* Line 1727, Address: 0x1026110 */
   actwk[0].r_no0 += 2; /* Line 1732, Address: 0x1026154 */
   pltime_f = 0; /* Line 1733, Address: 0x1026168 */
   ++pl_suu_f; /* Line 1734, Address: 0x1026170 */
-  if (pl_suu-- < 0) pl_suu = 0; /* Line 1735, Address: 0x1026184 */
+  if ((char)--pl_suu < 0) pl_suu = 0; /* Line 1735, Address: 0x1026184 */
 
   if (actwk[0].mstno.b.h == 43 || ta_flag == 0) { /* Line 1737, Address: 0x10261bc */
     actwkchk(&new_actwk); /* Line 1738, Address: 0x10261ec */
     new_actwk->actno = 59; /* Line 1739, Address: 0x10261f8 */
-    *(short*)&actwk[0].actfree[16] = 480; /* Line 1740, Address: 0x1026204 */
+    ((short*)&actwk[0])[31] = 480; /* Line 1740, Address: 0x1026204 */
     if (pl_suu == 0) return; /* Line 1741, Address: 0x1026210 */
   } else { /* Line 1742, Address: 0x1026224 */
     pl_suu = 0; /* Line 1743, Address: 0x102622c */
   }
-  actwk[0].actfree[16] = 60; /* Line 1745, Address: 0x1026234 */
+  ((short*)&actwk[0])[31] = 60; /* Line 1745, Address: 0x1026234 */
 } /* Line 1746, Address: 0x1026240 */
 
 
 
 void play00erase() { /* Line 1750, Address: 0x1026250 */
-  if (*(short*)&actwk[0].actfree[16] == 0) return; /* Line 1751, Address: 0x1026258 */
-  --actwk[0].actfree[16]; /* Line 1752, Address: 0x102626c */
-  if (*(short*)&actwk[0].actfree[16] != 0) return; /* Line 1753, Address: 0x1026280 */
+  if (((unsigned short*)&actwk[0])[31] == 0) return; /* Line 1751, Address: 0x1026258 */
+  --((unsigned short*)&actwk[0])[31]; /* Line 1752, Address: 0x102626c */
+  if (((unsigned short*)&actwk[0])[31] != 0) return; /* Line 1753, Address: 0x1026280 */
   gameflag.w = 1; /* Line 1754, Address: 0x1026294 */
 
 
@@ -1789,8 +1789,8 @@ void st7_x() { /* Line 1787, Address: 0x10263a0 */
 
 
   if (actwk[0].yspeed.w >= 0) { /* Line 1791, Address: 0x10263a8 */
-    y_position = actwk[0].yposi.w.h; /* Line 1792, Address: 0x10263c0 */
-    if (actwk[0].xposi.w.h < 128) { /* Line 1793, Address: 0x10263e4 */
+    y_position = (unsigned short)actwk[0].yposi.w.h & 255; /* Line 1792, Address: 0x10263c0 */
+    if ((actwk[0].xposi.w.h & 255) < 128) { /* Line 1793, Address: 0x10263e4 */
 
       if (y_position < 56) actwk[0].actflg |= 64; /* Line 1795, Address: 0x1026404 */
       else if (y_position >= 128) actwk[0].actflg &= 191; /* Line 1796, Address: 0x1026434 */
@@ -1818,7 +1818,7 @@ void patchgmain() { /* Line 1807, Address: 0x10264d0 */
   if (*pat_pointer >= 128) { playrunchg(*pat_pointer); return; } /* Line 1818, Address: 0x1026560 */
 
   actwk[0].actflg = (actwk[0].actflg & 252) | (actwk[0].cddat & 1); /* Line 1820, Address: 0x1026588 */
-  if (--actwk[0].pattim >= 0) return; /* Line 1821, Address: 0x10265b8 */
+  if ((char)--actwk[0].pattim >= 0) return; /* Line 1821, Address: 0x10265b8 */
   actwk[0].pattim = *pat_pointer; /* Line 1822, Address: 0x10265e8 */
   patchgmain2(pat_pointer); /* Line 1823, Address: 0x10265f4 */
 } /* Line 1824, Address: 0x1026600 */
@@ -1827,7 +1827,7 @@ void patchgmain() { /* Line 1807, Address: 0x10264d0 */
 void patchgmain2(unsigned char* pat_pointer) { /* Line 1827, Address: 0x1026620 */
   unsigned char pat_no;
 
-  if ((pat_no = actwk[0].patcnt) < 253) { /* Line 1830, Address: 0x102662c */
+  if ((pat_no = pat_pointer[actwk[0].patcnt + 1]) < 253) { /* Line 1830, Address: 0x102662c */
     actwk[0].patno = pat_no; /* Line 1831, Address: 0x102665c */
     ++actwk[0].patcnt; /* Line 1832, Address: 0x1026664 */
   } /* Line 1833, Address: 0x1026678 */
@@ -1836,13 +1836,13 @@ void patchgmain2(unsigned char* pat_pointer) { /* Line 1827, Address: 0x1026620 
     switch (pat_no) { /* Line 1836, Address: 0x1026680 */
       case 255:
         actwk[0].patcnt = 1; /* Line 1838, Address: 0x10266b0 */
-        actwk[0].patno = *pat_pointer; /* Line 1839, Address: 0x10266bc */
+        actwk[0].patno = pat_pointer[1]; /* Line 1839, Address: 0x10266bc */
         break; /* Line 1840, Address: 0x10266cc */
       case 254:
-        actwk[0].patno = pat_pointer[actwk[0].patcnt /* Line 1842, Address: 0x10266d4 */
+        actwk[0].patno = pat_pointer[actwk[0].patcnt + 1 /* Line 1842, Address: 0x10266d4 */
                        - pat_pointer[actwk[0].patcnt + 2]];
         actwk[0].patcnt = actwk[0].patcnt /* Line 1844, Address: 0x102671c */
-                        - pat_pointer[actwk[0].patcnt + 2];
+                        - (pat_pointer[actwk[0].patcnt + 2] - 1);
         break; /* Line 1846, Address: 0x102675c */
       case 253:
         actwk[0].mstno.b.h = pat_pointer[actwk[0].patcnt + 2]; /* Line 1848, Address: 0x1026764 */
@@ -1860,7 +1860,7 @@ void playrunchg(unsigned char pat_no) { /* Line 1858, Address: 0x10267a0 */
   unsigned char* pat_pointer;
   short cal_speed;
 
-  if (++actwk[0].pattim >= 0) return; /* Line 1863, Address: 0x10267c0 */
+  if ((char)--actwk[0].pattim >= 0) return; /* Line 1863, Address: 0x10267c0 */
   if (pat_no != 255) { playrunchg2(pat_no); return; } /* Line 1864, Address: 0x10267f0 */
   if (chibi_flag != 0) { little_runchg(); return; } /* Line 1865, Address: 0x1026818 */
 
@@ -1868,30 +1868,30 @@ void playrunchg(unsigned char pat_no) { /* Line 1858, Address: 0x10267a0 */
   direction = actwk[0].direc.b.h; /* Line 1868, Address: 0x1026840 */
   chara_data = actwk[0].cddat & 1; /* Line 1869, Address: 0x102684c */
   if (chara_data == 0) direction = 255 - direction; /* Line 1870, Address: 0x1026864 */
-  if (actwk[0].actfree[2] == 0) direction += 16; /* Line 1871, Address: 0x1026884 */
+  if (!(actwk[0].actfree[2] & 2)) direction += 16; /* Line 1871, Address: 0x1026884 */
   else direction += 8; /* Line 1872, Address: 0x10268ac */
-  if (direction < 0) cal_data = 3; /* Line 1873, Address: 0x10268b4 */
+  if ((char)direction < 0) cal_data = 3; /* Line 1873, Address: 0x10268b4 */
 
   actwk[0].actflg &= 252; /* Line 1875, Address: 0x10268d4 */
   chara_data ^= cal_data; /* Line 1876, Address: 0x10268e8 */
   actwk[0].actflg |= chara_data; /* Line 1877, Address: 0x10268f0 */
-  if ((actwk[0].cddat & 32) == 0) { playrunchg3(253); return; } /* Line 1878, Address: 0x1026904 */
+  if (actwk[0].cddat & 32) { playrunchg3(253); return; } /* Line 1878, Address: 0x1026904 */
 
   if ((cal_speed = actwk[0].mspeed.w) < 0) cal_speed = -cal_speed; /* Line 1880, Address: 0x1026930 */
 
   if (actwk[0].actfree[2] & 2) { /* Line 1882, Address: 0x102696c */
-    direction = (direction >> 4) % 16; /* Line 1883, Address: 0x1026984 */
-    direction *= 2; /* Line 1884, Address: 0x1026994 */
+    direction >>= 4, direction &= 15; /* Line 1883, Address: 0x1026984 */
+    direction <<= 1; /* Line 1884, Address: 0x1026994 */
     direction &= 14; /* Line 1885, Address: 0x102699c */
     pat_pointer = plchg53; /* Line 1886, Address: 0x10269a4 */
   } else { /* Line 1887, Address: 0x10269ac */
-    direction = direction >> 4; /* Line 1888, Address: 0x10269b4 */
+    direction >>= 4; /* Line 1888, Address: 0x10269b4 */
     direction &= 6; /* Line 1889, Address: 0x10269bc */
-    if (cal_speed >= 2561) pat_pointer = plchg49; /* Line 1890, Address: 0x10269c4 */
-    else if (cal_speed >= 1537) pat_pointer = plchg01; /* Line 1891, Address: 0x10269e8 */
+    if (cal_speed > 2560) pat_pointer = plchg49; /* Line 1890, Address: 0x10269c4 */
+    else if (cal_speed > 1536) pat_pointer = plchg01; /* Line 1891, Address: 0x10269e8 */
     else {
       pat_pointer = plchg00; /* Line 1893, Address: 0x1026a0c */
-      direction += direction / 2; /* Line 1894, Address: 0x1026a14 */
+      direction = direction + direction / 2; /* Line 1894, Address: 0x1026a14 */
     }
   }
 
@@ -1900,7 +1900,7 @@ void playrunchg(unsigned char pat_no) { /* Line 1858, Address: 0x10267a0 */
   cal_speed /= 256; /* Line 1900, Address: 0x1026a74 */
   actwk[0].pattim = cal_speed; /* Line 1901, Address: 0x1026a94 */
   patchgmain2(pat_pointer); /* Line 1902, Address: 0x1026aa0 */
-  actwk[0].xposi.w.h += direction * 2; /* Line 1903, Address: 0x1026aac */
+  actwk[0].patno = actwk[0].patno + direction * 2; /* Line 1903, Address: 0x1026aac */
 } /* Line 1904, Address: 0x1026ad0 */
 
 
@@ -1909,12 +1909,12 @@ void playrunchg2(unsigned char pat_no) { /* Line 1907, Address: 0x1026b00 */
   unsigned char* pat_pointer;
   short cal_speed;
 
-  if (pat_no != 254) playrunchg3(pat_no); /* Line 1912, Address: 0x1026b18 */
+  if (pat_no != 254) { playrunchg3(pat_no); return; } /* Line 1912, Address: 0x1026b18 */
   if ((cal_speed = actwk[0].mspeed.w) < 0) cal_speed = -cal_speed; /* Line 1913, Address: 0x1026b40 */
   if (chibi_flag != 0) pat_pointer = plchg35; /* Line 1914, Address: 0x1026b7c */
   else {
     if (actwk[0].actfree[2] & 2) { /* Line 1916, Address: 0x1026ba0 */
-      direction = actwk[0].direc.b.h; /* Line 1917, Address: 0x1026bb8 */
+      direction = (char)actwk[0].direc.b.h; /* Line 1917, Address: 0x1026bb8 */
       direction = direction + 16 & 192; /* Line 1918, Address: 0x1026bc8 */
       if (direction != 0) pat_pointer = plchg54; /* Line 1919, Address: 0x1026bdc */
       else pat_pointer = plchg03; /* Line 1920, Address: 0x1026bf8 */
@@ -1942,7 +1942,7 @@ void playrunchg3(unsigned char pat_no) { /* Line 1937, Address: 0x1026d00 */
   if ((cal_speed = actwk[0].mspeed.w) >= 0) cal_speed = -cal_speed; /* Line 1942, Address: 0x1026d38 */
   cal_speed += 2048; /* Line 1943, Address: 0x1026d74 */
   if (cal_speed < 0) cal_speed = 0; /* Line 1944, Address: 0x1026d80 */
-  cal_speed = cal_speed >> 6; /* Line 1945, Address: 0x1026d94 */
+  cal_speed >>= 6; /* Line 1945, Address: 0x1026d94 */
   actwk[0].pattim = cal_speed; /* Line 1946, Address: 0x1026da0 */
   if (chibi_flag != 0) pat_pointer = plchg39; /* Line 1947, Address: 0x1026dac */
   else pat_pointer = plchg04; /* Line 1948, Address: 0x1026dd0 */
@@ -1971,7 +1971,7 @@ void little_runchg() { /* Line 1968, Address: 0x1026ed0 */
   short cal_speed;
 
   direction = actwk[0].direc.b.h; /* Line 1973, Address: 0x1026ee4 */
-  if (actwk[0].cddat == 0) direction = 255 - direction; /* Line 1974, Address: 0x1026ef0 */
+  if (!(actwk[0].cddat & 1)) direction = 255 - direction; /* Line 1974, Address: 0x1026ef0 */
   direction += 16; /* Line 1975, Address: 0x1026f1c */
 
   actwk[0].actflg &= 252; /* Line 1977, Address: 0x1026f24 */
@@ -2038,7 +2038,7 @@ char little_patchg(char pat_index) { /* Line 1999, Address: 0x10270b0 */
 
 
 
-void playwrt() {}/* Line 2041, Address: 0x1027130 */
+void playwrt() {} /* Line 2041, Address: 0x1027130 */
 
 
 
@@ -2056,10 +2056,10 @@ unsigned char frip_spd(int* cal_jump, unsigned char* cal_direc) { /* Line 2047, 
     actwk[ride_no].xposi.w.h - actwk[0].xposi.w.h,
     actwk[ride_no].yposi.w.h + 24 - actwk[0].yposi.w.h
   );
-  cal_x = (actwk[0].xposi.w.h - actwk[ride_no].xposi.w.h) + actwk[ride_no].sprhsize; /* Line 2059, Address: 0x1027278 */
+  cal_x = (actwk[0].xposi.w.h - actwk[ride_no].xposi.w.h) + (short)actwk[ride_no].sprhsize; /* Line 2059, Address: 0x1027278 */
 
-  if ((actwk[ride_no].cddat & 1) == 0) cal_x = 64 - cal_x; /* Line 2061, Address: 0x10272fc */
+  if (!(actwk[ride_no].cddat & 1)) cal_x = 64 - cal_x; /* Line 2061, Address: 0x10272fc */
 
-  *cal_jump = -((cal_x * 512) / 64) - 2560; /* Line 2063, Address: 0x1027350 */
+  *cal_jump = -((cal_x * 2560) / 64) - 2560; /* Line 2063, Address: 0x1027350 */
   return 0; /* Line 2064, Address: 0x102738c */
 } /* Line 2065, Address: 0x1027390 */

@@ -240,11 +240,11 @@ static void emie1_matu(sprite_status* pActwk) { /* Line 203, Address: 0x1005520 
     else pActwk->xspeed.w += 16; /* Line 240, Address: 0x10056a0 */
 
 
-    if (pActwk->xspeed.w >= 513) /* Line 243, Address: 0x10056b0 */
+    if (pActwk->xspeed.w > 512) { /* Line 243, Address: 0x10056b0 */
       pActwk->xspeed.w = 512; /* Line 244, Address: 0x10056cc */
-    else if (pActwk->xspeed.w < -512) /* Line 245, Address: 0x10056d8 */
+    } else if (pActwk->xspeed.w < -512) { /* Line 245, Address: 0x10056d8 */
       pActwk->xspeed.w = -512; /* Line 246, Address: 0x10056fc */
-
+    }
 
 
 
@@ -308,7 +308,7 @@ static void emie1_matu(sprite_status* pActwk) { /* Line 203, Address: 0x1005520 
     if (!(dakiflgwk & 64)) { /* Line 308, Address: 0x100591c */
       if (pActwk->actfree[21] >= 3) { /* Line 309, Address: 0x100592c */
 
-        if (((short)pActwk->actfree[16] + 4) >= 256) { /* Line 311, Address: 0x1005944 */
+        if (((short)pActwk->actfree[16] + 4) > 255) { /* Line 311, Address: 0x1005944 */
           pActwk->actfree[21] = 0; /* Line 312, Address: 0x1005968 */
         }
 
@@ -785,15 +785,15 @@ static void heartset(sprite_status* pActwk) { /* Line 782, Address: 0x1006830 */
 
   if (pActwk->actfree[20] & 1) { /* Line 786, Address: 0x1006840 */
 
-    wk = pActwk->actfree[17] + 16; /* Line 788, Address: 0x1006858 */
+    wk = (short)pActwk->actfree[17] + 16; /* Line 788, Address: 0x1006858 */
     pActwk->actfree[17] += 16; /* Line 789, Address: 0x1006880 */
-    if (wk < 256) return; /* Line 790, Address: 0x1006890 */
+    if (wk <= 255) return; /* Line 790, Address: 0x1006890 */
 
 
   } else { /* Line 793, Address: 0x10068a4 */
-    wk = pActwk->actfree[17] + 6; /* Line 794, Address: 0x10068ac */
+    wk = (short)pActwk->actfree[17] + 6; /* Line 794, Address: 0x10068ac */
     pActwk->actfree[17] += 6; /* Line 795, Address: 0x10068d4 */
-    if (wk < 256) return; /* Line 796, Address: 0x10068e4 */
+    if (wk <= 255) return; /* Line 796, Address: 0x10068e4 */
   }
 
 

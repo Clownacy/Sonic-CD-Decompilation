@@ -1,6 +1,5 @@
 void DLL_meminit(char*** pBufTbl, void** pFuncTbl);
 void DLL_memfree();
-void Print_Msg();
 int Get_vscroll();
 int Get_scra_h_posiw();
 int Get_scrb_h_posiw();
@@ -11,8 +10,6 @@ void play_act_set();
 void flow_act_set();
 void scdset();
 void syspatchg();
-void back_to_cnt();
-void bye_cnt();
 void sdfdout();
 void sdfdin();
 void da_set();

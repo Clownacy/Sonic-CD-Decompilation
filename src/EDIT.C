@@ -44,7 +44,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
   if (swdata1.b.h & 15) /* Line 44, Address: 0x100ee1c */
   {
     edit_spd += 8192; /* Line 46, Address: 0x100ee34 */
-    if (524289 <= edit_spd) edit_spd = 524288; /* Line 47, Address: 0x100ee38 */
+    if (edit_spd > 524288) edit_spd = 524288; /* Line 47, Address: 0x100ee38 */
   } /* Line 48, Address: 0x100ee50 */
   else
   {

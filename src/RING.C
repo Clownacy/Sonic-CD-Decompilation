@@ -221,9 +221,9 @@ label1:
 label2:
     new_actwk->actno = 16; /* Line 222, Address: 0x1006798 */
     new_actwk->r_no0 = 2; /* Line 223, Address: 0x10067a4 */
-    new_actwk->xposi.w.h = d6; /* Line 224, Address: 0x10067b0 */
+    new_actwk->xposi.w.h = d2; /* Line 224, Address: 0x10067b0 */
     ((short*)new_actwk)[27] = pActwk->xposi.w.h; /* Line 225, Address: 0x10067b8 */
-    new_actwk->yposi.w.h = d5; /* Line 226, Address: 0x10067c8 */
+    new_actwk->yposi.w.h = d3; /* Line 226, Address: 0x10067c8 */
     new_actwk->patbase = ringpat; /* Line 227, Address: 0x10067d0 */
     new_actwk->sproffset = 42926; /* Line 228, Address: 0x10067e0 */
     new_actwk->sprpri = 2; /* Line 229, Address: 0x10067ec */
@@ -252,12 +252,12 @@ label3:
   if (time_flag & 128) { /* Line 252, Address: 0x1006918 */
     d0 += -time_item; /* Line 253, Address: 0x1006930 */
     if (d0 < 0) d0 = 0; /* Line 254, Address: 0x1006958 */
-    else if ((i = d0) >= 3) d0 = 2; /* Line 255, Address: 0x1006974 */
+    else if (d0 >= 3) d0 = 2; /* Line 255, Address: 0x1006974 */
   }
   i = fw_index + 1; /* Line 257, Address: 0x1006994 */
   do {
-    if (flagwork[i--] & 1) { /* Line 259, Address: 0x1006998 */
-      frameout(pActwk); d1 = 0; /* Line 260, Address: 0x10069c0 */
+    if (flagwork[--i] & 1) { /* Line 259, Address: 0x1006998 */
+      frameout(pActwk); /* Line 260, Address: 0x10069c0 */
       return; /* Line 261, Address: 0x10069d0 */
     }
   } while (--d0 != -1); /* Line 263, Address: 0x10069d8 */
@@ -273,8 +273,8 @@ void ringmove(sprite_status* pActwk) { /* Line 272, Address: 0x1006a40 */
   unsigned short d0;
 
   if (pActwk->actflg >= 0) { /* Line 275, Address: 0x1006a50 */
-    d0 = (((unsigned short*)pActwk)[27] & 65408) - (scra_h_posit.w.h - 128 & 65408); /* Line 276, Address: 0x1006a64 */
-    if (d0 >= 641) { /* Line 277, Address: 0x1006a94 */
+    d0 = (((unsigned short*)pActwk)[27] & 65408) - (((uint_union*)&scra_h_posit)->w.h - 128 & 65408); /* Line 276, Address: 0x1006a64 */
+    if (d0 > 640) { /* Line 277, Address: 0x1006a94 */
       ringerase(pActwk); /* Line 278, Address: 0x1006aa4 */
       return; /* Line 279, Address: 0x1006ab0 */
     }
@@ -388,7 +388,7 @@ void flyringinit(sprite_status* pActwk) { /* Line 384, Address: 0x1006f00 */
   short_union d4;
 
   new_actwk = pActwk; /* Line 390, Address: 0x1006f18 */
-  if ((d5 = plring) >= 33) d5 = 32; /* Line 391, Address: 0x1006f20 */
+  if ((d5 = plring) > 32) d5 = 32; /* Line 391, Address: 0x1006f20 */
   --d5; /* Line 392, Address: 0x1006f50 */
   d4.w = 648; /* Line 393, Address: 0x1006f5c */
   goto label1; /* Line 394, Address: 0x1006f64 */
@@ -429,8 +429,8 @@ label1:
     }
     new_actwk->xspeed.w = d2; /* Line 430, Address: 0x1007178 */
     new_actwk->yspeed.w = d3; /* Line 431, Address: 0x1007180 */
-    d2 = -d2; /* Line 432, Address: 0x1007188 */
-    d4.w = -d4.w; /* Line 433, Address: 0x1007194 */
+    d2 *= -1; /* Line 432, Address: 0x1007188 */
+    d4.w *= -1; /* Line 433, Address: 0x1007194 */
   } while (--d5 != -1); /* Line 434, Address: 0x10071a0 */
 
   if (lpKeepWork->User & 1) { /* Line 436, Address: 0x10071c8 */

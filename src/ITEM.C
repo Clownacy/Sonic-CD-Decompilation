@@ -555,7 +555,7 @@ void item2move(sprite_status* itemwk) { /* Line 524, Address: 0x1011da0 */
       break; /* Line 555, Address: 0x1011fd8 */
     case 3:
       plpower_m = 1; /* Line 557, Address: 0x1011fe0 */
-      ((short*)actwk)[27] = 1320; /* Line 558, Address: 0x1011fec */
+      ((short*)&actwk[0])[27] = 1320; /* Line 558, Address: 0x1011fec */
       powerup_init(&actwk[8]); /* Line 559, Address: 0x1011ff8 */
       actwk[8].actno = 3; /* Line 560, Address: 0x1012008 */
       actwk[8].mstno.b.h = 1; /* Line 561, Address: 0x1012014 */
@@ -575,7 +575,7 @@ void item2move(sprite_status* itemwk) { /* Line 524, Address: 0x1011da0 */
       break; /* Line 575, Address: 0x10120d4 */
     case 4:
       plpower_s = 1; /* Line 577, Address: 0x10120dc */
-      ((short*)actwk)[28] = 1320; /* Line 578, Address: 0x10120e8 */
+      ((short*)&actwk[0])[28] = 1320; /* Line 578, Address: 0x10120e8 */
       plmaxspdwk = 3072; /* Line 579, Address: 0x10120f4 */
       pladdspdwk = 24; /* Line 580, Address: 0x1012100 */
       plretspdwk = 128; /* Line 581, Address: 0x101210c */
@@ -596,7 +596,7 @@ void item2move(sprite_status* itemwk) { /* Line 524, Address: 0x1011da0 */
       powerup_init(&actwk[6]); /* Line 596, Address: 0x101218c */
       actwk[6].actno = 3; /* Line 597, Address: 0x101219c */
       plpower_m = 1; /* Line 598, Address: 0x10121a8 */
-      ((short*)actwk)[27] = 1320; /* Line 599, Address: 0x10121b4 */
+      ((short*)&actwk[0])[27] = 1320; /* Line 599, Address: 0x10121b4 */
       powerup_init(&actwk[8]); /* Line 600, Address: 0x10121c0 */
       actwk[8].actno = 3; /* Line 601, Address: 0x10121d0 */
       actwk[8].mstno.b.h = 1; /* Line 602, Address: 0x10121dc */
@@ -610,7 +610,7 @@ void item2move(sprite_status* itemwk) { /* Line 524, Address: 0x1011da0 */
       actwk[11].actno = 3; /* Line 610, Address: 0x1012248 */
       actwk[11].mstno.b.h = 4; /* Line 611, Address: 0x1012254 */
       plpower_s = 1; /* Line 612, Address: 0x1012260 */
-      ((short*)actwk)[28] = 1320; /* Line 613, Address: 0x101226c */
+      ((short*)&actwk[0])[28] = 1320; /* Line 613, Address: 0x101226c */
       plmaxspdwk = 3072; /* Line 614, Address: 0x1012278 */
       pladdspdwk = 24; /* Line 615, Address: 0x1012284 */
       plretspdwk = 128; /* Line 616, Address: 0x1012290 */

@@ -146,13 +146,13 @@ void actionsub(sprite_status* pActwk) { /* Line 135, Address: 0x10015a0 */
   flag &= 12; /* Line 146, Address: 0x10015f8 */
   if (flag) { /* Line 147, Address: 0x1001600 */
 
-    hsiz = (short)(unsigned short)pActwk->sprhsize; /* Line 149, Address: 0x1001608 */
+    hsiz = (unsigned short)pActwk->sprhsize; /* Line 149, Address: 0x1001608 */
     xpos = pActwk->xposi.w.h; /* Line 150, Address: 0x1001624 */
     xpos -= scra_h_posit.w.h; /* Line 151, Address: 0x1001634 */
     if (xpos + hsiz < 0) return; /* Line 152, Address: 0x1001648 */
     if (xpos - hsiz >= 320) return; /* Line 153, Address: 0x1001664 */
 
-    vsiz = (short)(unsigned short)pActwk->sprvsize; /* Line 155, Address: 0x1001684 */
+    vsiz = (unsigned short)pActwk->sprvsize; /* Line 155, Address: 0x1001684 */
     ypos = pActwk->yposi.w.h; /* Line 156, Address: 0x10016a0 */
     if ((unsigned short)scra_v_posit.w.h < 256) { /* Line 157, Address: 0x10016b0 */
 
@@ -275,7 +275,7 @@ void patset() { /* Line 198, Address: 0x1001860 */
     while (--pbuffer[i].cnt > 0);
   } /* Line 276, Address: 0x1001b64 */
 
-  for (i = (short)(unsigned short)linkdata; i < 80; ++i) { /* Line 278, Address: 0x1001b84 */
+  for (i = (unsigned short)linkdata; i < 80; ++i) { /* Line 278, Address: 0x1001b84 */
     EAsprset(0, 0, 0, i, 0); /* Line 279, Address: 0x1001ba8 */
   } /* Line 280, Address: 0x1001bcc */
 } /* Line 281, Address: 0x1001bec */
@@ -302,20 +302,20 @@ void spatset(short xposi, short yposi, sprite_status* pActwk, sprite_data* sprda
 
       switch (flag) { /* Line 303, Address: 0x1001c90 */
         case 0:
-          x = xposi + sprdat->xoff; /* Line 305, Address: 0x1001cc8 */
-          y = yposi + sprdat->yoff; /* Line 306, Address: 0x1001d00 */
+          x = xposi + (short)sprdat->xoff; /* Line 305, Address: 0x1001cc8 */
+          y = yposi + (short)sprdat->yoff; /* Line 306, Address: 0x1001d00 */
           break; /* Line 307, Address: 0x1001d38 */
         case 1:
-          x = xposi + (-(sprdat->xoff) - (short)(unsigned short)SprBmp[sprdat->index].xs); /* Line 309, Address: 0x1001d40 */
-          y = yposi + sprdat->yoff; /* Line 310, Address: 0x1001db8 */
+          x = xposi + (short)(-sprdat->xoff - (short)SprBmp[sprdat->index].xs); /* Line 309, Address: 0x1001d40 */
+          y = yposi + (short)sprdat->yoff; /* Line 310, Address: 0x1001db8 */
           break; /* Line 311, Address: 0x1001df0 */
         case 2:
-          x = xposi + sprdat->xoff; /* Line 313, Address: 0x1001df8 */
-          y = yposi + (-(sprdat->yoff) - (short)(unsigned short)SprBmp[sprdat->index].ys); /* Line 314, Address: 0x1001e30 */
+          x = xposi + (short)sprdat->xoff; /* Line 313, Address: 0x1001df8 */
+          y = yposi + (short)(-sprdat->yoff - (short)SprBmp[sprdat->index].ys); /* Line 314, Address: 0x1001e30 */
           break; /* Line 315, Address: 0x1001ea8 */
         case 3:
-          x = xposi + (-(sprdat->xoff) - (short)(unsigned short)SprBmp[sprdat->index].xs); /* Line 317, Address: 0x1001eb0 */
-          y = yposi + (-(sprdat->yoff) - (short)(unsigned short)SprBmp[sprdat->index].ys); /* Line 318, Address: 0x1001f28 */
+          x = xposi + (short)(-sprdat->xoff - (short)SprBmp[sprdat->index].xs); /* Line 317, Address: 0x1001eb0 */
+          y = yposi + (short)(-sprdat->yoff - (short)SprBmp[sprdat->index].ys); /* Line 318, Address: 0x1001f28 */
           break;
       }
       reverse = 0; /* Line 321, Address: 0x1001fa0 */

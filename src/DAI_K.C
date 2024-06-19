@@ -182,7 +182,7 @@ static void dai_k_move(sprite_status* pActwk) { /* Line 161, Address: 0x10021b0 
       lenwk = -lenwk; /* Line 182, Address: 0x100228c */
     }
 
-    actwk[0].actfree[15] = (unsigned short)lenwk; /* Line 185, Address: 0x10022a8 */
+    actwk[0].actfree[15] = lenwk; /* Line 185, Address: 0x10022a8 */
   }
 
 
@@ -226,21 +226,21 @@ static void k_move(sprite_status* pActwk, sprite_status* pSonicwk) { /* Line 223
 
     if (swdata.b.h & 8) { /* Line 227, Address: 0x1002428 */
       ++pSonicwk->actfree[15]; /* Line 228, Address: 0x1002440 */
-    } /* Line 229, Address: 0x1002450 */
-    else if ((swdata.b.h & 4) && pSonicwk->actfree[15]) { /* Line 230, Address: 0x1002470 */
-      --pSonicwk->actfree[15]; /* Line 231, Address: 0x1002480 */
+    } else if (swdata.b.h & 4) { /* Line 229, Address: 0x1002450 */
+      if (pSonicwk->actfree[15]) { /* Line 230, Address: 0x1002470 */
+        --pSonicwk->actfree[15]; /* Line 231, Address: 0x1002480 */
+      }
     }
-
   } /* Line 234, Address: 0x1002490 */
   else {
 
     if (swdata.b.h & 4) { /* Line 237, Address: 0x1002498 */
       ++pSonicwk->actfree[15]; /* Line 238, Address: 0x10024b0 */
-    } /* Line 239, Address: 0x10024c0 */
-    else if ((swdata.b.h & 8) && pSonicwk->actfree[15]) { /* Line 240, Address: 0x10024e0 */
-      --pSonicwk->actfree[15]; /* Line 241, Address: 0x10024f0 */
+    } else if (swdata.b.h & 8) { /* Line 239, Address: 0x10024c0 */
+      if (pSonicwk->actfree[15]) { /* Line 240, Address: 0x10024e0 */
+        --pSonicwk->actfree[15]; /* Line 241, Address: 0x10024f0 */
+      }
     }
-
   }
 } /* Line 245, Address: 0x1002500 */
 
