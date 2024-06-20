@@ -1399,7 +1399,7 @@ void mapwrt_z11b(unsigned char* pMapWk, int VramBase) { /* Line 1394, Address: 0
 
   do {
     wD0 = scrb_v_posit.w.h + wD4 & 496; /* Line 1401, Address: 0x10290cc */
-    mapwrt_sub(z11bwrttbl, wD0, wD4, pMapWk, VramBase); /* Line 1402, Address: 0x10290f0 */
+    mapwrt_sub(&z11bwrttbl[1], wD0, wD4, pMapWk, VramBase); /* Line 1402, Address: 0x10290f0 */
     wD4 += 16; /* Line 1403, Address: 0x1029110 */
   } while ((short)--wD6 >= 0); /* Line 1404, Address: 0x1029118 */
 } /* Line 1405, Address: 0x102913c */

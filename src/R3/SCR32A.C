@@ -1979,7 +1979,7 @@ void mapwrt_z11a(unsigned char* pMapWk, int VramBase) { /* Line 1971, Address: 0
   do {
     wD0 = scrb_v_posit.w.h + wD4 & 752; /* Line 1980, Address: 0x102d9bc */
 
-    mapwrt_sub(z32awrttbl, wD0, wD4, pMapWk, VramBase); /* Line 1982, Address: 0x102d9e0 */
+    mapwrt_sub(&z32awrttbl[1], wD0, wD4, pMapWk, VramBase); /* Line 1982, Address: 0x102d9e0 */
     wD4 += 16; /* Line 1983, Address: 0x102da00 */
   } while ((short)--wD6 >= 0); /* Line 1984, Address: 0x102da08 */
 } /* Line 1985, Address: 0x102da2c */

@@ -1897,7 +1897,7 @@ void mapwrt_z81a(unsigned char* pMapWk, int VramBase) { /* Line 1891, Address: 0
   do {
     wD0 = scrb_v_posit.w.h + wD4 & 496; /* Line 1898, Address: 0x102e55c */
 
-    mapwrt_sub(z81awrttbl, wD0, wD4, pMapWk, VramBase); /* Line 1900, Address: 0x102e580 */
+    mapwrt_sub(&z81awrttbl[1], wD0, wD4, pMapWk, VramBase); /* Line 1900, Address: 0x102e580 */
     wD4 += 16; /* Line 1901, Address: 0x102e5a0 */
   } while ((short)--wD6 >= 0); /* Line 1902, Address: 0x102e5a8 */
 } /* Line 1903, Address: 0x102e5cc */
