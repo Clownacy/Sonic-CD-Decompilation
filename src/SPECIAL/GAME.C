@@ -26,10 +26,10 @@ int(*sOpenFile)(char*);
 void(*sPrintf)(char*, const char*, ...);
 short plring_dmy;
 int* lpFadeFlag;
-palette_entry* lpcolorwk4;
-palette_entry* lpcolorwk3;
-palette_entry* lpcolorwk2;
-palette_entry* lpcolorwk;
+PALETTEENTRY* lpcolorwk4;
+PALETTEENTRY* lpcolorwk3;
+PALETTEENTRY* lpcolorwk2;
+PALETTEENTRY* lpcolorwk;
 unsigned short* pmapwk;
 void(*sOutputDebugString)(char*);
 int(*sRandom)();
@@ -142,7 +142,7 @@ void SetUseOk(short unknown1, short unknown2, short unknown3) { /* Line 135, Add
 
 
 
-static palette_entry colortbl[64] = {
+static PALETTEENTRY colortbl[64] = {
   {  64,  96, 224, 1 }, {   0,   0,   0, 1 }, {   0,  32, 128, 1 }, {  32,  64, 192, 1 },
   {  32,  96, 224, 1 }, {  64, 160, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, { 224, 160, 128, 1 }, { 160,  96,  64, 1 },
@@ -160,7 +160,7 @@ static palette_entry colortbl[64] = {
   {  96, 160, 128, 1 }, {  32,  64,  96, 1 }, {   0,   0,   0, 1 }, { 224, 224, 224, 1 },
   { 224, 224,   0, 1 }, { 128, 128,   0, 1 }, {  64,  64,   0, 1 }, {   0,   0,   0, 1 },
 };
-static palette_entry dispcolor[64] = {
+static PALETTEENTRY dispcolor[64] = {
   { 224, 224, 224, 1 }, {   0,   0,   0, 1 }, { 224, 224, 224, 1 }, { 128, 224,   0, 1 },
   {  64, 160,   0, 1 }, {  32,  96,   0, 1 }, { 224,   0,   0, 1 }, { 128,   0,   0, 1 },
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {  64,   0,  32, 1 }, { 224, 224,  32, 1 },
@@ -178,7 +178,7 @@ static palette_entry dispcolor[64] = {
   { 224, 160, 128, 1 }, { 160,  96,  64, 1 }, { 224,   0,   0, 1 }, { 128,   0,   0, 1 },
   { 192, 224, 224, 1 }, { 160, 224, 224, 1 }, { 128, 224, 224, 1 }, {  64, 224, 224, 1 },
 };
-static palette_entry coltbl0[32] = {
+static PALETTEENTRY coltbl0[32] = {
   {   0,   0,   0, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 160, 160, 128, 1 }, { 128, 128,  64, 1 }, {  64,  64,  32, 1 },
   {   0,   0,   0, 1 }, {   0,   0, 224, 1 }, {  96, 192, 224, 1 }, {  64, 128, 224, 1 },
@@ -188,7 +188,7 @@ static palette_entry coltbl0[32] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 },
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 },
 };
-static palette_entry coltbl1[32] = {
+static PALETTEENTRY coltbl1[32] = {
   {   0,   0, 224, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 160, 160, 160, 1 }, {  96,  96,  96, 1 }, {  64,  64,  64, 1 },
   {   0,   0,   0, 1 }, {   0,   0,  96, 1 }, {   0,   0, 224, 1 }, {   0,  96, 224, 1 },
@@ -198,7 +198,7 @@ static palette_entry coltbl1[32] = {
   {   0,   0, 224, 1 }, { 160,  96,  64, 1 }, { 192, 128,  96, 1 }, { 224, 192, 128, 1 },
   { 224, 224, 160, 1 }, { 160,  64,   0, 1 }, {  96,  64,   0, 1 }, {   0,   0,   0, 1 },
 };
-static palette_entry coltbl2[32] = {
+static PALETTEENTRY coltbl2[32] = {
   {   0,   0, 224, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 128, 160, 160, 1 }, {  64,  96,  96, 1 }, {  32,  64,  64, 1 },
   {   0,   0,   0, 1 }, {  32, 128,   0, 1 }, {   0,   0, 224, 1 }, {  32,  64, 224, 1 },
@@ -208,7 +208,7 @@ static palette_entry coltbl2[32] = {
   { 192, 224, 224, 1 }, {   0,   0,  32, 1 }, {  32, 224, 224, 1 }, {  96, 160, 128, 1 },
   {  64, 128,  96, 1 }, {   0,  64,  64, 1 }, { 224,  32, 128, 1 }, { 224, 224,  64, 1 },
 };
-static palette_entry coltbl3[32] = {
+static PALETTEENTRY coltbl3[32] = {
   {   0,  32, 224, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 224, 192, 160, 1 }, { 160, 128,  96, 1 }, { 128,  96,  32, 1 },
   {   0,   0,   0, 1 }, {  32, 128,   0, 1 }, {   0,  32, 224, 1 }, {  32,  64, 224, 1 },
@@ -218,7 +218,7 @@ static palette_entry coltbl3[32] = {
   {  96, 192, 224, 1 }, {  64, 192, 192, 1 }, {  96,  96,  96, 1 }, {   0,  32,   0, 1 },
   {  32,  64,   0, 1 }, {  64, 128,   0, 1 }, {  96, 160,  32, 1 }, { 160, 160, 160, 1 },
 };
-static palette_entry coltbl4[32] = {
+static PALETTEENTRY coltbl4[32] = {
   {   0,   0,   0, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,  32, 1 }, { 128, 128, 128, 1 }, {  96,  96,  96, 1 }, {  64,  64,  64, 1 },
   {   0,   0,   0, 1 }, {   0, 224,   0, 1 }, {   0,  32, 224, 1 }, {  32,   0,   0, 1 },
@@ -228,7 +228,7 @@ static palette_entry coltbl4[32] = {
   {   0,   0,  64, 1 }, {   0,   0, 128, 1 }, {   0,  32, 192, 1 }, {   0,  64, 224, 1 },
   {   0, 160, 224, 1 }, { 224, 224,   0, 1 }, {   0, 224, 224, 1 }, { 224,   0,   0, 1 },
 };
-static palette_entry coltbl5[32] = {
+static PALETTEENTRY coltbl5[32] = {
   {  96,   0,  64, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 128, 128, 160, 1 }, {  96,  96, 128, 1 }, {  64,  64,  96, 1 },
   {   0,   0,   0, 1 }, {  32,  64,   0, 1 }, {  64, 128,   0, 1 }, { 128, 160,   0, 1 },
@@ -238,7 +238,7 @@ static palette_entry coltbl5[32] = {
   { 128,  96, 224, 1 }, { 160,   0, 224, 1 }, { 224,  32, 224, 1 }, { 224,   0, 160, 1 },
   { 224,   0,  96, 1 }, { 224,   0,  32, 1 }, { 192,  64, 128, 1 }, { 224, 160, 224, 1 },
 };
-static palette_entry coltbl6[32] = {
+static PALETTEENTRY coltbl6[32] = {
   {   0,  64,   0, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, {  96, 128, 128, 1 }, {  64,  96,  96, 1 }, {  32,  64,  64, 1 },
   {   0,   0,   0, 1 }, { 160, 224,   0, 1 }, {  96, 192,   0, 1 }, {  32, 128,   0, 1 },
@@ -248,7 +248,7 @@ static palette_entry coltbl6[32] = {
   { 224,   0,  64, 1 }, { 224, 192,  96, 1 }, {  32,  64,   0, 1 }, {  64, 128,   0, 1 },
   { 128, 160,   0, 1 }, { 224, 160,  32, 1 }, { 192, 128,   0, 1 }, { 128,  64,   0, 1 },
 };
-static palette_entry coltbl7[32] = {
+static PALETTEENTRY coltbl7[32] = {
   {   0,   0,   0, 1 }, { 224, 224, 224, 1 }, { 224, 224,   0, 1 }, { 224, 128,   0, 1 },
   { 224,  32,   0, 1 }, { 160, 160, 128, 1 }, { 128, 128,  64, 1 }, {  64,  64,  32, 1 },
   {   0,   0,   0, 1 }, {   0,   0, 224, 1 }, {  96, 192, 224, 1 }, {  64, 128, 224, 1 },
@@ -359,7 +359,7 @@ bwrt_info bwrtTbl[16] = {
   { mp23, 910, 26, 2 }
 };
 static unsigned char stone_timer = 20;
-static palette_entry stone_color_set_tbl[40] = {
+static PALETTEENTRY stone_color_set_tbl[40] = {
   {   0,  64,   0, 1 }, { 224, 224, 224, 1 }, { 128, 224,   0, 1 }, {  64, 160,   0, 1 },
   {  32,  96,   0, 1 }, {   0,  64,   0, 1 }, { 224, 224, 224, 1 }, { 224,  96,   0, 1 },
   { 224,  64,   0, 1 }, { 128,   0,   0, 1 }, {   0,  64,   0, 1 }, { 224, 224, 224, 1 },
@@ -428,10 +428,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 392, Address: 0x100
 
 
   pmapwk = (unsigned short*)**pBufTbl++; /* Line 430, Address: 0x1005330 */
-  lpcolorwk = (palette_entry*)**pBufTbl++; /* Line 431, Address: 0x100534c */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 432, Address: 0x1005368 */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 433, Address: 0x1005384 */
-  lpcolorwk4 = (palette_entry*)**pBufTbl++; /* Line 434, Address: 0x10053a0 */
+  lpcolorwk = (PALETTEENTRY*)**pBufTbl++; /* Line 431, Address: 0x100534c */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 432, Address: 0x1005368 */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 433, Address: 0x1005384 */
+  lpcolorwk4 = (PALETTEENTRY*)**pBufTbl++; /* Line 434, Address: 0x10053a0 */
   hdatabuf = (unsigned int*)**pBufTbl++; /* Line 435, Address: 0x10053bc */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 436, Address: 0x10053d8 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 437, Address: 0x10053f0 */
@@ -666,7 +666,7 @@ void game_over() { /* Line 633, Address: 0x1005c50 */
 
 
 void game_init() { /* Line 668, Address: 0x1005cd0 */
-  palette_entry* lpPeDest;
+  PALETTEENTRY* lpPeDest;
   int i;
 
 
@@ -794,7 +794,7 @@ void sdfdin() {} /* Line 781, Address: 0x1005eb0 */
 
 void disp() { /* Line 795, Address: 0x1005ec0 */
   short i;
-  palette_entry *lpPeSrc, *lpPeDest;
+  PALETTEENTRY *lpPeSrc, *lpPeDest;
 
   ring_bonus = ringno * 20; /* Line 799, Address: 0x1005ed4 */
   time_bonus = spe_time.l * 20; /* Line 800, Address: 0x1005ef4 */
@@ -1160,7 +1160,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
 
 
 void stone_color_set() { /* Line 1162, Address: 0x10067b0 */
-  palette_entry *lpPeSrc, *lpPeDest;
+  PALETTEENTRY *lpPeSrc, *lpPeDest;
   short i;
 
   if (ufoleft != 0) return; /* Line 1166, Address: 0x10067c0 */
@@ -1201,8 +1201,8 @@ void stone_color_set() { /* Line 1162, Address: 0x10067b0 */
 void panel_box() {} /* Line 1201, Address: 0x10068d0 */
 
 
-void colset(palette_entry* lpPeSrc) { /* Line 1204, Address: 0x10068e0 */
-  palette_entry* lpPeDest;
+void colset(PALETTEENTRY* lpPeSrc) { /* Line 1204, Address: 0x10068e0 */
+  PALETTEENTRY* lpPeDest;
   int i;
 
   lpPeDest = &lpcolorwk[16]; /* Line 1208, Address: 0x10068f0 */
@@ -1850,8 +1850,8 @@ void hscal() { /* Line 1838, Address: 0x1008280 */
 
 void colchg0() { /* Line 1851, Address: 0x10082d0 */
   unsigned short d0, d1, d5, d6, d7;
-  palette_entry* lpPeDest;
-  palette_entry dummy;
+  PALETTEENTRY* lpPeDest;
+  PALETTEENTRY dummy;
   int i;
 
   d5 = 8; /* Line 1857, Address: 0x10082f4 */
@@ -1876,8 +1876,8 @@ void colchg0() { /* Line 1851, Address: 0x10082d0 */
 
 void colchg1() { /* Line 1877, Address: 0x1008450 */
   short d0;
-  palette_entry* lpPeDest;
-  palette_entry cltbl[8] = { /* Line 1880, Address: 0x1008460 */
+  PALETTEENTRY* lpPeDest;
+  PALETTEENTRY cltbl[8] = { /* Line 1880, Address: 0x1008460 */
     { 0, 0, 224, 1 }, { 0, 96, 224, 1 }, { 96, 160, 224, 1 }, { 160, 192, 224, 1 },
     { 0, 0, 224, 1 }, { 0, 96, 224, 1 }, { 96, 160, 224, 1 }, { 160, 192, 224, 1 }
   };
@@ -1903,8 +1903,8 @@ void colchg1() { /* Line 1877, Address: 0x1008450 */
 
 void colchg2() { /* Line 1904, Address: 0x1008560 */
   unsigned short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
-  palette_entry cltbl0[24] = { /* Line 1907, Address: 0x100857c */
+  PALETTEENTRY* lpPeDest;
+  PALETTEENTRY cltbl0[24] = { /* Line 1907, Address: 0x100857c */
     {  0,   0, 224, 1 }, { 32,  64, 224, 1 }, { 64, 128, 224, 1 }, { 64, 192, 224, 1 },
     { 32,  64, 224, 1 }, {  0,   0, 224, 1 }, { 64, 192, 224, 1 }, { 64, 128, 224, 1 },
     { 64, 128, 224, 1 }, { 32,  64, 224, 1 }, { 64, 128, 224, 1 }, { 32,  64, 224, 1 },
@@ -1912,7 +1912,7 @@ void colchg2() { /* Line 1904, Address: 0x1008560 */
     { 64, 128, 224, 1 }, { 64, 192, 224, 1 }, {  0,   0, 224, 1 }, { 32,  64, 224, 1 },
     { 32,  64, 224, 1 }, { 64, 128, 224, 1 }, { 32,  64, 224, 1 }, { 64, 128, 224, 1 }
   };
-  palette_entry cltbl1[6] = { /* Line 1915, Address: 0x10085b0 */
+  PALETTEENTRY cltbl1[6] = { /* Line 1915, Address: 0x10085b0 */
     { 0, 0, 224, 1 }, { 96, 192, 224, 1 }, {  0, 128, 224, 1 },
     { 0, 0, 224, 1 }, {  0, 128, 224, 1 }, { 96, 192, 224, 1 }
   };
@@ -1944,14 +1944,14 @@ void colchg2() { /* Line 1904, Address: 0x1008560 */
 
 void colchg3() { /* Line 1945, Address: 0x1008820 */
   short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
-  palette_entry cltbl0[16] = { /* Line 1948, Address: 0x100883c */
+  PALETTEENTRY* lpPeDest;
+  PALETTEENTRY cltbl0[16] = { /* Line 1948, Address: 0x100883c */
     {  0,  32, 224, 1 }, { 32,  64, 224, 1 }, { 64, 128, 224, 1 }, { 64, 192, 224, 1 },
     { 64, 192, 224, 1 }, {  0,  32, 224, 1 }, { 32,  64, 224, 1 }, { 64, 128, 224, 1 },
     { 64, 128, 224, 1 }, { 64, 192, 224, 1 }, {  0,  32, 224, 1 }, { 32,  64, 224, 1 },
     { 32,  64, 224, 1 }, { 64, 128, 224, 1 }, { 64, 192, 224, 1 }, {  0,  32, 224, 1 }
   };
-  palette_entry cltbl1[8] = { /* Line 1954, Address: 0x1008870 */
+  PALETTEENTRY cltbl1[8] = { /* Line 1954, Address: 0x1008870 */
     {  96, 192, 224, 1 }, { 128, 224, 224, 1 }, { 160, 224, 224, 1 }, { 192, 224, 224, 1 },
     { 224, 224, 224, 1 }, { 192, 224, 224, 1 }, { 160, 224, 224, 1 }, { 128, 224, 224, 1 }
   };
@@ -1981,11 +1981,11 @@ void colchg3() { /* Line 1945, Address: 0x1008820 */
 } /* Line 1981, Address: 0x1008ab4 */
 
 void colchg4() { /* Line 1983, Address: 0x1008ae0 */
-  palette_entry tbl0[7] = { /* Line 1984, Address: 0x1008afc */
+  PALETTEENTRY tbl0[7] = { /* Line 1984, Address: 0x1008afc */
     { 0,  32, 224, 1 }, { 0,  64, 224, 1 }, { 0, 96, 224, 1 }, { 0, 128, 224, 1 },
     { 0, 160, 224, 1 }, { 0, 128, 224, 1 }, { 0, 96, 224, 1 }
   };
-  palette_entry tbl1[26] = { /* Line 1988, Address: 0x1008b30 */
+  PALETTEENTRY tbl1[26] = { /* Line 1988, Address: 0x1008b30 */
     { 224, 224,   0, 1 }, { 192, 224,   0, 1 }, { 160, 224,   0, 1 }, { 128, 224,   0, 1 },
     {  96, 224,   0, 1 }, {  64, 224,   0, 1 }, {  32, 224,   0, 1 }, {   0, 224,  32, 1 },
     {   0, 224,  64, 1 }, {   0, 224,  96, 1 }, {   0, 224, 128, 1 }, {   0, 224, 160, 1 },
@@ -1994,7 +1994,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
     {  32, 224,   0, 1 }, {  64, 224,   0, 1 }, {  96, 224,   0, 1 }, { 128, 224,   0, 1 },
     { 160, 224,   0, 1 }, { 192, 224,   0, 1 }
   };
-  palette_entry tbl2[26] = { /* Line 1997, Address: 0x1008b64 */
+  PALETTEENTRY tbl2[26] = { /* Line 1997, Address: 0x1008b64 */
     {   0, 224, 224, 1 }, {   0, 224, 192, 1 }, {   0, 224, 160, 1 }, {   0, 224, 128, 1 },
     {   0, 224,  96, 1 }, {   0, 224,  64, 1 }, {   0, 224,  32, 1 }, {  32, 224,   0, 1 },
     {  64, 224,   0, 1 }, {  96, 224,   0, 1 }, { 128, 224,   0, 1 }, { 160, 224,   0, 1 },
@@ -2003,7 +2003,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
     {   0, 224,  32, 1 }, {   0, 224,  64, 1 }, {   0, 224,  96, 1 }, {   0, 224, 128, 1 },
     {   0, 224, 160, 1 }, {   0, 224, 192, 1 }
   };
-  palette_entry tbl3[28] = { /* Line 2006, Address: 0x1008b98 */
+  PALETTEENTRY tbl3[28] = { /* Line 2006, Address: 0x1008b98 */
     { 224, 0, 0, 1 }, { 192, 0, 0, 1 }, { 160, 0, 0, 1 }, { 128, 0, 0, 1 },
     { 96, 0, 0, 1 }, { 64, 0, 0, 1 }, { 32, 0, 0, 1 }, { 0, 0, 0, 1 },
     { 32, 0, 0, 1 }, { 64, 0, 0, 1 }, { 96, 0, 0, 1 }, { 128, 0, 0, 1 },
@@ -2013,7 +2013,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
     { 96, 0, 0, 1 }, { 128, 0, 0, 1 }, { 160, 0, 0, 1 }, { 192, 0, 0, 1 }
   };
   unsigned short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
+  PALETTEENTRY* lpPeDest;
 
   d5 = 2; /* Line 2018, Address: 0x1008bcc */
   d6 = 0; /* Line 2019, Address: 0x1008bd4 */
@@ -2050,9 +2050,9 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
 
 void colchg5() { /* Line 2051, Address: 0x1008e10 */
   unsigned short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
+  PALETTEENTRY* lpPeDest;
   short i;
-  static palette_entry tbl0[26] = {
+  static PALETTEENTRY tbl0[26] = {
     { 224,  64,   0, 1 }, { 224, 128,   0, 1 }, { 224, 192,   0, 1 }, { 160, 224,  64, 1 },
     { 128, 224, 128, 1 }, {  64, 224, 192, 1 }, {  64, 160, 224, 1 }, { 128,  96, 224, 1 },
     { 160,   0, 224, 1 }, { 224,  32, 224, 1 }, { 224,   0, 160, 1 }, { 224,   0,  96, 1 },
@@ -2061,7 +2061,7 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
     { 128,  96, 224, 1 }, { 160,   0, 224, 1 }, { 224,  32, 224, 1 }, { 224,   0, 160, 1 },
     { 224,   0,  96, 1 }, { 224,   0,  32, 1 }
   };
-  static palette_entry tbl1[12] = {
+  static PALETTEENTRY tbl1[12] = {
     {  0,  0, 224, 1 }, { 64, 0, 32, 1 }, {  0, 32, 224, 1 }, { 96, 0, 64, 1 },
     { 32, 64, 224, 1 }, { 64, 0, 32, 1 }, { 64, 96, 224, 1 }, { 32, 0, 0, 1 },
     { 32, 64, 224, 1 }, {  0, 0,  0, 1 }, {  0, 32, 224, 1 }, { 32, 0, 0, 1 }
@@ -2091,13 +2091,13 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
 
 
 void colchg6() { /* Line 2093, Address: 0x1009000 */
-  palette_entry tbl[12] = { /* Line 2094, Address: 0x100901c */
+  PALETTEENTRY tbl[12] = { /* Line 2094, Address: 0x100901c */
     { 0, 32, 192, 1 }, { 0, 32, 192, 1 }, { 0,  64, 224, 1 }, { 0,  64, 224, 1 },
     { 0, 96, 224, 1 }, { 0, 96, 224, 1 }, { 0, 128, 224, 1 }, { 0, 128, 224, 1 },
     { 0, 96, 224, 1 }, { 0, 96, 224, 1 }, { 0,  64, 224, 1 }, { 0,  64, 224, 1 }
   };
   unsigned short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
+  PALETTEENTRY* lpPeDest;
 
   d5 = 1; /* Line 2102, Address: 0x1009050 */
   d6 = 0; /* Line 2103, Address: 0x1009058 */

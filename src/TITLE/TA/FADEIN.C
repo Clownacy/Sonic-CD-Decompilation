@@ -5,8 +5,8 @@ static unsigned short code_tbl[3] = { 1, 5, 9 };
 static unsigned short wColwk;
 static int FadeCount;
 extern int* lpFadeFlag;
-extern palette_entry* lpcolorwk;
-static palette_entry colorsave[64];
+extern PALETTEENTRY* lpcolorwk;
+static PALETTEENTRY colorsave[64];
 static unsigned char byMskwk;
 
 
@@ -48,7 +48,7 @@ void clwout() {
 
 void clwout_new() { /* Line 49, Address: 0x1001940 */
   short i;
-  palette_entry* lpColwk;
+  PALETTEENTRY* lpColwk;
 
 
   if (wColwk >= 3) { /* Line 54, Address: 0x1001950 */
@@ -84,7 +84,7 @@ void clwout_new() { /* Line 49, Address: 0x1001940 */
 
 void woutcolor(unsigned short wD1) { /* Line 85, Address: 0x1001a50 */
   short i;
-  palette_entry* lpColwk;
+  PALETTEENTRY* lpColwk;
 
 
   lpColwk = lpcolorwk; /* Line 90, Address: 0x1001a60 */
@@ -124,9 +124,9 @@ void woutcolor(unsigned short wD1) { /* Line 85, Address: 0x1001a50 */
 
 void clwin_init() { /* Line 125, Address: 0x1001b50 */
   short i;
-  palette_entry* lpColwk;
-  palette_entry* lpSavewk;
-  palette_entry tmp = { 224, 224, 224, 1 }; /* Line 129, Address: 0x1001b60 */
+  PALETTEENTRY* lpColwk;
+  PALETTEENTRY* lpSavewk;
+  PALETTEENTRY tmp = { 224, 224, 224, 1 }; /* Line 129, Address: 0x1001b60 */
 
   lpColwk = lpcolorwk; /* Line 131, Address: 0x1001b74 */
   lpSavewk = colorsave; /* Line 132, Address: 0x1001b7c */
@@ -187,7 +187,7 @@ void clwin_new() { /* Line 158, Address: 0x1001c60 */
 void wincolor(unsigned char byD0, unsigned short wD1) { /* Line 187, Address: 0x1001d40 */
   short i;
   unsigned char byColwk;
-  palette_entry *lpColwk, *lpSavewk;
+  PALETTEENTRY *lpColwk, *lpSavewk;
 
   lpColwk = lpcolorwk; /* Line 192, Address: 0x1001d5c */
   lpSavewk = colorsave; /* Line 193, Address: 0x1001d64 */

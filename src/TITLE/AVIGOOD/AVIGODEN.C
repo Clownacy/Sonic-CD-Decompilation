@@ -11,7 +11,7 @@ int nTimerCunt;
 unsigned short nSequenceNum;
 unsigned int* lpbFullScreen;
 unsigned int hWnd;
-palette_entry* lpColorwk;
+PALETTEENTRY* lpColorwk;
 draw_context* s_ctx;
 draw_context*(*get_draw_context_module)();
 int(*sMovieStat)();

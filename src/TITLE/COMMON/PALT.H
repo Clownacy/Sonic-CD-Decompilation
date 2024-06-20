@@ -1,1 +1,1 @@
-void OEClrset(palette_entry* pPalet, unsigned short nNumber);
+void OEClrset(PALETTEENTRY* pPalet, unsigned short nNumber);

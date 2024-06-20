@@ -14,10 +14,10 @@ static void(*em1_tbl[5])(sprite_status*) = {
   &emie1_tobii,
   &emie1_tobim
 };
-extern palette_entry zone1colora[];
+extern PALETTEENTRY zone1colora[];
 extern char* em_pchg[];
 extern sprite_pattern* emie1pat[];
-static palette_entry emie1_clr[16] = {
+static PALETTEENTRY emie1_clr[16] = {
   {   0,   0,   0, 1 },
   {   0,   0,   0, 1 },
   { 128,  32,  96, 1 },
@@ -755,8 +755,8 @@ static void emie1clrset() { /* Line 744, Address: 0x1006770 */
 
 
 
-static void emie1clrsetx(palette_entry* pPalet) { /* Line 758, Address: 0x10067a0 */
-  palette_entry* pColorwk;
+static void emie1clrsetx(PALETTEENTRY* pPalet) { /* Line 758, Address: 0x10067a0 */
+  PALETTEENTRY* pColorwk;
   short i;
 
 

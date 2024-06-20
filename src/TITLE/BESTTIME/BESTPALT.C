@@ -1,7 +1,7 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\PALT.H"
 
-palette_entry tblPal1[16] = {
+PALETTEENTRY tblPal1[16] = {
   {   0,   0,   0, 1 }, {  64,  64, 128, 1 },
   { 160, 160, 224, 1 }, { 160, 160, 224, 1 },
   {   0,   0,   0, 1 }, { 160, 160, 224, 1 },
@@ -11,7 +11,7 @@ palette_entry tblPal1[16] = {
   { 160, 160, 224, 1 }, { 160, 160, 224, 1 },
   { 160, 160, 224, 1 }, { 160, 160, 224, 1 }
 };
-palette_entry tblPal2[16] = {
+PALETTEENTRY tblPal2[16] = {
   {   0,   0,   0, 1 }, {  32,  32,  32, 1 },
   {  64,  64,  64, 1 }, { 128, 128, 128, 1 },
   {   0,   0,   0, 1 }, { 192, 192, 192, 1 },
@@ -21,7 +21,7 @@ palette_entry tblPal2[16] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 },
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }
 };
-palette_entry tblPal3[16] = {
+PALETTEENTRY tblPal3[16] = {
   {   0,   0,   0, 1 }, {  32,  32,  32, 1 },
   {  64,  64,  64, 1 }, { 128, 128, 128, 1 },
   {  64,  64, 128, 1 }, { 192, 192, 192, 1 },
@@ -31,7 +31,7 @@ palette_entry tblPal3[16] = {
   { 192, 224, 224, 1 }, { 160, 224, 224, 1 },
   { 128, 224, 224, 1 }, {  64, 224, 224, 1 }
 };
-palette_entry tblPal4[16] = {
+PALETTEENTRY tblPal4[16] = {
   {   0,   0,   0, 1 }, { 160, 224, 224, 1 },
   { 224, 224, 224, 1 }, { 128, 224, 224, 1 },
   { 192, 224, 224, 1 }, {  64, 224, 224, 1 },
@@ -41,7 +41,7 @@ palette_entry tblPal4[16] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 },
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }
 };
-extern palette_entry* lpColorwk;
+extern PALETTEENTRY* lpColorwk;
 
 
 
@@ -59,8 +59,8 @@ extern palette_entry* lpColorwk;
 
 
 
-void OEClrset(palette_entry* pPalet, unsigned short nNumber) { /* Line 62, Address: 0x1000d90 */
-  palette_entry* pColorwk;
+void OEClrset(PALETTEENTRY* pPalet, unsigned short nNumber) { /* Line 62, Address: 0x1000d90 */
+  PALETTEENTRY* pColorwk;
   short i;
 
 

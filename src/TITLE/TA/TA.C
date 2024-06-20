@@ -39,10 +39,10 @@ draw_context* s_ctx;
 draw_context*(*get_draw_context_module)();
 int* lpFadeFlag;
 int_union* lphscrollbuff;
-palette_entry* lpcolorwk4;
-palette_entry* lpcolorwk3;
-palette_entry* lpcolorwk2;
-palette_entry* lpcolorwk;
+PALETTEENTRY* lpcolorwk4;
+PALETTEENTRY* lpcolorwk3;
+PALETTEENTRY* lpcolorwk2;
+PALETTEENTRY* lpcolorwk;
 unsigned short* pmapwk;
 void(*hmx_sprite_set_bitmap_module)(hmx_sprite*, hmx_bitmap*);
 void(*hmx_sprite_set_position_module)(hmx_sprite*, int, int);
@@ -613,10 +613,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 559, Address: 0x100
 
 
   pmapwk = (unsigned short*)**pBufTbl++; /* Line 615, Address: 0x10017a8 */
-  lpcolorwk = (palette_entry*)**pBufTbl++; /* Line 616, Address: 0x10017c4 */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 617, Address: 0x10017e0 */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 618, Address: 0x10017fc */
-  lpcolorwk4 = (palette_entry*)**pBufTbl++; /* Line 619, Address: 0x1001818 */
+  lpcolorwk = (PALETTEENTRY*)**pBufTbl++; /* Line 616, Address: 0x10017c4 */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 617, Address: 0x10017e0 */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 618, Address: 0x10017fc */
+  lpcolorwk4 = (PALETTEENTRY*)**pBufTbl++; /* Line 619, Address: 0x1001818 */
   lphscrollbuff = (int_union*)**pBufTbl++; /* Line 620, Address: 0x1001834 */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 621, Address: 0x1001850 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 622, Address: 0x1001868 */

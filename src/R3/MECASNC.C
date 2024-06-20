@@ -28,7 +28,7 @@ unsigned char* msc_pchg[3] = {
   elec_pchg,
   hover_pchg
 };
-extern palette_entry zone3colora[];
+extern PALETTEENTRY zone3colora[];
 void(*emie3_tbl[3])(sprite_status*) = {
   &emie3_init,
   &emie3_walk,
@@ -36,7 +36,7 @@ void(*emie3_tbl[3])(sprite_status*) = {
 };
 extern unsigned char* em_pchg[];
 extern sprite_pattern* emie3pat[];
-static palette_entry emie3_clr[16] = {
+static PALETTEENTRY emie3_clr[16] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, { 128,  32,  96, 1 }, { 160,  64, 128, 1 },
   { 224,  96, 224, 1 }, { 224, 160, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, { 224, 160, 128, 1 }, { 192,  96,   0, 1 },
@@ -841,8 +841,8 @@ void empatchg(sprite_status* pActwk, unsigned char** bppPtbl) { /* Line 780, Add
 
 
 
-void emie3clrsetx(palette_entry* pPalet) { /* Line 844, Address: 0x1026a20 */
-  palette_entry* pColorwk;
+void emie3clrsetx(PALETTEENTRY* pPalet) { /* Line 844, Address: 0x1026a20 */
+  PALETTEENTRY* pColorwk;
   short i;
 
 

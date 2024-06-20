@@ -92,16 +92,16 @@ static int nFadoSeqNum;
 static int nFadoValu;
 static int nFadoTime;
 extern void(*WaveRequest)(short);
-extern palette_entry tblPal2[];
-extern palette_entry tblPal2a[];
+extern PALETTEENTRY tblPal2[];
+extern PALETTEENTRY tblPal2a[];
 static unsigned int bFadePaletDisable[4];
-static palette_entry workPalet[4][16];
+static PALETTEENTRY workPalet[4][16];
 extern void(*sMemCpy)(void*, void*, int);
-extern palette_entry tblPal4[];
-extern palette_entry tblPal3[];
-extern palette_entry tblPal1[];
+extern PALETTEENTRY tblPal4[];
+extern PALETTEENTRY tblPal3[];
+extern PALETTEENTRY tblPal1[];
 extern unsigned int bFirstTitle;
-extern palette_entry tblPal1a[];
+extern PALETTEENTRY tblPal1a[];
 extern void(*CDPlay)(short);
 extern void(*CDPause)(short);
 static unsigned int testSpr;
@@ -892,7 +892,7 @@ void OEFadeOut() { /* Line 831, Address: 0x1001fd0 */
 
 void OEFadeIn() { /* Line 893, Address: 0x1002360 */
   int n, j;
-  palette_entry* lpPal;
+  PALETTEENTRY* lpPal;
 
   OEAllSprDelete(); /* Line 897, Address: 0x1002380 */
   if (nFadoSeqNum == 7) { /* Line 898, Address: 0x1002388 */

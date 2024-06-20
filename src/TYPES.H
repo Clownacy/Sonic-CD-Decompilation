@@ -273,10 +273,10 @@ typedef struct tagPALETTEENTRY {
   unsigned char peBlue;
   unsigned char peFlags;
 }
-palette_entry;
+PALETTEENTRY;
 
 typedef struct {
-  palette_entry* PeSrc;
+  PALETTEENTRY* PeSrc;
   short offset;
   short cnt;
 }

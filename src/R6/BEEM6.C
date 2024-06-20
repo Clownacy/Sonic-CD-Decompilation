@@ -172,8 +172,8 @@ void beem6_actsch() { /* Line 155, Address: 0x1018c40 */
 
 
 void clrset0() { /* Line 174, Address: 0x1018d20 */
-  palette_entry *lpPe_a2, *lpPe_a3;
-  palette_entry dummy;
+  PALETTEENTRY *lpPe_a2, *lpPe_a3;
+  PALETTEENTRY dummy;
   short d0, d2;
 
   lpPe_a3 = &lpcolorwk[32]; /* Line 179, Address: 0x1018d34 */
@@ -206,8 +206,8 @@ label1:
 } /* Line 206, Address: 0x1018f28 */
 
 void clrset0_2() { /* Line 208, Address: 0x1018f50 */
-  palette_entry *lpPe_a2, *lpPe_a3;
-  palette_entry dummy;
+  PALETTEENTRY *lpPe_a2, *lpPe_a3;
+  PALETTEENTRY dummy;
   short d0, d2;
 
   lpPe_a3 = &lpcolorwk2[32]; /* Line 213, Address: 0x1018f64 */
@@ -294,8 +294,8 @@ label1:
 void clrset1(sprite_status* actionwk, char d0) { /* Line 294, Address: 0x1019180 */
 
   char clrsel[3] = { 0, 2, 4 }; /* Line 296, Address: 0x1019198 */
-  palette_entry* lpPe_a2;
-  palette_entry dummy;
+  PALETTEENTRY* lpPe_a2;
+  PALETTEENTRY dummy;
   short* a1;
   short col;
 
@@ -342,8 +342,8 @@ void clrset1(sprite_status* actionwk, char d0) { /* Line 294, Address: 0x1019180
 
 void maeclrset(sprite_status* actionwk, char d0) { /* Line 343, Address: 0x1019480 */
   char clrsel[3] = { 0, 2, 4 }; /* Line 344, Address: 0x1019494 */
-  palette_entry* lpPe_a2;
-  palette_entry dummy;
+  PALETTEENTRY* lpPe_a2;
+  PALETTEENTRY dummy;
   short col;
 
   col = clrsel[d0] >> 1; /* Line 349, Address: 0x10194b8 */

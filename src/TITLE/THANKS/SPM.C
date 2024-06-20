@@ -62,10 +62,10 @@ int DLLRetMode;
 int* lpFadeFlag;
 short FadeFlag;
 int_union* lphscrollbuff;
-palette_entry* lpcolorwk3;
-palette_entry* lpcolorwk2;
-palette_entry* lpcolorwk1;
-palette_entry* lpcolorwk0;
+PALETTEENTRY* lpcolorwk3;
+PALETTEENTRY* lpcolorwk2;
+PALETTEENTRY* lpcolorwk1;
+PALETTEENTRY* lpcolorwk0;
 bmp_info SprBmp[700];
 
 

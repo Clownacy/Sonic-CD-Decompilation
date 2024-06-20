@@ -16,7 +16,7 @@ unsigned char spgmmode_tmp;
 unsigned char clfflg;
 unsigned char demoflg;
 unsigned char pauseflg;
-palette_entry colorsave[64];
+PALETTEENTRY colorsave[64];
 unsigned char demowk[4096];
 unsigned short dummy100[128];
 unsigned short dummy000[128];

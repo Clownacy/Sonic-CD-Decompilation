@@ -1,6 +1,6 @@
 void clchgctr();
 void colchg11a();
-void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, palette_entry* pColTbl);
+void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, PALETTEENTRY* pColTbl);
 void fadein0();
 void fadeout();
 void flashin();

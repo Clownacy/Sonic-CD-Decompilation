@@ -6,7 +6,7 @@
 static unsigned short clchg_cnt[2] = {
   65535, 0
 };
-static palette_entry colortbl[32] = {
+static PALETTEENTRY colortbl[32] = {
   {   0,   0,   0, 1 }, {   0, 224,   0, 1 }, {  32,  32, 192, 1 }, {  64,  64, 224, 1 },
   {  96,  96, 224, 1 }, { 128, 128, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, { 224, 160, 128, 1 }, { 160,  96,  64, 1 },
@@ -16,7 +16,7 @@ static palette_entry colortbl[32] = {
   { 224, 224, 224, 1 }, { 192, 224, 192, 1 }, { 160, 224, 160, 1 }, { 128, 224, 128, 1 },
   {  96, 224,  96, 1 }, {  64, 224,  64, 1 }, {  32, 224,  32, 1 }, {   0,   0,   0, 1 }
 };
-static palette_entry clchg_tbl[28] = {
+static PALETTEENTRY clchg_tbl[28] = {
   {   0, 224,   0 ,1 }, {  32, 224,  32, 1 }, {  64, 224,  64, 1 }, {  96, 224,  96, 1 },
   { 128, 224, 128, 1 }, { 160, 224, 160, 1 }, { 192, 224, 192, 1 }, { 224, 224, 224, 1 },
   { 192, 224, 192, 1 }, { 160, 224, 160, 1 }, { 128, 224, 128, 1 }, {  96, 224,  96, 1 },
@@ -47,7 +47,7 @@ static unsigned short gmtime1;
 static unsigned short wColwk;
 static int FadeCount;
 static unsigned char clfflg;
-static palette_entry colorsave[64];
+static PALETTEENTRY colorsave[64];
 static unsigned char byMskwk;
 int(*sGetFileSize)(int);
 
@@ -124,10 +124,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 94, Address: 0x1000
 
 
   pmapwk = (unsigned short*)**pBufTbl++; /* Line 126, Address: 0x10001e0 */
-  lpcolorwk = (palette_entry*)**pBufTbl++; /* Line 127, Address: 0x10001fc */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 128, Address: 0x1000218 */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 129, Address: 0x1000234 */
-  lpcolorwk4 = (palette_entry*)**pBufTbl++; /* Line 130, Address: 0x1000250 */
+  lpcolorwk = (PALETTEENTRY*)**pBufTbl++; /* Line 127, Address: 0x10001fc */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 128, Address: 0x1000218 */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 129, Address: 0x1000234 */
+  lpcolorwk4 = (PALETTEENTRY*)**pBufTbl++; /* Line 130, Address: 0x1000250 */
   lphscrollbuff = (int_union*)**pBufTbl++; /* Line 131, Address: 0x100026c */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 132, Address: 0x1000288 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 133, Address: 0x10002a0 */
@@ -491,7 +491,7 @@ void clwout_new() { /* Line 465, Address: 0x1000c90 */
 
 void woutcolor(unsigned short wD1) { /* Line 492, Address: 0x1000d40 */
   short i;
-  palette_entry* lpColwk;
+  PALETTEENTRY* lpColwk;
 
 
   lpColwk = lpcolorwk; /* Line 497, Address: 0x1000d50 */
@@ -531,9 +531,9 @@ void woutcolor(unsigned short wD1) { /* Line 492, Address: 0x1000d40 */
 
 void clwin_init() { /* Line 532, Address: 0x1000e40 */
   short i;
-  palette_entry* lpColwk;
-  palette_entry* lpSavewk;
-  palette_entry tmp = { 224, 224, 224, 1 }; /* Line 536, Address: 0x1000e50 */
+  PALETTEENTRY* lpColwk;
+  PALETTEENTRY* lpSavewk;
+  PALETTEENTRY tmp = { 224, 224, 224, 1 }; /* Line 536, Address: 0x1000e50 */
 
   lpColwk = lpcolorwk; /* Line 538, Address: 0x1000e64 */
   lpSavewk = colorsave; /* Line 539, Address: 0x1000e6c */
@@ -594,7 +594,7 @@ void clwin_new() { /* Line 565, Address: 0x1000f50 */
 void wincolor(unsigned char byD0, unsigned short wD1) { /* Line 594, Address: 0x1001030 */
   short i;
   unsigned char byColwk;
-  palette_entry *lpColwk, *lpSavewk;
+  PALETTEENTRY *lpColwk, *lpSavewk;
 
   lpColwk = lpcolorwk; /* Line 599, Address: 0x100104c */
   lpSavewk = colorsave; /* Line 600, Address: 0x1001054 */

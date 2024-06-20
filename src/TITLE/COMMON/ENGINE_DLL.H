@@ -6,7 +6,7 @@
 typedef struct {
   unsigned int hWnd;
   unsigned int hSurf;
-  palette_entry* lpColorwk;
+  PALETTEENTRY* lpColorwk;
   unsigned int* lpbFullScreen;
   unsigned int bFirstTitle;
   unsigned int* lpbVisualmode;

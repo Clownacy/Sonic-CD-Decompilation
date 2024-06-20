@@ -5,16 +5,16 @@
 #include "LPLMAIN.H"
 
 static void fadein1();
-static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static void fadein2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc);
 static int fadeout_new();
 static void fadeout1();
-static void fadeout2(palette_entry* lpPeDest);
+static void fadeout2(PALETTEENTRY* lpPeDest);
 static int flashin_new();
 static void flashin1();
-static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc);
+static void flashin2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc);
 static int flashout_new();
 static void flashout1();
-static void flashout2(palette_entry* lpPeDest);
+static void flashout2(PALETTEENTRY* lpPeDest);
 
 static int FadeCount;
 
@@ -51,7 +51,7 @@ void fadein() { /* Line 46, Address: 0x10039f0 */
 
 
 void fadein0() { /* Line 53, Address: 0x1003a30 */
-  palette_entry* lpPe;
+  PALETTEENTRY* lpPe;
   int i;
 
   lpPe = &lpcolorwk0[startcolor / 2]; /* Line 57, Address: 0x1003a3c */
@@ -87,7 +87,7 @@ int fadein0_new() { /* Line 73, Address: 0x1003ae0 */
 
 
 static void fadein1() { /* Line 89, Address: 0x1003b50 */
-  palette_entry *lpPe, *lpPe2;
+  PALETTEENTRY *lpPe, *lpPe2;
   int i;
 
   lpPe = &lpcolorwk0[startcolor / 2]; /* Line 93, Address: 0x1003b64 */
@@ -112,7 +112,7 @@ static void fadein1() { /* Line 89, Address: 0x1003b50 */
 
 
 
-static void fadein2(palette_entry* lpPeDest, palette_entry* lpPeSrc) { /* Line 115, Address: 0x1003c30 */
+static void fadein2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc) { /* Line 115, Address: 0x1003c30 */
   if (lpPeSrc->peBlue != lpPeDest->peBlue /* Line 116, Address: 0x1003c3c */
       || lpPeSrc->peGreen != lpPeDest->peGreen
       || lpPeSrc->peRed != lpPeDest->peRed) {
@@ -157,7 +157,7 @@ static int fadeout_new() { /* Line 144, Address: 0x1003da0 */
 
 
 static void fadeout1() { /* Line 159, Address: 0x1003e10 */
-  palette_entry* lpPe;
+  PALETTEENTRY* lpPe;
   int i;
 
   lpPe = &lpcolorwk0[startcolor / 2]; /* Line 163, Address: 0x1003e20 */
@@ -177,7 +177,7 @@ static void fadeout1() { /* Line 159, Address: 0x1003e10 */
 } /* Line 177, Address: 0x1003ef8 */
 
 
-static void fadeout2(palette_entry* lpPeDest) { /* Line 180, Address: 0x1003f10 */
+static void fadeout2(PALETTEENTRY* lpPeDest) { /* Line 180, Address: 0x1003f10 */
   if (lpPeDest->peRed) { /* Line 181, Address: 0x1003f18 */
     lpPeDest->peRed -= 32; /* Line 182, Address: 0x1003f28 */
   } /* Line 183, Address: 0x1003f3c */
@@ -194,7 +194,7 @@ static void fadeout2(palette_entry* lpPeDest) { /* Line 180, Address: 0x1003f10 
 
 
 void flashin() { /* Line 196, Address: 0x1003fa0 */
-  palette_entry* lpPe;
+  PALETTEENTRY* lpPe;
   int i;
 
   startcolor = 0; /* Line 200, Address: 0x1003fac */
@@ -229,7 +229,7 @@ static int flashin_new() { /* Line 217, Address: 0x1004070 */
 } /* Line 229, Address: 0x10040c4 */
 
 static void flashin1() { /* Line 231, Address: 0x10040e0 */
-  palette_entry *lpPe, *lpPe2;
+  PALETTEENTRY *lpPe, *lpPe2;
   int i;
 
   lpPe = &lpcolorwk0[startcolor / 2]; /* Line 235, Address: 0x10040f4 */
@@ -254,7 +254,7 @@ static void flashin1() { /* Line 231, Address: 0x10040e0 */
 
 
 
-static void flashin2(palette_entry* lpPeDest, palette_entry* lpPeSrc) { /* Line 257, Address: 0x10041c0 */
+static void flashin2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc) { /* Line 257, Address: 0x10041c0 */
   if (lpPeSrc->peBlue != lpPeDest->peBlue /* Line 258, Address: 0x10041cc */
       || lpPeSrc->peGreen != lpPeDest->peGreen
       || lpPeSrc->peRed != lpPeDest->peRed) {
@@ -297,7 +297,7 @@ static int flashout_new() { /* Line 284, Address: 0x1004330 */
 
 
 static void flashout1() { /* Line 299, Address: 0x10043a0 */
-  palette_entry* lpPe;
+  PALETTEENTRY* lpPe;
   int i;
 
   lpPe = &lpcolorwk0[startcolor / 2]; /* Line 303, Address: 0x10043b0 */
@@ -317,7 +317,7 @@ static void flashout1() { /* Line 299, Address: 0x10043a0 */
 } /* Line 317, Address: 0x1004488 */
 
 
-static void flashout2(palette_entry* lpPeDest) { /* Line 320, Address: 0x10044a0 */
+static void flashout2(PALETTEENTRY* lpPeDest) { /* Line 320, Address: 0x10044a0 */
   if (lpPeDest->peRed != 224) { /* Line 321, Address: 0x10044a8 */
     lpPeDest->peRed += 32; /* Line 322, Address: 0x10044c0 */
   } /* Line 323, Address: 0x10044d4 */

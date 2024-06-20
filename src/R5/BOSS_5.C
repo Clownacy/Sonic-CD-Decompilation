@@ -2194,14 +2194,14 @@ static void belt_anime(sprite_status* pActwk) { /* Line 2154, Address: 0x10274d0
 
 
 static void set_belt_col(sprite_status* pActwk) { /* Line 2196, Address: 0x10275c0 */
-  palette_entry* pColorwk;
+  PALETTEENTRY* pColorwk;
   char bA3;
-  palette_entry belt_col_tblD[9] = /* Line 2199, Address: 0x10275d0 */
+  PALETTEENTRY belt_col_tblD[9] = /* Line 2199, Address: 0x10275d0 */
   {
     { 224, 224, 192, 1 }, {  96,  96,  64, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, { 224, 224, 192, 1 },
     {  96,  96,  64, 1 }, {  96,  96,  64, 1 }, {   0,   0,   0, 1 }, { 224, 224, 192, 1 }
   };
-  palette_entry belt_col_tblC[9] = /* Line 2204, Address: 0x1027604 */
+  PALETTEENTRY belt_col_tblC[9] = /* Line 2204, Address: 0x1027604 */
   {
     {   0,  32,   0, 1 }, {   0, 128,   0, 1 }, {  32, 192,  96, 1 },
     {   0, 128,   0, 1 }, {  32, 192,  96, 1 }, {   0,  32,   0, 1 },

@@ -14,7 +14,7 @@ extern unsigned char spgmmode_tmp;
 extern unsigned char clfflg;
 extern unsigned char demoflg;
 extern unsigned char pauseflg;
-extern palette_entry colorsave[64];
+extern PALETTEENTRY colorsave[64];
 extern unsigned char demowk[4096];
 extern unsigned short dummy100[128];
 extern unsigned short dummy000[128];

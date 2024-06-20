@@ -1,7 +1,7 @@
 #include "..\..\TYPES.H"
 #include "TACOLOR.H"
 
-palette_entry tacolor[64] = {
+PALETTEENTRY tacolor[64] = {
   { 111, 102, 143, 1 }, {  15,   0,  15, 1 }, { 239, 238, 239, 1 }, { 239, 238,  15, 1 },
   { 239, 142,  15, 1 }, { 239,  78, 111, 1 }, { 239,  14,  15, 1 }, {  15,   0,  15, 1 },
   {  15,   0,  15, 1 }, {  15,   0,  79, 1 }, {  79,  68, 111, 1 }, { 175, 170,  79, 1 },
@@ -19,7 +19,7 @@ palette_entry tacolor[64] = {
   {  15,   0,  15, 1 }, {  47,  34,  47, 1 }, {  79,  68,  79, 1 }, { 111, 102, 111, 1 },
   { 143, 136, 143, 1 }, { 175, 170, 175, 1 }, { 207, 204, 207, 1 }, { 239, 238, 239, 1 }
 };
-palette_entry ta_stage_col[2][8][16] = {
+PALETTEENTRY ta_stage_col[2][8][16] = {
   {
     {
       {  15,   0,  15, 1 }, {  15,   0, 143, 1 }, {  15,   0, 239, 1 }, {  15,  96, 239, 1 },
@@ -107,7 +107,7 @@ palette_entry ta_stage_col[2][8][16] = {
     }
   }
 };
-extern palette_entry* lpcolorwk;
+extern PALETTEENTRY* lpcolorwk;
 static short clchgcnt[4];
 
 
@@ -147,9 +147,9 @@ unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned 
 
 void TAColorChgSP6() { /* Line 148, Address: 0x1002080 */
   unsigned short d0, d5, d6, d7;
-  palette_entry* lpPeDest;
+  PALETTEENTRY* lpPeDest;
   short i;
-  static palette_entry tbl0[26] = {
+  static PALETTEENTRY tbl0[26] = {
     { 239,  78,  15, 1 }, { 239, 142,  15, 1 }, { 239, 206,  15, 1 }, { 175, 234,  79, 1 },
     { 143, 232, 143, 1 }, {  79, 228, 207, 1 }, {  79, 164, 239, 1 }, { 143, 104, 239, 1 },
     { 175,  10, 239, 1 }, { 239,  46, 239, 1 }, { 239,  14, 175, 1 }, { 239,  14, 111, 1 },
@@ -158,7 +158,7 @@ void TAColorChgSP6() { /* Line 148, Address: 0x1002080 */
     { 143, 104, 239, 1 }, { 175,  10, 239, 1 }, { 239,  46, 239, 1 }, { 239,  14, 175, 1 },
     { 239,  14, 111, 1 }, { 239,  14,  47, 1 }
   };
-  static palette_entry tbl1[12] = {
+  static PALETTEENTRY tbl1[12] = {
     {  15,   0, 239, 1 }, {  79,   4,  47, 1 }, {  15,  32, 239, 1 }, { 111,   6,  79, 1 },
     {  47,  66, 239, 1 }, {  79,   4,  47, 1 }, {  79, 100, 239, 1 }, {  47,   2,  15, 1 },
     {  47,  66, 239, 1 }, {  15,   0,  15, 1 }, {  15,  32, 239, 1 }, {  47,   2,  15, 1 }

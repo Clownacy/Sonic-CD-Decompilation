@@ -54,15 +54,15 @@ void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int, int);
 static char ScrBMapFileName[26] = "TITLE\\PLANET\\MAP\\LPBS.MAP";
 static unsigned int bGameInit = 1;
-extern palette_entry init_col[];
+extern PALETTEENTRY init_col[];
 static short ScrBMap[704];
 extern short* funka_map_tbl[];
 extern short funka_timetbl[];
-extern palette_entry ascii_col[];
-extern palette_entry sprite_col1[];
-extern palette_entry** lp_coltbl[];
+extern PALETTEENTRY ascii_col[];
+extern PALETTEENTRY sprite_col1[];
+extern PALETTEENTRY** lp_coltbl[];
 extern short lpbs_timer[];
-extern palette_entry* sprite_color[];
+extern PALETTEENTRY* sprite_color[];
 static short DATable[39] =
 {
    3, 36,  4,  5,  6, 37,  7,  8,  9, 38,
@@ -242,10 +242,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 178, Address: 0x100
 
 
   ++pBufTbl; /* Line 244, Address: 0x10052ec */
-  lpcolorwk0 = (palette_entry*)**pBufTbl++; /* Line 245, Address: 0x10052f8 */
-  lpcolorwk1 = (palette_entry*)**pBufTbl++; /* Line 246, Address: 0x1005314 */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 247, Address: 0x1005330 */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 248, Address: 0x100534c */
+  lpcolorwk0 = (PALETTEENTRY*)**pBufTbl++; /* Line 245, Address: 0x10052f8 */
+  lpcolorwk1 = (PALETTEENTRY*)**pBufTbl++; /* Line 246, Address: 0x1005314 */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 247, Address: 0x1005330 */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 248, Address: 0x100534c */
   lphscrollbuff = (int_union*)**pBufTbl++; /* Line 249, Address: 0x1005368 */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 250, Address: 0x1005384 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 251, Address: 0x100539c */
@@ -318,7 +318,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 307, Address: 0x100
 
 
 void game_init() { /* Line 320, Address: 0x10055c0 */
-  palette_entry *lpSrc, *lpDst;
+  PALETTEENTRY *lpSrc, *lpDst;
   int i;
   unsigned int ProcEnd;
   unsigned int hf;
@@ -680,7 +680,7 @@ static void end_proc() { /* Line 677, Address: 0x10061c0 */
 } /* Line 680, Address: 0x10061dc */
 
 static void prg_init() { /* Line 682, Address: 0x10061f0 */
-  palette_entry *lpPlCol, *lpBkgCol, *lpDst;
+  PALETTEENTRY *lpPlCol, *lpBkgCol, *lpDst;
   int i;
 
   lpPlCol = *lp_coltbl[lplanet_no * 2]; /* Line 686, Address: 0x1006208 */
@@ -845,7 +845,7 @@ static void SubCpuMain() { /* Line 831, Address: 0x1006950 */
 } /* Line 845, Address: 0x1006a10 */
 
 void v_int() { /* Line 847, Address: 0x1006a20 */
-  palette_entry *lpPlanet, *lpBkg, *lpDst, *lpSpr;
+  PALETTEENTRY *lpPlanet, *lpBkg, *lpDst, *lpSpr;
   int i;
 
   switch (intmode) /* Line 851, Address: 0x1006a38 */

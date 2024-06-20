@@ -1,5 +1,5 @@
 void clchgctr();
-void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, palette_entry* pColTbl);
+void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, PALETTEENTRY* pColTbl);
 void fadein0();
 int fadein0_new();
 void fadeout();

@@ -7,7 +7,7 @@
 #include "IO.H"
 #include "SPM.H"
 
-static palette_entry endingcol[64] = {
+static PALETTEENTRY endingcol[64] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, {   0,   0, 224, 1 },
   {  96,  96, 224, 1 }, { 128, 128, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, {   0,   0,   0, 1 }, {   0,   0,   0, 1 },
@@ -33,10 +33,10 @@ unsigned int* lpghWnd;
 unsigned int* lphSurf;
 extern int* lpFadeFlag;
 extern int_union* lphscrollbuff;
-extern palette_entry* lpcolorwk3;
-extern palette_entry* lpcolorwk2;
-extern palette_entry* lpcolorwk1;
-extern palette_entry* lpcolorwk0;
+extern PALETTEENTRY* lpcolorwk3;
+extern PALETTEENTRY* lpcolorwk2;
+extern PALETTEENTRY* lpcolorwk1;
+extern PALETTEENTRY* lpcolorwk0;
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
@@ -64,8 +64,8 @@ extern short colorno;
 extern short coltimer;
 extern unsigned short lpbs_timer[32];
 extern unsigned char quit_flg;
-extern palette_entry* asc_coltbl[2];
-extern palette_entry* lpbs_good[32];
+extern PALETTEENTRY* asc_coltbl[2];
+extern PALETTEENTRY* lpbs_good[32];
 extern short animal_timer;
 extern unsigned char animal_flg;
 extern sprite_status_thanks actwk[66];
@@ -147,10 +147,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 117, Address: 0x100
 
 
   ++pBufTbl; /* Line 149, Address: 0x1001fb8 */
-  lpcolorwk0 = (palette_entry*)**pBufTbl++; /* Line 150, Address: 0x1001fc4 */
-  lpcolorwk1 = (palette_entry*)**pBufTbl++; /* Line 151, Address: 0x1001fe0 */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 152, Address: 0x1001ffc */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 153, Address: 0x1002018 */
+  lpcolorwk0 = (PALETTEENTRY*)**pBufTbl++; /* Line 150, Address: 0x1001fc4 */
+  lpcolorwk1 = (PALETTEENTRY*)**pBufTbl++; /* Line 151, Address: 0x1001fe0 */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 152, Address: 0x1001ffc */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 153, Address: 0x1002018 */
   lphscrollbuff = (int_union*)**pBufTbl++; /* Line 154, Address: 0x1002034 */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 155, Address: 0x1002050 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 156, Address: 0x1002068 */
@@ -297,7 +297,7 @@ void cgmwrt_b() { /* Line 267, Address: 0x10023e0 */
 
 
 void v_int() { /* Line 299, Address: 0x1002560 */
-  palette_entry *lpDst, *lpSpr;
+  PALETTEENTRY *lpDst, *lpSpr;
   int_union ld0;
   short i;
   short d0;
@@ -420,7 +420,7 @@ void soundset(short ReqNo) { /* Line 398, Address: 0x1002a30 */
 
 
 void EndingMesColor() { /* Line 422, Address: 0x1002ab0 */
-  palette_entry *lpPeSrc, *lpPeDest;
+  PALETTEENTRY *lpPeSrc, *lpPeDest;
   int i;
 
   lpPeSrc = endingcol; /* Line 426, Address: 0x1002ac0 */

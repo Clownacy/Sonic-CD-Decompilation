@@ -168,10 +168,10 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 136, Address: 0x101
 
 
   pmapwk = (unsigned short*)**pBufTbl++; /* Line 170, Address: 0x1017df8 */
-  lpcolorwk = (palette_entry*)**pBufTbl++; /* Line 171, Address: 0x1017e14 */
-  lpcolorwk2 = (palette_entry*)**pBufTbl++; /* Line 172, Address: 0x1017e30 */
-  lpcolorwk3 = (palette_entry*)**pBufTbl++; /* Line 173, Address: 0x1017e4c */
-  lpcolorwk4 = (palette_entry*)**pBufTbl++; /* Line 174, Address: 0x1017e68 */
+  lpcolorwk = (PALETTEENTRY*)**pBufTbl++; /* Line 171, Address: 0x1017e14 */
+  lpcolorwk2 = (PALETTEENTRY*)**pBufTbl++; /* Line 172, Address: 0x1017e30 */
+  lpcolorwk3 = (PALETTEENTRY*)**pBufTbl++; /* Line 173, Address: 0x1017e4c */
+  lpcolorwk4 = (PALETTEENTRY*)**pBufTbl++; /* Line 174, Address: 0x1017e68 */
   lphscrollbuff = (int_union*)**pBufTbl++; /* Line 175, Address: 0x1017e84 */
   lpFadeFlag = (int*)*pBufTbl++; /* Line 176, Address: 0x1017ea0 */
   lpKeepWork = (game_info*)*pBufTbl++; /* Line 177, Address: 0x1017eb8 */

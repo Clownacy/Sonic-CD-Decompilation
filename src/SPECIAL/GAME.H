@@ -23,7 +23,7 @@ void map_init();
 void bwrtset(unsigned int tblno4);
 void stone_color_set();
 void panel_box();
-void colset(palette_entry* lpPeSrc);
+void colset(PALETTEENTRY* lpPeSrc);
 void sinit0();
 void sinit1();
 void sinit2();

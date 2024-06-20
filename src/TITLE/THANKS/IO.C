@@ -1,6 +1,6 @@
 #include "..\..\TYPES.H"
 
-palette_entry colortbl[64] = {
+PALETTEENTRY colortbl[64] = {
   {   0,   0,   0, 1 }, {   0,   0,   0, 1 }, { 128,  32,  96, 1 }, { 160,  64, 128, 1 },
   { 224,  96, 224, 1 }, { 224, 128, 224, 1 }, { 224, 224, 224, 1 }, { 160, 160, 160, 1 },
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, { 224, 160, 128, 1 }, { 192,  96,   0, 1 },
@@ -18,7 +18,7 @@ palette_entry colortbl[64] = {
   { 128, 128, 128, 1 }, {  64,  64,  64, 1 }, { 224, 160, 128, 1 }, { 160,  96,  64, 1 },
   { 224,   0,   0, 1 }, { 128,   0,   0, 1 }, {   0,   0,   0, 1 }, { 224, 224,   0, 1 }
 };
-extern palette_entry* lpcolorwk0;
+extern PALETTEENTRY* lpcolorwk0;
 
 
 
@@ -48,7 +48,7 @@ extern palette_entry* lpcolorwk0;
 
 
 void vdpinit() { /* Line 50, Address: 0x1002de0 */
-  palette_entry *lpPeSrc, *lpPeDest;
+  PALETTEENTRY *lpPeSrc, *lpPeDest;
   short i;
 
   lpPeSrc = colortbl; /* Line 54, Address: 0x1002df0 */
