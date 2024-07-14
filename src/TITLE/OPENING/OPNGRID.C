@@ -161,7 +161,7 @@ void OEGridDelete(unsigned short indx) { /* Line 153, Address: 0x1003bb0 */
 
 
 
-      (indx ^ 2) < 1U; /* Line 164, Address: 0x1003c08 */
+      (unsigned int)(indx ^ 2) < 1; /* Line 164, Address: 0x1003c08 */
     }
 
 

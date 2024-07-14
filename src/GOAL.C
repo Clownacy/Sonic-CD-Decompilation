@@ -98,7 +98,7 @@ void gene(sprite_status* pActwk) { /* Line 95, Address: 0x100f280 */
 
   if (pActwk->r_no0 != 10) { /* Line 99, Address: 0x100f2e4 */
 
-    if (pActwk->r_no0 >= 6U) return; /* Line 101, Address: 0x100f2fc */
+    if ((unsigned int)pActwk->r_no0 >= 6) return; /* Line 101, Address: 0x100f2fc */
   }
 
   actionsub(pActwk); /* Line 104, Address: 0x100f314 */

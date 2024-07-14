@@ -161,8 +161,8 @@ static void gaitou73_01(sprite_status* pActwk) { /* Line 136, Address: 0x1022130
 static short get_x(sprite_status* pActwk) { /* Line 161, Address: 0x1022270 */
   short wk1, wk2;
 
-  wk1 = scra_h_posit.w.h / 320U; /* Line 164, Address: 0x102227c */
-  wk2 = scra_h_posit.w.h % 320U; /* Line 165, Address: 0x10222b4 */
+  wk1 = (unsigned int)scra_h_posit.w.h / 320; /* Line 164, Address: 0x102227c */
+  wk2 = (unsigned int)scra_h_posit.w.h % 320; /* Line 165, Address: 0x10222b4 */
 
   if (wk1 > 48) { /* Line 167, Address: 0x10222e0 */
     wk1 = 0; /* Line 168, Address: 0x10222f4 */

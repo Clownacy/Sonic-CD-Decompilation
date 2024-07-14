@@ -577,7 +577,7 @@ void scroll() { /* Line 366, Address: 0x102a1c0 */
     }
 
     wD5 -= wD1; /* Line 579, Address: 0x102ab0c */
-    pHScrollWork += lD0.w.l / 2U; /* Line 580, Address: 0x102ab18 */
+    pHScrollWork += (unsigned int)lD0.w.l / 2; /* Line 580, Address: 0x102ab18 */
     waterdirec.w += 64; /* Line 581, Address: 0x102ab3c */
 
     zonescrsetsub0(&pHScrollBuff, (unsigned short**)&pHScrollWork, z32a_kawatbl, awasintbl, wD1, (unsigned short*)&lD2.w.l, &wD4); /* Line 583, Address: 0x102ab50 */

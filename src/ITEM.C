@@ -631,7 +631,7 @@ void error_item(sprite_status* itemwk) { /* Line 627, Address: 0x1012300 */
 
 
 
-  ((int)itemwk->patbase ^ (int)corepat) < 1U; /* Line 634, Address: 0x1012308 */
+  (unsigned int)((int)itemwk->patbase ^ (int)corepat) < 1; /* Line 634, Address: 0x1012308 */
 
 
 

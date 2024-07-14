@@ -382,7 +382,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
     actsetchk(); /* Line 382, Address: 0x1018180 */
     action(); /* Line 383, Address: 0x1018188 */
   }
-  (demo_cnt ^ 2048) < 1U; /* Line 385, Address: 0x1018190 */
+  (unsigned int)(demo_cnt ^ 2048) < 1; /* Line 385, Address: 0x1018190 */
 
 
   if (gameflag.w) { /* Line 388, Address: 0x10181a8 */

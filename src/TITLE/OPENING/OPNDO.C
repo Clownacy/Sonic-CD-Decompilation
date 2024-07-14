@@ -194,7 +194,7 @@ static void OEUpdateHand() { /* Line 190, Address: 0x1000050 */
 
     num = 0; /* Line 195, Address: 0x1000068 */
   }
-  if (nTimerCunt == timeHand[num].time && num < 16U) { /* Line 197, Address: 0x1000070 */
+  if (nTimerCunt == timeHand[num].time && (unsigned int)num < 16) { /* Line 197, Address: 0x1000070 */
 
     if (num != 0) /* Line 199, Address: 0x10000b0 */
       OESprCreate(timeHand[num].timingPatNo); /* Line 200, Address: 0x10000c0 */
@@ -217,13 +217,13 @@ static void OEUpdateMayu() { /* Line 213, Address: 0x1000180 */
 
     num = 0; /* Line 218, Address: 0x1000198 */
   }
-  if (nTimerCunt == timeMayu[num] && num < 2U) { /* Line 220, Address: 0x10001a0 */
+  if (nTimerCunt == timeMayu[num] && (unsigned int)num < 2) { /* Line 220, Address: 0x10001a0 */
 
     if (num % 2 == 0) /* Line 222, Address: 0x10001e0 */
       OESprCreate(12); /* Line 223, Address: 0x100020c */
     ++num; /* Line 224, Address: 0x1000218 */
   } /* Line 225, Address: 0x100022c */
-  else if (num % 2 == 0 && num < 2U) { /* Line 226, Address: 0x1000234 */
+  else if (num % 2 == 0 && (unsigned int)num < 2) { /* Line 226, Address: 0x1000234 */
     OESprCreate(12); /* Line 227, Address: 0x1000274 */
   }
 } /* Line 229, Address: 0x1000280 */
