@@ -1,0 +1,12 @@
+void clchgctr();
+void colchg8b();
+void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* pCntTbl, PALETTEENTRY* pColTbl);
+void fadein0();
+int fadein0_new();
+void fadeout();
+void flashin();
+void flashout();
+void colorset(int ColorNo);
+void colorset2(int ColorNo);
+void colorset3(int ColorNo);
+int FadeProc();

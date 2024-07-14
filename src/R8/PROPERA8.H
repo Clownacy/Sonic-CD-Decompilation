@@ -1,0 +1,16 @@
+void propera(sprite_status* actionwk);
+void propera0(sprite_status* actionwk);
+void a_init(sprite_status* actionwk);
+void a_init_sub(sprite_status* actionwk);
+void a_fall(sprite_status* actionwk);
+void a_move(sprite_status* actionwk);
+void propera1(sprite_status* actionwk);
+void b_init(sprite_status* actionwk);
+void b_close(sprite_status* actionwk);
+void b_close1(sprite_status* actionwk);
+void b_closed(sprite_status* actionwk);
+void b_closed1(sprite_status* actionwk);
+void b_open(sprite_status* actionwk);
+void b_open1(sprite_status* actionwk);
+void b_opend(sprite_status* actionwk);
+void b_opend1(sprite_status* actionwk);
