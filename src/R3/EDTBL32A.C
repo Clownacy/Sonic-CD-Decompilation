@@ -13,7 +13,7 @@ extern sprite_pattern* harir3pat[];
 extern sprite_pattern* frdr3pat[];
 extern sprite_pattern* trapdr3pat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   24,
   0,
   {

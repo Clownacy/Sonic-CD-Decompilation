@@ -23,7 +23,7 @@ extern sprite_pattern* pat_friend1[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* boupat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   34,
   0,
   {

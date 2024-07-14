@@ -26,7 +26,7 @@ extern sprite_pattern* edapat[];
 extern sprite_pattern* kagepat[];
 extern sprite_pattern* bariapat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   58,
   0,
   {

@@ -14,7 +14,7 @@ sprite_pattern* spring90pat[];
 sprite_pattern* spring45pat[];
 sprite_pattern* itempat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   52,
   0,
   {

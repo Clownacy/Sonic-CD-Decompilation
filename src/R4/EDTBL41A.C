@@ -30,7 +30,7 @@ extern sprite_pattern* pat_friend1[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* pat_kuzure_a[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   53,
   0,
   {

@@ -244,14 +244,14 @@ typedef struct {
   unsigned char userflag_l;
   unsigned char patno;
 }
-edit_info;
+edit_data_entry;
 
 typedef struct {
   char num;
   char dummy;
-  edit_info dat[];
+  edit_data_entry dat[];
 }
-edit_info_array;
+edit_data;
 
 typedef struct {
   unsigned char* CGdata;

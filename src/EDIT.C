@@ -6,7 +6,7 @@
 
 static int CKeyTogle;
 extern sprite_pattern* sncpat[];
-extern edit_info_array edit_tbl;
+extern edit_data edit_tbl;
 
 
 
@@ -25,7 +25,7 @@ extern edit_info_array edit_tbl;
 
 
 void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
-  edit_info_array* pEdit_tbl;
+  edit_data* pEdit_tbl;
   sprite_status* pActwk2;
   int CKey;
   int edit_spd = 524288; /* Line 31, Address: 0x100ee00 */

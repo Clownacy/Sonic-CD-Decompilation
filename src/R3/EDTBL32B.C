@@ -24,7 +24,7 @@ extern sprite_pattern* frippat[];
 extern sprite_pattern* springpat[];
 extern sprite_pattern* itempat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   25,
   0,
   {

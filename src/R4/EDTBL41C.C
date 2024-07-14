@@ -22,7 +22,7 @@ sprite_pattern* pat_friend1[];
 sprite_pattern* itempat[];
 sprite_pattern* boupat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   25,
   0,
   {

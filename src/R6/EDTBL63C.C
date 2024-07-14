@@ -14,7 +14,7 @@ extern sprite_pattern* spring90pat[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* genepat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   38,
   0,
   {

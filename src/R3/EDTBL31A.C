@@ -25,7 +25,7 @@ extern sprite_pattern* bobinpat[];
 extern sprite_pattern* frippat[];
 extern sprite_pattern* itempat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   30,
   0,
   {

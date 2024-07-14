@@ -10,7 +10,7 @@ extern sprite_pattern* springpat[];
 extern sprite_pattern* spring90pat[];
 extern sprite_pattern* itempat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   11,
   0,
   {

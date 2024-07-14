@@ -27,7 +27,7 @@ extern sprite_pattern* goalpat[];
 extern sprite_pattern* bringpat[];
 extern sprite_pattern* gaspat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   52,
   0,
   {

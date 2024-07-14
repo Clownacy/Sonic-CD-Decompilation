@@ -29,7 +29,7 @@ extern sprite_pattern* bringpat[];
 extern sprite_pattern* gaspat[];
 extern sprite_pattern* cata_pat[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   53,
   0,
   {

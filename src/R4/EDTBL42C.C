@@ -44,7 +44,7 @@ extern sprite_pattern* pat_friend1[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* pat_daid4[];
 
-edit_info_array edit_tbl = {
+edit_data edit_tbl = {
   66,
   0,
   {
