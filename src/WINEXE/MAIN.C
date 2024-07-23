@@ -3,17 +3,32 @@
 #include "RESOURCE.H"
 #include "TYPES.H"
 
+/* These declarations are only here to shut the compiler up.
+   I have no idea what the real declarations are. */
+void* FX_MODEX_DISPLAY[4];
+void _devGetPalette(UINT, UINT, UCHAR*);
+void _devSetPalette(UINT, UINT, UCHAR*);
+void _objApplyEffect(LPVOID, void*, void*, void*, void*, UINT, void*);
+void _fxSetActive(void*, UINT);
+void _objPrepare(LPVOID);
+void _objRemoveEffect(LPVOID, void*);
+ULONG _srfDelete(LPVOID);
+
 void decodeMciError(MCIERROR error, LPSTR buffer, ULONG bufferSize);
 MCIERROR createCdAudioTrackIndex();
 MCIERROR openCdAudio(LPSTR buffer,ULONG bufferSize);
 void closeCdAudio();
 MCIERROR getMciMode(ULONG* mciMode);
+int setMciPlayParams(int trackId);
+MCIERROR switchCdAudioTrack(long trackId, BOOL unknown, HWND hWnd);
 MCIERROR stopCdAudio();
 int makeSurface(HWND hWnd);
+BOOL freeSurface();
 HGLOBAL makePalette();
 void makeFullScreenPalette();
 void makePalette2();
 void fillColorwk(UCHAR value);
+void FUN_004068c4(BOOL unknown);
 void setupTimer();
 void killTimer();
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
@@ -28,6 +43,7 @@ void enableSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bEnable);
 void modifyControllerMenuItemText(short controllerId);
 void toggleSoundQuality();
 void retrieveHelpFilePath();
+void FUN_00408cdb();
 void FUN_00408ea9();
 void queryMciPlaying();
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -39,8 +55,10 @@ void toggleController();
 BOOL setupJoystick();
 void CDPlay(short trackNumber);
 void CDPause();
+void FUN_0040bb84();
 void emptyFunction();
 void showCustomError(int id, LPCSTR message);
+USHORT emptyFunction2();
 void loadIni();
 BOOL isDisplay256Colors();
 void freeLockedMemory(LPCVOID pLockedMemory);
@@ -70,6 +88,7 @@ void WaveRequest(short ReqNo);
 int stubbedFunction();
 void retrieveDataFilePath(LPSTR pPath);
 void copyScoreData(BYTE* pSource, BYTE* pDestination, ULONG size);
+void copyScoreDataDelegate(BYTE* pSource, BYTE* pDestination, ULONG size);
 BOOL verifyScoreDataChecksum(BYTE* pScoreData);
 void updateScoreDataChecksum(BYTE* pScoreData);
 BOOL ReadScoreData(ULONG index, score_data *pOldScoreData, HFILE hOtherFile);
@@ -83,6 +102,9 @@ void initScoreData(score_data* pScoreData, ULONG index);
 BOOL initCurrentScoreData();
 void CALLBACK timeCallbackFunc(UINT uTimerID, UINT uMsg, DWORD_PTR dwUser, DWORD_PTR dw1, DWORD_PTR dw2);
 
+ULONG gSurfFuncRet;
+int_union* gpHscroll;
+void* DAT_0041dd5c;
 HMODULE ghSonicDlg;
 void(*gpDLLmeminit)(char***, void**);
 char helpFilePath[80];
@@ -138,10 +160,14 @@ FARPROC gpGetRoundStr;
 HPALETTE ghPalette;
 ULONG DAT_00430370;
 HGLOBAL ghCdAudioTrackListMemory;
+DWORD gMciPlayFlags;
 ULONG gCdAudioTrackCnt;
+MCI_PLAY_PARMS gMciPlayParams;
 MCIDEVICEID gMciDeviceId;
 LPVOID ghSurf = 0;
+POINT gCursorPos = { 0, 0 };
 ULONG DAT_004331d8 = 0;
+BOOL gbHelpOpen = FALSE;
 BOOL gbWaveOpen = FALSE;
 BOOL gbQuit = TRUE;
 void* gpDLLmeminitFuncs[12] = { // 004331e8
@@ -186,12 +212,12 @@ PALETTEENTRY* gpColorwk2 = 0;
 PALETTEENTRY* gpColorwk3 = 0;
 PALETTEENTRY* gpColorwk4 = 0;
 HGLOBAL ghHscrollbuffMemory;
-int* gpHscrollbuff;
+int_union* gpHscrollbuff;
 ULONG gFadeFlag;
 MMRESULT gTimeSetEventResult = 0;
 BOOL DAT_004332a0 = FALSE;
 BOOL gbGameStageDllLoaded = FALSE;
-long gCurrentCdAudioTrack = 1;
+long gCurrentCdAudioTrackId = 1;
 BOOL DAT_004332c4 = FALSE;
 BOOL DAT_004332c8 = FALSE;
 BOOL DAT_004332d0 = FALSE;
@@ -399,6 +425,54 @@ MCIERROR getMciMode(ULONG* mciMode) {
 }
 
 
+// 004014e1
+int setMciPlayParams(int trackId) {
+  ULONG* pTrackList;
+
+  if (trackId < 0 || gCdAudioTrackCnt <= trackId) {
+    return -3;
+  }
+
+  pTrackList = (ULONG*)GlobalLock(ghCdAudioTrackListMemory);
+  gMciPlayParams.dwFrom = pTrackList[trackId];
+  gMciPlayParams.dwTo = pTrackList[trackId + 1];
+  GlobalUnlock(ghCdAudioTrackListMemory);
+  if (trackId + 1 == gCdAudioTrackCnt) {
+    gMciPlayFlags = MCI_NOTIFY | MCI_FROM;
+  }
+  else {
+    gMciPlayFlags = MCI_NOTIFY | MCI_FROM | MCI_TO;
+  }
+
+  return 0;
+}
+
+
+// 004015b2
+MCIERROR switchCdAudioTrack(long trackId, BOOL unknown, HWND hWnd) {
+  MCIERROR error;
+  char buffer[128];
+
+  error = setMciPlayParams(trackId);
+  if (error == 0) {
+    DAT_00430370 = 0;
+    gMciPlayParams.dwCallback = (DWORD)hWnd;
+    mciSendCommand(gMciDeviceId, MCI_STOP, MCI_WAIT, 0);
+    error = mciSendCommand(gMciDeviceId, MCI_PLAY, gMciPlayFlags, (DWORD)&gMciPlayParams);
+    if (error != 0) {
+      mciGetErrorStringA(error, buffer, 128);
+      MessageBox(0, buffer, "CD Error", MB_ICONSTOP);
+    }
+    if (unknown) {
+      DAT_00430370 |= 1;
+    }
+  }
+
+  return error;
+}
+
+
+// 004016aa
 MCIERROR stopCdAudio() {
   ULONG mciMode;
   MCIERROR error;
@@ -420,6 +494,22 @@ MCIERROR stopCdAudio() {
 // 00403d74
 int makeSurface(HWND hWnd) {
   // TODO: uses undocumented DMIX.DLL calls
+}
+
+
+// 00403ffb
+BOOL freeSurface() {
+  if (ghSurf != 0) {
+    gSurfFuncRet = _srfDelete(ghSurf);
+    ghSurf = 0;
+  }
+  if (gpHscroll != 0) {
+    GlobalUnlock(GlobalHandle(gpHscroll));
+    GlobalFree(GlobalHandle(gpHscroll));
+    gpHscroll = 0;
+  }
+
+  return 0;
 }
 
 
@@ -605,6 +695,32 @@ void fillColorwk(UCHAR value) {
 }
 
 
+// 004068c4
+void FUN_004068c4(BOOL unknown) {
+  RECT rect;
+
+  if (unknown) {
+    _objApplyEffect(ghSurf, FX_MODEX_DISPLAY[0], FX_MODEX_DISPLAY[1], FX_MODEX_DISPLAY[2], FX_MODEX_DISPLAY[3], 0, DAT_0041dd5c);
+    _fxSetActive(DAT_0041dd5c, 1);
+    GetCursorPos(&gCursorPos);
+    GetWindowRect(ghWnd, &rect);
+    SetCursorPos((rect.right + rect.left) / 2, (rect.top + rect.bottom) / 2);
+    ClipCursor(&rect);
+    ShowCursor(FALSE);
+    _objPrepare(ghSurf);
+    makePalette2();
+  }
+  else {
+    _objRemoveEffect(ghSurf, DAT_0041dd5c);
+    makePalette();
+    ClipCursor(0);
+    ShowCursor(TRUE);
+    SetCursorPos(gCursorPos.x, gCursorPos.y);
+    makePalette();
+  }
+}
+
+
 // 00408107
 void setupTimer() {
   gTimeSetEventResult = timeSetEvent(16, 1, timeCallbackFunc, (DWORD)&gTimerTickCnt, TIME_PERIODIC);
@@ -685,7 +801,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         }
       }
       else if (gTimerTickCnt != 0 || gTimeSetEventResult == 0) {
-        if (gUnknownCdAudioCountdown != 0 && --gUnknownCdAudioCountdown != 0 && gCurrentCdAudioTrack != -1) {
+        if (gUnknownCdAudioCountdown != 0 && --gUnknownCdAudioCountdown == 0 && gCurrentCdAudioTrackId != -1) {
           FUN_0040bb84();
         }
         gTimerTickCnt--;
@@ -931,8 +1047,8 @@ void toggleSoundQuality() {
   }
 
   DAT_00433324 = FALSE;
-  if (gbCdAudioOpenSuccess && gCurrentCdAudioTrack > 0) {
-    trackNumber = gCurrentCdAudioTrack + 1;
+  if (gbCdAudioOpenSuccess && gCurrentCdAudioTrackId > 0) {
+    trackNumber = gCurrentCdAudioTrackId + 1;
     CDPause();
   }
   else {
@@ -987,6 +1103,39 @@ void retrieveHelpFilePath() {
 }
 
 
+// 00408cdb
+void FUN_00408cdb() {
+  POINT point;
+
+  if (DAT_004332c8) return;
+
+  if (ghSurf != 0) {
+    if (!gbFullScreen == 0) {
+      gbFullScreen = TRUE;
+    }
+    else {
+      gbFullScreen = FALSE;
+    }
+    FUN_004068c4(gbFullScreen);
+  }
+
+  if (gbFullScreen) {
+    ShowCursor(FALSE);
+  }
+  else {
+    ShowCursor(TRUE);
+    GetCursorPos(&point);
+    if (point.x != 0) {
+      --point.x;
+    }
+    else {
+      point.x = 1;
+    }
+    SetCursorPos(point.x, point.y);
+  }
+}
+
+
 // 00408ea9
 void FUN_00408ea9() {
   CDPause();
@@ -1021,7 +1170,7 @@ void queryMciPlaying() {
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
   HCURSOR hCursor, hPrevCursor;
   char buffer[128];
-  FARPROC procAddress;
+  void(*pInitKeySettings)(HWND, USHORT*);
   int result;
 
   queryMciPlaying();
@@ -1032,9 +1181,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
     switch (msg) {
       case WM_PAINT:
-        paintWindow(hWnd);
+        paintWindow(hWnd); // 00409900
         return 0;
-      case WM_CREATE:
+      case WM_CREATE: // 00409577
         ghDc = GetDC(ghWnd);
         hCursor = LoadCursor(0, IDC_WAIT);
         hPrevCursor = SetCursor(hCursor);
@@ -1086,12 +1235,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
           MessageBox(0, "Can't load SONICDLG.DLL", "Sonic Error", MB_ICONSTOP);
           return -1;
         }
-        procAddress = GetProcAddress(ghSonicDlg, "InitKeySettings");
-        if (procAddress == 0) {
+        pInitKeySettings = (void(*)(HWND, USHORT*))GetProcAddress(ghSonicDlg, "InitKeySettings");
+        if (pInitKeySettings == 0) {
           MessageBox(0, "Can't GetProcAddress() for SONICDLG.DLL:\t\t\t\t\tInitKeySettings()", "Sonic Error", MB_ICONSTOP);
           return -1;
         }
-        (*procAddress)(hWnd, &gUserKeyTemp);
+        (*pInitKeySettings)(hWnd, gUserKeyTemp);
         FreeLibrary(ghSonicDlg);
         gUserKey[0] = gUserKeyTemp[0];
         gUserKey[1] = gUserKeyTemp[1];
@@ -1110,7 +1259,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         }
         BringWindowToTop(ghWnd);
         break;
-      case WM_DESTROY:
+      case WM_DESTROY: // 00409913
+        if (gbFullScreen) {
+          FUN_00408cdb();
+        }
+        if (gbHelpOpen) {
+          gbHelpOpen = FALSE;
+          WinHelp(ghWnd, helpFilePath, HELP_QUIT, 0);
+        }
+        if (gbBetterSoundQuality) {
+          WritePrivateProfileString("SOUND", "QUALITY", "BETTER", "SONIC.INI");
+        }
+        else {
+          WritePrivateProfileString("SOUND", "QUALITY", "GOOD  ", "SONIC.INI");
+        }
+        WaveAllStop();
+        CDPause();
+        FUN_00408ea9();
+        if (gbWaveOpen) {
+          closeWaveOut();
+          freeWaveMemory();
+        }
+        closeCdAudio();
+        emptyFunction2();
+        ReleaseDC(ghWnd, ghDc);
+        freeAllocatedMemory();
+        freeSurface();
+        PostQuitMessage(0);
+        break;
+      case WM_SIZE: // 004094d8
         break;
     }
   }
@@ -1192,7 +1369,7 @@ int startGame() {
     return -1;
   }
 
-  gpHscrollbuff = (int*)GlobalLock(ghHscrollbuffMemory);
+  gpHscrollbuff = (int_union*)GlobalLock(ghHscrollbuffMemory);
   if (gpHscrollbuff == 0) {
     return -1;
   }
@@ -1349,7 +1526,7 @@ BOOL setupJoystick() {
 
 // 0040bb23
 void CDPlay(short trackNumber) {
-  gCurrentCdAudioTrack = trackNumber + -1;
+  gCurrentCdAudioTrackId = trackNumber + -1;
   if (gUnknownCdAudioCountdown == 0) {
     stopCdAudio();
     gUnknownCdAudioCountdown = 60;
@@ -1359,9 +1536,38 @@ void CDPlay(short trackNumber) {
 
 // 0040bb5b
 void CDPause() {
-  gCurrentCdAudioTrack = -1;
+  gCurrentCdAudioTrackId = -1;
   stopCdAudio();
   gUnknownCdAudioCountdown = 60;
+}
+
+
+// 0040bb84
+void FUN_0040bb84() {
+  BOOL unknown;
+  MCIERROR error;
+  char buffer[128];
+
+  if (!gbCdAudioOpenSuccess);
+
+  switch (gCurrentCdAudioTrackId) {
+    case 1:
+    case 27:
+    case 30:
+    case 29:
+    case 28:
+      unknown = FALSE;
+      break;
+    default:
+      unknown = TRUE;
+      break;
+  }
+
+  error = switchCdAudioTrack(gCurrentCdAudioTrackId, unknown, ghWnd);
+  if (error != 0) {
+    mciGetErrorStringA(error, buffer, 128);
+    emptyFunction();
+  }
 }
 
 
@@ -1389,6 +1595,12 @@ void showCustomError(int id, LPCSTR message) {
       MessageBox(ghWnd, message, 0,MB_SYSTEMMODAL);
       break;
   }
+}
+
+
+// 0040c00c
+USHORT emptyFunction2() {
+  // empty
 }
 
 
@@ -1975,6 +2187,12 @@ void copyScoreData(BYTE* pSource, BYTE* pDestination, ULONG size) {
 }
 
 
+// 0040f6e4
+void copyScoreDataDelegate(BYTE* pSource, BYTE* pDestination, ULONG size) {
+  copyScoreData(pSource, pDestination, size);
+}
+
+
 // 0040f703
 BOOL verifyScoreDataChecksum(BYTE* pScoreData) {
   ULONG checksum;
@@ -2038,7 +2256,7 @@ BOOL ReadScoreData(ULONG index, score_data *pOldScoreData, HFILE hOtherFile) {
       if (_hread(hFile, pScoreData, 720) != -1) goto error;
     }
     if (_hread(hFile, pScoreData, 720) != -1) {
-      FUN_0040f6e4(pScoreData, pScoreData, 720);
+      copyScoreDataDelegate((BYTE*)pScoreData, (BYTE*)pScoreData, 720);
       if (verifyScoreDataChecksum((BYTE*)pScoreData) == TRUE) {
         if (hOtherFile == 0) {
           _lclose(hFile);
