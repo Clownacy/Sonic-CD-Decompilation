@@ -8,11 +8,11 @@
 void* FX_MODEX_DISPLAY[4];
 void _devGetPalette(UINT, UINT, UCHAR*);
 void _devSetPalette(UINT, UINT, UCHAR*);
-void _objApplyEffect(LPVOID, void*, void*, void*, void*, UINT, void*);
+void _objApplyEffect(UINT, void*, void*, void*, void*, UINT, void*);
 void _fxSetActive(void*, UINT);
-void _objPrepare(LPVOID);
-void _objRemoveEffect(LPVOID, void*);
-ULONG _srfDelete(LPVOID);
+void _objPrepare(UINT);
+void _objRemoveEffect(UINT, void*);
+ULONG _srfDelete(UINT);
 
 void decodeMciError(MCIERROR error, LPSTR buffer, ULONG bufferSize);
 MCIERROR createCdAudioTrackIndex();
@@ -24,6 +24,7 @@ MCIERROR FUN_0040157a();
 MCIERROR switchCdAudioTrack(long trackId, BOOL bUnknown, HWND hWnd);
 MCIERROR FUN_00401671();
 MCIERROR stopCdAudio();
+MCIERROR FUN_0040181a();
 int makeSurface(HWND hWnd);
 BOOL freeSurface();
 HGLOBAL makePalette();
@@ -42,11 +43,15 @@ BOOL isComputerNec();
 BOOL isCdromPresent();
 BOOL isGameInUse();
 void enableSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bEnable);
+void modifyFramesMenuItemText(int flag);
 void modifyControllerMenuItemText(short controllerId);
 void toggleSoundQuality();
 void retrieveHelpFilePath();
 void FUN_00408cdb();
+void toggleMenuBar();
 void FUN_00408ea9();
+void changeControls();
+void showGoodEndFlags();
 void queryMciPlaying();
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 void paintWindow(HWND hWnd);
@@ -61,6 +66,7 @@ void FUN_0040bb84();
 void emptyFunction();
 void showCustomError(int id, LPCSTR message);
 USHORT emptyFunction2();
+int showSonicDlg(HWND hWnd, LPCSTR resourceId, LPCSTR dialogId, LPARAM initValue);
 void loadIni();
 BOOL isDisplay256Colors();
 void freeLockedMemory(LPCVOID pLockedMemory);
@@ -75,16 +81,21 @@ int playWaveRequest(HWND hWnd, WaveInfo *pWaveInfo,int ReqNo);
 int FUN_0040dac4(int waveInfoIndex, int ReqNo, HWND hWnd, BOOL bUnknown);
 int waveStop(int index);
 void WaveAllStop();
+int FUN_0040dd16(HWAVEOUT hWaveout, LPWAVEHDR pWaveHdr);
 int getFreeWaveInfoIndex();
 int collectWaveInfoUnknown11(int* array);
 int checkWaveInfos();
 BOOL switchGameMenuDll(HWND hWnd, LPCSTR path, USHORT type);
-BOOL loadOpening(HWND hWnd, LPVOID hSurf);
+BOOL loadOpening(HWND hWnd, UINT hSurf);
 void unloadGameMenuDll();
 BOOL loadAvigood(HWND hWnd);
 BOOL loadAvibad(HWND hWnd);
 void callDllPaint(HDC hDc);
+void changeMovieSize();
+BOOL FUN_0040e6fe(WPARAM wParam, LPARAM lParam);
 void realizeMovie();
+BOOL loadVisualmd(HWND hWnd, UINT hSurf);
+BOOL FUN_0040ec7b();
 BOOL playBadEnding();
 BOOL playGoodEnding();
 void pauseMovie();
@@ -113,7 +124,7 @@ void* DAT_0041dd5c;
 HMODULE ghSonicDlg;
 void(*gpDLLmeminit)(char***, void**);
 char helpFilePath[80];
-FARPROC gpGameinit;
+void(*gpGameinit)();
 JOYCAPS gJoyCapsInfo;
 ULONG gJoystickInput4;
 ULONG gJoystickInput1;
@@ -122,14 +133,14 @@ ULONG gJoystickInput3;
 USHORT gUserKeyTemp[5];
 FARPROC gpFadeProc;
 FARPROC gpGame;
-FARPROC gpGetscrbhposiw;
-FARPROC gpGetvscroll;
+int(*gpGetscrbhposiw)();
+int(*gpGetvscroll)();
 void(*gpSetDebugFlag)(unsigned int);
-FARPROC gpGetscrahposiw;
+int(*gpGetscrahposiw)();
 FARPROC gpDLLmemfree;
 FARPROC gpDLLEnd;
 FARPROC gpAVIResume;
-FARPROC gpDLLNotify;
+int(*gpDLLNotify)(WPARAM, LPARAM);
 void(*gpDLLInit)(DllIn*);
 HMODULE ghGameMenuDll;
 FARPROC gpDLLAVIRealize;
@@ -158,6 +169,7 @@ FARPROC gpSpecialblockchg;
 FARPROC gpDLLMain;
 HWND ghWnd;
 LPSTR gpCmdLine;
+BYTE gRecordingBuffer[12288];
 game_info gKeepWork;
 FARPROC gpSWdataSet;
 HINSTANCE ghInstance;
@@ -169,7 +181,7 @@ DWORD gMciPlayFlags;
 ULONG gCdAudioTrackCnt;
 MCI_PLAY_PARMS gMciPlayParams;
 MCIDEVICEID gMciDeviceId;
-LPVOID ghSurf = 0;
+UINT ghSurf = 0;
 POINT gCursorPos = { 0, 0 };
 ULONG DAT_004331d8 = 0;
 BOOL gbHelpOpen = FALSE;
@@ -206,6 +218,10 @@ LPCSTR gMenus[2] = {
   gIdrMenu2
 };
 BOOL gbNecComputer = FALSE;
+UCHAR gbRecordPlayFlag = 0;
+UCHAR DAT_00433258 = 0;
+USHORT DAT_0043325c = 0;
+USHORT DAT_00433260 = 0;
 HGLOBAL ghMapwkMemory = 0;
 USHORT* gpMapwk = 0;
 HGLOBAL ghColorwkMemory = 0;
@@ -220,8 +236,11 @@ HGLOBAL ghHscrollbuffMemory;
 int_union* gpHscrollbuff;
 ULONG gFadeFlag;
 MMRESULT gTimeSetEventResult = 0;
+ULONG gDemoId = 0;
 BOOL DAT_004332a0 = FALSE;
 BOOL gbGameStageDllLoaded = FALSE;
+ULONG gFpsFlag1 = 2;
+ULONG gFpsFlag2 = 2;
 long gCurrentCdAudioTrackId = 1;
 BOOL DAT_004332c4 = FALSE;
 BOOL gbMoviePlaying = FALSE;
@@ -230,6 +249,8 @@ BOOL DAT_004332d4 = FALSE;
 BOOL DAT_004332d8 = FALSE;
 BOOL DAT_004332dc = FALSE;
 BOOL DAT_004332e0 = FALSE;
+BOOL gbMenuBarVisible = TRUE;
+BOOL gbGamePaused = FALSE;
 BOOL gbRequireCdrom = TRUE;
 BOOL gbCdAudioOpenSuccess = FALSE;
 ULONG gUnknownCdAudioCountdown = 0;
@@ -237,7 +258,9 @@ BOOL gbSpriteLoadingEnabled = TRUE;
 ULONG gDebugFlag = 0;
 ULONG gControllerId = 2;
 BOOL gbFullScreen = FALSE;
+BOOL DAT_00433310 = FALSE;
 BOOL gbBetterSoundQuality = FALSE;
+BOOL gbRestartStage = FALSE;
 BOOL DAT_00433324 = FALSE;
 ULONG gEndingMovieFlag = 0;
 BOOL DAT_0043332c = FALSE;
@@ -257,6 +280,7 @@ void* gGameMemory[11] = { // 00433338
   &gCrntScorData
 };
 ULONG gTimerTickCnt = 0;
+BOOL gbGoSpecial = FALSE;
 LPCSTR gOpeningDllPath = "TITLE\\OPENING\\OPENING.DLL";
 LPCSTR gAviopenDllPath = "TITLE\\AVIOPEN\\AVIOPEN.DLL";
 LPCSTR gAvigoodDllPath = "TITLE\\AVIGOOD\\AVIGOOD.DLL";
@@ -331,7 +355,7 @@ MCIERROR createCdAudioTrackIndex() {
     mciStatusParams.dwCallback = 0;
     mciStatusParams.dwItem = MCI_STATUS_POSITION;
     mciStatusParams.dwTrack = i + 1;
-    error = mciSendCommandA(gMciDeviceId, MCI_STATUS, MCI_STATUS_ITEM | MCI_TRACK, (DWORD)&mciStatusParams);
+    error = mciSendCommand(gMciDeviceId, MCI_STATUS, MCI_STATUS_ITEM | MCI_TRACK, (DWORD)&mciStatusParams);
     if (error != 0) break;
     pTrackList[i] = mciStatusParams.dwReturn;
   }
@@ -474,7 +498,7 @@ MCIERROR switchCdAudioTrack(long trackId, BOOL bUnknown, HWND hWnd) {
     mciSendCommand(gMciDeviceId, MCI_STOP, MCI_WAIT, 0);
     error = mciSendCommand(gMciDeviceId, MCI_PLAY, gMciPlayFlags, (DWORD)&gMciPlayParams);
     if (error != 0) {
-      mciGetErrorStringA(error, buffer, 128);
+      mciGetErrorString(error, buffer, 128);
       MessageBox(0, buffer, "CD Error", MB_ICONSTOP);
     }
     if (bUnknown) {
@@ -515,6 +539,16 @@ MCIERROR stopCdAudio() {
   }
 
   return error;
+}
+
+
+// 0040181a
+MCIERROR FUN_0040181a() {
+  if (((UCHAR)DAT_00430370 & 2) || !((UCHAR)DAT_00430370 & 1)) {
+    return 0;
+  }
+
+  return mciSendCommand(gMciDeviceId, MCI_PLAY, gMciPlayFlags, (DWORD)&gMciPlayParams);
 }
 
 
@@ -1039,6 +1073,25 @@ void enableSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bEnable) {
 }
 
 
+// 004088fd
+void modifyFramesMenuItemText(int flag) {
+  int nPos = 1;
+  HMENU hMenu;
+  char buffer[128];
+
+  hMenu = GetMenu(ghWnd);
+  hMenu = GetSubMenu(hMenu, nPos);
+  if (flag == 1) {
+    LoadString(ghInstance, IDS_FASTSONIC, buffer, 128);
+    ModifyMenu(hMenu, 207, 0, 207, buffer);
+  }
+  else {
+    LoadString(ghInstance, IDS_SMOOTHSONIC, buffer, 128);
+    ModifyMenu(hMenu, 207, 0, 207, buffer);
+  }
+}
+
+
 // 004089a6
 void modifyControllerMenuItemText(short controllerId) {
   int nPos = 1;
@@ -1163,6 +1216,40 @@ void FUN_00408cdb() {
 }
 
 
+// 00408d86
+void toggleMenuBar() {
+  DWORD windowStyle = 0xc80000;
+  RECT rect1, rect2;
+
+  if (!gbMenuBarVisible) {
+    gbMenuBarVisible = TRUE;
+  }
+  else {
+    gbMenuBarVisible = FALSE;
+  }
+
+  if (!gbFullScreen) {
+    GetWindowRect(ghWnd, &rect1);
+    rect2.left = 0;
+    rect2.right = 320;
+    rect2.top = 0;
+    rect2.bottom = 224;
+    if (gbMenuBarVisible) {
+      SetMenu(ghWnd, LoadMenu(ghInstance, gMenus[gUsedMenuId]));
+      DrawMenuBar(ghWnd);
+      AdjustWindowRect(&rect2, windowStyle, TRUE);
+      ++rect2.bottom;
+    }
+    else {
+      DestroyMenu(GetMenu(ghWnd));
+      DrawMenuBar(ghWnd);
+      AdjustWindowRect(&rect2, windowStyle, FALSE);
+    }
+    MoveWindow(ghWnd, rect1.left, rect1.top, rect2.right - rect2.left, rect2.bottom - rect2.top, TRUE);
+  }
+}
+
+
 // 00408ea9
 void FUN_00408ea9() {
   CDPause();
@@ -1177,6 +1264,62 @@ void FUN_00408ea9() {
     DAT_004332a0 = 0;
   }
   FUN_0040badc();
+}
+
+
+// 00409000
+void changeControls() {
+  gUserKeyTemp[0] = gUserKey[0];
+  gUserKeyTemp[1] = gUserKey[1];
+  gUserKeyTemp[2] = gUserKey[2];
+  gUserKeyTemp[3] = gUserKey[3];
+  gUserKeyTemp[4] = gUserKey[4];
+  showSonicDlg(ghWnd, "SONICDLG_KEYS", "KeySettingDialog", (LPARAM)gUserKeyTemp);
+  gUserKey[0] = gUserKeyTemp[0];
+  gUserKey[1] = gUserKeyTemp[1];
+  gUserKey[2] = gUserKeyTemp[2];
+  gUserKey[3] = gUserKeyTemp[3];
+  gUserKey[4] = gUserKeyTemp[4];
+}
+
+
+// 004090a5
+void showGoodEndFlags() {
+  char bigBuffer[256];
+  ULONG bitFlag;
+  int i;
+  char smallBuffer[80];
+
+  lstrcpy(bigBuffer, "Clear Special ");
+  bitFlag = 1;
+  for (i = 0; i < 7; ++i) {
+    if (gKeepWork.clrspflg_save & bitFlag) {
+      wsprintf(smallBuffer, "%d ", i + 1);
+    }
+    else {
+      lstrcpy(smallBuffer, "_ ");
+    }
+    lstrcat(bigBuffer, smallBuffer);
+    bitFlag <<= 1;
+  }
+
+  lstrcat(bigBuffer, "\n\rClear Good Future");
+  bitFlag = 1;
+  for (i = 0; i < 7; ++i) {
+    if (gCrntScorData.clrgood & bitFlag) {
+      wsprintf(smallBuffer, "%d ", i + 1);
+    }
+    else {
+      lstrcpy(smallBuffer, "_ ");
+    }
+    lstrcat(bigBuffer, smallBuffer);
+    bitFlag <<= 1;
+  }
+
+  lstrcat(bigBuffer, "\n\r");
+  wsprintf(smallBuffer, "Next Special:%d\n\r", gKeepWork.stagenm + 1);
+  lstrcat(bigBuffer, smallBuffer);
+  MessageBox(ghWnd, bigBuffer, "GOOD END flags", MB_OK);
 }
 
 
@@ -1304,6 +1447,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
       }
       BringWindowToTop(ghWnd);
       break;
+    case WM_POWER: // 00409c43
+      if (wParam == 3 && GetActiveWindow() == hWnd && gbFullScreen) {
+        makePalette();
+      }
+      else if (wParam == 1) {
+        return -1;
+      }
+      break;
     case WM_PAINT: // 00409900
       paintWindow(hWnd);
       return 0;
@@ -1354,7 +1505,267 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         }
         break;
       }
+      return DefWindowProc(hWnd, msg, wParam, lParam);
+    case MM_MCINOTIFY: // 00409ad2
+      wsprintf(buffer, "w=%04x l=%08lx CD=%x\n\r", wParam, lParam, gMciDeviceId);
+      emptyFunction();
+      if ((lParam & 0xffff) == gMciDeviceId) {
+        if (FUN_0040181a() != 0) {
+          gbCdAudioOpenSuccess = FALSE;
+        }
+        break;
+      }
+      if (gbMoviePlaying) {
+        if (DAT_00433334) {
+          DAT_00433334 = FALSE;
+        }
+        else if (DAT_00433310) {
+          changeMovieSize();
+          DAT_00433310 = FALSE;
+        }
+        else {
+          gbQuit = FUN_0040e6fe(wParam, lParam);
+        }
+        break;
+      }
       return DefWindowProcA(hWnd, msg, wParam, lParam);
+    case MM_WOM_DONE: // 00409bb0
+      FUN_0040dd16((HWAVEOUT)wParam,(LPWAVEHDR)lParam);
+      break;
+    case WM_SYSCOMMAND: // 00409bca
+      switch (wParam) {
+        case SC_SCREENSAVE:
+          return 1;
+        case SC_MONITORPOWER:
+          return 1;
+        case SC_KEYMENU:
+          if (gbFullScreen) {
+            break;
+          }
+        default:
+          return DefWindowProcA(hWnd, msg, wParam, lParam);
+      }
+    case WM_COMMAND: // 00409c8e
+      if (wParam > 399 && wParam < 470) { /* Stage */
+        gKeepWork.play_start = 0;
+        hCursor = LoadCursor(0, IDC_WAIT);
+        hPrevCursor = SetCursor(hCursor);
+        FUN_0040b380(wParam);
+        SetCursor(hPrevCursor);
+        break;
+      }
+      if (wParam > 469 && wParam < 478) { /* Special Stage */
+        gKeepWork.play_start = 0;
+        hCursor = LoadCursor(0, IDC_WAIT);
+        hPrevCursor = SetCursor(hCursor);
+        FUN_0040af3b(wParam);
+        SetCursor(hPrevCursor);
+        break;
+      }
+      switch (wParam) {
+        case ID_RESTARTGAME:
+          gKeepWork.bRestart = 1;
+          if (DAT_004332e0 != 0) {
+            gKeepWork.bRestart = 1;
+          }
+          break;
+        case ID_RESTARTSTAGE:
+          gbRestartStage = FALSE;
+          break;
+        case ID_PAUSEGAME:
+          gbGamePaused = TRUE;
+          break;
+        case ID_EXITGAME:
+          DestroyWindow(hWnd);
+          break;
+        case ID_OPTIONS_FULLSCREEN:
+          if (!gbNecComputer) {
+            FUN_00408cdb();
+          }
+          break;
+        case ID_OPTIONS_MENUBAR:
+          toggleMenuBar();
+          break;
+        case ID_OPTIONS_SMOOTHSONIC:
+        case 207:
+          if (gFpsFlag1 == 1) {
+            gFpsFlag1 = 2;
+          }
+          else {
+            gFpsFlag1 = 1;
+          }
+          modifyFramesMenuItemText(gFpsFlag1);
+          break;
+        case ID_OPTIONS_CHANGECONTROLS:
+          changeControls();
+          break;
+        case ID_OPTIONS_USEKEYBOARD:
+          toggleController();
+          break;
+        case ID_BETTERSOUNDQUALITY:
+          toggleSoundQuality();
+          break;
+        case ID_HELP_CONTENTS:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_CONTENTS, 0);
+          break;
+        case ID_HELP_HOWTOPLAY:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_CONTEXT, 2);
+          break;
+        case ID_HELP_CONTROLS:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_CONTEXT, 3);
+          break;
+        case ID_HELP_HISTORY:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_CONTEXT, 4);
+          break;
+        case ID_HELP_HOTLINE:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_CONTEXT, 5);
+          break;
+        case ID_HELP_HOWTOUSE:
+          gbHelpOpen = TRUE;
+          WinHelp(ghWnd, helpFilePath, HELP_HELPONHELP, 0);
+          break;
+        case ID_HELP_ABOUT:
+          showSonicDlg(hWnd, "SONICDLG_ABOUT", "AboutDialog", 0);
+          break;
+        case ID_FUNC_SPRITECMP:
+          if (!gbSpriteLoadingEnabled) {
+            gbSpriteLoadingEnabled = TRUE;
+          }
+          else {
+            gbSpriteLoadingEnabled = FALSE;
+          }
+          checkSubMenuItem(4, wParam, gbSpriteLoadingEnabled);
+          break;
+        case ID_FUNC_MAPINIT:
+          if (DAT_004332a0 && gbGameStageDllLoaded) {
+            int_union vscroll, scrahposiw, scrbhposiw;
+
+            CDPause();
+            (*gpGameinit)();
+            vscroll.l = (*gpGetvscroll)();
+            scrahposiw.l = (*gpGetscrahposiw)();
+            scrbhposiw.l = (*gpGetscrbhposiw)();
+            mapinit(scrahposiw.w.h, vscroll.w.h, scrahposiw.w.l, scrbhposiw.w.h, vscroll.w.l);
+          }
+          break;
+        case ID_FUNC_DEBUGFLAG:
+          if (!gDebugFlag) {
+            gDebugFlag = TRUE;
+          }
+          else {
+            gDebugFlag = FALSE;
+          }
+          checkSubMenuItem(4, wParam, gDebugFlag);
+          if (gpSetDebugFlag != 0) {
+            (*gpSetDebugFlag)(gDebugFlag);
+          }
+          break;
+        case ID_FUNC_SPECIALDEBUG:
+          if (gKeepWork.SpecialTime == 0) {
+            gKeepWork.SpecialTime = 1;
+          }
+          else {
+            gKeepWork.SpecialTime = 0;
+          }
+          checkSubMenuItem(4, wParam, gKeepWork.SpecialTime);
+          break;
+        case ID_FUNC_TIMEWARP:
+          if (gKeepWork.TimeWarp == 0) {
+            gKeepWork.TimeWarp = 1;
+          }
+          else {
+            gKeepWork.TimeWarp = 0;
+          }
+          checkSubMenuItem(4, wParam,gKeepWork.TimeWarp);
+          break;
+        case ID_FUNC_GOSPECIAL:
+          gbGoSpecial = TRUE;
+          break;
+        case ID_FUNC_GOODEND:
+          showGoodEndFlags();
+          break;
+        case ID_FUNC_FLAGS:
+          wsprintf(buffer, "generate_flag=%02x \n\rtime_flag=%02x", gKeepWork.generate_flag, gKeepWork.time_flag);
+          MessageBox(hWnd, buffer, "Flags", MB_OK);
+          break;
+        case ID_FUNC_FRAME_60:
+          gFpsFlag1 = 1;
+          gFpsFlag2 = 1;
+          break;
+        case ID_FUNC_FRAME_30:
+          gFpsFlag1 = 2;
+          gFpsFlag2 = 2;
+          break;
+        case ID_FUNC_TIMER:
+          break;
+        case ID_FUNC_TIMERINIT:
+          break;
+        case ID_FUNC_AVE300FRAME:
+          break;
+        case ID_FUNC_MMTIMER:
+          if (gTimeSetEventResult != 0) {
+            killTimer();
+            checkSubMenuItem(4, wParam, FALSE);
+          }
+          else {
+            checkSubMenuItem(4, wParam, TRUE);
+          }
+          break;
+        case ID_FUNC_SNDMEMFREE:
+          closeWaveOut();
+          freeWaveMemory();
+          break;
+        case ID_FUNC_RECSTART:
+          DAT_00433258 = 255;
+          DAT_0043325c = 0;
+          break;
+        case ID_FUNC_RECEND:
+          DAT_00433258 = 0;
+          gRecordingBuffer[DAT_0043325c] = 0xffff;
+          DAT_00433260 = DAT_0043325c;
+          DAT_0043325c = 0;
+          break;
+        case ID_FUNC_RECPLAY:
+          gbRecordPlayFlag = 1;
+          break;
+        case ID_FUNC_RECREAD:
+          readRecording();
+          break;
+        case ID_FUNC_RECWRITE:
+          writeRecording();
+          break;
+        case ID_FUNC_DEMO_AVI:
+        case ID_FUNC_DEMO_11A:
+        case ID_FUNC_DEMO_SPE1:
+        case ID_FUNC_DEMO_43C:
+        case ID_FUNC_DEMO_SPE5:
+        case ID_FUNC_DEMO_82A:
+          gDemoId = wParam - 521;
+          break;
+        case ID_FUNC_WAVEOPEN:
+          openWaveOut(ghWnd);
+          break;
+        case ID_FUNC_WAVECLOSE:
+          closeWaveOut();;
+          break;
+        case ID_FUNC_CDRESET:
+          closeCdAudio();
+          if (openCdAudio(buffer, 128) != 0) {
+            gbCdAudioOpenSuccess = FALSE;
+            MessageBox(hWnd, buffer, "CD Device Error", MB_OK);
+          }
+          else {
+            gbCdAudioOpenSuccess = TRUE;
+          }
+          break;
+        default:
+          return 0;
+      }
   }
 
   return 0;
@@ -1536,14 +1947,14 @@ BOOL loadGameStageDll(LPCSTR path) {
     return FALSE;
   }
 
-  gpGameinit = GetProcAddress(ghGameStageDll, "game_init");
+  gpGameinit = (void(*)())GetProcAddress(ghGameStageDll, "game_init");
   gpGame = GetProcAddress(ghGameStageDll, "game");
   gpDLLmeminit = (void(*)(char***, void**))GetProcAddress(ghGameStageDll, "DLL_meminit");
   gpDLLmemfree = GetProcAddress(ghGameStageDll, "DLL_memfree");
   gpSWdataSet = GetProcAddress(ghGameStageDll, "SWdataSet");
-  gpGetvscroll = GetProcAddress(ghGameStageDll, "Get_vscroll");
-  gpGetscrahposiw = GetProcAddress(ghGameStageDll, "Get_scra_h_posiw");
-  gpGetscrbhposiw = GetProcAddress(ghGameStageDll, "Get_scrb_h_posiw");
+  gpGetvscroll = (int(*)())GetProcAddress(ghGameStageDll, "Get_vscroll");
+  gpGetscrahposiw = (int(*)())GetProcAddress(ghGameStageDll, "Get_scra_h_posiw");
+  gpGetscrbhposiw = (int(*)())GetProcAddress(ghGameStageDll, "Get_scrb_h_posiw");
   gpFadeProc = GetProcAddress(ghGameStageDll, "FadeProc");
   gpSetDebugFlag = (void(*)(unsigned int))GetProcAddress(ghGameStageDll, "SetDebugFlag");
   gpGetRoundStr = GetProcAddress(ghGameStageDll, "GetRoundStr");
@@ -1578,7 +1989,7 @@ BOOL setupJoystick() {
   if (joyGetNumDevs() == 0) {
     return FALSE;
   }
-  if (joyGetDevCapsA(0, &gJoyCapsInfo, sizeof(gJoyCapsInfo)) == MMSYSERR_NODRIVER) {
+  if (joyGetDevCaps(0, &gJoyCapsInfo, sizeof(gJoyCapsInfo)) == MMSYSERR_NODRIVER) {
     return FALSE;
   }
 
@@ -1632,7 +2043,7 @@ void FUN_0040bb84() {
 
   error = switchCdAudioTrack(gCurrentCdAudioTrackId, unknown, ghWnd);
   if (error != 0) {
-    mciGetErrorStringA(error, buffer, 128);
+    mciGetErrorString(error, buffer, 128);
     emptyFunction();
   }
 }
@@ -1668,6 +2079,40 @@ void showCustomError(int id, LPCSTR message) {
 // 0040c00c
 USHORT emptyFunction2() {
   // empty
+}
+
+
+// 0040c01f
+int showSonicDlg(HWND hWnd, LPCSTR resourceId, LPCSTR dialogId, LPARAM initValue) {
+  HMODULE hModule;
+  DLGPROC dlgProc;
+  char buffer[80];
+  int result;
+
+  SetErrorMode(SEM_NOOPENFILEERRORBOX);
+  hModule = LoadLibrary("SONICDLG.DLL");
+  if ((ULONG)hModule < 33) {
+    MessageBox(0, "Can't load SONICDLG.DLL", "Sonic Error", MB_ICONSTOP);
+    return -1;
+  }
+
+  dlgProc = (DLGPROC)GetProcAddress(hModule, dialogId);
+  if (dlgProc == 0) {
+    wsprintf(buffer, "Can't GetProcAddress() for SONICDLG.DLL:%s()", dialogId);
+    MessageBox(0, buffer, "Sonic Error", MB_ICONSTOP);
+    return -1;
+  }
+
+  result = DialogBoxParam(hModule, resourceId, hWnd, dlgProc, initValue);
+  if (result == -1) {
+    MessageBox(0, buffer, "Error", MB_ICONSTOP);
+    return -1;
+  }
+  else {
+    FreeLibrary(hModule);
+  }
+
+  return result;
 }
 
 
@@ -1965,6 +2410,31 @@ void WaveAllStop() {
 }
 
 
+// 0040dd16
+int FUN_0040dd16(HWAVEOUT hWaveout, LPWAVEHDR pWaveHdr) {
+  WaveInfo *pWaveInfo;
+  int i;
+
+  pWaveInfo = (WaveInfo*)pWaveHdr->dwUser;
+  waveOutUnprepareHeader(hWaveout, pWaveHdr, sizeof(*pWaveHdr));
+
+  for (i = 0; i < gWaveDeviceCnt1; ++i) {
+    if (gWaveInfos[i].unknown11 != pWaveInfo->unknown11 && pWaveInfo->unknown11 <= gWaveInfos[i].unknown11) {
+      --gWaveInfos[i].unknown11;
+    }
+  }
+
+  pWaveInfo->unknown11 = -1;
+  pWaveInfo->busy = FALSE;
+  if (pWaveInfo->unknownCounter == 0) {
+    return 0;
+  }
+
+  --pWaveInfo->unknownCounter;
+  return playWaveRequest(pWaveInfo->hWnd, pWaveInfo, pWaveInfo->unknown13[pWaveInfo->unknownCounter]);
+}
+
+
 // 0040dde6
 int getFreeWaveInfoIndex() {
   int i;
@@ -2034,7 +2504,7 @@ BOOL switchGameMenuDll(HWND hWnd, LPCSTR path, USHORT type) {
     gpAVIResume = GetProcAddress(ghGameMenuDll, "AVIResume");
   }
   if (type == 3 || type == 4) {
-    gpDLLNotify = GetProcAddress(ghGameMenuDll, "DLLNotify");
+    gpDLLNotify = (int(*)(WPARAM, LPARAM))GetProcAddress(ghGameMenuDll, "DLLNotify");
   }
   if (type == 6) {
     gpDLLChar = GetProcAddress(ghGameMenuDll, "DLLChar");
@@ -2047,7 +2517,7 @@ BOOL switchGameMenuDll(HWND hWnd, LPCSTR path, USHORT type) {
 
 
 // 0040e14b
-BOOL loadOpening(HWND hWnd, LPVOID hSurf) {
+BOOL loadOpening(HWND hWnd, UINT hSurf) {
   char buffer[128];
 
   if (!gbFullScreenMenuItemEnabled) {
@@ -2159,9 +2629,79 @@ void callDllPaint(HDC hDc) {
 }
 
 
+// 0040e6e8
+void changeMovieSize() {
+  (*gpDLLAVISizeChange)();
+}
+
+
+// 0040e6fe
+BOOL FUN_0040e6fe(WPARAM wParam, LPARAM lParam) {
+  if (gbMoviePlaying) {
+    if (gGameDllType == 3 || gGameDllType == 4) {
+      (*gpDLLNotify)(wParam,lParam);
+    }
+    else {
+      FUN_0040ec7b();
+      makePalette();
+    }
+  }
+
+  return TRUE;
+}
+
+
 // 0040e757
 void realizeMovie() {
   (*gpDLLAVIRealize)();
+}
+
+
+// 0040e882
+BOOL loadVisualmd(HWND hWnd, UINT hSurf) {
+  char buffer[128];
+
+  fillColorwk(0);
+  FUN_004051ab();
+  if (switchGameMenuDll(hWnd,gVisualmdDllPath, 7) == FALSE) {
+    return FALSE;
+  }
+
+  gDllIn.hWnd = (UINT)hWnd;
+  gDllIn.hSurf = hSurf;
+  gDllIn.lpColorwk = gpColorwk;
+  gDllIn.lpbVisualmode = (UINT*)&gbVisualmode;
+  gDllIn.lpUserKey = gUserKey;
+  gDllIn.CDPlay = (void*)&CDPlay;
+  gDllIn.CDPause = (void*)&CDPause;
+  (*gpDLLInit)(&gDllIn);
+  gbVisualmode = TRUE;
+  gbGameDllInit = TRUE;
+  closeCdAudio();
+  if (openCdAudio(buffer, 128) != 0) {
+    MessageBox(hWnd, buffer, "CD Device Error", MB_OK);
+  }
+  makePalette();
+
+  return TRUE;
+}
+
+
+// 0040ec7b
+BOOL FUN_0040ec7b() {
+  FUN_0040eb80();
+  if (gbVisualmode) {
+    if (loadVisualmd(ghWnd, ghSurf) == FALSE) {
+      return FALSE;
+    }
+  }
+  else {
+    if (loadOpening(ghWnd, ghSurf) == FALSE) {
+      return FALSE;
+    }
+  }
+
+  return TRUE;
 }
 
 
