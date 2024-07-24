@@ -20,7 +20,9 @@ MCIERROR openCdAudio(LPSTR buffer,ULONG bufferSize);
 void closeCdAudio();
 MCIERROR getMciMode(ULONG* mciMode);
 int setMciPlayParams(int trackId);
-MCIERROR switchCdAudioTrack(long trackId, BOOL unknown, HWND hWnd);
+MCIERROR FUN_0040157a();
+MCIERROR switchCdAudioTrack(long trackId, BOOL bUnknown, HWND hWnd);
+MCIERROR FUN_00401671();
 MCIERROR stopCdAudio();
 int makeSurface(HWND hWnd);
 BOOL freeSurface();
@@ -82,8 +84,11 @@ void unloadGameMenuDll();
 BOOL loadAvigood(HWND hWnd);
 BOOL loadAvibad(HWND hWnd);
 void callDllPaint(HDC hDc);
+void realizeMovie();
 BOOL playBadEnding();
 BOOL playGoodEnding();
+void pauseMovie();
+void resumeMovie();
 void WaveRequest(short ReqNo);
 int stubbedFunction();
 void retrieveDataFilePath(LPSTR pPath);
@@ -219,7 +224,7 @@ BOOL DAT_004332a0 = FALSE;
 BOOL gbGameStageDllLoaded = FALSE;
 long gCurrentCdAudioTrackId = 1;
 BOOL DAT_004332c4 = FALSE;
-BOOL DAT_004332c8 = FALSE;
+BOOL gbMoviePlaying = FALSE;
 BOOL DAT_004332d0 = FALSE;
 BOOL DAT_004332d4 = FALSE;
 BOOL DAT_004332d8 = FALSE;
@@ -235,6 +240,9 @@ BOOL gbFullScreen = FALSE;
 BOOL gbBetterSoundQuality = FALSE;
 BOOL DAT_00433324 = FALSE;
 ULONG gEndingMovieFlag = 0;
+BOOL DAT_0043332c = FALSE;
+BOOL DAT_00433330 = FALSE;
+BOOL DAT_00433334 = FALSE;
 void* gGameMemory[11] = { // 00433338
   &gpMapwk,
   &gpColorwk,
@@ -448,8 +456,14 @@ int setMciPlayParams(int trackId) {
 }
 
 
+// 0040157a
+MCIERROR FUN_0040157a() {
+  return mciSendCommand(gMciDeviceId, MCI_PLAY, gMciPlayFlags & -5, (DWORD)&gMciPlayParams);
+}
+
+
 // 004015b2
-MCIERROR switchCdAudioTrack(long trackId, BOOL unknown, HWND hWnd) {
+MCIERROR switchCdAudioTrack(long trackId, BOOL bUnknown, HWND hWnd) {
   MCIERROR error;
   char buffer[128];
 
@@ -463,9 +477,22 @@ MCIERROR switchCdAudioTrack(long trackId, BOOL unknown, HWND hWnd) {
       mciGetErrorStringA(error, buffer, 128);
       MessageBox(0, buffer, "CD Error", MB_ICONSTOP);
     }
-    if (unknown) {
+    if (bUnknown) {
       DAT_00430370 |= 1;
     }
+  }
+
+  return error;
+}
+
+
+// 00401671
+MCIERROR FUN_00401671() {
+  MCIERROR error = 0;
+
+  if (DAT_00430370 & 2) {
+    error = FUN_0040157a();
+    DAT_00430370 &= -3;
   }
 
   return error;
@@ -696,10 +723,10 @@ void fillColorwk(UCHAR value) {
 
 
 // 004068c4
-void FUN_004068c4(BOOL unknown) {
+void FUN_004068c4(BOOL bFullScreen) {
   RECT rect;
 
-  if (unknown) {
+  if (bFullScreen) {
     _objApplyEffect(ghSurf, FX_MODEX_DISPLAY[0], FX_MODEX_DISPLAY[1], FX_MODEX_DISPLAY[2], FX_MODEX_DISPLAY[3], 0, DAT_0041dd5c);
     _fxSetActive(DAT_0041dd5c, 1);
     GetCursorPos(&gCursorPos);
@@ -1039,7 +1066,7 @@ void toggleSoundQuality() {
   HCURSOR hCursor, hPrevCursor;
   int result;
 
-  if (DAT_004332c8) return;
+  if (gbMoviePlaying) return;
 
   if (checkWaveInfos() != 0) {
     DAT_00433324 = TRUE;
@@ -1107,7 +1134,7 @@ void retrieveHelpFilePath() {
 void FUN_00408cdb() {
   POINT point;
 
-  if (DAT_004332c8) return;
+  if (gbMoviePlaying) return;
 
   if (ghSurf != 0) {
     if (!gbFullScreen == 0) {
@@ -1172,6 +1199,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
   char buffer[128];
   void(*pInitKeySettings)(HWND, USHORT*);
   int result;
+  ULONG mciMode;
 
   queryMciPlaying();
   if (msg < 16) {
@@ -1288,9 +1316,53 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         PostQuitMessage(0);
         break;
       case WM_SIZE: // 004094d8
+        if (wParam == 1) {
+          DAT_0043332c = TRUE;
+          getMciMode(&mciMode);
+          if (mciMode == MCI_MODE_PLAY) {
+            stopCdAudio();
+            DAT_00433330 = TRUE;
+          }
+          if (gbMoviePlaying) {
+            pauseMovie();
+            DAT_00433334 = TRUE;
+          }
+        }
+        if (wParam == 0) {
+          if (DAT_00433330) {
+            FUN_00401671();
+            DAT_00433330 = FALSE;
+          }
+          DAT_0043332c = FALSE;
+          if (gbMoviePlaying) {
+            resumeMovie();
+          }
+        }
         break;
+      case WM_ACTIVATE: // 004099f7
+        if ((wParam == 1 || wParam == 2) && !gbFullScreen) {
+          if (gbMoviePlaying) {
+            realizeMovie();
+          }
+          else {
+            makePalette();
+          }
+          break;
+        }
+        if (wParam == 0 && gbFullScreen) {
+          if (gbMoviePlaying) {
+            gbFullScreen = FALSE;
+          }
+          else {
+            FUN_00408cdb();
+          }
+          break;
+        }
+        return DefWindowProcA(hWnd, msg, wParam, lParam);
     }
   }
+
+  return 0;
 }
 
 
@@ -1300,7 +1372,7 @@ void paintWindow(HWND hWnd) {
   PAINTSTRUCT paintInfo;
 
   hDc = BeginPaint(hWnd, &paintInfo);
-  if (DAT_004332c8) {
+  if (gbMoviePlaying) {
     callDllPaint(hDc);
     emptyFunction();
   }
@@ -2026,7 +2098,7 @@ BOOL loadOpening(HWND hWnd, LPVOID hSurf) {
 // 0040e2c8
 void unloadGameMenuDll() {
   if (gbGameDllInit) {
-    gpDLLEnd();
+    (*gpDLLEnd)();
     if (ghGameMenuDll != 0) {
       FreeLibrary(ghGameMenuDll);
       ghGameMenuDll = 0;
@@ -2051,7 +2123,7 @@ BOOL loadAvigood(HWND hWnd) {
   gDllIn.hWnd = (UINT)hWnd;
   gDllIn.lpUserKey = gUserKey;
   (*gpDLLInit)(&gDllIn);
-  DAT_004332c8 = TRUE;
+  gbMoviePlaying = TRUE;
   gbGameDllInit = TRUE;
   InvalidateRect(hWnd, 0, TRUE);
   UpdateWindow(hWnd);
@@ -2075,7 +2147,7 @@ BOOL loadAvibad(HWND hWnd) {
   gDllIn.hWnd = (UINT)hWnd;
   gDllIn.lpUserKey = gUserKey;
   (*gpDLLInit)(&gDllIn);
-  DAT_004332c8 = TRUE;
+  gbMoviePlaying = TRUE;
   gbGameDllInit = TRUE;
   InvalidateRect(hWnd, 0, TRUE);
   UpdateWindow(hWnd);
@@ -2086,9 +2158,15 @@ BOOL loadAvibad(HWND hWnd) {
 
 // 0040e6c6
 void callDllPaint(HDC hDc) {
-  if (DAT_004332c8) {
+  if (gbMoviePlaying) {
     gpDLLPaint(hDc);
   }
+}
+
+
+// 0040e757
+void realizeMovie() {
+  (*gpDLLAVIRealize)();
 }
 
 
@@ -2119,6 +2197,18 @@ BOOL playGoodEnding() {
   DAT_004332c4 = TRUE;
 
   return TRUE;
+}
+
+
+// 0040f136
+void pauseMovie() {
+  (*gpAVIPause)();
+}
+
+
+// 0040f147
+void resumeMovie() {
+  (*gpAVIResume)();
 }
 
 
