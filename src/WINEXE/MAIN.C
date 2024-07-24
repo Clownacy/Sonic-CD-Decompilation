@@ -1202,164 +1202,159 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
   ULONG mciMode;
 
   queryMciPlaying();
-  if (msg < 16) {
-    if (msg == WM_PAINT) {
 
-    }
-
-    switch (msg) {
-      case WM_PAINT:
-        paintWindow(hWnd); // 00409900
-        return 0;
-      case WM_CREATE: // 00409577
-        ghDc = GetDC(ghWnd);
-        hCursor = LoadCursor(0, IDC_WAIT);
-        hPrevCursor = SetCursor(hCursor);
-        GetPrivateProfileString("Directory", "Type", "MINIMAL", buffer, sizeof(buffer), "SONIC.INI");
-        if (buffer[0] == 'F') {
-          GetPrivateProfileString("Secret", "Super", "OFF", buffer, sizeof(buffer), "SONIC.INI");
-          if (isCdromPresent() == FALSE && gbRequireCdrom && buffer[0] != 'J') {
-            return -1;
-          }
+  switch (msg) {
+    case WM_SIZE: // 004094d8
+      if (wParam == 1) {
+        DAT_0043332c = TRUE;
+        getMciMode(&mciMode);
+        if (mciMode == MCI_MODE_PLAY) {
+          stopCdAudio();
+          DAT_00433330 = TRUE;
         }
-        if (isDisplay256Colors() == FALSE) {
-          return -1;
+        if (gbMoviePlaying) {
+          pauseMovie();
+          DAT_00433334 = TRUE;
         }
+      }
+      if (wParam == 0) {
+        if (DAT_00433330) {
+          FUN_00401671();
+          DAT_00433330 = FALSE;
+        }
+        DAT_0043332c = FALSE;
+        if (gbMoviePlaying) {
+          resumeMovie();
+        }
+      }
+      break;
+    case WM_CREATE: // 00409577
+      ghDc = GetDC(ghWnd);
+      hCursor = LoadCursor(0, IDC_WAIT);
+      hPrevCursor = SetCursor(hCursor);
+      GetPrivateProfileString("Directory", "Type", "MINIMAL", buffer, sizeof(buffer), "SONIC.INI");
+      if (buffer[0] == 'F') {
         GetPrivateProfileString("Secret", "Super", "OFF", buffer, sizeof(buffer), "SONIC.INI");
-        if (buffer[0] != 'J') {
-          DWORD versionInfo = GetVersion();
-          if ((versionInfo >> 8 & 255) + (versionInfo & 255) * 255 < 863) {
-            MessageBox(0, "You must have a Windows® 95\n inside your system to run Sonic the Hedgehog CD.", "Sonic Error", MB_ICONSTOP);
-            return -1;
-          }
-          if (isCpuPentium() == FALSE) {
-            MessageBox(0, "You must have a Pentium® Processer (or better)\ninside your system to run Sonic the Hedgehog CD.", "Sonic Error", MB_ICONSTOP);
-            return -1;
-          }
-          SetFocus(ghWnd);
-        }
-        gbNecComputer = isComputerNec();
-        retrieveHelpFilePath();
-        GetPrivateProfileString("SOUND", "QUALITY", "GOOD  ", buffer, sizeof(buffer), "SONIC.INI");
-        if (buffer[0] == 'B') {
-          gbBetterSoundQuality = TRUE;
-        }
-        else {
-          gbBetterSoundQuality = FALSE;
-        }
-        if (gbBetterSoundQuality) {
-          result = loadPcmFile("pcm8.cmp");
-        }
-        else {
-          result = loadPcmFile("pcm8.cmp");
-        }
-        if (result == 0) {
-          result = openWaveOut(hWnd);
-          gbWaveOpen = TRUE;
-        }
-        SetErrorMode(SEM_NOOPENFILEERRORBOX);
-        ghSonicDlg = LoadLibrary("SONICDLG.DLL");
-        if ((int)ghSonicDlg <= 32) {
-          MessageBox(0, "Can't load SONICDLG.DLL", "Sonic Error", MB_ICONSTOP);
+        if (isCdromPresent() == FALSE && gbRequireCdrom && buffer[0] != 'J') {
           return -1;
         }
-        pInitKeySettings = (void(*)(HWND, USHORT*))GetProcAddress(ghSonicDlg, "InitKeySettings");
-        if (pInitKeySettings == 0) {
-          MessageBox(0, "Can't GetProcAddress() for SONICDLG.DLL:\t\t\t\t\tInitKeySettings()", "Sonic Error", MB_ICONSTOP);
+      }
+      if (isDisplay256Colors() == FALSE) {
+        return -1;
+      }
+      GetPrivateProfileString("Secret", "Super", "OFF", buffer, sizeof(buffer), "SONIC.INI");
+      if (buffer[0] != 'J') {
+        DWORD versionInfo = GetVersion();
+        if ((versionInfo >> 8 & 255) + (versionInfo & 255) * 255 < 863) {
+          MessageBox(0, "You must have a Windows® 95\n inside your system to run Sonic the Hedgehog CD.", "Sonic Error", MB_ICONSTOP);
           return -1;
         }
-        (*pInitKeySettings)(hWnd, gUserKeyTemp);
-        FreeLibrary(ghSonicDlg);
-        gUserKey[0] = gUserKeyTemp[0];
-        gUserKey[1] = gUserKeyTemp[1];
-        gUserKey[2] = gUserKeyTemp[2];
-        gUserKey[3] = gUserKeyTemp[3];
-        gUserKey[4] = gUserKeyTemp[4];
-        gKeepWork.TimeWarp = 0;
-        initCurrentScoreData();
-        SetCursor(hPrevCursor);
-        if (openCdAudio(buffer, sizeof(buffer)) != 0) {
-          gbCdAudioOpenSuccess = FALSE;
-          MessageBox(hWnd, buffer, "CD Device Error", MB_OK);
+        if (isCpuPentium() == FALSE) {
+          MessageBox(0, "You must have a Pentium® Processer (or better)\ninside your system to run Sonic the Hedgehog CD.", "Sonic Error", MB_ICONSTOP);
+          return -1;
+        }
+        SetFocus(ghWnd);
+      }
+      gbNecComputer = isComputerNec();
+      retrieveHelpFilePath();
+      GetPrivateProfileString("SOUND", "QUALITY", "GOOD  ", buffer, sizeof(buffer), "SONIC.INI");
+      if (buffer[0] == 'B') {
+        gbBetterSoundQuality = TRUE;
+      }
+      else {
+        gbBetterSoundQuality = FALSE;
+      }
+      if (gbBetterSoundQuality) {
+        result = loadPcmFile("pcm8.cmp");
+      }
+      else {
+        result = loadPcmFile("pcm8.cmp");
+      }
+      if (result == 0) {
+        result = openWaveOut(hWnd);
+        gbWaveOpen = TRUE;
+      }
+      SetErrorMode(SEM_NOOPENFILEERRORBOX);
+      ghSonicDlg = LoadLibrary("SONICDLG.DLL");
+      if ((int)ghSonicDlg <= 32) {
+        MessageBox(0, "Can't load SONICDLG.DLL", "Sonic Error", MB_ICONSTOP);
+        return -1;
+      }
+      pInitKeySettings = (void(*)(HWND, USHORT*))GetProcAddress(ghSonicDlg, "InitKeySettings");
+      if (pInitKeySettings == 0) {
+        MessageBox(0, "Can't GetProcAddress() for SONICDLG.DLL:\t\t\t\t\tInitKeySettings()", "Sonic Error", MB_ICONSTOP);
+        return -1;
+      }
+      (*pInitKeySettings)(hWnd, gUserKeyTemp);
+      FreeLibrary(ghSonicDlg);
+      gUserKey[0] = gUserKeyTemp[0];
+      gUserKey[1] = gUserKeyTemp[1];
+      gUserKey[2] = gUserKeyTemp[2];
+      gUserKey[3] = gUserKeyTemp[3];
+      gUserKey[4] = gUserKeyTemp[4];
+      gKeepWork.TimeWarp = 0;
+      initCurrentScoreData();
+      SetCursor(hPrevCursor);
+      if (openCdAudio(buffer, sizeof(buffer)) != 0) {
+        gbCdAudioOpenSuccess = FALSE;
+        MessageBox(hWnd, buffer, "CD Device Error", MB_OK);
+      }
+      else {
+        gbCdAudioOpenSuccess = TRUE;
+      }
+      BringWindowToTop(ghWnd);
+      break;
+    case WM_PAINT: // 00409900
+      paintWindow(hWnd);
+      return 0;
+    case WM_DESTROY: // 00409913
+      if (gbFullScreen) {
+        FUN_00408cdb();
+      }
+      if (gbHelpOpen) {
+        gbHelpOpen = FALSE;
+        WinHelp(ghWnd, helpFilePath, HELP_QUIT, 0);
+      }
+      if (gbBetterSoundQuality) {
+        WritePrivateProfileString("SOUND", "QUALITY", "BETTER", "SONIC.INI");
+      }
+      else {
+        WritePrivateProfileString("SOUND", "QUALITY", "GOOD  ", "SONIC.INI");
+      }
+      WaveAllStop();
+      CDPause();
+      FUN_00408ea9();
+      if (gbWaveOpen) {
+        closeWaveOut();
+        freeWaveMemory();
+      }
+      closeCdAudio();
+      emptyFunction2();
+      ReleaseDC(ghWnd, ghDc);
+      freeAllocatedMemory();
+      freeSurface();
+      PostQuitMessage(0);
+      break;
+    case WM_ACTIVATE: // 004099f7
+      if ((wParam == 1 || wParam == 2) && !gbFullScreen) {
+        if (gbMoviePlaying) {
+          realizeMovie();
         }
         else {
-          gbCdAudioOpenSuccess = TRUE;
+          makePalette();
         }
-        BringWindowToTop(ghWnd);
         break;
-      case WM_DESTROY: // 00409913
-        if (gbFullScreen) {
+      }
+      if (wParam == 0 && gbFullScreen) {
+        if (gbMoviePlaying) {
+          gbFullScreen = FALSE;
+        }
+        else {
           FUN_00408cdb();
         }
-        if (gbHelpOpen) {
-          gbHelpOpen = FALSE;
-          WinHelp(ghWnd, helpFilePath, HELP_QUIT, 0);
-        }
-        if (gbBetterSoundQuality) {
-          WritePrivateProfileString("SOUND", "QUALITY", "BETTER", "SONIC.INI");
-        }
-        else {
-          WritePrivateProfileString("SOUND", "QUALITY", "GOOD  ", "SONIC.INI");
-        }
-        WaveAllStop();
-        CDPause();
-        FUN_00408ea9();
-        if (gbWaveOpen) {
-          closeWaveOut();
-          freeWaveMemory();
-        }
-        closeCdAudio();
-        emptyFunction2();
-        ReleaseDC(ghWnd, ghDc);
-        freeAllocatedMemory();
-        freeSurface();
-        PostQuitMessage(0);
         break;
-      case WM_SIZE: // 004094d8
-        if (wParam == 1) {
-          DAT_0043332c = TRUE;
-          getMciMode(&mciMode);
-          if (mciMode == MCI_MODE_PLAY) {
-            stopCdAudio();
-            DAT_00433330 = TRUE;
-          }
-          if (gbMoviePlaying) {
-            pauseMovie();
-            DAT_00433334 = TRUE;
-          }
-        }
-        if (wParam == 0) {
-          if (DAT_00433330) {
-            FUN_00401671();
-            DAT_00433330 = FALSE;
-          }
-          DAT_0043332c = FALSE;
-          if (gbMoviePlaying) {
-            resumeMovie();
-          }
-        }
-        break;
-      case WM_ACTIVATE: // 004099f7
-        if ((wParam == 1 || wParam == 2) && !gbFullScreen) {
-          if (gbMoviePlaying) {
-            realizeMovie();
-          }
-          else {
-            makePalette();
-          }
-          break;
-        }
-        if (wParam == 0 && gbFullScreen) {
-          if (gbMoviePlaying) {
-            gbFullScreen = FALSE;
-          }
-          else {
-            FUN_00408cdb();
-          }
-          break;
-        }
-        return DefWindowProcA(hWnd, msg, wParam, lParam);
-    }
+      }
+      return DefWindowProcA(hWnd, msg, wParam, lParam);
   }
 
   return 0;
