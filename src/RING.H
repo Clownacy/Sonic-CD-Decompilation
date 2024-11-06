@@ -1,5 +1,4 @@
 void ring(sprite_status* pActwk);
-void ringinit(sprite_status* pActwk);
 void ringmove(sprite_status* pActwk);
 void ringget(sprite_status* pActwk);
 void ringgetsub();

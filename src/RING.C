@@ -6,6 +6,8 @@
 #include "ETC.H"
 #include "PLAYSUB.H"
 
+static void ringinit(sprite_status* pActwk);
+
 extern void soundset(short ReqNo);
 extern void sub_sync(short ReqNo);
 
@@ -61,8 +63,6 @@ unsigned char* ringchg[3] = {
   ringchg1,
   ringchg2
 };
-
-
 
 
 

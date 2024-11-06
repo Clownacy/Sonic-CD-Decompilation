@@ -40,41 +40,51 @@ static unsigned int subtblh4[4] = { 4096, 256, 16, 1 };
 static sprite_pattern tenpat0 = {
   2,
   {
-    { -8, 0, 0, 334 },
-    { 0, 0, 0, 337 }
+    {
+      { -8, 0, 0, 334 },
+      { 0, 0, 0, 337 }
+    }
   }
 };
 static sprite_pattern tenpat1 = {
   2,
   {
+    {
     { -8, 0, 0, 335 },
     { 0, 0, 0, 337 }
+    }
   }
 };
 static sprite_pattern tenpat2 = {
   2,
   {
+    {
     { -8, 0, 0, 336 },
     { 0, 0, 0, 337 }
+    }
   }
 };
 static sprite_pattern tenpat3 = {
   2,
   {
+    {
     { -8, 0, 0, 338 },
     { 0, 0, 0, 337 }
+    }
   }
 };
 static sprite_pattern tenpat4 = {
   1,
-  { { -4, 0, 0, 338 } }
+  { { { -4, 0, 0, 338 } } }
 };
 static sprite_pattern tenpat5 = {
   3,
   {
+    {
     { -12, 0, 0, 334 },
     { -4, 0, 0, 337 },
     { 4, 0, 0, 337 }
+    }
   }
 };
 static sprite_pattern* tenpat[6] = {
@@ -88,6 +98,7 @@ static sprite_pattern* tenpat[6] = {
 sprite_pattern scorepat0 = {
   19,
   {
+    {
     { 0, 0, 0, 339 },
     { 40, 0, 0, 0 },
     { 48, 0, 0, 0 },
@@ -107,19 +118,23 @@ sprite_pattern scorepat0 = {
     { 48, 32, 0, 0 },
     { 56, 32, 0, 0 },
     { 64, 32, 0, 318 }
+    }
   }
 };
 sprite_pattern scorepat1 = {
   3,
   {
+    {
     { 0, 0, 0, 347 },
     { 16, 8, 0, 343 },
     { 24, 4, 0, 318 }
+    }
   }
 };
 sprite_pattern scorepat2 = {
   15,
   {
+    {
     { 0, 0, 0, 339 },
     { 40, 0, 0, 0 },
     { 48, 0, 0, 0 },
@@ -135,11 +150,12 @@ sprite_pattern scorepat2 = {
     { 48, 32, 0, 0 },
     { 56, 32, 0, 0 },
     { 64, 32, 0, 318 }
+    }
   }
 };
 sprite_pattern scorepat3 = {
   1,
-  { { 0, 32, 0, 344 } }
+  { { { 0, 32, 0, 344 } } }
 };
 static sprite_pattern* scorepat[4] = {
   &scorepat0,

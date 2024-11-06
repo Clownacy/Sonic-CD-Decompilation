@@ -5,6 +5,7 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 #include "COLI1.H"
+#include "..\DUMMY.H"
 
 static unsigned char tobita1chg0[16] = { 2, 0, 1, 0, 2, 0, 1, 0, 3, 4, 3, 5, 3, 4, 3, 255 };
 static unsigned char tobita1chg1[9] = { 2, 0, 1, 0, 2, 0, 1, 0, 255 };

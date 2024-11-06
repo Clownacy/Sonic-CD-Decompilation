@@ -76,7 +76,7 @@ typedef struct {
   unsigned char cnt;
   union {
     sprite_data spra[20];
-    sprite_data spr[];
+    sprite_data spr[0];
   };
 }
 sprite_pattern;

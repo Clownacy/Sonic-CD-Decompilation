@@ -5,6 +5,7 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
+#include "SCR11A.H"
 
 unsigned char movie1_pchg00[6] = { 0, 2, 1, 3, 1, 255 };
 unsigned char movie1_pchg01[58] =

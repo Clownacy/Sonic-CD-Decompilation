@@ -5,6 +5,26 @@
 #include "DIRCOL.H"
 #include "ETC.H"
 
+static void emie1_init(sprite_status* pActwk);
+static void emie1_matu(sprite_status* pActwk);
+static void emie1_dakii(sprite_status* pActwk);
+static void emie1_tobii(sprite_status* pActwk);
+static void emie1_tobim(sprite_status* pActwk);
+static void emie_play(sprite_status* pEmiewk, sprite_status* pSonicwk);
+static void setdirect(sprite_status* pEmiewk, sprite_status* pSonicwk);
+static void speedset_emie(sprite_status* pActwk);
+static void speedsetx(sprite_status* pActwk);
+static void speedsety(sprite_status* pActwk);
+static void jumpchk_d();
+static void pljumpset();
+static void dakicheck(sprite_status* pActwk);
+static void empatchg(sprite_status* pActwk, char** pPattbl);
+static void emie1clrset();
+static void emie1clrsetx(PALETTEENTRY* pPalet);
+static void heartset(sprite_status* pActwk);
+static void heart1_init(sprite_status* pActwk);
+static void heart1_move(sprite_status* pActwk);
+
 extern void sub_sync(short ReqNo);
 
 static void(*em1_tbl[5])(sprite_status*) = {
@@ -39,23 +59,6 @@ static void(*ht1_tbl[2])(sprite_status*) = {
   &heart1_init,
   &heart1_move
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -427,7 +430,7 @@ static void emie1_tobii(sprite_status* pActwk) { /* Line 398, Address: 0x1005c60
 
 
 static void emie1_tobim(sprite_status* pActwk) { /* Line 429, Address: 0x1005d80 */
-  speedset(pActwk); /* Line 430, Address: 0x1005d8c */
+  speedset_emie(pActwk); /* Line 430, Address: 0x1005d8c */
   if ((pActwk->yspeed.w += 64) >= 0) { /* Line 431, Address: 0x1005d98 */
     pActwk->patno = 7; /* Line 432, Address: 0x1005dc0 */
   }
@@ -519,7 +522,7 @@ static void setdirect(sprite_status* pEmiewk, sprite_status* pSonicwk) { /* Line
 
 
 
-static void speedset(sprite_status* pActwk) { /* Line 522, Address: 0x1005fe0 */
+static void speedset_emie(sprite_status* pActwk) { /* Line 522, Address: 0x1005fe0 */
   speedsetx(pActwk); /* Line 523, Address: 0x1005fec */
   speedsety(pActwk); /* Line 524, Address: 0x1005ff8 */
 } /* Line 525, Address: 0x1006004 */
@@ -873,7 +876,7 @@ static void heart1_move(sprite_status* pActwk) { /* Line 867, Address: 0x1006b00
   }
 
 
-  speedset(pActwk); /* Line 876, Address: 0x1006b64 */
+  speedset_emie(pActwk); /* Line 876, Address: 0x1006b64 */
   if (++pActwk->actfree[16] == 20) { /* Line 877, Address: 0x1006b70 */
     ++pActwk->patno; /* Line 878, Address: 0x1006b94 */
   } else if (pActwk->actfree[16] == 110) { /* Line 879, Address: 0x1006ba4 */

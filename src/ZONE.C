@@ -67,6 +67,7 @@ static sprite_pattern madepat3 = {
 sprite_pattern bonuspat = {
   18,
   {
+  {
     { -44, -32, 0, 391 },
     { 72, -32, 0, 0 },
     { 80, -32, 0, 0 },
@@ -86,9 +87,11 @@ sprite_pattern bonuspat = {
     { 112, 16, 0, 0 },
     { 120, 16, 0, 0 }
   }
+  }
 };
 sprite_pattern bonuspat0 = {
   18,
+  {
   {
     { -44, -32, 0, 392 },
     { 72, -32, 0, 0 },
@@ -108,6 +111,7 @@ sprite_pattern bonuspat0 = {
     { 104, 16, 0, 0 },
     { 112, 16, 0, 0 },
     { 120, 16, 0, 0 }
+  }
   }
 };
 sprite_pattern* gotpat[5] = {
@@ -148,10 +152,6 @@ static unsigned short cleartbl[12] = {
   204,   0, 288,   2
 };
 extern void(*WaveAllStop)();
-
-
-
-
 
 
 
