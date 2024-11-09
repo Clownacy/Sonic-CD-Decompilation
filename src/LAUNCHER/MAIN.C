@@ -20,7 +20,7 @@ static SDL_Window *window;
 static SDL_Palette *palette;
 static SDL_Surface *framebuffer;
 
-static SDL_Surface *sprites[800];
+static SDL_Surface *sprites[800][2][2];
 
 static game_info state;
 
@@ -31,12 +31,16 @@ static int SetGrid(int, int, int, int)
 
 static void EAsprset(const short x, const short y, const unsigned short index, const unsigned short link_data, const unsigned short flip)
 {
+	const unsigned int x_flip = (flip >> 0) & 1;
+	const unsigned int y_flip = (flip >> 1) & 1;
+
 	SDL_Rect destination_rectangle;
 	destination_rectangle.x = x - 0x80;
 	destination_rectangle.y = y - 0x80;
 	destination_rectangle.w = 0;
 	destination_rectangle.h = 0;
-	if (SDL_BlitSurface(sprites[index], NULL, framebuffer, &destination_rectangle) == -1)
+
+	if (SDL_BlitSurface(sprites[index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
 		fputs("Failed to bit to framebuffer surface.\n", stderr);
 }
 
@@ -139,6 +143,28 @@ static unsigned long ReadU16LE(FILE* const file)
 	return ReadUnsignedLE(file, 2);
 }
 
+static SDL_Surface* CreateSpriteSurface(const int width, const int height)
+{
+	SDL_Surface* const surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 0, SDL_PIXELFORMAT_INDEX8);
+
+	if (surface == NULL)
+	{
+		fputs("Failed to create surface.\n", stderr);
+	}
+	else
+	{
+		// Also make them share the same palette.
+		if (SDL_SetSurfacePalette(surface, palette) < 0)
+			fputs("Failed to set surface palette.\n", stderr);
+
+		// Make colour 0 transparent.
+		if (SDL_SetColorKey(surface, SDL_TRUE, 0) < 0)
+			fputs("Failed to set surface colour key.\n", stderr);
+	}
+
+	return surface;
+}
+
 static bool LoadSprites(const char* const path)
 {
 	FILE *file = fopen(path, "rb");
@@ -172,38 +198,63 @@ static bool LoadSprites(const char* const path)
 
 		const int total_pixel_bytes = padded_width * height / 2;
 
-		sprites[i] = SDL_CreateRGBSurfaceWithFormat(0, padded_width, height, 0, SDL_PIXELFORMAT_INDEX8);
-
-		if (sprites[i] == NULL)
+		for (unsigned int y_flip = 0; y_flip < 2; ++y_flip)
 		{
-			fputs("Failed to create surface.\n", stderr);
-		}
-		else
-		{
-			unsigned char *pixels = sprites[i]->pixels;
-
-			for (int j = 0; j < total_pixel_bytes; ++j)
+			for (unsigned int x_flip = 0; x_flip < 2; ++x_flip)
 			{
-				const unsigned char packed_pixels = fgetc(file);
+				SDL_Surface* const sprite = CreateSpriteSurface(padded_width, height);
 
-				// Redirect all transparent pixels to colour 0.
-				*pixels = palette_offset + (packed_pixels >> 4);
-				*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-				++pixels;
+				if (sprite != NULL)
+				{
+					unsigned char *pixels = sprite->pixels;
 
-				*pixels = palette_offset + (packed_pixels & 0xF);
-				*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-				++pixels;
+					if (x_flip == 0 && y_flip == 0)
+					{
+						for (int j = 0; j < total_pixel_bytes; ++j)
+						{
+							const unsigned char packed_pixels = fgetc(file);
+
+							// Redirect all transparent pixels to colour 0.
+							*pixels = palette_offset + (packed_pixels >> 4);
+							*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
+							++pixels;
+
+							*pixels = palette_offset + (packed_pixels & 0xF);
+							*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
+							++pixels;
+						}
+					}
+					else
+					{
+						unsigned char* const base_pixels = sprites[i][0][0]->pixels;
+
+						for (int y = 0; y < height; ++y)
+						{
+							const int base_y = y_flip != 0 ? height - y - 1 : y;
+							unsigned char* const line = pixels + y * padded_width;
+							unsigned char* const base_line = base_pixels + base_y * padded_width;
+
+							if (x_flip != 0)
+							{
+								for (int x = 0; x < padded_width; ++x)
+								{
+									const int base_x = padded_width - x - 1;
+
+									line[x] = base_line[base_x];
+								}
+							}
+							else
+							{
+								memcpy(line, base_line, padded_width);
+							}
+						}
+					}
+				}
+
+				sprites[i][y_flip][x_flip] = sprite;
 			}
-
-			// Also make them share the same palette.
-			if (SDL_SetSurfacePalette(sprites[i], palette) < 0)
-				fputs("Failed to set surface palette.\n", stderr);
-
-			// Make colour 0 transparent.
-			if (SDL_SetColorKey(sprites[i], SDL_TRUE, 0) < 0)
-				fputs("Failed to set surface colour key.\n", stderr);
 		}
+
 
 		fsetpos(file, &previous_position);
 		fseek(file, total_pixel_bytes, SEEK_CUR);
