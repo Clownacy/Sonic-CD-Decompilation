@@ -9,6 +9,7 @@
 #include "../TYPES.H"
 
 #define COUNT_OF(x) (sizeof(x) / sizeof(x[0]))
+#define DIVIDE_CEILING(dividant, divisor) ((dividant + (divisor - 1)) / divisor)
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 224
@@ -363,9 +364,9 @@ static void DrawPlanes(void)
 	{
 		const unsigned int plane = plane_inv ^ 1;
 
-		for (unsigned int y = 0; y < (SCREEN_HEIGHT + (8 - 1)) / 8 + 1; ++y)
+		for (unsigned int y = 0; y < DIVIDE_CEILING(SCREEN_HEIGHT + (8 - 1), 8); ++y)
 		{
-			for (unsigned int x = 0; x < (SCREEN_WIDTH + (8 - 1)) / 8 + 1; ++x)
+			for (unsigned int x = 0; x < DIVIDE_CEILING(SCREEN_WIDTH + (8 - 1), 8); ++x)
 			{
 				SDL_Rect destination_rectangle;
 				destination_rectangle.x = -(hscrolls[plane] % 8) + x * 8;
