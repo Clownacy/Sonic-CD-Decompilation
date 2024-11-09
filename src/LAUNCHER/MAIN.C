@@ -40,15 +40,7 @@ static void EAsprset(const short x, const short y, const unsigned short index, c
 	destination_rectangle.w = 0;
 	destination_rectangle.h = 0;
 
-	SDL_Surface* const surface = sprites[index][y_flip][x_flip];
-
-	if (x_flip != 0)
-		destination_rectangle.x -= surface->w;
-
-	if (y_flip != 0)
-		destination_rectangle.y -= surface->h;
-
-	if (SDL_BlitSurface(surface, NULL, framebuffer, &destination_rectangle) == -1)
+	if (SDL_BlitSurface(sprites[index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
 		fputs("Failed to bit to framebuffer surface.\n", stderr);
 }
 
@@ -212,13 +204,16 @@ static bool LoadSprites(const char* const path)
 
 		fseek(file, 0x10 + i * 0xC, SEEK_SET);
 
-		state.pSprBmp[i].xs = ReadS16LE(file);
-		state.pSprBmp[i].ys = ReadS16LE(file);
+		ReadS16LE(file);
+		ReadS16LE(file);
 		const unsigned int width = ReadU16LE(file);
 		const unsigned int padded_width = (width + 7) & ~7U;
 		const unsigned int height = ReadU16LE(file);
 		const unsigned int palette_offset = ReadU16LE(file) - 16;
 		ReadU16LE(file);
+
+		state.pSprBmp[i].xs = padded_width;
+		state.pSprBmp[i].ys = height;
 
 		fseek(file, previous_position, SEEK_SET);
 
