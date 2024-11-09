@@ -20,7 +20,7 @@ static SDL_Window *window;
 static SDL_Palette *palette;
 static SDL_Surface *framebuffer;
 
-static SDL_Surface *sprites[800][2][2];
+static SDL_Surface *sprites[700][2][2];
 
 static game_info state;
 
@@ -40,7 +40,15 @@ static void EAsprset(const short x, const short y, const unsigned short index, c
 	destination_rectangle.w = 0;
 	destination_rectangle.h = 0;
 
-	if (SDL_BlitSurface(sprites[index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
+	SDL_Surface* const surface = sprites[index][y_flip][x_flip];
+
+	if (x_flip != 0)
+		destination_rectangle.x -= surface->w;
+
+	if (y_flip != 0)
+		destination_rectangle.y -= surface->h;
+
+	if (SDL_BlitSurface(surface, NULL, framebuffer, &destination_rectangle) == -1)
 		fputs("Failed to bit to framebuffer surface.\n", stderr);
 }
 
@@ -143,6 +151,24 @@ static unsigned long ReadU16LE(FILE* const file)
 	return ReadUnsignedLE(file, 2);
 }
 
+static signed long ReadSignedLE(FILE* const file, const unsigned int total_bytes)
+{
+	const unsigned long unsigned_value = ReadUnsignedLE(file, total_bytes);
+	const unsigned char negate = (unsigned_value >> (total_bytes * 8 - 1)) & 1;
+
+	return (signed long)(unsigned_value ^ (0UL - negate)) + negate;
+}
+
+static signed long ReadS32LE(FILE* const file)
+{
+	return ReadSignedLE(file, 4);
+}
+
+static signed long ReadS16LE(FILE* const file)
+{
+	return ReadSignedLE(file, 2);
+}
+
 static SDL_Surface* CreateSpriteSurface(const int width, const int height)
 {
 	SDL_Surface* const surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 0, SDL_PIXELFORMAT_INDEX8);
@@ -186,8 +212,8 @@ static bool LoadSprites(const char* const path)
 
 		fseek(file, 0x10 + i * 0xC, SEEK_SET);
 
-		ReadU16LE(file);
-		ReadU16LE(file);
+		state.pSprBmp[i].xs = ReadS16LE(file);
+		state.pSprBmp[i].ys = ReadS16LE(file);
 		const unsigned int width = ReadU16LE(file);
 		const unsigned int padded_width = (width + 7) & ~7U;
 		const unsigned int height = ReadU16LE(file);
@@ -296,62 +322,63 @@ int SDL_main(const int argc, char** const argv)
 				if (SDL_SetSurfacePalette(framebuffer, palette) < 0)
 					fputs("Failed to set framebuffer palette.\n", stderr);
 
+				static void *buffer_pointers2[COUNT_OF(buffers)];
+				for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
+					buffer_pointers2[i] = &buffers[i];
+
+				buffer_pointers2[1] = &raw_palettes[0];
+				buffer_pointers2[2] = &raw_palettes[1];
+				buffer_pointers2[3] = &raw_palettes[2];
+				buffer_pointers2[4] = &raw_palettes[3];
+
+				static void *buffer_pointers[COUNT_OF(buffers)];
+				for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
+					buffer_pointers[i] = &buffer_pointers2[i];
+
+				for (unsigned int i = 6; i < COUNT_OF(buffers); ++i)
+					buffer_pointers[i] = &buffers[i];
+
+				buffer_pointers[7] = &state;
+
+				state.time_flag = 1; // Past?
+
+				static void* const function_pointers[] = {
+					SetGrid,
+					EAsprset,
+					ClrSpriteDebug,
+					WaveRequest,
+					CDPlay,
+					CDPause,
+					ChangeTileBmp,
+					NULL,
+					NULL,
+					NULL,
+					WaveAllStop,
+					NULL,
+					NULL,
+					sMemSet,
+					sMemCpy,
+					NULL,
+					sRandom,
+					NULL,
+					NULL,
+					NULL,
+					sPrintf,
+					sOutputDebugString,
+					sOpenFile,
+					sReadFile,
+					sCloseFile,
+					NULL,
+				};
+
+				ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
+
 				if (!LoadSprites("R1/11A/SCMP11A.CMP"))
 				{
 					fputs("Failed to load sprites.\n", stderr);
 				}
 				else
 				{
-					static void *buffer_pointers2[COUNT_OF(buffers)];
-					for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-						buffer_pointers2[i] = &buffers[i];
-
-					buffer_pointers2[1] = &raw_palettes[0];
-					buffer_pointers2[2] = &raw_palettes[1];
-					buffer_pointers2[3] = &raw_palettes[2];
-					buffer_pointers2[4] = &raw_palettes[3];
-
-					static void *buffer_pointers[COUNT_OF(buffers)];
-					for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-						buffer_pointers[i] = &buffer_pointers2[i];
-
-					for (unsigned int i = 6; i < COUNT_OF(buffers); ++i)
-						buffer_pointers[i] = &buffers[i];
-
-					buffer_pointers[7] = &state;
-
-					state.time_flag = 1; // Past?
-
-					static void* const function_pointers[] = {
-						SetGrid,
-						EAsprset,
-						ClrSpriteDebug,
-						WaveRequest,
-						CDPlay,
-						CDPause,
-						ChangeTileBmp,
-						NULL,
-						NULL,
-						NULL,
-						WaveAllStop,
-						NULL,
-						NULL,
-						sMemSet,
-						sMemCpy,
-						NULL,
-						sRandom,
-						NULL,
-						NULL,
-						NULL,
-						sPrintf,
-						sOutputDebugString,
-						sOpenFile,
-						sReadFile,
-						sCloseFile,
-						NULL,
-					};
-
-					ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
 					ExportedFunctions.game_init();
 
 					bool alive = true;
@@ -407,10 +434,9 @@ int SDL_main(const int argc, char** const argv)
 						const int frames_per_second = 60;
 						SDL_Delay((1000 + (frames_per_second / 2)) / frames_per_second);
 					}
-
-					ExportedFunctions.dll_memfree();
 				}
 
+				ExportedFunctions.dll_memfree();
 				SDL_FreeSurface(framebuffer);
 			}
 
