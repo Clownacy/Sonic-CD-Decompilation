@@ -14,11 +14,16 @@
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 224
 
+#define TILE_WIDTH_SHIFT 3
+#define TILE_WIDTH (1 << TILE_WIDTH_SHIFT)
+#define TILE_HEIGHT 8
+
 extern dlink_export ExportedFunctions;
 
 static unsigned char buffers[10][1024*1024*10];
 
 static PALETTEENTRY raw_palettes[4][64];
+static short hscroll_buffer[SCREEN_HEIGHT + 0x10][2];
 
 static SDL_Window *window;
 static SDL_Palette *palette;
@@ -28,7 +33,7 @@ static SDL_Surface *framebuffer;
 static SDL_Surface *sprites[700][2][2];
 
 // TODO: Dynamically allocate based on what the file says the number of tiles are?
-static SDL_Surface *tiles[0x800];
+static unsigned long tile_lines[0x800][TILE_HEIGHT];
 
 static game_info state;
 
@@ -39,7 +44,7 @@ static Block planes[2][32][64];
 static int SetGrid(const int plane, const int x, const int y, const int block, const int flip)
 {
 	// TODO: Flip.
-	planes[plane][y][x] = block;
+	planes[plane][y][x] = block ^ flip;
 	return 0;
 }
 
@@ -147,6 +152,20 @@ static unsigned long ReadUnsignedLE(FILE* const file, const unsigned int total_b
 	return result;
 }
 
+static unsigned long ReadUnsignedBE(FILE* const file, const unsigned int total_bytes)
+{
+	unsigned char bytes[4];
+	fread(bytes, 1, total_bytes, file);
+
+	unsigned long result = 0;
+	for (unsigned int i = 0; i < total_bytes; ++i)
+	{
+		result <<= 8;
+		result |= bytes[i];
+	}
+	return result;
+}
+
 static unsigned long ReadU32LE(FILE* const file)
 {
 	return ReadUnsignedLE(file, 4);
@@ -157,12 +176,26 @@ static unsigned long ReadU16LE(FILE* const file)
 	return ReadUnsignedLE(file, 2);
 }
 
-static signed long ReadSignedLE(FILE* const file, const unsigned int total_bytes)
+static unsigned long ReadU32BE(FILE* const file)
 {
-	const unsigned long unsigned_value = ReadUnsignedLE(file, total_bytes);
+	return ReadUnsignedBE(file, 4);
+}
+
+static unsigned long ReadU16BE(FILE* const file)
+{
+	return ReadUnsignedBE(file, 2);
+}
+
+static signed long ReadSigned(const unsigned long unsigned_value, const unsigned int total_bytes)
+{
 	const unsigned char negate = (unsigned_value >> (total_bytes * 8 - 1)) & 1;
 
 	return (signed long)(unsigned_value ^ (0UL - negate)) + negate;
+}
+
+static signed long ReadSignedLE(FILE* const file, const unsigned int total_bytes)
+{
+	return ReadSigned(ReadUnsignedLE(file, total_bytes), total_bytes);
 }
 
 static signed long ReadS32LE(FILE* const file)
@@ -173,6 +206,21 @@ static signed long ReadS32LE(FILE* const file)
 static signed long ReadS16LE(FILE* const file)
 {
 	return ReadSignedLE(file, 2);
+}
+
+static signed long ReadSignedBE(FILE* const file, const unsigned int total_bytes)
+{
+	return ReadSigned(ReadUnsignedBE(file, total_bytes), total_bytes);
+}
+
+static signed long ReadS32BE(FILE* const file)
+{
+	return ReadSignedBE(file, 4);
+}
+
+static signed long ReadS16BE(FILE* const file)
+{
+	return ReadSignedBE(file, 2);
 }
 
 static SDL_Surface* CreateSpriteSurface(const int width, const int height)
@@ -314,39 +362,32 @@ static bool LoadTiles(const char* const path)
 
 	fseek(file, tiles_offset, SEEK_SET);
 
-	const unsigned int padded_width = 8;
-	const unsigned int height = 8;
-	const int total_pixel_bytes = padded_width * height / 2;
-
 	for (unsigned long i = 0; i < total_tiles; ++i)
-	{
-		SDL_Surface* const sprite = CreateSpriteSurface(padded_width, height);
-
-		if (sprite != NULL)
-		{
-			unsigned char *pixels = sprite->pixels;
-
-			for (int j = 0; j < total_pixel_bytes; ++j)
-			{
-				const unsigned char packed_pixels = fgetc(file);
-
-				// Redirect all transparent pixels to colour 0.
-				*pixels = (packed_pixels >> 4);
-				*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-				++pixels;
-
-				*pixels = (packed_pixels & 0xF);
-				*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-				++pixels;
-			}
-		}
-
-		tiles[i] = sprite;
-	}
+		for (int j = 0; j < TILE_HEIGHT; ++j)
+			tile_lines[i][j] = ReadU32BE(file);
 
 	fclose(file);
 
 	return true;
+}
+
+static void DrawTileLine(unsigned char* const output, const unsigned long input, const bool x_flip, const unsigned int palette_line, const unsigned int min, const unsigned int max)
+{
+	for (unsigned int i = min; i < max; ++i)
+	{
+		const unsigned int source_i = i ^ (x_flip ? 0 : 7);
+		const unsigned int destination_i = i;
+
+		const unsigned int value = (input >> (4 * source_i)) & 0xF;
+
+		if (value != 0)
+			output[destination_i] = palette_line * 0x10 + value;
+	}
+}
+
+static void DrawTileLineWhole(unsigned char* const output, const unsigned long input, const bool x_flip, const unsigned int palette_line)
+{
+	DrawTileLine(output, input, x_flip, palette_line, 0, TILE_WIDTH);
 }
 
 static void DrawPlanes(void)
@@ -360,25 +401,44 @@ static void DrawPlanes(void)
 	hscrolls[0] = ExportedFunctions.Get_scra_h_posiw() >> 16;
 	hscrolls[1] = ExportedFunctions.Get_scrb_h_posiw() >> 16;
 
+	unsigned char* const framebuffer_pixels = framebuffer->pixels;
+
 	for (unsigned int plane_inv = 0; plane_inv < COUNT_OF(planes); ++plane_inv)
 	{
 		const unsigned int plane = plane_inv ^ 1;
 
-		for (unsigned int y = 0; y < DIVIDE_CEILING(SCREEN_HEIGHT + (8 - 1), 8); ++y)
+		for (unsigned int y = 0; y < SCREEN_HEIGHT; ++y)
 		{
-			for (unsigned int x = 0; x < DIVIDE_CEILING(SCREEN_WIDTH + (8 - 1), 8); ++x)
+			unsigned char* const framebuffer_line_pixels = &framebuffer_pixels[y * framebuffer->pitch];
+
+			const unsigned int screen_width_in_tiles = DIVIDE_CEILING(SCREEN_WIDTH + (TILE_WIDTH - 1), TILE_WIDTH);
+			for (unsigned int tile_x = 0; tile_x < screen_width_in_tiles; ++tile_x)
 			{
-				SDL_Rect destination_rectangle;
-				destination_rectangle.x = -(hscrolls[plane] % 8) + x * 8;
-				destination_rectangle.y = -(vscrolls[plane] % 8) + y * 8;
-				destination_rectangle.w = 8;
-				destination_rectangle.h = 8;
+				const unsigned int hscroll = plane == 0 ?hscrolls[plane] : -hscroll_buffer[y][plane ^ 1];
 
-				const unsigned int src_x = (hscrolls[plane] / 8 + x) % COUNT_OF(planes[plane][y]);
-				const unsigned int src_y = (vscrolls[plane] / 8 + y) % COUNT_OF(planes[plane]);
+				const unsigned int x_offset = hscroll % TILE_WIDTH;
+				unsigned char* const framebuffer_tile_line_pixels = &framebuffer_line_pixels[tile_x * TILE_WIDTH - x_offset];
 
-				if (SDL_BlitSurface(tiles[planes[plane][src_y][src_x] & 0x7FF], NULL, framebuffer, &destination_rectangle) == -1)
-					fputs("Failed to bit to framebuffer surface.\n", stderr);
+				const unsigned int src_x = (hscroll / TILE_WIDTH + tile_x) % COUNT_OF(planes[plane][y]);
+				const unsigned int src_y = ((vscrolls[plane] + y) / TILE_HEIGHT) % COUNT_OF(planes[plane]);
+				const unsigned int tile_metadata = planes[plane][src_y][src_x];
+				const unsigned int tile_index = tile_metadata & 0x7FF;
+
+				//if (tile_index == 0)
+				//	continue;
+
+				unsigned long* const tile = tile_lines[tile_index];
+				const bool x_flip = (tile_metadata & 0x800) != 0;
+				const bool y_flip = (tile_metadata & 0x1000) != 0;
+				const unsigned int tile_line_y = ((vscrolls[plane] + y) % 8) ^ (y_flip ? 7 : 0);
+				const unsigned int palette_line = (tile_metadata >> 13) & 3;
+
+				if (tile_x == 0)
+					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, x_offset, TILE_WIDTH);
+				else if (tile_x >= screen_width_in_tiles - 1)
+					;//DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, 0, TILE_WIDTH - x_offset);
+				else
+					DrawTileLineWhole(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line);
 			}
 		}
 	}
@@ -423,6 +483,7 @@ int SDL_main(const int argc, char** const argv)
 				buffer_pointers2[2] = &raw_palettes[1];
 				buffer_pointers2[3] = &raw_palettes[2];
 				buffer_pointers2[4] = &raw_palettes[3];
+				buffer_pointers2[5] = &hscroll_buffer;
 
 				static void *buffer_pointers[COUNT_OF(buffers)];
 				for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
