@@ -494,7 +494,7 @@ int SDL_main(const int argc, char** const argv)
 
 				buffer_pointers[7] = &state;
 
-				state.time_flag = 1; // Past?
+				state.time_flag = 0; // Past?
 
 				static void* const function_pointers[] = {
 					SetGrid,
@@ -527,13 +527,13 @@ int SDL_main(const int argc, char** const argv)
 
 				ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
 
-				if (!LoadSprites("R1/11A/SCMP11A.CMP"))
+				if (!LoadSprites("R1/11B/SCMP11B.CMP"))
 				{
 					fputs("Failed to load sprites.\n", stderr);
 				}
 				else
 				{
-					if (!LoadTiles("R1/11A/TCMP11A.CMP"))
+					if (!LoadTiles("R1/11B/TCMP11B.CMP"))
 					{
 						fputs("Failed to load sprites.\n", stderr);
 					}
