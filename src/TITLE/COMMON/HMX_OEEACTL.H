@@ -3,7 +3,7 @@
 void EAError();
 void srfDraw();
 void ld_bitmap_file(char* fname, void* dst, int wx, int wy, int palet, int unknown);
-void ld_bitmap_file2(char* fname, void* dst, int sx, int sy, int wx, int wy, int dx, int dy);
+void ld_bitmap_file2(char* fname, void* dst, int sx, int sy, int wx, int wy, int dx, int dy, int unk1, int unk2);
 void ld_bitmap_4to8_1(void* dst, void* src, int wx, int wy, int palet, int zero_chg, int flag4);
 void ld_bitmap_4to8_2(void* dst, void* src, int wx, int wy, int palet, int zero_chg, int flag4);
 int ld_load_sprite2(hmx_environment* buffer, char* file, hmx_environment* env, hmx_bitmap** bitmaps, int size);

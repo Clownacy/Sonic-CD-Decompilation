@@ -433,8 +433,8 @@ int MC_SONICCreate(short cgno) { /* Line 360, Address: 0x10013c0 */
 
 
     case 4:
-      ld_bitmap_file2("YAMA_L3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect2.right, rect2.bottom, 0, 0); /* Line 436, Address: 0x10016d4 */
-      ld_bitmap_file2("YAMA_R3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect3.right, rect3.bottom, 160, 0); /* Line 437, Address: 0x100171c */
+      ld_bitmap_file2("YAMA_L3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect2.right, rect2.bottom, 0, 0, 0, 0); /* Line 436, Address: 0x10016d4 */
+      ld_bitmap_file2("YAMA_R3.BMP", hmx_bitmap_get_scan0_module(bmp), 320, 224, rect3.right, rect3.bottom, 160, 0, 0, 0); /* Line 437, Address: 0x100171c */
       break;
   }
 

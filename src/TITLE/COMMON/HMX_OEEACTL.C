@@ -206,7 +206,7 @@ void ld_bitmap_file(char* fname, void* dst, int wx, int wy, int palet, int unkno
 
 
 
-void ld_bitmap_file2(char* fname, void* dst, int sx, int sy, int wx, int wy, int dx, int dy) { /* Line 209, Address: 0x10015b0 */
+void ld_bitmap_file2(char* fname, void* dst, int sx, int sy, int wx, int wy, int dx, int dy, int unk1, int unk2) { /* Line 209, Address: 0x10015b0 */
   unsigned char* pDst;
   int fp;
   void* fbuf = 0; /* Line 212, Address: 0x10015f4 */
