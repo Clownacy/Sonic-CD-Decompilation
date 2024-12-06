@@ -303,7 +303,7 @@ MCIERROR cdAudio_seekTrack(int* pTrackId) {
 
 
 // 0040181a
-MCIERROR cdAudio_playIfNotStopped() {
+MCIERROR cdAudio_playIfNotStopped(HWND hWnd) {
   if (DAT_00430370 & 2) {
     return 0;
   }
