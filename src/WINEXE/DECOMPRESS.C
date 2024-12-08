@@ -1,7 +1,9 @@
 #include <windows.h>
+#include "DECOMPRESS.H"
+
 
 // 0040c270
-int lzDecompress(char* buffer, char** ppAlloc, char* fileName) {
+int lzDecompress(cmpHeader* pHeader, char** ppAlloc, char* fileName) {
   char path[128];
   OFSTRUCT ofStruct;
   int hFile;
@@ -24,18 +26,18 @@ int lzDecompress(char* buffer, char** ppAlloc, char* fileName) {
   if (hFile2 < 0) {
     return -1;
   }
-  if (LZRead(hFile2, buffer, 16) != 16) {
+  if (LZRead(hFile2, (char*)pHeader, sizeof(cmpHeader)) != sizeof(cmpHeader)) {
     LZClose(hFile2);
     return 1;
   }
-  *ppAlloc = (char*)GlobalLock(GlobalAlloc(GPTR, ((UINT*)buffer)[1] - 16));
+  *ppAlloc = (char*)GlobalLock(GlobalAlloc(GPTR, pHeader->pEnd - sizeof(cmpHeader)));
   if (*ppAlloc == 0) {
     LZClose(hFile2);
     return 2;
   }
   pAlloc = *ppAlloc;
 
-  for (i = 0; i < ((UINT*)buffer)[1] - 16; ++i) {
+  for (i = 0; i < pHeader->pEnd - sizeof(cmpHeader); ++i) {
     if (LZRead(hFile2, bytes, 1) != 1) {
       LZClose(hFile2);
       return 1;
@@ -51,22 +53,22 @@ int lzDecompress(char* buffer, char** ppAlloc, char* fileName) {
 
 
 // 0040c428
-void expandBitmap(UCHAR* pDest, UCHAR* pSrc, short width, short height, UCHAR param_5, int param_6, int param_7) {
-  UCHAR* pCurrentDest = pDest;
-  UCHAR* pCurrentSrc = pSrc;
+void expandBitmap(char* pDest, char* pSrc, short width, short height, UCHAR paletteOffset, int param_6, BOOL hasPadding) {
+  char* pCurrentDest = pDest;
+  char* pCurrentSrc = pSrc;
   int y;
   int x;
 
   for (y = 0; y < height; ++y) {
     for (x = 0; x < width; ++x) {
-      if (param_7 == 0 || width - 4 > x) {
+      if (!hasPadding || width - 4 > x) {
         if (x & 1) {
-          *pCurrentDest = (*pCurrentSrc & 0x0F) + param_5;
+          *pCurrentDest = (*pCurrentSrc & 0x0F) + paletteOffset;
         }
         else {
-          *pCurrentDest = ((*pCurrentSrc & 0xF0) >> 4) + param_5;
+          *pCurrentDest = ((*pCurrentSrc & 0xF0) >> 4) + paletteOffset;
         }
-        if (*pCurrentDest == param_5) {
+        if (*pCurrentDest == paletteOffset) {
           if (param_6 != 0) {
             *pCurrentDest = 0xFF;
           }
