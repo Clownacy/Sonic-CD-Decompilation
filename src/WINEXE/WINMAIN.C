@@ -3,6 +3,7 @@
 #include "RESOURCE.H"
 #include "TYPES.H"
 #include "CDAUDIO.H"
+#include "DLL.H"
 #include "GRAPHICS.H"
 #include "WAVE.H"
 extern void* ghSurf;
