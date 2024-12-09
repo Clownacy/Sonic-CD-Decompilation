@@ -1,8 +1,10 @@
+#include "GRAPHICS.H"
 #include <windows.h>
 #include "DINO2D.H"
 #include "DMIX.H"
 #include "TYPES.H"
-extern void log(char* pMsg);
+#include "BMP.H"
+#include "WINMAIN.H"
 
 typedef struct genericArray {
   void* pArray;
@@ -16,26 +18,6 @@ typedef struct specData {
   unsigned char pos;
 }
 specData;
-
-typedef struct tileInfo {
-  char unknown0;
-  char unknown1;
-  char unknown2;
-  char unknown3;
-  char unknown4;
-  char unknown5;
-  short unknown6;
-  char unknown8;
-  char* pFileName;
-}
-tileInfo;
-
-int FUN_00404072(char* param_1, tileInfo* param_2);
-int __stdcall FUN_004044ee(int param_1, int* param_2, unsigned int param_3, void* param_4);
-int FUN_0040653a(int param_1, int param_2, char* pFileName, void* param_4, UCHAR param_5, int param_6);
-int GridPtnchgBMPCreate();
-int FUN_00406cfc();
-void makePalette2();
 
 /* 00415000 */ char DAT_00415000[256];
 /* 00415100 */ RECT DAT_00415100[8];
@@ -665,7 +647,7 @@ int SpriteBMPCreate() {
     }
     wsprintf(msg, "Read Tile CMP BMP: %s\n", fileName);
     log(msg);
-    err = FUN_0040cff7(&DAT_0041dd50, &local_cc, &fileName);
+    err = extractSprites(&DAT_0041dd50, &local_cc, fileName);
     if (err != 0) {
       wsprintf(msg, "Cmp Spr Load Error 0x%lx\n", err);
       log(msg);
@@ -768,7 +750,7 @@ int SpriteBMPCreate() {
 // 004029f3
 int SpriteBMPDelete() {
   if (DAT_0041dd50 != 0) {
-    FUN_0040d46c(DAT_0041dd50, DAT_0041dd64);
+    freeBmpHandlesDupe(DAT_0041dd50, DAT_0041dd64.l);
     DAT_0041dd64.l = 0;
     DAT_0041dd50 = 0;
   }
@@ -839,7 +821,7 @@ int BackgroundBMPCreate() {
   int dummy;
   int i;
   gSurfFuncRet = _hbmpCreate(320, 224, 0, &gpScreenBmp);
-  _hbmpGetLockedBuffer(gpScreenBmp, &local_1c, &local_3c);
+  _hbmpGetLockedBuffer(gpScreenBmp, (void**)&local_1c, &local_3c);
   local_8 = (int*)local_1c;
 
   for (i = 0; i < 0x4600; ++i) {
@@ -905,7 +887,7 @@ int RotateBmpTileCreate() {
   else {
     lstrcpy(buffer, "TITLE\\PLANET\\CG\\PLANET.CM_");
   }
-  err = FUN_0040c9b6(&DAT_0041dd68, &local_ac, buffer);
+  err = extractRotatingTiles(&DAT_0041dd68, &local_ac, buffer);
   if (err != 0) {
     wsprintf(msg, "Cmp Load Error 0x%lx\n", err);
     log(msg);
@@ -1076,7 +1058,7 @@ int GridBMPCreate() {
   }
   wsprintfA(buffer, "Read Tile CMP BMP: %s\n", fileName);
   log(buffer);
-  err = FUN_0040c650(&DAT_0041dd60, &local_b0, fileName);
+  err = extractTiles(&DAT_0041dd60, &local_b0, fileName);
   if (err != 0) {
     wsprintf(buffer, "Cmp Load Error 0x%lx\n", err);
     log(buffer);
@@ -1095,7 +1077,7 @@ int GridBMPCreate() {
 // 0040369e
 int GridBMPDelete() {
   if (DAT_0041dd60 != 0) {
-    FUN_0040cf78(DAT_0041dd60, DAT_0041a0f8);
+    freeBmpHandles(DAT_0041dd60, DAT_0041a0f8.l);
     DAT_0041dd60 = 0;
   }
 
@@ -1115,7 +1097,7 @@ int FUN_004036db() {
   }
 
   if (DAT_0041dd68 != 0) {
-    FUN_0040cf78(DAT_0041dd68, DAT_0041dd48.l * 2);
+    freeBmpHandles(DAT_0041dd68, DAT_0041dd48.l * 2);
     DAT_0041dd68 = 0;
   }
 
@@ -2347,7 +2329,7 @@ int FUN_0040653a(int param_1, int param_2, char* pFileName, void* param_4, UCHAR
     return -1;
   }
   local_430 = (char*)GlobalLock(local_408);
-  _hbmpGetLockedBuffer(param_4, &local_434, &local_468);
+  _hbmpGetLockedBuffer(param_4, (void**)&local_434, &local_468);
   if (_lread(hFile, local_430, param_2 / 2 * param_1) != -1) {
     for (i = param_2 - 1; i >= 0; --i) {
       for (j = 0; j < param_1; ++j) {
@@ -2450,7 +2432,7 @@ int GridPtnchgBMPCreate() {
   int stage;
   char buffer[80];
   char path[80];
-  unsigned int tile;
+  int tile;
   int err;
   if (DAT_004332d0) {
     return 0;
@@ -2473,7 +2455,7 @@ int GridPtnchgBMPCreate() {
   wsprintf(path, "R%c\\%3s\\TCHG%3s.CM_", buffer[0], buffer, buffer);
   wsprintf(buffer, "Read Tile Pattern Change CMP BMP: %s\n", path);
   log(buffer);
-  err = FUN_0040c650(&gpBmpArray, &tile, path);
+  err = extractTiles(&gpBmpArray, &tile, path);
   if (err != 0) {
     wsprintf(buffer, "Cmp Load Error 0x%lx\n", err);
     log(buffer);
@@ -2499,7 +2481,7 @@ void __stdcall ChangeTileBmp(int TileStart, int BmpNo) {
 // 00406cfc
 int FUN_00406cfc() {
   if (gpBmpArray != 0) {
-    FUN_0040cf78(gpBmpArray, DAT_00415184);
+    freeBmpHandles(gpBmpArray, DAT_00415184);
     gpBmpArray = 0;
   }
 

@@ -2,6 +2,7 @@
 #include "DECOMPRESS.H"
 #include "DINO2D.H"
 #include "TYPES.H"
+#include "WINMAIN.H"
 
 typedef struct sprMeta {
   short x;
@@ -13,12 +14,11 @@ typedef struct sprMeta {
 }
 sprMeta;
 
-extern void showCustomError(int id, char* pMsg);
 extern game_info gKeepWork;
 
 
 // 0040c650
-int extractTiles(void** ppBmpHandles, int* pBmpCnt, char* fileName) {
+int extractTiles(void*** ppBmpHandles, int* pBmpCnt, char* fileName) {
   int local_5c = 0;
   int local_58 = 0;
   int local_54 = 0;
@@ -120,7 +120,7 @@ int extractTiles(void** ppBmpHandles, int* pBmpCnt, char* fileName) {
 
 
 // 0040c9b6
-int extractRotatingTiles(void** ppBmpHandles, int* pBmpCnt, char* fileName) {
+int extractRotatingTiles(void*** ppBmpHandles, int* pBmpCnt, char* fileName) {
   int local_5c = 0;
   int local_58 = 0;
   int local_54 = 0;
@@ -316,7 +316,7 @@ int freeBmpHandles(void** ppBmpHandles, int cnt) {
 
 
 // 0040cff7
-int extractSprites(void** ppBmpHandles, int* pBmpCnt, char* fileName) {
+int extractSprites(void*** ppBmpHandles, int* pBmpCnt, char* fileName) {
   int local_54 = 0;
   int local_50 = 0;
   int local_4c = 0;

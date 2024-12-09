@@ -1,63 +1,13 @@
+#include "WINMAIN.H"
 #include <windows.h>
 #include "RESOURCE.H"
 #include "TYPES.H"
 #include "CDAUDIO.H"
-extern void makePalette();
-extern void makePalette2();
+#include "GRAPHICS.H"
+#include "WAVE.H"
 extern void* ghSurf;
-extern BOOL loadOpening(HWND, void*);
-extern int EADelete();
-extern BOOL EACreate();
-extern int mapinit(short scrahposiw_h, short vscroll_h, short scrbhposiw_h, short vscroll_l);
-extern int FUN_004054ee();
-extern int FUN_00405dbd();
-extern int FUN_00405c75();
-extern void FUN_004051ab();
 extern MCIDEVICEID gMciDeviceId;
-extern int freeGraphics();
-extern void FUN_004068c4(BOOL bFullScreen);
-extern void __stdcall CDPlay(short trackNumber);
-extern int initGraphics(HWND hWnd);
 extern HPALETTE ghPalette;
-extern void fillColorwk(UCHAR value);
-extern void __stdcall SetGrid(int base, int x, int y, int block, int frip);
-extern void __stdcall EAsprset(short x, short y, USHORT index, USHORT linkdata, USHORT reverse);
-extern void __stdcall ChangeTileBmp(int TileStart,int BmpNo);
-
-void readController(BOOL param_1);
-BOOL loadStageByMenu(UINT stageMenuId);
-BOOL loadTimeAttack(BOOL param_1);
-BOOL loadPlanet();
-void CDPause();
-void readRecording();
-BOOL loadSpecialStage(int stageMenuId);
-BOOL loadThanks();
-void checkSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bCheck);
-void restartGame();
-void unloadGame();
-void showCustomError(int id, char* pMsg);
-void __stdcall enableSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bEnable);
-BOOL isGameInUse();
-ATOM registerWindowClass(HINSTANCE hInstance);
-BOOL makeWindow(HINSTANCE hInstance, int nCmdShow);
-int startGame();
-int freeAllocatedMemory();
-BOOL setupJoystick();
-void modifyControllerMenuItemText(USHORT controllerId);
-BOOL loadWarp();
-void log(char* msg);
-void __stdcall toggleSoundQuality();
-void changeMusic();
-void loadIni();
-LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-void toggleController();
-int showSonicDlg(HWND hWnd, LPCSTR resourceId, LPCSTR dialogId, LPARAM initValue);
-BOOL isDisplay256Colors();
-void resetInput();
-short FUN_0040c00c(HWND hWnd);
-void paintWindow(HWND hWnd);
-void writeRecording();
-void readStageString(char* str);
 
 /* 00425400 */ HMODULE ghSonicDlg;
 /* 00425423 */ char DAT_00425423;
@@ -208,7 +158,7 @@ BOOL FUN_00407060() {
     makePalette2();
   }
 
-  switch (FUN_0040ee57()) {
+  switch (changeGameState()) {
     case 1:
       if (FUN_0041004a() == 0) {
         DAT_004332c4 = loadOpening(ghWnd, ghSurf);
@@ -308,7 +258,7 @@ BOOL FUN_00407060() {
       break;
     case 7:
       makePalette();
-      FUN_0040eb80();
+      unloadCurrentGameMenuDll();
       if (gbFullScreen == TRUE) {
         gKeepWork.EndingMesType = 1;
       }
@@ -808,7 +758,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         toggleSoundQuality();
       }
       else if (gEndingMovieFlag != 0) {
-        if (checkWaveInfos() == 0) {
+        if (areWaveInfosFree() == 0) {
           if (gEndingMovieFlag == 1) {
             playBadEnding();
           }
@@ -1062,7 +1012,7 @@ void __stdcall toggleSoundQuality() {
   HCURSOR hCursor;
   int result;
   if (gbMoviePlaying) return;
-  if (checkWaveInfos() != 0) {
+  if (areWaveInfosFree() != 0) {
     DAT_00433324 = TRUE;
     return;
   }
@@ -1191,7 +1141,7 @@ void toggleMenuBar() {
 // 00408ea9
 void unloadGame() {
   CDPause();
-  FUN_0040eb80();
+  unloadCurrentGameMenuDll();
   if (gbGameDllLoaded == TRUE) {
     gbGameDllLoaded = FALSE;
     (*gpDLLmemfree)();
