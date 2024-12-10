@@ -5,6 +5,7 @@
 #include "CDAUDIO.H"
 #include "DLL.H"
 #include "GRAPHICS.H"
+#include "SPLASH.H"
 #include "WAVE.H"
 #include "WAVE2.H"
 extern void* ghSurf;
@@ -2051,8 +2052,8 @@ BOOL loadSpecialStage(int stageMenuId) {
   gKeepWork.SPEMode = 0;
   unloadGame();
   DAT_004332d0 = TRUE;
-  FUN_0040f250();
-  FUN_0040f544();
+  drawLoading();
+  deleteSplash();
   if (!loadGameDll("SPECIAL\\SPECIAL.DLL")) {
     return FALSE;
   }
@@ -2199,8 +2200,8 @@ BOOL loadStageByMenu(UINT stageMenuId) {
   unloadGame();
   DAT_004332e8 = FALSE;
   DAT_004332cc = TRUE;
-  FUN_0040f250();
-  FUN_0040f544();
+  drawLoading();
+  deleteSplash();
   setStage(stageMenuId);
   readStageString(stageId);
   wsprintf(path, "R%c\\%3s\\DLL%3s.DLL", stageId[0], stageId, stageId);
