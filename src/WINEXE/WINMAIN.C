@@ -6,6 +6,7 @@
 #include "DLL.H"
 #include "GRAPHICS.H"
 #include "WAVE.H"
+#include "WAVE2.H"
 extern void* ghSurf;
 extern MCIDEVICEID gMciDeviceId;
 extern HPALETTE ghPalette;

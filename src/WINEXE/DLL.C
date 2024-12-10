@@ -5,6 +5,7 @@
 #include "CDAUDIO.H"
 #include "GRAPHICS.H"
 #include "WAVE.H"
+#include "WAVE2.H"
 #include "WINMAIN.H"
 
 typedef struct dllIn {
