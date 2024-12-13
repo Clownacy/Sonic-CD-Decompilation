@@ -318,10 +318,10 @@ specData;
 /* 0043327c */ PALETTEENTRY* gpColorwk = 0;
 /* 00433284 */ PALETTEENTRY* gpColorwk3 = 0;
 /* 00433290 */ int_union* gpHscrollbuff = 0;
-/* 004332d0 */ BOOL DAT_004332d0 = FALSE;
-/* 004332d4 */ BOOL DAT_004332d4 = FALSE;
-/* 004332d8 */ BOOL DAT_004332d8 = FALSE;
-/* 004332dc */ BOOL DAT_004332dc = FALSE;
+/* 004332d0 */ BOOL gbSpecialStageLoaded = FALSE;
+/* 004332d4 */ BOOL gbWarpLoaded = FALSE;
+/* 004332d8 */ BOOL gbLittlePlanetLoaded = FALSE;
+/* 004332dc */ BOOL gbThanksLoaded = FALSE;
 /* 004332fc */ BOOL gbSpriteLoadingEnabled = TRUE;
 /* 00433300 */ BOOL DAT_00433300 = TRUE;
 /* 0043330c */ BOOL gbFullScreen = FALSE;
@@ -394,7 +394,7 @@ void __stdcall EAsprset(short x, short y, USHORT index, USHORT linkdata, USHORT 
 void __stdcall SetGrid(int base, int x, int y, int block, int frip) {
   myPoint point;
   int index;
-  if (DAT_004332d0) {
+  if (gbSpecialStageLoaded) {
     point.x = x;
     point.y = y;
     if (block & 0x7FF) {
@@ -409,7 +409,7 @@ void __stdcall SetGrid(int base, int x, int y, int block, int frip) {
     return;
   }
 
-  if (DAT_004332d8 == TRUE && base < 0) {
+  if (gbLittlePlanetLoaded == TRUE && base < 0) {
     point.x = x;
     point.y = y;
     index = block & 0x7FF;
@@ -625,20 +625,20 @@ int SpriteBMPCreate() {
   char local_98[40];
   int local_9c;
   int local_b0;
-  if (DAT_004332d0 && gKeepWork.SPEMode != 0) {
+  if (gbSpecialStageLoaded && gKeepWork.SPEMode != 0) {
     return 0;
   }
   if (gbSpriteLoadingEnabled) {
-    if (DAT_004332d4) {
+    if (gbWarpLoaded) {
       lstrcpy(fileName, "WARP\\SCMPWARP.CM_");
     }
-    else if (DAT_004332d0) {
+    else if (gbSpecialStageLoaded) {
       lstrcpy(fileName, "SPECIAL\\SCMPSPE.CM_");
     }
-    else if (DAT_004332d8) {
+    else if (gbLittlePlanetLoaded) {
       lstrcpy(fileName, "TITLE\\PLANET\\CG\\SCMPLP.CM_");
     }
-    else if (DAT_004332dc) {
+    else if (gbThanksLoaded) {
       lstrcpy(fileName, "TITLE\\THANKS\\CG\\SCMPTH.CM_");
     }
     else {
@@ -660,16 +660,16 @@ int SpriteBMPCreate() {
     if (DAT_0041dd50 == 0) {
       return -1;
     }
-    if (DAT_004332d4) {
+    if (gbWarpLoaded) {
       lstrcpy(fileName, "WARP\\SCMPWARP.TXT");
     }
-    else if (DAT_004332d0) {
+    else if (gbSpecialStageLoaded) {
       lstrcpy(fileName, "SPECIAL\\SCMPSPE.TXT");
     }
-    else if (DAT_004332d8) {
+    else if (gbLittlePlanetLoaded) {
       lstrcpy(fileName, "TITLE\\PLANET\\CG\\SCMPLP.TXT");
     }
-    else if (DAT_004332dc) {
+    else if (gbThanksLoaded) {
       lstrcpy(fileName, "TITLE\\THANKS\\CG\\SCMPTH.TXT");
     }
     else {
@@ -690,18 +690,18 @@ int SpriteBMPCreate() {
         DAT_0041dd64.l = i;
         return 0;
       }
-      if (DAT_004332d4) {
+      if (gbWarpLoaded) {
         lstrcpy(msg, fileName);
         lstrcpy(fileName, "WARP\\");
         lstrcat(fileName, msg);
       }
-      else if (DAT_004332d8) {
+      else if (gbLittlePlanetLoaded) {
         wsprintf(fileName, "%s%s", "TITLE", &fileName[5]);
       }
-      else if (DAT_004332dc) {
+      else if (gbThanksLoaded) {
         wsprintf(fileName, "%s%s", "TITLE", &fileName[5]);
       }
-      else if (!DAT_004332d0) {
+      else if (!gbSpecialStageLoaded) {
         lstrcpy(msg, &fileName[6]);
         lstrcpy(fileName, msg);
       }
@@ -825,7 +825,7 @@ int BackgroundBMPCreate() {
   local_8 = (int*)local_1c;
 
   for (i = 0; i < 0x4600; ++i) {
-    if ((DAT_004332d0 && gKeepWork.SPEMode != 0) || DAT_004332d4 != 0) {
+    if ((gbSpecialStageLoaded && gKeepWork.SPEMode != 0) || gbWarpLoaded) {
       *local_8 = 0x10101010;
       ++local_8;
     }
@@ -881,7 +881,7 @@ int RotateBmpTileCreate() {
   int local_ac;
   int err;
   char msg[80];
-  if (DAT_004332d0) {
+  if (gbSpecialStageLoaded) {
     wsprintf(buffer, "SPECIAL\\CG\\SP%1dCG32.CM_", gKeepWork.stagenm + 1);
   }
   else {
@@ -933,10 +933,10 @@ int RotateGridCreate() {
   gSurfFuncRet = _objSetDrawOrder(gpGrid, 4000);
   gSurfFuncRet = _objSetPosition(gpGrid, point);
   gSurfFuncRet = _objSetView(gpGrid, gGridRect);
-  if (DAT_004332d0) {
+  if (gbSpecialStageLoaded) {
     gGridRect.top = 128;
   }
-  else if (DAT_004332d8) {
+  else if (gbLittlePlanetLoaded) {
      gGridRect.top = 24;
   }
   gSurfFuncRet = _objSetDestRect(gpGrid, gGridRect.left, gGridRect.top, gGridRect.right, gGridRect.bottom);
@@ -1035,10 +1035,10 @@ int GridBMPCreate() {
   int local_b0;
   int err;
   int i;
-  if (DAT_004332d4) {
+  if (gbWarpLoaded) {
     lstrcpy(fileName, "WARP\\TCMPWARP.CM_");
   }
-  else if (DAT_004332d0) {
+  else if (gbSpecialStageLoaded) {
     if (gKeepWork.SPEMode == 0) {
       wsprintf(fileName, "SPECIAL\\BMP\\FIX\\TCMPS%1d.CM_", gKeepWork.stagenm + 1);
     }
@@ -1046,10 +1046,10 @@ int GridBMPCreate() {
       lstrcpy(fileName, "SPECIAL\\BMP\\FIX\\SCLEAR.CM_");
     }
   }
-  else if (DAT_004332d8) {
+  else if (gbLittlePlanetLoaded) {
     lstrcpy(fileName, "TITLE\\PLANET\\CG\\LPBS.CM_");
   }
-  else if (DAT_004332dc) {
+  else if (gbThanksLoaded) {
     lstrcpy(fileName, "TITLE\\THANKS\\CG\\SCR_A.CM_");
   }
   else {
@@ -1202,7 +1202,7 @@ int FUN_00403b47() {
 
 // 00403c78
 int GridCreate() {
-  if (DAT_004332d0 && gKeepWork.SPEMode == 0) {
+  if (gbSpecialStageLoaded && gKeepWork.SPEMode == 0) {
     return FUN_004039e8();
   }
   else {
@@ -1643,7 +1643,7 @@ BOOL EACreate() {
     DAT_00415100[i].bottom = 256;
   }
 
-  if (DAT_004332d0 && gKeepWork.SPEMode == 0) {
+  if (gbSpecialStageLoaded && gKeepWork.SPEMode == 0) {
     for (i = 0; i < 8; ++i) {
       // xor instead of and, lea instead of shl
       DAT_00415100[i].right = DAT_004320c8[gKeepWork.stagenm][i].width * 8;
@@ -1656,7 +1656,7 @@ BOOL EACreate() {
       gpHscroll[i].l = 0;
     }
   }
-  if (DAT_004332d8) {
+  if (gbLittlePlanetLoaded) {
     gGridRect.left = 0;
     gGridRect.top = 0;
     gGridRect.right = 320;
@@ -1691,7 +1691,7 @@ BOOL EACreate() {
     log("Rotate Grid      Setup\n");
     log("Create EA End.\n");
   }
-  else if (DAT_004332dc) {
+  else if (gbThanksLoaded) {
     if (SpriteBMPCreate() != 0) {
       return 0;
     }
@@ -1709,7 +1709,7 @@ BOOL EACreate() {
     }
     log("Grid           Create\n");
   }
-  else if (DAT_004332d0) {
+  else if (gbSpecialStageLoaded) {
     gGridRect.left = 0;
     gGridRect.top = 0;
     gGridRect.right = 4096;
@@ -1771,7 +1771,7 @@ BOOL EACreate() {
       return 0;
     }
     log("Grid       BMP Create\n");
-    if (DAT_004332d4 == 0) {
+    if (gbWarpLoaded == 0) {
       if (GridPtnchgBMPCreate() != 0) {
         return 0;
       }
@@ -1789,7 +1789,7 @@ BOOL EACreate() {
       return 0;
     }
     log("Grid           Create\n");
-    if (DAT_004332d4) {
+    if (gbWarpLoaded) {
       FUN_004044ac();
     }
     log("Create EA End.\n");
@@ -1807,12 +1807,12 @@ BOOL EACreate() {
   byteCnt = DAT_0041a0f8.l * 64;
   wsprintf(msg, "Grid   %d Tile: %ld K Byte \n", DAT_0041a0f8, byteCnt / 1024);
   log(msg);
-  if (DAT_004332d0 || DAT_004332d8) {
+  if (gbSpecialStageLoaded || gbLittlePlanetLoaded) {
     byteCnt = DAT_0041dd48.l * 1024;
     wsprintf(msg, "RotateGrid   %d Stamp: %ld K Byte \n", DAT_0041dd48.l, byteCnt / 1024);
     log(msg);
   }
-  if (gKeepWork.stageno.b.l == 2 && !DAT_004332d0 && !DAT_004332d8 && !DAT_004332dc && !DAT_004332d4) {
+  if (gKeepWork.stageno.b.l == 2 && !gbSpecialStageLoaded && !gbLittlePlanetLoaded && !gbThanksLoaded && !gbWarpLoaded) {
     OutputDebugString("Render Set\n");
     DAT_004320c4 = TRUE;
   }
@@ -2434,7 +2434,7 @@ int GridPtnchgBMPCreate() {
   char path[80];
   int tile;
   int err;
-  if (DAT_004332d0) {
+  if (gbSpecialStageLoaded) {
     return 0;
   }
   stage = gKeepWork.stageno.b.l * 4;
