@@ -108,10 +108,10 @@ extern HPALETTE ghPalette;
 /* 004332c4 */ BOOL DAT_004332c4 = FALSE;
 /* 004332c8 */ BOOL gbMoviePlaying = FALSE;
 /* 004332cc */ BOOL DAT_004332cc = FALSE;
-/* 004332d0 */ BOOL DAT_004332d0 = FALSE;
-/* 004332d4 */ BOOL DAT_004332d4 = FALSE;
-/* 004332d8 */ BOOL DAT_004332d8 = FALSE;
-/* 004332dc */ BOOL DAT_004332dc = FALSE;
+/* 004332d0 */ BOOL gbSpecialStageLoaded = FALSE;
+/* 004332d4 */ BOOL gbWarpLoaded = FALSE;
+/* 004332d8 */ BOOL gbLittlePlanetLoaded = FALSE;
+/* 004332dc */ BOOL gbThanksLoaded = FALSE;
 /* 004332e0 */ BOOL DAT_004332e0 = FALSE;
 /* 004332e4 */ BOOL gbMenuBarVisible = TRUE;
 /* 004332e8 */ BOOL DAT_004332e8 = FALSE;
@@ -335,7 +335,7 @@ BOOL FUN_004074de() {
       }
       if (gKeepWork.SPEMode != 0 && gKeepWork.stagenm == 7) {
         unloadGame();
-        DAT_004332d0 = FALSE;
+        gbSpecialStageLoaded = FALSE;
         gKeepWork.ta_flag = 0;
         DAT_004332c4 = loadOpening(ghWnd, ghSurf);
         return TRUE;
@@ -352,7 +352,7 @@ BOOL FUN_004074de() {
       else if (gKeepWork.SPEMode == 2);
       else if (gKeepWork.SPEMode == 4 || gKeepWork.SPEMode == 6) {
         unloadGame();
-        DAT_004332d0 = FALSE;
+        gbSpecialStageLoaded = FALSE;
         hCursor = SetCursor(LoadCursor(0, IDC_WAIT));
         if (gKeepWork.ta_flag != 0) {
           if (!loadTimeAttack(FALSE)) {
@@ -404,7 +404,7 @@ BOOL FUN_0040773d() {
     }
     if ((*gpGame)() != 0) {
       unloadGame();
-      DAT_004332d8 = FALSE;
+      gbLittlePlanetLoaded = FALSE;
       DAT_004332c4 = loadOpening(ghWnd, ghSurf);
       return TRUE;
     }
@@ -440,7 +440,7 @@ BOOL FUN_00407854() {
     }
     if ((*gpGame)() != 0) {
       unloadGame();
-      DAT_004332dc = FALSE;
+      gbThanksLoaded = FALSE;
       if (gbVisualmode) {
         FUN_0040ec7b();
       }
@@ -529,7 +529,7 @@ BOOL FUN_00407ad8() {
       gKeepWork.GamePass = 0;
     }
     if ((*gpGame)() != 0) {
-      DAT_004332d4 = FALSE;
+      gbWarpLoaded = FALSE;
       if (loadStageByMenu(0) == 0) {
         return FALSE;
       }
@@ -779,19 +779,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         if (gTimerTickCnt > 10) {
           gTimerTickCnt = 0;
         }
-        if (DAT_004332d8) {
+        if (gbLittlePlanetLoaded) {
           gbRun = FUN_0040773d();
         }
-        else if (DAT_004332dc) {
+        else if (gbThanksLoaded) {
           gbRun = FUN_00407854();
         }
-        else if (DAT_004332d4) {
+        else if (gbWarpLoaded) {
           gbRun = FUN_00407ad8();
         }
         else if (DAT_004332c4) {
           gbRun = FUN_00407060();
         }
-        else if (DAT_004332d0) {
+        else if (gbSpecialStageLoaded) {
           gbRun = FUN_004074de();
         }
         else if (DAT_004332e0) {
@@ -1166,10 +1166,10 @@ void restartGame() {
   unloadGame();
   gbMoviePlaying = FALSE;
   DAT_004332cc = FALSE;
-  DAT_004332d0 = FALSE;
-  DAT_004332d4 = FALSE;
-  DAT_004332d8 = FALSE;
-  DAT_004332dc = FALSE;
+  gbSpecialStageLoaded = FALSE;
+  gbWarpLoaded = FALSE;
+  gbLittlePlanetLoaded = FALSE;
+  gbThanksLoaded = FALSE;
   DAT_004332e0 = FALSE;
   DAT_004332e8 = FALSE;
   gbVisualmode = FALSE;
@@ -2051,7 +2051,7 @@ BOOL loadSpecialStage(int stageMenuId) {
   }
   gKeepWork.SPEMode = 0;
   unloadGame();
-  DAT_004332d0 = TRUE;
+  gbSpecialStageLoaded = TRUE;
   drawLoading();
   deleteSplash();
   if (!loadGameDll("SPECIAL\\SPECIAL.DLL")) {
@@ -2083,7 +2083,7 @@ BOOL loadWarp() {
   int_union scrahposiw;
   int_union scrbhposiw;
   unloadGame();
-  DAT_004332d4 = TRUE;
+  gbWarpLoaded = TRUE;
   if (!loadGameDll("WARP\\WARP.DLL")) {
     return FALSE;
   }
@@ -2116,7 +2116,7 @@ BOOL loadThanks() {
     return FALSE;
   }
   gFadeFlag = 0;
-  DAT_004332dc = TRUE;
+  gbThanksLoaded = TRUE;
   if (EACreate() == TRUE) {
     gbEACreated = TRUE;
   }
@@ -2146,7 +2146,7 @@ BOOL loadPlanet() {
     return FALSE;
   }
   gFadeFlag = 0;
-  DAT_004332d8 = TRUE;
+  gbLittlePlanetLoaded = TRUE;
   if (EACreate() == TRUE) {
     gbEACreated = TRUE;
   }
@@ -2560,7 +2560,7 @@ void readRecording() {
   char fileName[80];
   char buffer[80];
   HFILE hFile;
-  if (DAT_004332d0 == TRUE) {
+  if (gbSpecialStageLoaded == TRUE) {
     wsprintf(fileName, "special%1c.BIN", gKeepWork.stagenm + 49);
   }
   else {
@@ -2592,7 +2592,7 @@ void writeRecording() {
   char buffer[80];
   OFSTRUCT ofStruct;
   HFILE hFile;
-  if (DAT_004332d0 == TRUE) {
+  if (gbSpecialStageLoaded == TRUE) {
     wsprintf(path, "special%1c.BIN", gKeepWork.stagenm + 49);
   }
   else {
