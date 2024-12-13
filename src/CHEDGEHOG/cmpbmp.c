@@ -2,15 +2,53 @@
 #include <stdlib.h>
 #include "SDL/SDL.h"
 #include "cmpbmpheader.h"
+#include "cmpspritemeta.h"
 #include "cmptilemeta.h"
 #include "szdd.h"
 #include "util.h"
+extern SDL_Surface* g_sprites[700];
+extern unsigned int g_sprite_cnt;
 extern SDL_Surface* g_tiles[1024];
 extern unsigned int g_tile_cnt;
 static unsigned char* read_cmp_bmp_header(unsigned char* p_bytes, cmp_bmp_header* header);
+static unsigned char* read_cmp_sprite_meta(unsigned char* p_bytes, cmp_sprite_meta** pp_meta, unsigned long sprite_cnt);
 static unsigned char* read_cmp_tile_meta(unsigned char* p_bytes, cmp_tile_meta* p_meta, unsigned long tile_cnt);
+static void extract_sprites(unsigned char* p_data, unsigned long sprite_cnt, cmp_sprite_meta* p_meta);
 static void extract_tiles(unsigned char* p_data, unsigned long tile_cnt, cmp_tile_meta meta);
 static unsigned char* read_bitmap(unsigned char* p_data, SDL_Surface** pp_surface, unsigned long width, unsigned long height, unsigned int paletteoffset, int has_transparency, int has_padding);
+
+
+int load_sprites(char* p_filename) {
+  unsigned char* p_bytes_start = szdd_decompress(p_filename);
+  if (p_bytes_start != 0) {
+    unsigned char* p_bytes = p_bytes_start;
+    unsigned char* p_data;
+    cmp_bmp_header header;
+    cmp_sprite_meta* p_meta;
+
+    p_bytes = read_cmp_bmp_header(p_bytes, &header);
+    p_data = &p_bytes[header.data_pos];
+    p_bytes = read_cmp_sprite_meta(p_bytes, &p_meta, header.cnt);
+    extract_sprites(p_data, header.cnt, p_meta);
+
+    free(p_meta);
+    free(p_bytes_start);
+  }
+  else {
+    return 1;
+  }
+
+  return 0;
+}
+
+
+void unload_sprites() {
+  int i;
+
+  for (i = 0; i < g_sprite_cnt; ++i) {
+    SDL_FreeSurface(g_sprites[i]);
+  }
+}
 
 
 int load_tiles(char* p_filename) {
@@ -59,6 +97,25 @@ static unsigned char* read_cmp_bmp_header(unsigned char* p_bytes, cmp_bmp_header
 }
 
 
+static unsigned char* read_cmp_sprite_meta(unsigned char* p_bytes, cmp_sprite_meta** pp_meta, unsigned long sprite_cnt) {
+  int i;
+  cmp_sprite_meta* p_meta = malloc(sprite_cnt * sizeof(cmp_sprite_meta));
+
+  for (i = 0; i < sprite_cnt; ++i) {
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].x);
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].y);
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].width);
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].height);
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].palette_offset);
+    p_bytes = read_ushort_littleendian(p_bytes, &p_meta[i].unknown);
+  }
+
+  *pp_meta = p_meta;
+
+  return p_bytes;
+}
+
+
 static unsigned char* read_cmp_tile_meta(unsigned char* p_bytes, cmp_tile_meta* p_meta, unsigned long tile_cnt) {
   int i;
 
@@ -74,6 +131,24 @@ static unsigned char* read_cmp_tile_meta(unsigned char* p_bytes, cmp_tile_meta* 
   }
 
   return p_bytes;
+}
+
+
+static void extract_sprites(unsigned char* p_data, unsigned long sprite_cnt, cmp_sprite_meta* p_meta) {
+  int i;
+
+  for (i = 0; i < sprite_cnt; ++i) {
+    SDL_Surface* p_surface = 0;
+    int has_padding = 0;
+    if (p_meta[i].width & 4) {
+      p_meta[i].width += 4;
+      has_padding = 1;
+    }
+    p_data = read_bitmap(p_data, &p_surface, p_meta[i].width, p_meta[i].height, p_meta[i].palette_offset, 1, has_padding);
+    SDL_SetColorKey(p_surface, SDL_TRUE, 0xFF);
+    g_sprites[i] = p_surface;
+    ++g_sprite_cnt;
+  }
 }
 
 
