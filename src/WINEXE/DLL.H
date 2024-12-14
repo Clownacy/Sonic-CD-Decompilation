@@ -37,7 +37,7 @@ BOOL FUN_0040ecf7();
 BOOL playBadEnding();
 BOOL playGoodEnding();
 BOOL playPen();
-int changeGameState();
+int changeMenuState();
 void pauseMovie();
 void resumeMovie();
 
