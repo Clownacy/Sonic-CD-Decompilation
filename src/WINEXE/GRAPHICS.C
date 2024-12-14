@@ -1812,7 +1812,7 @@ BOOL EACreate() {
     wsprintf(msg, "RotateGrid   %d Stamp: %ld K Byte \n", DAT_0041dd48.l, byteCnt / 1024);
     log(msg);
   }
-  if (gKeepWork.stageno.b.l == 2 && !gbSpecialStageLoaded && !gbLittlePlanetLoaded && !gbThanksLoaded && !gbWarpLoaded) {
+  if (gKeepWork.stageno.b.h == 2 && !gbSpecialStageLoaded && !gbLittlePlanetLoaded && !gbThanksLoaded && !gbWarpLoaded) {
     OutputDebugString("Render Set\n");
     DAT_004320c4 = TRUE;
   }
