@@ -105,16 +105,16 @@ extern HPALETTE ghPalette;
 /* 004332b8 */ long gFpsFlag2 = 2;
 /* 004332bc */ int DAT_004332bc = 0;
 /* 004332c0 */ long gCurrentCdAudioTrack = 1;
-/* 004332c4 */ BOOL DAT_004332c4 = FALSE;
+/* 004332c4 */ BOOL gbMenuOrMovieLoaded = FALSE;
 /* 004332c8 */ BOOL gbMoviePlaying = FALSE;
 /* 004332cc */ BOOL DAT_004332cc = FALSE;
 /* 004332d0 */ BOOL gbSpecialStageLoaded = FALSE;
 /* 004332d4 */ BOOL gbWarpLoaded = FALSE;
 /* 004332d8 */ BOOL gbLittlePlanetLoaded = FALSE;
 /* 004332dc */ BOOL gbThanksLoaded = FALSE;
-/* 004332e0 */ BOOL DAT_004332e0 = FALSE;
+/* 004332e0 */ BOOL gbTimeAttackLoaded = FALSE;
 /* 004332e4 */ BOOL gbMenuBarVisible = TRUE;
-/* 004332e8 */ BOOL DAT_004332e8 = FALSE;
+/* 004332e8 */ BOOL gbUsedStageSelect = FALSE;
 /* 004332ec */ BOOL gbGamePaused = FALSE;
 /* 004332f0 */ BOOL gbRequireCdrom = TRUE;
 /* 004332f4 */ BOOL gbCdAudioOpenSuccess = FALSE;
@@ -150,7 +150,7 @@ extern HPALETTE ghPalette;
 
 
 // 00407060
-BOOL FUN_00407060() {
+BOOL menuOrMovieLoop() {
   uint_union local_8;
   if (++DAT_004332bc >= gFpsFlag2) {
     DAT_004332bc = 0;
@@ -161,10 +161,10 @@ BOOL FUN_00407060() {
     makePalette2();
   }
 
-  switch (changeGameState()) {
-    case 1:
+  switch (changeMenuState()) {
+    case 1: // New Game
       if (FUN_0041004a() == 0) {
-        DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+        gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
       }
       else {
         gKeepWork.play_start = 0;
@@ -172,12 +172,12 @@ BOOL FUN_00407060() {
         gKeepWork.clrspflg_save = 0;
         gKeepWork.stagenm = 0;
         gKeepWork.emie3end = 0;
-        if (loadStageByMenu(400) == 0) {
+        if (loadStageByMenu(ID_STAGE_R11A) == 0) {
           return FALSE;
         }
       }
       break;
-    case 2:
+    case 2: // Continue
       ReadScoreData(ReadScoreIndx(0), 0, 0);
       gKeepWork.play_start = 0;
       gKeepWork.plflag = 0;
@@ -188,7 +188,7 @@ BOOL FUN_00407060() {
         local_8.w.l = gCrntScorData.roundNo * 10 + 400;
       }
       else {
-        local_8.w.l = 460;
+        local_8.w.l = ID_STAGE_R81A;
       }
       if (loadStageByMenu(local_8.w.l) == 0) {
         return FALSE;
@@ -216,29 +216,29 @@ BOOL FUN_00407060() {
         gKeepWork.play_start = 0;
         switch (gDemoId) {
           case 1:
-            if (loadStageByMenu(400) == 0) {
+            if (loadStageByMenu(ID_STAGE_R11A) == 0) {
               return FALSE;
             }
             break;
           case 2:
-            if (!loadSpecialStage(470)) {
+            if (!loadSpecialStage(ID_STAGE_SPECIAL_R1)) {
               return FALSE;
             }
             break;
           case 3:
             gKeepWork.play_start = 2;
-            if (loadStageByMenu(428) == 0) {
+            if (loadStageByMenu(ID_STAGE_R43C) == 0) {
               return FALSE;
             }
             break;
           case 4:
-            if (!loadSpecialStage(475)) {
+            if (!loadSpecialStage(ID_STAGE_SPECIAL_R6)) {
               return FALSE;
             }
             break;
           case 5:
             gKeepWork.play_start = 2;
-            if (loadStageByMenu(464) == 0) {
+            if (loadStageByMenu(ID_STAGE_R82A) == 0) {
               return FALSE;
             }
             break;
@@ -257,7 +257,7 @@ BOOL FUN_00407060() {
       if (loadStageByMenu(gSelectedStage) == 0) {
         return FALSE;
       }
-      DAT_004332e8 = TRUE;
+      gbUsedStageSelect = TRUE;
       break;
     case 7:
       makePalette();
@@ -298,7 +298,7 @@ BOOL FUN_00407060() {
         gbDebugFlag = FALSE;
       }
       checkSubMenuItem(4, ID_FUNC_DEBUGFLAG, gbDebugFlag);
-      DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+      gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
       break;
     default:
       break;
@@ -309,7 +309,7 @@ BOOL FUN_00407060() {
 
 
 // 004074de
-BOOL FUN_004074de() {
+BOOL specialStageLoop() {
   HCURSOR hCursor;
   if (gFadeFlag != 0) {
     ++DAT_004332b0;
@@ -337,7 +337,7 @@ BOOL FUN_004074de() {
         unloadGame();
         gbSpecialStageLoaded = FALSE;
         gKeepWork.ta_flag = 0;
-        DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+        gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
         return TRUE;
       }
       if (gKeepWork.SPEMode == 1) {
@@ -383,7 +383,7 @@ BOOL FUN_004074de() {
 
 
 // 0040773d
-BOOL FUN_0040773d() {
+BOOL littlePlanetLoop() {
   if (gFadeFlag != 0) {
     if ((*gpFadeProc)() != 0) {
       gFadeFlag = 0;
@@ -405,7 +405,7 @@ BOOL FUN_0040773d() {
     if ((*gpGame)() != 0) {
       unloadGame();
       gbLittlePlanetLoaded = FALSE;
-      DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+      gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
       return TRUE;
     }
     if (++DAT_004332b0 >= gFpsFlag1) {
@@ -419,7 +419,7 @@ BOOL FUN_0040773d() {
 
 
 // 00407854
-BOOL FUN_00407854() {
+BOOL thanksLoop() {
   if (gFadeFlag != 0) {
     if ((*gpFadeProc)() != 0) {
       gFadeFlag = 0;
@@ -445,7 +445,7 @@ BOOL FUN_00407854() {
         FUN_0040ec7b();
       }
       else {
-        DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+        gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
       }
       return TRUE;
     }
@@ -459,7 +459,7 @@ BOOL FUN_00407854() {
 }
 
 
-BOOL FUN_00407982() {
+BOOL timeAttackLoop() {
   int local_c;
   HCURSOR hCursor;
   if (gFadeFlag != 0) {
@@ -478,16 +478,16 @@ BOOL FUN_00407982() {
     makePalette2();
     if (local_c != 0) {
       makePalette2();
-      DAT_004332e0 = FALSE;
+      gbTimeAttackLoaded = FALSE;
       if (local_c == -1) {
         gKeepWork.ta_flag = 0;
-        DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+        gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
       }
       else {
         gKeepWork.play_start = 0;
         gKeepWork.ta_flag = 1;
         hCursor = SetCursor(LoadCursor(0, IDC_WAIT));
-        if (local_c >= 400 && local_c <= 469) {
+        if (local_c >= ID_STAGE_R11A && local_c <= ID_STAGE_R83D) {
           if (loadStageByMenu(local_c) == 0) {
             return FALSE;
           }
@@ -507,7 +507,7 @@ BOOL FUN_00407982() {
 
 
 // 00407ad8
-BOOL FUN_00407ad8() {
+BOOL warpLoop() {
   int_union vscroll;
   int_union scrahposiw;
   int_union scrbhposiw;
@@ -552,7 +552,7 @@ BOOL FUN_00407ad8() {
 
 
 // 00407c1b
-BOOL FUN_00407c1b() {
+BOOL stageLoop() {
   HCURSOR hCursor;
   int_union vscroll;
   int_union scrahposiw;
@@ -598,11 +598,11 @@ BOOL FUN_00407c1b() {
     }
     if (DAT_004256fc != 0) {
       DAT_004332cc = FALSE;
-      if (DAT_004332e8) {
-        DAT_004332e8 = FALSE;
+      if (gbUsedStageSelect) {
+        gbUsedStageSelect = FALSE;
         unloadGame();
-        DAT_004332c4 = FALSE;
-        DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+        gbMenuOrMovieLoaded = FALSE;
+        gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
         return TRUE;
       }
       else if (DAT_004256fc & 2) {
@@ -664,7 +664,7 @@ L1F5:
         else {
           hCursor = SetCursor(LoadCursor(0, IDC_WAIT));
           unloadGame();
-          DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+          gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
           SetCursor(hCursor);
         }
       }
@@ -780,25 +780,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
           gTimerTickCnt = 0;
         }
         if (gbLittlePlanetLoaded) {
-          gbRun = FUN_0040773d();
+          gbRun = littlePlanetLoop();
         }
         else if (gbThanksLoaded) {
-          gbRun = FUN_00407854();
+          gbRun = thanksLoop();
         }
         else if (gbWarpLoaded) {
-          gbRun = FUN_00407ad8();
+          gbRun = warpLoop();
         }
-        else if (DAT_004332c4) {
-          gbRun = FUN_00407060();
+        else if (gbMenuOrMovieLoaded) {
+          gbRun = menuOrMovieLoop();
         }
         else if (gbSpecialStageLoaded) {
-          gbRun = FUN_004074de();
+          gbRun = specialStageLoop();
         }
-        else if (DAT_004332e0) {
-          gbRun = FUN_00407982();
+        else if (gbTimeAttackLoaded) {
+          gbRun = timeAttackLoop();
         }
         else {
-          gbRun = FUN_00407c1b();
+          gbRun = stageLoop();
         }
       }
       if (!gbRun) {
@@ -1170,8 +1170,8 @@ void restartGame() {
   gbWarpLoaded = FALSE;
   gbLittlePlanetLoaded = FALSE;
   gbThanksLoaded = FALSE;
-  DAT_004332e0 = FALSE;
-  DAT_004332e8 = FALSE;
+  gbTimeAttackLoaded = FALSE;
+  gbUsedStageSelect = FALSE;
   gbVisualmode = FALSE;
   gbGamePaused = FALSE;
   gbDebugFlag = FALSE;
@@ -1179,8 +1179,8 @@ void restartGame() {
   gKeepWork.bRestart = 0;
   gKeepWork.demoflag.w = 0;
   gbRecordPlayFlag = FALSE;
-  DAT_004332c4 = FALSE;
-  DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+  gbMenuOrMovieLoaded = FALSE;
+  gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
   DAT_0043331c = FALSE;
   gbRestartStage = FALSE;
   enableSubMenuItem(0, ID_PAUSEGAME, FALSE);
@@ -1328,14 +1328,14 @@ LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     case WM_SYSCHAR:
       if ((wParam == 'R' || wParam == VK_F3) && lParam & 0x20000000) {
         gKeepWork.bRestart = 1;
-        if (!DAT_004332e0) {
+        if (!gbTimeAttackLoaded) {
           restartGame();
         }
         return 0;
       }
       return DefWindowProc(hWnd, msg, wParam, lParam);
     case WM_CHAR:
-      if (DAT_004332c4) {
+      if (gbMenuOrMovieLoaded) {
         FUN_0040eb5a(wParam, lParam);
         return 0;
       }
@@ -1572,7 +1572,7 @@ LRESULT __stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
       switch (wParam) {
         case ID_RESTARTGAME:
           gKeepWork.bRestart = 1;
-          if (!DAT_004332e0) {
+          if (!gbTimeAttackLoaded) {
             restartGame();
           }
           break;
@@ -1861,7 +1861,7 @@ int startGame() {
   gbSpriteLoadingEnabled = TRUE;
   checkSubMenuItem(4, ID_FUNC_SPRITECMP, gbSpriteLoadingEnabled);
   gbFirstTitle = TRUE;
-  DAT_004332c4 = loadOpening(ghWnd, ghSurf);
+  gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
   gbFirstTitle = FALSE;
   SetCursor(hCursor);
   loadIni();
@@ -2173,7 +2173,7 @@ BOOL loadPlanet() {
 // 0040b305
 BOOL loadTimeAttack(BOOL param_1) {
   unloadGame();
-  DAT_004332e0 = TRUE;
+  gbTimeAttackLoaded = TRUE;
   if (!loadGameDll("TITLE\\TA\\TA.DLL")) {
     return FALSE;
   }
@@ -2198,7 +2198,7 @@ BOOL loadStageByMenu(UINT stageMenuId) {
   int_union scrahposiw;
   int_union scrbhposiw;
   unloadGame();
-  DAT_004332e8 = FALSE;
+  gbUsedStageSelect = FALSE;
   DAT_004332cc = TRUE;
   drawLoading();
   deleteSplash();

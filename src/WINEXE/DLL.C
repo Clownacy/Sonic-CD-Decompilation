@@ -79,7 +79,7 @@ dllIn;
 /* 004320bc */ void* ghSurf = 0;
 /* 004331e0 */ BOOL gbRun = TRUE;
 /* 00433220 */ USHORT gUserKey[5];
-/* 004332c4 */ BOOL DAT_004332c4 = FALSE;
+/* 004332c4 */ BOOL gbMenuOrMovieLoaded = FALSE;
 /* 004332c8 */ BOOL gbMoviePlaying = FALSE;
 /* 0043327c */ PALETTEENTRY* gpColorwk = 0;
 /* 0043330c */ BOOL gbFullScreen = FALSE;
@@ -561,7 +561,7 @@ void unloadCurrentGameMenuDll() {
       break;
   }
 
-  DAT_004332c4 = FALSE;
+  gbMenuOrMovieLoaded = FALSE;
   gGameMenuDllType = 0;
 }
 
@@ -577,7 +577,7 @@ BOOL FUN_0040ec7b() {
       return FALSE;
     }
   }
-  DAT_004332c4 = TRUE;
+  gbMenuOrMovieLoaded = TRUE;
 
   return TRUE;
 }
@@ -592,7 +592,7 @@ BOOL FUN_0040ecf7() {
   if (!loadAviOpen(ghWnd)) {
     return FALSE;
   }
-  DAT_004332c4 = TRUE;
+  gbMenuOrMovieLoaded = TRUE;
 
   return TRUE;
 }
@@ -607,7 +607,7 @@ BOOL playBadEnding() {
   if (!loadAviGood(ghWnd)) {
     return FALSE;
   }
-  DAT_004332c4 = TRUE;
+  gbMenuOrMovieLoaded = TRUE;
 
   return TRUE;
 }
@@ -622,7 +622,7 @@ BOOL playGoodEnding() {
   if (!loadAviBad(ghWnd)) {
     return FALSE;
   }
-  DAT_004332c4 = TRUE;
+  gbMenuOrMovieLoaded = TRUE;
 
   return TRUE;
 }
@@ -637,14 +637,14 @@ BOOL playPen() {
   if (!loadAvipen(ghWnd)) {
     return FALSE;
   }
-  DAT_004332c4 = TRUE;
+  gbMenuOrMovieLoaded = TRUE;
 
   return TRUE;
 }
 
 
 // 0040ee57
-int changeGameState() {
+int changeMenuState() {
   if (gbGameDllInit != 0) {
     int next = (*gpDLLMain)();
 
@@ -675,7 +675,7 @@ int changeGameState() {
         if (gbVisualmode) {
           makePalette();
           loadVisualmd(ghWnd, ghSurf);
-          DAT_004332c4 = TRUE;
+          gbMenuOrMovieLoaded = TRUE;
           return 0;
         }
         else {
@@ -684,7 +684,7 @@ int changeGameState() {
       case 4:
         unloadCurrentGameMenuDll();
         loadSavedata(ghWnd,ghSurf);
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
       case 8:
         FUN_0040ecf7();
@@ -707,35 +707,35 @@ int changeGameState() {
         else {
           loadOpening(ghWnd, ghSurf);
         }
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
       case 6:
         unloadCurrentGameMenuDll();
         loadVisualmd(ghWnd, ghSurf);
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
       case 13:
         unloadCurrentGameMenuDll();
         loadSoundtst(ghWnd, ghSurf);
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
       case 14:
         unloadCurrentGameMenuDll();
         loadStagetst(ghWnd, ghSurf);
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
       case 18:
         unloadCurrentGameMenuDll();
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 9;
       case 19:
         unloadCurrentGameMenuDll();
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 10;
       case 20:
         unloadCurrentGameMenuDll();
         loadBesttime(ghWnd, ghSurf);
-        DAT_004332c4 = TRUE;
+        gbMenuOrMovieLoaded = TRUE;
         return 0;
     }
   }

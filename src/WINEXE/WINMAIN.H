@@ -4,13 +4,13 @@
 #include <windows.h>
 #include "TYPES.H"
 
-BOOL FUN_00407060();
-BOOL FUN_004074de();
-BOOL FUN_0040773d();
-BOOL FUN_00407854();
-BOOL FUN_00407982();
-BOOL FUN_00407ad8();
-BOOL FUN_00407c1b();
+BOOL menuOrMovieLoop();
+BOOL specialStageLoop();
+BOOL littlePlanetLoop();
+BOOL thanksLoop();
+BOOL timeAttackLoop();
+BOOL warpLoop();
+BOOL stageLoop();
 void setupTimer();
 void killTimer();
 ATOM registerWindowClass(HINSTANCE hInstance);
