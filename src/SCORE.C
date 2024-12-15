@@ -2,6 +2,24 @@
 #include "SCORE.H"
 #include "ACTION.H"
 
+static void tensuu(sprite_status* pAct);
+static void ten_init(sprite_status* pAct);
+static void ten_move(sprite_status* pAct);
+static void score_init(sprite_status* pAct);
+static void score_move(sprite_status* pAct);
+static void ringinit();
+static void scoreinit();
+static void posiwrt();
+static void bonuswrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void ringwrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void scorewrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void scorewrt2(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp);
+static void posiwrt0(sprite_data* pSprdat, unsigned int lDispVal);
+static void playsuuwrt(sprite_data* pSprdat);
+static void timewrt1(sprite_data* pSprdat, unsigned int lDispVal);
+static void timewrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6);
+
 extern void sub_sync(short ReqNo);
 extern short playdieset(sprite_status* pActwk);
 
@@ -152,24 +170,6 @@ extern sprite_pattern bonuspat;
 extern sprite_pattern bonuspat0;
 unsigned char scoreinittbl[7] = { 255, 255, 255, 255, 255, 255, 0 };
 unsigned char ringinittbl[3] = { 255, 255, 0 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
