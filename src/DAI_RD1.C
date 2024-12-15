@@ -282,7 +282,7 @@ static void dodai_lr(sprite_status* pActwk) { /* Line 267, Address: 0x1002510 */
 
 static unsigned char dodai_ride1(sprite_status* pActwk, int xpos) { /* Line 283, Address: 0x10025e0 */
   pActwk->xspeed.w = (pActwk->xposi.l - xpos) >> 8; /* Line 284, Address: 0x10025f0 */
-  dodai_ride2(pActwk); /* Line 285, Address: 0x1002614 */
+  return dodai_ride2(pActwk); /* Line 285, Address: 0x1002614 */
 } /* Line 286, Address: 0x1002620 */
 
 
