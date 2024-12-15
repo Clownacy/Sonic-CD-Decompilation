@@ -6,6 +6,11 @@
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 
+static void dai_k_init(sprite_status* pActwk);
+static void dai_k_move(sprite_status* pActwk);
+static void k_move(sprite_status* pActwk, sprite_status* pSonicwk);
+static void jumpchk_d(sprite_status* pActwk, sprite_status* pSonicwk);
+
 extern void soundset(short ReqNo);
 
 static sprite_pattern k_daipat0 = {
@@ -31,11 +36,6 @@ static void(*dai_k_move_tbl[2])(sprite_status*) = {
   &dai_k_init,
   &dai_k_move
 };
-
-
-
-
-
 
 
 

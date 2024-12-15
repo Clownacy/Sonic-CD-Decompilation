@@ -7,6 +7,26 @@
 #include "ETC.H"
 #include "RIDECHK.H"
 
+static void dodai_init(sprite_status* pActwk);
+static void dodai_move(sprite_status* pActwk);
+static void dodai_ud(sprite_status* pActwk);
+static void dodai_lr(sprite_status* pActwk);
+static unsigned char dodai_ride1(sprite_status* pActwk, int xpos);
+static unsigned char dodai_ride2(sprite_status* pActwk);
+static void dodai_nA(sprite_status* pActwk);
+static void dodai_nB(sprite_status* pActwk);
+static unsigned char dodai_fix(sprite_status* pActwk);
+static void dodai_fal(sprite_status* pActwk);
+static void dodai_up(sprite_status* pActwk);
+static void dodai_upx(sprite_status* pActwk);
+static void dodai_rm(sprite_status* pActwk);
+static void dodai_lm(sprite_status* pActwk);
+static short dodai_sub(sprite_status* pActwk);
+static void dai_fout(sprite_status* pActwk);
+static void vfuta_init(sprite_status* pActwk);
+static void vfuta_move1(sprite_status* pActwk);
+static void vfuta_move2(sprite_status* pActwk);
+
 extern void soundset(short ReqNo);
 
 static sprite_pattern dai11a_pat1 = {
@@ -59,26 +79,6 @@ static void(*vfuta_tbl[3])(sprite_status*) = {
   &vfuta_move1,
   &vfuta_move2
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

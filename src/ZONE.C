@@ -5,6 +5,21 @@
 #include "DUMMY.H"
 #include "SCORE.H"
 
+static void over_init(sprite_status* pAct);
+static void over_move(sprite_status* pAct);
+static void title_init(sprite_status* pAct);
+static void title_move0(sprite_status* pAct);
+static void title_move1(sprite_status* pAct);
+static void title_back0(sprite_status* pAct);
+static void title_back1(sprite_status* pAct);
+static void title_wait(sprite_status* pAct);
+static void clear_init0(sprite_status* pAct);
+static void clear_init(sprite_status* pAct);
+static void clear_move0(sprite_status* pAct);
+static void clear_move1(sprite_status* pAct);
+static void clear_move2(sprite_status* pAct);
+static void clear_wait(sprite_status* pAct);
+
 extern void sub_sync(short ReqNo);
 extern void soundset(short ReqNo);
 
@@ -148,21 +163,6 @@ static unsigned short cleartbl[12] = {
   204,   0, 288,   2
 };
 extern void(*WaveAllStop)();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

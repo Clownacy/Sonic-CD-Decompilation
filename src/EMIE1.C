@@ -5,6 +5,26 @@
 #include "DIRCOL.H"
 #include "ETC.H"
 
+static void emie1_init(sprite_status* pActwk);
+static void emie1_matu(sprite_status* pActwk);
+static void emie1_dakii(sprite_status* pActwk);
+static void emie1_tobii(sprite_status* pActwk);
+static void emie1_tobim(sprite_status* pActwk);
+static void emie_play(sprite_status* pEmiewk, sprite_status* pSonicwk);
+static void setdirect(sprite_status* pEmiewk, sprite_status* pSonicwk);
+static void speedset(sprite_status* pActwk);
+static void speedsetx(sprite_status* pActwk);
+static void speedsety(sprite_status* pActwk);
+static void jumpchk_d();
+static void pljumpset();
+static void dakicheck(sprite_status* pActwk);
+static void empatchg(sprite_status* pActwk, char** pPattbl);
+static void emie1clrset();
+static void emie1clrsetx(PALETTEENTRY* pPalet);
+static void heartset(sprite_status* pActwk);
+static void heart1_init(sprite_status* pActwk);
+static void heart1_move(sprite_status* pActwk);
+
 extern void sub_sync(short ReqNo);
 
 static void(*em1_tbl[5])(sprite_status*) = {
@@ -39,26 +59,6 @@ static void(*ht1_tbl[2])(sprite_status*) = {
   &heart1_init,
   &heart1_move
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

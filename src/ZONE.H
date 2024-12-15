@@ -1,17 +1,3 @@
 void over(sprite_status* pAct);
-void over_init(sprite_status* pAct);
-void over_move(sprite_status* pAct);
 void title(sprite_status* pAct);
-void title_init(sprite_status* pAct);
-void title_move0(sprite_status* pAct);
-void title_move1(sprite_status* pAct);
-void title_back0(sprite_status* pAct);
-void title_back1(sprite_status* pAct);
-void title_wait(sprite_status* pAct);
 void clear(sprite_status* pAct);
-void clear_init0(sprite_status* pAct);
-void clear_init(sprite_status* pAct);
-void clear_move0(sprite_status* pAct);
-void clear_move1(sprite_status* pAct);
-void clear_move2(sprite_status* pAct);
-void clear_wait(sprite_status* pAct);
