@@ -22,14 +22,12 @@ int load_sprites(char* p_filename) {
   unsigned char* p_bytes_start = szdd_decompress(p_filename);
   if (p_bytes_start != 0) {
     unsigned char* p_bytes = p_bytes_start;
-    unsigned char* p_data;
     cmp_bmp_header header;
     cmp_sprite_meta* p_meta;
 
     p_bytes = read_cmp_bmp_header(p_bytes, &header);
-    p_data = &p_bytes[header.data_pos];
     p_bytes = read_cmp_sprite_meta(p_bytes, &p_meta, header.cnt);
-    extract_sprites(p_data, header.cnt, p_meta);
+    extract_sprites(p_bytes, header.cnt, p_meta);
 
     free(p_meta);
     free(p_bytes_start);
@@ -55,14 +53,12 @@ int load_tiles(char* p_filename) {
   unsigned char* p_bytes_start = szdd_decompress(p_filename);
   if (p_bytes_start != 0) {
     unsigned char* p_bytes = p_bytes_start;
-    unsigned char* p_data;
     cmp_bmp_header header;
     cmp_tile_meta meta;
 
     p_bytes = read_cmp_bmp_header(p_bytes, &header);
-    p_data = &p_bytes[header.data_pos];
     p_bytes = read_cmp_tile_meta(p_bytes, &meta, header.cnt);
-    extract_tiles(p_data, header.cnt, meta);
+    extract_tiles(p_bytes, header.cnt, meta);
 
     free(meta.p_dimensions);
     free(p_bytes_start);
