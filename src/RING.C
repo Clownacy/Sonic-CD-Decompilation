@@ -4,10 +4,8 @@
 #include "ACTSET.H"
 #include "DIRCOL.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
-
-extern void soundset(short ReqNo);
-extern void sub_sync(short ReqNo);
 
 sprite_pattern ringsp0 = {
   1,
@@ -61,6 +59,8 @@ unsigned char* ringchg[3] = {
   ringchg1,
   ringchg2
 };
+
+
 
 
 

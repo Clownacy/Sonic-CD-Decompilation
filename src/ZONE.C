@@ -3,6 +3,7 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DUMMY.H"
+#include "LOADER2.H"
 #include "SCORE.H"
 
 static void over_init(sprite_status* pAct);
@@ -19,9 +20,6 @@ static void clear_move0(sprite_status* pAct);
 static void clear_move1(sprite_status* pAct);
 static void clear_move2(sprite_status* pAct);
 static void clear_wait(sprite_status* pAct);
-
-extern void sub_sync(short ReqNo);
-extern void soundset(short ReqNo);
 
 static sprite_pattern game0 = {
   1,
@@ -163,6 +161,8 @@ static unsigned short cleartbl[12] = {
   204,   0, 288,   2
 };
 extern void(*WaveAllStop)();
+
+
 
 
 
