@@ -12,39 +12,39 @@ unsigned short title_tbl[32] = {
 };
 static sprite_pattern titlepat0 = {
   1,
-  { { -16, -112, 0, 349 } }
+  { { -16, -112, 0, 339 } }
 };
 static sprite_pattern titlepat1 = {
   1,
-  { { -24, -8, 0, 350 } }
+  { { -24, -8, 0, 340 } }
 };
 static sprite_pattern titlepat2 = {
   1,
-  { { -4, -24, 0, 351 } }
+  { { -4, -24, 0, 341 } }
 };
 static sprite_pattern titlepat3 = {
   1,
-  { { -80, -8, 0, 352 } }
+  { { -80, -8, 0, 342 } }
 };
 static sprite_pattern titlepat4 = {
   1,
-  { { -24, -24, 0, 353 } }
+  { { -24, -24, 0, 343 } }
 };
 static sprite_pattern titlepat5 = {
   1,
-  { { -24, -24, 0, 354 } }
+  { { -24, -24, 0, 344 } }
 };
 static sprite_pattern titlepat6 = {
   1,
-  { { -24, -24, 0, 355 } }
+  { { -24, -24, 0, 345 } }
 };
 static sprite_pattern titlepat7 = {
   1,
-  { { 0, -56, 0, 356 } }
+  { { 0, -56, 0, 346 } }
 };
 static sprite_pattern titlepat8 = {
   1,
-  { { 0, 0, 0, 357 } }
+  { { 0, 0, 0, 347 } }
 };
 sprite_pattern* title_pat[9] = {
   &titlepat0,
