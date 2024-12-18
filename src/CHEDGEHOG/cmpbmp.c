@@ -137,7 +137,6 @@ static void extract_sprites(unsigned char* p_data, unsigned long sprite_cnt, cmp
     SDL_Surface* p_surface = 0;
     int has_padding = 0;
     if (p_meta[i].width & 4) {
-      p_meta[i].width += 4;
       has_padding = 1;
     }
     p_data = read_bitmap(p_data, &p_surface, p_meta[i].width, p_meta[i].height, p_meta[i].palette_offset, 1, has_padding);
@@ -186,6 +185,9 @@ static unsigned char* read_bitmap(unsigned char* p_data, SDL_Surface** pp_surfac
   unsigned int y, x;
 
   p_surface = SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_SRCCOLORKEY, width, height, 8, 0, 0, 0, 0);
+  if (has_padding != 0) {
+    width += 4;
+  }
   SDL_LockSurface(p_surface);
   p_pixels = (unsigned char*)p_surface->pixels;
 
@@ -207,9 +209,9 @@ static unsigned char* read_bitmap(unsigned char* p_data, SDL_Surface** pp_surfac
           }
         }
         ++p_pixels;
-        if (x & 1) {
-          ++p_data;
-        }
+      }
+      if (x & 1) {
+        ++p_data;
       }
     }
   }

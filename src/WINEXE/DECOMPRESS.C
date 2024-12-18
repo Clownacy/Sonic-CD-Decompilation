@@ -77,9 +77,9 @@ void expandBitmap(char* pDest, char* pSrc, short width, short height, UCHAR pale
           }
         }
         ++pCurrentDest;
-        if (x & 1) {
-          ++pCurrentSrc;
-        }
+      }
+      if (x & 1) {
+        ++pCurrentSrc;
       }
     }
   }
