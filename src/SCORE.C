@@ -1,6 +1,7 @@
 #include "EQU.H"
 #include "SCORE.H"
 #include "ACTION.H"
+#include "LOADER2.H"
 
 static void tensuu(sprite_status* pAct);
 static void ten_init(sprite_status* pAct);
@@ -20,7 +21,6 @@ static void timewrt1(sprite_data* pSprdat, unsigned int lDispVal);
 static void timewrt(sprite_data* pSprdat, unsigned int lDispVal);
 static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6);
 
-extern void sub_sync(short ReqNo);
 extern short playdieset(sprite_status* pActwk);
 
 #if defined(SCORE_R3)

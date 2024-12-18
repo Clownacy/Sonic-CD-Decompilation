@@ -8,7 +8,6 @@
 #include "SCORE.H"
 
 extern int FadeProc();
-extern void sub_sync(short ReqNo);
 extern void scroll();
 extern void clchgctr();
 extern void scrollwrt();
@@ -61,6 +60,7 @@ dlink_export ExportedFunctions = {
   0
 };
 int(*sGetFileSize)(int);
+
 
 
 

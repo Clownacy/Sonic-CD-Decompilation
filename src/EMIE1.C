@@ -4,6 +4,7 @@
 #include "ACTSET.H"
 #include "DIRCOL.H"
 #include "ETC.H"
+#include "LOADER2.H"
 
 static void emie1_init(sprite_status* pActwk);
 static void emie1_matu(sprite_status* pActwk);
@@ -24,8 +25,6 @@ static void emie1clrsetx(PALETTEENTRY* pPalet);
 static void heartset(sprite_status* pActwk);
 static void heart1_init(sprite_status* pActwk);
 static void heart1_move(sprite_status* pActwk);
-
-extern void sub_sync(short ReqNo);
 
 static void(*em1_tbl[5])(sprite_status*) = {
   &emie1_init,
@@ -59,6 +58,7 @@ static void(*ht1_tbl[2])(sprite_status*) = {
   &heart1_init,
   &heart1_move
 };
+
 
 
 
