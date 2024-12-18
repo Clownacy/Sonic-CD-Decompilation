@@ -23,21 +23,21 @@ static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* 
 
 extern short playdieset(sprite_status* pActwk);
 
-#if defined(SCORE_R3)
+#if defined(R3)
   #define SPRITE_LIFEICON_PAST 359
   #define SPRITE_LIFEICON_PRESENT 358
   #define SPRITE_LIFEICON_FUTURE 357
   #define SPRITE_RINGS_NORMAL 355
   #define SPRITE_RINGS_DANGER 356
   #define SPRITE_DIGIT_0 329
-#elif defined(SCORE_R6)
+#elif defined(R6)
   #define SPRITE_LIFEICON_PAST 358
   #define SPRITE_LIFEICON_PRESENT 357
   #define SPRITE_LIFEICON_FUTURE 356
   #define SPRITE_RINGS_NORMAL 354
   #define SPRITE_RINGS_DANGER 355
   #define SPRITE_DIGIT_0 328
-#elif defined(SCORE_R8)
+#elif defined(R8)
   #define SPRITE_LIFEICON_PAST 348
   #define SPRITE_LIFEICON_PRESENT 347
   #define SPRITE_LIFEICON_FUTURE 346
