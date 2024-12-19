@@ -3,11 +3,9 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DIRCOL.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
-
-extern void sub_sync(short ReqNo);
-extern void soundset(short ReqNo);
 
 static unsigned char itemchg0[11] = { 1, 16, 0, 0, 8, 0, 0, 9, 0, 0, 255 };
 static unsigned char itemchg1[11] = { 1, 16, 1, 1, 8, 1, 1, 9, 1, 1, 255 };
@@ -146,6 +144,8 @@ static sprite_pattern cor0f = {
   1, { { -4, -40, 0, 284 } }
 };
 sprite_pattern* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };
+
+
 
 
 

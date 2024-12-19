@@ -200,7 +200,7 @@ short ride_on_set(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 112
 
 short hitchk_u(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 201, Address: 0x1019a30 */
   pActwk->r_no1 = 2; /* Line 202, Address: 0x1019a40 */
-  ride_on_chk(pActwk, pPlayerwk); /* Line 203, Address: 0x1019a4c */
+  return ride_on_chk(pActwk, pPlayerwk); /* Line 203, Address: 0x1019a4c */
 } /* Line 204, Address: 0x1019a5c */
 
 
@@ -219,7 +219,7 @@ short hitchk_u(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 201, A
 
 short ridechk(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 220, Address: 0x1019a70 */
   pActwk->r_no1 = 1; /* Line 221, Address: 0x1019a80 */
-  ride_on_chk(pActwk, pPlayerwk); /* Line 222, Address: 0x1019a8c */
+  return ride_on_chk(pActwk, pPlayerwk); /* Line 222, Address: 0x1019a8c */
 } /* Line 223, Address: 0x1019a9c */
 
 
@@ -235,7 +235,7 @@ short ridechk(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 220, Ad
 
 
 short ride_on_chk(sprite_status* pActwk, sprite_status* pPlayerwk) { /* Line 237, Address: 0x1019ab0 */
-  hitchk(pActwk, pPlayerwk); /* Line 238, Address: 0x1019ac0 */
+  return hitchk(pActwk, pPlayerwk); /* Line 238, Address: 0x1019ac0 */
 } /* Line 239, Address: 0x1019ad0 */
 
 

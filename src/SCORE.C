@@ -1,38 +1,91 @@
 #include "EQU.H"
 #include "SCORE.H"
 #include "ACTION.H"
+#include "LOADER2.H"
 
-extern void sub_sync(short ReqNo);
+static void tensuu(sprite_status* pAct);
+static void ten_init(sprite_status* pAct);
+static void ten_move(sprite_status* pAct);
+static void score_init(sprite_status* pAct);
+static void score_move(sprite_status* pAct);
+static void ringinit();
+static void scoreinit();
+static void posiwrt();
+static void bonuswrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void ringwrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void scorewrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void scorewrt2(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6, short zero_disp);
+static void posiwrt0(sprite_data* pSprdat, unsigned int lDispVal);
+static void playsuuwrt(sprite_data* pSprdat);
+static void timewrt1(sprite_data* pSprdat, unsigned int lDispVal);
+static void timewrt(sprite_data* pSprdat, unsigned int lDispVal);
+static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* subval, short sD6);
+
 extern short playdieset(sprite_status* pActwk);
 
-#if defined(SCORE_R3)
-  #define SCOREPAT1DAT_INDEX_0 359
-  #define SCOREPAT1DAT_INDEX_1 358
-  #define SCOREPAT1DAT_INDEX_2 357
-  #define SCOREPAT3DAT_INDEX_0 355
-  #define SCOREPAT3DAT_INDEX_1 356
-  #define PSCOREPATDAT_INDEX_0 329
-#elif defined(SCORE_R6)
-  #define SCOREPAT1DAT_INDEX_0 358
-  #define SCOREPAT1DAT_INDEX_1 357
-  #define SCOREPAT1DAT_INDEX_2 356
-  #define SCOREPAT3DAT_INDEX_0 354
-  #define SCOREPAT3DAT_INDEX_1 355
-  #define PSCOREPATDAT_INDEX_0 328
-#elif defined(SCORE_R8)
-  #define SCOREPAT1DAT_INDEX_0 348
-  #define SCOREPAT1DAT_INDEX_1 347
-  #define SCOREPAT1DAT_INDEX_2 346
-  #define SCOREPAT3DAT_INDEX_0 344
-  #define SCOREPAT3DAT_INDEX_1 345
-  #define PSCOREPATDAT_INDEX_0 318
+#if defined(R31) || defined(R32)
+  #define SPRITE_LIFEICON_PAST 359
+  #define SPRITE_LIFEICON_PRESENT 358
+  #define SPRITE_LIFEICON_FUTURE 357
+  #define SPRITE_RINGS_NORMAL 355
+  #define SPRITE_RINGS_DANGER 356
+  #define SPRITE_DIGIT_0 329
+  #define SPRITE_TEN_BASE 345
+  #define SPRITE_SCORE_BASE 350
+#elif defined(R33)
+  #define SPRITE_LIFEICON_PAST 363
+  #define SPRITE_LIFEICON_PRESENT 362
+  #define SPRITE_LIFEICON_FUTURE 361
+  #define SPRITE_RINGS_NORMAL 359
+  #define SPRITE_RINGS_DANGER 360
+  #define SPRITE_DIGIT_0 333
+  #define SPRITE_TEN_BASE 349
+  #define SPRITE_SCORE_BASE 354
+#elif defined(R6)
+  #define SPRITE_LIFEICON_PAST 358
+  #define SPRITE_LIFEICON_PRESENT 357
+  #define SPRITE_LIFEICON_FUTURE 356
+  #define SPRITE_RINGS_NORMAL 354
+  #define SPRITE_RINGS_DANGER 355
+  #define SPRITE_DIGIT_0 328
+  #define SPRITE_TEN_BASE 344
+  #define SPRITE_SCORE_BASE 349
+#elif defined(R81)
+  #define SPRITE_LIFEICON_PAST 348
+  #define SPRITE_LIFEICON_PRESENT 347
+  #define SPRITE_LIFEICON_FUTURE 346
+  #define SPRITE_RINGS_NORMAL 344
+  #define SPRITE_RINGS_DANGER 345
+  #define SPRITE_DIGIT_0 318
+  #define SPRITE_TEN_BASE 334
+  #define SPRITE_SCORE_BASE 339
+#elif defined(R82)
+  #define SPRITE_LIFEICON_PAST 357
+  #define SPRITE_LIFEICON_PRESENT 356
+  #define SPRITE_LIFEICON_FUTURE 355
+  #define SPRITE_RINGS_NORMAL 353
+  #define SPRITE_RINGS_DANGER 354
+  #define SPRITE_DIGIT_0 327
+  #define SPRITE_TEN_BASE 343
+  #define SPRITE_SCORE_BASE 348
+#elif defined(R83)
+  #define SPRITE_LIFEICON_PAST 350
+  #define SPRITE_LIFEICON_PRESENT 349
+  #define SPRITE_LIFEICON_FUTURE 348
+  #define SPRITE_RINGS_NORMAL 346
+  #define SPRITE_RINGS_DANGER 347
+  #define SPRITE_DIGIT_0 320
+  #define SPRITE_TEN_BASE 336
+  #define SPRITE_SCORE_BASE 341
 #else
-  #define SCOREPAT1DAT_INDEX_0 338
-  #define SCOREPAT1DAT_INDEX_1 337
-  #define SCOREPAT1DAT_INDEX_2 336
-  #define SCOREPAT3DAT_INDEX_0 334
-  #define SCOREPAT3DAT_INDEX_1 335
-  #define PSCOREPATDAT_INDEX_0 308
+  #define SPRITE_LIFEICON_PAST 338
+  #define SPRITE_LIFEICON_PRESENT 337
+  #define SPRITE_LIFEICON_FUTURE 336
+  #define SPRITE_RINGS_NORMAL 334
+  #define SPRITE_RINGS_DANGER 335
+  #define SPRITE_DIGIT_0 308
+  #define SPRITE_TEN_BASE 324
+  #define SPRITE_SCORE_BASE 329
 #endif
 
 static unsigned int subtbl[6] = { 100000, 10000, 1000, 100, 10, 1 };
@@ -41,8 +94,8 @@ static sprite_pattern tenpat0 = {
   2,
   {
     {
-      { -8, 0, 0, 334 },
-      { 0, 0, 0, 337 }
+      { -8, 0, 0, SPRITE_TEN_BASE },
+      { 0, 0, 0, SPRITE_TEN_BASE + 3 }
     }
   }
 };
@@ -50,8 +103,8 @@ static sprite_pattern tenpat1 = {
   2,
   {
     {
-      { -8, 0, 0, 335 },
-      { 0, 0, 0, 337 }
+      { -8, 0, 0, SPRITE_TEN_BASE + 1 },
+      { 0, 0, 0, SPRITE_TEN_BASE + 3 }
     }
   }
 };
@@ -59,8 +112,8 @@ static sprite_pattern tenpat2 = {
   2,
   {
     {
-      { -8, 0, 0, 336 },
-      { 0, 0, 0, 337 }
+      { -8, 0, 0, SPRITE_TEN_BASE + 2 },
+      { 0, 0, 0, SPRITE_TEN_BASE + 3 }
     }
   }
 };
@@ -68,22 +121,22 @@ static sprite_pattern tenpat3 = {
   2,
   {
     {
-      { -8, 0, 0, 338 },
-      { 0, 0, 0, 337 }
+      { -8, 0, 0, SPRITE_TEN_BASE + 4 },
+      { 0, 0, 0, SPRITE_TEN_BASE + 3 }
     }
   }
 };
 static sprite_pattern tenpat4 = {
   1,
-  { { { -4, 0, 0, 338 } } }
+  { { { -4, 0, 0, SPRITE_TEN_BASE + 4 } } }
 };
 static sprite_pattern tenpat5 = {
   3,
   {
     {
-      { -12, 0, 0, 334 },
-      { -4, 0, 0, 337 },
-      { 4, 0, 0, 337 }
+      { -12, 0, 0, SPRITE_TEN_BASE },
+      { -4, 0, 0, SPRITE_TEN_BASE + 3 },
+      { 4, 0, 0, SPRITE_TEN_BASE + 3 }
     }
   }
 };
@@ -99,25 +152,25 @@ sprite_pattern scorepat0 = {
   19,
   {
     {
-      { 0, 0, 0, 339 },
+      { 0, 0, 0, SPRITE_SCORE_BASE },
       { 40, 0, 0, 0 },
       { 48, 0, 0, 0 },
       { 56, 0, 0, 0 },
       { 64, 0, 0, 0 },
       { 72, 0, 0, 0 },
       { 80, 0, 0, 0 },
-      { 88, 0, 0, 318 },
-      { 0, 16, 0, 340 },
-      { 40, 16, 0, 318 },
-      { 48, 16, 0, 341 },
-      { 56, 16, 0, 318 },
-      { 64, 16, 0, 318 },
-      { 72, 16, 0, 342 },
-      { 80, 16, 0, 318 },
-      { 88, 16, 0, 318 },
+      { 88, 0, 0, SPRITE_DIGIT_0 },
+      { 0, 16, 0, SPRITE_SCORE_BASE + 1 },
+      { 40, 16, 0, SPRITE_DIGIT_0 },
+      { 48, 16, 0, SPRITE_SCORE_BASE + 2 },
+      { 56, 16, 0, SPRITE_DIGIT_0 },
+      { 64, 16, 0, SPRITE_DIGIT_0 },
+      { 72, 16, 0, SPRITE_SCORE_BASE + 3 },
+      { 80, 16, 0, SPRITE_DIGIT_0 },
+      { 88, 16, 0, SPRITE_DIGIT_0 },
       { 48, 32, 0, 0 },
       { 56, 32, 0, 0 },
-      { 64, 32, 0, 318 }
+      { 64, 32, 0, SPRITE_DIGIT_0 }
     }
   }
 };
@@ -125,9 +178,9 @@ sprite_pattern scorepat1 = {
   3,
   {
     {
-      { 0, 0, 0, 347 },
-      { 16, 8, 0, 343 },
-      { 24, 4, 0, 318 }
+      { 0, 0, 0, SPRITE_SCORE_BASE + 8 },
+      { 16, 8, 0, SPRITE_SCORE_BASE + 4 },
+      { 24, 4, 0, SPRITE_DIGIT_0 }
     }
   }
 };
@@ -135,27 +188,27 @@ sprite_pattern scorepat2 = {
   15,
   {
     {
-      { 0, 0, 0, 339 },
+      { 0, 0, 0, SPRITE_SCORE_BASE },
       { 40, 0, 0, 0 },
       { 48, 0, 0, 0 },
       { 56, 0, 0, 0 },
       { 64, 0, 0, 0 },
       { 72, 0, 0, 0 },
-      { 80, 0, 0, 318 },
-      { 0, 16, 0, 340 },
+      { 80, 0, 0, SPRITE_DIGIT_0 },
+      { 0, 16, 0, SPRITE_SCORE_BASE + 1 },
       { 56, 16, 0, 0 },
       { 64, 16, 0, 0 },
       { 72, 16, 0, 0 },
-      { 80, 16, 0, 318 },
+      { 80, 16, 0, SPRITE_DIGIT_0 },
       { 48, 32, 0, 0 },
       { 56, 32, 0, 0 },
-      { 64, 32, 0, 318 }
+      { 64, 32, 0, SPRITE_DIGIT_0 }
     }
   }
 };
 sprite_pattern scorepat3 = {
   1,
-  { { { 0, 32, 0, 344 } } }
+  { { { 0, 32, 0, SPRITE_SCORE_BASE + 5 } } }
 };
 static sprite_pattern* scorepat[4] = {
   &scorepat0,
@@ -168,59 +221,6 @@ extern sprite_pattern bonuspat;
 extern sprite_pattern bonuspat0;
 unsigned char scoreinittbl[7] = { 255, 255, 255, 255, 255, 255, 0 };
 unsigned char ringinittbl[3] = { 255, 255, 0 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -356,13 +356,13 @@ static void score_init(sprite_status* pAct) { /* Line 338, Address: 0x1005250 */
 
     switch (time_flag & 3) { /* Line 357, Address: 0x1005300 */
       case 0:
-        scorepat1.spra[0].index = SCOREPAT1DAT_INDEX_0; /* Line 359, Address: 0x100532c */
+        scorepat1.spra[0].index = SPRITE_LIFEICON_PAST; /* Line 359, Address: 0x100532c */
         break; /* Line 360, Address: 0x1005338 */
       case 1:
-        scorepat1.spra[0].index = SCOREPAT1DAT_INDEX_1; /* Line 362, Address: 0x1005340 */
+        scorepat1.spra[0].index = SPRITE_LIFEICON_PRESENT; /* Line 362, Address: 0x1005340 */
         break; /* Line 363, Address: 0x100534c */
       default:
-        scorepat1.spra[0].index = SCOREPAT1DAT_INDEX_2; /* Line 365, Address: 0x1005354 */
+        scorepat1.spra[0].index = SPRITE_LIFEICON_FUTURE; /* Line 365, Address: 0x1005354 */
         break;
     }
   }
@@ -375,16 +375,16 @@ static void score_move(sprite_status* pAct) { /* Line 373, Address: 0x1005370 */
     if (pAct->userflag.b.l) { /* Line 375, Address: 0x100538c */
       if (plring) { /* Line 376, Address: 0x100539c */
         pAct->sproffset = 32768; /* Line 377, Address: 0x10053ac */
-        scorepat3.spra[0].index = SCOREPAT3DAT_INDEX_0; /* Line 378, Address: 0x10053b8 */
+        scorepat3.spra[0].index = SPRITE_RINGS_NORMAL; /* Line 378, Address: 0x10053b8 */
 
       } /* Line 380, Address: 0x10053c4 */
       else {
 
         if (!(systemtimer.b.b4 & 15)) { /* Line 383, Address: 0x10053cc */
-          if (scorepat3.spra[0].index == SCOREPAT3DAT_INDEX_0) /* Line 384, Address: 0x10053e8 */
-            scorepat3.spra[0].index = SCOREPAT3DAT_INDEX_1; /* Line 385, Address: 0x1005400 */
+          if (scorepat3.spra[0].index == SPRITE_RINGS_NORMAL) /* Line 384, Address: 0x10053e8 */
+            scorepat3.spra[0].index = SPRITE_RINGS_DANGER; /* Line 385, Address: 0x1005400 */
           else
-            scorepat3.spra[0].index = SCOREPAT3DAT_INDEX_0; /* Line 387, Address: 0x1005414 */
+            scorepat3.spra[0].index = SPRITE_RINGS_NORMAL; /* Line 387, Address: 0x1005414 */
         }
       }
     } /* Line 390, Address: 0x1005420 */
@@ -526,7 +526,7 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
     bonuswrt(&pSprpat->spra[8], (unsigned short)ringbonus); /* Line 526, Address: 0x100593c */
     bonuswrt(&pSprpat->spra[13], (unsigned short)timebonus); /* Line 527, Address: 0x1005958 */
     scorewrt(&pSprpat->spra[1], plscore); /* Line 528, Address: 0x1005974 */
-    pSprpat->spra[7].index = PSCOREPATDAT_INDEX_0; /* Line 529, Address: 0x1005988 */
+    pSprpat->spra[7].index = SPRITE_DIGIT_0; /* Line 529, Address: 0x1005988 */
   }
 
 
@@ -606,7 +606,7 @@ static void scorewrt2(sprite_data* pSprdat, unsigned int lDispVal, unsigned int*
       wrt = 1; /* Line 606, Address: 0x1005ba0 */
     }
     if (wrt != 0 || (sD6 == 0 && zero_disp)) { /* Line 608, Address: 0x1005ba4 */
-      pSprdat->index = (unsigned short)lDisp1 + PSCOREPATDAT_INDEX_0; /* Line 609, Address: 0x1005bcc */
+      pSprdat->index = (unsigned short)lDisp1 + SPRITE_DIGIT_0; /* Line 609, Address: 0x1005bcc */
     } /* Line 610, Address: 0x1005be4 */
     else {
       pSprdat->index = 0; /* Line 612, Address: 0x1005bec */
@@ -664,7 +664,7 @@ static void timewrt0(sprite_data* pSprdat, unsigned int lDispVal, unsigned int* 
     lDisp1 = lDispVal / *subval; /* Line 664, Address: 0x1005d88 */
     lDispVal -= lDisp1 * *subval; /* Line 665, Address: 0x1005db0 */
     ++subval; /* Line 666, Address: 0x1005dcc */
-    pSprdat->index = lDisp1 + PSCOREPATDAT_INDEX_0; /* Line 667, Address: 0x1005dd8 */
+    pSprdat->index = lDisp1 + SPRITE_DIGIT_0; /* Line 667, Address: 0x1005dd8 */
     ++pSprdat; /* Line 668, Address: 0x1005dec */
   } while (--sD6 >= 0); /* Line 669, Address: 0x1005df8 */
 

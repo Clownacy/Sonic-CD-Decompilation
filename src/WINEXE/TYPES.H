@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 typedef struct {
   char l;
   char h;
@@ -158,66 +161,4 @@ typedef struct {
 }
 score_data;
 
-typedef struct {
-  unsigned int hWnd;
-  unsigned int hSurf;
-  PALETTEENTRY* lpColorwk;
-  unsigned int* lpbFullScreen;
-  unsigned int bFirstTitle;
-  unsigned int* lpbVisualmode;
-  score_data* lpCrntScorData;
-  unsigned int selectIndx;
-  unsigned short* lpSelectedStage;
-  void* ReadScoreData;
-  void* WriteScoreData;
-  void* OpenScoreData;
-  void* CloseScoreData;
-  void* CreateScoreData;
-  void* ReadScoreIndx;
-  void* WriteScoreIndx;
-  void* CDPlay;
-  void* CDPause;
-  void* WaveRequest;
-  void* EASetBitmapBits;
-  void* EASetBitmapTransparency;
-  void* EACreateBitmap;
-  void* EADeleteBitmap;
-  void* EACreateSequencedSprite;
-  void* EASetDestination;
-  void* EASetDrawOrder;
-  void* EASetPosition;
-  void* EADeleteSprite;
-  void* EASetSequencedSpriteData;
-  void* EACreateFixedGrid;
-  void* EACreateTile;
-  void* EASetTileData;
-  void* EASetFixedGridData;
-  void* EASetView;
-  void* EASetEffect;
-  void* EADeleteFixedGrid;
-  void* EADraw;
-  void* EAClearEffect;
-  void* EADeleteTile;
-  void* EASetDestRect;
-  unsigned short* lpUserKey;
-}
-DllIn;
-
-typedef struct {
-  char descriptor[4];
-  ULONG byteCnt;
-  ULONG chunkCnt;
-  ULONG dataOffset;
-}
-PcmHeader;
-
-typedef struct {
- BOOL busy;
- HWAVEOUT hWaveout;
- WAVEHDR waveHdr;
- HWND hWnd;
- int unknown11;
- ULONG unknownCounter;
- ULONG unknown13;
-}
-WaveInfo;
+#endif

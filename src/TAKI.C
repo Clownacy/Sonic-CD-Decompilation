@@ -3,6 +3,9 @@
 #include "ACTION.H"
 #include "PLAYSUB.H"
 
+static void taki_init(sprite_status* pActwk);
+static void taki_move(sprite_status* pActwk);
+
 extern void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned short yOffs);
 
 static char shibukichg0[4] = { 4, 0, 1, -1 };
@@ -23,9 +26,6 @@ static void(*taki_move_tbl[2])(sprite_status*) = {
   &taki_init,
   &taki_move
 };
-
-
-
 
 
 

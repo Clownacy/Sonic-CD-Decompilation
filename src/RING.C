@@ -4,44 +4,56 @@
 #include "ACTSET.H"
 #include "DIRCOL.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 
-static void ringinit(sprite_status* pActwk);
-
-extern void soundset(short ReqNo);
-extern void sub_sync(short ReqNo);
+#if defined (R31) || defined (R32)
+  #define SPRITE_RING_BASE 321
+#elif defined (R33)
+  #define SPRITE_RING_BASE 325
+#elif defined (R6)
+  #define SPRITE_RING_BASE 320
+#elif defined (R81)
+  #define SPRITE_RING_BASE 310
+#elif defined (R82)
+  #define SPRITE_RING_BASE 319
+#elif defined (R83)
+  #define SPRITE_RING_BASE 312
+#else
+  #define SPRITE_RING_BASE 362
+#endif
 
 sprite_pattern ringsp0 = {
   1,
-  { { -8, -8, 0, 310 } }
+  { { -8, -8, 0, SPRITE_RING_BASE } }
 };
 sprite_pattern ringsp1 = {
   1,
-  { { -8, -8, 0, 311 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 1 } }
 };
 sprite_pattern ringsp2 = {
   1,
-  { { -4, -8, 0, 312 } }
+  { { -4, -8, 0, SPRITE_RING_BASE + 2 } }
 };
 sprite_pattern ringsp3 = {
   1,
-  { { -8, -8, 0, 313 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 3 } }
 };
 sprite_pattern ringsp4 = {
   1,
-  { { -8, -8, 0, 314 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 4 } }
 };
 sprite_pattern ringsp5 = {
   1,
-  { { -8, -8, 0, 315 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 5 } }
 };
 sprite_pattern ringsp6 = {
   1,
-  { { -8, -8, 0, 316 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 6 } }
 };
 sprite_pattern ringsp7 = {
   1,
-  { { -8, -8, 0, 317 } }
+  { { -8, -8, 0, SPRITE_RING_BASE + 7 } }
 };
 sprite_pattern ringsp8;
 sprite_pattern* ringpat[9] = {
@@ -63,18 +75,6 @@ unsigned char* ringchg[3] = {
   ringchg1,
   ringchg2
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

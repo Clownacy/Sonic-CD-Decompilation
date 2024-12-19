@@ -235,7 +235,7 @@ void DLLPaint(unsigned int hdc) { /* Line 232, Address: 0x1000700 */
 
 
 
-int DLLNotify(int, int, int) { /* Line 238, Address: 0x1000730 */
+int DLLNotify(unsigned int WPARAM, long LPARAM) { /* Line 238, Address: 0x1000730 */
 
 
 

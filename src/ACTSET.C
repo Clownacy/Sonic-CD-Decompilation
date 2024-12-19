@@ -428,7 +428,7 @@ int actwkchk2(sprite_status* pActwk, sprite_status** ppNewActwk) { /* Line 403, 
 
 
 int frameout_s(sprite_status* pActwk) { /* Line 430, Address: 0x1000c00 */
-  frameout_s00(pActwk, pActwk->xposi.w.h); /* Line 431, Address: 0x1000c0c */
+  return frameout_s00(pActwk, pActwk->xposi.w.h); /* Line 431, Address: 0x1000c0c */
 } /* Line 432, Address: 0x1000c20 */
 
 

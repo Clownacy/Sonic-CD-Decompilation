@@ -2,7 +2,7 @@ void OESetSequenceNum(unsigned short num);
 void DLLInit(engine_dll* lpDllIn, char*** pBufTbl, void** pFuncTbl);
 void DLLEnd();
 void DLLPaint(unsigned int hdc);
-int DLLNotify(int, int, int);
+int DLLNotify(unsigned int WPARAM, long LPARAM);
 void DLLAVISizeChange();
 void DLLAVIRealize();
 void AVIPause();

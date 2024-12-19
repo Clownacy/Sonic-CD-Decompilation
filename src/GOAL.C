@@ -3,11 +3,10 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DIRCOL.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 
-extern void soundset(short ReqNo);
 extern void colorset2(int ColorNo);
-extern void sub_sync(short ReqNo);
 
 void(*gene_tbl[6])(sprite_status*) = {
   &gene_init,
@@ -48,6 +47,7 @@ void(*goal_tbl[5])(sprite_status*) = {
   &goal_move3
 };
 extern unsigned char* goalchg[];
+
 
 
 

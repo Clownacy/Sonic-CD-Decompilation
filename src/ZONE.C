@@ -3,18 +3,47 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DUMMY.H"
+#include "LOADER2.H"
 #include "SCORE.H"
 
-extern void sub_sync(short ReqNo);
-extern void soundset(short ReqNo);
+static void over_init(sprite_status* pAct);
+static void over_move(sprite_status* pAct);
+static void title_init(sprite_status* pAct);
+static void title_move0(sprite_status* pAct);
+static void title_move1(sprite_status* pAct);
+static void title_back0(sprite_status* pAct);
+static void title_back1(sprite_status* pAct);
+static void title_wait(sprite_status* pAct);
+static void clear_init0(sprite_status* pAct);
+static void clear_init(sprite_status* pAct);
+static void clear_move0(sprite_status* pAct);
+static void clear_move1(sprite_status* pAct);
+static void clear_move2(sprite_status* pAct);
+static void clear_wait(sprite_status* pAct);
+
+#if defined (R31) || defined (R32)
+  #define SPRITE_ZONE_BASE 390
+#elif defined (R33)
+  #define SPRITE_ZONE_BASE 394
+#elif defined (R6)
+  #define SPRITE_ZONE_BASE 389
+#elif defined (R81)
+  #define SPRITE_ZONE_BASE 379
+#elif defined (R82)
+  #define SPRITE_ZONE_BASE 388
+#elif defined (R83)
+  #define SPRITE_ZONE_BASE 381
+#else
+  #define SPRITE_ZONE_BASE 348
+#endif
 
 static sprite_pattern game0 = {
   1,
-  { { -72, -8, 0, 379 } }
+  { { -72, -8, 0, SPRITE_ZONE_BASE } } // base 379
 };
 static sprite_pattern game1 = {
   1,
-  { { 8, -8, 0, 380 } }
+  { { 8, -8, 0, SPRITE_ZONE_BASE + 1 } }
 };
 sprite_pattern* gamepat[2] = {
   &game0,
@@ -22,11 +51,11 @@ sprite_pattern* gamepat[2] = {
 };
 static sprite_pattern time0 = {
   1,
-  { { -68, -8, 0, 381 } }
+  { { -68, -8, 0, SPRITE_ZONE_BASE + 2 } }
 };
 static sprite_pattern time1 = {
   1,
-  { { 4, -8, 0, 382 } }
+  { { 4, -8, 0, SPRITE_ZONE_BASE + 3 } }
 };
 sprite_pattern* timepat[2] = {
   &time0,
@@ -34,41 +63,41 @@ sprite_pattern* timepat[2] = {
 };
 static sprite_pattern gotpat0 = {
   1,
-  { { -68, -20, 0, 383 } }
+  { { -68, -20, 0, SPRITE_ZONE_BASE + 4 } }
 };
 static sprite_pattern gotpat1 = {
   1,
-  { { -100, 4, 0, 384 } }
+  { { -100, 4, 0, SPRITE_ZONE_BASE + 5 } }
 };
 static sprite_pattern gotpat2 = {
   1,
-  { { -100, 4, 0, 385 } }
+  { { -100, 4, 0, SPRITE_ZONE_BASE + 6 } }
 };
 static sprite_pattern gotpat3 = {
   1,
-  { { -100, 4, 0, 386 } }
+  { { -100, 4, 0, SPRITE_ZONE_BASE + 7 } }
 };
 static sprite_pattern madepat0 = {
   1,
-  { { -128, -20, 0, 387 } }
+  { { -128, -20, 0, SPRITE_ZONE_BASE + 8 } }
 };
 static sprite_pattern madepat1 = {
   1,
-  { { -112, 4, 0, 388 } }
+  { { -112, 4, 0, SPRITE_ZONE_BASE + 9 } }
 };
 static sprite_pattern madepat2 = {
   1,
-  { { -112, 4, 0, 389 } }
+  { { -112, 4, 0, SPRITE_ZONE_BASE + 10 } }
 };
 static sprite_pattern madepat3 = {
   1,
-  { { -112, 4, 0, 390 } }
+  { { -112, 4, 0, SPRITE_ZONE_BASE + 11 } }
 };
 sprite_pattern bonuspat = {
   18,
   {
   {
-    { -44, -32, 0, 391 },
+    { -44, -32, 0, SPRITE_ZONE_BASE + 12 },
     { 72, -32, 0, 0 },
     { 80, -32, 0, 0 },
     { 88, -32, 0, 0 },
@@ -93,7 +122,7 @@ sprite_pattern bonuspat0 = {
   18,
   {
   {
-    { -44, -32, 0, 392 },
+    { -44, -32, 0, SPRITE_ZONE_BASE + 13 },
     { 72, -32, 0, 0 },
     { 80, -32, 0, 0 },
     { 88, -32, 0, 0 },
@@ -152,35 +181,6 @@ static unsigned short cleartbl[12] = {
   204,   0, 288,   2
 };
 extern void(*WaveAllStop)();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
