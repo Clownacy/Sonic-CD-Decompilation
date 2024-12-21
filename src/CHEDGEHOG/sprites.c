@@ -1,0 +1,323 @@
+#include "sprites.h"
+#include <stdlib.h>
+#include <string.h>
+#include "cmpbmp.h"
+#include "cmpbmpheader.h"
+#include "cmpspritemeta.h"
+#include "extractedbitmap.h"
+#include "spriteinfo.h"
+#include "szdd.h"
+static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info);
+static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info);
+static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info);
+static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info);
+
+static unsigned char* g_sprite_bitmap_data = 0;
+static extracted_bitmap g_sprite_bitmaps[700] = { 0 };
+static sprite_info g_sprites[80] = { 0 };
+static int g_sprite_cnt = 0;
+
+
+int load_sprite_bitmaps(char* p_filename) {
+  int ret = 0;
+  unsigned char* p_bytes_start = szdd_decompress(p_filename);
+
+  if (p_bytes_start == 0) {
+    ret = 1;
+  }
+  else {
+    unsigned char* p_bytes = p_bytes_start;
+    cmp_bmp_header header;
+    cmp_sprite_meta* p_meta;
+    unsigned long bitmap_data_size = 0;
+    int i;
+
+    p_bytes = read_cmp_bmp_header(p_bytes, &header);
+    p_bytes = read_cmp_sprite_meta(p_bytes, &p_meta, header.cnt);
+
+    for (i = 0; i < header.cnt; ++i) {
+      bitmap_data_size += p_meta[i].width * p_meta[i].height;
+    }
+
+    g_sprite_bitmap_data = malloc(bitmap_data_size);
+    if (g_sprite_bitmap_data == 0) {
+      ret = 2;
+    }
+    else {
+      extract_sprites(g_sprite_bitmap_data, g_sprite_bitmaps, p_bytes, header.cnt, p_meta);
+    }
+
+    free(p_meta);
+    free(p_bytes_start);
+  }
+
+  return ret;
+}
+
+
+void unload_sprite_bitmaps() {
+  if (g_sprite_bitmap_data != 0) {
+    free(g_sprite_bitmap_data);
+    g_sprite_bitmap_data = 0;
+  }
+  memset(g_sprite_bitmaps, 0, sizeof(g_sprite_bitmaps));
+}
+
+
+void EAsprset(short x, short y, unsigned short index, unsigned short linkdata, unsigned short reverse) {
+  if (index == 0) {
+    g_sprites[linkdata].index = 0;
+  }
+  else {
+    g_sprites[linkdata].x = x - 128;
+    g_sprites[linkdata].y = y - 128;
+    g_sprites[linkdata].index = index;
+    g_sprites[linkdata].reverse = reverse;
+  }
+
+  g_sprite_cnt = linkdata;
+}
+
+
+void blit_sprites(unsigned char* p_pixelbuffer) {
+  int i;
+
+  for (i = g_sprite_cnt - 1; i >= 0; --i) {
+    sprite_info info = g_sprites[i];
+    extracted_bitmap bitmap = g_sprite_bitmaps[info.index];
+
+    switch (g_sprites[i].reverse & 3) {
+      case 0: blit_sprite(p_pixelbuffer, bitmap, info); break;
+      case 1: blit_sprite_hflip(p_pixelbuffer, bitmap, info); break;
+      case 2: blit_sprite_vflip(p_pixelbuffer, bitmap, info); break;
+      case 3: blit_sprite_hvflip(p_pixelbuffer, bitmap, info); break;
+    }
+  }
+}
+
+
+static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
+  int x = info.x;
+  int x_end = x + bitmap.width;
+  int y = info.y;
+  int y_end = info.y + bitmap.height;
+  int x_skip = 0;
+
+  if (x >= 320) return;
+  if (x_end <= 0) return;
+  if (y >= 224) return;
+  if (y_end <= 0) return;
+
+  if (x < 0) {
+    x_skip = -x;
+    x = 0;
+  }
+  if (x_end > 320) {
+    x_end = 320;
+  }
+  if (y < 0) {
+    int i;
+
+    for (i = 0; i > y; --i) {
+      bitmap.p_data += bitmap.width;
+    }
+
+    y_end += y;
+    y = 0;
+  }
+  if (y_end > 224) {
+    y_end = 224;
+  }
+
+  p_pixelbuffer += y * 320;
+
+  do {
+    unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
+    unsigned char* p_bitmap_data_copy = bitmap.p_data + x_skip;
+    int i;
+
+    for (i = x; i < x_end; ++i) {
+      if (*p_bitmap_data_copy != 0xFF) {
+        *p_pixelbuffer_copy = *p_bitmap_data_copy;
+      }
+      ++p_pixelbuffer_copy;
+      ++p_bitmap_data_copy;
+    }
+
+    p_pixelbuffer += 320;
+    bitmap.p_data += bitmap.width;
+    ++y;
+  }
+  while (y < y_end);
+}
+
+
+static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
+  int x = info.x - bitmap.width;
+  int x_end = x + bitmap.width;
+  int y = info.y;
+  int y_end = info.y + bitmap.height;
+  int x_skip = 0;
+
+  if (x >= 320) return;
+  if (x_end <= 0) return;
+  if (y >= 224) return;
+  if (y_end <= 0) return;
+
+  if (x < 0) {
+    x_skip = x;
+    x = 0;
+  }
+  if (x_end > 320) {
+    x_end = 320;
+  }
+  if (y < 0) {
+    int i;
+
+    for (i = 0; i > y; --i) {
+      bitmap.p_data += bitmap.width;
+    }
+
+    y_end += y;
+    y = 0;
+  }
+  if (y_end > 224) {
+    y_end = 224;
+  }
+
+  p_pixelbuffer += y * 320;
+  bitmap.p_data += bitmap.width;
+
+  do {
+    unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
+    unsigned char* p_bitmap_data_copy = bitmap.p_data + x_skip;
+    int i;
+
+    for (i = x; i < x_end; ++i) {
+      if (*p_bitmap_data_copy != 0xFF) {
+        *p_pixelbuffer_copy = *p_bitmap_data_copy;
+      }
+      ++p_pixelbuffer_copy;
+      --p_bitmap_data_copy;
+    }
+
+    p_pixelbuffer += 320;
+    bitmap.p_data += bitmap.width;
+    ++y;
+  }
+  while (y < y_end);
+}
+
+
+static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
+  int x = info.x;
+  int x_end = x + bitmap.width;
+  int y = info.y - bitmap.height;
+  int y_end = y + bitmap.height;
+  int x_skip = 0;
+
+  if (x >= 320) return;
+  if (x_end <= 0) return;
+  if (y >= 224) return;
+  if (y_end <= 0) return;
+
+  if (x < 0) {
+    x_skip = -x;
+    x = 0;
+  }
+  if (x_end > 320) {
+    x_end = 320;
+  }
+  if (y < 0) {
+    int i;
+
+    for (i = 0; i > y; --i) {
+      bitmap.p_data += bitmap.width;
+    }
+
+    y_end += y;
+    y = 0;
+  }
+  if (y_end > 224) {
+    y_end = 224;
+  }
+
+  p_pixelbuffer += y * 320;
+  bitmap.p_data += bitmap.width * (bitmap.height - 1);
+
+  do {
+    unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
+    unsigned char* p_bitmap_data_copy = bitmap.p_data + x_skip;
+    int i;
+
+    for (i = x; i < x_end; ++i) {
+      if (*p_bitmap_data_copy != 0xFF) {
+        *p_pixelbuffer_copy = *p_bitmap_data_copy;
+      }
+      ++p_pixelbuffer_copy;
+      ++p_bitmap_data_copy;
+    }
+
+    p_pixelbuffer += 320;
+    bitmap.p_data -= bitmap.width;
+    ++y;
+  }
+  while (y < y_end);
+}
+
+
+static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
+  int x = info.x - bitmap.width;
+  int x_end = x + bitmap.width;
+  int y = info.y - bitmap.height;
+  int y_end = y + bitmap.height;
+  int x_skip = 0;
+
+  if (x >= 320) return;
+  if (x_end <= 0) return;
+  if (y >= 224) return;
+  if (y_end <= 0) return;
+
+  if (x < 0) {
+    x_skip = x;
+    x = 0;
+  }
+  if (x_end > 320) {
+    x_end = 320;
+  }
+  if (y < 0) {
+    int i;
+
+    for (i = 0; i > y; --i) {
+      bitmap.p_data += bitmap.width;
+    }
+
+    y_end += y;
+    y = 0;
+  }
+  if (y_end > 224) {
+    y_end = 224;
+  }
+
+  p_pixelbuffer += y * 320;
+  bitmap.p_data += bitmap.width * bitmap.height;
+
+  do {
+    unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
+    unsigned char* p_bitmap_data_copy = bitmap.p_data + x_skip;
+    int i;
+
+    for (i = x; i < x_end; ++i) {
+      if (*p_bitmap_data_copy != 0xFF) {
+        *p_pixelbuffer_copy = *p_bitmap_data_copy;
+      }
+      ++p_pixelbuffer_copy;
+      --p_bitmap_data_copy;
+    }
+
+    p_pixelbuffer += 320;
+    bitmap.p_data -= bitmap.width;
+    ++y;
+  }
+  while (y < y_end);
+}
