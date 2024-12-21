@@ -4,6 +4,7 @@
 #include "cmpbmp.h"
 #include "cmpbmpheader.h"
 #include "cmpspritemeta.h"
+#include "constants.h"
 #include "extractedbitmap.h"
 #include "spriteinfo.h"
 #include "szdd.h"
@@ -13,8 +14,8 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
 static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info);
 
 static unsigned char* g_sprite_bitmap_data = 0;
-static extracted_bitmap g_sprite_bitmaps[700] = { 0 };
-static sprite_info g_sprites[80] = { 0 };
+static extracted_bitmap g_sprite_bitmaps[SPRITE_BITMAPS_MAX] = { 0 };
+static sprite_info g_sprites[SPRITES_MAX] = { 0 };
 static int g_sprite_cnt = 0;
 
 
@@ -86,11 +87,11 @@ void blit_sprites(unsigned char* p_pixelbuffer) {
     sprite_info info = g_sprites[i];
     extracted_bitmap bitmap = g_sprite_bitmaps[info.index];
 
-    switch (g_sprites[i].reverse & 3) {
-      case 0: blit_sprite(p_pixelbuffer, bitmap, info); break;
-      case 1: blit_sprite_hflip(p_pixelbuffer, bitmap, info); break;
-      case 2: blit_sprite_vflip(p_pixelbuffer, bitmap, info); break;
-      case 3: blit_sprite_hvflip(p_pixelbuffer, bitmap, info); break;
+    switch (g_sprites[i].reverse & SPRITE_FLIP_MASK) {
+      case SPRITE_NOFLIP: blit_sprite(p_pixelbuffer, bitmap, info); break;
+      case SPRITE_HFLIP: blit_sprite_hflip(p_pixelbuffer, bitmap, info); break;
+      case SPRITE_VFLIP: blit_sprite_vflip(p_pixelbuffer, bitmap, info); break;
+      case SPRITE_HVFLIP: blit_sprite_hvflip(p_pixelbuffer, bitmap, info); break;
     }
   }
 }
@@ -103,17 +104,17 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, s
   int y_end = info.y + bitmap.height;
   int x_skip = 0;
 
-  if (x >= 320) return;
+  if (x >= SCREEN_WIDTH) return;
   if (x_end <= 0) return;
-  if (y >= 224) return;
+  if (y >= SCREEN_HEIGHT) return;
   if (y_end <= 0) return;
 
   if (x < 0) {
     x_skip = -x;
     x = 0;
   }
-  if (x_end > 320) {
-    x_end = 320;
+  if (x_end > SCREEN_WIDTH) {
+    x_end = SCREEN_WIDTH;
   }
   if (y < 0) {
     int i;
@@ -125,11 +126,11 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, s
     y_end += y;
     y = 0;
   }
-  if (y_end > 224) {
-    y_end = 224;
+  if (y_end > SCREEN_HEIGHT) {
+    y_end = SCREEN_HEIGHT;
   }
 
-  p_pixelbuffer += y * 320;
+  p_pixelbuffer += y * SCREEN_WIDTH;
 
   do {
     unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
@@ -137,14 +138,14 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, s
     int i;
 
     for (i = x; i < x_end; ++i) {
-      if (*p_bitmap_data_copy != 0xFF) {
+      if (*p_bitmap_data_copy != SPRITE_TRANSPARENT_COLOR) {
         *p_pixelbuffer_copy = *p_bitmap_data_copy;
       }
       ++p_pixelbuffer_copy;
       ++p_bitmap_data_copy;
     }
 
-    p_pixelbuffer += 320;
+    p_pixelbuffer += SCREEN_WIDTH;
     bitmap.p_data += bitmap.width;
     ++y;
   }
@@ -159,17 +160,17 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
   int y_end = info.y + bitmap.height;
   int x_skip = 0;
 
-  if (x >= 320) return;
+  if (x >= SCREEN_WIDTH) return;
   if (x_end <= 0) return;
-  if (y >= 224) return;
+  if (y >= SCREEN_HEIGHT) return;
   if (y_end <= 0) return;
 
   if (x < 0) {
     x_skip = x;
     x = 0;
   }
-  if (x_end > 320) {
-    x_end = 320;
+  if (x_end > SCREEN_WIDTH) {
+    x_end = SCREEN_WIDTH;
   }
   if (y < 0) {
     int i;
@@ -181,11 +182,11 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
     y_end += y;
     y = 0;
   }
-  if (y_end > 224) {
-    y_end = 224;
+  if (y_end > SCREEN_HEIGHT) {
+    y_end = SCREEN_HEIGHT;
   }
 
-  p_pixelbuffer += y * 320;
+  p_pixelbuffer += y * SCREEN_WIDTH;
   bitmap.p_data += bitmap.width;
 
   do {
@@ -194,14 +195,14 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
     int i;
 
     for (i = x; i < x_end; ++i) {
-      if (*p_bitmap_data_copy != 0xFF) {
+      if (*p_bitmap_data_copy != SPRITE_TRANSPARENT_COLOR) {
         *p_pixelbuffer_copy = *p_bitmap_data_copy;
       }
       ++p_pixelbuffer_copy;
       --p_bitmap_data_copy;
     }
 
-    p_pixelbuffer += 320;
+    p_pixelbuffer += SCREEN_WIDTH;
     bitmap.p_data += bitmap.width;
     ++y;
   }
@@ -216,17 +217,17 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
   int y_end = y + bitmap.height;
   int x_skip = 0;
 
-  if (x >= 320) return;
+  if (x >= SCREEN_WIDTH) return;
   if (x_end <= 0) return;
-  if (y >= 224) return;
+  if (y >= SCREEN_HEIGHT) return;
   if (y_end <= 0) return;
 
   if (x < 0) {
     x_skip = -x;
     x = 0;
   }
-  if (x_end > 320) {
-    x_end = 320;
+  if (x_end > SCREEN_WIDTH) {
+    x_end = SCREEN_WIDTH;
   }
   if (y < 0) {
     int i;
@@ -238,11 +239,11 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
     y_end += y;
     y = 0;
   }
-  if (y_end > 224) {
-    y_end = 224;
+  if (y_end > SCREEN_HEIGHT) {
+    y_end = SCREEN_HEIGHT;
   }
 
-  p_pixelbuffer += y * 320;
+  p_pixelbuffer += y * SCREEN_WIDTH;
   bitmap.p_data += bitmap.width * (bitmap.height - 1);
 
   do {
@@ -251,14 +252,14 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
     int i;
 
     for (i = x; i < x_end; ++i) {
-      if (*p_bitmap_data_copy != 0xFF) {
+      if (*p_bitmap_data_copy != SPRITE_TRANSPARENT_COLOR) {
         *p_pixelbuffer_copy = *p_bitmap_data_copy;
       }
       ++p_pixelbuffer_copy;
       ++p_bitmap_data_copy;
     }
 
-    p_pixelbuffer += 320;
+    p_pixelbuffer += SCREEN_WIDTH;
     bitmap.p_data -= bitmap.width;
     ++y;
   }
@@ -273,17 +274,17 @@ static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bi
   int y_end = y + bitmap.height;
   int x_skip = 0;
 
-  if (x >= 320) return;
+  if (x >= SCREEN_WIDTH) return;
   if (x_end <= 0) return;
-  if (y >= 224) return;
+  if (y >= SCREEN_HEIGHT) return;
   if (y_end <= 0) return;
 
   if (x < 0) {
     x_skip = x;
     x = 0;
   }
-  if (x_end > 320) {
-    x_end = 320;
+  if (x_end > SCREEN_WIDTH) {
+    x_end = SCREEN_WIDTH;
   }
   if (y < 0) {
     int i;
@@ -295,11 +296,11 @@ static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bi
     y_end += y;
     y = 0;
   }
-  if (y_end > 224) {
-    y_end = 224;
+  if (y_end > SCREEN_HEIGHT) {
+    y_end = SCREEN_HEIGHT;
   }
 
-  p_pixelbuffer += y * 320;
+  p_pixelbuffer += y * SCREEN_WIDTH;
   bitmap.p_data += bitmap.width * bitmap.height;
 
   do {
@@ -308,14 +309,14 @@ static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bi
     int i;
 
     for (i = x; i < x_end; ++i) {
-      if (*p_bitmap_data_copy != 0xFF) {
+      if (*p_bitmap_data_copy != SPRITE_TRANSPARENT_COLOR) {
         *p_pixelbuffer_copy = *p_bitmap_data_copy;
       }
       ++p_pixelbuffer_copy;
       --p_bitmap_data_copy;
     }
 
-    p_pixelbuffer += 320;
+    p_pixelbuffer += SCREEN_WIDTH;
     bitmap.p_data -= bitmap.width;
     ++y;
   }
