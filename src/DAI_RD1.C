@@ -5,6 +5,7 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "RIDECHK.H"
 
 static void dodai_init(sprite_status* pActwk);
@@ -26,8 +27,6 @@ static void dai_fout(sprite_status* pActwk);
 static void vfuta_init(sprite_status* pActwk);
 static void vfuta_move1(sprite_status* pActwk);
 static void vfuta_move2(sprite_status* pActwk);
-
-extern void soundset(short ReqNo);
 
 static sprite_pattern dai11a_pat1 = {
   1,
@@ -79,6 +78,7 @@ static void(*vfuta_tbl[3])(sprite_status*) = {
   &vfuta_move1,
   &vfuta_move2
 };
+
 
 
 

@@ -2,14 +2,13 @@
 #include "ET1.H"
 #include "ACTION.H"
 #include "ACTSET.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 #include "SCORE.H"
 
 static void m_init(sprite_status* actionwk);
 static void m_wait(sprite_status* actionwk);
-
-extern void soundset(short ReqNo);
 
 static sprite_pattern tpat00 = {
   1,
@@ -100,6 +99,7 @@ static char tbl0[64] = {
 };
 static char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
 static char* pchg[1] = { pchg0 };
+
 
 
 

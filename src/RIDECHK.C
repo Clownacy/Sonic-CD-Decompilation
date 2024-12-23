@@ -1,8 +1,8 @@
 #include "EQU.H"
 #include "RIDECHK.H"
 #include "DIRCOL.H"
+#include "LOADER2.H"
 
-extern void soundset(short ReqNo);
 extern short playdieset(sprite_status* pActwk);
 
 

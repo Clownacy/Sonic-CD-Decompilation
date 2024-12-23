@@ -5,9 +5,9 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "RIDECHK.H"
 
-extern void soundset(short ReqNo);
 extern sprite_pattern* markerpat[]; extern unsigned char* markerchg[]; extern sprite_pattern* bariapat[]; extern unsigned char* bariachg[]; extern sprite_pattern* bakupat[]; extern unsigned char* bakuchg[]; extern sprite_pattern* mizukipat[]; extern unsigned char* mizukichg[]; extern sprite_pattern* futapat[]; extern unsigned char* futachg[]; extern sprite_pattern* exit2pat[]; extern unsigned char* exit2chg[];
 static unsigned char flowchg0[4] = { 3, 0, 1, 255 }, flowchg1[6] = { 3, 2, 3, 2, 3, 252 }, flowchg2[6] = { 1, 5, 5, 4, 6, 252 }, flowchg3[4] = { 19, 6, 7, 255 };
 unsigned char *flowchg[4] = { flowchg0, flowchg1, flowchg2, flowchg3 };

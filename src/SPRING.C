@@ -5,10 +5,9 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
-
-extern void soundset(short ReqNo);
 
 static sprite_pattern spat00 = {
   1,
@@ -152,6 +151,7 @@ void(*sjump_move_tbl[13])(sprite_status*) = {
   &sjump3move2,
   &sjump3move3
 };
+
 
 
 

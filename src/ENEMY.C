@@ -5,10 +5,9 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "SUICIDE.H"
-
-extern void soundset(short ReqNo);
 
 static unsigned char ari_pchg00[4] = { 3, 0, 1, 255 };
 static unsigned char ari_pchg01[4] = { 7, 2, 3, 255 };
@@ -406,6 +405,7 @@ sprite_pattern* b_tagame_pat[7] =
   &tagame_pat05b,
   &tagame_pat06
 };
+
 
 
 
