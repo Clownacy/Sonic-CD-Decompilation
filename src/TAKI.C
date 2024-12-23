@@ -8,15 +8,21 @@ static void taki_move(sprite_status* pActwk);
 
 extern void block_wrt(unsigned short BlockNo, unsigned short xOffs, unsigned short yOffs);
 
+#if defined(R11A)
+  #define SPRITE_SHIBUKI_BASE 465
+#else
+  #define SPRITE_SHIBUKI_BASE 448
+#endif
+
 static char shibukichg0[4] = { 4, 0, 1, -1 };
 unsigned char* shibukichg = { (unsigned char*)shibukichg0 };
 static sprite_pattern shibuki0 = {
   1,
-  { { -96, -16, 0, 448 } }
+  { { -96, -16, 0, SPRITE_SHIBUKI_BASE } }
 };
 static sprite_pattern shibuki1 = {
   1,
-  { { -96, -16, 0, 449 } }
+  { { -96, -16, 0, SPRITE_SHIBUKI_BASE + 1 } }
 };
 sprite_pattern* shibukipat[2] = {
   &shibuki0,
@@ -26,12 +32,6 @@ static void(*taki_move_tbl[2])(sprite_status*) = {
   &taki_init,
   &taki_move
 };
-
-
-
-
-
-
 
 
 

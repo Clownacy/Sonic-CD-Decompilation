@@ -10,13 +10,25 @@
 static void m_init(sprite_status* actionwk);
 static void m_wait(sprite_status* actionwk);
 
+#if defined(R11B)
+  #define SPRITE_ET1_BASE 502
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_ET1_BASE 492
+#elif defined(R12A) || defined(R12B) || defined(R12C) || defined(R12D)
+  #define SPRITE_ET1_BASE 493
+#elif defined(R13C) || defined (R13D)
+  #define SPRITE_ET1_BASE 481
+#else
+  #define SPRITE_ET1_BASE 517
+#endif
+
 static sprite_pattern tpat00 = {
   1,
-  { { -40, 16, 0, 481 } }
+  { { -40, 16, 0, SPRITE_ET1_BASE } }
 };
 static sprite_pattern tpat01 = {
   1,
-  { { -40, 16, 0, 482 } }
+  { { -40, 16, 0, SPRITE_ET1_BASE + 1 } }
 };
 static sprite_pattern tpat07 = {
   1,
@@ -25,43 +37,43 @@ static sprite_pattern tpat07 = {
 static sprite_pattern tpat02 = {
   2,
   {
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+    { -24, -32, 0, SPRITE_ET1_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET1_BASE + 8 }
   }
 };
 static sprite_pattern tpat03 = {
   3,
   {
-    { -22, -8, 0, 490 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+    { -22, -8, 0, SPRITE_ET1_BASE + 9 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET1_BASE + 8 }
   }
 };
 static sprite_pattern tpat04 = {
   4,
   {
-    { -22, -8, 0, 491 },
-    { -24, -32, 0, 494 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+    { -22, -8, 0, SPRITE_ET1_BASE + 10 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 13 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET1_BASE + 8 }
   }
 };
 static sprite_pattern tpat05 = {
   4,
   {
-    { -22, -8, 0, 492 },
-    { -24, -32, 0, 494 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+    { -22, -8, 0, SPRITE_ET1_BASE + 11 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 13 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET1_BASE + 8 }
   }
 };
 static sprite_pattern tpat06 = {
   4,
   {
-    { -22, -8, 0, 493 },
-    { -24, -32, 0, 496 },
-    { -24, -32, 0, 488 },
-    { -40, -32, 0, 489 }
+    { -22, -8, 0, SPRITE_ET1_BASE + 12 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 15 },
+    { -24, -32, 0, SPRITE_ET1_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET1_BASE + 8 }
   }
 };
 sprite_pattern* pat_et[8] = {
@@ -99,18 +111,6 @@ static char tbl0[64] = {
 };
 static char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
 static char* pchg[1] = { pchg0 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

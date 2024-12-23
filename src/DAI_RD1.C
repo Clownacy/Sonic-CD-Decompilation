@@ -28,17 +28,37 @@ static void vfuta_init(sprite_status* pActwk);
 static void vfuta_move1(sprite_status* pActwk);
 static void vfuta_move2(sprite_status* pActwk);
 
+#if defined(R11B)
+  #define SPRITE_DAI11A_BASE 518
+  #define SPRITE_VFUTA_BASE 533
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_DAI11A_BASE 499
+  #define SPRITE_VFUTA_BASE 514
+#elif defined(R12A) || defined(R12B)
+  #define SPRITE_DAI11A_BASE 509
+  #define SPRITE_VFUTA_BASE 527
+#elif defined(R12C) || defined(R12D)
+  #define SPRITE_DAI11A_BASE 500
+  #define SPRITE_VFUTA_BASE 518
+#elif defined(R13C) || defined(R13D)
+  #define SPRITE_DAI11A_BASE 488
+  #define SPRITE_VFUTA_BASE 524
+#else
+  #define SPRITE_DAI11A_BASE 533
+  #define SPRITE_VFUTA_BASE 548
+#endif
+
 static sprite_pattern dai11a_pat1 = {
   1,
-  { { -16, -16, 0, 488 } }
+  { { -16, -16, 0, SPRITE_DAI11A_BASE } }
 };
 static sprite_pattern dai11a_pat2 = {
   1,
-  { { -32, -16, 0, 489 } }
+  { { -32, -16, 0, SPRITE_DAI11A_BASE + 1 } }
 };
 static sprite_pattern dai11a_pat3 = {
   1,
-  { { -48, -16, 0, 490 } }
+  { { -48, -16, 0, SPRITE_DAI11A_BASE + 2 } }
 };
 sprite_pattern* dai11a_pattbl[3] = {
   &dai11a_pat1,
@@ -63,11 +83,11 @@ static void(*dodai_mtype[10])(sprite_status*) = {
 };
 static sprite_pattern vfuta_pat0 = {
   1,
-  { { -4, -24, 0, 524 } }
+  { { -4, -24, 0, SPRITE_VFUTA_BASE } }
 };
 static sprite_pattern vfuta_pat1 = {
   1,
-  { { -4, -24, 0, 525 } }
+  { { -4, -24, 0, SPRITE_VFUTA_BASE + 1 } }
 };
 sprite_pattern* vfutapat[2] = {
   &vfuta_pat0,
@@ -78,26 +98,6 @@ static void(*vfuta_tbl[3])(sprite_status*) = {
   &vfuta_move1,
   &vfuta_move2
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
