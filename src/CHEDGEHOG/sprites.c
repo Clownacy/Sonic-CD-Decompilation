@@ -87,11 +87,11 @@ void blit_sprites(unsigned char* p_pixelbuffer) {
     sprite_info info = g_sprites[i];
     extracted_bitmap bitmap = g_sprite_bitmaps[info.index];
 
-    switch (g_sprites[i].reverse & SPRITE_FLIP_MASK) {
-      case SPRITE_NOFLIP: blit_sprite(p_pixelbuffer, bitmap, info); break;
-      case SPRITE_HFLIP: blit_sprite_hflip(p_pixelbuffer, bitmap, info); break;
-      case SPRITE_VFLIP: blit_sprite_vflip(p_pixelbuffer, bitmap, info); break;
-      case SPRITE_HVFLIP: blit_sprite_hvflip(p_pixelbuffer, bitmap, info); break;
+    switch (g_sprites[i].reverse & FLIP_MASK) {
+      case NOFLIP: blit_sprite(p_pixelbuffer, bitmap, info); break;
+      case HFLIP: blit_sprite_hflip(p_pixelbuffer, bitmap, info); break;
+      case VFLIP: blit_sprite_vflip(p_pixelbuffer, bitmap, info); break;
+      case HVFLIP: blit_sprite_hvflip(p_pixelbuffer, bitmap, info); break;
     }
   }
 }

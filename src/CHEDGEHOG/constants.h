@@ -1,16 +1,16 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define FLIP_MASK 3
+#define HFLIP 1
+#define HVFLIP 3
+#define NOFLIP 0
 #define SCREEN_HEIGHT 224
 #define SCREEN_WIDTH 320
 #define SPRITE_BITMAPS_MAX 700
-#define SPRITE_FLIP_MASK 3
-#define SPRITE_HFLIP 1
-#define SPRITE_HVFLIP 3
-#define SPRITE_NOFLIP 0
 #define SPRITE_TRANSPARENT_COLOR 0xFF
-#define SPRITE_VFLIP 2
 #define SPRITES_MAX 80
 #define SZDD_DICTIONARY_SIZE 4096
+#define VFLIP 2
 
 #endif
