@@ -19,37 +19,37 @@ unsigned char blockchg0[3] = { 2, 5, 255 };
 unsigned char blockchg1[10] = { 2, 1, 5, 2, 5, 3, 5, 4, 5, 252 };
 unsigned char blockchg2[10] = { 2, 1, 0, 2, 0, 3, 0, 4, 0, 252 };
 unsigned char* blockchg[3] = { blockchg0, blockchg1, blockchg2 };
-sprite_pattern block0 =
-{
-  0,
-  { { -12, -12, 0, 403 } }
-};
-sprite_pattern block1 =
-{
-  1,
-  { { -12, -12, 0, 403 } }
-};
-sprite_pattern block2 =
-{
-  1,
-  { { -12, -12, 0, 404 } }
-};
-sprite_pattern block3 =
-{
-  1,
-  { { -12, -12, 0, 405 } }
-};
-sprite_pattern block4 =
-{
-  1,
-  { { -12, -12, 0, 406 } }
-};
-sprite_pattern block5 =
-{
-  1,
-  { { -12, -12, 0, 407 } }
-};
+
+#if defined (R31) || defined (R32)
+  #define SPRITE_BLOCK_BASE 404
+#elif defined (R33)
+  #define SPRITE_BLOCK_BASE 408
+#elif defined (R6)
+  #define SPRITE_BLOCK_BASE 403
+#else
+  #define SPRITE_BLOCK_BASE 294
+#endif
+
+sprite_pattern block0 = { 0, { { -12, -12, 0, SPRITE_BLOCK_BASE } } };
+sprite_pattern block1 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE } } };
+sprite_pattern block2 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 1 } } };
+sprite_pattern block3 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 2 } } };
+sprite_pattern block4 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 3 } } };
+sprite_pattern block5 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 4 } } };
 sprite_pattern* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void block(sprite_status* pActwk) { /* Line 54, Address: 0x10150b0 */
   short iD0, iD1;

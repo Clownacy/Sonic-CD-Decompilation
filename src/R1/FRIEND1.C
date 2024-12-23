@@ -17,6 +17,20 @@ static void p_init(sprite_status* pActwk);
 static void p_move(sprite_status* pActwk);
 static void p_movie(sprite_status* pActwk);
 
+#if defined(R11B)
+  #define SPRITE_FRIEND_BASE 521
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_FRIEND_BASE 502
+#elif defined(R12A) || defined(R12B)
+  #define SPRITE_FRIEND_BASE 512
+#elif defined(R12C) || defined(R12D)
+  #define SPRITE_FRIEND_BASE 503
+#elif defined(R13C) || defined(R13D)
+  #define SPRITE_FRIEND_BASE 491
+#else
+  #define SPRITE_FRIEND_BASE 536
+#endif
+
 static unsigned char pchg00[4] = { 29, 0, 1, 255 };
 static unsigned char pchg01[30] =
 {
@@ -55,42 +69,42 @@ static unsigned char* pchg1[1] = { pchg10 };
 static sprite_pattern spr_flicky1 =
 {
   1,
-  { { -8, -8, 0, 491 } }
+  { { -8, -8, 0, SPRITE_FRIEND_BASE } }
 };
 static sprite_pattern spr_flicky2 =
 {
   1,
-  { { -8, -8, 0, 492 } }
+  { { -8, -8, 0, SPRITE_FRIEND_BASE + 1 } }
 };
 static sprite_pattern spr_ricky1 =
 {
   1,
-  { { -12, -8, 0, 492 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 2 } }
 };
 static sprite_pattern spr_ricky2 =
 {
   1,
-  { { -12, -8, 0, 493 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 3 } }
 };
 static sprite_pattern spr_ricky3 =
 {
   1,
-  { { -12, -8, 0, 494 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 4 } }
 };
 static sprite_pattern spr_ricky4 =
 {
   1,
-  { { -12, -8, 0, 495 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 5 } }
 };
 static sprite_pattern spr_friend0 =
 {
   1,
-  { { -12, -8, 0, 495 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 5 } }
 };
 static sprite_pattern spr_ricky5 =
 {
   1,
-  { { -12, -8, 0, 496 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 56} }
 };
 sprite_pattern* pat_friend0[3] =
 {
