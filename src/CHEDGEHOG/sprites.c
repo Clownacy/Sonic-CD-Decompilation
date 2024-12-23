@@ -187,7 +187,7 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
   }
 
   p_pixelbuffer += y * SCREEN_WIDTH;
-  bitmap.p_data += bitmap.width;
+  bitmap.p_data += bitmap.width - 1;
 
   do {
     unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
@@ -301,7 +301,7 @@ static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bi
   }
 
   p_pixelbuffer += y * SCREEN_WIDTH;
-  bitmap.p_data += bitmap.width * bitmap.height;
+  bitmap.p_data += bitmap.width * bitmap.height - 1;
 
   do {
     unsigned char* p_pixelbuffer_copy = p_pixelbuffer + x;
