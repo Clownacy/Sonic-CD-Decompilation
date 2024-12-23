@@ -78,7 +78,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
   if (swdata1.b.l & 64) /* Line 78, Address: 0x100efd4 */
   {
     en = editno.b.h + 1; /* Line 80, Address: 0x100efec */
-    if (en < pEdit_tbl->num) en = 0; /* Line 81, Address: 0x100f010 */
+    if (en >= pEdit_tbl->num) en = 0; /* Line 81, Address: 0x100f010 */
     editno.b.h = en; /* Line 82, Address: 0x100f034 */
   }
 
