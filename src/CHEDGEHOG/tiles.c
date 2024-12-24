@@ -216,23 +216,35 @@ void blit_planes(unsigned char* p_pixelbuffer, unsigned short hscroll_a, unsigne
 
 static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[STAGE_PLANE_WIDTH / TILE_LENGTH], unsigned short hscroll, unsigned short vscroll) {
   unsigned int left_overhang = hscroll % TILE_LENGTH;
-  unsigned int right_overhang = TILE_LENGTH - left_overhang;
   unsigned int y = vscroll;
-  unsigned int v, h, i;
+  unsigned int h_pixel_cnts[SCREEN_WIDTH / TILE_LENGTH + 2] = { 0 };
+  unsigned int v, i;
+
+  for (i = 0; i < SCREEN_WIDTH / TILE_LENGTH; ++i) {
+    h_pixel_cnts[i] = TILE_LENGTH;
+  }
 
   if (left_overhang != 0) {
-    for (v = 0; v < SCREEN_HEIGHT; ++v) {
-      unsigned int x = hscroll;
-      unsigned int tile_y = (y & STAGE_PLANE_HEIGHT - 1) / TILE_LENGTH;
+    h_pixel_cnts[0] = TILE_LENGTH - left_overhang;
+    h_pixel_cnts[SCREEN_WIDTH / TILE_LENGTH] = left_overhang;
+  }
+
+  for (v = 0; v < SCREEN_HEIGHT; ++v) {
+    unsigned int x = hscroll;
+    unsigned int tile_y = (y & STAGE_PLANE_HEIGHT - 1) / TILE_LENGTH;
+    unsigned int row_offset = y % TILE_LENGTH * TILE_LENGTH;
+    unsigned int* p_h_pixel_cnt = h_pixel_cnts;
+
+    do {
       unsigned int tile_x = (x & STAGE_PLANE_WIDTH - 1) / TILE_LENGTH;
-      unsigned int row_offset = y % TILE_LENGTH * TILE_LENGTH;
       unsigned short tile = p_plane[tile_y][tile_x];
 
       if (tile != 0) {
+        unsigned int column_offset = TILE_LENGTH - *p_h_pixel_cnt;
         unsigned char* p_pixelbuffer_copy = p_pixelbuffer;
-        unsigned char* p_pixels = &g_tile_bitmaps[tile].p_data[row_offset + left_overhang];
+        unsigned char* p_pixels = &g_tile_bitmaps[tile].p_data[row_offset + column_offset];
 
-        for (i = 0; i < right_overhang; ++i) {
+        for (i = 0; i < *p_h_pixel_cnt; ++i) {
           if (*p_pixels != 0) {
             *p_pixelbuffer_copy = *p_pixels;
           }
@@ -240,75 +252,11 @@ static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[ST
           ++p_pixels;
         }
       }
-      p_pixelbuffer += right_overhang;
-      x += right_overhang;
-
-      for (h = 0; h < SCREEN_WIDTH / TILE_LENGTH - 1; ++h) {
-        tile_x = (x & STAGE_PLANE_WIDTH - 1) / TILE_LENGTH;
-        tile = p_plane[tile_y][tile_x];
-
-        if (tile != 0) {
-          unsigned char* p_pixelbuffer_copy = p_pixelbuffer;
-          unsigned char* p_pixels = &g_tile_bitmaps[tile].p_data[row_offset];
-
-          for (i = 0; i < TILE_LENGTH; ++i) {
-            if (*p_pixels != 0) {
-              *p_pixelbuffer_copy = *p_pixels;
-            }
-            ++p_pixelbuffer_copy;
-            ++p_pixels;
-          }
-        }
-        p_pixelbuffer += TILE_LENGTH;
-        x += TILE_LENGTH;
-      }
-
-      tile_x = (x & STAGE_PLANE_WIDTH - 1) / TILE_LENGTH;
-      tile = p_plane[tile_y][tile_x];
-
-      if (tile != 0) {
-        unsigned char* p_pixelbuffer_copy = p_pixelbuffer;
-        unsigned char* p_pixels = &g_tile_bitmaps[tile].p_data[row_offset];
-
-        for (i = 0; i < left_overhang; ++i) {
-          if (*p_pixels != 0) {
-            *p_pixelbuffer_copy = *p_pixels;
-          }
-          ++p_pixelbuffer_copy;
-          ++p_pixels;
-        }
-      }
-      p_pixelbuffer += left_overhang;
-      ++y;
+      p_pixelbuffer += *p_h_pixel_cnt;
+      x += *p_h_pixel_cnt;
     }
-  }
-  else {
-    for (v = 0; v < SCREEN_HEIGHT; ++v) {
-      unsigned int x = hscroll;
-      unsigned int tile_y = (y & STAGE_PLANE_HEIGHT - 1) / TILE_LENGTH;
-      unsigned int row_offset = y % TILE_LENGTH * TILE_LENGTH;
+    while (*++p_h_pixel_cnt != 0);
 
-      for (h = 0; h < SCREEN_WIDTH / TILE_LENGTH; ++h) {
-        unsigned int tile_x = (x & STAGE_PLANE_WIDTH - 1) / TILE_LENGTH;
-        unsigned short tile = p_plane[tile_y][tile_x];
-
-        if (tile != 0) {
-          unsigned char* p_pixelbuffer_copy = p_pixelbuffer;
-          unsigned char* p_pixels = &g_tile_bitmaps[tile].p_data[row_offset];
-
-          for (i = 0; i < TILE_LENGTH; ++i) {
-            if (*p_pixels != 0) {
-              *p_pixelbuffer_copy = *p_pixels;
-            }
-            ++p_pixelbuffer_copy;
-            ++p_pixels;
-          }
-        }
-        p_pixelbuffer += TILE_LENGTH;
-        x += TILE_LENGTH;
-      }
-
-      ++y;
-    }
+    ++y;
   }
 }
