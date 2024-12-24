@@ -123,7 +123,6 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, s
       bitmap.p_data += bitmap.width;
     }
 
-    y_end += y;
     y = 0;
   }
   if (y_end > SCREEN_HEIGHT) {
@@ -179,7 +178,6 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
       bitmap.p_data += bitmap.width;
     }
 
-    y_end += y;
     y = 0;
   }
   if (y_end > SCREEN_HEIGHT) {
@@ -236,7 +234,6 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
       bitmap.p_data += bitmap.width;
     }
 
-    y_end += y;
     y = 0;
   }
   if (y_end > SCREEN_HEIGHT) {
@@ -293,7 +290,6 @@ static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bi
       bitmap.p_data += bitmap.width;
     }
 
-    y_end += y;
     y = 0;
   }
   if (y_end > SCREEN_HEIGHT) {
