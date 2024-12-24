@@ -19,7 +19,7 @@ static sprite_info g_sprites[SPRITES_MAX] = { 0 };
 static int g_sprite_cnt = 0;
 
 
-int load_sprite_bitmaps(char* p_filename) {
+int load_sprite_bitmaps(char* p_filename, unsigned char (*p_sprbmp)[3]) {
   int ret = 0;
   unsigned char* p_bytes_start = szdd_decompress(p_filename);
 
@@ -46,6 +46,11 @@ int load_sprite_bitmaps(char* p_filename) {
     }
     else {
       extract_sprites(g_sprite_bitmap_data, g_sprite_bitmaps, p_bytes, header.cnt, p_meta);
+
+      for (i = 0; i < header.cnt; ++i) {
+        p_sprbmp[i][0] = p_meta[i].width;
+        p_sprbmp[i][1] = p_meta[i].height;
+      }
     }
 
     free(p_meta);
@@ -156,7 +161,7 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, s
 
 
 static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
-  int x = info.x - bitmap.width;
+  int x = info.x;
   int x_end = x + bitmap.width;
   int y = info.y;
   int y_end = info.y + bitmap.height;
@@ -214,7 +219,7 @@ static void blit_sprite_hflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
 static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
   int x = info.x;
   int x_end = x + bitmap.width;
-  int y = info.y - bitmap.height;
+  int y = info.y;
   int y_end = y + bitmap.height;
   int x_skip = 0;
 
@@ -268,9 +273,9 @@ static void blit_sprite_vflip(unsigned char* p_pixelbuffer, extracted_bitmap bit
 
 
 static void blit_sprite_hvflip(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, sprite_info info) {
-  int x = info.x - bitmap.width;
+  int x = info.x;
   int x_end = x + bitmap.width;
-  int y = info.y - bitmap.height;
+  int y = info.y;
   int y_end = y + bitmap.height;
   int x_skip = 0;
 
