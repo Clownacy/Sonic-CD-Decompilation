@@ -7,7 +7,7 @@
 #include "constants.h"
 #include "extractedbitmap.h"
 #include "szdd.h"
-static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[STAGE_PLANE_WIDTH / TILE_LENGTH], unsigned short hscroll, unsigned short vscroll, unsigned short* p_hscrollbuff);
+static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[STAGE_PLANE_WIDTH / TILE_LENGTH], unsigned short* p_hscroll, unsigned short vscroll);
 static void add_flip_tile_bitmaps();
 static void add_hflip_tile_bitmaps(unsigned char* p_hflip_data, extracted_bitmap* p_hflip_bitmaps, unsigned char* p_data, extracted_bitmap* p_bitmaps);
 static void add_vflip_tile_bitmaps(unsigned char* p_vflip_data, extracted_bitmap* p_vflip_bitmaps, unsigned char* p_data, extracted_bitmap* p_bitmaps);
@@ -203,18 +203,14 @@ void SetGrid(int base, int x, int y, int block, int frip) {
 }
 
 
-void blit_planes(unsigned char* p_pixelbuffer, unsigned short hscroll_a, unsigned short vscroll_a, unsigned short hscroll_b, unsigned short vscroll_b, unsigned short* p_hscrollbuffa, unsigned short* p_hscrollbuffb) {
-  hscroll_a &= STAGE_PLANE_WIDTH - 1;
-  hscroll_b &= STAGE_PLANE_WIDTH - 1;
-  vscroll_a &= STAGE_PLANE_HEIGHT - 1;
-  vscroll_b &= STAGE_PLANE_HEIGHT - 1;
-  blit_plane(p_pixelbuffer, g_plane_b, hscroll_b, vscroll_b, p_hscrollbuffb);
-  blit_plane(p_pixelbuffer, g_plane_a_lo, hscroll_a, vscroll_a, p_hscrollbuffa);
-  blit_plane(p_pixelbuffer, g_plane_a_hi, hscroll_a, vscroll_a, p_hscrollbuffa);
+void blit_planes(unsigned char* p_pixelbuffer, unsigned short* p_hscroll_a, unsigned short vscroll_a, unsigned short* p_hscroll_b, unsigned short vscroll_b) {
+  blit_plane(p_pixelbuffer, g_plane_b, p_hscroll_b, vscroll_b);
+  blit_plane(p_pixelbuffer, g_plane_a_lo, p_hscroll_a, vscroll_a);
+  blit_plane(p_pixelbuffer, g_plane_a_hi, p_hscroll_a, vscroll_a);
 }
 
 
-static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[STAGE_PLANE_WIDTH / TILE_LENGTH], unsigned short hscroll, unsigned short vscroll, unsigned short* p_hscrollbuff) {
+static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[STAGE_PLANE_WIDTH / TILE_LENGTH], unsigned short* p_hscroll, unsigned short vscroll) {
   unsigned int y = vscroll;
   unsigned int h_pixel_cnts[SCREEN_WIDTH / TILE_LENGTH + 2] = { 0 };
   unsigned int v, i;
@@ -224,7 +220,7 @@ static void blit_plane(unsigned char* p_pixelbuffer, unsigned short(*p_plane)[ST
   }
 
   for (v = 0; v < SCREEN_HEIGHT; ++v) {
-    unsigned int x = hscroll + p_hscrollbuff[v];
+    unsigned int x = p_hscroll[v];
     unsigned int left_overhang = x % TILE_LENGTH;
     unsigned int tile_y = (y & STAGE_PLANE_HEIGHT - 1) / TILE_LENGTH;
     unsigned int row_offset = y % TILE_LENGTH * TILE_LENGTH;
