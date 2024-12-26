@@ -1400,7 +1400,7 @@ label1:
 void jumpchk2() { /* Line 1400, Address: 0x1025200 */
   short cal_speed;
 
-  if (actwk[0].actfree[2] != 0) { /* Line 1403, Address: 0x1025208 */
+  if (actwk[0].actfree[18] != 0) { /* Line 1403, Address: 0x1025208 */
     cal_speed = -1024; /* Line 1404, Address: 0x102521c */
     if (actwk[0].cddat & 64) cal_speed = -512; /* Line 1405, Address: 0x1025228 */
     if (cal_speed > actwk[0].yspeed.w) { /* Line 1406, Address: 0x102524c */
