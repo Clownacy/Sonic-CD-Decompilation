@@ -1,6 +1,7 @@
 #include "EQU.H"
 #include "SCORE.H"
 #include "ACTION.H"
+#include "IMPFUNCS.H"
 #include "LOADER2.H"
 
 static void tensuu(sprite_status* pAct);
@@ -200,7 +201,6 @@ static sprite_pattern* scorepat[4] = {
   &scorepat2,
   &scorepat3
 };
-extern void(*WaveAllStop)();
 extern sprite_pattern bonuspat;
 extern sprite_pattern bonuspat0;
 unsigned char scoreinittbl[7] = { 255, 255, 255, 255, 255, 255, 0 };

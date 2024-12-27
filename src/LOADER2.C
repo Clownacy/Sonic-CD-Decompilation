@@ -1,13 +1,8 @@
 #include "EQU.H"
 #include "LOADER2.H"
+#include "IMPFUNCS.H"
 
 static unsigned int SE_DashReq;
-extern void(*sOutputDebugString)(char*);
-extern void(*sPrintf)(char*, const char*, ...);
-extern void(*sCloseFile)(int);
-extern int(*sReadFile)(int, void*, int);
-extern int(*sOpenFile)(char*);
-extern void(*sMemSet)(void*, unsigned char, int);
 static unsigned char SeToWavTbl[80] = {
    0,  1,  2,  3,  4,  5,  6,  7,
    8,  9, 10, 11, 11, 12, 13, 14,
@@ -20,8 +15,13 @@ static unsigned char SeToWavTbl[80] = {
   71, 71, 72, 73, 74, 32, 33, 34,
   35, 36, 37, 38, 39, 40, 41, 42
 };
-extern void(*WaveRequest)(short);
-extern void(*CDPlay)(short);
+
+
+
+
+
+
+
 
 
 

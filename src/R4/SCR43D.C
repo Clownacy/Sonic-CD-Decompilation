@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR41C.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "COL4A.H"
 #include "SCRCHK4.H"
@@ -47,7 +48,6 @@ unsigned short scr_dir_tbl[6] = {
 extern unsigned char awasintbl[256];
 extern unsigned char mapwkb[8][64];
 extern unsigned char mapwka[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
 
 

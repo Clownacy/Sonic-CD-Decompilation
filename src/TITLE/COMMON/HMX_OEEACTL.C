@@ -2,6 +2,7 @@
 #include "HMX_TYPES.H"
 #include "LD_TYPES.H"
 #include "HMX_OEEACTL.H"
+#include "..\..\IMPFUNCS.H"
 
 extern void(*FlipToScreen_module)();
 extern void(*hmx_renderer_context_draw_module)(hmx_renderer_context*, hmx_surface*);
@@ -10,12 +11,6 @@ extern void(*hmx_renderer_context_add_module)(hmx_renderer_context*, int, hmx_re
 extern hmx_renderer_base*(*hmx_sprite_base_module)(hmx_sprite*);
 extern hmx_renderer_base*(*hmx_grid_base_module)(hmx_grid*);
 extern void(*hmx_renderer_context_clear_module)(hmx_renderer_context*);
-extern void(*sMemFree)(void*);
-extern void(*sCloseFile)(int);
-extern int(*sReadFile)(int, void*, int);
-extern void*(*sMemAlloc)(int);
-extern int(*sGetFileSize)(int);
-extern int(*sOpenFile)(char*);
 extern void(*hmx_free_module)(hmx_environment*, void*);
 extern void(*hmx_bitmap_set_transparency_module)(hmx_bitmap*, int);
 extern void*(*hmx_bitmap_get_scan0_module)(hmx_bitmap*);
@@ -44,6 +39,11 @@ extern int PRIO_MAX;
 #else
   #define PRIO_MAX 60
 #endif
+
+
+
+
+
 
 
 

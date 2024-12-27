@@ -2,6 +2,7 @@
 #include "TOBIRAS4.H"
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
+#include "..\IMPFUNCS.H"
 #include "..\RIDECHK.H"
 
 static void act_init(sprite_status* pActwk);
@@ -30,7 +31,6 @@ sprite_pattern* pat_tobiras4[3] =
   &pat01,
   &pat02
 };
-extern void(*sMemCpy)(void*, void*, int);
 
 
 

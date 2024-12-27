@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR12B.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL1B.H"
@@ -64,11 +65,10 @@ short playpositbl[1][2] = {
   { 80, 389 }
 };
 unsigned char playmapnotbl[4] = { 145, 182, 127, 127 };
-extern void(*sMemSet)(void*, unsigned char, int);
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
+
 
 
 

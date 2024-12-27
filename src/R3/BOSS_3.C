@@ -5,6 +5,7 @@
 #include "..\DIRCOL.H"
 #include "..\ETC.H"
 #include "..\GOAL.H"
+#include "..\IMPFUNCS.H"
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\SCORE.H"
@@ -332,7 +333,6 @@ char bomtbl_ctrl2[6] =
   -16, -56,
    16, -56
 };
-extern int(*sRandom)();
 extern sprite_pattern* bakupat[];
 extern char* bakuchg[];
 

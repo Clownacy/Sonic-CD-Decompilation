@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR31A.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL3C.H"
@@ -34,7 +35,6 @@ static int_union* mapwrt_tbl[8] = {
 extern unsigned char awasintbl[];
 extern unsigned char mapwkb[64][8];
 extern unsigned char mapwka[64][8];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
 
 

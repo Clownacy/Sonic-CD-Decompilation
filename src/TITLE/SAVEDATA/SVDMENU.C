@@ -2,6 +2,7 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "..\COMMON\HMX_TYPES.H"
 #include "SVDMENU.H"
+#include "..\..\IMPFUNCS.H"
 #include "SVDDO.H"
 #include "SVDEDIT.H"
 #include "SVDENTRY.H"
@@ -10,18 +11,17 @@
 extern sprite_bmp infoSprtBmp[];
 extern unsigned short nMenuKind;
 unsigned int bMenuChosed;
-extern void(*WaveRequest)(short);
 extern unsigned short swData1;
 unsigned int bFileChosed;
 int nSelectFileNumber;
 extern int nFileNumber;
 extern score_data saveData[6];
-extern void(*sMemCpy)(void*, void*, int);
 static int nSrcFileNumber;
 unsigned int bDestFileChosed;
 extern char editBuf[];
 extern int nTimerCunt;
-extern void(*sMemSet)(void*, unsigned char, int);
+
+
 
 
 

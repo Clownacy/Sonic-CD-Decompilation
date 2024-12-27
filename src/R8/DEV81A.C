@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "DEV81A.H"
+#include "..\IMPFUNCS.H"
 
 static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgTim, unsigned char** ppChgCnt, int* BmpNo, int* TileStart);
 
@@ -129,7 +130,6 @@ static tile_changes tbl_bal = {
   },
   529
 };
-extern void(*ChangeTileBmp)(int, int);
 
 
 

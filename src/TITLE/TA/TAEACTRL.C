@@ -4,6 +4,7 @@
 #include "..\COMMON\LD_TYPES.H"
 #include "TA_TYPES.H"
 #include "TAEACTRL.H"
+#include "..\..\IMPFUNCS.H"
 #include "TACOLOR.H"
 
 static int TileCnt;
@@ -213,9 +214,7 @@ static unsigned short MapRecRound[7][4][18] = {
     { 11, 11,  11, 215, 216, 219, 172, 227, 228, 229, 230, 231,  11, 11, 11, 30, 3, 4 }
   }
 };
-extern void(*sOutputDebugString)(char*);
 static char ErrBuf[250];
-extern void(*sPrintf)(char*, const char*, ...);
 extern void(*FlipToScreen_module)();
 extern void(*hmx_renderer_context_draw_module)(hmx_renderer_context*, hmx_surface*);
 extern draw_context* s_ctx;
@@ -237,12 +236,7 @@ static grid_rect GridRect[8];
 extern void(*hmx_grid_set_position_module)(hmx_grid*, int, int);
 extern hmx_grid*(*hmx_grid_create_module)(hmx_environment*, int, int, int, int);
 extern void(*hmx_grid_release_module)(hmx_environment*, hmx_grid*);
-extern void(*sMemFree)(void*);
 extern void(*hmx_grid_set_tile_module)(hmx_grid*, int, int, hmx_bitmap*, int);
-extern void(*sCloseFile)(int);
-extern int(*sReadFile)(int, void*, int);
-extern int(*sOpenFile)(char*);
-extern void*(*sMemAlloc)(int);
 extern void(*hmx_background_set_background_module)(hmx_background*, int);
 static char* lpPicBits4[2][8];
 extern void(*hmx_sprite_set_bitmap_module)(hmx_sprite*, hmx_bitmap*);
@@ -271,6 +265,12 @@ int gZure;
 extern int gNewMenuRound;
 extern int gNewMenu1;
 static int ErrRet;
+
+
+
+
+
+
 
 
 

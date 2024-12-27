@@ -1,10 +1,10 @@
 #include "EQU.H"
 #include "ACTION.H"
+#include "IMPFUNCS.H"
 
 extern void(*act_tbl[1])(sprite_status*);
-extern void(*sMemSet)(void*, unsigned char, int);
-extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 extern bmp_info SprBmp[700];
+
 
 
 

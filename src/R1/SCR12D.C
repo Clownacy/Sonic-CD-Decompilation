@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR12C.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL1C.H"
@@ -49,11 +50,10 @@ static int_union* mapwrt_tbl[8] = {
   &scrz_h_posiw,
   &scrz_v_posiw
 };
-extern void(*sMemSet)(void*, unsigned char, int);
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
+
 
 
 

@@ -1,6 +1,7 @@
 #include "..\..\TYPES.H"
 #include "THANKS_TYPES.H"
 #include "ACT.H"
+#include "..\..\IMPFUNCS.H"
 #include "SPRMOVE.H"
 
 static void actloop(short id);
@@ -37,9 +38,8 @@ extern sprite_status_thanks* pribuf0[64];
 extern sprite_status_thanks* pribuf3[64];
 extern sprite_status_thanks* pribuf2[64];
 extern sprite_status_thanks* pribuf1[64];
-extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 static unsigned short LinkData;
-extern void(*sMemSet)(void*, unsigned char, int);
+
 
 
 

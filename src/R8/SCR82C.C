@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR82C.H"
+#include "..\IMPFUNCS.H"
 
 static void playposiset();
 static void scrbinit(short sXpos, short sYpos);
@@ -64,7 +65,6 @@ short playpositbl[1][2] = { { 46, 1164 } };
 unsigned char playmapnotbl[4] = { 127, 127, 127, 127 };
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
 
 

@@ -1,6 +1,7 @@
 #include "..\EQU.H"
 #include "EMIE8.H"
 #include "..\ACTION.H"
+#include "..\IMPFUNCS.H"
 #include "..\PLAYSUB.H"
 
 static void emie8_ini(sprite_status* pActwk);
@@ -72,7 +73,6 @@ static void(*emie8_act_tbl[8])(sprite_status*) = {
   &emie8_j2,
   &emie8_l2
 };
-extern void(*sMemSet)(void*, unsigned char, int);
 static void(*snc_act_tbl[4])(sprite_status*, sprite_status*) = {
   &emie8_snc_r,
   &emie8_snc_l,

@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR51A.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL5A.H"
@@ -49,14 +50,13 @@ static int_union* mapwrt_tbl[8] = {
   &scrz_v_posiw
 };
 extern unsigned char mapwkb[8][64];
-extern void(*ChangeTileBmp)(int, int);
 short scr_dir_tbl[6] = { 4, 0, 10903, 0, 784, 96 };
 short playpositbl[1][2] = { { 64, 620 } };
 unsigned char playmapnotbl[4] = { 127, 127, 24, 98 };
 extern unsigned char mapwka[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
 extern unsigned char* zonemaptbl[];
+
 
 
 

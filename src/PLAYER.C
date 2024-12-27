@@ -7,6 +7,7 @@
 #include "EDIT.H"
 #include "FCOL.H"
 #include "ETC.H"
+#include "IMPFUNCS.H"
 
 extern void sub_sync(short ReqNo); extern void playsp(); extern short pcol(sprite_status* pActwk); extern void da_set(); extern void plairset(); extern void soundset(short ReqNo); extern short playdieset(sprite_status* pActwk);
 
@@ -14,7 +15,6 @@ static unsigned int WaveClear;
 static unsigned char Brake_Sw, Brake_Req;
 extern sprite_pattern* sncpat[];
 extern unsigned char mapwka[8][64];
-extern void(*WaveAllStop)();
 extern unsigned char* playchg[60];
 extern unsigned char plchg00[8], plchg01[8], plchg49[8], plchg53[8], plchg03[8], plchg02[8], plchg54[8], plchg35[6], plchg04[8], plchg39[7], plchg33[6], plchg34[6];
 unsigned char* playcg;

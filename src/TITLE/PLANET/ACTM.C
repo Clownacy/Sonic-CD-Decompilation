@@ -2,6 +2,7 @@
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "ACTM.H"
+#include "..\..\IMPFUNCS.H"
 #include "ASCIISET.H"
 #include "CHAMOV.H"
 #include "PLM.H"
@@ -33,9 +34,8 @@ static void(*act_tbl[31])(sprite_status_lpl*) =
   &dummy, &dummy,
   &dummy, &dummy
 };
-extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 static unsigned short LinkData;
-extern void(*sMemSet)(void*, unsigned char, int);
+
 
 
 

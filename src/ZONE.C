@@ -3,6 +3,7 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DUMMY.H"
+#include "IMPFUNCS.H"
 #include "LOADER2.H"
 #include "SCORE.H"
 
@@ -176,7 +177,6 @@ static unsigned short cleartbl[12] = {
   272, 512, 240,   1,
   204,   0, 288,   2
 };
-extern void(*WaveAllStop)();
 
 
 

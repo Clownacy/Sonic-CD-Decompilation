@@ -2,6 +2,7 @@
 #include "BESTITEM.H"
 #include "..\COMMON\GRID.H"
 #include "..\COMMON\HMX_OEEACTL.H"
+#include "..\..\IMPFUNCS.H"
 #include "BESENTRY.H"
 #include "BESTSPRT.H"
 
@@ -13,10 +14,9 @@ extern bestitem menuTbl[];
 static int nMenuIndx;
 extern int MENUITEMMAX;
 int ScrollCount;
-extern void(*CDPlay)(short);
 extern unsigned short swData1;
-extern void(*CDPause)(short);
 extern int nTimerCunt;
+
 
 
 
