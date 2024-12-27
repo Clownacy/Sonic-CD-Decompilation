@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define AUDIO_SOUNDS 86
+#define AUDIO_SOUND_CHANNELS 6
 #define FLIP_MASK 3
 #define HFLIP 1
 #define HVFLIP 3
