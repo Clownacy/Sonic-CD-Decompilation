@@ -1,8 +1,8 @@
 #include "tiles.h"
 #include <stdlib.h>
 #include <string.h>
-#include "cmpbmp.h"
-#include "cmpbmpheader.h"
+#include "cmp.h"
+#include "cmpheader.h"
 #include "cmptilemeta.h"
 #include "constants.h"
 #include "extractedbitmap.h"
@@ -30,12 +30,12 @@ int load_tile_bitmaps(char* p_filename) {
   }
   else {
     unsigned char* p_bytes = p_bytes_start;
-    cmp_bmp_header header;
+    cmp_header header;
     cmp_tile_meta meta;
     unsigned long bitmap_data_size = 0;
     int i;
 
-    p_bytes = read_cmp_bmp_header(p_bytes, &header);
+    p_bytes = read_cmp_header(p_bytes, &header);
     p_bytes = read_cmp_tile_meta(p_bytes, &meta, header.cnt);
 
     for (i = 0; i < header.cnt; ++i) {

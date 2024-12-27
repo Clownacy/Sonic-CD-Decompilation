@@ -1,8 +1,8 @@
 #include "sprites.h"
 #include <stdlib.h>
 #include <string.h>
-#include "cmpbmp.h"
-#include "cmpbmpheader.h"
+#include "cmp.h"
+#include "cmpheader.h"
 #include "cmpspritemeta.h"
 #include "constants.h"
 #include "extractedbitmap.h"
@@ -25,12 +25,12 @@ int load_sprite_bitmaps(char* p_filename, unsigned char (*p_sprbmp)[3]) {
   }
   else {
     unsigned char* p_bytes = p_bytes_start;
-    cmp_bmp_header header;
+    cmp_header header;
     cmp_sprite_meta* p_meta;
     unsigned long bitmap_data_size = 0;
     int i;
 
-    p_bytes = read_cmp_bmp_header(p_bytes, &header);
+    p_bytes = read_cmp_header(p_bytes, &header);
     p_bytes = read_cmp_sprite_meta(p_bytes, &p_meta, header.cnt);
 
     for (i = 0; i < header.cnt; ++i) {

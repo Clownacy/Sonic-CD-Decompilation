@@ -1,6 +1,6 @@
-#include "cmpbmp.h"
+#include "cmp.h"
 #include <stdlib.h>
-#include "cmpbmpheader.h"
+#include "cmpheader.h"
 #include "cmpspritemeta.h"
 #include "cmptilemeta.h"
 #include "extractedbitmap.h"
@@ -8,7 +8,7 @@
 static unsigned char* read_bitmap(unsigned char* p_output, unsigned char* p_input, unsigned short width, unsigned short height, unsigned int palette_offset, int has_transparency, int has_padding);
 
 
-unsigned char* read_cmp_bmp_header(unsigned char* p_bytes, cmp_bmp_header* header) {
+unsigned char* read_cmp_header(unsigned char* p_bytes, cmp_header* header) {
   header->magic[0] = *p_bytes++;
   header->magic[1] = *p_bytes++;
   header->magic[2] = *p_bytes++;
