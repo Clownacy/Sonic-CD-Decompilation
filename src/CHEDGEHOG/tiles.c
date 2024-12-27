@@ -13,7 +13,7 @@ static void add_hflip_tile_bitmaps(unsigned char* p_hflip_data, extracted_bitmap
 static void add_vflip_tile_bitmaps(unsigned char* p_vflip_data, extracted_bitmap* p_vflip_bitmaps, unsigned char* p_data, extracted_bitmap* p_bitmaps);
 static void add_hvflip_tile_bitmaps(unsigned char* p_hvflip_data, extracted_bitmap* p_hvflip_bitmaps, unsigned char* p_data, extracted_bitmap* p_bitmaps);
 
-static unsigned char* g_tile_bitmap_data = 0;
+static unsigned char* gp_tile_bitmap_data = 0;
 static extracted_bitmap g_tile_bitmaps[TILE_BITMAPS_MAX] = { 0 };
 static unsigned short g_plane_a_lo[STAGE_PLANE_HEIGHT / TILE_LENGTH][STAGE_PLANE_WIDTH / TILE_LENGTH] = { 0 };
 static unsigned short g_plane_a_hi[STAGE_PLANE_HEIGHT / TILE_LENGTH][STAGE_PLANE_WIDTH / TILE_LENGTH] = { 0 };
@@ -42,12 +42,12 @@ int load_tile_bitmaps(char* p_filename) {
       bitmap_data_size += meta.p_dimensions[i][0] * meta.p_dimensions[i][1];
     }
 
-    g_tile_bitmap_data = malloc(bitmap_data_size * 4);
-    if (g_tile_bitmap_data == 0) {
+    gp_tile_bitmap_data = malloc(bitmap_data_size * 4);
+    if (gp_tile_bitmap_data == 0) {
       ret = 2;
     }
     else {
-      extract_tiles(g_tile_bitmap_data, g_tile_bitmaps, p_bytes, header.cnt, meta);
+      extract_tiles(gp_tile_bitmap_data, g_tile_bitmaps, p_bytes, header.cnt, meta);
       g_tile_cnt = header.cnt;
       add_flip_tile_bitmaps(bitmap_data_size);
     }
@@ -61,10 +61,10 @@ int load_tile_bitmaps(char* p_filename) {
 
 
 static void add_flip_tile_bitmaps(unsigned long bitmap_data_size) {
-  unsigned char* p_data = &g_tile_bitmap_data[NOFLIP * bitmap_data_size];
-  unsigned char* p_hflip_data = &g_tile_bitmap_data[HFLIP * bitmap_data_size];
-  unsigned char* p_vflip_data = &g_tile_bitmap_data[VFLIP * bitmap_data_size];
-  unsigned char* p_hvflip_data = &g_tile_bitmap_data[HVFLIP * bitmap_data_size];
+  unsigned char* p_data = &gp_tile_bitmap_data[NOFLIP * bitmap_data_size];
+  unsigned char* p_hflip_data = &gp_tile_bitmap_data[HFLIP * bitmap_data_size];
+  unsigned char* p_vflip_data = &gp_tile_bitmap_data[VFLIP * bitmap_data_size];
+  unsigned char* p_hvflip_data = &gp_tile_bitmap_data[HVFLIP * bitmap_data_size];
   extracted_bitmap* p_bitmaps = &g_tile_bitmaps[NOFLIP * g_tile_cnt];
   extracted_bitmap* p_hflip_bitmaps = &g_tile_bitmaps[HFLIP * g_tile_cnt];
   extracted_bitmap* p_vflip_bitmaps = &g_tile_bitmaps[VFLIP * g_tile_cnt];
@@ -165,9 +165,9 @@ static void add_hvflip_tile_bitmaps(unsigned char* p_hvflip_data, extracted_bitm
 
 
 void unload_tile_bitmaps() {
-  if (g_tile_bitmap_data != 0) {
-    free(g_tile_bitmap_data);
-    g_tile_bitmap_data = 0;
+  if (gp_tile_bitmap_data != 0) {
+    free(gp_tile_bitmap_data);
+    gp_tile_bitmap_data = 0;
   }
   memset(g_tile_bitmaps, 0, sizeof(g_tile_bitmaps));
 }

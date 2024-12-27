@@ -10,7 +10,7 @@
 #include "szdd.h"
 static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, int x, int y, int h_dir, int v_dir);
 
-static unsigned char* g_sprite_bitmap_data = 0;
+static unsigned char* gp_sprite_bitmap_data = 0;
 static extracted_bitmap g_sprite_bitmaps[SPRITE_BITMAPS_MAX] = { 0 };
 static sprite_info g_sprites[SPRITES_MAX] = { 0 };
 static int g_sprite_cnt = 0;
@@ -37,12 +37,12 @@ int load_sprite_bitmaps(char* p_filename, unsigned char (*p_sprbmp)[3]) {
       bitmap_data_size += p_meta[i].width * p_meta[i].height;
     }
 
-    g_sprite_bitmap_data = malloc(bitmap_data_size);
-    if (g_sprite_bitmap_data == 0) {
+    gp_sprite_bitmap_data = malloc(bitmap_data_size);
+    if (gp_sprite_bitmap_data == 0) {
       ret = 2;
     }
     else {
-      extract_sprites(g_sprite_bitmap_data, g_sprite_bitmaps, p_bytes, header.cnt, p_meta);
+      extract_sprites(gp_sprite_bitmap_data, g_sprite_bitmaps, p_bytes, header.cnt, p_meta);
 
       for (i = 0; i < header.cnt; ++i) {
         p_sprbmp[i][0] = p_meta[i].width;
@@ -59,9 +59,9 @@ int load_sprite_bitmaps(char* p_filename, unsigned char (*p_sprbmp)[3]) {
 
 
 void unload_sprite_bitmaps() {
-  if (g_sprite_bitmap_data != 0) {
-    free(g_sprite_bitmap_data);
-    g_sprite_bitmap_data = 0;
+  if (gp_sprite_bitmap_data != 0) {
+    free(gp_sprite_bitmap_data);
+    gp_sprite_bitmap_data = 0;
   }
   memset(g_sprite_bitmaps, 0, sizeof(g_sprite_bitmaps));
 }
