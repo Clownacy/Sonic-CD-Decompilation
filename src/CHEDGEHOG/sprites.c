@@ -120,12 +120,7 @@ static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, i
     x_end = SCREEN_WIDTH;
   }
   if (y < 0) {
-    int i;
-
-    for (i = 0; i > y; --i) {
-      bitmap.p_data += bitmap.width;
-    }
-
+    bitmap.p_data += -y * bitmap.width;
     y = 0;
   }
   if (y_end > SCREEN_HEIGHT) {
