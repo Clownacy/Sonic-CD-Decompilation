@@ -8,6 +8,7 @@
 #include "extractedbitmap.h"
 #include "spriteinfo.h"
 #include "szdd.h"
+static void blit_sprites(unsigned char* p_pixelbuffer, unsigned int hi_prio);
 static void blit_sprite(unsigned char* p_pixelbuffer, extracted_bitmap bitmap, int x, int y, int h_dir, int v_dir);
 
 static unsigned char* gp_sprite_bitmap_data = 0;
@@ -82,13 +83,23 @@ void EAsprset(short x, short y, unsigned short index, unsigned short linkdata, u
 }
 
 
-void blit_sprites(unsigned char* p_pixelbuffer) {
+void blit_sprites_lo(unsigned char* p_pixelbuffer) {
+  blit_sprites(p_pixelbuffer, 0);
+}
+
+
+void blit_sprites_hi(unsigned char* p_pixelbuffer) {
+  blit_sprites(p_pixelbuffer, 1);
+}
+
+
+static void blit_sprites(unsigned char* p_pixelbuffer, unsigned int hi_prio) {
   int i;
 
   for (i = g_sprite_cnt - 1; i >= 0; --i) {
     sprite_info info = g_sprites[i];
 
-    if (info.index != 0) {
+    if (info.index != 0 && !!(g_sprites[i].reverse & PRIORITY_MASK) == hi_prio) {
       extracted_bitmap bitmap = g_sprite_bitmaps[info.index];
 
       switch (g_sprites[i].reverse & FLIP_MASK) {
