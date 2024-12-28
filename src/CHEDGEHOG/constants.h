@@ -7,6 +7,7 @@
 #define HFLIP 1
 #define HVFLIP 3
 #define NOFLIP 0
+#define PRIORITY_MASK 0x8000
 #define SCREEN_HEIGHT 224
 #define SCREEN_WIDTH 320
 #define SPRITE_BITMAPS_MAX 700

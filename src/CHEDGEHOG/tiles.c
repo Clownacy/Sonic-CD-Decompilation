@@ -191,7 +191,7 @@ void SetGrid(int base, int x, int y, int block, int frip) {
     if (base != 0) {
       g_plane_b[y][x] = index;
     }
-    else if (block & 0x8000) {
+    else if (block & PRIORITY_MASK) {
       g_plane_a_hi[y][x] = index;
       g_plane_a_lo[y][x] = 0;
     }
