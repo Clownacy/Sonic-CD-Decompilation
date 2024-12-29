@@ -344,7 +344,7 @@ int DLLMain() { /* Line 306, Address: 0x10031f0 */
       ret = OEEnd(); /* Line 344, Address: 0x1003300 */
       break;
   }
-  if (nTimerCunt == 2147483647) /* Line 347, Address: 0x100330c */
+  if (nTimerCunt == 0x7FFFFFFF) /* Line 347, Address: 0x100330c */
     nTimerCunt = 5184000; /* Line 348, Address: 0x1003324 */
   else
     ++nTimerCunt; /* Line 350, Address: 0x100333c */

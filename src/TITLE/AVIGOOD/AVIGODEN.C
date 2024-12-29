@@ -255,7 +255,7 @@ int DLLMain() { /* Line 242, Address: 0x1000890 */
   }
 
 
-  if (nTimerCunt == 2147483647) /* Line 258, Address: 0x1000904 */
+  if (nTimerCunt == 0x7FFFFFFF) /* Line 258, Address: 0x1000904 */
     nTimerCunt = 5184000; /* Line 259, Address: 0x100091c */
   else
     ++nTimerCunt; /* Line 261, Address: 0x1000934 */
