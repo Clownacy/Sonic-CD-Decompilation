@@ -75,7 +75,7 @@ static void a_init(sprite_status* pActwk) { /* Line 68, Address: 0x10210b0 */
   ld0.w.l = 0; /* Line 75, Address: 0x10210e8 */
   ld0.l -= 8388608; /* Line 76, Address: 0x10210ec */
   *(int*)&pActwk->actfree[4] = ld0.l; /* Line 77, Address: 0x10210fc */
-  ld0.l += 16777216; /* Line 78, Address: 0x102110c */
+  ld0.l += 0x1000000; /* Line 78, Address: 0x102110c */
   *(int*)&pActwk->actfree[8] = ld0.l; /* Line 79, Address: 0x102111c */
 
   d6 = 1; /* Line 81, Address: 0x102112c */
