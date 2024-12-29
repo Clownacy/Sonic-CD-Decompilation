@@ -1276,7 +1276,7 @@ void limitchk() { /* Line 1273, Address: 0x1024b40 */
 
   cal_position = actwk[0].xposi.l; /* Line 1277, Address: 0x1024b5c */
   cal_speed = actwk[0].xspeed.w; /* Line 1278, Address: 0x1024b64 */
-  if (cal_speed & (int)-2147483648) cal_speed <<= 8, cal_speed |= -2147483648; else cal_speed <<= 8; /* Line 1279, Address: 0x1024b74 */
+  if (cal_speed & 0x80000000) cal_speed <<= 8, cal_speed |= 0x80000000; else cal_speed <<= 8; /* Line 1279, Address: 0x1024b74 */
   cal_position += cal_speed; /* Line 1280, Address: 0x1024b9c */
   position_wk = cal_position >> 16; /* Line 1281, Address: 0x1024ba0 */
   cal_limit_l = scralim_left + 16; /* Line 1282, Address: 0x1024bb4 */
