@@ -731,11 +731,11 @@ void go_x_plus(sprite_status_sp* plwk, unsigned short cal_plus, short cal_speed)
   cal_plus_position = sp_cos(cal_z_kaku); /* Line 731, Address: 0x100be80 */
   cal_plus_position *= cal_speed; /* Line 732, Address: 0x100be94 */
   plwk->x_posi.l += cal_plus_position; /* Line 733, Address: 0x100bea4 */
-  plwk->x_posi.l = plwk->x_posi.l & 268435455; /* Line 734, Address: 0x100beb4 */
+  plwk->x_posi.l = plwk->x_posi.l & 0xFFFFFFF; /* Line 734, Address: 0x100beb4 */
   cal_plus_position = sp_sin(cal_z_kaku); /* Line 735, Address: 0x100becc */
   cal_plus_position *= cal_speed; /* Line 736, Address: 0x100bee0 */
   plwk->y_posi.l += cal_plus_position; /* Line 737, Address: 0x100bef0 */
-  plwk->y_posi.l = plwk->y_posi.l & 268435455; /* Line 738, Address: 0x100bf00 */
+  plwk->y_posi.l = plwk->y_posi.l & 0xFFFFFFF; /* Line 738, Address: 0x100bf00 */
 } /* Line 739, Address: 0x100bf18 */
 
 
