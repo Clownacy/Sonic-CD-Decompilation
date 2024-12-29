@@ -295,13 +295,13 @@ static void ascspr_init(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk) { 
   if (pAscwk->XPOSI.b.b3 & 1) { /* Line 295, Address: 0x1000cec */
 
     pActwk->XPOSI.w.h = -128; /* Line 297, Address: 0x1000d08 */
-    pActwk->X_SPEED.l = 2097152; /* Line 298, Address: 0x1000d14 */
+    pActwk->X_SPEED.l = 0x200000; /* Line 298, Address: 0x1000d14 */
     pActwk->SPR_FLG |= 8; /* Line 299, Address: 0x1000d20 */
   } /* Line 300, Address: 0x1000d30 */
   else {
 
     pActwk->XPOSI.w.h = 256; /* Line 303, Address: 0x1000d38 */
-    pActwk->X_SPEED.l = -2097152; /* Line 304, Address: 0x1000d44 */
+    pActwk->X_SPEED.l = -0x200000; /* Line 304, Address: 0x1000d44 */
     pActwk->SPR_FLG &= 247; /* Line 305, Address: 0x1000d50 */
   }
   pActwk->SPR_FLG |= 32; /* Line 307, Address: 0x1000d60 */
@@ -341,12 +341,12 @@ static void ascspr_chk(sprite_status_lpl* pActwk, sprite_status_lpl* pAscwk) { /
   if (swdata1.b.h & 8) { /* Line 341, Address: 0x1000ec8 */
 
     pActwk->EXE_NO = 3; /* Line 343, Address: 0x1000ee0 */
-    pActwk->X_SPEED.l = 2097152; /* Line 344, Address: 0x1000eec */
+    pActwk->X_SPEED.l = 0x200000; /* Line 344, Address: 0x1000eec */
     pActwk->SPR_FLG |= 8; /* Line 345, Address: 0x1000ef8 */
   }
   if (swdata1.b.h & 4) { /* Line 347, Address: 0x1000f08 */
 
-    pActwk->X_SPEED.l = -2097152; /* Line 349, Address: 0x1000f20 */
+    pActwk->X_SPEED.l = -0x200000; /* Line 349, Address: 0x1000f20 */
     pActwk->EXE_NO = 3; /* Line 350, Address: 0x1000f2c */
     pActwk->SPR_FLG &= 247; /* Line 351, Address: 0x1000f38 */
   }
