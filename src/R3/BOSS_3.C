@@ -993,7 +993,7 @@ void egg3cannon_01(sprite_status* actionwk) { /* Line 977, Address: 0x102d8b0 */
     a1->actno = 62; /* Line 993, Address: 0x102d964 */
     a1->xposi.w.h = actionwk->xposi.w.h; /* Line 994, Address: 0x102d970 */
     a1->yposi.w.h = actionwk->yposi.w.h + 8; /* Line 995, Address: 0x102d980 */
-    d0 = sRandom() & 524287; /* Line 996, Address: 0x102d9a4 */
+    d0 = sRandom() & 0x7FFFF; /* Line 996, Address: 0x102d9a4 */
     d0 %= 1024; /* Line 997, Address: 0x102d9bc */
     d1 = 12; /* Line 998, Address: 0x102d9dc */
     if (actionwk->patcnt == 0) /* Line 999, Address: 0x102d9e8 */
