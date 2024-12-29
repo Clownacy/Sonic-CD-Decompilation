@@ -400,7 +400,7 @@ void evt08(sprite_status_sp* plwk) { /* Line 396, Address: 0x100af90 */
 
 void evt01(sprite_status_sp* plwk) { /* Line 401, Address: 0x100afc0 */
   plwk->exeno = 3; /* Line 402, Address: 0x100afcc */
-  plwk->sy_speed.l = -262144; /* Line 403, Address: 0x100afd8 */
+  plwk->sy_speed.l = -0x40000; /* Line 403, Address: 0x100afd8 */
   plwk->actflg |= 64; /* Line 404, Address: 0x100afe4 */
   key_set(184); /* Line 405, Address: 0x100aff4 */
   sibuki_clr(); /* Line 406, Address: 0x100b000 */
@@ -664,12 +664,12 @@ void rlmove(sprite_status_sp* plwk) { /* Line 649, Address: 0x100ba50 */
 void rlmove_j(sprite_status_sp* plwk) { /* Line 664, Address: 0x100bb20 */
   if (game_start != 0) return; /* Line 665, Address: 0x100bb28 */
   if (swdata_pl.b.h & 8) { /* Line 666, Address: 0x100bb3c */
-    ((int*)plwk)[19] -= 262144; /* Line 667, Address: 0x100bb54 */
+    ((int*)plwk)[19] -= 0x40000; /* Line 667, Address: 0x100bb54 */
     ((int*)plwk)[19] &= 33554431; /* Line 668, Address: 0x100bb68 */
     rlscrflg |= 8; /* Line 669, Address: 0x100bb7c */
   }
   if (swdata_pl.b.h & 4) { /* Line 671, Address: 0x100bb90 */
-    ((int*)plwk)[19] += 262144; /* Line 672, Address: 0x100bba8 */
+    ((int*)plwk)[19] += 0x40000; /* Line 672, Address: 0x100bba8 */
     ((int*)plwk)[19] &= 33554431; /* Line 673, Address: 0x100bbbc */
     rlscrflg |= 4; /* Line 674, Address: 0x100bbd0 */
   }

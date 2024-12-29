@@ -417,7 +417,7 @@ static void a_stop1(sprite_status* pActwk) { /* Line 413, Address: 0x1020290 */
     pActwk->r_no0 += 2; /* Line 417, Address: 0x10202c0 */
 
     if (!pActwk->userflag.b.h) /* Line 419, Address: 0x10202d0 */
-      ((int*)pActwk)[12] = 262144; /* Line 420, Address: 0x10202e0 */
+      ((int*)pActwk)[12] = 0x40000; /* Line 420, Address: 0x10202e0 */
     else
       ((int*)pActwk)[12] = 98304; /* Line 422, Address: 0x10202f4 */
 

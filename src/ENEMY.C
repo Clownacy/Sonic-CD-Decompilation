@@ -1152,12 +1152,12 @@ void tama_init(sprite_status* pActwk) { /* Line 1140, Address: 0x1006070 */
   if (pActwk->actfree[21] == 0) /* Line 1152, Address: 0x1006104 */
   {
     *(int*)&pActwk->actfree[0] = 131072; /* Line 1154, Address: 0x1006118 */
-    *(int*)&pActwk->actfree[4] = -262144; /* Line 1155, Address: 0x1006128 */
+    *(int*)&pActwk->actfree[4] = -0x40000; /* Line 1155, Address: 0x1006128 */
   } /* Line 1156, Address: 0x1006138 */
   else
   {
     *(int*)&pActwk->actfree[0] = -131072; /* Line 1159, Address: 0x1006140 */
-    *(int*)&pActwk->actfree[4] = -262144; /* Line 1160, Address: 0x1006150 */
+    *(int*)&pActwk->actfree[4] = -0x40000; /* Line 1160, Address: 0x1006150 */
   }
 } /* Line 1162, Address: 0x1006160 */
 

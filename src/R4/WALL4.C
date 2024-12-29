@@ -166,7 +166,7 @@ void wall4_wait(sprite_status* pActwk) { /* Line 153, Address: 0x10207b0 */
 
 
 void wall4_down(sprite_status* pActwk) { /* Line 168, Address: 0x1020810 */
-  pActwk->yposi.l += 262144; /* Line 169, Address: 0x1020818 */
+  pActwk->yposi.l += 0x40000; /* Line 169, Address: 0x1020818 */
   if (!(--((short*)pActwk)[23])) { /* Line 170, Address: 0x102082c */
     pActwk->actfree[21] = 0; /* Line 171, Address: 0x102084c */
     pActwk->r_no0 -= 2; /* Line 172, Address: 0x1020854 */

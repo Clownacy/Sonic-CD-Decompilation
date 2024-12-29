@@ -412,7 +412,7 @@ void s_actset(sprite_status_lpl* pActwk, ini_pats* pSoffset, short iD3, short iD
   lD0.w.h = lD0.l % 128; /* Line 412, Address: 0x1007b38 */
   lD0.l &= 2147418112; /* Line 413, Address: 0x1007b64 */
   lD0.l >>= 4; /* Line 414, Address: 0x1007b74 */
-  pActwk->Y_SPEED.l = lD0.l + 262144; /* Line 415, Address: 0x1007b80 */
+  pActwk->Y_SPEED.l = lD0.l + 0x40000; /* Line 415, Address: 0x1007b80 */
 
   lD0.l = random() & 32767; /* Line 417, Address: 0x1007b94 */
 
@@ -610,7 +610,7 @@ void metals_set() { /* Line 582, Address: 0x1008180 */
     pActwk->YPOSI.w.h = iD6; /* Line 610, Address: 0x1008280 */
     pActwk->X_WIDE = 40; /* Line 611, Address: 0x1008288 */
     pActwk->Y_WIDE = 4; /* Line 612, Address: 0x1008294 */
-    pActwk->X_SPEED.l = 262144; /* Line 613, Address: 0x10082a0 */
+    pActwk->X_SPEED.l = 0x40000; /* Line 613, Address: 0x10082a0 */
     pActwk->Y_SPEED.l = 327680; /* Line 614, Address: 0x10082ac */
     pActwk->SPR_FLG |= 8; /* Line 615, Address: 0x10082b8 */
 

@@ -255,7 +255,7 @@ static void p_init(sprite_status* actionwk) { /* Line 240, Address: 0x101d560 */
   else
   {
     ((int*)actionwk)[12] = 65536; /* Line 257, Address: 0x101d624 */
-    ((int*)actionwk)[13] = -262144; /* Line 258, Address: 0x101d630 */
+    ((int*)actionwk)[13] = -0x40000; /* Line 258, Address: 0x101d630 */
   }
 } /* Line 260, Address: 0x101d63c */
 
@@ -275,7 +275,7 @@ static void p_move(sprite_status* actionwk) { /* Line 262, Address: 0x101d650 */
   {
     actionwk->r_no0 += 2; /* Line 276, Address: 0x101d6f0 */
     actionwk->yposi.w.h += d1; /* Line 277, Address: 0x101d700 */
-    ((int*)actionwk)[13] = -262144; /* Line 278, Address: 0x101d710 */
+    ((int*)actionwk)[13] = -0x40000; /* Line 278, Address: 0x101d710 */
   }
   p_end(actionwk); /* Line 280, Address: 0x101d71c */
 } /* Line 281, Address: 0x101d728 */

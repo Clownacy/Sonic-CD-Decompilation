@@ -257,7 +257,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 178, Address: 0x100
   InitMode = 0; /* Line 257, Address: 0x10053e4 */
 
 
-  wordram.wordram = sMemAlloc(262144); /* Line 260, Address: 0x10053ec */
+  wordram.wordram = sMemAlloc(0x40000); /* Line 260, Address: 0x10053ec */
 
 
   lpKeepWork->sm_adr0 = sMemAlloc(32768); /* Line 263, Address: 0x1005408 */

@@ -330,7 +330,7 @@ static void p_init(sprite_status* pActwk) { /* Line 314, Address: 0x101e670 */
   } /* Line 330, Address: 0x101e750 */
   else {
     ((int*)pActwk)[12] = 65536; /* Line 332, Address: 0x101e758 */
-    ((int*)pActwk)[13] = -262144; /* Line 333, Address: 0x101e764 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 333, Address: 0x101e764 */
   }
 } /* Line 335, Address: 0x101e770 */
 
@@ -351,7 +351,7 @@ static void p_move(sprite_status* pActwk) { /* Line 341, Address: 0x101e780 */
 
   if ((colval = emycol_d(pActwk)) < 0) { /* Line 352, Address: 0x101e7f4 */
     pActwk->yposi.w.h += colval; /* Line 353, Address: 0x101e820 */
-    ((int*)pActwk)[13] = -262144; /* Line 354, Address: 0x101e830 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 354, Address: 0x101e830 */
     ((int*)pActwk)[12] *= -1; /* Line 355, Address: 0x101e83c */
     pActwk->actflg ^= 1, pActwk->cddat ^= 1; /* Line 356, Address: 0x101e84c */
   }

@@ -420,7 +420,7 @@ static void a_roll_stop(sprite_status* pActwk) { /* Line 408, Address: 0x1025b70
 static void a_roll(sprite_status* pActwk) { /* Line 420, Address: 0x1025be0 */
   pActwk->r_no0 += 2; /* Line 421, Address: 0x1025bec */
   ++pActwk->mstno.b.h; /* Line 422, Address: 0x1025bfc */
-  a_speedset(262144, 65536, pActwk); /* Line 423, Address: 0x1025c0c */
+  a_speedset(0x40000, 65536, pActwk); /* Line 423, Address: 0x1025c0c */
 } /* Line 424, Address: 0x1025c20 */
 
 

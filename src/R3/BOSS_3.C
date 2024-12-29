@@ -895,7 +895,7 @@ void egg3_tobi(sprite_status* actionwk) { /* Line 875, Address: 0x102d420 */
 } /* Line 895, Address: 0x102d500 */
 
 void egg3_esc1(sprite_status* actionwk) { /* Line 897, Address: 0x102d510 */
-  actionwk->yposi.l += -262144; /* Line 898, Address: 0x102d518 */
+  actionwk->yposi.l += -0x40000; /* Line 898, Address: 0x102d518 */
   if (actionwk->yposi.w.h <= ((short*)actionwk)[25]) /* Line 899, Address: 0x102d52c */
   {
     actionwk->mstno.w = 1024; /* Line 901, Address: 0x102d558 */
@@ -907,7 +907,7 @@ void egg3_esc1(sprite_status* actionwk) { /* Line 897, Address: 0x102d510 */
 } /* Line 907, Address: 0x102d5b0 */
 
 void egg3_esc2(sprite_status* actionwk) { /* Line 909, Address: 0x102d5c0 */
-  actionwk->xposi.l += 262144; /* Line 910, Address: 0x102d5cc */
+  actionwk->xposi.l += 0x40000; /* Line 910, Address: 0x102d5cc */
   if (actionwk->xposi.w.h < ((short*)actionwk)[25]) return; /* Line 911, Address: 0x102d5e0 */
 
   frameout(actionwk); /* Line 913, Address: 0x102d60c */
