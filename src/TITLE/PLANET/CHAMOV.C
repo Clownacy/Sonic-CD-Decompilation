@@ -653,7 +653,7 @@ void umset2(sprite_status_lpl* pActwk) { /* Line 647, Address: 0x1002080 */
   lD0.w.h = lD0.l % 64; /* Line 653, Address: 0x10020b0 */
   lD0.w.l = 0; /* Line 654, Address: 0x10020dc */
   lD0.l >>=4; /* Line 655, Address: 0x10020e0 */
-  lD0.l += 131072; /* Line 656, Address: 0x10020ec */
+  lD0.l += 0x20000; /* Line 656, Address: 0x10020ec */
   pActwk->X_SPEED.l = lD0.l; /* Line 657, Address: 0x10020fc */
 
   if (!(pActwk->SPR_FLG & 8)) /* Line 659, Address: 0x1002108 */
@@ -1139,7 +1139,7 @@ void tailsmove(sprite_status_lpl* pActwk) { /* Line 1121, Address: 0x1002f00 */
 
 
 void tsset1(sprite_status_lpl* pActwk) { /* Line 1141, Address: 0x1002f90 */
-  pActwk->X_SPEED.l = 131072; /* Line 1142, Address: 0x1002f98 */
+  pActwk->X_SPEED.l = 0x20000; /* Line 1142, Address: 0x1002f98 */
   pActwk->Y_SPEED.l = 0; /* Line 1143, Address: 0x1002fa4 */
   pActwk->PAT_NO = 0; /* Line 1144, Address: 0x1002fac */
   pActwk->PAT_ADR = &tails_tbl; /* Line 1145, Address: 0x1002fb4 */
@@ -1172,7 +1172,7 @@ void tsset2(sprite_status_lpl* pActwk) { /* Line 1166, Address: 0x1003050 */
   lD0.w.h = lD0.l % 16; /* Line 1172, Address: 0x1003080 */
   lD0.w.l = 0; /* Line 1173, Address: 0x10030ac */
   lD0.l >>= 4; /* Line 1174, Address: 0x10030b0 */
-  lD0.l += 131072; /* Line 1175, Address: 0x10030bc */
+  lD0.l += 0x20000; /* Line 1175, Address: 0x10030bc */
   pActwk->X_SPEED.l = lD0.l; /* Line 1176, Address: 0x10030cc */
   if (pActwk->SPR_FLG & 128) /* Line 1177, Address: 0x10030d8 */
     pActwk->X_SPEED.l = -(long int)pActwk->X_SPEED.l; /* Line 1178, Address: 0x10030f0 */

@@ -106,7 +106,7 @@ void b_ring01(sprite_status_sp* actionwk) { /* Line 102, Address: 0x1001690 */
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 106, Address: 0x10016e0 */
   if (actionwk->sy_posi.w.h < 345) /* Line 107, Address: 0x10016f8 */
   {
-    actionwk->sy_speed.l += 131072; /* Line 109, Address: 0x1001714 */
+    actionwk->sy_speed.l += 0x20000; /* Line 109, Address: 0x1001714 */
   } /* Line 110, Address: 0x1001728 */
   else
   {
@@ -143,7 +143,7 @@ void i_ring01(sprite_status_sp* actionwk) { /* Line 142, Address: 0x1001860 */
   if (--actionwk->actfree[0] == 0) actionwk->actflg |= 1; /* Line 143, Address: 0x1001868 */
 
   actionwk->sy_posi.l += actionwk->sy_speed.l; /* Line 145, Address: 0x1001898 */
-  actionwk->sy_speed.l += 131072; /* Line 146, Address: 0x10018b0 */
+  actionwk->sy_speed.l += 0x20000; /* Line 146, Address: 0x10018b0 */
 } /* Line 147, Address: 0x10018c4 */
 
 void timeufo(sprite_status_sp* actionwk) { /* Line 149, Address: 0x10018d0 */

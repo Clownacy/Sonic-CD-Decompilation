@@ -272,18 +272,18 @@ void act_shot2(sprite_status* actionwk) { /* Line 256, Address: 0x101c750 */
   a1->sprhsize = 16; /* Line 272, Address: 0x101c824 */
   a1->colino = 179; /* Line 273, Address: 0x101c830 */
   a1->yposi.w.h = actionwk->yposi.w.h + 23; /* Line 274, Address: 0x101c83c */
-  ((int*)a1)[13] = 131072; /* Line 275, Address: 0x101c860 */
+  ((int*)a1)[13] = 0x20000; /* Line 275, Address: 0x101c860 */
 
   a1->xposi.w.h = actionwk->xposi.w.h; /* Line 277, Address: 0x101c86c */
   if (actionwk->actflg & 1) /* Line 278, Address: 0x101c87c */
   {
     a1->xposi.w.h += 7; /* Line 280, Address: 0x101c894 */
-    ((int*)a1)[12] = 131072; /* Line 281, Address: 0x101c8a4 */
+    ((int*)a1)[12] = 0x20000; /* Line 281, Address: 0x101c8a4 */
   } /* Line 282, Address: 0x101c8b0 */
   else
   {
     a1->xposi.w.h -= 7; /* Line 285, Address: 0x101c8b8 */
-    ((int*)a1)[12] = -131072; /* Line 286, Address: 0x101c8c8 */
+    ((int*)a1)[12] = -0x20000; /* Line 286, Address: 0x101c8c8 */
   }
   if ((char)actionwk->actflg < 0) soundset(160); /* Line 288, Address: 0x101c8d4 */
 } /* Line 289, Address: 0x101c900 */

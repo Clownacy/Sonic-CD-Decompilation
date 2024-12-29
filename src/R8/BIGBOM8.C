@@ -398,7 +398,7 @@ void m_move6(sprite_status* pActwk) { /* Line 366, Address: 0x10273e0 */
     *(int*)&pAct1->actfree[0] = -65536; /* Line 398, Address: 0x10274fc */
     *(int*)&pAct1->actfree[4] = -270336; /* Line 399, Address: 0x102750c */
     make_fire(pActwk, &pAct1); /* Line 400, Address: 0x1027520 */
-    *(int*)&pAct1->actfree[0] = -131072; /* Line 401, Address: 0x1027530 */
+    *(int*)&pAct1->actfree[0] = -0x20000; /* Line 401, Address: 0x1027530 */
     *(int*)&pAct1->actfree[4] = -335872; /* Line 402, Address: 0x1027540 */
     make_fire(pActwk, &pAct1); /* Line 403, Address: 0x1027554 */
     *(int*)&pAct1->actfree[0] = -196608; /* Line 404, Address: 0x1027564 */
@@ -407,7 +407,7 @@ void m_move6(sprite_status* pActwk) { /* Line 366, Address: 0x10273e0 */
     *(int*)&pAct1->actfree[0] = 65536; /* Line 407, Address: 0x1027598 */
     *(int*)&pAct1->actfree[4] = -270336; /* Line 408, Address: 0x10275a8 */
     make_fire(pActwk, &pAct1); /* Line 409, Address: 0x10275bc */
-    *(int*)&pAct1->actfree[0] = 131072; /* Line 410, Address: 0x10275cc */
+    *(int*)&pAct1->actfree[0] = 0x20000; /* Line 410, Address: 0x10275cc */
     *(int*)&pAct1->actfree[4] = -335872; /* Line 411, Address: 0x10275dc */
     make_fire(pActwk, &pAct1); /* Line 412, Address: 0x10275f0 */
     *(int*)&pAct1->actfree[0] = 196608; /* Line 413, Address: 0x1027600 */

@@ -372,9 +372,9 @@ static void act_tama(sprite_status* pActwk) { /* Line 347, Address: 0x101ef90 */
         ((int*)subActwk)[15] = ((int*)pActwk)[15]; /* Line 372, Address: 0x101f0e8 */
         subActwk->mstno.b.h = 1; /* Line 373, Address: 0x101f0f8 */
         if (!(subActwk->actflg & 1)) /* Line 374, Address: 0x101f104 */
-          ((int*)subActwk)[12] = -131072; /* Line 375, Address: 0x101f11c */
+          ((int*)subActwk)[12] = -0x20000; /* Line 375, Address: 0x101f11c */
         else
-          ((int*)subActwk)[12] = 131072; /* Line 377, Address: 0x101f130 */
+          ((int*)subActwk)[12] = 0x20000; /* Line 377, Address: 0x101f130 */
         if ((char)pActwk->actflg < 0) /* Line 378, Address: 0x101f13c */
           soundset(160); /* Line 379, Address: 0x101f15c */
       }

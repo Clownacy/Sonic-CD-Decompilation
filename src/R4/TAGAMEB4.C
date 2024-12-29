@@ -387,7 +387,7 @@ static void a_stop(sprite_status* pActwk) { /* Line 374, Address: 0x101ff40 */
     if (!pActwk->userflag.b.h) /* Line 387, Address: 0x101ffb4 */
     {
       subact = ((short*)pActwk)[26]; /* Line 389, Address: 0x101ffc4 */
-      *(int*)&actwk[subact].actfree[0] = -131072; /* Line 390, Address: 0x101ffd4 */
+      *(int*)&actwk[subact].actfree[0] = -0x20000; /* Line 390, Address: 0x101ffd4 */
       *(int*)&actwk[subact].actfree[4] = -196608; /* Line 391, Address: 0x1020000 */
       *(int*)&actwk[subact].actfree[8] = 0; /* Line 392, Address: 0x102002c */
       *(int*)&actwk[subact].actfree[12] = 8192; /* Line 393, Address: 0x1020054 */
@@ -399,7 +399,7 @@ static void a_stop(sprite_status* pActwk) { /* Line 374, Address: 0x101ff40 */
       *(int*)&actwk[subact].actfree[12] = 8192; /* Line 399, Address: 0x102013c */
       actwk[subact].r_no0 += 2; /* Line 400, Address: 0x1020168 */
       subact = ((short*)pActwk)[28]; /* Line 401, Address: 0x1020194 */
-      *(int*)&actwk[subact].actfree[0] = 131072; /* Line 402, Address: 0x10201a4 */
+      *(int*)&actwk[subact].actfree[0] = 0x20000; /* Line 402, Address: 0x10201a4 */
       *(int*)&actwk[subact].actfree[4] = -196608; /* Line 403, Address: 0x10201d0 */
       *(int*)&actwk[subact].actfree[8] = 0; /* Line 404, Address: 0x10201fc */
       *(int*)&actwk[subact].actfree[12] = 8192; /* Line 405, Address: 0x1020224 */

@@ -1365,7 +1365,7 @@ int egg1_04(sprite_status* pActwk) { /* Line 1318, Address: 0x1029e80 */
     pActwk->yposi.w.h = yposi_bak; /* Line 1365, Address: 0x102a058 */
 
     pActwk->xposi.l += 32768; /* Line 1367, Address: 0x102a060 */
-    pActwk->yposi.l -= 131072; /* Line 1368, Address: 0x102a074 */
+    pActwk->yposi.l -= 0x20000; /* Line 1368, Address: 0x102a074 */
     if (pActwk->yposi.w.h <= 344) /* Line 1369, Address: 0x102a088 */
     {
       ++pActwk->r_no1; /* Line 1371, Address: 0x102a0a4 */
@@ -2192,7 +2192,7 @@ int egg1arm1_02(sprite_status* pActwk) { /* Line 2188, Address: 0x102d730 */
   {
 
     ((int*)pActwk)[16] = -65536; /* Line 2194, Address: 0x102d75c */
-    ((int*)pActwk)[4] = -131072; /* Line 2195, Address: 0x102d768 */
+    ((int*)pActwk)[4] = -0x20000; /* Line 2195, Address: 0x102d768 */
   } /* Line 2196, Address: 0x102d774 */
   else
   {
@@ -2309,7 +2309,7 @@ int egg1arm2_05(sprite_status* pActwk) { /* Line 2303, Address: 0x102db00 */
     pActwk->actfree[2] |= 2; /* Line 2309, Address: 0x102db30 */
 
     ((int*)pActwk)[16] = 65536; /* Line 2311, Address: 0x102db40 */
-    ((int*)pActwk)[4] = -131072; /* Line 2312, Address: 0x102db4c */
+    ((int*)pActwk)[4] = -0x20000; /* Line 2312, Address: 0x102db4c */
     subact = ((short*)pActwk)[26]; /* Line 2313, Address: 0x102db58 */
     actwk[subact].r_no0 = 4; /* Line 2314, Address: 0x102db68 */
   } /* Line 2315, Address: 0x102db90 */
@@ -3301,12 +3301,12 @@ int egg1leg2_07(sprite_status* pActwk) { /* Line 3294, Address: 0x1030920 */
     if (!(pActwk->actfree[2] & 16)) /* Line 3301, Address: 0x103095c */
     {
       ((int*)pActwk)[16] = 0; /* Line 3303, Address: 0x1030974 */
-      ((int*)pActwk)[4] = -131072; /* Line 3304, Address: 0x103097c */
+      ((int*)pActwk)[4] = -0x20000; /* Line 3304, Address: 0x103097c */
     } /* Line 3305, Address: 0x1030988 */
     else
     {
       ((int*)pActwk)[16] = 0; /* Line 3308, Address: 0x1030990 */
-      ((int*)pActwk)[4] = -131072; /* Line 3309, Address: 0x1030998 */
+      ((int*)pActwk)[4] = -0x20000; /* Line 3309, Address: 0x1030998 */
     }
   } /* Line 3311, Address: 0x10309a4 */
   else

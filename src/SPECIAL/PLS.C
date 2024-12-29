@@ -537,7 +537,7 @@ void boundchk(sprite_status_sp* plwk) { /* Line 536, Address: 0x100b630 */
   short branch_d0;
   int speed_d1, speed_d2, speed_d3;
 
-  speed_d1 = (plwk->spdcnt << 8) + 131072; /* Line 540, Address: 0x100b64c */
+  speed_d1 = (plwk->spdcnt << 8) + 0x20000; /* Line 540, Address: 0x100b64c */
   speed_d2 = -speed_d1; /* Line 541, Address: 0x100b668 */
   speed_d3 = 0; /* Line 542, Address: 0x100b66c */
 
