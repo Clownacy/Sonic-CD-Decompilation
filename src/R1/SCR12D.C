@@ -403,7 +403,7 @@ static void zonescrsetsub0(short yoffs, short yline, int_union** pHscrbuf, short
     ldwk.w.l = *pHscrwk; /* Line 403, Address: 0x1025d9c */
     ++pHscrwk; /* Line 404, Address: 0x1025da8 */
 
-    for ( ;j < 8; ++j, ++*pHscrbuf) { /* Line 406, Address: 0x1025db4 */
+    for ( ; j < 8; ++j, ++*pHscrbuf) { /* Line 406, Address: 0x1025db4 */
       (*pHscrbuf)->l = ldwk.l; /* Line 407, Address: 0x1025dbc */
     } /* Line 408, Address: 0x1025dcc */
   } /* Line 409, Address: 0x1025df0 */

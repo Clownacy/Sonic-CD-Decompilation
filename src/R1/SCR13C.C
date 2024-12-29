@@ -544,7 +544,7 @@ static void zonescrsetsub0(short yoffs, short yline, int_union** pHscrbuf, short
     ldwk.w.l = *pHscrwk; /* Line 544, Address: 0x1022e3c */
     ++pHscrwk; /* Line 545, Address: 0x1022e48 */
 
-    for ( ;j < 8; ++j, ++*pHscrbuf) { /* Line 547, Address: 0x1022e54 */
+    for ( ; j < 8; ++j, ++*pHscrbuf) { /* Line 547, Address: 0x1022e54 */
       (*pHscrbuf)->l = ldwk.l; /* Line 548, Address: 0x1022e5c */
     } /* Line 549, Address: 0x1022e6c */
   } /* Line 550, Address: 0x1022e90 */
