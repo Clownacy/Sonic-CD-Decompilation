@@ -303,7 +303,7 @@ void scrbinit(short yWk) { /* Line 285, Address: 0x1018ac0 */
     data.l = (unsigned int)data.l >> 16 & 65535 | data.l << 16 & -65536; /* Line 303, Address: 0x1018b44 */
     data.l >>= 2; /* Line 304, Address: 0x1018b68 */
     data.l *= 3; /* Line 305, Address: 0x1018b74 */
-    data.l += 33554432; /* Line 306, Address: 0x1018b84 */
+    data.l += 0x2000000; /* Line 306, Address: 0x1018b84 */
     scrb_v_posit.w.h = data.w.h; /* Line 307, Address: 0x1018b94 */
     scrb_v_posit.w.l = data.w.l; /* Line 308, Address: 0x1018ba0 */
     data.l = (unsigned int)data.l >> 16 & 65535 | data.l << 16 & -65536; /* Line 309, Address: 0x1018bac */
@@ -359,7 +359,7 @@ void scroll() { /* Line 326, Address: 0x1018cb0 */
     data.l = (unsigned int)data.l >> 16 & 65535 | data.l << 16 & -65536; /* Line 359, Address: 0x1018e28 */
     data.l >>= 2; /* Line 360, Address: 0x1018e4c */
     data.l *= 3; /* Line 361, Address: 0x1018e58 */
-    data.l += 33554432; /* Line 362, Address: 0x1018e68 */
+    data.l += 0x2000000; /* Line 362, Address: 0x1018e68 */
     data.l = (unsigned int)data.l >> 16 & 65535 | data.l << 16 & -65536; /* Line 363, Address: 0x1018e78 */
   }
 
@@ -1747,7 +1747,7 @@ void mapwrt_z81a(unsigned char* pMapWk, int VramBase) { /* Line 1729, Address: 0
       temp2.l = (unsigned int)temp2.l >> 16 & 65535 | temp2.l << 16 & -65536; /* Line 1747, Address: 0x101bd60 */
       temp2.l >>= 2; /* Line 1748, Address: 0x101bd84 */
       temp2.l *= 3; /* Line 1749, Address: 0x101bd90 */
-      temp2.l += 33554432; /* Line 1750, Address: 0x101bda0 */
+      temp2.l += 0x2000000; /* Line 1750, Address: 0x101bda0 */
       temp2.l = (unsigned int)temp2.l >> 16 & 65535 | temp2.l << 16 & -65536; /* Line 1751, Address: 0x101bdb0 */
       wD0 = temp2.w.l; /* Line 1752, Address: 0x101bdd4 */
     } /* Line 1753, Address: 0x101bddc */
