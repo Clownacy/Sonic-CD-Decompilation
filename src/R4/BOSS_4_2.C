@@ -1630,7 +1630,7 @@ static unsigned int egg4awa_chi(sprite_status* pActwk) { /* Line 1602, Address: 
   ((int*)pActwk)[16] -= 65536; /* Line 1630, Address: 0x1024754 */
   ((int*)pActwk)[4] -= 65536; /* Line 1631, Address: 0x1024768 */
 
-  if ((long int)((int*)pActwk)[16] <= 1048576) { /* Line 1633, Address: 0x102477c */
+  if ((long int)((int*)pActwk)[16] <= 0x100000) { /* Line 1633, Address: 0x102477c */
 
     cntwk = pEggact->actfree[3]; /* Line 1635, Address: 0x10247a0 */
     radwk = rad_tbl[cntwk]; /* Line 1636, Address: 0x10247b0 */
@@ -1639,8 +1639,8 @@ static unsigned int egg4awa_chi(sprite_status* pActwk) { /* Line 1602, Address: 
 
     ++pEggact->actfree[8]; /* Line 1640, Address: 0x10247f0 */
 
-    ((int*)pActwk)[16] = 1048576; /* Line 1642, Address: 0x10247fc */
-    ((int*)pActwk)[4] = 1048576; /* Line 1643, Address: 0x1024808 */
+    ((int*)pActwk)[16] = 0x100000; /* Line 1642, Address: 0x10247fc */
+    ((int*)pActwk)[4] = 0x100000; /* Line 1643, Address: 0x1024808 */
     pActwk->r_no0 = 6; /* Line 1644, Address: 0x1024814 */
   }
 

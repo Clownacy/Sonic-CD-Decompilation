@@ -428,7 +428,7 @@ void evt03(sprite_status_sp* plwk) { /* Line 418, Address: 0x100b080 */
 
 void evt04(sprite_status_sp* plwk) { /* Line 429, Address: 0x100b100 */
   plwk->exeno = 2; /* Line 430, Address: 0x100b10c */
-  plwk->sy_speed.l = -1048576; /* Line 431, Address: 0x100b118 */
+  plwk->sy_speed.l = -0x100000; /* Line 431, Address: 0x100b118 */
   plwk->actflg |= 128; /* Line 432, Address: 0x100b124 */
   key_set(152); /* Line 433, Address: 0x100b134 */
   sibuki_clr(); /* Line 434, Address: 0x100b140 */
