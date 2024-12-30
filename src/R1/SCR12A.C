@@ -678,7 +678,7 @@ void sv_move_plus(short wD1) { /* Line 665, Address: 0x1027ed0 */
 
 void scrv_down_ch(int_union lD1) { /* Line 679, Address: 0x1027f40 */
   if (lD1.w.l >= scralim_down) { /* Line 680, Address: 0x1027f4c */
-    if ((lD1.w.l += -2048) < 0) { /* Line 681, Address: 0x1027f74 */
+    if ((lD1.w.l -= +2048) < 0) { /* Line 681, Address: 0x1027f74 */
       lD1.w.l = scralim_down; /* Line 682, Address: 0x1027f98 */
     } /* Line 683, Address: 0x1027fa4 */
     else {

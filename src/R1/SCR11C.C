@@ -583,7 +583,7 @@ void sv_move_plus(short wD1) { /* Line 571, Address: 0x1025600 */
 
 void scrv_down_ch(int_union lD1) { /* Line 584, Address: 0x1025670 */
   if (lD1.w.l >= scralim_down) { /* Line 585, Address: 0x102567c */
-    if ((lD1.w.l += -2048) < 0) { /* Line 586, Address: 0x10256a4 */
+    if ((lD1.w.l -= 2048) < 0) { /* Line 586, Address: 0x10256a4 */
       lD1.w.l = scralim_down; /* Line 587, Address: 0x10256c8 */
     } /* Line 588, Address: 0x10256d4 */
     else {
