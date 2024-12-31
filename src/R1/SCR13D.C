@@ -1134,7 +1134,7 @@ static void scrv_move(int_union lSpd) { /* Line 1127, Address: 0x1025d00 */
   spdwk.l = (spdwk.l >> 8) | (spdwk.l << 24); /* Line 1134, Address: 0x1025d50 */
   scra_vz = spdwk.w.l; /* Line 1135, Address: 0x1025d68 */
 
-  scra_v_posit.l = spdwk.l; /* Line 1137, Address: 0x1025d74 */
+  scra_v_posit.l = lSpd.l; /* Line 1137, Address: 0x1025d74 */
 
   ywk = (unsigned char)(scra_v_posit.w.h & 16) ^ scra_v_count; /* Line 1139, Address: 0x1025d80 */
   if (!ywk) { /* Line 1140, Address: 0x1025dbc */
