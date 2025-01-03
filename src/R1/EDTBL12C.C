@@ -14,7 +14,6 @@ extern sprite_pattern* pat_friend0[];
 extern sprite_pattern* pat_friend1[];
 extern sprite_pattern* e_ka_pat[];
 extern sprite_pattern* e_chou_pat[];
-extern sprite_pattern* e_chou_pat[];
 extern sprite_pattern* ari_pat[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* patbase_kuzure_a[];

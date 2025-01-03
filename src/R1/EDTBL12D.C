@@ -16,7 +16,6 @@ extern sprite_pattern* ari_pat[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* patbase_kuzure_a[];
 extern sprite_pattern* patbase_kuzure_b[];
-extern sprite_pattern* itempat[];
 extern sprite_pattern* edapat[];
 extern sprite_pattern* kagepat[];
 extern sprite_pattern* bariapat[];
