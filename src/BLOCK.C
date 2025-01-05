@@ -5,8 +5,7 @@
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 
-void(*block_tbl[7])(sprite_status*) =
-{
+void(*block_tbl[7])(sprite_status*) = {
   &block_init,
   &block_move,
   &block_move2,
@@ -37,6 +36,7 @@ sprite_pattern block3 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 2 } } };
 sprite_pattern block4 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 3 } } };
 sprite_pattern block5 = { 1, { { -12, -12, 0, SPRITE_BLOCK_BASE + 4 } } };
 sprite_pattern* blockpat[6] = { &block0, &block1, &block2, &block3, &block4, &block5 };
+
 
 
 
