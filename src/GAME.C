@@ -458,7 +458,7 @@ int game() { /* Line 323, Address: 0x1017f70 */
   scrollwrt(); /* Line 458, Address: 0x1018564 */
   scoreset(); /* Line 459, Address: 0x101856c */
 #if defined(CG_CHANGE)
-  cg_change();  /* Line 461, Address: 0x1018574 */
+  cg_change(); /* Line 461, Address: 0x1018574 */
 #endif
 
   if (!pauseflag.b.h) { /* Line 464, Address: 0x101857c */

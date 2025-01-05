@@ -587,7 +587,7 @@ label1:
       ((short*)pTmpAct)[23] = *wp++; /* Line 587, Address: 0x1013034 */
       pTmpAct->patno = *wp++ & 255; /* Line 588, Address: 0x1013048 */
 
-      if (i == 2) {  /* Line 590, Address: 0x1013068 */
+      if (i == 2) { /* Line 590, Address: 0x1013068 */
         pTmpAct->patno = pTmpAct->patno + stageno.b.l; /* Line 591, Address: 0x1013074 */
       }
       actwkchk(&pTmpAct); /* Line 593, Address: 0x10130a0 */
