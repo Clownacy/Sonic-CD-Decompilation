@@ -6,6 +6,12 @@
 #include "..\RIDECHK.H"
 #include "COLI1.H"
 
+#if defined(R11A)
+  #define SPRITE_SIKAKE_BASE 488
+#elif
+  #define SPRITE_SIKAKE_BASE 471
+#endif
+
 static unsigned char tobita1chg0[16] = { 2, 0, 1, 0, 2, 0, 1, 0, 3, 4, 3, 5, 3, 4, 3, 255 };
 static unsigned char tobita1chg1[9] = { 2, 0, 1, 0, 2, 0, 1, 0, 255 };
 static unsigned char tobita1chg2[9] = { 2, 3, 4, 3, 5, 3, 4, 3, 255 };
@@ -22,32 +28,32 @@ unsigned char* tobita1chg[5] =
 static sprite_pattern tobita_a =
 {
   1,
-  { { -8, -4, 0, 488 } }
+  { { -8, -4, 0, SPRITE_SIKAKE_BASE } }
 };
 static sprite_pattern tobita_b =
 {
   1,
-  { { -8, -4, 0, 489 } }
+  { { -8, -4, 0, SPRITE_SIKAKE_BASE + 1 } }
 };
 static sprite_pattern tobita_c =
 {
   1,
-  { { -8, -16, 0, 490 } }
+  { { -8, -16, 0, SPRITE_SIKAKE_BASE + 2 } }
 };
 static sprite_pattern tobita_r_a =
 {
   1,
-  { { -24, -4, 0, 491 } }
+  { { -24, -4, 0, SPRITE_SIKAKE_BASE + 3 } }
 };
 static sprite_pattern tobita_r_b =
 {
   1,
-  { { -24, -4, 0, 492 } }
+  { { -24, -4, 0, SPRITE_SIKAKE_BASE + 4 } }
 };
 static sprite_pattern tobita_r_c =
 {
   1,
-  { { -24, -16, 0, 493 } }
+  { { -24, -16, 0, SPRITE_SIKAKE_BASE + 5 } }
 };
 sprite_pattern* tobita1_pat[6] =
 {
@@ -61,15 +67,9 @@ sprite_pattern* tobita1_pat[6] =
 static sprite_pattern pat0 =
 {
   1,
-  { { -16, -16, 0, 494 } }
+  { { -16, -16, 0, SPRITE_SIKAKE_BASE + 6 } }
 };
 sprite_pattern* hari12pat[1] = { &pat0 };
-
-
-
-
-
-
 
 
 
