@@ -70,7 +70,7 @@ sprite_pattern spr_movie5 =
 };
 sprite_pattern spr_movie0 =
 {
-  1,
+  0,
   { { -20, -24, 0, SPRITE_MOVIE_BASE + 4 } }
 };
 sprite_pattern* pat_movie[6] =

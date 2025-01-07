@@ -58,7 +58,7 @@ static sprite_pattern patb01 = {
 };
 static sprite_pattern patb02 = {
   1,
-  { { -48, -32, 0, 508 } }
+  { { -32, -48, 0, 508 } }
 };
 static sprite_pattern patb03 = {
   1,
