@@ -30,7 +30,7 @@ edit_data edit_tbl = {
     { 13, 1, futapat,            846 },
     {  9, 1, k_daipat,           896 },
     { 27, 1, iwapat,             876 },
-    { 33, 1, dai11a_pattbl,     17598, 1, 0, 0, 0 },
+    { 33, 1, dai11a_pattbl,    17598, 1, 0, 0, 0 },
     { 15, 4, komapat,            824 },
     { 10, 1, springpat,         1312 },
     { 10, 1, springpat,         1312, 0, 2, 0, 0 },
