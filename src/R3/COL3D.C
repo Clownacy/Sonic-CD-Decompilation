@@ -457,7 +457,7 @@ void colorset3(int ColorNo) { /* Line 451, Address: 0x1025970 */
 
 
 void colorset00(int ColorNo, int WorkOffs) { /* Line 459, Address: 0x10259a0 */
-  PALETTEENTRY* lppe;
+  PALETTEENTRY *lppe;
   PALETTEENTRY *lpPeSrc, *lpPeDest;
   int i, n;
 

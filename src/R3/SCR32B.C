@@ -629,7 +629,7 @@ void scroll() { /* Line 366, Address: 0x1027360 */
     ++pHScrollBuff; /* Line 629, Address: 0x1027f2c */
     ++wD4; /* Line 630, Address: 0x1027f38 */
     ++wD5; /* Line 631, Address: 0x1027f44 */
-  }/* Line 632, Address: 0x1027f50 */
+  } /* Line 632, Address: 0x1027f50 */
 
 } /* Line 634, Address: 0x1027f70 */
 

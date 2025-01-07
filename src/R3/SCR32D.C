@@ -240,7 +240,7 @@ void playposiset() { /* Line 230, Address: 0x1027230 */
     2992,   76,
     5488,  364,
      432, 1836,
-     5120, 684
+    5120,  684
   };
   unsigned char playmapnotbl[4] = { /* Line 245, Address: 0x1027298 */
     127,
