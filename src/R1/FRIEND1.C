@@ -98,7 +98,7 @@ static sprite_pattern spr_ricky4 =
 };
 static sprite_pattern spr_friend0 =
 {
-  1,
+  0,
   { { -12, -8, 0, SPRITE_FRIEND_BASE + 5 } }
 };
 static sprite_pattern spr_ricky5 =
