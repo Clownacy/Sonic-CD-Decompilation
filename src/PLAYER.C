@@ -1681,7 +1681,7 @@ void loopchk() { /* Line 1647, Address: 0x100c720 */
     return; /* Line 1681, Address: 0x100c9a8 */
   }
 
-  if ((unsigned char)actwk[0].xposi.b.b4 >= 224) { /* Line 1684, Address: 0x100c9b0 */
+  if ((unsigned char)actwk[0].xposi.b.b2 >= 224) { /* Line 1684, Address: 0x100c9b0 */
     actwk[0].actflg |= 64; /* Line 1685, Address: 0x100c9cc */
     return; /* Line 1686, Address: 0x100c9e0 */
   }
