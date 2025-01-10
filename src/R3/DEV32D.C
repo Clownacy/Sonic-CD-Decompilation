@@ -4,7 +4,7 @@
 
 static unsigned int cg_chg1(tile_changes* pTbl, int iNum, unsigned char** ppChgTim, unsigned char** ppChgCnt, int* BmpNo, int* TileStart);
 
-map_init_data mapinittbl;
+map_init_data mapinittbl = { 0, 0, 0, 3, 2, 0, 0, 4, 4, 129 };
 static int drum_re0cg[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 static int drum_re1cg[8] = { 10, 11, 12, 13, 14, 15, 16, 17 };
 static int drum_no0cg[10] = { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27 };
