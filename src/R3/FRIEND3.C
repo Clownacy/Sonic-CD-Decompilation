@@ -7,6 +7,14 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R31A) || defined(R31B) || defined(R32A)
+  #define SPRITE_FRIEND3_BASE 538
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_FRIEND3_BASE 542
+#else
+  #define SPRITE_FRIEND3_BASE 491
+#endif
+
 static void t_init(sprite_status* actionwk);
 static void t_move(sprite_status* actionwk);
 static void t_movie(sprite_status* actionwk);
@@ -24,32 +32,32 @@ static sprite_pattern patnull =
 static sprite_pattern pat00 =
 {
   1,
-  { { -8, -8, 0, 538 } }
+  { { -8, -8, 0, SPRITE_FRIEND3_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -8, -8, 0, 539 } }
+  { { -8, -8, 0, SPRITE_FRIEND3_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -8, -12, 0, 540 } }
+  { { -8, -12, 0, SPRITE_FRIEND3_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -8, -12, 0, 541 } }
+  { { -8, -12, 0, SPRITE_FRIEND3_BASE + 3 } }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -8, -12, 0, 542 } }
+  { { -8, -12, 0, SPRITE_FRIEND3_BASE + 4 } }
 };
 static sprite_pattern pat05 =
 {
   1,
-  { { -8, -4, 0, 543 } }
+  { { -8, -4, 0, SPRITE_FRIEND3_BASE + 5 } }
 };
 static sprite_pattern* pat_friend0[3] =
 {
@@ -84,14 +92,6 @@ static char p10[58] =
 static char* pchg0[2] = { p00, p01 };
 static char* pchg1[1] = { p10 };
 static unsigned short tbl0sproffset[11] = { 1943, 986, 986, 0, 1943, 986, 986, 0, 0, 0, 986 };
-
-
-
-
-
-
-
-
 
 
 

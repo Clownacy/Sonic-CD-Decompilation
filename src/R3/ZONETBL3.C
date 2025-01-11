@@ -1,5 +1,11 @@
 #include "..\TYPES.H"
 
+#if defined(R33C) || defined(R33D)
+  #define SPRITE_TITLE_BASE 364
+#else
+  #define SPRITE_TITLE_BASE 360
+#endif
+
 unsigned short title_tbl[32] = {
    304,  552,  360,  346,
    256,  568,  376,  602,
@@ -12,39 +18,39 @@ unsigned short title_tbl[32] = {
 };
 static sprite_pattern titlepat0 = {
   1,
-  { { -16, -112, 0, 360 } }
+  { { -16, -112, 0, SPRITE_TITLE_BASE } }
 };
 static sprite_pattern titlepat1 = {
   1,
-  { { -24, -8, 0, 361 } }
+  { { -24, -8, 0, SPRITE_TITLE_BASE + 1 } }
 };
 static sprite_pattern titlepat2 = {
   1,
-  { { -4, -24, 0, 362 } }
+  { { -4, -24, 0, SPRITE_TITLE_BASE + 2 } }
 };
 static sprite_pattern titlepat3 = {
   1,
-  { { -80, -8, 0, 363 } }
+  { { -80, -8, 0, SPRITE_TITLE_BASE + 3 } }
 };
 static sprite_pattern titlepat4 = {
   1,
-  { { -24, -24, 0, 364 } }
+  { { -24, -24, 0, SPRITE_TITLE_BASE + 4 } }
 };
 static sprite_pattern titlepat5 = {
   1,
-  { { -24, -24, 0, 365 } }
+  { { -24, -24, 0, SPRITE_TITLE_BASE + 5 } }
 };
 static sprite_pattern titlepat6 = {
   1,
-  { { -24, -24, 0, 366 } }
+  { { -24, -24, 0, SPRITE_TITLE_BASE + 6 } }
 };
 static sprite_pattern titlepat7 = {
   1,
-  { { 0, -56, 0, 367 } }
+  { { 0, -56, 0, SPRITE_TITLE_BASE + 7 } }
 };
 static sprite_pattern titlepat8 = {
   1,
-  { { 0, 0, 0, 368 } }
+  { { 0, 0, 0, SPRITE_TITLE_BASE + 8 } }
 };
 sprite_pattern* title_pat[9] = {
   &titlepat0,

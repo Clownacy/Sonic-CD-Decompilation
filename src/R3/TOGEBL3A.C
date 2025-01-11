@@ -4,22 +4,22 @@
 #include "..\ACTSET.H"
 #include "..\ETC.H"
 
+#if defined (R32A)
+  #define SPRITE_TOGEBL3A_BASE 550
+#else
+  #define SPRITE_TOGEBL3A_BASE 556
+#endif
+
 static sprite_pattern spat_chg0 = {
   1,
-  { { -8, -8, 0, 556 } }
+  { { -8, -8, 0, SPRITE_TOGEBL3A_BASE } }
 };
 static sprite_pattern spat_chg1 = {
   1,
-  { { -8, -8, 0, 557 } }
+  { { -8, -8, 0, SPRITE_TOGEBL3A_BASE + 1 } }
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* togeball_pat[1] = { &spat_chg1 };
-
-
-
-
-
-
 
 
 
