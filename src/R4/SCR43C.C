@@ -1126,7 +1126,7 @@ void scrollwrtb(unsigned char* pScrFlag, unsigned char* pMapWk, int VramBase, un
 
   if (*pScrFlag) { /* Line 1127, Address: 0x1022810 */
     if (*pScrFlag & 1) { /* Line 1128, Address: 0x1022820 */
-      *pScrFlag &= 254;; /* Line 1129, Address: 0x1022838 */
+      *pScrFlag &= 254; /* Line 1129, Address: 0x1022838 */
 
       lD4.l = -16; /* Line 1131, Address: 0x102284c */
       wD5 = 65520; /* Line 1132, Address: 0x1022854 */
