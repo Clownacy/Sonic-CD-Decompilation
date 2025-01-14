@@ -451,8 +451,8 @@ void flow_init(sprite_status* flowerwk) { /* Line 428, Address: 0x1016040 */
 
 
 void flow_move0(sprite_status* flowerwk) { /* Line 453, Address: 0x1016170 */
- short y_move = 0, flower_index = 0; /* Line 454, Address: 0x1016188 */
- unsigned char* fwcnt_adr;
+  short y_move = 0, flower_index = 0; /* Line 454, Address: 0x1016188 */
+  unsigned char* fwcnt_adr;
 
   y_move = emycol_d(flowerwk); /* Line 457, Address: 0x1016190 */
   if (y_move < 0) { /* Line 458, Address: 0x10161a4 */

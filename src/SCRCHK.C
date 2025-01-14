@@ -46,7 +46,7 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
     case 0:
       zone1chk(); break; /* Line 47, Address: 0x1017a54 */
     case 1:
-      zone3chk(); break;/* Line 49, Address: 0x1017a64 */
+      zone3chk(); break; /* Line 49, Address: 0x1017a64 */
     case 2:
       zone4chk(); break; /* Line 51, Address: 0x1017a74 */
     case 3:
