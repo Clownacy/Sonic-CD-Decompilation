@@ -135,7 +135,7 @@ int bossclr_scrset(short DownLim) { /* Line 122, Address: 0x101c410 */
   {
     if (temp > scralim_right) /* Line 136, Address: 0x101c4cc */
       temp = scralim_right; /* Line 137, Address: 0x101c4f0 */
-    
+
     scralim_left = temp; /* Line 139, Address: 0x101c500 */
     scralim_n_left = temp; /* Line 140, Address: 0x101c508 */
   }
