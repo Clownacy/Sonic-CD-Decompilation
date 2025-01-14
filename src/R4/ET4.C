@@ -1,5 +1,11 @@
 #include "..\EQU.H"
 #include "ET4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\RIDECHK.H"
+#include "..\SCORE.H"
+#include "PLAYSUB4.H"
 
 static void m_init(sprite_status* pActwk);
 static void m_wait(sprite_status* pActwk);
@@ -64,12 +70,6 @@ static char tbl0[64] = {
    30,  10,  20,  32, -10,   2,  34,  30,
    -8,  35,  13, -10,  40, -10,  10,  -1
 };
-
-
-
-
-
-
 
 
 
