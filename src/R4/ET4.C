@@ -286,7 +286,7 @@ static void m_wait(sprite_status* pActwk) { /* Line 271, Address: 0x1021de0 */
       return; /* Line 286, Address: 0x1021eac */
     }
     hitchk(pActwk, &actwk[0]); /* Line 288, Address: 0x1021eb4 */
-    patchg(pActwk, pchg); /* Line 289, Address: 0x1021ec8 */
+    patchg(pActwk, (unsigned char**)pchg); /* Line 289, Address: 0x1021ec8 */
   }
 
 
