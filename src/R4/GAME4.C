@@ -1049,7 +1049,7 @@ void watercoli() { /* Line 1022, Address: 0x1019e90 */
       return; /* Line 1049, Address: 0x101a08c */
     }
     watercoliflag = 1; /* Line 1051, Address: 0x101a094 */
-    actwk[0].actfree[2] = 0; /* Line 1052, Address: 0x101a0a0 */
+    actwk[0].actfree[18] = 0; /* Line 1052, Address: 0x101a0a0 */
     actwk[0].xspeed.w = watercolitbl[i + 4].w; /* Line 1053, Address: 0x101a0a8 */
     actwk[0].yspeed.w = watercolitbl[i + 5].w; /* Line 1054, Address: 0x101a0c8 */
     actwk[0].mstno.b.h = 15; /* Line 1055, Address: 0x101a0e8 */
