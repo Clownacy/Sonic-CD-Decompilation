@@ -6,6 +6,24 @@
 #include "..\SUICIDE.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A)
+  #define SPRITE_FRIEND4_BASE 494
+#elif defined(R41B)
+  #define SPRITE_FRIEND4_BASE 455
+#elif defined(R41C)
+  #define SPRITE_FRIEND4_BASE 472
+#elif defined(R41D)
+  #define SPRITE_FRIEND4_BASE 462
+#elif defined(R42A)
+  #define SPRITE_FRIEND4_BASE 500
+#elif defined(R42B)
+  #define SPRITE_FRIEND4_BASE 453
+#elif defined(R42C) || defined(R42D)
+  #define SPRITE_FRIEND4_BASE 457
+#else
+  #define SPRITE_FRIEND4_BASE 435
+#endif
+
 static void m_init(sprite_status* pActwk);
 static void m0move(sprite_status* pActwk);
 static void m1move(sprite_status* pActwk);
@@ -22,23 +40,23 @@ static unsigned char* pchg[2] = {
 };
 static sprite_pattern spr_friend4_00 = {
   1,
-  { { -8, -12, 0, 494 } }
+  { { -8, -12, 0, SPRITE_FRIEND4_BASE } }
 };
 static sprite_pattern spr_friend4_01 = {
   1,
-  { { -8, -12, 0, 495 } }
+  { { -8, -12, 0, SPRITE_FRIEND4_BASE + 1 } }
 };
 static sprite_pattern spr_friend4_10 = {
   1,
-  { { -8, -12, 0, 496 } }
+  { { -8, -12, 0, SPRITE_FRIEND4_BASE + 2 } }
 };
 static sprite_pattern spr_friend4_11 = {
   1,
-  { { -8, -12, 0, 497 } }
+  { { -8, -12, 0, SPRITE_FRIEND4_BASE + 3 } }
 };
 static sprite_pattern spr_friend4_99 = {
   0,
-  { { -8, -12, 0, 497 } }
+  { { -8, -12, 0, SPRITE_FRIEND4_BASE + 3 } }
 };
 sprite_pattern* pat_friend0[3] = {
   &spr_friend4_00,
@@ -55,24 +73,6 @@ static unsigned short tbl0sproffset[11] = {
   1104, 1104, 1104, 0,
      0,    0, 1104
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

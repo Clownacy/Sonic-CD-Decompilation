@@ -5,6 +5,14 @@
 #include "..\DIRCOL.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41A)
+  #define SPRITE_HARID4_BASE 444
+#elif defined(R41C)
+  #define SPRITE_HARID4_BASE 432
+#else
+  #define SPRITE_HARID4_BASE 467
+#endif
+
 static void act_init(sprite_status* pActwk);
 static void act_wait(sprite_status* pActwk);
 static void act_slide(sprite_status* pActwk);
@@ -16,8 +24,8 @@ static void act_stop(sprite_status* pActwk);
 static sprite_pattern pat00 = {
   2,
   {
-    { -16, -64, 0, 445 },
-    { -16, 32, 0, 444 }
+    { -16, -64, 0, SPRITE_HARID4_BASE + 1 },
+    { -16, 32, 0, SPRITE_HARID4_BASE }
   }
 };
 static sprite_pattern pat01;
@@ -34,14 +42,6 @@ static void(*hari4_act_tbl[7])(sprite_status*) = {
   &act_down1,
   &act_stop
 };
-
-
-
-
-
-
-
-
 
 
 

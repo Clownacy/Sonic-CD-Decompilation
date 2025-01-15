@@ -5,6 +5,18 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41B)
+  #define SPRITE_LRBLK4_BASE 497
+#elif defined(R41C)
+  #define SPRITE_LRBLK4_BASE 485
+#elif defined(R42A)
+  #define SPRITE_LRBLK4_BASE 504
+#elif defined(R42B)
+  #define SPRITE_LRBLK4_BASE 519
+#else
+  #define SPRITE_LRBLK4_BASE 491
+#endif
+
 typedef struct {
   unsigned char cnt;
   unsigned char dummy;
@@ -39,47 +51,47 @@ static void type8_move(sprite_status* pActwk);
 static sprite_pattern pat10 =
 {
   1,
-  { { -64, -16, 0, 491 } }
+  { { -64, -16, 0, SPRITE_LRBLK4_BASE } }
 };
 static sprite_pattern pat11 =
 {
   1,
-  { { -48, -16, 0, 492 } }
+  { { -48, -16, 0, SPRITE_LRBLK4_BASE + 1 } }
 };
 static sprite_pattern pat20 =
 {
   1,
-  { { -32, -16, 0, 493 } }
+  { { -32, -16, 0, SPRITE_LRBLK4_BASE + 2 } }
 };
 static sprite_pattern pat30 =
 {
   1,
-  { { -32, -32, 0, 494 } }
+  { { -32, -32, 0, SPRITE_LRBLK4_BASE + 3 } }
 };
 static sprite_pattern pat50 =
 {
   1,
-  { { -32, -32, 0, 495 } }
+  { { -32, -32, 0, SPRITE_LRBLK4_BASE + 4 } }
 };
 static sprite_pattern pat60 =
 {
   1,
-  { { -16, -16, 0, 496 } }
+  { { -16, -16, 0, SPRITE_LRBLK4_BASE + 5 } }
 };
 static sprite_pattern pat61 =
 {
   1,
-  { { -32, -16, 0, 497 } }
+  { { -32, -16, 0, SPRITE_LRBLK4_BASE + 6 } }
 };
 static sprite_pattern pat62 =
 {
   1,
-  { { -48, -16, 0, 498 } }
+  { { -48, -16, 0, SPRITE_LRBLK4_BASE + 7 } }
 };
 static sprite_pattern pat63 =
 {
   1,
-  { { -64, -16, 0, 499 } }
+  { { -64, -16, 0, SPRITE_LRBLK4_BASE + 8 } }
 };
 sprite_pattern* lrblk4pat1[2] =
 {
@@ -101,18 +113,6 @@ sprite_pattern* lrblk4pat8[2] =
   &pat10,
   &pat11
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

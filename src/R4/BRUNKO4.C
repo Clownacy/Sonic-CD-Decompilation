@@ -5,6 +5,12 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R42A)
+  #define SPRITE_BRUNKO4_BASE 476
+#else
+  #define SPRITE_BRUNKO4_BASE 470
+#endif
+
 static void brunko4_ridechk(sprite_status* pActwk);
 static void brunko_init(sprite_status* pActwk);
 static void brunko_move(sprite_status* pActwk);
@@ -13,17 +19,17 @@ static void brunko4_posiset(sprite_status* pActwk);
 static sprite_pattern pat0 =
 {
   1,
-  { { -8, -8, 0, 470 } }
+  { { -8, -8, 0, SPRITE_BRUNKO4_BASE } }
 };
 static sprite_pattern pat1 =
 {
   1,
-  { { -32, -8, 0, 471 } }
+  { { -32, -8, 0, SPRITE_BRUNKO4_BASE + 1 } }
 };
 static sprite_pattern pat2 =
 {
   1,
-  { { -8, -8, 0, 472 } }
+  { { -8, -8, 0, SPRITE_BRUNKO4_BASE + 2 } }
 };
 sprite_pattern* brunko4pat[3] =
 {
@@ -31,12 +37,6 @@ sprite_pattern* brunko4pat[3] =
   &pat1,
   &pat2
 };
-
-
-
-
-
-
 
 
 
