@@ -36,6 +36,7 @@ static sprite_pattern pat06 = {
   { { -16, -64, 0, 456 } }
 };
 sprite_pattern* pat_wall1[7] = {
+  &pat00,
   &pat01,
   &pat02,
   &pat03,
@@ -52,7 +53,6 @@ static unsigned char tbl0[14] = {
   64, 16,
   16, 64
 };
-
 
 
 
