@@ -4,31 +4,31 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41A)
+  #define SPRITE_TOBIRA4_BASE 512
+#elif defined(R42A)
+  #define SPRITE_TOBIRA4_BASE 513
+#else
+  #define SPRITE_TOBIRA4_BASE 506
+#endif
+
 static sprite_pattern pat0 = {
   1,
-  { { -8, -64, 0, 512 } }
+  { { -8, -64, 0, SPRITE_TOBIRA4_BASE } }
 };
 static sprite_pattern pat1 = {
   1,
-  { { -8, -32, 0, 513 } }
+  { { -8, -32, 0, SPRITE_TOBIRA4_BASE + 1 } }
 };
 static sprite_pattern pat2 = {
   1,
-  { { -64, -8, 0, 514 } }
+  { { -64, -8, 0, SPRITE_TOBIRA4_BASE + 2 } }
 };
 sprite_pattern* tobira4pat[3] = {
   &pat0,
   &pat1,
   &pat2
 };
-
-
-
-
-
-
-
-
 
 
 

@@ -4,27 +4,37 @@
 #include "..\ACTSET.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_SCREWA_BASE 457
+#elif defined(R41B)
+  #define SPRITE_SCREWA_BASE 477
+#elif defined(R42B)
+  #define SPRITE_SCREWA_BASE 528
+#else
+  #define SPRITE_SCREWA_BASE 488
+#endif
+
 static unsigned char pchg_00[7] = { 1, 0, 1, 2, 3, 4, 255 };
 static unsigned char* pchg[1] = { pchg_00 };
 static sprite_pattern screw0_pat00 = {
   1,
-  { { -16, -8, 0, 457 } }
+  { { -16, -8, 0, SPRITE_SCREWA_BASE } }
 };
 static sprite_pattern screw0_pat01 = {
   1,
-  { { -12, -8, 0, 458 } }
+  { { -12, -8, 0, SPRITE_SCREWA_BASE + 1 } }
 };
 static sprite_pattern screw0_pat02 = {
   1,
-  { { -8, -8, 0, 459 } }
+  { { -8, -8, 0, SPRITE_SCREWA_BASE + 2 } }
 };
 static sprite_pattern screw0_pat03 = {
   1,
-  { { -12, -8, 0, 460 } }
+  { { -12, -8, 0, SPRITE_SCREWA_BASE + 3 } }
 };
 static sprite_pattern screw0_pat04 = {
   1,
-  { { -16, -8, 0, 461 } }
+  { { -16, -8, 0, SPRITE_SCREWA_BASE + 4 } }
 };
 sprite_pattern* pat_screw0[5] = {
   &screw0_pat00,
@@ -35,23 +45,23 @@ sprite_pattern* pat_screw0[5] = {
 };
 static sprite_pattern screw1_pat00 = {
   1,
-  { { -8, -16, 0, 462 } }
+  { { -8, -16, 0, SPRITE_SCREWA_BASE + 5 } }
 };
 static sprite_pattern screw1_pat01 = {
   1,
-  { { -8, -12, 0, 463 } }
+  { { -8, -12, 0, SPRITE_SCREWA_BASE + 6 } }
 };
 static sprite_pattern screw1_pat02 = {
   1,
-  { { -8, -8, 0, 464 } }
+  { { -8, -8, 0, SPRITE_SCREWA_BASE + 7 } }
 };
 static sprite_pattern screw1_pat03 = {
   1,
-  { { -8, -12, 0, 465 } }
+  { { -8, -12, 0, SPRITE_SCREWA_BASE + 8 } }
 };
 static sprite_pattern screw1_pat04 = {
   1,
-  { { -8, -16, 0, 466 } }
+  { { -8, -16, 0, SPRITE_SCREWA_BASE + 9 } }
 };
 sprite_pattern* pat_screw1[5] = {
   &screw1_pat00,
@@ -60,16 +70,6 @@ sprite_pattern* pat_screw1[5] = {
   &screw1_pat03,
   &screw1_pat04
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

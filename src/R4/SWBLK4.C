@@ -5,6 +5,12 @@
 #include "..\DIRCOL.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_SWBLK4_BASE 438
+#else
+  #define SPRITE_SWBLK4_BASE 472
+#endif
+
 static void switchr4_init(sprite_status* pActwk);
 static void switchr4_move(sprite_status* pActwk);
 static unsigned int switchr4_colichk(sprite_status* pActwk, sprite_status* pPlayerwk);
@@ -13,11 +19,11 @@ static void swblkr4_move(sprite_status* pActwk);
 
 static sprite_pattern switchr4_pat0 = {
   1,
-  { { -16, -12, 0, 438 } }
+  { { -16, -12, 0, SPRITE_SWBLK4_BASE } }
 };
 static sprite_pattern switchr4_pat1 = {
   1,
-  { { -16, -4, 0, 439 } }
+  { { -16, -4, 0, SPRITE_SWBLK4_BASE + 1 } }
 };
 sprite_pattern* switchr4pat[2] = {
   &switchr4_pat0,
@@ -29,15 +35,15 @@ static void(*switchr4_jmp_tbl[2])(sprite_status*) = {
 };
 static sprite_pattern swblkr4_pat0 = {
   1,
-  { { -32, -64, 0, 440 } }
+  { { -32, -64, 0, SPRITE_SWBLK4_BASE + 2 } }
 };
 static sprite_pattern swblkr4_pat1 = {
   1,
-  { { -16, -64, 0, 441 } }
+  { { -16, -64, 0, SPRITE_SWBLK4_BASE + 3 } }
 };
 static sprite_pattern swblkr4_pat2 = {
   1,
-  { { -16, -32, 0, 442 } }
+  { { -16, -32, 0, SPRITE_SWBLK4_BASE + 4 } }
 };
 sprite_pattern* swblkr4pat[3] = {
   &swblkr4_pat0,
@@ -48,12 +54,6 @@ static void(*swblkr4_jmp_tbl[2])(sprite_status*) = {
   &swblkr4_init,
   &swblkr4_move
 };
-
-
-
-
-
-
 
 
 

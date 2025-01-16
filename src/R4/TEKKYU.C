@@ -4,6 +4,14 @@
 #include "..\ACTSET.H"
 #include "..\ETC.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_TEKKYU_BASE 467
+#elif defined(R42C) || defined(R42D)
+  #define SPRITE_TEKKYU_BASE 472
+#else
+  #define SPRITE_TEKKYU_BASE 493
+#endif
+
 static void tekkyu_main(sprite_status* pActwk);
 static void act_init(sprite_status* pActwk);
 static void act_move(sprite_status* pActwk);
@@ -13,7 +21,7 @@ static void opt_act_move(sprite_status* pActwk);
 
 static sprite_pattern tekkyu_pat00 = {
   1,
-  { { -8, -8, 0, 467 } }
+  { { -8, -8, 0, SPRITE_TEKKYU_BASE } }
 };
 sprite_pattern* pat_tekkyu[1] = { &tekkyu_pat00 };
 sprite_pattern** pat_tyuusin = { pat_tekkyu };
@@ -23,26 +31,18 @@ static void(*act_tbl[2])(sprite_status*) = {
 };
 static sprite_pattern kusari_pat00 = {
   1,
-  { { -8, -8, 0, 468 } }
+  { { -8, -8, 0, SPRITE_TEKKYU_BASE + 1 } }
 };
 sprite_pattern* pat_kusari[1] = { &kusari_pat00 };
 static sprite_pattern tekkyu1_pat00 = {
   1,
-  { { -16, -16, 0, 469 } }
+  { { -16, -16, 0, SPRITE_TEKKYU_BASE + 2 } }
 };
 sprite_pattern* pat_tekkyu1[1] = { &tekkyu1_pat00 };
 static void(*opt_act_tbl[2])(sprite_status*) = {
   &opt_act_init,
   &opt_act_move
 };
-
-
-
-
-
-
-
-
 
 
 

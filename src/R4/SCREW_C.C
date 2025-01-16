@@ -2,21 +2,29 @@
 #include "SCREW_A.H"
 #include "..\ACTION.H"
 
+#if defined(R41C)
+  #define SPRITE_SCREWC_BASE 441
+#elif defined(R41D)
+  #define SPRITE_SCREWC_BASE 442
+#else
+  #define SPRITE_SCREWC_BASE 432
+#endif
+
 sprite_pattern pat_screw00 = {
   1,
-  { { -16, -8, 0, 441 } }
+  { { -16, -8, 0, SPRITE_SCREWC_BASE } }
 };
 sprite_pattern pat_screw01 = {
   1,
-  { { -16, -8, 0, 442 } }
+  { { -16, -8, 0, SPRITE_SCREWC_BASE + 1 } }
 };
 sprite_pattern pat_screw02 = {
   1,
-  { { -8, -16, 0, 443 } }
+  { { -8, -16, 0, SPRITE_SCREWC_BASE + 2 } }
 };
 sprite_pattern pat_screw03 = {
   1,
-  { { -8, -16, 0, 444 } }
+  { { -8, -16, 0, SPRITE_SCREWC_BASE + 3 } }
 };
 sprite_pattern* pat_screw0[2] = {
   &pat_screw00,
@@ -26,14 +34,6 @@ sprite_pattern* pat_screw1[2] = {
   &pat_screw02,
   &pat_screw03
 };
-
-
-
-
-
-
-
-
 
 
 

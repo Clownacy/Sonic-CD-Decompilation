@@ -5,6 +5,12 @@
 #include "..\IMPFUNCS.H"
 #include "..\RIDECHK.H"
 
+#if defined(R42A)
+  #define SPRITE_TOBIRAS4_BASE 516
+#else
+  #define SPRITE_TOBIRAS4_BASE 509
+#endif
+
 static void act_init(sprite_status* pActwk);
 static void act_sense(sprite_status* pActwk);
 static void act_down(sprite_status* pActwk);
@@ -13,17 +19,17 @@ static void act_disp(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   1,
-  { { -64, -64, 0, 516 } }
+  { { -64, -64, 0, SPRITE_TOBIRAS4_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -16, -64, 0, 517 } }
+  { { -16, -64, 0, SPRITE_TOBIRAS4_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -16, -64, 0, 518 } }
+  { { -16, -64, 0, SPRITE_TOBIRAS4_BASE + 2 } }
 };
 sprite_pattern* pat_tobiras4[3] =
 {
@@ -31,12 +37,6 @@ sprite_pattern* pat_tobiras4[3] =
   &pat01,
   &pat02
 };
-
-
-
-
-
-
 
 
 
