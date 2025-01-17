@@ -6,6 +6,22 @@
 #include "..\SUICIDE.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A)
+  #define SPRITE_YAGO_BASE 490
+#elif defined(R41B)
+  #define SPRITE_YAGO_BASE 451
+#elif defined(R41C)
+  #define SPRITE_YAGO_BASE 468
+#elif defined(R41D)
+  #define SPRITE_YAGO_BASE 458
+#elif defined(R42A)
+  #define SPRITE_YAGO_BASE 496
+#elif defined(R42B)
+  #define SPRITE_YAGO_BASE 449
+#else
+  #define SPRITE_YAGO_BASE 453
+#endif
+
 static void act_disp(sprite_status* pActwk);
 static void yago_e(sprite_status* pActwk);
 static void act_init(sprite_status* pActwk);
@@ -28,22 +44,22 @@ static unsigned char* pat_chg[1] = { pat_chg0 };
 static sprite_pattern spr_yago_e_00 =
 {
   1,
-  { { -24, -12, 0, 492 } }
+  { { -24, -12, 0, SPRITE_YAGO_BASE + 2 } }
 };
 static sprite_pattern spr_yago_e_01 =
 {
   1,
-  { { -24, -12, 0, 493 } }
+  { { -24, -12, 0, SPRITE_YAGO_BASE + 3 } }
 };
 static sprite_pattern spr_yago_b_00 =
 {
   1,
-  { { -24, -12, 0, 490 } }
+  { { -24, -12, 0, SPRITE_YAGO_BASE } }
 };
 static sprite_pattern spr_yago_b_01 =
 {
   1,
-  { { -24, -12, 0, 491 } }
+  { { -24, -12, 0, SPRITE_YAGO_BASE + 1 } }
 };
 sprite_pattern* pat_yago_e[2] =
 {
@@ -55,22 +71,6 @@ sprite_pattern* pat_yago_b[2] =
   &spr_yago_b_00,
   &spr_yago_b_01
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

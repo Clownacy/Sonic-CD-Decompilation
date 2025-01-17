@@ -3,17 +3,17 @@
 #include "..\ACTION.H"
 #include "..\RIDECHK.H"
 
+#if defined(R42A)
+  #define SPRITE_WALL4_BASE 470
+#else
+  #define SPRITE_WALL4_BASE 492
+#endif
+
 sprite_pattern wall4_pat0 = {
   1,
-  { { -64, -64, 0, 492 } }
+  { { -64, -64, 0, SPRITE_WALL4_BASE } }
 };
 sprite_pattern* pat_wall4[1] = { &wall4_pat0 };
-
-
-
-
-
-
 
 
 
