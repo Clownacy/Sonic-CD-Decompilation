@@ -317,7 +317,7 @@ void zone41chk() {
 } /* Line 317, Address: 0x101837c */
 
 void zone42chk() {
-  if (actwk[0].mstno.b.h == 43 || actwk[0].cddat >= 6) { /* Line 320, Address: 0x1018390 */
+  if (actwk[0].mstno.b.h == 43 || actwk[0].r_no0 >= 6) { /* Line 320, Address: 0x1018390 */
 
     scralim_down = 1808; /* Line 322, Address: 0x10183c4 */
     scralim_n_down = 1808; /* Line 323, Address: 0x10183d0 */
