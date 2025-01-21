@@ -66,17 +66,17 @@ short endplpositbl[8][2] = {
   {   80,  944 },
   { 3744, 1132 },
   { 5968,  189 },
-  { 2560, 1580 }
+  { 2560, 1580 },
+  { 2992,   76 },
+  { 5488,  364 },
+  {  432, 1836 },
+  { 5120,  684 }
 };
 short playpositbl[1][2] = { { 64, 620 } };
 unsigned char playmapnotbl[4] = { 127, 127, 21, 91 };
 extern unsigned char mapwka[8][64];
 extern map_init_data mapinittbl;
 extern unsigned char* zonemaptbl[];
-
-
-
-
 
 
 
@@ -1319,7 +1319,7 @@ static void scrv_up_ch(int_union lSpd) { /* Line 1315, Address: 0x101cd80 */
       lSpd.w.l = scralim_up; /* Line 1319, Address: 0x101cdcc */
     } else { /* Line 1320, Address: 0x101cdd8 */
       lSpd.w.l &= 2047; /* Line 1321, Address: 0x101cde0 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1322, Address: 0x101cdec */
+      actwk[0].yposi.w.h &= 2047; /* Line 1322, Address: 0x101cdec */
       scra_v_posit.w.h &= 2047; /* Line 1323, Address: 0x101ce00 */
       scrb_v_posit.w.h &= 1023; /* Line 1324, Address: 0x101ce14 */
     }
@@ -1368,7 +1368,7 @@ static void scrv_down_ch(int_union lSpd) { /* Line 1364, Address: 0x101cec0 */
       lSpd.w.l = scralim_down; /* Line 1368, Address: 0x101cf0c */
     } else { /* Line 1369, Address: 0x101cf18 */
       lSpd.w.l -= 2048; /* Line 1370, Address: 0x101cf20 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1371, Address: 0x101cf2c */
+      actwk[0].yposi.w.h &= 2047; /* Line 1371, Address: 0x101cf2c */
       scra_v_posit.w.h -= 2048; /* Line 1372, Address: 0x101cf40 */
       scrb_v_posit.w.h &= 1023; /* Line 1373, Address: 0x101cf54 */
     }

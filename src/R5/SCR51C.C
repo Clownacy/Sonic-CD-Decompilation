@@ -50,7 +50,7 @@ static int_union* mapwrt_tbl[8] = {
 };
 extern unsigned char mapwkb[8][64];
 short scr_dir_tbl[6] = { 4, 0, 10903, 0, 784, 96 };
-short playpositbl[1][2] = { { 64, 0 } };
+short playpositbl[1][2] = { { 64, 620 } };
 unsigned char playmapnotbl[4] = { 127, 127, 98, 24 };
 extern unsigned char mapwka[8][64];
 extern map_init_data mapinittbl;
@@ -1138,7 +1138,7 @@ static void scrv_up_ch(int_union lSpd) { /* Line 1134, Address: 0x10253c0 */
       lSpd.w.l = scralim_up; /* Line 1138, Address: 0x102540c */
     } else { /* Line 1139, Address: 0x1025418 */
       lSpd.w.l &= 2047; /* Line 1140, Address: 0x1025420 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1141, Address: 0x102542c */
+      actwk[0].yposi.w.h &= 2047; /* Line 1141, Address: 0x102542c */
       scra_v_posit.w.h &= 2047; /* Line 1142, Address: 0x1025440 */
       scrb_v_posit.w.h &= 1023; /* Line 1143, Address: 0x1025454 */
     }
@@ -1187,7 +1187,7 @@ static void scrv_down_ch(int_union lSpd) { /* Line 1183, Address: 0x1025500 */
       lSpd.w.l = scralim_down; /* Line 1187, Address: 0x102554c */
     } else { /* Line 1188, Address: 0x1025558 */
       lSpd.w.l -= 2048; /* Line 1189, Address: 0x1025560 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1190, Address: 0x102556c */
+      actwk[0].yposi.w.h &= 2047; /* Line 1190, Address: 0x102556c */
       scra_v_posit.w.h -= 2048; /* Line 1191, Address: 0x1025580 */
       scrb_v_posit.w.h &= 1023; /* Line 1192, Address: 0x1025594 */
     }
