@@ -1,4 +1,4 @@
-#include "TYPES.H"
+#include "..\TYPES.H"
 
 unsigned short title_tbl[32] = {
    304,  552,  360,  346,
