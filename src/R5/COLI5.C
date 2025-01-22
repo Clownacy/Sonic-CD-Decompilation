@@ -671,10 +671,10 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
 
 
 
-        pColliAct->colino = 0; /* Line 674, Address: 0x1017a8c */
+      pColliAct->colino = 0; /* Line 674, Address: 0x1017a8c */
 
 
-        ++pColliAct->colicnt; /* Line 677, Address: 0x1017a94 */
+      ++pColliAct->colicnt; /* Line 677, Address: 0x1017a94 */
       break;
   }
 

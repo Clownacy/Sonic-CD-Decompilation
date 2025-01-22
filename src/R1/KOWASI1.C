@@ -93,15 +93,15 @@ sprite_pattern* pat_kowasi[14] =
   &spr_kowasi0d
 };
 
-void kowasi(sprite_status* pActwk) {  /* Line 96, Address: 0x101ece0 */
-  void(*tbl[3])(sprite_status*) =  /* Line 97, Address: 0x101ecec */
+void kowasi(sprite_status* pActwk) { /* Line 96, Address: 0x101ece0 */
+  void(*tbl[3])(sprite_status*) = /* Line 97, Address: 0x101ecec */
   {
     &m_init,
     &m_wait,
     &m_down
   };
 
-  tbl[pActwk->r_no0 / 2](pActwk);  /* Line 104, Address: 0x101ed10 */
+  tbl[pActwk->r_no0 / 2](pActwk); /* Line 104, Address: 0x101ed10 */
 } /* Line 105, Address: 0x101ed4c */
 
 
