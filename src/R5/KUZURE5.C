@@ -5,6 +5,12 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R53C) || defined(R53D)
+  #define SPRITE_KUZURE5_BASE 403
+#else
+  #define SPRITE_KUZURE5_BASE 477
+#endif
+
 static void main_ini(sprite_status* pActwk);
 static void main_check(sprite_status* pActwk);
 static void main_wait(sprite_status* pActwk);
@@ -15,43 +21,43 @@ static void parts_fall(sprite_status* pActwk);
 
 static sprite_pattern pat_00 = {
   1,
-  { { -8, -16, 0, 403 } }
+  { { -8, -16, 0, SPRITE_KUZURE5_BASE } }
 };
 static sprite_pattern pat_01 = {
   1,
-  { { -16, -16, 0, 404 } }
+  { { -16, -16, 0, SPRITE_KUZURE5_BASE + 1 } }
 };
 static sprite_pattern pat_02 = {
   1,
-  { { -24, -16, 0, 405 } }
+  { { -24, -16, 0, SPRITE_KUZURE5_BASE + 2 } }
 };
 static sprite_pattern pat_03 = {
   1,
-  { { -32, -16, 0, 406 } }
+  { { -32, -16, 0, SPRITE_KUZURE5_BASE + 3 } }
 };
 static sprite_pattern pat_04 = {
   1,
-  { { -40, -16, 0, 407 } }
+  { { -40, -16, 0, SPRITE_KUZURE5_BASE + 4 } }
 };
 static sprite_pattern pat_05 = {
   1,
-  { { -48, -16, 0, 408 } }
+  { { -48, -16, 0, SPRITE_KUZURE5_BASE + 5 } }
 };
 static sprite_pattern pat_06 = {
   1,
-  { { -56, -16, 0, 409 } }
+  { { -56, -16, 0, SPRITE_KUZURE5_BASE + 6 } }
 };
 static sprite_pattern pat_07 = {
   1,
-  { { -64, -16, 0, 410 } }
+  { { -64, -16, 0, SPRITE_KUZURE5_BASE + 7 } }
 };
 static sprite_pattern pat_08 = {
   1,
-  { { -8, -8, 0, 411 } }
+  { { -8, -8, 0, SPRITE_KUZURE5_BASE + 8 } }
 };
 static sprite_pattern pat_09 = {
   1,
-  { { -8, -8, 0, 412 } }
+  { { -8, -8, 0, SPRITE_KUZURE5_BASE + 9 } }
 };
 sprite_pattern* pat_kuzure_a[10] = {
   &pat_00,
@@ -76,12 +82,6 @@ static void(*parts_act_tbl[3])(sprite_status*) = {
   &parts_wait,
   &parts_fall
 };
-
-
-
-
-
-
 
 
 

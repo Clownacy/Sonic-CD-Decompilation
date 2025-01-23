@@ -6,6 +6,12 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R53C) || defined(R53D)
+  #define SPRITE_DAIRD5_BASE 413
+#else
+  #define SPRITE_DAIRD5_BASE 468
+#endif
+
 static void dair5_init(sprite_status* pActwk);
 static void dair5_move(sprite_status* pActwk);
 static void type01(sprite_status* pActwk);
@@ -25,40 +31,40 @@ static void belttask(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   1,
-  { { -16, -16, 0, 413 } }
+  { { -16, -16, 0, SPRITE_DAIRD5_BASE } }
 };
 static sprite_pattern pat01 =
 {
   2,
   {
-    { -16, -16, 0, 414 },
-    { -16, -16, 0, 415 }
+    { -16, -16, 0, SPRITE_DAIRD5_BASE + 1 },
+    { -16, -16, 0, SPRITE_DAIRD5_BASE + 2 }
   }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -32, -16, 0, 416 } }
+  { { -32, -16, 0, SPRITE_DAIRD5_BASE + 3 } }
 };
 static sprite_pattern pat03 =
 {
   2,
   {
-    { -32, -16, 0, 417 },
-    { -32, -16, 0, 418 }
+    { -32, -16, 0, SPRITE_DAIRD5_BASE + 4 },
+    { -32, -16, 0, SPRITE_DAIRD5_BASE + 5 }
   }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -48, -16, 0, 419 } }
+  { { -48, -16, 0, SPRITE_DAIRD5_BASE + 6 } }
 };
 static sprite_pattern pat05 =
 {
   2,
   {
-    { -48, -16, 0, 420 },
-    { -48, -16, 0, 421 }
+    { -48, -16, 0, SPRITE_DAIRD5_BASE + 7 },
+    { -48, -16, 0, SPRITE_DAIRD5_BASE + 8 }
   }
 };
 sprite_pattern* dair5pat[6] =
@@ -70,12 +76,6 @@ sprite_pattern* dair5pat[6] =
   &pat04,
   &pat05
 };
-
-
-
-
-
-
 
 
 
