@@ -1592,12 +1592,12 @@ void blockwrt(int VramBase, POINT* pTilePoint, int BlkIndex) { /* Line 1531, Add
 
 
 int mapadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1594, Address: 0x102db00 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1595, Address: 0x102db20 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1595, Address: 0x102db20 */
 } /* Line 1596, Address: 0x102db40 */
 
 int mapadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1598, Address: 0x102db50 */
   wH_posiw = 0; /* Line 1599, Address: 0x102db70 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1600, Address: 0x102db74 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1600, Address: 0x102db74 */
 } /* Line 1601, Address: 0x102db94 */
 
 
