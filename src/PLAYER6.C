@@ -5,8 +5,8 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "EDIT.H"
-#include "FCOL.H"
 #include "ETC.H"
+#include "FCOL.H"
 #include "IMPFUNCS.H"
 
 extern void sub_sync(short ReqNo); extern short playdamageset(sprite_status* pActwk, sprite_status* pColliAct); extern void soundset(short ReqNo); extern short pcol(sprite_status* pActwk); extern void da_set(); extern short playdieset(sprite_status* pActwk);
