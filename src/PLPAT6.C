@@ -82,7 +82,7 @@ static sprite_pattern pat13 = {
 };
 static sprite_pattern pat14 = {
   1,
-  { { -20, -20, 0, 20 } }
+  { { -20, -28, 0, 20 } }
 };
 static sprite_pattern pat15 = {
   1,
