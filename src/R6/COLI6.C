@@ -687,8 +687,8 @@ void boss_4(sprite_status* pActwk, sprite_status* pColliAct, char cColiNo) { /* 
 
     pActwk->yspeed.w = 1024; /* Line 688, Address: 0x1016c78 */
     pActwk->xspeed.w = -512; /* Line 689, Address: 0x1016c84 */
-    if (pActwk->xposi.w.h < pColliAct->xposi.w.h) return; /* Line 690, Address: 0x1016c90 */
-    pActwk->xspeed.w = -pActwk->xspeed.w; /* Line 691, Address: 0x1016cbc */
+    if (pActwk->xposi.w.h >= pColliAct->xposi.w.h) /* Line 690, Address: 0x1016c90 */
+      pActwk->xspeed.w = -pActwk->xspeed.w; /* Line 691, Address: 0x1016cbc */
   } /* Line 692, Address: 0x1016ce0 */
   else if (cColiNo == 62) /* Line 693, Address: 0x1016ce8 */
   {
