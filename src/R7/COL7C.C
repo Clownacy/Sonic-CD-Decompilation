@@ -74,7 +74,8 @@ palette_part colortbl[7] = {
   { gamecolor, 0, 64 },
   { gamecolor, 0, 16 },
   { &gamecolor[16], 16, 48 },
-  { zone82colora, 16, 48 }
+  { zone82colora, 16, 48 },
+  { bosscolor, 16, 6 }
 };
 static int FadeCount;
 
