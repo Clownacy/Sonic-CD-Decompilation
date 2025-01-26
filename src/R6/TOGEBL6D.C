@@ -4,25 +4,25 @@
 #include "..\ACTSET.H"
 #include "..\ETC.H"
 
+#if defined(R63C) || defined(R63D)
+  #define SPRITE_TOGEBL6D_BASE 460
+#else
+  #define SPRITE_TOGEBL6D_BASE 497
+#endif
+
 static void act_init(sprite_status* actionwk);
 static void act_move(sprite_status* actionwk);
 
 static sprite_pattern spat_chg0 = {
   1,
-  { { -8, -8, 0, 497 } }
+  { { -8, -8, 0, SPRITE_TOGEBL6D_BASE } }
 };
 static sprite_pattern spat_chg1 = {
   1,
-  { { -8, -8, 0, 498 } }
+  { { -8, -8, 0, SPRITE_TOGEBL6D_BASE + 1 } }
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* pat_togeball[1] = { &spat_chg1 };
-
-
-
-
-
-
 
 
 

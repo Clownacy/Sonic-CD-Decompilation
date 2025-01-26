@@ -4,6 +4,14 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_PISTON6_BASE 464
+#elif defined(R63C) || defined(R63D)
+  #define SPRITE_PISTON6_BASE 447
+#else
+  #define SPRITE_PISTON6_BASE 470
+#endif
+
 static sprite_pattern nullpat =
 {
   1,
@@ -12,21 +20,13 @@ static sprite_pattern nullpat =
 static sprite_pattern piston6pat0 =
 {
   1,
-  { { -32, -40, 0, 447 } }
+  { { -32, -40, 0, SPRITE_PISTON6_BASE } }
 };
 sprite_pattern* piston6pat[2] =
 {
   &piston6pat0,
   &nullpat
 };
-
-
-
-
-
-
-
-
 
 
 

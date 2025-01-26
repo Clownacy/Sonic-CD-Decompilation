@@ -6,6 +6,12 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_HACHI6_BASE 441
+#else
+  #define SPRITE_HACHI6_BASE 447
+#endif
+
 static void act_init(sprite_status* actionwk);
 static void act_move(sprite_status* actionwk);
 static short act_check(sprite_status* actionwk, sprite_status* pw);
@@ -13,52 +19,52 @@ static short act_check(sprite_status* actionwk, sprite_status* pw);
 static sprite_pattern pat00 =
 {
   1,
-  { { -24, -19, 0, 441 } }
+  { { -24, -19, 0, SPRITE_HACHI6_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -24, -15, 0, 442 } }
+  { { -24, -15, 0, SPRITE_HACHI6_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -16, -23, 0, 443 } }
+  { { -16, -23, 0, SPRITE_HACHI6_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -16, -19, 0, 444 } }
+  { { -16, -19, 0, SPRITE_HACHI6_BASE + 3 } }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -24, -19, 0, 445 } }
+  { { -24, -19, 0, SPRITE_HACHI6_BASE + 4 } }
 };
 static sprite_pattern pat05 =
 {
   1,
-  { { -24, -15, 0, 446 } }
+  { { -24, -15, 0, SPRITE_HACHI6_BASE + 5 } }
 };
 static sprite_pattern pat06 =
 {
   1,
-  { { -8, -8, 0, 447 } }
+  { { -8, -8, 0, SPRITE_HACHI6_BASE + 6 } }
 };
 static sprite_pattern pat07 =
 {
   1,
-  { { -8, -8, 0, 448 } }
+  { { -8, -8, 0, SPRITE_HACHI6_BASE + 7 } }
 };
 static sprite_pattern pat08 =
 {
   1,
-  { { -8, -8, 0, 449 } }
+  { { -8, -8, 0, SPRITE_HACHI6_BASE + 8 } }
 };
 static sprite_pattern pat09 =
 {
   1,
-  { { -8, -8, 0, 450 } }
+  { { -8, -8, 0, SPRITE_HACHI6_BASE + 9 } }
 };
 sprite_pattern* pat_hachi6_e[4] =
 {
@@ -88,12 +94,6 @@ static char* pchg[2] =
 };
 char pchg_tama0[4] = { 1, 2, 3, -1 };
 char* pchg_tama[1] = { pchg_tama0 };
-
-
-
-
-
-
 
 
 

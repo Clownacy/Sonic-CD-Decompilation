@@ -7,6 +7,12 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_SEMI_BASE 465
+#else
+  #define SPRITE_SEMI_BASE 471
+#endif
+
 static void act_init(sprite_status* actionwk);
 static short act_check(sprite_status* actionwk, sprite_status* pw);
 static void bomb(sprite_status* actionwk);
@@ -18,62 +24,56 @@ char* pchg_bomb[1] = { pchg_bomb0 };
 static sprite_pattern pat00 =
 {
   1,
-  { { -16, -16, 0, 465 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -16, -16, 0, 466 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -20, -16, 0, 467 } }
+  { { -20, -16, 0, SPRITE_SEMI_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -16, -16, 0, 468 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE + 3 } }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -16, -16, 0, 469 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE + 4 } }
 };
 static sprite_pattern pat05 =
 {
   1,
-  { { -16, -16, 0, 470 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE + 5 } }
 };
 static sprite_pattern pat06 =
 {
   1,
-  { { -20, -16, 0, 471 } }
+  { { -20, -16, 0, SPRITE_SEMI_BASE + 6 } }
 };
 static sprite_pattern pat07 =
 {
   1,
-  { { -16, -16, 0, 472 } }
+  { { -16, -16, 0, SPRITE_SEMI_BASE + 7 } }
 };
 static sprite_pattern pat08 =
 {
   1,
-  { { -8, -8, 0, 473 } }
+  { { -8, -8, 0, SPRITE_SEMI_BASE + 8 } }
 };
 static sprite_pattern pat09 =
 {
   1,
-  { { -8, -8, 0, 474 } }
+  { { -8, -8, 0, SPRITE_SEMI_BASE + 9 } }
 };
 sprite_pattern* pat_semi_e[4] = { &pat00, &pat01, &pat02, &pat03 };
 sprite_pattern* pat_semi_b[4] = { &pat04, &pat05, &pat06, &pat07 };
 static sprite_pattern* pat_bomb[2] = { &pat08, &pat09 };
-
-
-
-
-
-
 
 
 

@@ -6,20 +6,20 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_TOBIDAI6_BASE 476
+#elif defined(R63C) || defined(R63D)
+  #define SPRITE_TOBIDAI6_BASE 449
+#else
+  #define SPRITE_TOBIDAI6_BASE 482
+#endif
+
 static sprite_pattern tobidai6pat0 =
 {
   1,
-  { { -32, -16, 0, 449 } }
+  { { -32, -16, 0, SPRITE_TOBIDAI6_BASE } }
 };
 sprite_pattern* tobidai6pat[1] = { &tobidai6pat0 };
-
-
-
-
-
-
-
-
 
 
 
