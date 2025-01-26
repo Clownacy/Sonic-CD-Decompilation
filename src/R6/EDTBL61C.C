@@ -81,7 +81,7 @@ edit_data edit_tbl = {
     { 25, 4, itempat,         1448, 7, 0, 0, 7 },
     { 25, 4, itempat,         1448, 8, 0, 0, 10 },
     { 25, 4, itempat,         1448, 9, 0, 0, 12 },
-    { 22, 1, goalpat,         736, 0, 0, 0, 5 },
+    { 22, 1, goalpat,          736, 0, 0, 0, 5 },
     { 23, 1, goalpat,         1084 },
     { 20, 1, bringpat,        1160 },
     {  5, 1, gaspat,           768 },
