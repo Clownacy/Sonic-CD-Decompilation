@@ -1,18 +1,18 @@
 #include "..\TYPES.H"
 
-sprite_pattern* pat_chgwall7[];
-sprite_pattern* emie7pat[];
-sprite_pattern* pat_movie[];
-sprite_pattern* pat_friend0[];
-sprite_pattern* pat_friend1[];
-sprite_pattern* pat_tekkyu7j[];
-sprite_pattern* pat_tekkyu7[];
-sprite_pattern* pat_wall7[];
-sprite_pattern* branko7pat[];
-sprite_pattern* springpat[];
-sprite_pattern* spring90pat[];
-sprite_pattern* spring45pat[];
-sprite_pattern* itempat[];
+extern sprite_pattern* pat_chgwall7[];
+extern sprite_pattern* emie7pat[];
+extern sprite_pattern* pat_movie[];
+extern sprite_pattern* pat_friend0[];
+extern sprite_pattern* pat_friend1[];
+extern sprite_pattern* pat_tekkyu7j[];
+extern sprite_pattern* pat_tekkyu7[];
+extern sprite_pattern* pat_wall7[];
+extern sprite_pattern* branko7pat[];
+extern sprite_pattern* springpat[];
+extern sprite_pattern* spring90pat[];
+extern sprite_pattern* spring45pat[];
+extern sprite_pattern* itempat[];
 
 edit_data edit_tbl = {
   52,
