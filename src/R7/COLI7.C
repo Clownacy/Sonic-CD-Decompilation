@@ -672,8 +672,8 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
           }
           break;
       }
+      break;
   }
-
 
   return -1; /* Line 678, Address: 0x101dd48 */
 } /* Line 679, Address: 0x101dd4c */
