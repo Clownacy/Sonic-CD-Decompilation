@@ -6,6 +6,12 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_CHGBAN_BASE 453
+#else
+  #define SPRITE_CHGBAN_BASE 442
+#endif
+
 static void ami_init(sprite_status* pActwk);
 static void ami_move(sprite_status* pActwk);
 static void chgban_init(sprite_status* pActwk);
@@ -142,7 +148,7 @@ static short gspdtbl1[18] = {
 };
 sprite_pattern amipat0 = {
   1,
-  { { -16, -16, 0, 453 } }
+  { { -16, -16, 0, SPRITE_CHGBAN_BASE } }
 };
 sprite_pattern* amipat[1] = { &amipat0 };
 static void(*ami_act_tbl[2])(sprite_status*) = {
@@ -153,23 +159,23 @@ static unsigned char chgbanchg0[11] = { 4, 0, 1, 2, 3, 4, 3, 2, 1, 0, 252 };
 static unsigned char* chgbanchg[1] = { chgbanchg0 };
 sprite_pattern chgbanpat0 = {
   1,
-  { { -24, -16, 0, 454 } }
+  { { -24, -16, 0, SPRITE_CHGBAN_BASE + 1 } }
 };
 sprite_pattern chgbanpat1 = {
   1,
-  { { -24, -12, 0, 455 } }
+  { { -24, -12, 0, SPRITE_CHGBAN_BASE + 2 } }
 };
 sprite_pattern chgbanpat2 = {
   1,
-  { { -24, -8, 0, 456 } }
+  { { -24, -8, 0, SPRITE_CHGBAN_BASE + 3 } }
 };
 sprite_pattern chgbanpat3 = {
   1,
-  { { -24, -16, 0, 457 } }
+  { { -24, -16, 0, SPRITE_CHGBAN_BASE + 4 } }
 };
 sprite_pattern chgbanpat4 = {
   1,
-  { { -24, -12, 0, 458 } }
+  { { -24, -12, 0, SPRITE_CHGBAN_BASE + 5 } }
 };
 sprite_pattern* chgbanpat[5] = {
   &chgbanpat0,
@@ -188,23 +194,23 @@ unsigned char spr_rchg0[10] = { 5, 1, 1, 1, 1, 1, 1, 1, 1, 255 };
 unsigned char* spr_rchg[1] = { spr_rchg0 };
 sprite_pattern spr_rpat0 = {
   1,
-  { { -8, -4, 0, 459 } }
+  { { -8, -4, 0, SPRITE_CHGBAN_BASE + 6 } }
 };
 sprite_pattern spr_rpat1 = {
   1,
-  { { -8, -8, 0, 460 } }
+  { { -8, -8, 0, SPRITE_CHGBAN_BASE + 7 } }
 };
 sprite_pattern spr_rpat2 = {
   1,
-  { { -32, -12, 0, 461 } }
+  { { -32, -12, 0, SPRITE_CHGBAN_BASE + 8 } }
 };
 sprite_pattern spr_rpat3 = {
   1,
-  { { -12, -32, 0, 462 } }
+  { { -12, -32, 0, SPRITE_CHGBAN_BASE + 9 } }
 };
 sprite_pattern spr_rpat4 = {
   1,
-  { { -28, -28, 0, 463 } }
+  { { -28, -28, 0, SPRITE_CHGBAN_BASE + 10 } }
 };
 sprite_pattern* spr_rpat[5] = {
   &spr_rpat0,
@@ -238,11 +244,11 @@ static unsigned char hibanachg0[6] = { 3, 0, 1, 0, 1, 252 };
 static unsigned char* hibanachg[1] = { hibanachg0 };
 sprite_pattern hibanapat0 = {
   1,
-  { { -32, -32, 0, 464 } }
+  { { -32, -32, 0, SPRITE_CHGBAN_BASE + 11 } }
 };
 sprite_pattern hibanapat1 = {
   1,
-  { { -24, -16, 0, 465 } }
+  { { -24, -16, 0, SPRITE_CHGBAN_BASE + 12 } }
 };
 sprite_pattern* hibanapat[2] = {
   &hibanapat0,
@@ -253,14 +259,6 @@ static void(*hibana_act_tbl[3])(sprite_status*) = {
   &hibana_move0,
   &hibana_move1
 };
-
-
-
-
-
-
-
-
 
 
 

@@ -3,21 +3,21 @@
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_TEKKYU7_BASE 441
+#else
+  #define SPRITE_TEKKYU7_BASE 462
+#endif
+
 static void tekkyu7_init(sprite_status* pActwk);
 static void tekkyu7_move(sprite_status* pActwk);
 static void tekkyu7_stop(sprite_status* pActwk);
 
 static sprite_pattern tekkyu7_pat0 = {
   1,
-  { { -16, -16, 0, 410 } }
+  { { -16, -16, 0, SPRITE_TEKKYU7_BASE } }
 };
 sprite_pattern* pat_tekkyu7[1] = { &tekkyu7_pat0 };
-
-
-
-
-
-
 
 
 

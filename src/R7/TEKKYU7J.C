@@ -3,6 +3,12 @@
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_TEKKYU7J_BASE 406
+#else
+  #define SPRITE_TEKKYU7J_BASE 423
+#endif
+
 static void tekkyu7(sprite_status* pActwk);
 static void tekkyu7_init(sprite_status* pActwk);
 static void tekkyu7_move(sprite_status* pActwk);
@@ -11,19 +17,19 @@ static void tekkyu7_jump(sprite_status* pActwk);
 
 static sprite_pattern tekkyu7j_pat0 = {
   1,
-  { { -16, -16, 0, 406 } }
+  { { -16, -16, 0, SPRITE_TEKKYU7J_BASE } }
 };
 static sprite_pattern tekkyu7j_pat1 = {
   1,
-  { { -16, 0, 0, 407 } }
+  { { -16, 0, 0, SPRITE_TEKKYU7J_BASE + 1 } }
 };
 static sprite_pattern tekkyu7j_pat2 = {
   1,
-  { { -16, -16, 0, 408 } }
+  { { -16, -16, 0, SPRITE_TEKKYU7J_BASE + 2 } }
 };
 static sprite_pattern tekkyu7j_pat3 = {
   1,
-  { { 0, -16, 0, 409 } }
+  { { 0, -16, 0, SPRITE_TEKKYU7J_BASE + 3 } }
 };
 sprite_pattern* pat_tekkyu7j[4] = {
   &tekkyu7j_pat0,
@@ -32,12 +38,6 @@ sprite_pattern* pat_tekkyu7j[4] = {
   &tekkyu7j_pat3
 };
 extern sprite_pattern* pat_tekkyu7[];
-
-
-
-
-
-
 
 
 
