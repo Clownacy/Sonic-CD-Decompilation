@@ -223,7 +223,9 @@ static void(*spring_r_act_tbl[8])(sprite_status*) = {
   &spr_r_move5,
   &spr_r_move6
 };
+extern sprite_pattern* springpat2[];
 extern sprite_pattern* spring90pat2[];
+extern sprite_pattern* spring45pat2[];
 extern unsigned char* springchg[];
 static unsigned char prio_sav;
 static void(*gun7_act_tbl[4])(sprite_status*) = {
@@ -1002,10 +1004,10 @@ static void spr_r_set(sprite_status* pActwk) { /* Line 1000, Address: 0x101b880 
   short* pPostbl;
   short patcntwk;
   sprite_status* pMstwk;
-  static sprite_pattern** tbl1[3];
-  static char tbl0[9];
-
-
+  static sprite_pattern** tbl1[3] = {
+    spring90pat2, springpat2, spring45pat2
+  };
+  static char tbl0[9] = { 2, 0, 2, 1, 2, 0, 2, 1, 2 };
 
 
   switch (pActwk->userflag.b.h) { /* Line 1011, Address: 0x101b898 */
