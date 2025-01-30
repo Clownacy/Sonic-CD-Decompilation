@@ -732,8 +732,8 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
           ++pColliAct->colicnt; /* Line 732, Address: 0x101c138 */
           break;
       }
+      break;
   }
-
   return -1; /* Line 737, Address: 0x101c148 */
 } /* Line 738, Address: 0x101c14c */
 
