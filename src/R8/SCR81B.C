@@ -1078,7 +1078,7 @@ static void scrv_up_ch(int_union lSpd) { /* Line 1074, Address: 0x1029420 */
       lSpd.w.l = scralim_up; /* Line 1078, Address: 0x102946c */
     } else { /* Line 1079, Address: 0x1029478 */
       lSpd.w.l &= 2047; /* Line 1080, Address: 0x1029480 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1081, Address: 0x102948c */
+      actwk[0].yposi.w.h &= 2047; /* Line 1081, Address: 0x102948c */
       scra_v_posit.w.h &= 2047; /* Line 1082, Address: 0x10294a0 */
       scrb_v_posit.w.h &= 1023; /* Line 1083, Address: 0x10294b4 */
     }
@@ -1127,7 +1127,7 @@ static void scrv_down_ch(int_union lSpd) { /* Line 1123, Address: 0x1029560 */
       lSpd.w.l = scralim_down; /* Line 1127, Address: 0x10295ac */
     } else { /* Line 1128, Address: 0x10295b8 */
       lSpd.w.l -= 2048; /* Line 1129, Address: 0x10295c0 */
-      actwk[0].yposi.w.l &= 2047; /* Line 1130, Address: 0x10295cc */
+      actwk[0].yposi.w.h &= 2047; /* Line 1130, Address: 0x10295cc */
       scra_v_posit.w.h -= 2048; /* Line 1131, Address: 0x10295e0 */
       scrb_v_posit.w.h &= 1023; /* Line 1132, Address: 0x10295f4 */
     }
