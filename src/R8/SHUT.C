@@ -155,7 +155,7 @@ static void kaiten_init(sprite_status* loopwk) { /* Line 150, Address: 0x1027520
 
   old_actwk = loopwk; /* Line 156, Address: 0x102755c */
   for (i = 0; i < 4; ++i) { /* Line 157, Address: 0x1027560 */
-    if (actwkchk2(old_actwk, &new_actwk) != 0) return;  /* Line 158, Address: 0x102756c */
+    if (actwkchk2(old_actwk, &new_actwk) != 0) return; /* Line 158, Address: 0x102756c */
     old_actwk = new_actwk; /* Line 159, Address: 0x1027584 */
   } /* Line 160, Address: 0x1027588 */
   loopwk->r_no0 += 2; /* Line 161, Address: 0x10275a8 */

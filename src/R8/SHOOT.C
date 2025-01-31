@@ -426,7 +426,7 @@ static void shoot_init(sprite_status* shootwk) { /* Line 418, Address: 0x1024a10
 
 static void shoot_move1(sprite_status* shootwk) { /* Line 427, Address: 0x1024a70 */
   if (swdata.b.l & 1) ((short*)shootwk)[30] -= 16; /* Line 428, Address: 0x1024a7c */
-  else if (swdata.b.l & 2) ((short*)shootwk)[30] += 16;  /* Line 429, Address: 0x1024aac */
+  else if (swdata.b.l & 2) ((short*)shootwk)[30] += 16; /* Line 429, Address: 0x1024aac */
   else if (swdata.b.l & 4) ((short*)shootwk)[29] -= 16; /* Line 430, Address: 0x1024adc */
   else if (swdata.b.l & 8) ((short*)shootwk)[29] += 16; /* Line 431, Address: 0x1024b0c */
   else return; /* Line 432, Address: 0x1024b3c */
