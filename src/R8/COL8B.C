@@ -14,7 +14,7 @@ static void flashout1();
 static void flashout2(PALETTEENTRY* lpPeDest);
 static void colorset00(int ColorNo, int WorkOffs);
 
-unsigned char col8a0cnt[8];
+unsigned char col8a0cnt[8] = { 38, 3, 4, 2, 4, 1, 4, 0 };
 PALETTEENTRY col8a0col[3] = {
   {  96, 224, 224, 1 }, {   0, 160, 192, 1 }, {   0,  96, 160, 1 }
 };
