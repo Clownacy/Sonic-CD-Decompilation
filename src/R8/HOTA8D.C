@@ -194,18 +194,18 @@ static void hota8_zanzou(sprite_status* hotaru) { /* Line 182, Address: 0x102f07
 static void hotaru8_move2(sprite_status* hotaru) { /* Line 194, Address: 0x102f100 */
   unsigned char color_change_number;
   unsigned char tbl[32] = { /* Line 196, Address: 0x102f110 */
-      0,   0,   0,  24,
-     24,  24,  72,  72,
-     72,   0,   0,   0,
-     24,  24,  24,  72,
-     72,  72,   0,   0,
-      0,  24,  24,  24,
-     72,  72,  72,  96,
-    120, 144, 168, 255
+      0,   0,   0,
+     24,  24,  24,
+     72,  72,  72,
+      0,   0,   0,
+     24,  24,  24,
+     72,  72,  72,
+      0,   0,   0,
+     24,  24,  24,
+     72,  72,  72,
+     96, 120, 144,
+    168, 255
   };
-
-
-
 
 
 
