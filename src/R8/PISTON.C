@@ -5,6 +5,14 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R82)
+  #define SPRITE_PISTON_BASE 317
+#elif defined(R83)
+  #define SPRITE_PISTON_BASE 310
+#else
+  #define SPRITE_PISTON_BASE 308
+#endif
+
 static void piston_init(sprite_status* pistonwk);
 static void init_piston0(sprite_status* pistonwk);
 static void init_piston1(sprite_status* pistonwk);
@@ -12,19 +20,19 @@ static void piston_move(sprite_status* pistonwk);
 
 static sprite_pattern pis00 = {
   1,
-  { { -32, -31, 0, 310 } }
+  { { -32, -31, 0, SPRITE_PISTON_BASE } }
 };
 static sprite_pattern pis01 = {
   3,
   {
-    { -32, -95, 0, 310 },
-    { -32, -31, 0, 310 },
-    { -32, 33, 0, 310 }
+    { -32, -95, 0, SPRITE_PISTON_BASE },
+    { -32, -31, 0, SPRITE_PISTON_BASE },
+    { -32, 33, 0, SPRITE_PISTON_BASE }
   }
 };
 static sprite_pattern pis02 = {
   1,
-  { { -32, -19, 0, 311 } }
+  { { -32, -19, 0, SPRITE_PISTON_BASE + 1 } }
 };
 static sprite_pattern pis03 = {
   1,
@@ -36,14 +44,6 @@ sprite_pattern* pistonpat[4] = {
   &pis02,
   &pis03
 };
-
-
-
-
-
-
-
-
 
 
 

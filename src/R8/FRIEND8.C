@@ -7,6 +7,14 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R82)
+  #define SPRITE_FRIEND8_BASE 459
+#elif defined(R83)
+  #define SPRITE_FRIEND8_BASE 439
+#else
+  #define SPRITE_FRIEND8_BASE 497
+#endif
+
 static void t_init(sprite_status* actionwk);
 static void t_move(sprite_status* actionwk);
 static void t_roll(sprite_status* actionwk, short d2, short d3);
@@ -17,22 +25,22 @@ static void set_sproffset(sprite_status* actionwk);
 static sprite_pattern pat00 =
 {
   1,
-  { { -8, -8, 0, 439 } }
+  { { -8, -8, 0, SPRITE_FRIEND8_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -8, -8, 0, 440 } }
+  { { -8, -8, 0, SPRITE_FRIEND8_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -12, -8, 0, 441 } }
+  { { -12, -8, 0, SPRITE_FRIEND8_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -12, -8, 0, 442 } }
+  { { -12, -8, 0, SPRITE_FRIEND8_BASE + 3 } }
 };
 sprite_pattern* pat_friend0[2] =
 {
@@ -71,14 +79,6 @@ static unsigned short tbl0sproffset[11] =
   1943, 986, 986, 0,
      0,   0, 986
 };
-
-
-
-
-
-
-
-
 
 
 

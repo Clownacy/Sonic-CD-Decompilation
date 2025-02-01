@@ -4,29 +4,29 @@
 #include "..\ACTSET.H"
 #include "..\PLAYSUB.H"
 
+#if defined(R83)
+  #define SPRITE_JETTOGE8_BASE 505
+#else
+  #define SPRITE_JETTOGE8_BASE 475
+#endif
+
 static char p00[4] = { 1, 0, 1, -1 };
 static char* pchg[1] = { p00 };
 static sprite_pattern pat00 =
 {
   1,
-  { { -16, -76, 0, 505 } }
+  { { -16, -76, 0, SPRITE_JETTOGE8_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -16, -76, 0, 506 } }
+  { { -16, -76, 0, SPRITE_JETTOGE8_BASE + 1 } }
 };
 sprite_pattern* pat_jettoge[2] =
 {
   &pat00,
   &pat01
 };
-
-
-
-
-
-
 
 
 

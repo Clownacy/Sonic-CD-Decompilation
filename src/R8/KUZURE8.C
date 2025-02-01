@@ -5,16 +5,24 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
-static sprite_pattern pat00 = { 1, { { -8, -16, 0, 423 } } };
-static sprite_pattern pat01 = { 1, { { -16, -16, 0, 424 } } };
-static sprite_pattern pat02 = { 1, { { -24, -16, 0, 425 } } };
-static sprite_pattern pat03 = { 1, { { -32, -16, 0, 426 } } };
-static sprite_pattern pat04 = { 1, { { -40, -16, 0, 427 } } };
-static sprite_pattern pat05 = { 1, { { -48, -16, 0, 428 } } };
-static sprite_pattern pat06 = { 1, { { -56, -16, 0, 429 } } };
-static sprite_pattern pat07 = { 1, { { -64, -16, 0, 430 } } };
-static sprite_pattern pat08 = { 1, { { -8, -8, 0, 431 } } };
-static sprite_pattern pat09 = { 1, { { -8, -8, 0, 432 } } };
+#if defined(R82)
+  #define SPRITE_KUZURE8_BASE 422
+#elif defined(R83)
+  #define SPRITE_KUZURE8_BASE 423
+#else
+  #define SPRITE_KUZURE8_BASE 444
+#endif
+
+static sprite_pattern pat00 = { 1, { { -8, -16, 0, SPRITE_KUZURE8_BASE } } };
+static sprite_pattern pat01 = { 1, { { -16, -16, 0, SPRITE_KUZURE8_BASE + 1 } } };
+static sprite_pattern pat02 = { 1, { { -24, -16, 0, SPRITE_KUZURE8_BASE + 2 } } };
+static sprite_pattern pat03 = { 1, { { -32, -16, 0, SPRITE_KUZURE8_BASE + 3 } } };
+static sprite_pattern pat04 = { 1, { { -40, -16, 0, SPRITE_KUZURE8_BASE + 4 } } };
+static sprite_pattern pat05 = { 1, { { -48, -16, 0, SPRITE_KUZURE8_BASE + 5 } } };
+static sprite_pattern pat06 = { 1, { { -56, -16, 0, SPRITE_KUZURE8_BASE + 6 } } };
+static sprite_pattern pat07 = { 1, { { -64, -16, 0, SPRITE_KUZURE8_BASE + 7 } } };
+static sprite_pattern pat08 = { 1, { { -8, -8, 0, SPRITE_KUZURE8_BASE + 8 } } };
+static sprite_pattern pat09 = { 1, { { -8, -8, 0, SPRITE_KUZURE8_BASE + 9 } } };
 sprite_pattern* pat_kuzure_a[10] =
 {
   &pat00,
@@ -28,14 +36,6 @@ sprite_pattern* pat_kuzure_a[10] =
   &pat08,
   &pat09
 };
-
-
-
-
-
-
-
-
 
 
 

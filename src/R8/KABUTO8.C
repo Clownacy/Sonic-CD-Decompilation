@@ -20,17 +20,17 @@ void kabuto(sprite_status* kabutowk) { /* Line 17, Address: 0x1022340 */
 } /* Line 20, Address: 0x1022384 */
 
 
-
-
-
-
-
-
-
+#if defined(R82)
+  #define SPRITE_KABUTO8_BASE 309
+#elif defined(R83)
+  #define SPRITE_KABUTO8_BASE 302
+#else
+  #define SPRITE_KABUTO8_BASE 300
+#endif
 
 static sprite_pattern cub00 = {
   1,
-  { { -24, -16, 0, 302 } }
+  { { -24, -16, 0, SPRITE_KABUTO8_BASE } }
 };
 sprite_pattern* pat_kabuto[1] = { &cub00 };
 
@@ -127,29 +127,29 @@ static unsigned char* pchg[2] = { p00, p01 };
 static sprite_pattern hea00 = {
   2,
   {
-    { -8, -8, 0, 304 },
-    { -12, -16, 0, 303 }
+    { -8, -8, 0, SPRITE_KABUTO8_BASE + 2 },
+    { -12, -16, 0, SPRITE_KABUTO8_BASE + 1 }
   }
 };
 static sprite_pattern hea01 = {
   2,
   {
-    { -8, -8, 0, 304 },
-    { -12, -17, 16, 303 }
+    { -8, -8, 0, SPRITE_KABUTO8_BASE + 2 },
+    { -12, -17, 16, SPRITE_KABUTO8_BASE + 1 }
   }
 };
 static sprite_pattern hea02 = {
   2,
   {
-    { -4, -2, 0, 305 },
-    { -12, -16, 0, 303 }
+    { -4, -2, 0, SPRITE_KABUTO8_BASE + 3 },
+    { -12, -16, 0, SPRITE_KABUTO8_BASE + 1 }
   }
 };
 static sprite_pattern hea03 = {
   2,
   {
-    { -4, -2, 0, 305 },
-    { -12, -17, 16, 303 }
+    { -4, -2, 0, SPRITE_KABUTO8_BASE + 3 },
+    { -12, -17, 16, SPRITE_KABUTO8_BASE + 1 }
   }
 };
 static sprite_pattern* pat[4] = { &hea00, &hea01, &hea02, &hea03 };

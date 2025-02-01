@@ -7,46 +7,46 @@
 #include "..\RIDECHK.H"
 #include "SCR81A.H"
 
-static void shut_init(sprite_status* shutwk); static void shut_wait(sprite_status* shutwk); static void shut_move(sprite_status* shutwk);
-static void kaiten_init(sprite_status* loopwk); static void kaiten_move0(sprite_status* loopwk); static void kaiten_move1(sprite_status* loopwk); static void kaiten_move2(sprite_status* loopwk); static short ridechk_k(sprite_status* loopwk); static void kaiten_bou0(sprite_status* loopwk); static void kaiten_bou1(sprite_status* loopwk);
+#if defined(R83)
+  #define SPRITE_SHUT_BASE 495
+#else
+  #define SPRITE_SHUT_BASE 304
+#endif
+
+static void shut_init(sprite_status* shutwk);
+static void shut_wait(sprite_status* shutwk);
+static void shut_move(sprite_status* shutwk);
+static void kaiten_init(sprite_status* loopwk);
+static void kaiten_move0(sprite_status* loopwk);
+static void kaiten_move1(sprite_status* loopwk);
+static void kaiten_move2(sprite_status* loopwk);
+static short ridechk_k(sprite_status* loopwk);
+static void kaiten_bou0(sprite_status* loopwk);
+static void kaiten_bou1(sprite_status* loopwk);
 
 static unsigned char kaitenchg0[4] = { 2, 0, 1, 255 };
 static unsigned char* kaitenchg[1] = { kaitenchg0 };
-static sprite_pattern shu00 = {
-  6,
-  { { -8, -96, 8, 499 },
-    { -8, -64, 8, 499 },
-    { -8, -32, 8, 499 },
-    { -8, 0, 8, 499 },
-    { -8, 32, 8, 499 },
-    { -8, 64, 8, 499 }
-  }
-};
+static sprite_pattern shu00 = { 6, { { -8, -96, 8, SPRITE_SHUT_BASE + 4 }, { -8, -64, 8, SPRITE_SHUT_BASE + 4 }, { -8, -32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 0, 8, SPRITE_SHUT_BASE + 4 }, { -8, 32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 64, 8, SPRITE_SHUT_BASE + 4 } } };
 sprite_pattern* shutpat[1] = { &shu00 };
-static sprite_pattern kai00 = {
-  3,
-  { { -40, -8, 0, 495 },
-    { -24, -8, 0, 496 },
-    { 8, -8, 0, 497 }
-  }
+static sprite_pattern kai00 = { 3, { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 0, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } };
+static sprite_pattern kai01 = { 3, { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 8, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } };
+static sprite_pattern kai02 = { 5, { { -4, -80, 0, SPRITE_SHUT_BASE + 3 }, { -4, -48, 0, SPRITE_SHUT_BASE + 3 }, { -4, -16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 48, 0, SPRITE_SHUT_BASE + 3 } } };
+sprite_pattern* kaitenpat[3] = {
+  &kai00,
+  &kai01,
+  &kai02
 };
-static sprite_pattern kai01 = {
-  3,
-  { { -40, -8, 0, 495 },
-    { -24, -8, 8, 496 },
-    { 8, -8, 0, 497 }
-  }
-};
-static sprite_pattern kai02 = {
-  5,
-  { { -4, -80, 0, 498 },
-    { -4, -48, 0, 498 },
-    { -4, -16, 0, 498 },
-    { -4, 16, 0, 498 },
-    { -4, 48, 0, 498 }
-  }
-};
-sprite_pattern* kaitenpat[3] = { &kai00, &kai01, &kai02 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 void shut(sprite_status* shutwk) { /* Line 52, Address: 0x1026e30 */

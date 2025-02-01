@@ -5,35 +5,35 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R82)
+  #define SPRITE_SW8_BASE 315
+#elif defined(R83)
+  #define SPRITE_SW8_BASE 308
+#else
+  #define SPRITE_SW8_BASE 306
+#endif
+
 static void act_init(sprite_status* swwk);
 static void act_move(sprite_status* swwk);
 
 static sprite_pattern sw00 = {
   2,
   {
-    { -16, -8, 0, 308 },
-    { 0, -8, 8, 308 }
+    { -16, -8, 0, SPRITE_SW8_BASE },
+    { 0, -8, 8, SPRITE_SW8_BASE }
   }
 };
 static sprite_pattern sw01 = {
   2,
   {
-    { -16, -4, 0, 309 },
-    { 0, -4, 8, 309 }
+    { -16, -4, 0, SPRITE_SW8_BASE + 1 },
+    { 0, -4, 8, SPRITE_SW8_BASE + 1 }
   }
 };
 sprite_pattern* pat_sw[2] = {
   &sw00,
   &sw01
 };
-
-
-
-
-
-
-
-
 
 
 void sw(sprite_status* swwk) { /* Line 39, Address: 0x1025820 */
