@@ -1037,8 +1037,8 @@ void watercoli() { /* Line 1022, Address: 0x1019e90 */
   for (i = 0; watercolitbl[i].w >= 0; i += 7) { /* Line 1037, Address: 0x1019f08 */
     if (actwk[0].xposi.w.h < watercolitbl[i].w) continue; /* Line 1038, Address: 0x1019f14 */
     if (actwk[0].xposi.w.h >= watercolitbl[i + 2].w) continue; /* Line 1039, Address: 0x1019f4c */
-    if (actwk[0].xposi.w.h < watercolitbl[i + 1].w) continue; /* Line 1040, Address: 0x1019f88 */
-    if (actwk[0].xposi.w.h >= watercolitbl[i + 3].w) continue; /* Line 1041, Address: 0x1019fc4 */
+    if (actwk[0].yposi.w.h < watercolitbl[i + 1].w) continue; /* Line 1040, Address: 0x1019f88 */
+    if (actwk[0].yposi.w.h >= watercolitbl[i + 3].w) continue; /* Line 1041, Address: 0x1019fc4 */
 
     if (((char*)&watercolitbl[i + 6])[1] == 1) { /* Line 1043, Address: 0x101a000 */
       if (!(switchflag[((char*)&watercolitbl[i + 6])[0]] & 64)) return; /* Line 1044, Address: 0x101a02c */

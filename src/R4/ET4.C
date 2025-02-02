@@ -3,9 +3,10 @@
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
 #include "..\LOADER2.H"
-#include "..\RIDECHK.H"
 #include "..\SCORE.H"
 #include "PLAYSUB4.H"
+
+extern int hitchk(sprite_status* pActwk, sprite_status* pPlayerwk);
 
 #if defined(R41B)
   #define SPRITE_ET4_BASE 459
@@ -78,7 +79,6 @@ static char tbl0[64] = {
    30,  10,  20,  32, -10,   2,  34,  30,
    -8,  35,  13, -10,  40, -10,  10,  -1
 };
-
 
 
 

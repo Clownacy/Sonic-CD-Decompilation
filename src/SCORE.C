@@ -571,7 +571,7 @@ static void posiwrt() { /* Line 565, Address: 0x1005a00 */
   pSprdat = &scorepat2.spra[3]; /* Line 571, Address: 0x1005a1c */
   posiwrt0(pSprdat, lwk.l); /* Line 572, Address: 0x1005a24 */
 
-  lwk.w.l = actwk[0].xposi.w.h; /* Line 574, Address: 0x1005a34 */
+  lwk.w.l = actwk[0].yposi.w.h; /* Line 574, Address: 0x1005a34 */
   pSprdat = &scorepat2.spra[8]; /* Line 575, Address: 0x1005a40 */
   posiwrt0(pSprdat, lwk.l); /* Line 576, Address: 0x1005a48 */
 } /* Line 577, Address: 0x1005a58 */

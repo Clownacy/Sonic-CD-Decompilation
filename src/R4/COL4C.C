@@ -131,8 +131,8 @@ void clchgctr() { /* Line 130, Address: 0x101f6e0 */
   if (stageno.b.l) { /* Line 131, Address: 0x101f6e8 */
 
     clchg_sub0(&clchgtim[0], &clchgcnt[0], col4c1cnt, col4c0col); /* Line 133, Address: 0x101f6f8 */
-    clchg_sub0(&clchgtim[0], &clchgcnt[0], col4c2cnt, col4c0col); /* Line 134, Address: 0x101f720 */
-    clchg_sub0(&clchgtim[0], &clchgcnt[0], col4c3cnt, col4c0col); /* Line 135, Address: 0x101f748 */
+    clchg_sub0(&clchgtim[1], &clchgcnt[1], col4c2cnt, col4c0col); /* Line 134, Address: 0x101f720 */
+    clchg_sub0(&clchgtim[2], &clchgcnt[2], col4c3cnt, col4c0col); /* Line 135, Address: 0x101f748 */
   }
 } /* Line 137, Address: 0x101f770 */
 

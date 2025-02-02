@@ -1468,7 +1468,7 @@ void jumpcolchk() { /* Line 1380, Address: 0x100b9f0 */
       chk_d1 = dircol_r2(&actwk[0]); /* Line 1468, Address: 0x100bed0 */
       if (chk_d1 < 0) { /* Line 1469, Address: 0x100bee4 */
         actwk[0].xposi.w.h += chk_d1; /* Line 1470, Address: 0x100bef8 */
-        actwk[0].mspeed.w = 0; /* Line 1471, Address: 0x100bf10 */
+        actwk[0].xspeed.w = 0; /* Line 1471, Address: 0x100bf10 */
       }
 
       dircol_u(&actwk[0], &chk_d0, &chk_d1, &tmp_d3); /* Line 1474, Address: 0x100bf18 */
