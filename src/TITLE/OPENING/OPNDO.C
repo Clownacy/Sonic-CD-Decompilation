@@ -246,8 +246,8 @@ static void OEUpdatePlanet() { /* Line 234, Address: 0x1000290 */
     hmx_sprite_set_position_module(s_ctx->sprites[14], ptPlnt[num].point.x, ptPlnt[num].point.y); /* Line 246, Address: 0x10002cc */
     if (ptPlnt[num].time == nTimerCunt - staTime) { /* Line 247, Address: 0x1000334 */
 
-      if ((unsigned int)++num > 7) /* Line 249, Address: 0x1000374 */
-      {
+      if ((unsigned int)++num > 7) { /* Line 249, Address: 0x1000374 */
+
         num = 0; /* Line 251, Address: 0x1000394 */
       }
     } /* Line 253, Address: 0x100039c */
