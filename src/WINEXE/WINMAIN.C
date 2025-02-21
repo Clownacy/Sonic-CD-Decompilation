@@ -2192,7 +2192,7 @@ BOOL loadTimeAttack(BOOL param_1) {
 
 // 0040b380
 BOOL loadStageByMenu(UINT stageMenuId) {
-  char stageId[3];
+  char stageId[80];
   char path[80];
   int_union vscroll;
   int_union scrahposiw;
