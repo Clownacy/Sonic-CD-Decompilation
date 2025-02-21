@@ -682,7 +682,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
     if (point.x >= infoSprtBmp[kind].point.x) { /* Line 682, Address: 0x1001660 */
 
       if (GetNextMenu(menuEnable, kind - 25, 0) + 25 < kind) LArrow = 1; /* Line 684, Address: 0x1001690 */
-      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 < kind) RArrow = 1; /* Line 685, Address: 0x10016d4 */
+      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 > kind) RArrow = 1; /* Line 685, Address: 0x10016d4 */
       point = infoSprtBmp[kind].point; /* Line 686, Address: 0x1001718 */
       OEClrset(tblPal2, 1); /* Line 687, Address: 0x100174c */
       nSeqNo = 6; /* Line 688, Address: 0x1001768 */
@@ -712,7 +712,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
     if (point.x < infoSprtBmp[kind].point.x) { /* Line 712, Address: 0x1001904 */
 
       if (GetNextMenu(menuEnable, kind - 25, 0) + 25 < kind) LArrow = 1; /* Line 714, Address: 0x1001934 */
-      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 < kind) RArrow = 1; /* Line 715, Address: 0x100197c */
+      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 > kind) RArrow = 1; /* Line 715, Address: 0x100197c */
       point = infoSprtBmp[kind].point; /* Line 716, Address: 0x10019c0 */
       OEClrset(tblPal2, 1); /* Line 717, Address: 0x10019f4 */
       nSeqNo = 6; /* Line 718, Address: 0x1001a0c */
