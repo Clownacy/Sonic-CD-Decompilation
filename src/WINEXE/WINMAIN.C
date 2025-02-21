@@ -23,7 +23,7 @@ extern HPALETTE ghPalette;
 /* 00425510 */ char gHelpFilePath[80];
 /* 00425560 */ void(*gpGameinit)();
 /* 00425568 */ JOYCAPS gJoyCapsInfo;
-/* 004256fc */ short DAT_004256fc;
+/* 004256fc */ short gStageGameFuncRet;
 /* 00425704 */ ULONG gJoystickInput4;
 /* 00425708 */ ULONG gJoystickInput1;
 /* 0042570c */ BOOL DAT_0042570c;
@@ -125,7 +125,7 @@ extern HPALETTE ghPalette;
 /* 0043330c */ BOOL gbFullScreen = FALSE;
 /* 00433310 */ BOOL DAT_00433310 = FALSE;
 /* 00433318 */ BOOL gbBetterSoundQuality = FALSE;
-/* 0043331c */ BOOL DAT_0043331c = FALSE;
+/* 0043331c */ BOOL gbCanPauseOrRestart = FALSE;
 /* 00433320 */ BOOL gbRestartStage = FALSE;
 /* 00433324 */ BOOL DAT_00433324 = FALSE;
 /* 00433328 */ int gEndingMovieFlag = 0;
@@ -580,23 +580,23 @@ BOOL stageLoop() {
     else {
       gKeepWork.GamePass = 0;
     }
-    DAT_004256fc = (*gpGame)();
-    if (DAT_004256fc != 0 || gbRecordPlayFlag != 0 || gKeepWork.demoflag.w != 0) {
-      DAT_0043331c = FALSE;
+    gStageGameFuncRet = (*gpGame)();
+    if (gStageGameFuncRet != 0 || gbRecordPlayFlag != 0 || gKeepWork.demoflag.w != 0) {
+      gbCanPauseOrRestart = FALSE;
     }
     else {
-      DAT_0043331c = TRUE;
+      gbCanPauseOrRestart = TRUE;
     }
-    enableSubMenuItem(0, ID_PAUSEGAME, DAT_0043331c);
-    enableSubMenuItem(0, ID_RESTARTSTAGE, DAT_0043331c);
+    enableSubMenuItem(0, ID_PAUSEGAME, gbCanPauseOrRestart);
+    enableSubMenuItem(0, ID_RESTARTSTAGE, gbCanPauseOrRestart);
     if (gbGoSpecial) {
       gbGoSpecial = FALSE;
       gKeepWork.special_flag = 1;
-      DAT_004256fc = 2;
+      gStageGameFuncRet = 2;
       gKeepWork.play_start = 1;
       goto L1F5;
     }
-    if (DAT_004256fc != 0) {
+    if (gStageGameFuncRet != 0) {
       DAT_004332cc = FALSE;
       if (gbUsedStageSelect) {
         gbUsedStageSelect = FALSE;
@@ -605,7 +605,7 @@ BOOL stageLoop() {
         gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
         return TRUE;
       }
-      else if (DAT_004256fc & 2) {
+      else if (gStageGameFuncRet & 2) {
 L1F5:
         DAT_004332cc = FALSE;
         hCursor = SetCursor(LoadCursor(0, IDC_WAIT));
@@ -650,7 +650,7 @@ L1F5:
         }
         SetCursor(hCursor);
       }
-      else if (DAT_004256fc & 1) {
+      else if (gStageGameFuncRet & 1) {
         if (gKeepWork.ta_flag != 0) {
           if (!loadTimeAttack(FALSE)) {
             return 0;
@@ -668,7 +668,7 @@ L1F5:
           SetCursor(hCursor);
         }
       }
-      else if (DAT_004256fc & 0x100) {
+      else if (gStageGameFuncRet & 0x100) {
         hCursor = SetCursor(LoadCursor(0, IDC_WAIT));
         if (!loadWarp()) {
           return 0;
@@ -1181,7 +1181,7 @@ void restartGame() {
   gbRecordPlayFlag = FALSE;
   gbMenuOrMovieLoaded = FALSE;
   gbMenuOrMovieLoaded = loadOpening(ghWnd, ghSurf);
-  DAT_0043331c = FALSE;
+  gbCanPauseOrRestart = FALSE;
   gbRestartStage = FALSE;
   enableSubMenuItem(0, ID_PAUSEGAME, FALSE);
   enableSubMenuItem(0, ID_RESTARTSTAGE, FALSE);
