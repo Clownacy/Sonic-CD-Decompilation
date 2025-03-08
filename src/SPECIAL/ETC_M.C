@@ -162,7 +162,7 @@ void cset(int* subtbl, unsigned short x, unsigned short y, int disp_data, short 
     } /* Line 162, Address: 0x1003ac0 */
 
     SetGrid(0, x, y, disp_ascii[0], 0); /* Line 164, Address: 0x1003aec */
-    SetGrid(0, x, y + 1, disp_ascii[20], 0); /* Line 165, Address: 0x1003b20 */
+    SetGrid(0, x, y + 1, disp_ascii[10], 0); /* Line 165, Address: 0x1003b20 */
   }
 } /* Line 167, Address: 0x1003b58 */
 
@@ -197,24 +197,24 @@ unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned 
 void spetime_disp() { /* Line 197, Address: 0x1003c60 */
   if (!(spgmmode & 2)) { /* Line 198, Address: 0x1003c68 */
 
-    sset(subtbl, 19, 0, spe_time.l, 2); /* Line 200, Address: 0x1003c80 */
+    sset(&subtbl[5], 19, 0, spe_time.l, 2); /* Line 200, Address: 0x1003c80 */
   } /* Line 201, Address: 0x1003ca4 */
   else {
-    sset(subtbl, 17, 0, spe_time.l >> 16 & 255, 1); /* Line 203, Address: 0x1003cac */
-    sset(subtbl, 20, 0, spe_time.l >> 8 & 255, 1); /* Line 204, Address: 0x1003cd8 */
-    sset(subtbl, 23, 0, (spe_time.l & 255) * 100 / 60, 1); /* Line 205, Address: 0x1003d04 */
+    sset(&subtbl[6], 17, 0, spe_time.l >> 16 & 255, 1); /* Line 203, Address: 0x1003cac */
+    sset(&subtbl[6], 20, 0, spe_time.l >> 8 & 255, 1); /* Line 204, Address: 0x1003cd8 */
+    sset(&subtbl[6], 23, 0, (spe_time.l & 255) * 100 / 60, 1); /* Line 205, Address: 0x1003d04 */
   }
 
 } /* Line 208, Address: 0x1003d58 */
 
 
 void ringno_disp() { /* Line 211, Address: 0x1003d70 */
-  sset(subtbl, 33, 0, ringno, 2); /* Line 212, Address: 0x1003d78 */
+  sset(&subtbl[5], 33, 0, ringno, 2); /* Line 212, Address: 0x1003d78 */
 } /* Line 213, Address: 0x1003da0 */
 
 
 void ufoleft_disp() { /* Line 216, Address: 0x1003db0 */
-  sset(subtbl, 7, 0, ufoleft, 1); /* Line 217, Address: 0x1003db8 */
+  sset(&subtbl[6], 7, 0, ufoleft, 1); /* Line 217, Address: 0x1003db8 */
 } /* Line 218, Address: 0x1003de0 */
 
 

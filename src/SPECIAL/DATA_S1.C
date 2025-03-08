@@ -106,7 +106,7 @@ static sprite_pattern tbl26 = {
 };
 static sprite_pattern tbl27 = {
   1,
-  { { -30, -20, 0, 27 } }
+  { { -20, -48, 0, 27 } }
 };
 static sprite_pattern tbl28 = {
   1,
@@ -635,7 +635,7 @@ static sprite_pattern kag00 = {
 };
 static sprite_pattern kag01 = {
   1,
-  { { -40, -35, 0, 72 } }
+  { { -35, -8, 0, 72 } }
 };
 static sprite_pattern kag02 = {
   1,
@@ -749,7 +749,7 @@ static sprite_pattern uft05 = {
 };
 static sprite_pattern uft06 = {
   1,
-  { { -15, -28, 0, 87 } }
+  { { -15, -24, 0, 87 } }
 };
 static sprite_pattern uft07 = {
   1,
