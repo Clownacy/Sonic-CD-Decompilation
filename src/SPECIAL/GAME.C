@@ -1346,7 +1346,7 @@ void key_set(short ReqNo) { /* Line 1342, Address: 0x1006e30 */
 
 
 
-void SWdataSet(ushort_union sw1, ushort_union sw2) {  /* Line 1349, Address: 0x1006e60 */
+void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 1349, Address: 0x1006e60 */
   swdata1.w = sw1.w; /* Line 1350, Address: 0x1006e6c */
   swdata2.w = sw2.w; /* Line 1351, Address: 0x1006e78 */
 
