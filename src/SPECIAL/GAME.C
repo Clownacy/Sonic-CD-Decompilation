@@ -1271,7 +1271,7 @@ void sinit7() { /* Line 1265, Address: 0x1006b10 */
 
 void stage_init() { /* Line 1272, Address: 0x1006b40 */
   void(*jptbl[8])() = { /* Line 1273, Address: 0x1006b48 */
-    &sinit1, &sinit2, &sinit3, &sinit4, &sinit5, &sinit6, &sinit7
+    &sinit0, &sinit1, &sinit2, &sinit3, &sinit4, &sinit5, &sinit6, &sinit7
   };
 
   jptbl[stagenm](); /* Line 1277, Address: 0x1006b7c */
