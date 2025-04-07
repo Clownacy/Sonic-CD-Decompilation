@@ -366,7 +366,7 @@ void mvtblset(sprite_status_sp* actionwk) { /* Line 357, Address: 0x1002280 */
     mcnt = ((short*)actionwk)[44] = *a1++; /* Line 366, Address: 0x10022b0 */
     if (mcnt >= 0) break; /* Line 367, Address: 0x10022cc */
 
-    ((int*)actionwk)[21] = ((int*)actionwk)[20]; /* Line 369, Address: 0x10022dc */
+    ((short**)actionwk)[21] = ((short**)actionwk)[20]; /* Line 369, Address: 0x10022dc */
 
   } while (1); /* Line 371, Address: 0x10022ec */
 
