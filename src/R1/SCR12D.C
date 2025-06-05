@@ -335,7 +335,7 @@ void scroll() { /* Line 292, Address: 0x10258e0 */
 
   lD0.w.h = -scra_h_posit.w.h; /* Line 336, Address: 0x1025aec */
   psHscr = (int_union*)hscrollwork; /* Line 337, Address: 0x1025b0c */
-  pHScrollWork = &hscrollwork[10]; /* Line 338, Address: 0x1025b14 */
+  pHScrollWork = &hscrollwork[8]; /* Line 338, Address: 0x1025b14 */
   for (i = 3; i >= 0; --i) { /* Line 339, Address: 0x1025b1c */
 
     wD1 = -(psHscr->w.h + scrz_h_posit.w.h); /* Line 341, Address: 0x1025b28 */
@@ -365,7 +365,7 @@ void scroll() { /* Line 292, Address: 0x10258e0 */
   } /* Line 365, Address: 0x1025c68 */
 
   pHScrollBuff = lphscrollbuff; /* Line 367, Address: 0x1025c78 */
-  pHScrollWork = hscrollwork; /* Line 368, Address: 0x1025c84 */
+  pHScrollWork = &hscrollwork[8]; /* Line 368, Address: 0x1025c84 */
   lD2.w.l = lD0.w.l = scrb_v_posit.w.h; /* Line 369, Address: 0x1025c8c */
   lD0.w.l = (unsigned short)(lD0.w.l & 504) >> 2; /* Line 370, Address: 0x1025c9c */
   wD1 = 28; /* Line 371, Address: 0x1025cc4 */
