@@ -77,7 +77,7 @@ unsigned int SDFileSelect(int* pFileNumber) { /* Line 60, Address: 0x10024f0 */
   } /* Line 77, Address: 0x10025f8 */
   else if (swData1 & 256) { /* Line 78, Address: 0x1002600 */
 
-    oldNumber = *pFileNumber;; /* Line 80, Address: 0x1002618 */
+    oldNumber = *pFileNumber; /* Line 80, Address: 0x1002618 */
     *pFileNumber = *pFileNumber - 1 > 0 ? *pFileNumber - 1 : 0; /* Line 81, Address: 0x1002620 */
     if (oldNumber != *pFileNumber) { /* Line 82, Address: 0x1002654 */
 
