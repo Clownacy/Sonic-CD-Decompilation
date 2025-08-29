@@ -176,8 +176,8 @@ void k_3d() { /* Line 108, Address: 0x1004690 */
   lD0.l = k_wk.k_sin << 7; /* Line 176, Address: 0x10049cc */
   lD0.l >>= 8; /* Line 177, Address: 0x10049e4 */
 
-  lD0.w.l += k_wk.k_xt_c; /* Line 179, Address: 0x10049f0 */
-  k_wk.k_msx = lD0.w.l; /* Line 180, Address: 0x1004a0c */
+  lD0.w.l += k_wk.k_yt_c; /* Line 179, Address: 0x10049f0 */
+  k_wk.k_msy = lD0.w.l; /* Line 180, Address: 0x1004a0c */
 
 
   k_wk.k_x_rx = zoomwk.x - k_wk.k_rx; /* Line 183, Address: 0x1004a18 */
