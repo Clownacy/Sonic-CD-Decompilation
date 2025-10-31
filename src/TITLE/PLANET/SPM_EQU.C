@@ -41,12 +41,7 @@ unsigned char int_flg;
 unsigned char push_flg;
 unsigned char actset_wk;
 unsigned char actset_flg;
-short actset_tm[6] =
-{
-  -31312, 256,
-  -31168, 256,
-  -29568, 256
-};
+short actset_tm[6];
 short spr_colno;
 short spr_coltimer;
 short main_lpcnt;
@@ -69,6 +64,11 @@ short_union stageno;
 unsigned char music_selflg;
 unsigned char m2save[22528];
 bmp_info SprBmp[700];
+
+
+
+
+
 
 
 

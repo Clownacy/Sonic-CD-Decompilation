@@ -410,16 +410,22 @@ sprite_patterns_title spr_MM = {
   { { 1, &sprmapMM } }
 };
 sprite_pattern_mappings_title sprmapMMB = {
-  1,
-  { { 58, 0, 0, 0, 0, 0 } }
+  2,
+  {
+    { 58, 0, 0, 0, 0, 0 },
+    { 59, 0, -128, 0, 0, 0 }
+  }
 };
 sprite_patterns_title spr_MMB = {
   1,
   { { 1, &sprmapMMB } }
 };
 sprite_pattern_mappings_title sprmapMMG = {
-  1,
-  { { 60, 0, 0, 0, 0, 0 } }
+  2,
+  {
+    { 60, 0, 0, 0, 0, 0 },
+    { 61, 0, -128, 0, 0, 0 }
+  }
 };
 sprite_patterns_title spr_MMG = {
   1,
