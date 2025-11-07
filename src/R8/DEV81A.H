@@ -1,1 +1,1 @@
-void cg_change();
+void cg_change(void);

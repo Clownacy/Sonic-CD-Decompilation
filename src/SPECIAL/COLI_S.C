@@ -199,6 +199,6 @@ void stpnmget(short iXposi, short iYposi, short* ipD1, short* ipD2) { /* Line 16
 
 
 
-void colli_init() {
+void colli_init(void) {
   colliadr = colliadr_tbl[stagenm]; /* Line 203, Address: 0x10014d0 */
 } /* Line 204, Address: 0x10014f8 */

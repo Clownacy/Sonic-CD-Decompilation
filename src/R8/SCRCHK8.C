@@ -1,7 +1,7 @@
 #include "..\EQU.H"
 #include "SCRCHK8.H"
 
-static void zone8chk();
+static void zone8chk(void);
 
 
 
@@ -39,7 +39,7 @@ static void zone8chk();
 
 
 
-void scrchk() { /* Line 42, Address: 0x101c410 */
+void scrchk(void) { /* Line 42, Address: 0x101c410 */
   short ywk, limwk;
 
   zone8chk(); /* Line 45, Address: 0x101c420 */
@@ -74,7 +74,7 @@ void scrchk() { /* Line 42, Address: 0x101c410 */
 
 
 
-static void zone8chk() {
+static void zone8chk(void) {
   switch (stageno.b.l) { /* Line 78, Address: 0x101c5c0 */
     case 0:
     case 1:

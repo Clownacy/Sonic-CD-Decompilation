@@ -163,7 +163,7 @@ void tobidai6_speedset(sprite_status* actionwk) { /* Line 151, Address: 0x101f4c
 
 
 
-int yuka_chk() { /* Line 166, Address: 0x101f570 */
+int yuka_chk(void) { /* Line 166, Address: 0x101f570 */
   unsigned char d0;
 
   if (time_flag < 2) /* Line 169, Address: 0x101f578 */

@@ -1,7 +1,7 @@
-void AVIOpeningMove();
-void PlayNextAVI();
-void AVIEnd();
-void AVIEndWait();
-int AVIEndKeyWait();
-void ReadDIB();
-void FreeDIB();
+void AVIOpeningMove(void);
+void PlayNextAVI(void);
+void AVIEnd(void);
+void AVIEndWait(void);
+int AVIEndKeyWait(void);
+void ReadDIB(void);
+void FreeDIB(void);

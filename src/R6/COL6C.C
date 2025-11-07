@@ -1,16 +1,16 @@
 #include "..\EQU.H"
 #include "COL6C.H"
 
-static void fadein1();
+static void fadein1(void);
 static void fadein2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc);
-static int fadeout_new();
-static void fadeout1();
+static int fadeout_new(void);
+static void fadeout1(void);
 static void fadeout2(PALETTEENTRY* lpPeDest);
-static int flashin_new();
-static void flashin1();
+static int flashin_new(void);
+static void flashin1(void);
 static void flashin2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc);
-static int flashout_new();
-static void flashout1();
+static int flashout_new(void);
+static void flashout1(void);
 static void flashout2(PALETTEENTRY* lpPeDest);
 static void colorset00(int ColorNo, int WorkOffs);
 
@@ -135,11 +135,11 @@ static int FadeCount;
 
 
 
-void clchgctr() { /* Line 138, Address: 0x10273b0 */
+void clchgctr(void) { /* Line 138, Address: 0x10273b0 */
   colchg6a(); /* Line 139, Address: 0x10273b8 */
 } /* Line 140, Address: 0x10273c0 */
 
-void colchg6a() { /* Line 142, Address: 0x10273d0 */
+void colchg6a(void) { /* Line 142, Address: 0x10273d0 */
   clchg_sub0(&clchgtim[0], &clchgcnt[0], col6a0cnt, col6a0col); /* Line 143, Address: 0x10273d8 */
   clchg_sub0(&clchgtim[1], &clchgcnt[1], col6a1cnt, col6a1col); /* Line 144, Address: 0x1027400 */
   clchg_sub0(&clchgtim[2], &clchgcnt[2], col6a2cnt, col6a2col); /* Line 145, Address: 0x1027428 */
@@ -182,7 +182,7 @@ void clchg_sub0(unsigned char* pChgTime, unsigned char* pChgCnt, unsigned char* 
 } /* Line 182, Address: 0x10275ec */
 
 
-void fadein0() { /* Line 185, Address: 0x1027600 */
+void fadein0(void) { /* Line 185, Address: 0x1027600 */
   PALETTEENTRY* lpPe;
   int i;
 
@@ -202,7 +202,7 @@ void fadein0() { /* Line 185, Address: 0x1027600 */
 
 
 
-int fadein0_new() { /* Line 205, Address: 0x10276b0 */
+int fadein0_new(void) { /* Line 205, Address: 0x10276b0 */
 
   int_flg = 18; /* Line 207, Address: 0x10276b8 */
 
@@ -218,7 +218,7 @@ int fadein0_new() { /* Line 205, Address: 0x10276b0 */
 
 
 
-static void fadein1() { /* Line 221, Address: 0x1027720 */
+static void fadein1(void) { /* Line 221, Address: 0x1027720 */
   PALETTEENTRY *lpPe, *lpPe2;
   int i;
 
@@ -265,7 +265,7 @@ static void fadein2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc) { /* Line 250
 } /* Line 265, Address: 0x10279dc */
 
 
-void fadeout() {
+void fadeout(void) {
   startcolor = 0; /* Line 269, Address: 0x10279f0 */
   colorcnt = 63; /* Line 270, Address: 0x10279f8 */
 
@@ -276,7 +276,7 @@ void fadeout() {
 
 
 
-static int fadeout_new() { /* Line 279, Address: 0x1027a30 */
+static int fadeout_new(void) { /* Line 279, Address: 0x1027a30 */
 
   int_flg = 18; /* Line 281, Address: 0x1027a38 */
 
@@ -291,7 +291,7 @@ static int fadeout_new() { /* Line 279, Address: 0x1027a30 */
 } /* Line 291, Address: 0x1027a84 */
 
 
-static void fadeout1() { /* Line 294, Address: 0x1027aa0 */
+static void fadeout1(void) { /* Line 294, Address: 0x1027aa0 */
   PALETTEENTRY* lpPe;
   int i;
 
@@ -328,7 +328,7 @@ static void fadeout2(PALETTEENTRY* lpPeDest) { /* Line 315, Address: 0x1027ba0 *
 
 
 
-void flashin() { /* Line 331, Address: 0x1027c30 */
+void flashin(void) { /* Line 331, Address: 0x1027c30 */
   PALETTEENTRY* lpPe;
   int i;
 
@@ -349,7 +349,7 @@ void flashin() { /* Line 331, Address: 0x1027c30 */
 
 } /* Line 350, Address: 0x1027ce8 */
 
-static int flashin_new() { /* Line 352, Address: 0x1027d00 */
+static int flashin_new(void) { /* Line 352, Address: 0x1027d00 */
   PALETTEENTRY* lpPe;
 
   lpPe = &lpcolorwk[32]; /* Line 355, Address: 0x1027d0c */
@@ -370,7 +370,7 @@ static int flashin_new() { /* Line 352, Address: 0x1027d00 */
   return 0; /* Line 370, Address: 0x1027d80 */
 } /* Line 371, Address: 0x1027d84 */
 
-static void flashin1() { /* Line 373, Address: 0x1027da0 */
+static void flashin1(void) { /* Line 373, Address: 0x1027da0 */
   PALETTEENTRY *lpPe, *lpPe2;
   int i;
 
@@ -417,7 +417,7 @@ static void flashin2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc) { /* Line 40
 } /* Line 417, Address: 0x102805c */
 
 
-void flashout() {
+void flashout(void) {
   startcolor = 0; /* Line 421, Address: 0x1028070 */
   colorcnt = 63; /* Line 422, Address: 0x1028078 */
 
@@ -426,7 +426,7 @@ void flashout() {
 
 } /* Line 427, Address: 0x102809c */
 
-static int flashout_new() { /* Line 429, Address: 0x10280b0 */
+static int flashout_new(void) { /* Line 429, Address: 0x10280b0 */
 
   int_flg = 18; /* Line 431, Address: 0x10280b8 */
 
@@ -441,7 +441,7 @@ static int flashout_new() { /* Line 429, Address: 0x10280b0 */
 } /* Line 441, Address: 0x1028104 */
 
 
-static void flashout1() { /* Line 444, Address: 0x1028120 */
+static void flashout1(void) { /* Line 444, Address: 0x1028120 */
   PALETTEENTRY* lpPe;
   int i;
 
@@ -521,7 +521,7 @@ static void colorset00(int ColorNo, int WorkOffs) { /* Line 496, Address: 0x1028
 
 
 
-int FadeProc() { /* Line 524, Address: 0x10284e0 */
+int FadeProc(void) { /* Line 524, Address: 0x10284e0 */
   switch (*lpFadeFlag) { /* Line 525, Address: 0x10284e8 */
     case 1:
       return fadein0_new(); /* Line 527, Address: 0x102852c */

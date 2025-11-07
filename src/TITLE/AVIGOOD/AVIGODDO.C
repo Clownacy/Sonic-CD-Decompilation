@@ -32,11 +32,11 @@ static POINT bmpPosi[2] = {
 };
 #endif
 
-extern int(*sMovieStat)();
+extern int(*sMovieStat)(void);
 extern int(*sMoviePlay)(int);
 extern int nTimerCunt;
 int nPlayFileNum;
-extern int(*sMovieStop)();
+extern int(*sMovieStop)(void);
 static int nDispBMPFileNum;
 extern unsigned int* lpbFullScreen;
 extern unsigned short swData1;
@@ -85,7 +85,7 @@ static int hBmp[2];
 
 
 
-void AVIOpeningMove() { /* Line 88, Address: 0x1000000 */
+void AVIOpeningMove(void) { /* Line 88, Address: 0x1000000 */
   int stat;
 
   if (nTimerCunt == 0) { /* Line 91, Address: 0x100000c */
@@ -108,7 +108,7 @@ void AVIOpeningMove() { /* Line 88, Address: 0x1000000 */
 
 
 
-void PlayNextAVI() { /* Line 111, Address: 0x1000080 */
+void PlayNextAVI(void) { /* Line 111, Address: 0x1000080 */
 
 
   ++nPlayFileNum; /* Line 114, Address: 0x1000088 */
@@ -130,14 +130,14 @@ void PlayNextAVI() { /* Line 111, Address: 0x1000080 */
 
 
 
-void AVIEnd() { /* Line 133, Address: 0x1000100 */
+void AVIEnd(void) { /* Line 133, Address: 0x1000100 */
   sMovieStop(); /* Line 134, Address: 0x1000108 */
 } /* Line 135, Address: 0x1000118 */
 
 
 
 
-void AVIEndWait() { /* Line 140, Address: 0x1000130 */
+void AVIEndWait(void) { /* Line 140, Address: 0x1000130 */
 
   if (*lpbFullScreen != 0) { /* Line 142, Address: 0x1000138 */
     OESetSequenceNum(3); /* Line 143, Address: 0x100014c */
@@ -157,7 +157,7 @@ void AVIEndWait() { /* Line 140, Address: 0x1000130 */
 
 
 
-int AVIEndKeyWait() { /* Line 160, Address: 0x10001a0 */
+int AVIEndKeyWait(void) { /* Line 160, Address: 0x10001a0 */
   int ret = 0; /* Line 161, Address: 0x10001a8 */
 
 
@@ -329,7 +329,7 @@ int AVIEndKeyWait() { /* Line 160, Address: 0x10001a0 */
 
 
 
-void ReadDIB() {} /* Line 332, Address: 0x1000200 */
+void ReadDIB(void) {} /* Line 332, Address: 0x1000200 */
 
 
 
@@ -342,4 +342,4 @@ void ReadDIB() {} /* Line 332, Address: 0x1000200 */
 
 
 
-void FreeDIB() {} /* Line 345, Address: 0x1000210 */
+void FreeDIB(void) {} /* Line 345, Address: 0x1000210 */

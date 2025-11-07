@@ -48,7 +48,7 @@
 
 
 // 0040f250
-int drawLoading() {
+int drawLoading(void) {
   int local_30 = 0;
   int local_2c = 0;
   int local_28 = 0;
@@ -86,7 +86,7 @@ int drawLoading() {
 
 
 // 0040f3ca
-int drawComming3() {
+int drawComming3(void) {
   int local_30 = 0;
   int local_2c = 0;
   int local_28 = 0;
@@ -124,7 +124,7 @@ int drawComming3() {
 
 
 /* 0040f544 */
-void deleteSplash() {
+void deleteSplash(void) {
   DAT_00425b18 = _hbmpDelete(DAT_00425b1c);
   _bkgDelete(DAT_00425b14);
 }

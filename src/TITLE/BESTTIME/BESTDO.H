@@ -1,4 +1,4 @@
-void STGDraw();
-void STGStart();
-void STGMenu();
-int STGEnd2();
+void STGDraw(void);
+void STGStart(void);
+void STGMenu(void);
+int STGEnd2(void);

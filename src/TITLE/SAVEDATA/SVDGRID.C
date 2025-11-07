@@ -92,7 +92,7 @@ void OEGridDelete(unsigned short indx) { /* Line 73, Address: 0x1002380 */
 
 
 
-void OEAllGridDelete() { /* Line 95, Address: 0x10024c0 */
+void OEAllGridDelete(void) { /* Line 95, Address: 0x10024c0 */
   OEGridDelete(IDX_GDBMP_BACK); /* Line 96, Address: 0x10024c8 */
 
 

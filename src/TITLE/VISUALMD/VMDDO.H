@@ -1,4 +1,4 @@
-void VMDDraw();
-void VMDStart();
-void VMDMenu();
-int VMDEnd();
+void VMDDraw(void);
+void VMDStart(void);
+void VMDMenu(void);
+int VMDEnd(void);

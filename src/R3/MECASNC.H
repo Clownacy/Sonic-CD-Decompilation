@@ -22,7 +22,7 @@ void dir_right(sprite_status* pActwk);
 void dir_left(sprite_status* pActwk);
 void empatchg(sprite_status* pActwk, unsigned char** bppPtbl);
 void emie3clrsetx(PALETTEENTRY* pPalet);
-void emie3clrset();
+void emie3clrset(void);
 void heartset(sprite_status* pActwk);
 void hari3x_fout(sprite_status* pActwk);
 void hari3x(sprite_status* pActwk);

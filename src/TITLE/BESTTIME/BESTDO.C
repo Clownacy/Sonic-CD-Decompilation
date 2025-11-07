@@ -6,7 +6,7 @@
 #include "BESENTRY.H"
 #include "BESTSPRT.H"
 
-static void UpdateMenu();
+static void UpdateMenu(void);
 static int STGMenuMaxCheck(int index);
 
 extern unsigned short nSequenceNum;
@@ -45,7 +45,7 @@ extern int nTimerCunt;
 
 
 
-void STGDraw() { /* Line 48, Address: 0x1000900 */
+void STGDraw(void) { /* Line 48, Address: 0x1000900 */
   if (nSequenceNum > 1) /* Line 49, Address: 0x1000908 */
   {
     srfDraw(); /* Line 51, Address: 0x1000920 */
@@ -55,7 +55,7 @@ void STGDraw() { /* Line 48, Address: 0x1000900 */
 
 
 
-static void UpdateMenu() { /* Line 58, Address: 0x1000940 */
+static void UpdateMenu(void) { /* Line 58, Address: 0x1000940 */
   int i, index;
 
   for (i = 0; i < 9; ++i) /* Line 61, Address: 0x1000950 */
@@ -76,7 +76,7 @@ static int STGMenuMaxCheck(int index) { /* Line 71, Address: 0x1000a00 */
 
 
 
-void STGStart() { /* Line 79, Address: 0x1000a50 */
+void STGStart(void) { /* Line 79, Address: 0x1000a50 */
   int n;
 
   CDPlay(29); /* Line 82, Address: 0x1000a5c */
@@ -108,7 +108,7 @@ void STGStart() { /* Line 79, Address: 0x1000a50 */
 
 
 
-void STGMenu() { /* Line 111, Address: 0x1000b30 */
+void STGMenu(void) { /* Line 111, Address: 0x1000b30 */
   if (swData1 & 256) /* Line 112, Address: 0x1000b38 */
   {
     if (nMenuIndx > 0 || (nMenuIndx == 0 && ScrollCount < 0)) /* Line 114, Address: 0x1000b50 */
@@ -166,7 +166,7 @@ void STGMenu() { /* Line 111, Address: 0x1000b30 */
 
 
 
-int STGEnd2() { /* Line 169, Address: 0x1000d00 */
+int STGEnd2(void) { /* Line 169, Address: 0x1000d00 */
   int ret = 0; /* Line 170, Address: 0x1000d0c */
 
   if (nTimerCunt == 0) /* Line 172, Address: 0x1000d10 */

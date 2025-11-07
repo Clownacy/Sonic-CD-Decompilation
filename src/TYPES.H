@@ -219,15 +219,15 @@ typedef struct brankodata {
 brankodata;
 
 typedef struct dlink_export {
-  void(*game_init)();
-  void(*game)();
+  void(*game_init)(void);
+  void(*game)(void);
   void(*dll_meminit)(char***, void**);
-  void(*dll_memfree)();
+  void(*dll_memfree)(void);
   void(*SWdataSet)(short, short);
-  int(*Get_vscroll)();
-  int(*Get_scra_h_posiw)();
-  int(*Get_scrb_h_posiw)();
-  int(*FadeProc)();
+  int(*Get_vscroll)(void);
+  int(*Get_scra_h_posiw)(void);
+  int(*Get_scrb_h_posiw)(void);
+  int(*FadeProc)(void);
   void(*SetDebugFlag)(unsigned int);
   void(*GetRoundStr)(unsigned short, unsigned char, char*);
   void(*Special_block_chg)(unsigned short*, unsigned short*, unsigned short*, unsigned short*);

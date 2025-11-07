@@ -86,7 +86,7 @@ bmp_info SprBmp[700];
 
 
 
-void WorkRamClear() { /* Line 89, Address: 0x1008d10 */
+void WorkRamClear(void) { /* Line 89, Address: 0x1008d10 */
   *lpFadeFlag = 0; /* Line 90, Address: 0x1008d18 */
   DLLRetMode = 0; /* Line 91, Address: 0x1008d24 */
   ProcMode = 0; /* Line 92, Address: 0x1008d2c */

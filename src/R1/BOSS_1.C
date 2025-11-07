@@ -3681,4 +3681,4 @@ void bom_set(sprite_status* pActwk) { /* Line 3634, Address: 0x1031750 */
 
 
 
-void tenmetu() {} /* Line 3684, Address: 0x10318f0 */
+void tenmetu(void) {} /* Line 3684, Address: 0x10318f0 */

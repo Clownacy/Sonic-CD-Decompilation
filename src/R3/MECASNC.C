@@ -855,7 +855,7 @@ void emie3clrsetx(PALETTEENTRY* pPalet) { /* Line 844, Address: 0x1026a20 */
   } /* Line 855, Address: 0x1026a7c */
 } /* Line 856, Address: 0x1026a9c */
 
-void emie3clrset() { /* Line 858, Address: 0x1026ab0 */
+void emie3clrset(void) { /* Line 858, Address: 0x1026ab0 */
   emie3clrsetx(emie3_clr); /* Line 859, Address: 0x1026ab8 */
 } /* Line 860, Address: 0x1026ac8 */
 

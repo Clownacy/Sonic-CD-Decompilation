@@ -230,7 +230,7 @@ void __stdcall CloseScoreData(HFILE hFile) {
 
 
 // 0040fbcf
-HFILE __stdcall CreateScoreData() {
+HFILE __stdcall CreateScoreData(void) {
   char path[256];
 
   retrieveDataFilePath(path);
@@ -341,7 +341,7 @@ void __stdcall initScoreData(score_data* pScoreData, int index) {
 
 
 // 0040ff5a
-BOOL writeDefaultScoreDataFile() {
+BOOL writeDefaultScoreDataFile(void) {
   HFILE hFile;
   int i;
 
@@ -361,7 +361,7 @@ BOOL writeDefaultScoreDataFile() {
 
 
 // 0040ffd8
-BOOL readFirstScoreData() {
+BOOL readFirstScoreData(void) {
   int index;
 
   index = ReadScoreIndx(0);
@@ -379,7 +379,7 @@ BOOL readFirstScoreData() {
 
 
 // 0041004a
-BOOL newScoreData() {
+BOOL newScoreData(void) {
   int i;
 
   for (i = 0; i < 6; ++i) {

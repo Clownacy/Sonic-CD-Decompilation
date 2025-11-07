@@ -23,4 +23,4 @@ void OEGridDelete(unsigned short indx) { /* Line 20, Address: 0x1000d70 */
 
 
 
-void OEAllGridDelete() {} /* Line 26, Address: 0x1000d80 */
+void OEAllGridDelete(void) {} /* Line 26, Address: 0x1000d80 */

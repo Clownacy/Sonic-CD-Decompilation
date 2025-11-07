@@ -315,7 +315,7 @@ void ringget(sprite_status* pActwk) { /* Line 293, Address: 0x1006b40 */
 
 
 
-void ringgetsub() { /* Line 318, Address: 0x1006cc0 */
+void ringgetsub(void) { /* Line 318, Address: 0x1006cc0 */
   ++plring; /* Line 319, Address: 0x1006cc8 */
   plring_f |= 1; /* Line 320, Address: 0x1006cdc */
   if (plring >= 100) { /* Line 321, Address: 0x1006cf0 */

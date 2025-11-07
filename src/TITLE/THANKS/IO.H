@@ -1,1 +1,1 @@
-void vdpinit();
+void vdpinit(void);

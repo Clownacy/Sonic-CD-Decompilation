@@ -47,8 +47,8 @@ extern short_union swdata1;
 
 
 
-void mainloop() { /* Line 50, Address: 0x10008f0 */
-  void(*prg_tbl[2])() = /* Line 51, Address: 0x10008f8 */
+void mainloop(void) { /* Line 50, Address: 0x10008f0 */
+  void(*prg_tbl[2])(void) = /* Line 51, Address: 0x10008f8 */
   {
     &get_tmdata,
     &get_keydata
@@ -60,7 +60,7 @@ void mainloop() { /* Line 50, Address: 0x10008f0 */
 
 
 
-void get_tmdata() { /* Line 63, Address: 0x1000950 */
+void get_tmdata(void) { /* Line 63, Address: 0x1000950 */
   get_usrname(); /* Line 64, Address: 0x1000958 */
   dsp_usrname(); /* Line 65, Address: 0x1000960 */
 
@@ -79,7 +79,7 @@ void get_tmdata() { /* Line 63, Address: 0x1000950 */
 
 
 
-void get_keydata() { /* Line 82, Address: 0x10009d0 */
+void get_keydata(void) { /* Line 82, Address: 0x10009d0 */
   player(); /* Line 83, Address: 0x10009d8 */
   sprinit(); /* Line 84, Address: 0x10009e0 */
   action(); /* Line 85, Address: 0x10009e8 */
@@ -88,7 +88,7 @@ void get_keydata() { /* Line 82, Address: 0x10009d0 */
 
 
 
-void get_usrname() { /* Line 91, Address: 0x1000a00 */
+void get_usrname(void) { /* Line 91, Address: 0x1000a00 */
   short round, zone;
   short i, gp;
 
@@ -171,7 +171,7 @@ int isupper(int c) { /* Line 166, Address: 0x1000f30 */
 } /* Line 171, Address: 0x1000f68 */
 
 
-void dsp_usrname() { /* Line 174, Address: 0x1000f80 */
+void dsp_usrname(void) { /* Line 174, Address: 0x1000f80 */
   short i;
   unsigned short c;
 
@@ -196,7 +196,7 @@ void dsp_usrname() { /* Line 174, Address: 0x1000f80 */
 
 
 
-void player() {
+void player(void) {
   if ((unsigned char)swdata1.b.l & 240) quit_flg = 1; /* Line 200, Address: 0x10010c0 */
   else quit_flg = 0; /* Line 201, Address: 0x10010f0 */
 } /* Line 202, Address: 0x10010f8 */

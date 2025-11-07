@@ -32,13 +32,13 @@ int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
 void(*sOutputDebugString)(char*);
 void(*sPrintf)(char*, const char*, ...);
-int(*sRandom)();
+int(*sRandom)(void);
 void(*sMemCpy)(void*, void*, int);
 void(*sMemSet)(void*, unsigned char, int);
 void(*ChangeTileBmp)(int, int);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
 static unsigned short gmtime0;
@@ -139,18 +139,18 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 94, Address: 0x1000
 
 
 
-void DLL_memfree() {} /* Line 142, Address: 0x10002e0 */
+void DLL_memfree(void) {} /* Line 142, Address: 0x10002e0 */
 
 
-int Get_vscroll() {
+int Get_vscroll(void) {
   return vscroll.l; /* Line 146, Address: 0x10002f0 */
 } /* Line 147, Address: 0x10002f8 */
 
-int Get_scra_h_posiw() {
+int Get_scra_h_posiw(void) {
   return scra_h_posiw.l; /* Line 150, Address: 0x1000300 */
 } /* Line 151, Address: 0x1000308 */
 
-int Get_scrb_h_posiw() {
+int Get_scrb_h_posiw(void) {
   return scrb_h_posiw.l; /* Line 154, Address: 0x1000310 */
 } /* Line 155, Address: 0x1000318 */
 
@@ -167,7 +167,7 @@ void SetDebugFlag(unsigned int NewVal) { /* Line 158, Address: 0x1000320 */
 
 
 
-void game_init() { /* Line 170, Address: 0x1000380 */
+void game_init(void) { /* Line 170, Address: 0x1000380 */
   int i;
 
   sMemSet(actwk, 0, sizeof(actwk)); /* Line 173, Address: 0x100038c */
@@ -193,7 +193,7 @@ void game_init() { /* Line 170, Address: 0x1000380 */
 
 
 
-sprite_status* atomwk_search() { /* Line 196, Address: 0x1000490 */
+sprite_status* atomwk_search(void) { /* Line 196, Address: 0x1000490 */
   int i;
 
 
@@ -205,7 +205,7 @@ sprite_status* atomwk_search() { /* Line 196, Address: 0x1000490 */
 
 
 
-int game() { /* Line 208, Address: 0x1000510 */
+int game(void) { /* Line 208, Address: 0x1000510 */
   sprite_status* pActwk;
   unsigned short wD0;
 
@@ -407,7 +407,7 @@ void atom(sprite_status* pActwk) { /* Line 391, Address: 0x1000aa0 */
 
 
 
-void clchg() { /* Line 410, Address: 0x1000b50 */
+void clchg(void) { /* Line 410, Address: 0x1000b50 */
   unsigned short wD0;
   int i;
 
@@ -454,7 +454,7 @@ static unsigned short code_tbl[3] = {
   1, 5, 9
 };
 
-void clwout() {
+void clwout(void) {
   clfflg = 1; /* Line 458, Address: 0x1000c50 */
   *lpFadeFlag = 2; /* Line 459, Address: 0x1000c5c */
   FadeCount = 8; /* Line 460, Address: 0x1000c6c */
@@ -462,7 +462,7 @@ void clwout() {
 } /* Line 462, Address: 0x1000c80 */
 
 
-void clwout_new() { /* Line 465, Address: 0x1000c90 */
+void clwout_new(void) { /* Line 465, Address: 0x1000c90 */
   if (wColwk >= 3) { /* Line 466, Address: 0x1000c98 */
 
     *lpFadeFlag = 0; /* Line 468, Address: 0x1000cb0 */
@@ -529,7 +529,7 @@ void woutcolor(unsigned short wD1) { /* Line 492, Address: 0x1000d40 */
 
 
 
-void clwin_init() { /* Line 532, Address: 0x1000e40 */
+void clwin_init(void) { /* Line 532, Address: 0x1000e40 */
   short i;
   PALETTEENTRY* lpColwk;
   PALETTEENTRY* lpSavewk;
@@ -554,7 +554,7 @@ void clwin_init() { /* Line 532, Address: 0x1000e40 */
 
 
 
-void clwin() {
+void clwin(void) {
   *lpFadeFlag = 1; /* Line 558, Address: 0x1000f10 */
   FadeCount = 8; /* Line 559, Address: 0x1000f20 */
   wColwk = 0; /* Line 560, Address: 0x1000f2c */
@@ -562,7 +562,7 @@ void clwin() {
 } /* Line 562, Address: 0x1000f40 */
 
 
-void clwin_new() { /* Line 565, Address: 0x1000f50 */
+void clwin_new(void) { /* Line 565, Address: 0x1000f50 */
   if (wColwk >= 3) { /* Line 566, Address: 0x1000f58 */
 
     *lpFadeFlag = 0; /* Line 568, Address: 0x1000f70 */
@@ -636,7 +636,7 @@ void wincolor(unsigned char byD0, unsigned short wD1) { /* Line 594, Address: 0x
 
 
 
-int FadeProc() { /* Line 639, Address: 0x1001180 */
+int FadeProc(void) { /* Line 639, Address: 0x1001180 */
   switch (*lpFadeFlag) { /* Line 640, Address: 0x1001188 */
 
     case 1:
@@ -676,7 +676,7 @@ void soundset(short ReqNo) { /* Line 665, Address: 0x10011e0 */
 
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,

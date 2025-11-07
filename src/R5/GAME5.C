@@ -9,8 +9,8 @@
 #include "COL5A.H"
 #include "SCR51A.H"
 
-static void back_to_cnt();
-static void bye_cnt();
+static void back_to_cnt(void);
+static void bye_cnt(void);
 
 static short Interupt_Counter;
 static unsigned int PauseIcon;
@@ -22,20 +22,20 @@ int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
 void(*sOutputDebugString)(char*);
 void(*sPrintf)(char*, char*);
-int(*sRandom)();
+int(*sRandom)(void);
 void(*sMemSet)(void*, unsigned char, int);
-void(*WaveAllStop)();
+void(*WaveAllStop)(void);
 void(*ChangeTileBmp)(int, int);
 void(*CDPause)(short);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
 extern unsigned char zone1scd[1000];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -194,18 +194,18 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 125, Address: 0x101
 
 
 
-void DLL_memfree() {} /* Line 197, Address: 0x10182a0 */
+void DLL_memfree(void) {} /* Line 197, Address: 0x10182a0 */
 
 
-int Get_vscroll() {
+int Get_vscroll(void) {
   return vscroll.l; /* Line 201, Address: 0x10182b0 */
 } /* Line 202, Address: 0x10182b8 */
 
-int Get_scra_h_posiw() {
+int Get_scra_h_posiw(void) {
   return scra_h_posiw.l; /* Line 205, Address: 0x10182c0 */
 } /* Line 206, Address: 0x10182c8 */
 
-int Get_scrb_h_posiw() {
+int Get_scrb_h_posiw(void) {
   return scrb_h_posiw.l; /* Line 209, Address: 0x10182d0 */
 } /* Line 210, Address: 0x10182d8 */
 
@@ -219,7 +219,7 @@ void SetDebugFlag(unsigned int NewVal) { /* Line 213, Address: 0x10182e0 */
 
 
 
-int game() { /* Line 222, Address: 0x1018340 */
+int game(void) { /* Line 222, Address: 0x1018340 */
   if (swdata1.b.l & 128) { /* Line 223, Address: 0x1018348 */
     if (pauseflag.b.h) { /* Line 224, Address: 0x1018360 */
       if (swdata2.w & 32896) { /* Line 225, Address: 0x1018370 */
@@ -370,7 +370,7 @@ int game() { /* Line 222, Address: 0x1018340 */
 
 
 
-void game_init() { /* Line 373, Address: 0x10189f0 */
+void game_init(void) { /* Line 373, Address: 0x10189f0 */
 
   ReadScrolMap(); /* Line 375, Address: 0x10189f8 */
   ReadBlockMap(); /* Line 376, Address: 0x1018a00 */
@@ -682,7 +682,7 @@ void game_init() { /* Line 373, Address: 0x10189f0 */
 
 
 
-void play_act_set() {
+void play_act_set(void) {
   actwk[0].actno = 1; /* Line 686, Address: 0x1019470 */
   if (plflag) { /* Line 687, Address: 0x101947c */
     ((short*)&actwk[0])[26] = 120; /* Line 688, Address: 0x101948c */
@@ -690,7 +690,7 @@ void play_act_set() {
 } /* Line 690, Address: 0x1019498 */
 
 
-void flow_act_set() { /* Line 693, Address: 0x10194a0 */
+void flow_act_set(void) { /* Line 693, Address: 0x10194a0 */
   int i, time, fcnt;
   sprite_status* pAct;
 
@@ -714,7 +714,7 @@ void flow_act_set() { /* Line 693, Address: 0x10194a0 */
 } /* Line 714, Address: 0x101954c */
 
 
-void scdset() {
+void scdset(void) {
   scdadr = zone1scd; /* Line 718, Address: 0x1019570 */
 
 } /* Line 720, Address: 0x1019580 */
@@ -724,7 +724,7 @@ void scdset() {
 
 
 
-void syspatchg() {
+void syspatchg(void) {
   if (--sys_pattim2 & 128) { /* Line 728, Address: 0x1019590 */
     sys_pattim2 = 7; /* Line 729, Address: 0x10195b8 */
     sys_patno2 = (sys_patno2 + 1) & 3; /* Line 730, Address: 0x10195c4 */
@@ -744,7 +744,7 @@ void syspatchg() {
 } /* Line 744, Address: 0x1019654 */
 
 
-static void back_to_cnt() {
+static void back_to_cnt(void) {
   if (!actwk[0].actfree[0]) { /* Line 748, Address: 0x1019660 */
     if (backto_cnt) { /* Line 749, Address: 0x1019670 */
       ++backto_cnt; /* Line 750, Address: 0x1019680 */
@@ -756,7 +756,7 @@ static void back_to_cnt() {
 
 
 
-static void bye_cnt() {
+static void bye_cnt(void) {
   if (byecnt0.w) { /* Line 760, Address: 0x10196a0 */
     ++byecnt0.w; /* Line 761, Address: 0x10196b0 */
   }
@@ -771,7 +771,7 @@ static void bye_cnt() {
 
 
 
-void sdfdout() { /* Line 774, Address: 0x10196f0 */
+void sdfdout(void) { /* Line 774, Address: 0x10196f0 */
   soundset(171); /* Line 775, Address: 0x10196f8 */
   if (!(pauseflag.b.h | 128)) { /* Line 776, Address: 0x1019704 */
 
@@ -790,7 +790,7 @@ void sdfdout() { /* Line 774, Address: 0x10196f0 */
 } /* Line 790, Address: 0x1019788 */
 
 
-void sdfdin() { /* Line 793, Address: 0x10197a0 */
+void sdfdin(void) { /* Line 793, Address: 0x10197a0 */
   if (pauseflag.b.h & 128) { /* Line 794, Address: 0x10197a8 */
 
 
@@ -812,7 +812,7 @@ void sdfdin() { /* Line 793, Address: 0x10197a0 */
 
 
 
-void da_set() { /* Line 815, Address: 0x1019840 */
+void da_set(void) { /* Line 815, Address: 0x1019840 */
   unsigned short wD0;
   static unsigned char da_tbl[7][4] = {
     { 48, 15, 17, 16 },

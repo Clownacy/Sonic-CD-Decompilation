@@ -27,7 +27,7 @@ static int chrtbl[24] = {
 
 
 
-void sonic_disp() { /* Line 30, Address: 0x1003500 */
+void sonic_disp(void) { /* Line 30, Address: 0x1003500 */
   unsigned short sonic_extend;
 
   if ((sonic_upcnt2 = sonic_upcnt2 + 1 & 7) == 0) { /* Line 33, Address: 0x100350c */
@@ -99,21 +99,21 @@ void sonic_disp_disp(short tbl_no) { /* Line 54, Address: 0x1003650 */
 
 
 
-void time_bonus_disp() { /* Line 102, Address: 0x1003730 */
+void time_bonus_disp(void) { /* Line 102, Address: 0x1003730 */
   nullflg = 0; /* Line 103, Address: 0x1003738 */
 
   cset(subtbl, 24, 20, time_bonus, 7); /* Line 105, Address: 0x1003740 */
 } /* Line 106, Address: 0x1003764 */
 
 
-void ring_bonus_disp() { /* Line 109, Address: 0x1003780 */
+void ring_bonus_disp(void) { /* Line 109, Address: 0x1003780 */
   nullflg = 0; /* Line 110, Address: 0x1003788 */
 
   cset(subtbl, 24, 17, ring_bonus, 7); /* Line 112, Address: 0x1003790 */
 } /* Line 113, Address: 0x10037b4 */
 
 
-void game_score_disp() { /* Line 116, Address: 0x10037d0 */
+void game_score_disp(void) { /* Line 116, Address: 0x10037d0 */
   nullflg = 0; /* Line 117, Address: 0x10037d8 */
 
   cset(subtbl, 24, 14, game_score, 7); /* Line 119, Address: 0x10037e0 */
@@ -194,7 +194,7 @@ unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned 
 
 
 
-void spetime_disp() { /* Line 197, Address: 0x1003c60 */
+void spetime_disp(void) { /* Line 197, Address: 0x1003c60 */
   if (!(spgmmode & 2)) { /* Line 198, Address: 0x1003c68 */
 
     sset(&subtbl[5], 19, 0, spe_time.l, 2); /* Line 200, Address: 0x1003c80 */
@@ -208,12 +208,12 @@ void spetime_disp() { /* Line 197, Address: 0x1003c60 */
 } /* Line 208, Address: 0x1003d58 */
 
 
-void ringno_disp() { /* Line 211, Address: 0x1003d70 */
+void ringno_disp(void) { /* Line 211, Address: 0x1003d70 */
   sset(&subtbl[5], 33, 0, ringno, 2); /* Line 212, Address: 0x1003d78 */
 } /* Line 213, Address: 0x1003da0 */
 
 
-void ufoleft_disp() { /* Line 216, Address: 0x1003db0 */
+void ufoleft_disp(void) { /* Line 216, Address: 0x1003db0 */
   sset(&subtbl[6], 7, 0, ufoleft, 1); /* Line 217, Address: 0x1003db8 */
 } /* Line 218, Address: 0x1003de0 */
 

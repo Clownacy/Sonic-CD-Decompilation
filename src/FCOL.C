@@ -940,7 +940,7 @@ label2:
 
 
 
-short scdcnv() {
+short scdcnv(void) {
   return 0; /* Line 944, Address: 0x1003750 */
 } /* Line 945, Address: 0x1003754 */
 

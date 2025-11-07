@@ -9,7 +9,7 @@ static char szAVIFile[21] = "title\\avi\\pencil.avi";
 static unsigned int bAVIStart;
 extern int(*sMoviePlay)(int);
 extern int nTimerCunt;
-extern int(*sMovieStop)();
+extern int(*sMovieStop)(void);
 static unsigned int hWndMovie;
 extern unsigned short wMCIDeviceID;
 
@@ -95,7 +95,7 @@ void ReadDIB(char* fileName) { /* Line 74, Address: 0x1000000 */
 
 
 
-void FreeDIB() {} /* Line 98, Address: 0x1000010 */
+void FreeDIB(void) {} /* Line 98, Address: 0x1000010 */
 
 
 
@@ -115,7 +115,7 @@ void FreeDIB() {} /* Line 98, Address: 0x1000010 */
 
 
 
-void AVIOpeningMove() { /* Line 118, Address: 0x1000020 */
+void AVIOpeningMove(void) { /* Line 118, Address: 0x1000020 */
   if (nTimerCunt == 0) { /* Line 119, Address: 0x1000028 */
 
 #if defined(AVIOPEN)
@@ -140,7 +140,7 @@ void AVIOpeningMove() { /* Line 118, Address: 0x1000020 */
 
 
 
-void AVIEnd() { /* Line 143, Address: 0x1000070 */
+void AVIEnd(void) { /* Line 143, Address: 0x1000070 */
   sMovieStop(); /* Line 144, Address: 0x1000078 */
 
 

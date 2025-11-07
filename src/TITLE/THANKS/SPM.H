@@ -1,1 +1,1 @@
-void WorkRamClear();
+void WorkRamClear(void);

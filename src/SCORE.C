@@ -9,9 +9,9 @@ static void ten_init(sprite_status* pAct);
 static void ten_move(sprite_status* pAct);
 static void score_init(sprite_status* pAct);
 static void score_move(sprite_status* pAct);
-static void ringinit();
-static void scoreinit();
-static void posiwrt();
+static void ringinit(void);
+static void scoreinit(void);
+static void posiwrt(void);
 static void bonuswrt(sprite_data* pSprdat, unsigned int lDispVal);
 static void ringwrt(sprite_data* pSprdat, unsigned int lDispVal);
 static void scorewrt(sprite_data* pSprdat, unsigned int lDispVal);
@@ -429,7 +429,7 @@ void scoreup(unsigned int updata) { /* Line 408, Address: 0x1005470 */
 
 
 
-void scoreset() { /* Line 432, Address: 0x1005550 */
+void scoreset(void) { /* Line 432, Address: 0x1005550 */
   sprite_data* pSprdat;
   sprite_pattern* pSprpat;
 
@@ -539,9 +539,9 @@ void scoreset() { /* Line 432, Address: 0x1005550 */
 
 
 
-static void ringinit() {} /* Line 542, Address: 0x10059b0 */
+static void ringinit(void) {} /* Line 542, Address: 0x10059b0 */
 
-static void scoreinit() { /* Line 544, Address: 0x10059c0 */
+static void scoreinit(void) { /* Line 544, Address: 0x10059c0 */
   sprite_data* pSprdat;
 
   pSprdat = &scorepat1.spra[2]; /* Line 547, Address: 0x10059cc */
@@ -562,7 +562,7 @@ static void scoreinit() { /* Line 544, Address: 0x10059c0 */
 
 
 
-static void posiwrt() { /* Line 565, Address: 0x1005a00 */
+static void posiwrt(void) { /* Line 565, Address: 0x1005a00 */
   sprite_data* pSprdat;
   int_union lwk;
 

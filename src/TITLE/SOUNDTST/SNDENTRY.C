@@ -8,8 +8,8 @@
 #include "SNDDO.H"
 #include "SNDSPRT.H"
 
-static void SNDWait();
-static void SetKeybordKey1();
+static void SNDWait(void);
+static void SetKeybordKey1(void);
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -24,13 +24,13 @@ extern PALETTEENTRY tblPal3[];
 extern PALETTEENTRY tblPal2[];
 extern PALETTEENTRY tblPal1[];
 void(*WaveRequest)(short);
-void(*CDPause)();
+void(*CDPause)(void);
 void(*CDPlay)(short);
 PALETTEENTRY* lpColorwk;
 unsigned int hSurf;
 unsigned int hWnd;
 draw_context* s_ctx;
-draw_context*(*get_draw_context_module)();
+draw_context*(*get_draw_context_module)(void);
 void(*hmx_ddagrid_set_tile_module)(hmx_ddagrid*, int, int, hmx_bitmap*, int);
 void(*hmx_ddagrid_set_scan_module)(hmx_ddagrid*, int, int, int, int, int);
 void(*hmx_ddagrid_release_module)(hmx_environment*, hmx_ddagrid*);
@@ -57,7 +57,7 @@ hmx_bitmap*(*hmx_bitmap_create_module)(hmx_environment*, int, int);
 void(*hmx_background_set_background_module)(hmx_background*, int);
 void*(*ld_load_cmpfile_module)(hmx_environment*, char*);
 void(*ld_bitmap_4to8_module)(void*, void*, int, int, int, int, int);
-void(*FlipToScreen_module)();
+void(*FlipToScreen_module)(void);
 int(*sGetFileSize)(int);
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
@@ -70,10 +70,10 @@ void*(*sMemAlloc)(int);
 extern int bKakusi;
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  (void (*)())&DLLInit,
-  (void (*)())&DLLMain,
+  (void (*)(void))&DLLInit,
+  (void (*)(void))&DLLMain,
   (void (*)(char***, void**))&DLLEnd,
-  (void (*)())&SWdataSet,
+  (void (*)(void))&SWdataSet,
   0,
   0,
   0,
@@ -123,7 +123,7 @@ void OESetSequenceNum(unsigned short num) { /* Line 118, Address: 0x1000000 */
 
 
 
-void KeyWait() { /* Line 126, Address: 0x1000030 */
+void KeyWait(void) { /* Line 126, Address: 0x1000030 */
   nSaveSequenceNum = nSequenceNum; /* Line 127, Address: 0x1000038 */
   nWaitTime = 6; /* Line 128, Address: 0x1000048 */
   OESetSequenceNum(3); /* Line 129, Address: 0x1000054 */
@@ -132,7 +132,7 @@ void KeyWait() { /* Line 126, Address: 0x1000030 */
 
 
 
-void WaitKeyOff() { /* Line 135, Address: 0x1000070 */
+void WaitKeyOff(void) { /* Line 135, Address: 0x1000070 */
   nSaveSequenceNum = nSequenceNum; /* Line 136, Address: 0x1000078 */
   bWaitKeyOff = 1; /* Line 137, Address: 0x1000088 */
   nWaitTime = 0; /* Line 138, Address: 0x1000094 */
@@ -152,7 +152,7 @@ void Wait(int time) { /* Line 145, Address: 0x10000c0 */
 
 
 
-static void SNDWait() { /* Line 155, Address: 0x1000110 */
+static void SNDWait(void) { /* Line 155, Address: 0x1000110 */
   if (bWaitKeyOff == 0 && nTimerCunt > nWaitTime) /* Line 156, Address: 0x1000118 */
   {
     OESetSequenceNum(nSaveSequenceNum); /* Line 158, Address: 0x1000144 */
@@ -267,7 +267,7 @@ void DLLInit(engine_dll* lpDllIn, char*** pBufTbl, void** pFuncTbl) { /* Line 16
 
 
 
-void DLLEnd() { /* Line 270, Address: 0x10007a0 */
+void DLLEnd(void) { /* Line 270, Address: 0x10007a0 */
   if (bKakusi != 0) { /* Line 271, Address: 0x10007a8 */
     MC_SONICDelete(); /* Line 272, Address: 0x10007b8 */
     return; /* Line 273, Address: 0x10007c0 */
@@ -294,7 +294,7 @@ void DLLEnd() { /* Line 270, Address: 0x10007a0 */
 
 
 
-static void SetKeybordKey1() {} /* Line 297, Address: 0x10007f0 */
+static void SetKeybordKey1(void) {} /* Line 297, Address: 0x10007f0 */
 
 
 
@@ -315,7 +315,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 302, Address: 0x100
 
 
 
-int DLLMain() { /* Line 318, Address: 0x1000840 */
+int DLLMain(void) { /* Line 318, Address: 0x1000840 */
   int ret = 0; /* Line 319, Address: 0x100084c */
 
   switch (nSequenceNum) /* Line 321, Address: 0x1000850 */

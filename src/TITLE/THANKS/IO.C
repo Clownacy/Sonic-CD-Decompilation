@@ -47,7 +47,7 @@ extern PALETTEENTRY* lpcolorwk0;
 
 
 
-void vdpinit() { /* Line 50, Address: 0x1002de0 */
+void vdpinit(void) { /* Line 50, Address: 0x1002de0 */
   PALETTEENTRY *lpPeSrc, *lpPeDest;
   short i;
 

@@ -11,7 +11,7 @@ short scdchk_r(sprite_status* pActwk, short iXposi, short iYposi, short iOffset,
 short scdchk2_r(sprite_status* pActwk, short iXposi, short iYposi, short iBlkMsk, short iRideon, char* cpDirstk);
 short scramapad(sprite_status* pActwk, short iXposi, short iYposi);
 short dirchk(sprite_status* pActwk, short scd0, short scd1);
-short scdcnv();
+short scdcnv(void);
 short st_elseDataChk(short iBlkNo, sprite_status* pActwk);
 short st_wackyDataChk(short iBlkNo, sprite_status* pActwk);
 short st_starDataChk(short iBlkNo, sprite_status* pActwk);

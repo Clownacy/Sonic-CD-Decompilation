@@ -39,7 +39,7 @@
 
 
 
-void scrchk() { /* Line 42, Address: 0x1017a10 */
+void scrchk(void) { /* Line 42, Address: 0x1017a10 */
   short sD1;
 
   switch (stageno.b.h) { /* Line 45, Address: 0x1017a1c */
@@ -95,7 +95,7 @@ void scrchk() { /* Line 42, Address: 0x1017a10 */
 
 
 
-void zone1chk() { /* Line 98, Address: 0x1017c70 */
+void zone1chk(void) { /* Line 98, Address: 0x1017c70 */
   switch (stageno.b.l) { /* Line 99, Address: 0x1017c78 */
     case 0:
       zone11chk(); break; /* Line 101, Address: 0x1017cb0 */
@@ -109,7 +109,7 @@ void zone1chk() { /* Line 98, Address: 0x1017c70 */
 } /* Line 109, Address: 0x1017cd8 */
 
 
-void zone11chk() { /* Line 112, Address: 0x1017cf0*/
+void zone11chk(void) { /* Line 112, Address: 0x1017cf0*/
   if (time_flag != 1) { /* Line 113, Address: 0x1017cf8*/
     zone12chk(); /* Line 114, Address: 0x1017d10*/
   } /* Line 115, Address: 0x1017d18*/
@@ -141,20 +141,20 @@ void zone11chk() { /* Line 112, Address: 0x1017cf0*/
 } /* Line 141, Address: 0x1017e14*/
 
 
-void zone12chk() {
+void zone12chk(void) {
   scralim_n_down = 784; /* Line 145, Address: 0x1017e30 */
 
 } /* Line 147, Address: 0x1017e3c */
 
 
-void zone13chk() { /* Line 150, Address: 0x1017e50*/
+void zone13chk(void) { /* Line 150, Address: 0x1017e50*/
   if (bossflag) return; /* Line 151, Address: 0x1017e58*/
   scralim_n_down = 784; /* Line 152, Address: 0x1017e68*/
   bossclr_scr(3440, 784); /* Line 153, Address: 0x1017e74*/
 } /* Line 154, Address: 0x1017e84*/
 
 
-void zone3chk() { /* Line 157, Address: 0x1017ea0 */
+void zone3chk(void) { /* Line 157, Address: 0x1017ea0 */
   switch (stageno.b.l) { /* Line 158, Address: 0x1017ea8 */
     case 0:
       zone31chk(); break; /* Line 160, Address: 0x1017ee0 */
@@ -168,13 +168,13 @@ void zone3chk() { /* Line 157, Address: 0x1017ea0 */
 } /* Line 168, Address: 0x1017f08 */
 
 
-void zone31chk() {
+void zone31chk(void) {
   scralim_n_down = 1296; /* Line 172, Address: 0x1017f20*/
 
 } /* Line 174, Address: 0x1017f2c*/
 
 
-void zone33chk() { /* Line 177, Address: 0x1017f40 */
+void zone33chk(void) { /* Line 177, Address: 0x1017f40 */
   if (bossflag) { /* Line 178, Address: 0x1017f48 */
     bossclr_scrset(96); /* Line 179, Address: 0x1017f58 */
   } /* Line 180, Address: 0x1017f64 */
@@ -185,7 +185,7 @@ void zone33chk() { /* Line 177, Address: 0x1017f40 */
 } /* Line 185, Address: 0x1017f78 */
 
 
-void zone6chk() { /* Line 188, Address: 0x1017f90 */
+void zone6chk(void) { /* Line 188, Address: 0x1017f90 */
   unsigned short wD0, wD1;
 
   if (!(bossflag & 16)) { /* Line 191, Address: 0x1017fa0 */
@@ -224,7 +224,7 @@ void zone6chk() { /* Line 188, Address: 0x1017f90 */
 } /* Line 224, Address: 0x10180b0 */
 
 
-void zone5chk() { /* Line 227, Address: 0x10180d0 */
+void zone5chk(void) { /* Line 227, Address: 0x10180d0 */
   switch (stageno.b.l) { /* Line 228, Address: 0x10180d8 */
     case 0:
       zone51chk(); break; /* Line 230, Address: 0x1018110 */
@@ -237,12 +237,12 @@ void zone5chk() { /* Line 227, Address: 0x10180d0 */
 
 } /* Line 238, Address: 0x1018138 */
 
-void zone51chk() {
+void zone51chk(void) {
   scralim_n_down = 784; /* Line 241, Address: 0x1018150 */
 
 } /* Line 243, Address: 0x101815c */
 
-void zone53chk() { /* Line 245, Address: 0x1018170 */
+void zone53chk(void) { /* Line 245, Address: 0x1018170 */
   if (bossclr_scr(3600, 504) == 0) { /* Line 246, Address: 0x1018178 */
 
 
@@ -261,7 +261,7 @@ void zone53chk() { /* Line 245, Address: 0x1018170 */
 
 
 
-void zone8chk() { /* Line 264, Address: 0x10181e0 */
+void zone8chk(void) { /* Line 264, Address: 0x10181e0 */
   switch (stageno.b.l) { /* Line 265, Address: 0x10181e8 */
     case 0:
       zone81chk(); break; /* Line 267, Address: 0x1018220 */
@@ -275,12 +275,12 @@ void zone8chk() { /* Line 264, Address: 0x10181e0 */
 } /* Line 275, Address: 0x1018248 */
 
 
-void zone81chk() {
+void zone81chk(void) {
   scralim_n_down = 1808; /* Line 279, Address: 0x1018260 */
 
 } /* Line 281, Address: 0x101826c */
 
-void zone83chk() {
+void zone83chk(void) {
   if (bossflag) { /* Line 284, Address: 0x1018280 */
 
     scralim_up = scralim_n_up = scralim_down = scralim_n_down = 268; /* Line 286, Address: 0x1018290 */
@@ -296,7 +296,7 @@ void zone83chk() {
 
 
 
-void zone4chk() { /* Line 299, Address: 0x10182f0 */
+void zone4chk(void) { /* Line 299, Address: 0x10182f0 */
   switch (stageno.b.l) { /* Line 300, Address: 0x10182f8 */
     case 0:
       zone41chk(); break; /* Line 302, Address: 0x1018330 */
@@ -311,12 +311,12 @@ void zone4chk() { /* Line 299, Address: 0x10182f0 */
 
 
 
-void zone41chk() {
+void zone41chk(void) {
   scralim_n_down = 1296; /* Line 315, Address: 0x1018370 */
 
 } /* Line 317, Address: 0x101837c */
 
-void zone42chk() {
+void zone42chk(void) {
   if (actwk[0].mstno.b.h == 43 || actwk[0].r_no0 >= 6) { /* Line 320, Address: 0x1018390 */
 
     scralim_down = 1808; /* Line 322, Address: 0x10183c4 */
@@ -334,7 +334,7 @@ void zone42chk() {
 
 } /* Line 335, Address: 0x1018430 */
 
-void zone43chk() { /* Line 337, Address: 0x1018440 */
+void zone43chk(void) { /* Line 337, Address: 0x1018440 */
   if (bossclr_scr(2808, 1216) == 0) { /* Line 338, Address: 0x1018448 */
 
 
@@ -349,7 +349,7 @@ void zone43chk() { /* Line 337, Address: 0x1018440 */
 
 
 
-void zone7chk() { /* Line 352, Address: 0x10184a0 */
+void zone7chk(void) { /* Line 352, Address: 0x10184a0 */
   switch (stageno.b.l) { /* Line 353, Address: 0x10184a8 */
     case 0:
       zone71chk(); break; /* Line 355, Address: 0x10184e0 */
@@ -364,17 +364,17 @@ void zone7chk() { /* Line 352, Address: 0x10184a0 */
 
 
 
-void zone71chk() {
+void zone71chk(void) {
   scralim_n_down = 1296; /* Line 368, Address: 0x1018520 */
 
 } /* Line 370, Address: 0x101852c */
 
-void zone72chk() {
+void zone72chk(void) {
   scralim_n_down = 1808; /* Line 373, Address: 0x1018540 */
 
 } /* Line 375, Address: 0x101854c */
 
-void zone73chk() { /* Line 377, Address: 0x1018560 */
+void zone73chk(void) { /* Line 377, Address: 0x1018560 */
   unsigned short wD1;
 
   if (actwk[0].xposi.w.h < 2352) { /* Line 380, Address: 0x1018568 */

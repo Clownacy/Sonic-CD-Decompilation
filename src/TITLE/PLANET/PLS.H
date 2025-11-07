@@ -1,6 +1,6 @@
-void player();
-void play0();
-void play1();
-void check_Bbtn();
-void check_Cbtn();
-void play2();
+void player(void);
+void play0(void);
+void play1(void);
+void check_Bbtn(void);
+void check_Cbtn(void);
+void play2(void);

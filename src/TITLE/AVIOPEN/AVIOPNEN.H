@@ -1,11 +1,11 @@
 void OESetSequenceNum(unsigned short num);
 void DLLInit(engine_dll* lpDllIn, char*** pBufTbl, void** pFuncTbl);
-void DLLEnd();
+void DLLEnd(void);
 void DLLPaint(unsigned int hdc);
 int DLLNotify(unsigned int WPARAM, long LPARAM);
-void DLLAVISizeChange();
-void DLLAVIRealize();
-void AVIPause();
-void AVIResume();
+void DLLAVISizeChange(void);
+void DLLAVIRealize(void);
+void AVIPause(void);
+void AVIResume(void);
 void SWdataSet(ushort_union sw1, ushort_union sw2);
-int DLLMain();
+int DLLMain(void);

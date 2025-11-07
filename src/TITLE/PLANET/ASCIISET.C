@@ -59,7 +59,7 @@ extern sprite_patterns_title* asciispr_tbl[];
 
 
 
-void sprascii() { /* Line 62, Address: 0x10005d0 */
+void sprascii(void) { /* Line 62, Address: 0x10005d0 */
   sprite_status_lpl* pAsciiWk;
   static void(*ascsprtbl[3])(sprite_status_lpl*) = {
     &ascchk,
@@ -244,7 +244,7 @@ static void ascchg(sprite_status_lpl* pActwk) { /* Line 238, Address: 0x1000b80 
 
 
 
-void set_asciicg() { /* Line 247, Address: 0x1000b90 */
+void set_asciicg(void) { /* Line 247, Address: 0x1000b90 */
   sprite_status_lpl* pStringwk;
 
   if (music_selflg & 2) { /* Line 250, Address: 0x1000b98 */

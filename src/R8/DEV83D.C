@@ -240,7 +240,7 @@ static tile_changes tbl_pan = {
 
 
 
-void cg_change() { /* Line 243, Address: 0x102b5e0 */
+void cg_change(void) { /* Line 243, Address: 0x102b5e0 */
   unsigned char *pcgchgtim, *pcgchgcnt;
   int i, playsubdma[16], top;
 

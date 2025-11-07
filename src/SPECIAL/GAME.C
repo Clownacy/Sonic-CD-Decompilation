@@ -32,14 +32,14 @@ PALETTEENTRY* lpcolorwk2;
 PALETTEENTRY* lpcolorwk;
 unsigned short* pmapwk;
 void(*sOutputDebugString)(char*);
-int(*sRandom)();
+int(*sRandom)(void);
 void(*sMemCpy)(void*, void*, int);
 void(*sMemSet)(void*, unsigned char, int);
-void(*WaveAllStop)();
+void(*WaveAllStop)(void);
 void(*CDPause)(short);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int, int);
 int_union vscroll;
@@ -50,7 +50,7 @@ ushort_union swdata2;
 static short clchgcnt[4];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -373,13 +373,13 @@ static PALETTEENTRY stone_color_set_tbl[40] = {
 };
 static unsigned char hscrflg;
 static unsigned short hscrcnt4;
-static void(*hscrltbl[8])() = { &hscrl0, &hscrl1, &hscrl2, &hscrl3, &hscrl4, &hscrl5, &hscrl6, &hscrl7 };
+static void(*hscrltbl[8])(void) = { &hscrl0, &hscrl1, &hscrl2, &hscrl3, &hscrl4, &hscrl5, &hscrl6, &hscrl7 };
 
-void m2mainchk() {} /* Line 378, Address: 0x1005110 */
+void m2mainchk(void) {} /* Line 378, Address: 0x1005110 */
 
 
 
-void m2subset() {} /* Line 382, Address: 0x1005120 */
+void m2subset(void) {} /* Line 382, Address: 0x1005120 */
 
 
 
@@ -464,24 +464,24 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 392, Address: 0x100
 
 
 
-void DLL_memfree() {} /* Line 467, Address: 0x1005590 */
+void DLL_memfree(void) {} /* Line 467, Address: 0x1005590 */
 
 
-int Get_vscroll() {
+int Get_vscroll(void) {
   return vscroll.l; /* Line 471, Address: 0x10055a0 */
 } /* Line 472, Address: 0x10055a8 */
 
-int Get_scra_h_posiw() {
+int Get_scra_h_posiw(void) {
   return scra_h_posiw.l; /* Line 475, Address: 0x10055b0 */
 } /* Line 476, Address: 0x10055b8 */
 
-int Get_scrb_h_posiw() {
+int Get_scrb_h_posiw(void) {
   return scrb_h_posiw.l; /* Line 479, Address: 0x10055c0 */
 } /* Line 480, Address: 0x10055c8 */
 
 
 
-int game() { /* Line 484, Address: 0x10055d0 */
+int game(void) { /* Line 484, Address: 0x10055d0 */
   int i;
 
   if (lpKeepWork->SPEMode != 0 || spgmmode & 1) { /* Line 487, Address: 0x10055dc */
@@ -613,7 +613,7 @@ int game() { /* Line 484, Address: 0x10055d0 */
 } /* Line 613, Address: 0x1005b6c */
 
 
-int ufochk() { /* Line 616, Address: 0x1005b80 */
+int ufochk(void) { /* Line 616, Address: 0x1005b80 */
   int i;
 
   for (i = 0; i < 6; ++i) { /* Line 619, Address: 0x1005b88 */
@@ -623,14 +623,14 @@ int ufochk() { /* Line 616, Address: 0x1005b80 */
 } /* Line 623, Address: 0x1005bdc */
 
 
-void game_clear() { /* Line 626, Address: 0x1005bf0 */
+void game_clear(void) { /* Line 626, Address: 0x1005bf0 */
   clrspflg |= (unsigned char)(1 << stagenm); /* Line 627, Address: 0x1005bf8 */
   lpKeepWork->clrspflg_save = clrspflg; /* Line 628, Address: 0x1005c24 */
   game_over(); /* Line 629, Address: 0x1005c38 */
 } /* Line 630, Address: 0x1005c40 */
 
 
-void game_over() { /* Line 633, Address: 0x1005c50 */
+void game_over(void) { /* Line 633, Address: 0x1005c50 */
   unsigned char d0;
 
 
@@ -665,7 +665,7 @@ void game_over() { /* Line 633, Address: 0x1005c50 */
 
 
 
-void game_init() { /* Line 668, Address: 0x1005cd0 */
+void game_init(void) { /* Line 668, Address: 0x1005cd0 */
   PALETTEENTRY* lpPeDest;
   int i;
 
@@ -749,11 +749,11 @@ void game_init() { /* Line 668, Address: 0x1005cd0 */
 
 
 
-void syspatchg() {} /* Line 752, Address: 0x1005e70 */
+void syspatchg(void) {} /* Line 752, Address: 0x1005e70 */
 
 
 
-void sdfdout() { /* Line 756, Address: 0x1005e80 */
+void sdfdout(void) { /* Line 756, Address: 0x1005e80 */
   soundset(171); /* Line 757, Address: 0x1005e88 */
 
 
@@ -778,7 +778,7 @@ void sdfdout() { /* Line 756, Address: 0x1005e80 */
 
 
 
-void sdfdin() {} /* Line 781, Address: 0x1005eb0 */
+void sdfdin(void) {} /* Line 781, Address: 0x1005eb0 */
 
 
 
@@ -792,7 +792,7 @@ void sdfdin() {} /* Line 781, Address: 0x1005eb0 */
 
 
 
-void disp() { /* Line 795, Address: 0x1005ec0 */
+void disp(void) { /* Line 795, Address: 0x1005ec0 */
   short i;
   PALETTEENTRY *lpPeSrc, *lpPeDest;
 
@@ -830,7 +830,7 @@ void disp() { /* Line 795, Address: 0x1005ec0 */
 
 
 
-int disp_main() { /* Line 833, Address: 0x1005ff0 */
+int disp_main(void) { /* Line 833, Address: 0x1005ff0 */
   if ((long int)ring_bonus != 0) { /* Line 834, Address: 0x1005ff8 */
 
     gsc_up20(); /* Line 836, Address: 0x1006010 */
@@ -878,7 +878,7 @@ int disp_main() { /* Line 833, Address: 0x1005ff0 */
 
 
 
-void gsc_up20() { /* Line 881, Address: 0x1006160 */
+void gsc_up20(void) { /* Line 881, Address: 0x1006160 */
 
   if (++scoreup_setm % 6 == 0) /* Line 883, Address: 0x1006168 */
     key_set(189); /* Line 884, Address: 0x1006190 */
@@ -918,7 +918,7 @@ void gsc_up(int lScore) { /* Line 888, Address: 0x10061c0 */
 
 
 
-short pause_chk() { /* Line 921, Address: 0x10062d0 */
+short pause_chk(void) { /* Line 921, Address: 0x10062d0 */
 
   if (pauseflg & 128) { /* Line 923, Address: 0x10062d8 */
     if (pauseflg & 1) { /* Line 924, Address: 0x10062f0 */
@@ -973,7 +973,7 @@ short pause_chk() { /* Line 921, Address: 0x10062d0 */
 
 
 
-void map_init() { /* Line 976, Address: 0x1006450 */
+void map_init(void) { /* Line 976, Address: 0x1006450 */
   unsigned int d5;
   int i;
 
@@ -1159,7 +1159,7 @@ void bwrtset(unsigned int tblno4) { /* Line 1101, Address: 0x1006530 */
 
 
 
-void stone_color_set() { /* Line 1162, Address: 0x10067b0 */
+void stone_color_set(void) { /* Line 1162, Address: 0x10067b0 */
   PALETTEENTRY *lpPeSrc, *lpPeDest;
   short i;
 
@@ -1198,7 +1198,7 @@ void stone_color_set() { /* Line 1162, Address: 0x10067b0 */
 
 
 
-void panel_box() {} /* Line 1201, Address: 0x10068d0 */
+void panel_box(void) {} /* Line 1201, Address: 0x10068d0 */
 
 
 void colset(PALETTEENTRY* lpPeSrc) { /* Line 1204, Address: 0x10068e0 */
@@ -1213,7 +1213,7 @@ void colset(PALETTEENTRY* lpPeSrc) { /* Line 1204, Address: 0x10068e0 */
 } /* Line 1213, Address: 0x100694c */
 
 
-void sinit0() { /* Line 1216, Address: 0x1006960 */
+void sinit0(void) { /* Line 1216, Address: 0x1006960 */
 
 
 
@@ -1222,25 +1222,25 @@ void sinit0() { /* Line 1216, Address: 0x1006960 */
   colset(coltbl0); /* Line 1222, Address: 0x1006970 */
 } /* Line 1223, Address: 0x1006980 */
 
-void sinit1() { /* Line 1225, Address: 0x1006990 */
+void sinit1(void) { /* Line 1225, Address: 0x1006990 */
   panel_box(); /* Line 1226, Address: 0x1006998 */
 
   colset(coltbl1); /* Line 1228, Address: 0x10069a0 */
 } /* Line 1229, Address: 0x10069b0 */
 
-void sinit2() { /* Line 1231, Address: 0x10069c0 */
+void sinit2(void) { /* Line 1231, Address: 0x10069c0 */
   panel_box(); /* Line 1232, Address: 0x10069c8 */
 
   colset(coltbl2); /* Line 1234, Address: 0x10069d0 */
 } /* Line 1235, Address: 0x10069e0 */
 
-void sinit3() { /* Line 1237, Address: 0x10069f0 */
+void sinit3(void) { /* Line 1237, Address: 0x10069f0 */
   panel_box(); /* Line 1238, Address: 0x10069f8 */
 
   colset(coltbl3); /* Line 1240, Address: 0x1006a00 */
 } /* Line 1241, Address: 0x1006a10 */
 
-void sinit4() { /* Line 1243, Address: 0x1006a20 */
+void sinit4(void) { /* Line 1243, Address: 0x1006a20 */
   short i;
 
   panel_box(); /* Line 1246, Address: 0x1006a2c */
@@ -1250,27 +1250,27 @@ void sinit4() { /* Line 1243, Address: 0x1006a20 */
   for (i = 0; i < 128; ++i) hdatabuf[i] = 4286578688; /* Line 1250, Address: 0x1006a44 */
 } /* Line 1251, Address: 0x1006a90 */
 
-void sinit5() { /* Line 1253, Address: 0x1006ab0 */
+void sinit5(void) { /* Line 1253, Address: 0x1006ab0 */
   panel_box(); /* Line 1254, Address: 0x1006ab8 */
 
   colset(coltbl5); /* Line 1256, Address: 0x1006ac0 */
 } /* Line 1257, Address: 0x1006ad0 */
 
-void sinit6() { /* Line 1259, Address: 0x1006ae0 */
+void sinit6(void) { /* Line 1259, Address: 0x1006ae0 */
   panel_box(); /* Line 1260, Address: 0x1006ae8 */
 
   colset(coltbl6); /* Line 1262, Address: 0x1006af0 */
 } /* Line 1263, Address: 0x1006b00 */
 
-void sinit7() { /* Line 1265, Address: 0x1006b10 */
+void sinit7(void) { /* Line 1265, Address: 0x1006b10 */
   panel_box(); /* Line 1266, Address: 0x1006b18 */
 
   colset(coltbl7); /* Line 1268, Address: 0x1006b20 */
 } /* Line 1269, Address: 0x1006b30 */
 
 
-void stage_init() { /* Line 1272, Address: 0x1006b40 */
-  void(*jptbl[8])() = { /* Line 1273, Address: 0x1006b48 */
+void stage_init(void) { /* Line 1272, Address: 0x1006b40 */
+  void(*jptbl[8])(void) = { /* Line 1273, Address: 0x1006b48 */
     &sinit0, &sinit1, &sinit2, &sinit3, &sinit4, &sinit5, &sinit6, &sinit7
   };
 
@@ -1360,7 +1360,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 1349, Address: 0x10
 
 
 
-void hscal_1() { /* Line 1363, Address: 0x1006e90 */
+void hscal_1(void) { /* Line 1363, Address: 0x1006e90 */
   if (!scroll_stop) { /* Line 1364, Address: 0x1006e98 */
     if (stagenm == 0) hscal1_0(); /* Line 1365, Address: 0x1006ea8 */
     else if (stagenm == 4) hscal1_4(); /* Line 1366, Address: 0x1006ecc */
@@ -1368,7 +1368,7 @@ void hscal_1() { /* Line 1363, Address: 0x1006e90 */
   }
 } /* Line 1369, Address: 0x1006f14 */
 
-void hscal_2(){ /* Line 1371, Address: 0x1006f30 */
+void hscal_2(void){ /* Line 1371, Address: 0x1006f30 */
   if (!scroll_stop) { /* Line 1372, Address: 0x1006f38 */
     if (stagenm == 0) hscal2_0(); /* Line 1373, Address: 0x1006f48 */
     else if (stagenm == 4) hscal2_4(); /* Line 1374, Address: 0x1006f6c */
@@ -1379,7 +1379,7 @@ void hscal_2(){ /* Line 1371, Address: 0x1006f30 */
 
 
 
-void hscal0_0() { /* Line 1382, Address: 0x1006fd0 */
+void hscal0_0(void) { /* Line 1382, Address: 0x1006fd0 */
   int d0, d1;
   short *a0, *a1;
   short d3, d4, d7;
@@ -1419,7 +1419,7 @@ void hscal0_0() { /* Line 1382, Address: 0x1006fd0 */
 } /* Line 1419, Address: 0x1007138 */
 
 
-void hscal1_0() { /* Line 1422, Address: 0x1007160 */
+void hscal1_0(void) { /* Line 1422, Address: 0x1007160 */
   int d0, d1;
   short *a0, *a1;
   short d3, d4, d7;
@@ -1435,7 +1435,7 @@ void hscal1_0() { /* Line 1422, Address: 0x1007160 */
   hscal0(a0, a1, d0, d1, d3, d4, d7); /* Line 1435, Address: 0x10071cc */
 } /* Line 1436, Address: 0x10071f0 */
 
-void hscal2_0() { /* Line 1438, Address: 0x1007220 */
+void hscal2_0(void) { /* Line 1438, Address: 0x1007220 */
   int d0, d1;
   short *a0, *a1;
   short d3, d4, d7;
@@ -1485,7 +1485,7 @@ void hscal0(short* a0, short* a1, int d0, int d1, short d3, short d4, short d7) 
 
 
 
-void hscal0_4() { /* Line 1488, Address: 0x1007480 */
+void hscal0_4(void) { /* Line 1488, Address: 0x1007480 */
   int d0, d1;
   short *a0, *a1;
   int* a2;
@@ -1534,7 +1534,7 @@ void hscal0_4() { /* Line 1488, Address: 0x1007480 */
   hscal4(a0, a1, a2, 0, d7); /* Line 1534, Address: 0x1007614 */
 } /* Line 1535, Address: 0x1007630 */
 
-void hscal1_4() { /* Line 1537, Address: 0x1007650 */
+void hscal1_4(void) { /* Line 1537, Address: 0x1007650 */
   short *a0, *a1;
   int* a2;
   short d7;
@@ -1548,7 +1548,7 @@ void hscal1_4() { /* Line 1537, Address: 0x1007650 */
   hscal4(a0, a1, a2, hsdata0 >> 16, d7); /* Line 1548, Address: 0x1007690 */
 } /* Line 1549, Address: 0x10076bc */
 
-void hscal2_4() { /* Line 1551, Address: 0x10076e0 */
+void hscal2_4(void) { /* Line 1551, Address: 0x10076e0 */
   short *a0, *a1;
   int* a2;
   short d7;
@@ -1608,7 +1608,7 @@ void hscal4(short* a0, short* a1, int* a2, short d0, short d7) { /* Line 1566, A
 
 
 
-void hscal0_5() { /* Line 1611, Address: 0x10079b0 */
+void hscal0_5(void) { /* Line 1611, Address: 0x10079b0 */
   int d0, d1;
   short* a0;
   char* a2;
@@ -1631,7 +1631,7 @@ void hscal0_5() { /* Line 1611, Address: 0x10079b0 */
   hscal5(a0, a2, 0, d2, d7); /* Line 1631, Address: 0x1007a4c */
 } /* Line 1632, Address: 0x1007a68 */
 
-void hscal1_5() { /* Line 1634, Address: 0x1007a90 */
+void hscal1_5(void) { /* Line 1634, Address: 0x1007a90 */
   short* a0;
   char* a2;
   short d2, d7;
@@ -1645,7 +1645,7 @@ void hscal1_5() { /* Line 1634, Address: 0x1007a90 */
   hscal5(a0, a2, hsdata0 >> 16, d2, d7); /* Line 1645, Address: 0x1007ad8 */
 } /* Line 1646, Address: 0x1007b04 */
 
-void hscal2_5() { /* Line 1648, Address: 0x1007b30 */
+void hscal2_5(void) { /* Line 1648, Address: 0x1007b30 */
   short* a0;
   char* a2;
   short d2, d7;
@@ -1705,14 +1705,14 @@ void hscrspd_get(int* lD0, int* lD1) { /* Line 1686, Address: 0x1007d10 */
 } /* Line 1705, Address: 0x1007de0 */
 
 
-void hscrl0() { /* Line 1708, Address: 0x1007df0 */
+void hscrl0(void) { /* Line 1708, Address: 0x1007df0 */
   hscal0_0(); /* Line 1709, Address: 0x1007df8 */
   hscal1_0(); /* Line 1710, Address: 0x1007e00 */
   hscal2_0(); /* Line 1711, Address: 0x1007e08 */
 
 } /* Line 1713, Address: 0x1007e10 */
 
-void hscrl1() { /* Line 1715, Address: 0x1007e20 */
+void hscrl1(void) { /* Line 1715, Address: 0x1007e20 */
   int lD0;
   int lD1;
   int i;
@@ -1736,7 +1736,7 @@ void hscrl1() { /* Line 1715, Address: 0x1007e20 */
 
 } /* Line 1737, Address: 0x1007e80 */
 
-void hscrl2() { /* Line 1739, Address: 0x1007ea0 */
+void hscrl2(void) { /* Line 1739, Address: 0x1007ea0 */
   int lD0;
   int lD1;
   int i;
@@ -1769,7 +1769,7 @@ void hscrl2() { /* Line 1739, Address: 0x1007ea0 */
 
 } /* Line 1770, Address: 0x100802c */
 
-void hscrl3() { /* Line 1772, Address: 0x1008040 */
+void hscrl3(void) { /* Line 1772, Address: 0x1008040 */
   int lD0;
   int lD1;
   int i;
@@ -1784,21 +1784,21 @@ void hscrl3() { /* Line 1772, Address: 0x1008040 */
 
 } /* Line 1785, Address: 0x10080b4 */
 
-void hscrl4() { /* Line 1787, Address: 0x10080d0 */
+void hscrl4(void) { /* Line 1787, Address: 0x10080d0 */
   hscal0_4(); /* Line 1788, Address: 0x10080d8 */
   hscal1_4(); /* Line 1789, Address: 0x10080e0 */
   hscal2_4(); /* Line 1790, Address: 0x10080e8 */
 
 } /* Line 1792, Address: 0x10080f0 */
 
-void hscrl5() { /* Line 1794, Address: 0x1008100 */
+void hscrl5(void) { /* Line 1794, Address: 0x1008100 */
   hscal0_5(); /* Line 1795, Address: 0x1008108 */
   hscal1_5(); /* Line 1796, Address: 0x1008110 */
   hscal2_5(); /* Line 1797, Address: 0x1008118 */
 
 } /* Line 1799, Address: 0x1008120 */
 
-void hscrl6() { /* Line 1801, Address: 0x1008130 */
+void hscrl6(void) { /* Line 1801, Address: 0x1008130 */
   int lD0;
   int lD1;
   int i;
@@ -1826,7 +1826,7 @@ void hscrl6() { /* Line 1801, Address: 0x1008130 */
 
 
 
-void hscrl7() {} /* Line 1829, Address: 0x1008270 */
+void hscrl7(void) {} /* Line 1829, Address: 0x1008270 */
 
 
 
@@ -1835,7 +1835,7 @@ void hscrl7() {} /* Line 1829, Address: 0x1008270 */
 
 
 
-void hscal() { /* Line 1838, Address: 0x1008280 */
+void hscal(void) { /* Line 1838, Address: 0x1008280 */
   if (!scroll_stop) { /* Line 1839, Address: 0x1008288 */
     hscrltbl[stagenm](); /* Line 1840, Address: 0x1008298 */
   }
@@ -1848,7 +1848,7 @@ void hscal() { /* Line 1838, Address: 0x1008280 */
 
 
 
-void colchg0() { /* Line 1851, Address: 0x10082d0 */
+void colchg0(void) { /* Line 1851, Address: 0x10082d0 */
   unsigned short d0, d1, d5, d6, d7;
   PALETTEENTRY* lpPeDest;
   PALETTEENTRY dummy;
@@ -1874,7 +1874,7 @@ void colchg0() { /* Line 1851, Address: 0x10082d0 */
 } /* Line 1874, Address: 0x100841c */
 
 
-void colchg1() { /* Line 1877, Address: 0x1008450 */
+void colchg1(void) { /* Line 1877, Address: 0x1008450 */
   short d0;
   PALETTEENTRY* lpPeDest;
   PALETTEENTRY cltbl[8] = { /* Line 1880, Address: 0x1008460 */
@@ -1901,7 +1901,7 @@ void colchg1() { /* Line 1877, Address: 0x1008450 */
 
 } /* Line 1902, Address: 0x1008540 */
 
-void colchg2() { /* Line 1904, Address: 0x1008560 */
+void colchg2(void) { /* Line 1904, Address: 0x1008560 */
   unsigned short d0, d5, d6, d7;
   PALETTEENTRY* lpPeDest;
   PALETTEENTRY cltbl0[24] = { /* Line 1907, Address: 0x100857c */
@@ -1942,7 +1942,7 @@ void colchg2() { /* Line 1904, Address: 0x1008560 */
   *lpPeDest = cltbl1[d0]; /* Line 1942, Address: 0x10087c8 */
 } /* Line 1943, Address: 0x10087f8 */
 
-void colchg3() { /* Line 1945, Address: 0x1008820 */
+void colchg3(void) { /* Line 1945, Address: 0x1008820 */
   short d0, d5, d6, d7;
   PALETTEENTRY* lpPeDest;
   PALETTEENTRY cltbl0[16] = { /* Line 1948, Address: 0x100883c */
@@ -1980,7 +1980,7 @@ void colchg3() { /* Line 1945, Address: 0x1008820 */
   *lpPeDest++ = cltbl1[d0]; /* Line 1980, Address: 0x1008a78 */
 } /* Line 1981, Address: 0x1008ab4 */
 
-void colchg4() { /* Line 1983, Address: 0x1008ae0 */
+void colchg4(void) { /* Line 1983, Address: 0x1008ae0 */
   PALETTEENTRY tbl0[7] = { /* Line 1984, Address: 0x1008afc */
     { 0,  32, 224, 1 }, { 0,  64, 224, 1 }, { 0, 96, 224, 1 }, { 0, 128, 224, 1 },
     { 0, 160, 224, 1 }, { 0, 128, 224, 1 }, { 0, 96, 224, 1 }
@@ -2048,7 +2048,7 @@ void colchg4() { /* Line 1983, Address: 0x1008ae0 */
   *lpPeDest = tbl3[d0]; /* Line 2048, Address: 0x1008db4 */
 } /* Line 2049, Address: 0x1008de4 */
 
-void colchg5() { /* Line 2051, Address: 0x1008e10 */
+void colchg5(void) { /* Line 2051, Address: 0x1008e10 */
   unsigned short d0, d5, d6, d7;
   PALETTEENTRY* lpPeDest;
   short i;
@@ -2090,7 +2090,7 @@ void colchg5() { /* Line 2051, Address: 0x1008e10 */
 
 
 
-void colchg6() { /* Line 2093, Address: 0x1009000 */
+void colchg6(void) { /* Line 2093, Address: 0x1009000 */
   PALETTEENTRY tbl[12] = { /* Line 2094, Address: 0x100901c */
     { 0, 32, 192, 1 }, { 0, 32, 192, 1 }, { 0,  64, 224, 1 }, { 0,  64, 224, 1 },
     { 0, 96, 224, 1 }, { 0, 96, 224, 1 }, { 0, 128, 224, 1 }, { 0, 128, 224, 1 },
@@ -2110,10 +2110,10 @@ void colchg6() { /* Line 2093, Address: 0x1009000 */
 
 
 
-void colchg7() {} /* Line 2113, Address: 0x1009100 */
+void colchg7(void) {} /* Line 2113, Address: 0x1009100 */
 
-void color_change() { /* Line 2115, Address: 0x1009110 */
-  void(*jptbl[8])() = { /* Line 2116, Address: 0x1009118 */
+void color_change(void) { /* Line 2115, Address: 0x1009110 */
+  void(*jptbl[8])(void) = { /* Line 2116, Address: 0x1009118 */
     &colchg0, &colchg1, &colchg2, &colchg3, &colchg4, &colchg5, &colchg6, colchg7
   };
 

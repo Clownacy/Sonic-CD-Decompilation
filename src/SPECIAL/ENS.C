@@ -477,7 +477,7 @@ mvtbl* mvtbl_tbl[8] = { &mvtbl0, &mvtbl1, &mvtbl2, &mvtbl3, &mvtbl4, &mvtbl5, &m
 short tufo_tbl[43] = { 2, 0, 90, 2048, 2048, 1920, 2048, 90, 1920, 2048, 2048, 2048, 90, 2048, 2048, 2048, 1920, 90, 2048, 1920, 2048, 2048, 90, 2048, 2048, 2176, 2048, 90, 2176, 2048, 2048, 2048, 90, 2048, 2048, 2048, 2176, 90, 2048, 2176, 2048, 2048, -1 };
 
 
-void ufo_initial() { /* Line 480, Address: 0x10026a0 */
+void ufo_initial(void) { /* Line 480, Address: 0x10026a0 */
   mvtbl* a1;
   sprite_status_sp* a2;
   char d7;
@@ -518,7 +518,7 @@ void u_init(short cnt, sprite_status_sp* a2) { /* Line 501, Address: 0x1002780 *
   ((unsigned short*)a4)[38] = a2 - actwk; /* Line 518, Address: 0x100288c */
 } /* Line 519, Address: 0x10028bc */
 
-void tufo_initial() { /* Line 521, Address: 0x10028e0 */
+void tufo_initial(void) { /* Line 521, Address: 0x10028e0 */
   sprite_status_sp *a2, *a4;
   short *a3, dummy;
 

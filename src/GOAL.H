@@ -25,4 +25,4 @@ void goal_move0(sprite_status* pActwk);
 void goal_move1(sprite_status* pActwk);
 void goal_move2(sprite_status* pActwk);
 void goal_move3(sprite_status* pActwk);
-void genecolor();
+void genecolor(void);

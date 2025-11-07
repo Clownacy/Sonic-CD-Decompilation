@@ -355,7 +355,7 @@ void init_xyget(sprite_status_sp* plwk) { /* Line 337, Address: 0x100ad50 */
 
 
 
-void clear_chk() {
+void clear_chk(void) {
   if (ufoleft != 0) return; /* Line 359, Address: 0x100ae20 */
   actwk[0].exeno = 8; /* Line 360, Address: 0x100ae34 */
   if (actwk[39].actno != 0) actwk[39].actflg |= 1; /* Line 361, Address: 0x100ae40 */
@@ -865,7 +865,7 @@ void sibuki2(sprite_status_sp* sibukiwk) { /* Line 862, Address: 0x100c480 */
 } /* Line 865, Address: 0x100c4d8 */
 
 
-void sibuki_clr() {
+void sibuki_clr(void) {
   if (actwk[2].actno != 0) actwk[2].actflg |= 1; /* Line 869, Address: 0x100c4f0 */
 } /* Line 870, Address: 0x100c518 */
 

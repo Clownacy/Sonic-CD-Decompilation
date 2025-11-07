@@ -15,7 +15,7 @@ void pa_set() {} /* Line 10, Address: 0x1013e20 */
 
 
 
-void fadeout_s() {} /* Line 18, Address: 0x1013e30 */
+void fadeout_s(void) {} /* Line 18, Address: 0x1013e30 */
 
 
 

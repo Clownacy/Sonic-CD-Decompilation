@@ -9,14 +9,14 @@
 #include "..\SCORE.H"
 #include "COL4A.H"
 
-extern void scr_set();
-extern void scroll();
-extern void scrollwrt();
-extern void mapwrt();
-extern void mapinit();
+extern void scr_set(void);
+extern void scroll(void);
+extern void scrollwrt(void);
+extern void mapwrt(void);
+extern void mapinit(void);
 
-static void back_to_cnt();
-static void bye_cnt();
+static void back_to_cnt(void);
+static void bye_cnt(void);
 
 static short Interupt_Counter;
 static unsigned int PauseIcon;
@@ -28,21 +28,21 @@ int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
 void(*sOutputDebugString)(char*);
 void(*sPrintf)(char*, char*);
-int(*sRandom)();
+int(*sRandom)(void);
 void(*sMemSet)(void*, unsigned char, int);
-void(*WaveAllStop)();
+void(*WaveAllStop)(void);
 void(*ChangeTileBmp)(int, int);
 void(*CDPause)(short);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int);
 extern unsigned char zone1scd[1000];
 extern short_union watercolitbl[];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -204,18 +204,18 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 136, Address: 0x101
 
 
 
-void DLL_memfree() {} /* Line 207, Address: 0x1018080 */
+void DLL_memfree(void) {} /* Line 207, Address: 0x1018080 */
 
 
-int Get_vscroll() {
+int Get_vscroll(void) {
   return vscroll.l; /* Line 211, Address: 0x1018090 */
 } /* Line 212, Address: 0x1018098 */
 
-int Get_scra_h_posiw() {
+int Get_scra_h_posiw(void) {
   return scra_h_posiw.l; /* Line 215, Address: 0x10180a0 */
 } /* Line 216, Address: 0x10180a8 */
 
-int Get_scrb_h_posiw() {
+int Get_scrb_h_posiw(void) {
   return scrb_h_posiw.l; /* Line 219, Address: 0x10180b0 */
 } /* Line 220, Address: 0x10180b8 */
 
@@ -229,7 +229,7 @@ void SetDebugFlag(unsigned int NewVal) { /* Line 223, Address: 0x10180c0 */
 
 
 
-int game() { /* Line 232, Address: 0x1018120 */
+int game(void) { /* Line 232, Address: 0x1018120 */
   if (swdata1.b.l & 128) { /* Line 233, Address: 0x1018128 */
     if (pauseflag.b.h) { /* Line 234, Address: 0x1018140 */
       if (swdata2.w & 32896) { /* Line 235, Address: 0x1018150 */
@@ -377,7 +377,7 @@ int game() { /* Line 232, Address: 0x1018120 */
 
 
 
-void game_init() { /* Line 380, Address: 0x10187a0 */
+void game_init(void) { /* Line 380, Address: 0x10187a0 */
 
   unsigned short waterpositbl[12] = { /* Line 382, Address: 0x10187a8 */
      768,  640,  464,
@@ -703,7 +703,7 @@ void game_init() { /* Line 380, Address: 0x10187a0 */
 
 
 
-void play_act_set() {
+void play_act_set(void) {
   actwk[0].actno = 1; /* Line 707, Address: 0x1019320 */
   if (plflag) { /* Line 708, Address: 0x101932c */
     ((short*)&actwk[0])[26] = 120; /* Line 709, Address: 0x101933c */
@@ -734,16 +734,16 @@ void play_act_set() {
 
 
 
-void flow_act_set() {} /* Line 737, Address: 0x1019350 */
+void flow_act_set(void) {} /* Line 737, Address: 0x1019350 */
 
 
-void scdset() {
+void scdset(void) {
   scdadr = zone1scd; /* Line 741, Address: 0x1019360 */
 
 } /* Line 743, Address: 0x1019370 */
 
 
-void syspatchg() {
+void syspatchg(void) {
   if (--sys_pattim & 128) { /* Line 747, Address: 0x1019380 */
     sys_pattim = 11; /* Line 748, Address: 0x10193a8 */
     sys_patno = sys_patno - 1 & 7; /* Line 749, Address: 0x10193b4 */
@@ -767,7 +767,7 @@ void syspatchg() {
 } /* Line 767, Address: 0x10194fc */
 
 
-static void back_to_cnt() {
+static void back_to_cnt(void) {
   if (!actwk[0].actfree[0]) { /* Line 771, Address: 0x1019510 */
     if (backto_cnt) { /* Line 772, Address: 0x1019520 */
       ++backto_cnt; /* Line 773, Address: 0x1019530 */
@@ -779,7 +779,7 @@ static void back_to_cnt() {
 
 
 
-static void bye_cnt() {
+static void bye_cnt(void) {
   if (byecnt0.w) { /* Line 783, Address: 0x1019550 */
     ++byecnt0.w; /* Line 784, Address: 0x1019560 */
   }
@@ -794,7 +794,7 @@ static void bye_cnt() {
 
 
 
-void sdfdout() { /* Line 797, Address: 0x10195a0 */
+void sdfdout(void) { /* Line 797, Address: 0x10195a0 */
   soundset(171); /* Line 798, Address: 0x10195a8 */
   if (!(pauseflag.b.h | 128)) { /* Line 799, Address: 0x10195b4 */
 
@@ -813,7 +813,7 @@ void sdfdout() { /* Line 797, Address: 0x10195a0 */
 } /* Line 813, Address: 0x1019638 */
 
 
-void sdfdin() { /* Line 816, Address: 0x1019650 */
+void sdfdin(void) { /* Line 816, Address: 0x1019650 */
   if (pauseflag.b.h & 128) { /* Line 817, Address: 0x1019658 */
 
 
@@ -835,7 +835,7 @@ void sdfdin() { /* Line 816, Address: 0x1019650 */
 
 
 
-void da_set() { /* Line 838, Address: 0x10196f0 */
+void da_set(void) { /* Line 838, Address: 0x10196f0 */
   unsigned short wD0;
   static unsigned char da_tbl[7][4] = {
     {  48,  15,  17,  16 },
@@ -864,7 +864,7 @@ void da_set() { /* Line 838, Address: 0x10196f0 */
 
 
 
-void water1chk() { /* Line 867, Address: 0x10197a0 */
+void water1chk(void) { /* Line 867, Address: 0x10197a0 */
   short wD1;
 
   if (!(time_flag & 127)) return; /* Line 870, Address: 0x10197a8 */
@@ -890,7 +890,7 @@ void water1chk() { /* Line 867, Address: 0x10197a0 */
 
 
 
-void water2chk() { /* Line 893, Address: 0x10198a0 */
+void water2chk(void) { /* Line 893, Address: 0x10198a0 */
   short wD1;
 
   wD1 = scra_v_posit.w.h + 232; /* Line 896, Address: 0x10198a8 */
@@ -948,7 +948,7 @@ void water2chk() { /* Line 893, Address: 0x10198a0 */
 
 
 
-void water3chk() { /* Line 951, Address: 0x1019b30 */
+void water3chk(void) { /* Line 951, Address: 0x1019b30 */
   short wD1;
 
   wD1 = scra_v_posit.w.h + 232; /* Line 954, Address: 0x1019b38 */
@@ -967,10 +967,10 @@ void water3chk() { /* Line 951, Address: 0x1019b30 */
 
 
 
-void watercntsub() { /* Line 970, Address: 0x1019be0 */
+void watercntsub(void) { /* Line 970, Address: 0x1019be0 */
   unsigned short wD1;
 
-  void(*watertbl[3])() = { /* Line 973, Address: 0x1019bec */
+  void(*watertbl[3])(void) = { /* Line 973, Address: 0x1019bec */
     &water1chk,
     &water2chk,
     &water3chk
@@ -989,7 +989,7 @@ void watercntsub() { /* Line 970, Address: 0x1019be0 */
 
 
 
-void watercnt() { /* Line 992, Address: 0x1019ce0 */
+void watercnt(void) { /* Line 992, Address: 0x1019ce0 */
   short wD0, wD1;
 
   if (!pauseflag.b.h) { /* Line 995, Address: 0x1019ce8 */
@@ -1019,7 +1019,7 @@ void watercnt() { /* Line 992, Address: 0x1019ce0 */
 
 
 
-void watercoli() { /* Line 1022, Address: 0x1019e90 */
+void watercoli(void) { /* Line 1022, Address: 0x1019e90 */
   int i;
 
   if (actwk[0].mstno.b.h == 43) return; /* Line 1025, Address: 0x1019e98 */

@@ -136,7 +136,7 @@ static tile_changes tbl_sp = {
 
 
 
-void cg_change() { /* Line 139, Address: 0x1029640 */
+void cg_change(void) { /* Line 139, Address: 0x1029640 */
   unsigned char *pcgchgtim, *pcgchgcnt;
   int i, playsubdma[16], top;
 

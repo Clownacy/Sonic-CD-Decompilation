@@ -163,7 +163,7 @@ static tile_changes tbl_light = {
 
 
 
-void cg_change() { /* Line 166, Address: 0x102dc30 */
+void cg_change(void) { /* Line 166, Address: 0x102dc30 */
   unsigned char *pcgchgtim, *pcgchgcnt;
   int i, playsubdma[16], top;
 

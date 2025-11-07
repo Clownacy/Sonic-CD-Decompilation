@@ -121,7 +121,7 @@ extern map_init_data mapinittbl;
 
 
 
-void enecginit() {} /* Line 124, Address: 0x1024e20 */
+void enecginit(void) {} /* Line 124, Address: 0x1024e20 */
 
 
 
@@ -174,7 +174,7 @@ void divdevset() {} /* Line 128, Address: 0x1024e30 */
 
 
 
-void scr_set() { /* Line 177, Address: 0x1024e40 */
+void scr_set(void) { /* Line 177, Address: 0x1024e40 */
   int i;
 
   scrh_flag = scrv_flag = scr_die.b.h = scr_timer.b.h = zone_flag.b.h = 0; /* Line 180, Address: 0x1024e4c */
@@ -202,7 +202,7 @@ void scr_set() { /* Line 177, Address: 0x1024e40 */
 
 
 
-void playposiset() { /* Line 205, Address: 0x1025050 */
+void playposiset(void) { /* Line 205, Address: 0x1025050 */
   unsigned short playpositbl[2] = { /* Line 206, Address: 0x1025064 */
     64,
     652
@@ -287,7 +287,7 @@ void scrbinit(short yWk, short xWk) { /* Line 272, Address: 0x10252b0 */
 
 
 
-void scroll() { /* Line 290, Address: 0x1025390 */
+void scroll(void) { /* Line 290, Address: 0x1025390 */
   uint_union data;
   int hsCount;
   int i;
@@ -504,7 +504,7 @@ static void zonescrsetsub0(short VPosi, unsigned short offs) { /* Line 458, Addr
 
 
 
-void scroll_h() { /* Line 507, Address: 0x1025c70 */
+void scroll_h(void) { /* Line 507, Address: 0x1025c70 */
   unsigned short wD4;
 
   wD4 = scra_h_posit.w.h; /* Line 510, Address: 0x1025c7c */
@@ -523,7 +523,7 @@ void scroll_h() { /* Line 507, Address: 0x1025c70 */
 
 } /* Line 524, Address: 0x1025d34 */
 
-void scrh_move() { /* Line 526, Address: 0x1025d50 */
+void scrh_move(void) { /* Line 526, Address: 0x1025d50 */
   unsigned short wD0;
 
   wD0 = actwk[0].xposi.w.h; /* Line 529, Address: 0x1025d5c */
@@ -601,7 +601,7 @@ void left_check(unsigned short wD0) { /* Line 567, Address: 0x1025f00 */
 
 
 
-void scroll_v() { /* Line 604, Address: 0x1026000 */
+void scroll_v(void) { /* Line 604, Address: 0x1026000 */
   unsigned short wD0;
 
   wD0 = actwk[0].yposi.w.h - scra_v_posit.w.h; /* Line 607, Address: 0x102600c */
@@ -713,7 +713,7 @@ void sv_move_main2(unsigned short wD0) { /* Line 701, Address: 0x1026360 */
 } /* Line 713, Address: 0x10263e0 */
 
 
-void sv_move_sub2() { /* Line 716, Address: 0x10263f0 */
+void sv_move_sub2(void) { /* Line 716, Address: 0x10263f0 */
   limmoveflag = 0; /* Line 717, Address: 0x10263f8 */
   sv_move_sub(0); /* Line 718, Address: 0x1026400 */
 } /* Line 719, Address: 0x102640c */
@@ -1018,7 +1018,7 @@ void scrollz_h(int lD4, int flagz) { /* Line 980, Address: 0x1026d00 */
 
 
 
-void scrollwrtadva() { /* Line 1021, Address: 0x1026e10 */
+void scrollwrtadva(void) { /* Line 1021, Address: 0x1026e10 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   unsigned char* pScrFlag;
@@ -1049,7 +1049,7 @@ void scrollwrtadva() { /* Line 1021, Address: 0x1026e10 */
 
 
 
-void scrollwrt() { /* Line 1052, Address: 0x1026ec0 */
+void scrollwrt(void) { /* Line 1052, Address: 0x1026ec0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   POINT TilePoint;
@@ -1255,12 +1255,12 @@ label1:
 
 
 
-void scrollwrtc() {} /* Line 1258, Address: 0x10275c0 */
+void scrollwrtc(void) {} /* Line 1258, Address: 0x10275c0 */
 
 
 
 
-void scrollwrtz() {} /* Line 1263, Address: 0x10275d0 */
+void scrollwrtz(void) {} /* Line 1263, Address: 0x10275d0 */
 
 
 
@@ -1684,7 +1684,7 @@ void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned sho
 
 
 
-void mapwrt() { /* Line 1687, Address: 0x1028330 */
+void mapwrt(void) { /* Line 1687, Address: 0x1028330 */
   int VramBase;
   unsigned short wH_posiw, wV_posiw;
   unsigned char* pMapWk;
@@ -1807,7 +1807,7 @@ void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, 
 
 
 
-void mapinit() { /* Line 1810, Address: 0x1028700 */
+void mapinit(void) { /* Line 1810, Address: 0x1028700 */
 
   colorset2(mapinittbl.colorno2); /* Line 1812, Address: 0x1028708 */
   colorset(mapinittbl.colorno2); /* Line 1813, Address: 0x102871c */
@@ -1825,4 +1825,4 @@ void mapinit() { /* Line 1810, Address: 0x1028700 */
 
 
 
-void mapset() {} /* Line 1828, Address: 0x1028780 */
+void mapset(void) {} /* Line 1828, Address: 0x1028780 */

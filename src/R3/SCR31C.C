@@ -109,7 +109,7 @@ extern map_init_data mapinittbl;
 
 
 
-void enecginit() {} /* Line 112, Address: 0x1027670 */
+void enecginit(void) {} /* Line 112, Address: 0x1027670 */
 
 
 
@@ -166,7 +166,7 @@ void divdevset() {} /* Line 116, Address: 0x1027680 */
 
 
 
-sprite_status* main_chk() {
+sprite_status* main_chk(void) {
   if (main_play == 0) { /* Line 170, Address: 0x1027690 */
     return &actwk[0]; /* Line 171, Address: 0x10276a4 */
   }
@@ -184,7 +184,7 @@ sprite_status* main_chk() {
 
 
 
-void scr_set() { /* Line 187, Address: 0x10276d0 */
+void scr_set(void) { /* Line 187, Address: 0x10276d0 */
 
 
 
@@ -228,7 +228,7 @@ void scr_set() { /* Line 187, Address: 0x10276d0 */
 
 
 
-void playposiset() { /* Line 231, Address: 0x10278c0 */
+void playposiset(void) { /* Line 231, Address: 0x10278c0 */
   unsigned short playpositbl[2] = { /* Line 232, Address: 0x10278d8 */
     96,
     1004
@@ -364,7 +364,7 @@ void scrbinit(short xWk, short yWk) { /* Line 326, Address: 0x1027bb0 */
 
 
 
-void scroll() { /* Line 367, Address: 0x1027d90 */
+void scroll(void) { /* Line 367, Address: 0x1027d90 */
   int LineSpdTbl[14] = { /* Line 368, Address: 0x1027db0 */
     49152, 32768, 24576,
     16384, 12288,  8192,
@@ -740,7 +740,7 @@ label8:
 
 
 
-void scroll_h() { /* Line 743, Address: 0x1028d60 */
+void scroll_h(void) { /* Line 743, Address: 0x1028d60 */
   unsigned short wD4;
 
   wD4 = scra_h_posit.w.h; /* Line 746, Address: 0x1028d6c */
@@ -759,7 +759,7 @@ void scroll_h() { /* Line 743, Address: 0x1028d60 */
 
 } /* Line 760, Address: 0x1028e24 */
 
-void scrh_move() { /* Line 762, Address: 0x1028e40 */
+void scrh_move(void) { /* Line 762, Address: 0x1028e40 */
   unsigned short wD0;
 
   wD0 = actwk[0].xposi.w.h; /* Line 765, Address: 0x1028e4c */
@@ -837,7 +837,7 @@ void left_check(unsigned short wD0) { /* Line 803, Address: 0x1028ff0 */
 
 
 
-void scroll_v() { /* Line 840, Address: 0x10290f0 */
+void scroll_v(void) { /* Line 840, Address: 0x10290f0 */
   unsigned short wD0;
 
   wD0 = actwk[0].yposi.w.h - scra_v_posit.w.h; /* Line 843, Address: 0x10290fc */
@@ -949,7 +949,7 @@ void sv_move_main2(unsigned short wD0) { /* Line 937, Address: 0x1029450 */
 } /* Line 949, Address: 0x10294d0 */
 
 
-void sv_move_sub2() { /* Line 952, Address: 0x10294e0 */
+void sv_move_sub2(void) { /* Line 952, Address: 0x10294e0 */
   limmoveflag = 0; /* Line 953, Address: 0x10294e8 */
   sv_move_sub(0); /* Line 954, Address: 0x10294f0 */
 } /* Line 955, Address: 0x10294fc */
@@ -1255,7 +1255,7 @@ void scrollz_h(int lD4, int flagz) { /* Line 1216, Address: 0x1029de0 */
 
 
 
-void scrollwrtadva() { /* Line 1258, Address: 0x1029ef0 */
+void scrollwrtadva(void) { /* Line 1258, Address: 0x1029ef0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   unsigned char* pScrFlag;
@@ -1287,7 +1287,7 @@ void scrollwrtadva() { /* Line 1258, Address: 0x1029ef0 */
 
 
 
-void scrollwrt() { /* Line 1290, Address: 0x1029f70 */
+void scrollwrt(void) { /* Line 1290, Address: 0x1029f70 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   POINT TilePoint;
@@ -1493,12 +1493,12 @@ label1:
 
 
 
-void scrollwrtc() {} /* Line 1496, Address: 0x102a660 */
+void scrollwrtc(void) {} /* Line 1496, Address: 0x102a660 */
 
 
 
 
-void scrollwrtz() {} /* Line 1501, Address: 0x102a670 */
+void scrollwrtz(void) {} /* Line 1501, Address: 0x102a670 */
 
 
 
@@ -1924,7 +1924,7 @@ void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned sho
 
 
 
-void mapwrt() { /* Line 1927, Address: 0x102b3d0 */
+void mapwrt(void) { /* Line 1927, Address: 0x102b3d0 */
   int VramBase;
   unsigned short wH_posiw, wV_posiw;
   unsigned char* pMapWk;
@@ -2055,7 +2055,7 @@ void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, 
 
 
 
-void mapinit() { /* Line 2058, Address: 0x102b7d0 */
+void mapinit(void) { /* Line 2058, Address: 0x102b7d0 */
 
 
 
@@ -2092,4 +2092,4 @@ void mapinit() { /* Line 2058, Address: 0x102b7d0 */
 
 
 
-void mapset() {} /* Line 2095, Address: 0x102b860 */
+void mapset(void) {} /* Line 2095, Address: 0x102b860 */

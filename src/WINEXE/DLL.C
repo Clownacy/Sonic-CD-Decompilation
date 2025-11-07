@@ -54,18 +54,18 @@ typedef struct dllIn {
 dllIn;
 
 /* 004259c4 */ void(*gpDLLEnd)(char***, void**);
-/* 004259c8 */ void(*gpAVIResume)();
+/* 004259c8 */ void(*gpAVIResume)(void);
 /* 004259cc */ int(__stdcall *gpDLLNotify)(WPARAM, LPARAM);
 /* 004259d0 */ void(__stdcall *gpDLLInit)(dllIn*);
 /* 004259d4 */ HMODULE ghGameMenuDll;
-/* 004259d8 */ void(*gpDLLAVIRealize)();
+/* 004259d8 */ void(*gpDLLAVIRealize)(void);
 /* 004259dc */ FARPROC gpDLLKeyDown;
 /* 004259e0 */ BOOL gbGameDllInit;
 /* 004259e4 */ void(*gpDLLChar)(WPARAM, LPARAM);
 /* 004259e8 */ void(__stdcall *gpDLLPaint)(HDC);
-/* 004259ec */ void(*gpAVIPause)();
+/* 004259ec */ void(*gpAVIPause)(void);
 /* 004259f0 */ UINT gGameMenuDllType;
-/* 004259f4 */ void(*gpDLLAVISizeChange)();
+/* 004259f4 */ void(*gpDLLAVISizeChange)(void);
 /* 004259f8 */ BOOL DAT_004259f8;
 /* 0042ca70 */ score_data gCrntScorData;
 /* 0042cd40 */ ULONG gSelectIndx;
@@ -73,7 +73,7 @@ dllIn;
 /* 0042cdf4 */ BOOL gbVisualmode;
 /* 0042cdf8 */ USHORT gSelectedStage;
 /* 0042cdfc */ BOOL gbFirstTitle;
-/* 0042cf74 */ int(*gpDLLMain)();
+/* 0042cf74 */ int(*gpDLLMain)(void);
 /* 0042cf7c */ HWND ghWnd;
 /* 0043031c */ void (__stdcall *gpSWdataSet)(ushort_union, ushort_union);
 /* 004320bc */ void* ghSurf = 0;
@@ -109,16 +109,16 @@ BOOL switchGameMenuDll(HWND hWnd, char* path, USHORT type) {
     return FALSE;
   }
 
-  gpDLLMain = (int(*)())GetProcAddress(ghGameMenuDll, "DLLMain");
+  gpDLLMain = (int(*)(void))GetProcAddress(ghGameMenuDll, "DLLMain");
   gpDLLInit = (void(__stdcall *)(dllIn*))GetProcAddress(ghGameMenuDll, "DLLInit");
   gpDLLEnd = (void(*)(char***, void**))GetProcAddress(ghGameMenuDll, "DLLEnd");
   gpSWdataSet = (void(__stdcall *)(ushort_union, ushort_union))GetProcAddress(ghGameMenuDll, "SWdataSet");
   if (type == 2 || type == 3 || type == 4 || type == 5) {
     gpDLLPaint = (void(__stdcall *)(HDC))GetProcAddress(ghGameMenuDll, "DLLPaint");
-    gpDLLAVIRealize = (void(*)())GetProcAddress(ghGameMenuDll, "DLLAVIRealize");
-    gpDLLAVISizeChange = (void(*)())GetProcAddress(ghGameMenuDll, "DLLAVISizeChange");
-    gpAVIPause = (void(*)())GetProcAddress(ghGameMenuDll, "AVIPause");
-    gpAVIResume = (void(*)())GetProcAddress(ghGameMenuDll, "AVIResume");
+    gpDLLAVIRealize = (void(*)(void))GetProcAddress(ghGameMenuDll, "DLLAVIRealize");
+    gpDLLAVISizeChange = (void(*)(void))GetProcAddress(ghGameMenuDll, "DLLAVISizeChange");
+    gpAVIPause = (void(*)(void))GetProcAddress(ghGameMenuDll, "AVIPause");
+    gpAVIResume = (void(*)(void))GetProcAddress(ghGameMenuDll, "AVIResume");
   }
   if (type == 3 || type == 4) {
     gpDLLNotify = (int(__stdcall *)(WPARAM, LPARAM))GetProcAddress(ghGameMenuDll, "DLLNotify");
@@ -176,7 +176,7 @@ BOOL loadOpening(HWND hWnd, void* hSurf) {
 
 
 // 0040e2c8
-void unloadGameMenuDll() {
+void unloadGameMenuDll(void) {
   if (gbGameDllInit) {
     (*gpDLLEnd)();
     if (ghGameMenuDll != 0) {
@@ -189,7 +189,7 @@ void unloadGameMenuDll() {
 
 
 // 0040e313
-void unloadOpening() {
+void unloadOpening(void) {
   unloadGameMenuDll();
 }
 
@@ -334,7 +334,7 @@ void callDllPaint(HDC hDc) {
 
 
 // 0040e6e8
-void changeMovieSize() {
+void changeMovieSize(void) {
   (*gpDLLAVISizeChange)();
 
   return;
@@ -358,7 +358,7 @@ BOOL FUN_0040e6fe(WPARAM wParam, LPARAM lParam) {
 
 
 // 0040e757
-void realizeMovie() {
+void realizeMovie(void) {
   (*gpDLLAVIRealize)();
 }
 
@@ -394,7 +394,7 @@ BOOL loadSavedata(HWND hWnd, void* hSurf) {
 
 
 // 0040e85b
-void unloadSavedata() {
+void unloadSavedata(void) {
   if (DAT_004259f8) {
     unloadGameMenuDll();
     DAT_004259f8 = FALSE;
@@ -495,25 +495,25 @@ BOOL loadBesttime(HWND hWnd, void* hSurf) {
 
 
 // 0040eb1a
-void unloadBesttime() {
+void unloadBesttime(void) {
   unloadGameMenuDll();
 }
 
 
 // 0040eb2a
-void unloadVisualmd() {
+void unloadVisualmd(void) {
   unloadGameMenuDll();
 }
 
 
 // 0040eb3a
-void unloadSoundtst() {
+void unloadSoundtst(void) {
   unloadGameMenuDll();
 }
 
 
 // 0040eb4a
-void unloadStagetst() {
+void unloadStagetst(void) {
   unloadGameMenuDll();
 }
 
@@ -527,7 +527,7 @@ void callDllChar(WPARAM wParam, LPARAM lParam) {
 
 
 // 0040eb80
-void unloadCurrentGameMenuDll() {
+void unloadCurrentGameMenuDll(void) {
   switch (gGameMenuDllType) {
     case 1:
       unloadOpening();
@@ -567,7 +567,7 @@ void unloadCurrentGameMenuDll() {
 
 
 // 0040ec7b
-BOOL FUN_0040ec7b() {
+BOOL FUN_0040ec7b(void) {
   unloadCurrentGameMenuDll();
   if (gbVisualmode) {
     if (!loadVisualmd(ghWnd, ghSurf)) {
@@ -584,7 +584,7 @@ BOOL FUN_0040ec7b() {
 
 
 // 0040ecf7
-BOOL FUN_0040ecf7() {
+BOOL FUN_0040ecf7(void) {
   unloadCurrentGameMenuDll();
   if (gbFullScreen) {
     FUN_004068c4(FALSE);
@@ -599,7 +599,7 @@ BOOL FUN_0040ecf7() {
 
 
 // 0040e3d2
-BOOL playBadEnding() {
+BOOL playBadEnding(void) {
   unloadCurrentGameMenuDll();
   if (gbFullScreen) {
     FUN_004068c4(FALSE);
@@ -614,7 +614,7 @@ BOOL playBadEnding() {
 
 
 // 0040eda7
-BOOL playGoodEnding() {
+BOOL playGoodEnding(void) {
   unloadCurrentGameMenuDll();
   if (gbFullScreen) {
     FUN_004068c4(FALSE);
@@ -629,7 +629,7 @@ BOOL playGoodEnding() {
 
 
 // 0040edff
-BOOL playPen() {
+BOOL playPen(void) {
   unloadCurrentGameMenuDll();
   if (gbFullScreen) {
     FUN_004068c4(FALSE);
@@ -644,7 +644,7 @@ BOOL playPen() {
 
 
 // 0040ee57
-int changeMenuState() {
+int changeMenuState(void) {
   if (gbGameDllInit != 0) {
     int next = (*gpDLLMain)();
 
@@ -745,12 +745,12 @@ int changeMenuState() {
 
 
 // 0040f136
-void pauseMovie() {
+void pauseMovie(void) {
   (*gpAVIPause)();
 }
 
 
 // 0040f147
-void resumeMovie() {
+void resumeMovie(void) {
   (*gpAVIResume)();
 }

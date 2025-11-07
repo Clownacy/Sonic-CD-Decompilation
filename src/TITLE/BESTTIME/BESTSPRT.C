@@ -134,7 +134,7 @@ static unsigned int CreateCharSprt2(int colom, int y, char code) { /* Line 103, 
 
 
 
-void DeleteAllCharSprt() { /* Line 137, Address: 0x1001650 */
+void DeleteAllCharSprt(void) { /* Line 137, Address: 0x1001650 */
   int m, n;
 
   for (n = 0; n < 11; ++n) /* Line 140, Address: 0x1001660 */

@@ -30,7 +30,7 @@ void cdAudio_readMciErrorString(MCIERROR err, LPSTR errMsg, ULONG msgSize) {
 
 
 // 0040109d
-MCIERROR cdAudio_createTrackIndex() {
+MCIERROR cdAudio_createTrackIndex(void) {
   MCIERROR err;
   MCI_STATUS_PARMS params;
   ULONG mediaLength;
@@ -145,7 +145,7 @@ MCIERROR cdAudio_open(LPSTR errMsg, ULONG msgSize) {
 
 
 // 00401440
-void cdAudio_close() {
+void cdAudio_close(void) {
   if (ghCdAudioTrackListMemory != 0) {
     GlobalFree(ghCdAudioTrackListMemory);
   }
@@ -155,7 +155,7 @@ void cdAudio_close() {
 
 
 // 00401479
-UINT cdAudio_getTrackCnt() {
+UINT cdAudio_getTrackCnt(void) {
   return gCdAudioTrackCnt;
 }
 
@@ -200,7 +200,7 @@ int cdAudio_setMciPlayParams(int trackId) {
 
 
 // 0040157a
-MCIERROR cdAudio_play() {
+MCIERROR cdAudio_play(void) {
   MCIERROR err = mciSendCommand(gMciDeviceId, MCI_PLAY, gMciPlayFlags & -5, (DWORD)&gMciPlayParams);
   return err;
 }
@@ -231,7 +231,7 @@ MCIERROR cdAudio_switchTrack(long trackId, BOOL bUnknown, HWND hWnd) {
 
 
 // 00401671
-MCIERROR cdAudio_playIfStopped() {
+MCIERROR cdAudio_playIfStopped(void) {
   MCIERROR err = 0;
 
   if (DAT_00430370 & 2) {
@@ -244,7 +244,7 @@ MCIERROR cdAudio_playIfStopped() {
 
 
 // 004016aa
-MCIERROR cdAudio_stop() {
+MCIERROR cdAudio_stop(void) {
   ULONG mode;
   MCIERROR err;
 

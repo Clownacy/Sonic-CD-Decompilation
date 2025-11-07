@@ -120,7 +120,7 @@ extern map_init_data mapinittbl;
 
 
 
-void enecginit() {} /* Line 123, Address: 0x1025220 */
+void enecginit(void) {} /* Line 123, Address: 0x1025220 */
 
 
 
@@ -173,7 +173,7 @@ void divdevset() {} /* Line 127, Address: 0x1025230 */
 
 
 
-void scr_set() { /* Line 176, Address: 0x1025240 */
+void scr_set(void) { /* Line 176, Address: 0x1025240 */
   int i;
 
   scrh_flag = scrv_flag = scr_die.b.h = scr_timer.b.h = zone_flag.b.h = 0; /* Line 179, Address: 0x102524c */
@@ -201,7 +201,7 @@ void scr_set() { /* Line 176, Address: 0x1025240 */
 
 
 
-void playposiset() { /* Line 204, Address: 0x1025450 */
+void playposiset(void) { /* Line 204, Address: 0x1025450 */
   unsigned short playpositbl[2] = { /* Line 205, Address: 0x1025464 */
     64,
     396
@@ -285,7 +285,7 @@ void scrbinit(short yWk, short xWk) { /* Line 271, Address: 0x10256b0 */
 
 
 
-void scroll() { /* Line 288, Address: 0x10257b0 */
+void scroll(void) { /* Line 288, Address: 0x10257b0 */
   uint_union data;
   int hsCount;
   int i;
@@ -478,7 +478,7 @@ void zonescrsetsub0(short VPosi, unsigned short offs) { /* Line 432, Address: 0x
 
 
 
-void scroll_h() { /* Line 481, Address: 0x1025fa0 */
+void scroll_h(void) { /* Line 481, Address: 0x1025fa0 */
   unsigned short wD4;
 
   wD4 = scra_h_posit.w.h; /* Line 484, Address: 0x1025fac */
@@ -497,7 +497,7 @@ void scroll_h() { /* Line 481, Address: 0x1025fa0 */
 
 } /* Line 498, Address: 0x1026064 */
 
-void scrh_move() { /* Line 500, Address: 0x1026080 */
+void scrh_move(void) { /* Line 500, Address: 0x1026080 */
   unsigned short wD0;
 
   wD0 = actwk[0].xposi.w.h; /* Line 503, Address: 0x102608c */
@@ -575,7 +575,7 @@ void left_check(unsigned short wD0) { /* Line 541, Address: 0x1026230 */
 
 
 
-void scroll_v() { /* Line 578, Address: 0x1026330 */
+void scroll_v(void) { /* Line 578, Address: 0x1026330 */
   unsigned short wD0;
 
   wD0 = actwk[0].yposi.w.h - scra_v_posit.w.h; /* Line 581, Address: 0x102633c */
@@ -687,7 +687,7 @@ void sv_move_main2(unsigned short wD0) { /* Line 675, Address: 0x1026690 */
 } /* Line 687, Address: 0x1026710 */
 
 
-void sv_move_sub2() { /* Line 690, Address: 0x1026720 */
+void sv_move_sub2(void) { /* Line 690, Address: 0x1026720 */
   limmoveflag = 0; /* Line 691, Address: 0x1026728 */
   sv_move_sub(0); /* Line 692, Address: 0x1026730 */
 } /* Line 693, Address: 0x102673c */
@@ -992,7 +992,7 @@ void scrollz_h(int lD4, int flagz) { /* Line 954, Address: 0x1027030 */
 
 
 
-void scrollwrtadva() { /* Line 995, Address: 0x1027140 */
+void scrollwrtadva(void) { /* Line 995, Address: 0x1027140 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   unsigned char* pScrFlag;
@@ -1023,7 +1023,7 @@ void scrollwrtadva() { /* Line 995, Address: 0x1027140 */
 
 
 
-void scrollwrt() { /* Line 1026, Address: 0x10271f0 */
+void scrollwrt(void) { /* Line 1026, Address: 0x10271f0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   POINT TilePoint;
@@ -1229,12 +1229,12 @@ label1:
 
 
 
-void scrollwrtc() {} /* Line 1232, Address: 0x10278f0 */
+void scrollwrtc(void) {} /* Line 1232, Address: 0x10278f0 */
 
 
 
 
-void scrollwrtz() {} /* Line 1237, Address: 0x1027900 */
+void scrollwrtz(void) {} /* Line 1237, Address: 0x1027900 */
 
 
 
@@ -1658,7 +1658,7 @@ void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned sho
 
 
 
-void mapwrt() { /* Line 1661, Address: 0x1028660 */
+void mapwrt(void) { /* Line 1661, Address: 0x1028660 */
   int VramBase;
   unsigned short wH_posiw, wV_posiw;
   unsigned char* pMapWk;
@@ -1781,7 +1781,7 @@ void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, 
 
 
 
-void mapinit() { /* Line 1784, Address: 0x1028a30 */
+void mapinit(void) { /* Line 1784, Address: 0x1028a30 */
 
   colorset2(mapinittbl.colorno2); /* Line 1786, Address: 0x1028a38 */
   colorset(mapinittbl.colorno2); /* Line 1787, Address: 0x1028a4c */
@@ -1799,4 +1799,4 @@ void mapinit() { /* Line 1784, Address: 0x1028a30 */
 
 
 
-void mapset() {} /* Line 1802, Address: 0x1028a90 */
+void mapset(void) {} /* Line 1802, Address: 0x1028a90 */

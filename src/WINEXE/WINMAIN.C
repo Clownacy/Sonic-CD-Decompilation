@@ -21,7 +21,7 @@ extern HPALETTE ghPalette;
 /* 00425430 */ char DAT_00425430;
 /* 00425508 */ void(__stdcall *gpDLLmeminit)(char***, void**);
 /* 00425510 */ char gHelpFilePath[80];
-/* 00425560 */ void(*gpGameinit)();
+/* 00425560 */ void(*gpGameinit)(void);
 /* 00425568 */ JOYCAPS gJoyCapsInfo;
 /* 004256fc */ short gStageGameFuncRet;
 /* 00425704 */ ULONG gJoystickInput4;
@@ -30,15 +30,15 @@ extern HPALETTE ghPalette;
 /* 00425710 */ ULONG gJoystickInput2;
 /* 00425714 */ ULONG gJoystickInput3;
 /* 00425718 */ USHORT gUserKeyTemp[5];
-/* 00425724 */ int(*gpFadeProc)();
+/* 00425724 */ int(*gpFadeProc)(void);
 /* 0042572c */ UCHAR DAT_0042572c;
-/* 004258c4 */ int(*gpGame)();
-/* 0042591c */ int(*gpGetscrbhposiw)();
+/* 004258c4 */ int(*gpGame)(void);
+/* 0042591c */ int(*gpGetscrbhposiw)(void);
 /* 00425928 */ JOYINFOEX gJoyInfo;
-/* 0042595c */ int(*gpGetvscroll)();
+/* 0042595c */ int(*gpGetvscroll)(void);
 /* 00425960 */ void(__stdcall *gpSetDebugFlag)(unsigned int);
-/* 00425964 */ int(*gpGetscrahposiw)();
-/* 00425968 */ void(*gpDLLmemfree)();
+/* 00425964 */ int(*gpGetscrahposiw)(void);
+/* 00425968 */ void(*gpDLLmemfree)(void);
 /* 0042ca70 */ score_data gCrntScorData;
 /* 0042cdf4 */ BOOL gbVisualmode;
 /* 0042cdf8 */ USHORT gSelectedStage;
@@ -150,7 +150,7 @@ extern HPALETTE ghPalette;
 
 
 // 00407060
-BOOL menuOrMovieLoop() {
+BOOL menuOrMovieLoop(void) {
   uint_union local_8;
   if (++DAT_004332bc >= gFpsFlag2) {
     DAT_004332bc = 0;
@@ -309,7 +309,7 @@ BOOL menuOrMovieLoop() {
 
 
 // 004074de
-BOOL specialStageLoop() {
+BOOL specialStageLoop(void) {
   HCURSOR hCursor;
   if (gFadeFlag != 0) {
     ++DAT_004332b0;
@@ -383,7 +383,7 @@ BOOL specialStageLoop() {
 
 
 // 0040773d
-BOOL littlePlanetLoop() {
+BOOL littlePlanetLoop(void) {
   if (gFadeFlag != 0) {
     if ((*gpFadeProc)() != 0) {
       gFadeFlag = 0;
@@ -419,7 +419,7 @@ BOOL littlePlanetLoop() {
 
 
 // 00407854
-BOOL thanksLoop() {
+BOOL thanksLoop(void) {
   if (gFadeFlag != 0) {
     if ((*gpFadeProc)() != 0) {
       gFadeFlag = 0;
@@ -459,7 +459,7 @@ BOOL thanksLoop() {
 }
 
 
-BOOL timeAttackLoop() {
+BOOL timeAttackLoop(void) {
   int local_c;
   HCURSOR hCursor;
   if (gFadeFlag != 0) {
@@ -507,7 +507,7 @@ BOOL timeAttackLoop() {
 
 
 // 00407ad8
-BOOL warpLoop() {
+BOOL warpLoop(void) {
   int_union vscroll;
   int_union scrahposiw;
   int_union scrbhposiw;
@@ -552,7 +552,7 @@ BOOL warpLoop() {
 
 
 // 00407c1b
-BOOL stageLoop() {
+BOOL stageLoop(void) {
   HCURSOR hCursor;
   int_union vscroll;
   int_union scrahposiw;
@@ -698,7 +698,7 @@ L1F5:
 void CALLBACK timeCallbackFunc(UINT uTimerID, UINT uMsg, ULONG dwUser, ULONG dw1, ULONG dw2);
 
 // 00408107
-void setupTimer() {
+void setupTimer(void) {
   gTimeSetEventResult = timeSetEvent(16, 1, timeCallbackFunc, (DWORD)&gTimerTickCnt, TIME_PERIODIC);
   if (gTimeSetEventResult == 0) {
     log("failed on timeSetEvent\n\r");
@@ -711,7 +711,7 @@ void setupTimer() {
 
 
 // 0040815e
-void killTimer() {
+void killTimer(void) {
   if (gTimeSetEventResult != 0) {
     timeKillEvent(gTimeSetEventResult);
     timeEndPeriod(1);
@@ -901,13 +901,13 @@ void checkSubMenuItem(int subMenuPos, UINT menuItemId, BOOL bCheck) {
 
 
 // 00408704
-BOOL isCpuPentium() {
+BOOL isCpuPentium(void) {
   return TRUE;
 }
 
 
 // 00408719
-BOOL isComputerNec() {
+BOOL isComputerNec(void) {
   BOOL ret = FALSE;
   UINT result;
   char buffer[80];
@@ -924,7 +924,7 @@ BOOL isComputerNec() {
 
 
 // 0040879f
-BOOL isCdromPresent() {
+BOOL isCdromPresent(void) {
   char* path = "d:\\soniccd.chk";
   char drive[3];
   uint_union result;
@@ -949,7 +949,7 @@ BOOL isCdromPresent() {
 
 
 // 0040886e
-BOOL isGameInUse() {
+BOOL isGameInUse(void) {
   if (FindWindow(0, "SONIC CD")) {
     return TRUE;
   }
@@ -1008,7 +1008,7 @@ void modifyControllerMenuItemText(USHORT controllerId) {
 
 
 // 00408a56
-void __stdcall toggleSoundQuality() {
+void __stdcall toggleSoundQuality(void) {
   short trackNumber;
   HMENU hMenu;
   char str[128];
@@ -1063,7 +1063,7 @@ void __stdcall toggleSoundQuality() {
 
 
 // 00408c6c
-void retrieveHelpFilePath() {
+void retrieveHelpFilePath(void) {
   if (GetPrivateProfileString("Directory", "Install", "", gHelpFilePath, sizeof(gHelpFilePath), "sonic.ini") != 0) {
     strcat(gHelpFilePath, "\\");
     strcat(gHelpFilePath, "sonic.hlp");
@@ -1075,7 +1075,7 @@ void retrieveHelpFilePath() {
 
 
 // 00408cdb
-void toggleMouseCursor() {
+void toggleMouseCursor(void) {
   POINT point;
   if (gbMoviePlaying == FALSE) {
     if (ghSurf != 0) {
@@ -1106,7 +1106,7 @@ void toggleMouseCursor() {
 
 
 // 00408d86
-void toggleMenuBar() {
+void toggleMenuBar(void) {
   DWORD style;
   RECT rect1;
   RECT rect2;
@@ -1142,7 +1142,7 @@ void toggleMenuBar() {
 
 
 // 00408ea9
-void unloadGame() {
+void unloadGame(void) {
   CDPause();
   unloadCurrentGameMenuDll();
   if (gbGameDllLoaded == TRUE) {
@@ -1161,7 +1161,7 @@ void unloadGame() {
 
 
 // 00408f0d
-void restartGame() {
+void restartGame(void) {
   CDPause();
   unloadGame();
   gbMoviePlaying = FALSE;
@@ -1191,7 +1191,7 @@ void restartGame() {
 
 
 // 00409000
-void changeControls() {
+void changeControls(void) {
   gUserKeyTemp[0] = gUserKey[0];
   gUserKeyTemp[1] = gUserKey[1];
   gUserKeyTemp[2] = gUserKey[2];
@@ -1209,7 +1209,7 @@ void changeControls() {
 
 
 // 004090a5
-void showGoodEndFlags() {
+void showGoodEndFlags(void) {
   char bigBuffer[256];
   int i;
   ULONG bitFlag;
@@ -1247,7 +1247,7 @@ void showGoodEndFlags() {
 
 
 // 00409221
-void queryMciPlaying() {
+void queryMciPlaying(void) {
   ULONG mciMode;
   if (IsIconic(ghWnd)) {
     cdAudio_getMciMode(&mciMode);
@@ -1797,7 +1797,7 @@ void paintWindow(HWND hWnd) {
 
 
 // 0040a635
-int startGame() {
+int startGame(void) {
   HCURSOR hCursor;
   HMENU hMenu;
   char buffer[128];
@@ -1884,7 +1884,7 @@ int startGame() {
 
 
 // 0040a9e3
-int freeAllocatedMemory() {
+int freeAllocatedMemory(void) {
   if (ghHscrollbuffMemory != 0) {
     GlobalUnlock(ghHscrollbuffMemory);
   }
@@ -2012,15 +2012,15 @@ BOOL loadGameDll(LPCSTR path) {
     MessageBox(ghWnd, buffer, 0, MB_SYSTEMMODAL);
     return FALSE;
   }
-  gpGameinit = (void(*)())GetProcAddress(ghGameStageDll, "game_init");
-  gpGame = (int(*)())GetProcAddress(ghGameStageDll, "game");
+  gpGameinit = (void(*)(void))GetProcAddress(ghGameStageDll, "game_init");
+  gpGame = (int(*)(void))GetProcAddress(ghGameStageDll, "game");
   gpDLLmeminit = (void(__stdcall *)(char***, void**))GetProcAddress(ghGameStageDll, "DLL_meminit");
-  gpDLLmemfree = (void(*)())GetProcAddress(ghGameStageDll, "DLL_memfree");
+  gpDLLmemfree = (void(*)(void))GetProcAddress(ghGameStageDll, "DLL_memfree");
   gpSWdataSet = (void(__stdcall *)(ushort_union, ushort_union))GetProcAddress(ghGameStageDll, "SWdataSet");
-  gpGetvscroll = (int(*)())GetProcAddress(ghGameStageDll, "Get_vscroll");
-  gpGetscrahposiw = (int(*)())GetProcAddress(ghGameStageDll, "Get_scra_h_posiw");
-  gpGetscrbhposiw = (int(*)())GetProcAddress(ghGameStageDll, "Get_scrb_h_posiw");
-  gpFadeProc = (int(*)())GetProcAddress(ghGameStageDll, "FadeProc");
+  gpGetvscroll = (int(*)(void))GetProcAddress(ghGameStageDll, "Get_vscroll");
+  gpGetscrahposiw = (int(*)(void))GetProcAddress(ghGameStageDll, "Get_scra_h_posiw");
+  gpGetscrbhposiw = (int(*)(void))GetProcAddress(ghGameStageDll, "Get_scrb_h_posiw");
+  gpFadeProc = (int(*)(void))GetProcAddress(ghGameStageDll, "FadeProc");
   gpSetDebugFlag = (void(__stdcall *)(unsigned int))GetProcAddress(ghGameStageDll, "SetDebugFlag");
   gpGetRoundStr = (void(__stdcall *)(unsigned short, unsigned char, char*))GetProcAddress(ghGameStageDll, "GetRoundStr");
   gpSpecialblockchg = (void(__stdcall *)(unsigned short*, unsigned short*, unsigned short*, unsigned short*))GetProcAddress(ghGameStageDll, "Special_block_chg");
@@ -2078,7 +2078,7 @@ BOOL loadSpecialStage(int stageMenuId) {
 
 
 // 0040b081
-BOOL loadWarp() {
+BOOL loadWarp(void) {
   int_union vscroll;
   int_union scrahposiw;
   int_union scrbhposiw;
@@ -2111,7 +2111,7 @@ BOOL loadWarp() {
 
 
 // 0040b160
-BOOL loadThanks() {
+BOOL loadThanks(void) {
   if (!loadGameDll("TITLE\\THANKS\\THANKS.DLL")) {
     return FALSE;
   }
@@ -2137,7 +2137,7 @@ BOOL loadThanks() {
 
 
 // 0040b20c
-BOOL loadPlanet() {
+BOOL loadPlanet(void) {
   FUN_004051ab();
   fillColorwk(0);
   makePalette2();
@@ -2239,7 +2239,7 @@ BOOL loadStageByMenu(UINT stageMenuId) {
 
 
 // 0040b4ef
-void toggleController() {
+void toggleController(void) {
   if (setupJoystick() == FALSE) {
     gControllerId = 2;
   }
@@ -2256,7 +2256,7 @@ void toggleController() {
 
 
 // 0040b54f
-BOOL setupJoystick() {
+BOOL setupJoystick(void) {
   if (joyGetNumDevs() == 0) {
     return FALSE;
   }
@@ -2428,7 +2428,7 @@ void readController(int param_1) {
 
 
 // 0040badc
-void resetInput() {
+void resetInput(void) {
   DAT_0042542f = 0;
   DAT_0042542d = 0;
   DAT_00425430 = 0;
@@ -2451,7 +2451,7 @@ void __stdcall CDPlay(short trackNumber) {
 
 
 // 0040bb5b
-void CDPause() {
+void CDPause(void) {
   gCurrentCdAudioTrack = -1;
   cdAudio_stop();
   gUnknownCdAudioCountdown = 60;
@@ -2461,7 +2461,7 @@ void CDPause() {
 
 
 // 0040bb84
-void changeMusic() {
+void changeMusic(void) {
   BOOL unknown;
   MCIERROR err;
   char errMsg[128];
@@ -2556,7 +2556,7 @@ void showCustomError(int id, char* pMsg) {
 
 
 // 0040be23
-void readRecording() {
+void readRecording(void) {
   char fileName[80];
   char buffer[80];
   HFILE hFile;
@@ -2587,7 +2587,7 @@ void readRecording() {
 
 
 // 0040bf2c
-void writeRecording() {
+void writeRecording(void) {
   char path[80];
   char buffer[80];
   OFSTRUCT ofStruct;
@@ -2648,7 +2648,7 @@ int showSonicDlg(HWND hWnd, LPCSTR resourceId, LPCSTR dialogId, LPARAM initValue
 
 
 // 0040c128
-void loadIni() {
+void loadIni(void) {
   char buffer[256];
   if (GetPrivateProfileString("Secret", "User", "", buffer, sizeof(buffer), "SONIC.INI") == 0) return;
   if (lstrcmp(buffer, "Debugger") == 0) {
@@ -2670,7 +2670,7 @@ void loadIni() {
 
 
 // 0040c206
-BOOL isDisplay256Colors() {
+BOOL isDisplay256Colors(void) {
   if (GetDeviceCaps(ghDc, RASTERCAPS) & RC_PALETTE) {
     if (GetDeviceCaps(ghDc, SIZEPALETTE) == 256) {
       return TRUE;

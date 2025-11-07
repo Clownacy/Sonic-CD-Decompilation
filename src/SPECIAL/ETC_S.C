@@ -28,7 +28,7 @@ unsigned short acostbl[65] = {
 
 
 
-void ufo_dec() {
+void ufo_dec(void) {
   --ufoleft; /* Line 32, Address: 0x10040a0 */
 } /* Line 33, Address: 0x10040b4 */
 
@@ -42,7 +42,7 @@ void ring_add(unsigned short iD0) { /* Line 37, Address: 0x10040c0 */
 
 
 
-void time_dec() { /* Line 45, Address: 0x1004110 */
+void time_dec(void) { /* Line 45, Address: 0x1004110 */
   if (spgmmode & 2) /* Line 46, Address: 0x1004118 */
   {
     time_time_attack(); /* Line 48, Address: 0x1004130 */
@@ -65,7 +65,7 @@ void time_dec() { /* Line 45, Address: 0x1004110 */
 
 
 
-void dec() { /* Line 68, Address: 0x10041c0 */
+void dec(void) { /* Line 68, Address: 0x10041c0 */
   if (time_stop != 0) return; /* Line 69, Address: 0x10041c8 */
   if (game_start != 0) return; /* Line 70, Address: 0x10041dc */
   if (--spe_time.l < 0) /* Line 71, Address: 0x10041f0 */
@@ -82,7 +82,7 @@ void dec() { /* Line 68, Address: 0x10041c0 */
 
 
 
-void time_time_attack() {
+void time_time_attack(void) {
   if (time_stop != 0) return; /* Line 86, Address: 0x1004270 */
   if (game_start != 0) return; /* Line 87, Address: 0x1004284 */
   spe_time.b.b4 += 3; /* Line 88, Address: 0x1004298 */
@@ -302,7 +302,7 @@ int dstnsget(unsigned char bAngle, unsigned char bDirflg, short iXposi, short iY
 
 
 
-int random() { /* Line 305, Address: 0x10049a0 */
+int random(void) { /* Line 305, Address: 0x10049a0 */
   int_union lD0, lD1;
 
   lD1.l = ranum; /* Line 308, Address: 0x10049a4 */

@@ -233,7 +233,7 @@ void marker_move2(sprite_status* markerwk) { /* Line 227, Address: 0x1015a10 */
 
 
 
-void plairset() {} /* Line 236, Address: 0x1015a40 */
+void plairset(void) {} /* Line 236, Address: 0x1015a40 */
 
 
 
@@ -888,7 +888,7 @@ label1:
 } /* Line 888, Address: 0x101765c */
 
 
-void ball_ball() {
+void ball_ball(void) {
   if (actwk[0].cddat & 4) return; /* Line 892, Address: 0x1017680 */
   actwk[0].cddat |= 4; /* Line 893, Address: 0x1017698 */
   actwk[0].sprvsize = 14; /* Line 894, Address: 0x10176ac */

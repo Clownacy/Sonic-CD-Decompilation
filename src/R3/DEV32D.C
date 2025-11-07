@@ -116,7 +116,7 @@ static tile_changes tbl_drumb01 = {
 
 
 
-void cg_change() { /* Line 119, Address: 0x1026d00 */
+void cg_change(void) { /* Line 119, Address: 0x1026d00 */
   unsigned char *pcgchgtim, *pcgchgcnt;
   int i, playsubdma[16], top;
 

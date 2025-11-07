@@ -974,7 +974,7 @@ void exit2_set(sprite_status* testwk) { /* Line 972, Address: 0x101bb20 */
 } /* Line 974, Address: 0x101bb38 */
 
 
-void plairset() { /* Line 977, Address: 0x101bb50 */
+void plairset(void) { /* Line 977, Address: 0x101bb50 */
   short wD0;
 
   if (pl_air < 13) { /* Line 980, Address: 0x101bb5c */

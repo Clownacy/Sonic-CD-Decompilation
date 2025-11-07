@@ -1,1 +1,1 @@
-void scrchk();
+void scrchk(void);

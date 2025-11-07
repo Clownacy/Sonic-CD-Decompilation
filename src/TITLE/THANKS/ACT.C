@@ -99,7 +99,7 @@ short get_actwk(sprite_status_thanks** pNewActwk) { /* Line 82, Address: 0x10000
 
 
 
-short chk_actwk() { /* Line 102, Address: 0x10000a0 */
+short chk_actwk(void) { /* Line 102, Address: 0x10000a0 */
   sprite_status_thanks* pActwk;
   short i;
 
@@ -117,7 +117,7 @@ short chk_actwk() { /* Line 102, Address: 0x10000a0 */
 
 
 
-void priset() { /* Line 120, Address: 0x1000130 */
+void priset(void) { /* Line 120, Address: 0x1000130 */
   sprite_status_thanks*** a1;
   sprite_status_thanks*** a2;
   sprite_status_thanks** a3;
@@ -152,7 +152,7 @@ void priset() { /* Line 120, Address: 0x1000130 */
 
 
 
-void action() { /* Line 155, Address: 0x1000260 */
+void action(void) { /* Line 155, Address: 0x1000260 */
   short i;
 
   actloop(0); /* Line 158, Address: 0x100026c */
@@ -199,7 +199,7 @@ static void dummy(sprite_status_thanks* pActwk) { /* Line 195, Address: 0x100044
 
 
 
-void spr_set() { /* Line 202, Address: 0x1000460 */
+void spr_set(void) { /* Line 202, Address: 0x1000460 */
   sprite_status_thanks* pActwk;
   sprite_status_thanks** pPribuf;
   sprite_patterns_title* pPatTbl;
@@ -296,7 +296,7 @@ void clrwork(sprite_status_thanks* pActwk) { /* Line 292, Address: 0x1000820 */
 
 
 
-void action_all_clr() { /* Line 299, Address: 0x1000860 */
+void action_all_clr(void) { /* Line 299, Address: 0x1000860 */
   short i;
 
   for (i = 0; i < 64; ++i) /* Line 302, Address: 0x100086c */

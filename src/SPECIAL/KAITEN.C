@@ -39,7 +39,7 @@
 
 
 
-void scalinit() { /* Line 42, Address: 0x1009180 */
+void scalinit(void) { /* Line 42, Address: 0x1009180 */
   int_union lD0;
 
   lD0.l = zoomwk.h * zoomwk.cz; /* Line 45, Address: 0x1009184 */
@@ -102,7 +102,7 @@ void scal(sprite_status_sp* pActwk) { /* Line 63, Address: 0x1009210 */
 
 
 
-void cal_kaiten() { /* Line 105, Address: 0x1009470 */
+void cal_kaiten(void) { /* Line 105, Address: 0x1009470 */
   short i;
   short iD6;
   int lsv1, lsv2, lsv3, lsv4;
@@ -226,7 +226,7 @@ void cal_kaiten() { /* Line 105, Address: 0x1009470 */
 
 
 
-void kaiten_init() {
+void kaiten_init(void) {
   zoomwk.h = 128; /* Line 230, Address: 0x1009c70 */
   zoomwk.i = -64; /* Line 231, Address: 0x1009c7c */
 } /* Line 232, Address: 0x1009c88 */
@@ -241,7 +241,7 @@ void kaiten_init() {
 
 
 
-void init_3dpara() { /* Line 244, Address: 0x1009c90 */
+void init_3dpara(void) { /* Line 244, Address: 0x1009c90 */
   zoomwk.sx = k_sin(zoomwk.ax); /* Line 245, Address: 0x1009c98 */
   zoomwk.cx = k_cos(zoomwk.ax); /* Line 246, Address: 0x1009cb0 */
   zoomwk.sz = k_sin(zoomwk.az); /* Line 247, Address: 0x1009cc8 */
@@ -260,7 +260,7 @@ void init_3dpara() { /* Line 244, Address: 0x1009c90 */
 
 
 
-void kaiten() { /* Line 263, Address: 0x1009d60 */
+void kaiten(void) { /* Line 263, Address: 0x1009d60 */
   cal_kaiten(); /* Line 264, Address: 0x1009d68 */
 } /* Line 265, Address: 0x1009d70 */
 

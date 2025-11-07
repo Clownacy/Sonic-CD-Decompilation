@@ -35,7 +35,7 @@ extern bmp_info SprBmp[700];
 
 
 
-void action() { /* Line 38, Address: 0x1000000 */
+void action(void) { /* Line 38, Address: 0x1000000 */
   short i;
 
   linkdata = 0; /* Line 41, Address: 0x100000c */
@@ -77,7 +77,7 @@ void actmain(sprite_status_sp* work) { /* Line 69, Address: 0x10001d0 */
 
 
 
-void zbuf_init() { /* Line 80, Address: 0x1000270 */
+void zbuf_init(void) { /* Line 80, Address: 0x1000270 */
   short i;
 
   for (i = 0; i < 512; i += 8) z_buffer[i] = 0; /* Line 83, Address: 0x1000278 */
@@ -108,7 +108,7 @@ void zbuf_set(sprite_status_sp* work, int length) { /* Line 93, Address: 0x10002
 
 
 
-void zbuf_patset() { /* Line 111, Address: 0x1000410 */
+void zbuf_patset(void) { /* Line 111, Address: 0x1000410 */
   short i;
 
   for (i = 0; i < 512; i += 8) zpatset(i); /* Line 114, Address: 0x100041c */

@@ -1,2 +1,2 @@
-void ReadDataFile();
-void WriteDataFile();
+void ReadDataFile(void);
+void WriteDataFile(void);

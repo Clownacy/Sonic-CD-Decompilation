@@ -1,6 +1,6 @@
 unsigned int CreateCharSprt(int nMenuNum, int colom, int code);
 void DeleteCharSprt(int nMenuNum, int colom);
-void DeleteAllCharSprt();
+void DeleteAllCharSprt(void);
 void StrEXIT(int kind);
 void StrOPENING(int kind);
 void StrGOODENDING(int kind);

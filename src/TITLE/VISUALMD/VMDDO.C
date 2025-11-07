@@ -5,7 +5,7 @@
 #include "VMDENTRY.H"
 #include "VMDSPRT.H"
 
-static void UpdateMenu();
+static void UpdateMenu(void);
 
 extern unsigned short nSequenceNum;
 unsigned short nMenuKind;
@@ -43,7 +43,7 @@ extern int nTimerCunt;
 
 
 
-void VMDDraw() { /* Line 46, Address: 0x1000000 */
+void VMDDraw(void) { /* Line 46, Address: 0x1000000 */
   if (nSequenceNum > 1) /* Line 47, Address: 0x1000008 */
   {
     srfDraw(); /* Line 49, Address: 0x1000020 */
@@ -54,7 +54,7 @@ void VMDDraw() { /* Line 46, Address: 0x1000000 */
 
 
 
-static void UpdateMenu() { /* Line 57, Address: 0x1000040 */
+static void UpdateMenu(void) { /* Line 57, Address: 0x1000040 */
   if (nMenuKind == 1) StrEXIT(1); /* Line 58, Address: 0x1000048 */
   else StrEXIT(0); /* Line 59, Address: 0x1000074 */
   if (nMenuKind == 2) StrOPENING(1); /* Line 60, Address: 0x1000080 */
@@ -70,7 +70,7 @@ static void UpdateMenu() { /* Line 57, Address: 0x1000040 */
 
 
 
-void VMDStart() { /* Line 73, Address: 0x1000170 */
+void VMDStart(void) { /* Line 73, Address: 0x1000170 */
   int n;
 
   OEGridCreate(0); /* Line 76, Address: 0x100017c */
@@ -86,7 +86,7 @@ void VMDStart() { /* Line 73, Address: 0x1000170 */
 
 
 
-void VMDMenu() { /* Line 89, Address: 0x10001f0 */
+void VMDMenu(void) { /* Line 89, Address: 0x10001f0 */
   unsigned short nMenuKindOld;
 
   if (swData1 & 512) /* Line 92, Address: 0x1000204 */
@@ -119,7 +119,7 @@ void VMDMenu() { /* Line 89, Address: 0x10001f0 */
 
 
 
-int VMDEnd() { /* Line 122, Address: 0x1000390 */
+int VMDEnd(void) { /* Line 122, Address: 0x1000390 */
   int ret = 0; /* Line 123, Address: 0x1000398 */
 
   if (nTimerCunt == 0) /* Line 125, Address: 0x100039c */

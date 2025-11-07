@@ -1,2 +1,2 @@
-void playloadb();
-void playload();
+void playloadb(void);
+void playload(void);

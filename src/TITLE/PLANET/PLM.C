@@ -33,7 +33,7 @@ static ini_pats ufo_ini_tbl[5] =
   { 2, upat0 },
   { 1, upat0 }
 };
-void(*sprinit_tbl[6])() =
+void(*sprinit_tbl[6])(void) =
 {
   &flick_set,
   &star_set,
@@ -136,7 +136,7 @@ extern sprite_patterns_title flicky_tbl3;
 
 
 
-void sprinit() { /* Line 139, Address: 0x10070c0 */
+void sprinit(void) { /* Line 139, Address: 0x10070c0 */
   int_union lD0;
   short i, iD0, iD5;
 
@@ -175,7 +175,7 @@ void sprinit() { /* Line 139, Address: 0x10070c0 */
 
 
 
-void flick_set() { /* Line 178, Address: 0x1007290 */
+void flick_set(void) { /* Line 178, Address: 0x1007290 */
   short i;
   short iD3, iD5, iD6, iD7;
   sprite_status_lpl* pActwk;
@@ -322,7 +322,7 @@ label1:
 
 
 
-void star_set() { /* Line 325, Address: 0x1007800 */
+void star_set(void) { /* Line 325, Address: 0x1007800 */
   short i, iD1, iD3, iD5, iD6, iD7;
   int_union lD0;
   sprite_status_lpl* pActwk;
@@ -436,7 +436,7 @@ void s_actset(sprite_status_lpl* pActwk, ini_pats* pSoffset, short iD3, short iD
 
 
 
-void ufo_set() { /* Line 439, Address: 0x1007c20 */
+void ufo_set(void) { /* Line 439, Address: 0x1007c20 */
   sprite_status_lpl* pActwk;
   ini_pats* pUoffset;
   int_union lD0;
@@ -526,7 +526,7 @@ void ufo_set() { /* Line 439, Address: 0x1007c20 */
 
 
 
-void eggman_set() { /* Line 529, Address: 0x1007fd0 */
+void eggman_set(void) { /* Line 529, Address: 0x1007fd0 */
   sprite_status_lpl* pActwk;
   int_union lD0;
   short iD5, iD6;
@@ -579,7 +579,7 @@ void eggman_set() { /* Line 529, Address: 0x1007fd0 */
 
 
 
-void metals_set() { /* Line 582, Address: 0x1008180 */
+void metals_set(void) { /* Line 582, Address: 0x1008180 */
   sprite_status_lpl* pActwk;
   int_union lD0;
   short iD5, iD6;
@@ -641,7 +641,7 @@ void metals_set() { /* Line 582, Address: 0x1008180 */
 
 
 
-void tails_set() { /* Line 644, Address: 0x10083a0 */
+void tails_set(void) { /* Line 644, Address: 0x10083a0 */
   sprite_status_lpl* pActwk;
   int_union lD0;
   short iD5, iD6;

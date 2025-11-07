@@ -10,5 +10,5 @@ void egg5hibana(sprite_status* pActwk);
 void egg5hari(sprite_status* pActwk);
 void egg5belt(sprite_status* pActwk);
 void egg5bakuha(sprite_status* pActwk);
-void make_hibana1();
+void make_hibana1(void);
 void make_hibana2(sprite_status* pActwk);

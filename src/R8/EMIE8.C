@@ -16,7 +16,7 @@ static void emie8_snc_r(sprite_status* pActwk, sprite_status* pPlayerwk);
 static void emie8_snc_l(sprite_status* pActwk, sprite_status* pPlayerwk);
 static void emie8_snc_w(sprite_status* pActwk, sprite_status* pPlayerwk);
 static void emie8_snc_pata(sprite_status* pActwk, sprite_status* pPlayerwk);
-static void flash_out8();
+static void flash_out8(void);
 static void emie8_jisin(sprite_status* pActwk);
 
 static unsigned char pchg0[8] = { 3, 0, 1, 2, 3, 4, 5, 255 };
@@ -374,7 +374,7 @@ static void emie8_snc_pata(sprite_status* pActwk, sprite_status* pPlayerwk) { /*
 
 
 
-static void flash_out8() { /* Line 377, Address: 0x1029eb0 */
+static void flash_out8(void) { /* Line 377, Address: 0x1029eb0 */
   PALETTEENTRY* lpColwk;
   int i;
 

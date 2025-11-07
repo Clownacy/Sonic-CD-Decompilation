@@ -98,7 +98,7 @@ static unsigned int CreateCharSprt(int nMenuNum, int colom, char code, int color
 
 
 
-void DeleteAllCharSprt() { /* Line 101, Address: 0x1002000 */
+void DeleteAllCharSprt(void) { /* Line 101, Address: 0x1002000 */
   int n, m;
 
   for (n = 0; n < 3; ++n) /* Line 104, Address: 0x1002010 */
@@ -158,7 +158,7 @@ void StrDANO(int number) { /* Line 150, Address: 0x1002230 */
 
 
 
-void StrWelcome() { /* Line 161, Address: 0x10022a0 */
+void StrWelcome(void) { /* Line 161, Address: 0x10022a0 */
   int indx;
   POINT point;
 
@@ -181,7 +181,7 @@ void StrWelcome() { /* Line 161, Address: 0x10022a0 */
 
 
 
-void DeleteCharMes() { /* Line 184, Address: 0x10023d0 */
+void DeleteCharMes(void) { /* Line 184, Address: 0x10023d0 */
   if (hMesMenu != 0) /* Line 185, Address: 0x10023d8 */
   {
     sprDelete(hMesMenu); /* Line 187, Address: 0x10023e8 */

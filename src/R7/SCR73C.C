@@ -121,7 +121,7 @@ extern map_init_data mapinittbl;
 
 
 
-void enecginit() {} /* Line 124, Address: 0x1021eb0 */
+void enecginit(void) {} /* Line 124, Address: 0x1021eb0 */
 
 
 
@@ -174,7 +174,7 @@ void divdevset() {} /* Line 128, Address: 0x1021ec0 */
 
 
 
-void scr_set() { /* Line 177, Address: 0x1021ed0 */
+void scr_set(void) { /* Line 177, Address: 0x1021ed0 */
   int i;
 
   scrh_flag = scrv_flag = scr_die.b.h = scr_timer.b.h = zone_flag.b.h = 0; /* Line 180, Address: 0x1021edc */
@@ -202,7 +202,7 @@ void scr_set() { /* Line 177, Address: 0x1021ed0 */
 
 
 
-void playposiset() { /* Line 205, Address: 0x10220e0 */
+void playposiset(void) { /* Line 205, Address: 0x10220e0 */
   unsigned short playpositbl[2] = { /* Line 206, Address: 0x10220f4 */
     64,
     396
@@ -286,7 +286,7 @@ void scrbinit(short yWk, short xWk) { /* Line 272, Address: 0x1022340 */
 
 
 
-void scroll() { /* Line 289, Address: 0x1022420 */
+void scroll(void) { /* Line 289, Address: 0x1022420 */
   uint_union data;
   int hsCount;
   int i;
@@ -475,7 +475,7 @@ void zonescrsetsub0(short VPosi, unsigned short offs) { /* Line 429, Address: 0x
 
 
 
-void scroll_h() { /* Line 478, Address: 0x1022bb0 */
+void scroll_h(void) { /* Line 478, Address: 0x1022bb0 */
   unsigned short wD4;
 
   wD4 = scra_h_posit.w.h; /* Line 481, Address: 0x1022bbc */
@@ -494,7 +494,7 @@ void scroll_h() { /* Line 478, Address: 0x1022bb0 */
 
 } /* Line 495, Address: 0x1022c74 */
 
-void scrh_move() { /* Line 497, Address: 0x1022c90 */
+void scrh_move(void) { /* Line 497, Address: 0x1022c90 */
   unsigned short wD0;
 
   wD0 = actwk[0].xposi.w.h; /* Line 500, Address: 0x1022c9c */
@@ -572,7 +572,7 @@ void left_check(unsigned short wD0) { /* Line 538, Address: 0x1022e40 */
 
 
 
-void scroll_v() { /* Line 575, Address: 0x1022f40 */
+void scroll_v(void) { /* Line 575, Address: 0x1022f40 */
   unsigned short wD0;
 
   wD0 = actwk[0].yposi.w.h - scra_v_posit.w.h; /* Line 578, Address: 0x1022f4c */
@@ -684,7 +684,7 @@ void sv_move_main2(unsigned short wD0) { /* Line 672, Address: 0x10232a0 */
 } /* Line 684, Address: 0x1023320 */
 
 
-void sv_move_sub2() { /* Line 687, Address: 0x1023330 */
+void sv_move_sub2(void) { /* Line 687, Address: 0x1023330 */
   limmoveflag = 0; /* Line 688, Address: 0x1023338 */
   sv_move_sub(0); /* Line 689, Address: 0x1023340 */
 } /* Line 690, Address: 0x102334c */
@@ -989,7 +989,7 @@ void scrollz_h(int lD4, int flagz) { /* Line 951, Address: 0x1023c40 */
 
 
 
-void scrollwrtadva() { /* Line 992, Address: 0x1023d50 */
+void scrollwrtadva(void) { /* Line 992, Address: 0x1023d50 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   unsigned char* pScrFlag;
@@ -1020,7 +1020,7 @@ void scrollwrtadva() { /* Line 992, Address: 0x1023d50 */
 
 
 
-void scrollwrt() { /* Line 1023, Address: 0x1023e00 */
+void scrollwrt(void) { /* Line 1023, Address: 0x1023e00 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   POINT TilePoint;
@@ -1226,12 +1226,12 @@ label1:
 
 
 
-void scrollwrtc() {} /* Line 1229, Address: 0x1024500 */
+void scrollwrtc(void) {} /* Line 1229, Address: 0x1024500 */
 
 
 
 
-void scrollwrtz() {} /* Line 1234, Address: 0x1024510 */
+void scrollwrtz(void) {} /* Line 1234, Address: 0x1024510 */
 
 
 
@@ -1655,7 +1655,7 @@ void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned sho
 
 
 
-void mapwrt() { /* Line 1658, Address: 0x1025270 */
+void mapwrt(void) { /* Line 1658, Address: 0x1025270 */
   int VramBase;
   unsigned short wH_posiw, wV_posiw;
   unsigned char* pMapWk;
@@ -1778,7 +1778,7 @@ void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, 
 
 
 
-void mapinit() { /* Line 1781, Address: 0x1025640 */
+void mapinit(void) { /* Line 1781, Address: 0x1025640 */
 
   colorset2(mapinittbl.colorno2); /* Line 1783, Address: 0x1025648 */
   colorset(mapinittbl.colorno2); /* Line 1784, Address: 0x102565c */
@@ -1796,4 +1796,4 @@ void mapinit() { /* Line 1781, Address: 0x1025640 */
 
 
 
-void mapset() {} /* Line 1799, Address: 0x10256a0 */
+void mapset(void) {} /* Line 1799, Address: 0x10256a0 */
