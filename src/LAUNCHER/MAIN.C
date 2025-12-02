@@ -551,25 +551,28 @@ int SDL_main(const int argc, char** const argv)
 					CDPlay,
 					CDPause,
 					ChangeTileBmp,
-					NULL,
-					NULL,
-					NULL,
+					NULL, // ReadScoreIndx
+					NULL, // WriteScoreData
+					NULL, // SetScoreDate
 					WaveAllStop,
-					NULL,
-					NULL,
+
+					NULL, // sMemAlloc
+					NULL, // sMemFree
 					sMemSet,
 					sMemCpy,
-					NULL,
+					NULL, // sMemCmp
 					sRandom,
-					NULL,
-					NULL,
-					NULL,
+					NULL, // sStrcpy
+					NULL, // sStrncpy
+					NULL, // sStrncmp
 					sPrintf,
 					sOutputDebugString,
 					sOpenFile,
 					sReadFile,
 					sCloseFile,
 					NULL,
+					// TODO: Little Planet uses WAY more functions than just these,
+					// including a mysterious 'read peripheral pad' function.
 				};
 
 				ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
