@@ -13,12 +13,6 @@
   #define SPRITE_SIKAKE_BASE 471
 #endif
 
-#if defined(R11A)
-  #define SPRITE_SIKAKE_BASE 488
-#else
-  #define SPRITE_SIKAKE_BASE 471
-#endif
-
 static unsigned char tobita1chg0[16] = { 2, 0, 1, 0, 2, 0, 1, 0, 3, 4, 3, 5, 3, 4, 3, 255 };
 static unsigned char tobita1chg1[9] = { 2, 0, 1, 0, 2, 0, 1, 0, 255 };
 static unsigned char tobita1chg2[9] = { 2, 3, 4, 3, 5, 3, 4, 3, 255 };
@@ -77,7 +71,6 @@ static sprite_pattern pat0 =
   { { -16, -16, 0, SPRITE_SIKAKE_BASE + 6 } }
 };
 sprite_pattern* hari12pat[1] = { &pat0 };
-
 
 
 
