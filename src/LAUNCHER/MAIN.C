@@ -569,8 +569,12 @@ int SDL_main(const int argc, char** const argv)
 						ExportedFunctions.game_init();
 
 						bool alive = true;
+						unsigned short swdata = 0;
 						while (alive)
 						{
+							swdata >>= 8;
+							swdata |= swdata << 8;
+
 							SDL_Event event;
 							while (SDL_PollEvent(&event))
 							{
@@ -579,21 +583,55 @@ int SDL_main(const int argc, char** const argv)
 									case SDL_QUIT:
 										alive = false;
 										break;
+
+									case SDL_KEYDOWN:
+									case SDL_KEYUP:
+									{
+										if (event.key.repeat)
+											break;
+
+										const bool pressed = event.key.state == SDL_PRESSED;
+
+										switch (event.key.keysym.scancode)
+										{
+											case SDL_SCANCODE_SPACE:
+												swdata &= ~0x1000;
+												if (pressed)
+													swdata |= 0x1000;
+												break;
+
+											case SDL_SCANCODE_UP:
+												swdata &= ~0x100;
+												if (pressed)
+													swdata |= 0x100;
+												break;
+
+											case SDL_SCANCODE_DOWN:
+												swdata &= ~0x200;
+												if (pressed)
+													swdata |= 0x200;
+												break;
+
+											case SDL_SCANCODE_LEFT:
+												swdata &= ~0x400;
+												if (pressed)
+													swdata |= 0x400;
+												break;
+
+											case SDL_SCANCODE_RIGHT:
+												swdata &= ~0x800;
+												if (pressed)
+													swdata |= 0x800;
+												break;
+										}
+
+										break;
+									}
 								}
 							}
 
-							const Uint8* const keyboard_state = SDL_GetKeyboardState(NULL);
-							unsigned short swdata = 0;
-							if (keyboard_state[SDL_SCANCODE_SPACE])
-								swdata |= 0x10;
-							if (keyboard_state[SDL_SCANCODE_UP])
-								swdata |= 0x100;
-							if (keyboard_state[SDL_SCANCODE_DOWN])
-								swdata |= 0x200;
-							if (keyboard_state[SDL_SCANCODE_LEFT])
-								swdata |= 0x400;
-							if (keyboard_state[SDL_SCANCODE_RIGHT])
-								swdata |= 0x800;
+							swdata = swdata & 0xFF00 | (((swdata ^ (swdata << 8)) & swdata) >> 8 & 0xFF);
+
 							ExportedFunctions.SWdataSet(swdata, 0);
 
 							ExportedFunctions.game();
