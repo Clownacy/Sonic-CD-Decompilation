@@ -66,5 +66,9 @@ add_executable(game WIN32
 	${SOURCES}
 )
 
+set_target_properties(game PROPERTIES
+	C_STANDARD 99
+)
+
 find_package(SDL2 REQUIRED)
 target_link_libraries(game PRIVATE SDL2::SDL2main SDL2::SDL2)
