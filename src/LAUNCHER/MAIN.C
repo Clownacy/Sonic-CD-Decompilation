@@ -445,7 +445,7 @@ static void DrawPlanes(void)
 				if (tile_x == 0)
 					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, x_offset, TILE_WIDTH);
 				else if (tile_x >= screen_width_in_tiles - 1)
-					;//DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, 0, TILE_WIDTH - x_offset);
+					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, 0, x_offset);
 				else
 					DrawTileLineWhole(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line);
 			}
