@@ -179,7 +179,7 @@ int fadein0_new() { /* Line 175, Address: 0x1024d30 */
   fadein1(); /* Line 179, Address: 0x1024d44 */
 
 
-  if (++FadeCount >= 22) { /* Line 182, Address: 0x1024d4c */
+  if (++FadeCount > 21) { /* Line 182, Address: 0x1024d4c */
     FadeCount = 0; /* Line 183, Address: 0x1024d6c */
     return 1; /* Line 184, Address: 0x1024d74 */
   }
@@ -253,7 +253,7 @@ static int fadeout_new() { /* Line 249, Address: 0x10250b0 */
   fadeout1(); /* Line 253, Address: 0x10250c4 */
 
 
-  if (++FadeCount >= 22) { /* Line 256, Address: 0x10250cc */
+  if (++FadeCount > 21) { /* Line 256, Address: 0x10250cc */
     FadeCount = 0; /* Line 257, Address: 0x10250ec */
     return 1; /* Line 258, Address: 0x10250f4 */
   }
@@ -326,7 +326,7 @@ static int flashin_new() { /* Line 322, Address: 0x1025380 */
   flashin1(); /* Line 326, Address: 0x1025394 */
 
 
-  if (++FadeCount >= 22) { /* Line 329, Address: 0x102539c */
+  if (++FadeCount > 21) { /* Line 329, Address: 0x102539c */
     FadeCount = 0; /* Line 330, Address: 0x10253bc */
     return 1; /* Line 331, Address: 0x10253c4 */
   }
@@ -396,7 +396,7 @@ static int flashout_new() { /* Line 392, Address: 0x1025700 */
   flashout1(); /* Line 396, Address: 0x1025714 */
 
 
-  if (++FadeCount >= 22) { /* Line 399, Address: 0x102571c */
+  if (++FadeCount > 21) { /* Line 399, Address: 0x102571c */
     FadeCount = 0; /* Line 400, Address: 0x102573c */
     return 1; /* Line 401, Address: 0x1025744 */
   }

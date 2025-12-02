@@ -5,6 +5,7 @@
 #include "..\COMMON\GRID.H"
 #include "..\COMMON\PALT.H"
 #include "..\COMMON\HMX_OEEACTL.H"
+#include "..\..\IMPFUNCS.H"
 #include "OPNENTRY.H"
 
 static void OEUpdateHand();
@@ -83,32 +84,31 @@ extern void(*hmx_grid_set_horz_offsets_module)(hmx_grid*, int*);
 extern grid_bmp infoGridBmp[];
 extern void(*hmx_ddagrid_set_scan_module)(hmx_ddagrid*, int, int, int, int, int);
 extern score_data crntScorData;
-extern unsigned int(*ReadScore)(int, char*, unsigned int);
 extern unsigned int selectIndx;
-extern int(*ReadIndx)(unsigned int);
 extern unsigned short swData1;
 static unsigned short nMenuKind;
 static int nFadoSeqNum;
 static int nFadoValu;
 static int nFadoTime;
-extern void(*WaveRequest)(short);
 extern PALETTEENTRY tblPal2[];
 extern PALETTEENTRY tblPal2a[];
 static unsigned int bFadePaletDisable[4];
 static PALETTEENTRY workPalet[4][16];
-extern void(*sMemCpy)(void*, void*, int);
 extern PALETTEENTRY tblPal4[];
 extern PALETTEENTRY tblPal3[];
 extern PALETTEENTRY tblPal1[];
 extern unsigned int bFirstTitle;
 extern PALETTEENTRY tblPal1a[];
-extern void(*CDPlay)(short);
-extern void(*CDPause)(short);
 static unsigned int testSpr;
 static unsigned int* testBmp;
 unsigned int hFx1;
 unsigned int hFx0;
 static char KeyState[256];
+
+
+
+
+
 
 
 

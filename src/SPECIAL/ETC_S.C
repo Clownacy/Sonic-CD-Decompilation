@@ -310,9 +310,9 @@ int random() { /* Line 305, Address: 0x10049a0 */
     lD1.l = 711800410; /* Line 310, Address: 0x10049c4 */
 
   lD0.l = lD1.l; /* Line 312, Address: 0x10049d0 */
-  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 4, lD1.l |= 2147483648; else lD1.l *= 4; /* Line 313, Address: 0x10049d8 */
+  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 4, lD1.l |= 0x80000000; else lD1.l *= 4; /* Line 313, Address: 0x10049d8 */
   lD1.l += lD0.l; /* Line 314, Address: 0x1004a28 */
-  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 8, lD1.l |= 2147483648; else lD1.l *= 8; /* Line 315, Address: 0x1004a38 */
+  if ((long int)lD1.l & (long int)32768 << 16) lD1.l *= 8, lD1.l |= 0x80000000; else lD1.l *= 8; /* Line 315, Address: 0x1004a38 */
   lD1.l += lD0.l; /* Line 316, Address: 0x1004a88 */
   lD0.w.l = lD1.w.l; /* Line 317, Address: 0x1004a98 */
   lD1.l = (long int)((unsigned int)lD1.l >> 16) & 65535 | (long int)((unsigned int)lD1.l << 16) & (unsigned int)65535 << 16; /* Line 318, Address: 0x1004aa0 */

@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "constants.h"
 #include "util.h"
-#define DICTIONARY_SIZE 4096
 
 
 unsigned char* szdd_decompress(char* p_filename) {
@@ -11,8 +11,8 @@ unsigned char* szdd_decompress(char* p_filename) {
   unsigned long decompressed_cnt = 0;
   unsigned char buffer[4];
   unsigned int decompressed_pos = 0;
-  unsigned char dictionary[DICTIONARY_SIZE];
-  unsigned int literal_pos = DICTIONARY_SIZE - 16;
+  unsigned char dictionary[SZDD_DICTIONARY_SIZE];
+  unsigned int literal_pos = SZDD_DICTIONARY_SIZE - 16;
   FILE* fp = fopen(p_filename, "rb");
 
   if (fp == 0) return 0;
@@ -30,7 +30,7 @@ unsigned char* szdd_decompress(char* p_filename) {
   fread(buffer, 1, 4, fp);
   read_ulong_littleendian(buffer, &decompressed_cnt);
   p_decompressed = malloc(decompressed_cnt);
-  memset(dictionary, ' ', DICTIONARY_SIZE);
+  memset(dictionary, ' ', SZDD_DICTIONARY_SIZE);
 
   do {
     unsigned int control = fgetc(fp);
@@ -41,7 +41,7 @@ unsigned char* szdd_decompress(char* p_filename) {
         p_decompressed[decompressed_pos] = dictionary[literal_pos] = fgetc(fp);
         if (feof(fp)) break;
         ++literal_pos;
-        literal_pos %= DICTIONARY_SIZE;
+        literal_pos %= SZDD_DICTIONARY_SIZE;
         ++decompressed_pos;
       }
       else {
@@ -54,9 +54,9 @@ unsigned char* szdd_decompress(char* p_filename) {
         while (match_len-- != 0) {
           p_decompressed[decompressed_pos] = dictionary[literal_pos] = dictionary[match_pos];
           ++literal_pos;
-          literal_pos %= DICTIONARY_SIZE;
+          literal_pos %= SZDD_DICTIONARY_SIZE;
           ++match_pos;
-          match_pos %= DICTIONARY_SIZE;
+          match_pos %= SZDD_DICTIONARY_SIZE;
           ++decompressed_pos;
         }
       }

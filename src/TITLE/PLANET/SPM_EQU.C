@@ -1,5 +1,6 @@
 #include "..\..\TYPES.H"
 #include "LPL_TYPES.H"
+#include "..\..\IMPFUNCS.H"
 
 unsigned short comdata_s7;
 unsigned short comdata_s6;
@@ -40,7 +41,6 @@ unsigned char int_flg;
 unsigned char push_flg;
 unsigned char actset_wk;
 unsigned char actset_flg;
-extern void(*sMemSet)(void*, unsigned char, int);
 short actset_tm[6] =
 {
   -31312, 256,

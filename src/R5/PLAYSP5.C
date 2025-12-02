@@ -117,7 +117,7 @@ void belt_effect() { /* Line 107, Address: 0x1017f20 */
       lD0 = 65536; /* Line 117, Address: 0x1017f64 */
       break; /* Line 118, Address: 0x1017f68 */
     default:
-      lD0 = 131072; /* Line 120, Address: 0x1017f70 */
+      lD0 = 0x20000; /* Line 120, Address: 0x1017f70 */
       break;
   }
 

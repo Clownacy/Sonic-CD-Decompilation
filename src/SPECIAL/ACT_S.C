@@ -2,6 +2,7 @@
 #include "SPS_EQU.H"
 #include "ACT_S.H"
 #include "ENS.H"
+#include "..\IMPFUNCS.H"
 #include "PLS.H"
 
 static void(*act_tbl[16])(sprite_status_sp*) = {
@@ -22,9 +23,8 @@ static void(*act_tbl[16])(sprite_status_sp*) = {
   &tskira0,
   &tskira1
 };
-extern void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
-extern void(*sMemSet)(void*, unsigned char, int);
 extern bmp_info SprBmp[700];
+
 
 
 

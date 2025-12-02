@@ -3,6 +3,7 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 
@@ -11,19 +12,23 @@ static void dai_k_move(sprite_status* pActwk);
 static void k_move(sprite_status* pActwk, sprite_status* pSonicwk);
 static void jumpchk_d(sprite_status* pActwk, sprite_status* pSonicwk);
 
-extern void soundset(short ReqNo);
+#if defined(R11A)
+  #define SPRITE_DAIK_BASE 495
+#else
+  #define SPRITE_DAIK_BASE 478
+#endif
 
 static sprite_pattern k_daipat0 = {
   1,
-  { { -16, -8, 0, 478 } }
+  { { -16, -8, 0, SPRITE_DAIK_BASE } }
 };
 static sprite_pattern k_daipat1 = {
   1,
-  { { -16, -8, 0, 479 } }
+  { { -16, -8, 0, SPRITE_DAIK_BASE + 1 } }
 };
 static sprite_pattern k_daipat2 = {
   1,
-  { { -16, -8, 0, 480 } }
+  { { -16, -8, 0, SPRITE_DAIK_BASE + 2 } }
 };
 sprite_pattern* k_daipat[3] = {
   &k_daipat0,
@@ -36,11 +41,6 @@ static void(*dai_k_move_tbl[2])(sprite_status*) = {
   &dai_k_init,
   &dai_k_move
 };
-
-
-
-
-
 
 
 

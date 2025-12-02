@@ -7,6 +7,7 @@
 #include "EDIT.H"
 #include "FCOL.H"
 #include "ETC.H"
+#include "IMPFUNCS.H"
 
 extern void sub_sync(short ReqNo); extern void playsp(); extern short pcol(sprite_status* pActwk); extern void da_set(); extern void plairset(); extern void soundset(short ReqNo); extern short playdieset(sprite_status* pActwk);
 
@@ -14,7 +15,6 @@ static unsigned int WaveClear;
 static unsigned char Brake_Sw, Brake_Req;
 extern sprite_pattern* sncpat[];
 extern unsigned char mapwka[8][64];
-extern void(*WaveAllStop)();
 extern unsigned char* playchg[60];
 extern unsigned char plchg00[8], plchg01[8], plchg49[8], plchg53[8], plchg03[8], plchg02[8], plchg54[8], plchg35[6], plchg04[8], plchg39[7], plchg33[6], plchg34[6];
 unsigned char* playcg;
@@ -1145,7 +1145,7 @@ void limitchk() { /* Line 1142, Address: 0x100ae10 */
 
   cal_position = actwk[0].xposi.l; /* Line 1146, Address: 0x100ae2c */
   cal_speed = actwk[0].xspeed.w; /* Line 1147, Address: 0x100ae34 */
-  if (cal_speed & (int)-2147483648) cal_speed <<= 8, cal_speed |= -2147483648; else cal_speed <<= 8; /* Line 1148, Address: 0x100ae44 */
+  if (cal_speed & 0x80000000) cal_speed <<= 8, cal_speed |= 0x80000000; else cal_speed <<= 8; /* Line 1148, Address: 0x100ae44 */
   cal_position += cal_speed; /* Line 1149, Address: 0x100ae6c */
   position_wk = cal_position >> 16; /* Line 1150, Address: 0x100ae70 */
   cal_limit_l = scralim_left + 16; /* Line 1151, Address: 0x100ae84 */
@@ -1271,7 +1271,7 @@ label1:
 void jumpchk2() { /* Line 1271, Address: 0x100b500 */
   short cal_speed;
 
-  if (actwk[0].actfree[2] != 0) { /* Line 1274, Address: 0x100b508 */
+  if (actwk[0].actfree[18] != 0) { /* Line 1274, Address: 0x100b508 */
     cal_speed = -1024; /* Line 1275, Address: 0x100b51c */
     if (actwk[0].cddat & 64) cal_speed = -512; /* Line 1276, Address: 0x100b528 */
     if (cal_speed > actwk[0].yspeed.w) { /* Line 1277, Address: 0x100b54c */
@@ -1681,7 +1681,7 @@ void loopchk() { /* Line 1647, Address: 0x100c720 */
     return; /* Line 1681, Address: 0x100c9a8 */
   }
 
-  if ((unsigned char)actwk[0].xposi.b.b4 >= 224) { /* Line 1684, Address: 0x100c9b0 */
+  if ((unsigned char)actwk[0].xposi.b.b2 >= 224) { /* Line 1684, Address: 0x100c9b0 */
     actwk[0].actflg |= 64; /* Line 1685, Address: 0x100c9cc */
     return; /* Line 1686, Address: 0x100c9e0 */
   }

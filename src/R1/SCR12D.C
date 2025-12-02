@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR12C.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL1C.H"
@@ -49,11 +50,10 @@ static int_union* mapwrt_tbl[8] = {
   &scrz_h_posiw,
   &scrz_v_posiw
 };
-extern void(*sMemSet)(void*, unsigned char, int);
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
+
 
 
 
@@ -403,7 +403,7 @@ static void zonescrsetsub0(short yoffs, short yline, int_union** pHscrbuf, short
     ldwk.w.l = *pHscrwk; /* Line 403, Address: 0x1025d9c */
     ++pHscrwk; /* Line 404, Address: 0x1025da8 */
 
-    for ( ;j < 8; ++j, ++*pHscrbuf) { /* Line 406, Address: 0x1025db4 */
+    for ( ; j < 8; ++j, ++*pHscrbuf) { /* Line 406, Address: 0x1025db4 */
       (*pHscrbuf)->l = ldwk.l; /* Line 407, Address: 0x1025dbc */
     } /* Line 408, Address: 0x1025dcc */
   } /* Line 409, Address: 0x1025df0 */
@@ -1429,13 +1429,13 @@ void blockwrt(int VramBase, POINT* pTilePoint, int BlkIndex) { /* Line 1370, Add
 
 
 int mapadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1431, Address: 0x10278a0 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1432, Address: 0x10278c0 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1432, Address: 0x10278c0 */
 } /* Line 1433, Address: 0x10278e0 */
 
 
 int mapadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1436, Address: 0x10278f0 */
   wH_posiw = 0; /* Line 1437, Address: 0x1027910 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1438, Address: 0x1027914 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1438, Address: 0x1027914 */
 } /* Line 1439, Address: 0x1027934 */
 
 

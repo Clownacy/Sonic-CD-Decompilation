@@ -196,8 +196,8 @@ static void brunko_move(sprite_status* pActwk) { /* Line 187, Address: 0x1022480
   {
     xposi_bak.l = pActwk->xposi.l - xposi_bak.l; /* Line 197, Address: 0x10224d4 */
     yposi_bak.l = pActwk->yposi.l - yposi_bak.l; /* Line 198, Address: 0x10224e8 */
-    xposi_f = xposi_bak.l & (int)-2147483648; /* Line 199, Address: 0x10224fc */
-    yposi_f = yposi_bak.l & (int)-2147483648; /* Line 200, Address: 0x1022508 */
+    xposi_f = xposi_bak.l & 0x80000000; /* Line 199, Address: 0x10224fc */
+    yposi_f = yposi_bak.l & 0x80000000; /* Line 200, Address: 0x1022508 */
     for (i = 0; i < 8; ++i) /* Line 201, Address: 0x1022514 */
       xposi_bak.l = xposi_bak.l >> 1 | xposi_f; /* Line 202, Address: 0x1022520 */
     for (i = 0; i < 8; ++i) /* Line 203, Address: 0x1022540 */

@@ -119,7 +119,7 @@ void k_3d() { /* Line 108, Address: 0x1004690 */
   lD0.l = 0; /* Line 119, Address: 0x10046d0 */
   lD0.w.l = zoomwk.z + 128; /* Line 120, Address: 0x10046d4 */
   lD0.l = lD0.w.l; /* Line 121, Address: 0x10046f4 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 122, Address: 0x1004704 */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 122, Address: 0x1004704 */
   lD0.w.l = lD0.l / 128; /* Line 123, Address: 0x1004748 */
   k_wk.k_s = lD0.w.l; /* Line 124, Address: 0x1004770 */
 
@@ -225,7 +225,7 @@ int calc_xt_r() { /* Line 214, Address: 0x1004b60 */
   lD0.l = 0; /* Line 225, Address: 0x1004bc4 */
   lD0.w.l = k_wk.k_rx; /* Line 226, Address: 0x1004bc8 */
   lD0.l = lD0.w.l; /* Line 227, Address: 0x1004bd4 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 228, Address: 0x1004be4 */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 228, Address: 0x1004be4 */
   lD0.l += lD1.l; /* Line 229, Address: 0x1004c28 */
   lD0.l >>= 5; /* Line 230, Address: 0x1004c38 */
   return lD0.l; /* Line 231, Address: 0x1004c44 */
@@ -251,7 +251,7 @@ int calc_xt_s(int scale) { /* Line 244, Address: 0x1004c60 */
 
   lD1.w.l = k_wk.k_msx; /* Line 252, Address: 0x1004cb8 */
   lD1.l = lD1.w.l; /* Line 253, Address: 0x1004cc4 */
-  if (lD1.l & (int)-2147483648) lD1.l <<= 8, lD1.l |= -2147483648; else lD1.l <<= 8; /* Line 254, Address: 0x1004cd4 */
+  if (lD1.l & 0x80000000) lD1.l <<= 8, lD1.l |= 0x80000000; else lD1.l <<= 8; /* Line 254, Address: 0x1004cd4 */
 
 
   lD1.l -= lD2.l; /* Line 257, Address: 0x1004d18 */
@@ -288,7 +288,7 @@ int calc_yt_r() { /* Line 275, Address: 0x1004d60 */
   lD0.l = 0; /* Line 288, Address: 0x1004dc4 */
   lD0.w.l = k_wk.k_ry; /* Line 289, Address: 0x1004dc8 */
   lD0.l = lD0.w.l; /* Line 290, Address: 0x1004dd4 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 291, Address: 0x1004de4 */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 291, Address: 0x1004de4 */
 
   lD0.l += lD2.l; /* Line 293, Address: 0x1004e28 */
   lD0.l >>= 5; /* Line 294, Address: 0x1004e38 */
@@ -316,7 +316,7 @@ int calc_yt_s(int scale) { /* Line 308, Address: 0x1004e60 */
 
   lD1.w.l = k_wk.k_msy; /* Line 317, Address: 0x1004eb8 */
   lD1.l = lD1.w.l; /* Line 318, Address: 0x1004ec4 */
-  if (lD1.l & (int)-2147483648) lD1.l <<= 8, lD1.l |= -2147483648; else lD1.l <<= 8; /* Line 319, Address: 0x1004ed4 */
+  if (lD1.l & 0x80000000) lD1.l <<= 8, lD1.l |= 0x80000000; else lD1.l <<= 8; /* Line 319, Address: 0x1004ed4 */
 
 
   lD1.l -= lD2.l; /* Line 322, Address: 0x1004f18 */

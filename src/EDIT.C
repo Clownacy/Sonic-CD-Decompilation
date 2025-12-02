@@ -28,7 +28,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
   edit_data* pEdit_tbl;
   sprite_status* pActwk2;
   int CKey;
-  int edit_spd = 524288; /* Line 31, Address: 0x100ee00 */
+  int edit_spd = 0x80000; /* Line 31, Address: 0x100ee00 */
   int speed;
   short xposi;
   short yposi;
@@ -44,7 +44,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
   if (swdata1.b.h & 15) /* Line 44, Address: 0x100ee1c */
   {
     edit_spd += 8192; /* Line 46, Address: 0x100ee34 */
-    if (edit_spd > 524288) edit_spd = 524288; /* Line 47, Address: 0x100ee38 */
+    if (edit_spd > 0x80000) edit_spd = 0x80000; /* Line 47, Address: 0x100ee38 */
   } /* Line 48, Address: 0x100ee50 */
   else
   {
@@ -78,7 +78,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
   if (swdata1.b.l & 64) /* Line 78, Address: 0x100efd4 */
   {
     en = editno.b.h + 1; /* Line 80, Address: 0x100efec */
-    if (en < pEdit_tbl->num) en = 0; /* Line 81, Address: 0x100f010 */
+    if (en >= pEdit_tbl->num) en = 0; /* Line 81, Address: 0x100f010 */
     editno.b.h = en; /* Line 82, Address: 0x100f034 */
   }
 

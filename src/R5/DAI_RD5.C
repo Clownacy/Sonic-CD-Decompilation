@@ -583,7 +583,7 @@ static void belttask(sprite_status* pActwk) { /* Line 560, Address: 0x101f3f0 */
     --bd1; /* Line 583, Address: 0x101f4e4 */
     if (bd1) /* Line 584, Address: 0x101f4ec */
     {
-      ld0 = 131072; /* Line 586, Address: 0x101f4f4 */
+      ld0 = 0x20000; /* Line 586, Address: 0x101f4f4 */
     }
   }
   if (colrevflag) /* Line 589, Address: 0x101f4f8 */

@@ -5,94 +5,113 @@
 #include "DIRCOL.H"
 #include "DUMMY.H"
 #include "ETC.H"
+#include "LOADER2.H"
 #include "PLAYSUB.H"
 #include "RIDECHK.H"
 
-extern void soundset(short ReqNo);
+#if defined (R11A)
+  #define SPRITE_SPRING_BASE 467
+#elif defined (R1)
+  #define SPRITE_SPRING_BASE 450
+#elif defined (R31) || defined (R32)
+  #define SPRITE_SPRING_BASE 369
+#elif defined (R33)
+  #define SPRITE_SPRING_BASE 373
+#elif defined (R6)
+  #define SPRITE_SPRING_BASE 368
+#elif defined (R81)
+  #define SPRITE_SPRING_BASE 358
+#elif defined (R82)
+  #define SPRITE_SPRING_BASE 367
+#elif defined (R83)
+  #define SPRITE_SPRING_BASE 360
+#else
+  #define SPRITE_SPRING_BASE 382
+#endif
 
 static sprite_pattern spat00 = {
   1,
-  { { -16, -8, 0, 358 } }
+  { { -16, -8, 0, SPRITE_SPRING_BASE } }
 };
 static sprite_pattern spat01 = {
   1,
-  { { -16, 0, 0, 359 } }
+  { { -16, 0, 0, SPRITE_SPRING_BASE + 1 } }
 };
 static sprite_pattern spat02 = {
   1,
-  { { -16, -32, 0, 360 } }
+  { { -16, -32, 0, SPRITE_SPRING_BASE + 2 } }
 };
 static sprite_pattern spat03 = {
   1,
-  { { -8, -16, 0, 361 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 3 } }
 };
 static sprite_pattern spat04 = {
   1,
-  { { -8, -16, 0, 362 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 4 } }
 };
 static sprite_pattern spat05 = {
   1,
-  { { -8, -16, 0, 363 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 5 } }
 };
 static sprite_pattern spat06 = {
   1,
-  { { -16, -16, 0, 364 } }
+  { { -16, -16, 0, SPRITE_SPRING_BASE + 6 } }
 };
 static sprite_pattern spat07 = {
   1,
-  { { -16, -16, 0, 365 } }
+  { { -16, -16, 0, SPRITE_SPRING_BASE + 7 } }
 };
 static sprite_pattern spat08 = {
   1,
-  { { -16, -32, 0, 366 } }
+  { { -16, -32, 0, SPRITE_SPRING_BASE + 8 } }
 };
 static sprite_pattern kpat00 = {
   1,
-  { { -8, -8, 0, 367 } }
+  { { -8, -8, 0, SPRITE_SPRING_BASE + 9 } }
 };
 static sprite_pattern kpat01 = {
   1,
-  { { -8, -8, 0, 368 } }
+  { { -8, -8, 0, SPRITE_SPRING_BASE + 10 } }
 };
 static sprite_pattern ipat00 = {
   1,
-  { { -20, -16, 0, 369 } }
+  { { -20, -16, 0, SPRITE_SPRING_BASE + 11 } }
 };
 static sprite_pattern spat10 = {
   1,
-  { { -16, -8, 0, 370 } }
+  { { -16, -8, 0, SPRITE_SPRING_BASE + 12 } }
 };
 static sprite_pattern spat11 = {
   1,
-  { { -16, 0, 0, 371 } }
+  { { -16, 0, 0, SPRITE_SPRING_BASE + 13 } }
 };
 static sprite_pattern spat12 = {
   1,
-  { { -16, -32, 0, 372 } }
+  { { -16, -32, 0, SPRITE_SPRING_BASE + 14 } }
 };
 static sprite_pattern spat13 = {
   1,
-  { { -8, -16, 0, 373 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 15 } }
 };
 static sprite_pattern spat14 = {
   1,
-  { { -8, -16, 0, 374 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 16 } }
 };
 static sprite_pattern spat15 = {
   1,
-  { { -8, -16, 0, 375 } }
+  { { -8, -16, 0, SPRITE_SPRING_BASE + 17 } }
 };
 static sprite_pattern spat16 = {
   1,
-  { { -16, -16, 0, 376 } }
+  { { -16, -16, 0, SPRITE_SPRING_BASE + 18 } }
 };
 static sprite_pattern spat17 = {
   1,
-  { { -16, -16, 0, 377 } }
+  { { -16, -16, 0, SPRITE_SPRING_BASE + 19 } }
 };
 static sprite_pattern spat18 = {
   1,
-  { { -16, -32, 0, 378 } }
+  { { -16, -32, 0, SPRITE_SPRING_BASE + 20 } }
 };
 sprite_pattern* springpat[3] = {
   &spat00,
@@ -152,25 +171,6 @@ void(*sjump_move_tbl[13])(sprite_status*) = {
   &sjump3move2,
   &sjump3move3
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

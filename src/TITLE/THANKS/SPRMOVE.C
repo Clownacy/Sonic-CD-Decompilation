@@ -509,7 +509,7 @@ static void sonicwait(sprite_status_thanks* pActwk) { /* Line 482, Address: 0x10
 
 static void s_ballset(sprite_status_thanks* pActwk) { /* Line 510, Address: 0x1003cb0 */
   pActwk->XPOSI.l &= 33554431; /* Line 511, Address: 0x1003cbc */
-  pActwk->X_SPEED.l = 131072; /* Line 512, Address: 0x1003cd0 */
+  pActwk->X_SPEED.l = 0x20000; /* Line 512, Address: 0x1003cd0 */
   if (pActwk->SPR_FLG & 128) /* Line 513, Address: 0x1003cdc */
   {
     pActwk->X_SPEED.l *= -1; /* Line 515, Address: 0x1003cf4 */

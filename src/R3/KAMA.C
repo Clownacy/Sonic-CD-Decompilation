@@ -376,11 +376,11 @@ void movement(sprite_status* pActwk) { /* Line 375, Address: 0x10263f0 */
   int lD0 = 0; /* Line 376, Address: 0x10263fc */
 
   lD0 = pActwk->xspeed.w; /* Line 378, Address: 0x1026400 */
-  if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 379, Address: 0x1026410 */
+  if (lD0 & 0x80000000) lD0 <<= 8, lD0 |= 0x80000000; else lD0 <<= 8; /* Line 379, Address: 0x1026410 */
   pActwk->xposi.l += lD0; /* Line 380, Address: 0x1026438 */
 
   lD0 = pActwk->yspeed.w; /* Line 382, Address: 0x1026448 */
-  if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 383, Address: 0x1026458 */
+  if (lD0 & 0x80000000) lD0 <<= 8, lD0 |= 0x80000000; else lD0 <<= 8; /* Line 383, Address: 0x1026458 */
   pActwk->yposi.l += lD0; /* Line 384, Address: 0x1026480 */
 } /* Line 385, Address: 0x1026490 */
 

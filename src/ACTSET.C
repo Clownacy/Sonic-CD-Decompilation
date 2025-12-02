@@ -1,8 +1,8 @@
 #include "EQU.H"
 #include "ACTSET.H"
 #include "ACTION.H"
+#include "IMPFUNCS.H"
 
-extern void(*sMemSet)(void*, unsigned char, int);
 aset_info* pAsetadr_w;
 asetz_info* pAsetadrz_w;
 extern asetz_info asettblz[1];

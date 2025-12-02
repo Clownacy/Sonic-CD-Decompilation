@@ -322,7 +322,7 @@ int DLLMain() { /* Line 316, Address: 0x10007c0 */
       AVIOpeningMove(); /* Line 322, Address: 0x10007f0 */
       break;
   }
-  if (nTimerCunt == 2147483647) /* Line 325, Address: 0x10007f8 */
+  if (nTimerCunt == 0x7FFFFFFF) /* Line 325, Address: 0x10007f8 */
     nTimerCunt = 5184000; /* Line 326, Address: 0x1000810 */
   else
     ++nTimerCunt; /* Line 328, Address: 0x1000828 */

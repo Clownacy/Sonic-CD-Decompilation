@@ -302,7 +302,7 @@ int DLLMain() { /* Line 279, Address: 0x1000800 */
       break;
   }
 
-  if (nTimerCunt == 2147483647) /* Line 305, Address: 0x1000890 */
+  if (nTimerCunt == 0x7FFFFFFF) /* Line 305, Address: 0x1000890 */
     nTimerCunt = 5184000; /* Line 306, Address: 0x10008a8 */
   else
     ++nTimerCunt; /* Line 308, Address: 0x10008c0 */

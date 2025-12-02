@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR71A.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL7A.H"
@@ -40,7 +41,6 @@ static int_union* mapwrt_tbl[8] = {
 unsigned short scr_dir_tbl[6] = { 4, 0, 11927, 0, 1296, 96 };
 extern unsigned char mapwkb[8][64];
 extern unsigned char mapwka[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
 
 

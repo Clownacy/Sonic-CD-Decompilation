@@ -1,17 +1,17 @@
 #include "..\..\TYPES.H"
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "SVDFILE.H"
+#include "..\..\IMPFUNCS.H"
 
-extern unsigned int(*ReadScore)(int, char*, unsigned int);
 score_data saveData[6];
-extern unsigned int(*CloseScore)(unsigned int);
 extern int nSelectFileNumber;
-extern int(*ReadIndx)(unsigned int);
-extern unsigned int(*OpenScore)(int);
-extern void(*sMemCpy)(void*, void*, int);
 extern score_data* lpCrntScorData;
-extern unsigned int(*WriteScore)(int, char*, unsigned int);
-extern unsigned int(*WriteIndx)(int, unsigned int);
+
+
+
+
+
+
 
 
 

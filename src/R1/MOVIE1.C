@@ -7,6 +7,18 @@
 #include "..\RIDECHK.H"
 #include "SCR11A.H"
 
+#if defined(R11B)
+  #define SPRITE_MOVIE_BASE 528
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_MOVIE_BASE 509
+#elif defined(R12A) || defined(R12B)
+  #define SPRITE_MOVIE_BASE 519
+#elif defined(R12C) || defined(R12D)
+  #define SPRITE_MOVIE_BASE 510
+#else
+  #define SPRITE_MOVIE_BASE 543
+#endif
+
 unsigned char movie1_pchg00[6] = { 0, 2, 1, 3, 1, 255 };
 unsigned char movie1_pchg01[58] =
 {
@@ -35,32 +47,32 @@ unsigned char* movie1_pchg[2] =
 sprite_pattern spr_movie1 =
 {
   1,
-  { { -12, -12, 0, 510 } }
+  { { -12, -12, 0, SPRITE_MOVIE_BASE } }
 };
 sprite_pattern spr_movie2 =
 {
   1,
-  { { -8, -4, 0, 511 } }
+  { { -8, -4, 0, SPRITE_MOVIE_BASE + 1 } }
 };
 sprite_pattern spr_movie3 =
 {
   1,
-  { { -8, -4, 0, 512 } }
+  { { -8, -4, 0, SPRITE_MOVIE_BASE + 2 } }
 };
 sprite_pattern spr_movie4 =
 {
   1,
-  { { -20, -24, 0, 513 } }
+  { { -20, -24, 0, SPRITE_MOVIE_BASE + 3 } }
 };
 sprite_pattern spr_movie5 =
 {
   1,
-  { { -20, -24, 0, 514 } }
+  { { -20, -24, 0, SPRITE_MOVIE_BASE + 4 } }
 };
 sprite_pattern spr_movie0 =
 {
-  1,
-  { { -20, -24, 0, 514 } }
+  0,
+  { { -20, -24, 0, SPRITE_MOVIE_BASE + 4 } }
 };
 sprite_pattern* pat_movie[6] =
 {
@@ -84,18 +96,6 @@ char tbl0[37] =
   -10,  40, -10,  10,
   -1
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

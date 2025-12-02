@@ -334,7 +334,7 @@ void yposisetsub(sprite_status* pActwk) { /* Line 330, Address: 0x1025b80 */
 
   sinset(byR, &iSin, &iCos); /* Line 335, Address: 0x1025b9c */
   lD0.l = iSin << 2; /* Line 336, Address: 0x1025bb0 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 337, Address: 0x1025bc4 */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 337, Address: 0x1025bc4 */
 
   lD0.w.h += ((short*)pActwk)[27]; /* Line 339, Address: 0x1025c08 */
   pActwk->yposi.l = lD0.l; /* Line 340, Address: 0x1025c1c */
@@ -493,7 +493,7 @@ void emie_speedsety(sprite_status* pActwk) { /* Line 492, Address: 0x1025ff0 */
   int_union lD0;
 
   lD0.l = pActwk->yspeed.w; /* Line 495, Address: 0x1025ff8 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 496, Address: 0x102600c */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 496, Address: 0x102600c */
   pActwk->yposi.l += lD0.l; /* Line 497, Address: 0x1026050 */
 } /* Line 498, Address: 0x1026064 */
 
@@ -501,7 +501,7 @@ void emie_speedsetx(sprite_status* pActwk) { /* Line 500, Address: 0x1026070 */
   int_union lD0;
 
   lD0.l = pActwk->xspeed.w; /* Line 503, Address: 0x1026078 */
-  if (lD0.l & (int)-2147483648) lD0.l <<= 8, lD0.l |= -2147483648; else lD0.l <<= 8; /* Line 504, Address: 0x102608c */
+  if (lD0.l & 0x80000000) lD0.l <<= 8, lD0.l |= 0x80000000; else lD0.l <<= 8; /* Line 504, Address: 0x102608c */
   pActwk->xposi.l += lD0.l; /* Line 505, Address: 0x10260d0 */
 } /* Line 506, Address: 0x10260e4 */
 
@@ -968,7 +968,7 @@ void hari3x_ridechk(sprite_status* pActwk) { /* Line 946, Address: 0x1026d10 */
 
       lD3 = pPlaywk->yposi.l; /* Line 969, Address: 0x1026df0 */
       lD0 = pPlaywk->yspeed.w; /* Line 970, Address: 0x1026df4 */
-      if (lD0 & (int)-2147483648) lD0 <<= 8, lD0 |= -2147483648; else lD0 <<= 8; /* Line 971, Address: 0x1026e00 */
+      if (lD0 & 0x80000000) lD0 <<= 8, lD0 |= 0x80000000; else lD0 <<= 8; /* Line 971, Address: 0x1026e00 */
       lD3 -= lD0; /* Line 972, Address: 0x1026e28 */
       pPlaywk->yposi.l = lD3; /* Line 973, Address: 0x1026e2c */
       playdamageset(pPlaywk, pActwk); /* Line 974, Address: 0x1026e30 */

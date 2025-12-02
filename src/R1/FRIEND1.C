@@ -17,6 +17,20 @@ static void p_init(sprite_status* pActwk);
 static void p_move(sprite_status* pActwk);
 static void p_movie(sprite_status* pActwk);
 
+#if defined(R11B)
+  #define SPRITE_FRIEND_BASE 521
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_FRIEND_BASE 502
+#elif defined(R12A) || defined(R12B)
+  #define SPRITE_FRIEND_BASE 512
+#elif defined(R12C) || defined(R12D)
+  #define SPRITE_FRIEND_BASE 503
+#elif defined(R13C) || defined(R13D)
+  #define SPRITE_FRIEND_BASE 491
+#else
+  #define SPRITE_FRIEND_BASE 536
+#endif
+
 static unsigned char pchg00[4] = { 29, 0, 1, 255 };
 static unsigned char pchg01[30] =
 {
@@ -55,42 +69,42 @@ static unsigned char* pchg1[1] = { pchg10 };
 static sprite_pattern spr_flicky1 =
 {
   1,
-  { { -8, -8, 0, 491 } }
+  { { -8, -8, 0, SPRITE_FRIEND_BASE } }
 };
 static sprite_pattern spr_flicky2 =
 {
   1,
-  { { -8, -8, 0, 492 } }
+  { { -8, -8, 0, SPRITE_FRIEND_BASE + 1 } }
 };
 static sprite_pattern spr_ricky1 =
 {
   1,
-  { { -12, -8, 0, 492 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 2 } }
 };
 static sprite_pattern spr_ricky2 =
 {
   1,
-  { { -12, -8, 0, 493 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 3 } }
 };
 static sprite_pattern spr_ricky3 =
 {
   1,
-  { { -12, -8, 0, 494 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 4 } }
 };
 static sprite_pattern spr_ricky4 =
 {
   1,
-  { { -12, -8, 0, 495 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 5 } }
 };
 static sprite_pattern spr_friend0 =
 {
-  1,
-  { { -12, -8, 0, 495 } }
+  0,
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 5 } }
 };
 static sprite_pattern spr_ricky5 =
 {
   1,
-  { { -12, -8, 0, 496 } }
+  { { -12, -8, 0, SPRITE_FRIEND_BASE + 56} }
 };
 sprite_pattern* pat_friend0[3] =
 {
@@ -350,7 +364,7 @@ static void p_init(sprite_status* pActwk) { /* Line 339, Address: 0x1031ec0 */
   if (pActwk->userflag.b.h >= 0) /* Line 350, Address: 0x1031f44 */
   {
     ((int*)pActwk)[12] = 65536; /* Line 352, Address: 0x1031f5c */
-    ((int*)pActwk)[13] = -262144; /* Line 353, Address: 0x1031f68 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 353, Address: 0x1031f68 */
   } /* Line 354, Address: 0x1031f74 */
   else
   {
@@ -375,7 +389,7 @@ static void p_move(sprite_status* pActwk) { /* Line 364, Address: 0x1031fb0 */
   if ((temp = emycol_d(pActwk)) <= 0) /* Line 375, Address: 0x1032024 */
   {
     pActwk->yposi.w.h += temp; /* Line 377, Address: 0x1032050 */
-    ((int*)pActwk)[13] = -262144; /* Line 378, Address: 0x1032060 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 378, Address: 0x1032060 */
     ((int*)pActwk)[12] *= -1; /* Line 379, Address: 0x103206c */
     rev_h(pActwk); /* Line 380, Address: 0x103207c */
   }

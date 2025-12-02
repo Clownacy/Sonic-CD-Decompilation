@@ -1,6 +1,7 @@
 #include "..\..\TYPES.H"
 #include "THANKS_TYPES.H"
 #include "SPM.H"
+#include "..\..\IMPFUNCS.H"
 
 unsigned short comdata_s7;
 unsigned short comdata_s6;
@@ -30,7 +31,6 @@ unsigned char poseno;
 short posetimer;
 short coltimer2;
 short colorno2;
-extern void(*sMemSet)(void*, unsigned char, int);
 short actset_tm[8];
 short wkarea3;
 short wkarea2;

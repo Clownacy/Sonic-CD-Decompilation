@@ -205,6 +205,6 @@ static void a_on1(sprite_status* pActwk) { /* Line 191, Address: 0x102b1c0 */
     }
   }
   actionsub(pActwk); /* Line 207, Address: 0x102b26c */
-  pActwk->yposi.l -= 131072; /* Line 208, Address: 0x102b278 */
+  pActwk->yposi.l -= 0x20000; /* Line 208, Address: 0x102b278 */
   frameout_s(pActwk); /* Line 209, Address: 0x102b28c */
 } /* Line 210, Address: 0x102b298 */

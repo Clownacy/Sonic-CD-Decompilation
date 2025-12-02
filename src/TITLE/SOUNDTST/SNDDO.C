@@ -4,6 +4,7 @@
 #include "..\COMMON\GRID.H"
 #include "..\COMMON\HMX_OEEACTL.H"
 #include "..\COMMON\PALT.H"
+#include "..\..\IMPFUNCS.H"
 #include "SNDENTRY.H"
 #include "SNDSPRT.H"
 
@@ -30,10 +31,7 @@ extern unsigned short nSequenceNum;
 static unsigned short nMenuKind;
 static unsigned short nPCMNumberIndx;
 static unsigned short nDANumberIndx;
-extern void(*CDPause)(short);
 extern unsigned short swData1;
-extern void(*CDPlay)(short);
-extern void(*WaveRequest)(short);
 extern int nTimerCunt;
 static unsigned int HorizInit;
 PALETTEENTRY MIYAKEcolor[16] = {
@@ -85,6 +83,8 @@ static unsigned int hBkg;
 static unsigned int hmapwk;
 static int ErrRet;
 static char ErrBuf[250];
+
+
 
 
 

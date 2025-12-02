@@ -2,21 +2,21 @@
 #include "..\COMMON\SCORE_DATA_TYPES.H"
 #include "THANKS_TYPES.H"
 #include "BM_M.H"
+#include "..\..\IMPFUNCS.H"
 #include "ACT.H"
 #include "CHRSET.H"
 #include "GAME.H"
 
 extern short prg_mode;
 extern short actset_tm[8];
-extern char*(*sStrcpy)(char*, char*);
 high_score_entry score[84];
 char GreatestPlayer[4];
 extern score_data* lpScorData;
-extern void(*sMemSet)(void*, unsigned char, int);
-extern void(*sMemCpy)(void*, void*, int);
-extern int(*sMemCmp)(void*, void*, int);
 extern unsigned char quit_flg;
 extern short_union swdata1;
+
+
+
 
 
 

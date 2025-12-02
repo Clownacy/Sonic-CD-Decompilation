@@ -6,6 +6,11 @@
 #include "ETC.H"
 #include "RIDECHK.H"
 
+static void branko1_init(sprite_status* pActwk);
+static void branko1_move(sprite_status* pActwk);
+static void branko1_posiset(sprite_status* pActwk);
+static void branko1_ridechk(sprite_status* pActwk);
+
 static sprite_pattern pat0 = {
   1,
   { { -8, -8, 0, 515 } }
@@ -37,11 +42,6 @@ static brankodata branko1_initbl[8] = {
   { -32768, -1, -256,    0 },
   { -32768,  1,  256,    0 }
 };
-
-
-
-
-
 
 
 

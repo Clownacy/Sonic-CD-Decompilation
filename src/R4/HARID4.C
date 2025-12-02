@@ -254,7 +254,7 @@ static void act_down(sprite_status* pActwk) { /* Line 244, Address: 0x101d4d0 */
     pActwk->r_no0 += 2; /* Line 254, Address: 0x101d580 */
     pActwk->yposi.w.h += ret; /* Line 255, Address: 0x101d590 */
     pActwk->yspeed.w = 0; /* Line 256, Address: 0x101d5a0 */
-    *(int*)&pActwk->actfree[4] = 2097152; /* Line 257, Address: 0x101d5a8 */
+    *(int*)&pActwk->actfree[4] = 0x200000; /* Line 257, Address: 0x101d5a8 */
 
     frameout(&actwk[((short*)pActwk)[32]]); /* Line 259, Address: 0x101d5b8 */
   }

@@ -1,5 +1,5 @@
 #ifndef CMPSPRITEMETA_H
-#define CMPSPRITE
+#define CMPSPRITEMETA_H
 
 typedef struct cmp_sprite_meta {
   unsigned short x;

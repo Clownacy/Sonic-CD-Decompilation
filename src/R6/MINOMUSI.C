@@ -223,7 +223,7 @@ void body_down1(sprite_status* actionwk) { /* Line 211, Address: 0x101d1b0 */
 void body_up(sprite_status* actionwk) { /* Line 223, Address: 0x101d250 */
   actionwk->r_no0 += 2; /* Line 224, Address: 0x101d25c */
   if (actionwk->userflag.b.h != 0) /* Line 225, Address: 0x101d26c */
-    ((int*)actionwk)[13] = 131072; /* Line 226, Address: 0x101d284 */
+    ((int*)actionwk)[13] = 0x20000; /* Line 226, Address: 0x101d284 */
   else
     ((int*)actionwk)[13] = 458752; /* Line 228, Address: 0x101d298 */
   body_up1(actionwk); /* Line 229, Address: 0x101d2a4 */

@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "SCR12B.H"
+#include "..\IMPFUNCS.H"
 #include "..\SAVE.H"
 #include "..\SCRCHK.H"
 #include "COL1B.H"
@@ -64,11 +65,10 @@ short playpositbl[1][2] = {
   { 80, 389 }
 };
 unsigned char playmapnotbl[4] = { 145, 182, 127, 127 };
-extern void(*sMemSet)(void*, unsigned char, int);
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
-extern int(*SetGrid)(int, int, int, int, int);
 extern map_init_data mapinittbl;
+
 
 
 
@@ -1543,12 +1543,12 @@ void blockwrt(int VramBase, POINT* pTilePoint, int BlkIndex) { /* Line 1481, Add
 
 
 int mapadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1545, Address: 0x1028420 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1546, Address: 0x1028440 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1546, Address: 0x1028440 */
 } /* Line 1547, Address: 0x1028460 */
 
 int mapadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1549, Address: 0x1028470 */
   wH_posiw = 0; /* Line 1550, Address: 0x1028490 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1551, Address: 0x1028494 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1551, Address: 0x1028494 */
 } /* Line 1552, Address: 0x10284b4 */
 
 

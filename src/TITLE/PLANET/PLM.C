@@ -405,14 +405,14 @@ void s_actset(sprite_status_lpl* pActwk, ini_pats* pSoffset, short iD3, short iD
   pActwk->XPOSI.w.h = iD5; /* Line 405, Address: 0x1007ae4 */
   pActwk->YPOSI.w.h = iD6; /* Line 406, Address: 0x1007af0 */
 
-  pActwk->X_SPEED.l = 131072; /* Line 408, Address: 0x1007afc */
+  pActwk->X_SPEED.l = 0x20000; /* Line 408, Address: 0x1007afc */
   if (iD3 != 0) /* Line 409, Address: 0x1007b08 */
-    pActwk->X_SPEED.l = -131072; /* Line 410, Address: 0x1007b1c */
+    pActwk->X_SPEED.l = -0x20000; /* Line 410, Address: 0x1007b1c */
   lD0.l = random() & 32767; /* Line 411, Address: 0x1007b28 */
   lD0.w.h = lD0.l % 128; /* Line 412, Address: 0x1007b38 */
   lD0.l &= 2147418112; /* Line 413, Address: 0x1007b64 */
   lD0.l >>= 4; /* Line 414, Address: 0x1007b74 */
-  pActwk->Y_SPEED.l = lD0.l + 262144; /* Line 415, Address: 0x1007b80 */
+  pActwk->Y_SPEED.l = lD0.l + 0x40000; /* Line 415, Address: 0x1007b80 */
 
   lD0.l = random() & 32767; /* Line 417, Address: 0x1007b94 */
 
@@ -495,7 +495,7 @@ void ufo_set() { /* Line 439, Address: 0x1007c20 */
     pActwk->X_WIDE = 40; /* Line 495, Address: 0x1007e2c */
     pActwk->Y_WIDE = 6; /* Line 496, Address: 0x1007e38 */
 
-    pActwk->X_SPEED.l = 131072; /* Line 498, Address: 0x1007e44 */
+    pActwk->X_SPEED.l = 0x20000; /* Line 498, Address: 0x1007e44 */
     pActwk->Y_SPEED.l = 0; /* Line 499, Address: 0x1007e50 */
     pActwk->SPR_FLG |= 8; /* Line 500, Address: 0x1007e58 */
 
@@ -610,7 +610,7 @@ void metals_set() { /* Line 582, Address: 0x1008180 */
     pActwk->YPOSI.w.h = iD6; /* Line 610, Address: 0x1008280 */
     pActwk->X_WIDE = 40; /* Line 611, Address: 0x1008288 */
     pActwk->Y_WIDE = 4; /* Line 612, Address: 0x1008294 */
-    pActwk->X_SPEED.l = 262144; /* Line 613, Address: 0x10082a0 */
+    pActwk->X_SPEED.l = 0x40000; /* Line 613, Address: 0x10082a0 */
     pActwk->Y_SPEED.l = 327680; /* Line 614, Address: 0x10082ac */
     pActwk->SPR_FLG |= 8; /* Line 615, Address: 0x10082b8 */
 
@@ -672,7 +672,7 @@ void tails_set() { /* Line 644, Address: 0x10083a0 */
     pActwk->YPOSI.w.h = iD6; /* Line 672, Address: 0x10084a4 */
     pActwk->X_WIDE = 36; /* Line 673, Address: 0x10084ac */
     pActwk->Y_WIDE = 2; /* Line 674, Address: 0x10084b8 */
-    pActwk->X_SPEED.l = 131072; /* Line 675, Address: 0x10084c4 */
+    pActwk->X_SPEED.l = 0x20000; /* Line 675, Address: 0x10084c4 */
     pActwk->Y_SPEED.l = 0; /* Line 676, Address: 0x10084d0 */
 
     pActwk->ACT_NO = 6; /* Line 678, Address: 0x10084d8 */

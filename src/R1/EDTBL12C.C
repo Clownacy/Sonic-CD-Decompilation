@@ -14,7 +14,6 @@ extern sprite_pattern* pat_friend0[];
 extern sprite_pattern* pat_friend1[];
 extern sprite_pattern* e_ka_pat[];
 extern sprite_pattern* e_chou_pat[];
-extern sprite_pattern* e_chou_pat[];
 extern sprite_pattern* ari_pat[];
 extern sprite_pattern* itempat[];
 extern sprite_pattern* patbase_kuzure_a[];
@@ -33,7 +32,7 @@ edit_data edit_tbl = {
     { 13, 1, futapat,            830 },
     {  9, 1, k_daipat,           880 },
     { 27, 1, iwapat,             860 },
-    { 33, 1, dai11a_pattbl,     17598 },
+    { 33, 1, dai11a_pattbl,    17598 },
     { 15, 4, komapat,            808 },
     { 10, 1, springpat,         1312 },
     { 10, 1, springpat,         1312, 0, 2, 0, 0 },

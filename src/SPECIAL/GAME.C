@@ -1491,7 +1491,7 @@ void hscal0_4() { /* Line 1488, Address: 0x1007480 */
   int* a2;
   short d7;
 
-  d0 = 262144; /* Line 1494, Address: 0x1007498 */
+  d0 = 0x40000; /* Line 1494, Address: 0x1007498 */
   d1 = 0; /* Line 1495, Address: 0x10074a0 */
   rlspd_get(&d0, &d1); /* Line 1496, Address: 0x10074a4 */
   hsdata0 += d0; /* Line 1497, Address: 0x10074b4 */
@@ -1614,7 +1614,7 @@ void hscal0_5() { /* Line 1611, Address: 0x10079b0 */
   char* a2;
   short d2, d7;
 
-  d0 = 262144; /* Line 1617, Address: 0x10079c8 */
+  d0 = 0x40000; /* Line 1617, Address: 0x10079c8 */
   d1 = 0; /* Line 1618, Address: 0x10079d0 */
   rlspd_get(&d0, &d1); /* Line 1619, Address: 0x10079d4 */
   hsdata0 += d0; /* Line 1620, Address: 0x10079e4 */
@@ -1694,7 +1694,7 @@ void hscrspd_get(int* lD0, int* lD1) { /* Line 1686, Address: 0x1007d10 */
 
 
 
-  *lD0 = 262144; /* Line 1697, Address: 0x1007d20 */
+  *lD0 = 0x40000; /* Line 1697, Address: 0x1007d20 */
   rlspd_get(lD0, lD1); /* Line 1698, Address: 0x1007d2c */
   hsdata2 += *lD0; /* Line 1699, Address: 0x1007d3c */
   *lD0 /= 2; /* Line 1700, Address: 0x1007d58 */

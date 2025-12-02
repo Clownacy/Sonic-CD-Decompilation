@@ -3,6 +3,7 @@
 #include "ACTION.H"
 #include "ACTSET.H"
 #include "DUMMY.H"
+#include "IMPFUNCS.H"
 #include "LOADER2.H"
 #include "SCORE.H"
 
@@ -39,7 +40,7 @@ static void clear_wait(sprite_status* pAct);
 
 static sprite_pattern game0 = {
   1,
-  { { -72, -8, 0, SPRITE_ZONE_BASE } } // base 379
+  { { -72, -8, 0, SPRITE_ZONE_BASE } }
 };
 static sprite_pattern game1 = {
   1,
@@ -180,36 +181,6 @@ static unsigned short cleartbl[12] = {
   272, 512, 240,   1,
   204,   0, 288,   2
 };
-extern void(*WaveAllStop)();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -587,7 +558,7 @@ label1:
       ((short*)pTmpAct)[23] = *wp++; /* Line 587, Address: 0x1013034 */
       pTmpAct->patno = *wp++ & 255; /* Line 588, Address: 0x1013048 */
 
-      if (i == 2) {  /* Line 590, Address: 0x1013068 */
+      if (i == 2) { /* Line 590, Address: 0x1013068 */
         pTmpAct->patno = pTmpAct->patno + stageno.b.l; /* Line 591, Address: 0x1013074 */
       }
       actwkchk(&pTmpAct); /* Line 593, Address: 0x10130a0 */
@@ -624,120 +595,120 @@ static void clear_move0(sprite_status* pAct) { /* Line 600, Address: 0x10130e0 *
 
 
 
-static void clear_move1(sprite_status* pAct) { // Line 627, Address: 0x1013200
+static void clear_move1(sprite_status* pAct) { /* Line 627, Address: 0x1013200 */
   int_union lD0;
 
-  lD0.l = 0; // Line 630, Address: 0x101320c
-  bonus_f = 1; // Line 631, Address: 0x1013210
-  if (!timebonus) { // Line 632, Address: 0x101321c
-    if (!ringbonus) { // Line 633, Address: 0x101322c
-      --((unsigned short*)pAct)[27]; // Line 634, Address: 0x101323c
-      if (((short*)pAct)[27] < 0) { // Line 635, Address: 0x101324c
-        pAct->r_no0 += 2; // Line 636, Address: 0x1013264
-        if (systemtimer.w.l - ClearSountWait >= 540) { // Line 637, Address: 0x1013274
-          ClearSountWait = systemtimer.w.l - 540; // Line 638, Address: 0x10132a0
+  lD0.l = 0; /* Line 630, Address: 0x101320c */
+  bonus_f = 1; /* Line 631, Address: 0x1013210 */
+  if (!timebonus) { /* Line 632, Address: 0x101321c */
+    if (!ringbonus) { /* Line 633, Address: 0x101322c */
+      --((unsigned short*)pAct)[27]; /* Line 634, Address: 0x101323c */
+      if (((short*)pAct)[27] < 0) { /* Line 635, Address: 0x101324c */
+        pAct->r_no0 += 2; /* Line 636, Address: 0x1013264 */
+        if (systemtimer.w.l - ClearSountWait >= 540) { /* Line 637, Address: 0x1013274 */
+          ClearSountWait = systemtimer.w.l - 540; /* Line 638, Address: 0x10132a0 */
         }
       }
 
-      if (((short*)pAct)[27] == 30) { // Line 642, Address: 0x10132c0
-        if (special_flag) { // Line 643, Address: 0x10132dc
-          soundset(200); // Line 644, Address: 0x10132ec
+      if (((short*)pAct)[27] == 30) { /* Line 642, Address: 0x10132c0 */
+        if (special_flag) { /* Line 643, Address: 0x10132dc */
+          soundset(200); /* Line 644, Address: 0x10132ec */
         }
       }
 
-      actionsub(pAct); // Line 648, Address: 0x10132f8
-      return; // Line 649, Address: 0x1013304
+      actionsub(pAct); /* Line 648, Address: 0x10132f8 */
+      return; /* Line 649, Address: 0x1013304 */
     }
   }
 
-  if (timebonus) { // Line 653, Address: 0x101330c
-    lD0.w.l += 10; // Line 654, Address: 0x101331c
-    timebonus -= 100; // Line 655, Address: 0x1013328
+  if (timebonus) { /* Line 653, Address: 0x101330c */
+    lD0.w.l += 10; /* Line 654, Address: 0x101331c */
+    timebonus -= 100; /* Line 655, Address: 0x1013328 */
   }
-  if (ringbonus) { // Line 657, Address: 0x101333c
+  if (ringbonus) { /* Line 657, Address: 0x101333c */
 
-    lD0.w.l += 10; // Line 659, Address: 0x101334c
-    ringbonus -= 100; // Line 660, Address: 0x1013358
+    lD0.w.l += 10; /* Line 659, Address: 0x101334c */
+    ringbonus -= 100; /* Line 660, Address: 0x1013358 */
   }
 
-  if (!timebonus && !ringbonus) { // Line 663, Address: 0x101336c
-    WaveAllStop(); // Line 664, Address: 0x101338c
-    soundset(154); // Line 665, Address: 0x101339c
-    if (((unsigned short*)pAct)[27] >= 45) { // Line 666, Address: 0x10133a8
-      ((unsigned short*)pAct)[27] = 45; // Line 667, Address: 0x10133c0
+  if (!timebonus && !ringbonus) { /* Line 663, Address: 0x101336c */
+    WaveAllStop(); /* Line 664, Address: 0x101338c */
+    soundset(154); /* Line 665, Address: 0x101339c */
+    if (((unsigned short*)pAct)[27] >= 45) { /* Line 666, Address: 0x10133a8 */
+      ((unsigned short*)pAct)[27] = 45; /* Line 667, Address: 0x10133c0 */
     }
-  } // Line 669, Address: 0x10133cc
+  } /* Line 669, Address: 0x10133cc */
   else {
 
-    if (((unsigned short*)pAct)[27]) { // Line 672, Address: 0x10133d4
-      --((unsigned short*)pAct)[27]; // Line 673, Address: 0x10133e4
+    if (((unsigned short*)pAct)[27]) { /* Line 672, Address: 0x10133d4 */
+      --((unsigned short*)pAct)[27]; /* Line 673, Address: 0x10133e4 */
     }
 
-    if (pAct->actfree[8] % 2 == 0) { // Line 676, Address: 0x10133f4
-      soundset(189); // Line 677, Address: 0x1013424
+    if (pAct->actfree[8] % 2 == 0) { /* Line 676, Address: 0x10133f4 */
+      soundset(189); /* Line 677, Address: 0x1013424 */
     }
   }
 
-  scoreup(lD0.l); // Line 681, Address: 0x1013430
-  actionsub(pAct); // Line 682, Address: 0x101343c
+  scoreup(lD0.l); /* Line 681, Address: 0x1013430 */
+  actionsub(pAct); /* Line 682, Address: 0x101343c */
 
-} // Line 684, Address: 0x1013448
+} /* Line 684, Address: 0x1013448 */
 
 
-static void clear_move2(sprite_status* pAct) { // Line 687, Address: 0x1013460
+static void clear_move2(sprite_status* pAct) { /* Line 687, Address: 0x1013460 */
   short_union wD0;
 
-  gameflag.w = 2; // Line 690, Address: 0x101346c
-  plflag = 0; // Line 691, Address: 0x1013478
-  enecgflg = 0; // Line 692, Address: 0x1013480
+  gameflag.w = 2; /* Line 690, Address: 0x101346c */
+  plflag = 0; /* Line 691, Address: 0x1013478 */
+  enecgflg = 0; /* Line 692, Address: 0x1013480 */
 
-  flowercnt[0] = 0; // Line 694, Address: 0x1013488
-  flowercnt[1] = 0; // Line 695, Address: 0x1013490
-  flowercnt[2] = 0; // Line 696, Address: 0x1013498
-  tv_flag = 0; // Line 697, Address: 0x10134a0
+  flowercnt[0] = 0; /* Line 694, Address: 0x1013488 */
+  flowercnt[1] = 0; /* Line 695, Address: 0x1013490 */
+  flowercnt[2] = 0; /* Line 696, Address: 0x1013498 */
+  tv_flag = 0; /* Line 697, Address: 0x10134a0 */
 
-  enkeino = 0; // Line 699, Address: 0x10134a8
-  projector_flag = 0; // Line 700, Address: 0x10134b0
-  markerno = 0; // Line 701, Address: 0x10134b8
+  enkeino = 0; /* Line 699, Address: 0x10134a8 */
+  projector_flag = 0; /* Line 700, Address: 0x10134b0 */
+  markerno = 0; /* Line 701, Address: 0x10134b8 */
 
-  if (ta_flag) { // Line 703, Address: 0x10134c0
-    play_start &= 254; // Line 704, Address: 0x10134d0
+  if (ta_flag) { /* Line 703, Address: 0x10134c0 */
+    play_start &= 254; /* Line 704, Address: 0x10134d0 */
   }
 
-  play_start &= 253; // Line 707, Address: 0x10134e4
-  time_flag = 1; // Line 708, Address: 0x10134f8
-  wD0.w = stageno.w; // Line 709, Address: 0x1013504
-  ++wD0.b.l; // Line 710, Address: 0x1013510
-  if (wD0.b.l == 2) { // Line 711, Address: 0x101351c
-    time_flag = 2; // Line 712, Address: 0x1013534
+  play_start &= 253; /* Line 707, Address: 0x10134e4 */
+  time_flag = 1; /* Line 708, Address: 0x10134f8 */
+  wD0.w = stageno.w; /* Line 709, Address: 0x1013504 */
+  ++wD0.b.l; /* Line 710, Address: 0x1013510 */
+  if (wD0.b.l == 2) { /* Line 711, Address: 0x101351c */
+    time_flag = 2; /* Line 712, Address: 0x1013534 */
   }
-  if (wD0.b.l == 3) { // Line 714, Address: 0x1013540
-    ++wD0.b.h; // Line 715, Address: 0x1013558
-    wD0.b.l = 0; // Line 716, Address: 0x1013564
+  if (wD0.b.l == 3) { /* Line 714, Address: 0x1013540 */
+    ++wD0.b.h; /* Line 715, Address: 0x1013558 */
+    wD0.b.l = 0; /* Line 716, Address: 0x1013564 */
   }
-  stageno.w = wD0.w; // Line 718, Address: 0x1013568
+  stageno.w = wD0.w; /* Line 718, Address: 0x1013568 */
 
-  flagwkclr(); // Line 720, Address: 0x1013574
-  fadeout_s(); // Line 721, Address: 0x101357c
-  actionsub(pAct); // Line 722, Address: 0x1013584
-  if (stageno.b.l == 0) { // Line 723, Address: 0x1013590
-    gf_flag = 0; // Line 724, Address: 0x10135a8
-    return; // Line 725, Address: 0x10135b0
+  flagwkclr(); /* Line 720, Address: 0x1013574 */
+  fadeout_s(); /* Line 721, Address: 0x101357c */
+  actionsub(pAct); /* Line 722, Address: 0x1013584 */
+  if (stageno.b.l == 0) { /* Line 723, Address: 0x1013590 */
+    gf_flag = 0; /* Line 724, Address: 0x10135a8 */
+    return; /* Line 725, Address: 0x10135b0 */
   }
 
-  if (!ta_flag) { // Line 728, Address: 0x10135b8
-    if (clrspflg_save != 127) { // Line 729, Address: 0x10135c8
-      if (!generate_flag) return; // Line 730, Address: 0x10135e0
-      generate_flag = 0; // Line 731, Address: 0x10135f0
+  if (!ta_flag) { /* Line 728, Address: 0x10135b8 */
+    if (clrspflg_save != 127) { /* Line 729, Address: 0x10135c8 */
+      if (!generate_flag) return; /* Line 730, Address: 0x10135e0 */
+      generate_flag = 0; /* Line 731, Address: 0x10135f0 */
 
-      gf_flag |= 1 << stageno.b.l - 1; // Line 733, Address: 0x10135f8
-      if (gf_flag != 3) return; // Line 734, Address: 0x101362c
+      gf_flag |= 1 << stageno.b.l - 1; /* Line 733, Address: 0x10135f8 */
+      if (gf_flag != 3) return; /* Line 734, Address: 0x101362c */
     }
 
-    generate_flag = 1; // Line 737, Address: 0x1013644
+    generate_flag = 1; /* Line 737, Address: 0x1013644 */
   }
 
-} // Line 740, Address: 0x1013650
+} /* Line 740, Address: 0x1013650 */
 
 
 static void clear_wait(sprite_status* pAct) { /* Line 743, Address: 0x1013660 */

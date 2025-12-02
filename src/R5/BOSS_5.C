@@ -1753,8 +1753,8 @@ static int egg5hibana_ini(sprite_status* pActwk) { /* Line 1746, Address: 0x1026
   pActwk->sprvsize = 4; /* Line 1753, Address: 0x1026814 */
   pActwk->sproffset = 8892; /* Line 1754, Address: 0x1026820 */
   pActwk->patbase = egg5hibana_pat; /* Line 1755, Address: 0x102682c */
-  *(int*)&pActwk->actfree[16] = -131072; /* Line 1756, Address: 0x102683c */
-  ((int*)pActwk)[4] = -131072; /* Line 1757, Address: 0x102684c */
+  *(int*)&pActwk->actfree[16] = -0x20000; /* Line 1756, Address: 0x102683c */
+  ((int*)pActwk)[4] = -0x20000; /* Line 1757, Address: 0x102684c */
   if (!pActwk->actfree[3]) /* Line 1758, Address: 0x1026858 */
     ret = egg5hibana_1(pActwk); /* Line 1759, Address: 0x1026868 */
   else
@@ -1862,7 +1862,7 @@ static void egg5hari_1(sprite_status* pActwk) { /* Line 1853, Address: 0x1026b60
 
 
 static void egg5hari_2(sprite_status* pActwk) { /* Line 1864, Address: 0x1026bc0 */
-  pActwk->yposi.l -= 131072; /* Line 1865, Address: 0x1026bcc */
+  pActwk->yposi.l -= 0x20000; /* Line 1865, Address: 0x1026bcc */
   if (pActwk->yposi.w.h > 672) /* Line 1866, Address: 0x1026be0 */
     egg5hari_chk(pActwk); /* Line 1867, Address: 0x1026bfc */
   else
@@ -1876,7 +1876,7 @@ static void egg5hari_2(sprite_status* pActwk) { /* Line 1864, Address: 0x1026bc0
 
 
 static void egg5hari_3(sprite_status* pActwk) { /* Line 1878, Address: 0x1026c50 */
-  pActwk->xposi.l += 131072; /* Line 1879, Address: 0x1026c5c */
+  pActwk->xposi.l += 0x20000; /* Line 1879, Address: 0x1026c5c */
   if (pActwk->xposi.w.h < 3280) /* Line 1880, Address: 0x1026c70 */
     egg5hari_chk(pActwk); /* Line 1881, Address: 0x1026c8c */
   else

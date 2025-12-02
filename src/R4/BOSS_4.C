@@ -815,10 +815,10 @@ static void e4a_03_most_near(sprite_status* pActwk) { /* Line 814, Address: 0x10
   if ((long int)(int)pActwk->yspeed.w > 2048 || (long int)(int)pActwk->xspeed.w > 2048) { /* Line 815, Address: 0x1021b5c */
 
 
-    ((int*)pActwk)[16] = 1048576; /* Line 818, Address: 0x1021ba4 */
+    ((int*)pActwk)[16] = 0x100000; /* Line 818, Address: 0x1021ba4 */
     ((int*)pActwk)[4] = 741000; /* Line 819, Address: 0x1021bb0 */
   } else {/* Line 820, Address: 0x1021bc0 */
-    ((int*)pActwk)[16] = 524288; /* Line 821, Address: 0x1021bc8 */
+    ((int*)pActwk)[16] = 0x80000; /* Line 821, Address: 0x1021bc8 */
     ((int*)pActwk)[4] = 370000; /* Line 822, Address: 0x1021bd4 */
   }
 

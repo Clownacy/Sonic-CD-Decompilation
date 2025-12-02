@@ -2,8 +2,8 @@
 #include "SUICIDE.H"
 #include "ACTION.H"
 #include "ACTSET.H"
+#include "LOADER2.H"
 
-extern void soundset(short ReqNo);
 
 
 

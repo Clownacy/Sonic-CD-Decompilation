@@ -5,6 +5,7 @@
 #include "..\DIRCOL.H"
 #include "..\ETC.H"
 #include "..\GOAL.H"
+#include "..\IMPFUNCS.H"
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\SCORE.H"
@@ -332,7 +333,6 @@ char bomtbl_ctrl2[6] =
   -16, -56,
    16, -56
 };
-extern int(*sRandom)();
 extern sprite_pattern* bakupat[];
 extern char* bakuchg[];
 
@@ -895,7 +895,7 @@ void egg3_tobi(sprite_status* actionwk) { /* Line 875, Address: 0x102d420 */
 } /* Line 895, Address: 0x102d500 */
 
 void egg3_esc1(sprite_status* actionwk) { /* Line 897, Address: 0x102d510 */
-  actionwk->yposi.l += -262144; /* Line 898, Address: 0x102d518 */
+  actionwk->yposi.l += -0x40000; /* Line 898, Address: 0x102d518 */
   if (actionwk->yposi.w.h <= ((short*)actionwk)[25]) /* Line 899, Address: 0x102d52c */
   {
     actionwk->mstno.w = 1024; /* Line 901, Address: 0x102d558 */
@@ -907,7 +907,7 @@ void egg3_esc1(sprite_status* actionwk) { /* Line 897, Address: 0x102d510 */
 } /* Line 907, Address: 0x102d5b0 */
 
 void egg3_esc2(sprite_status* actionwk) { /* Line 909, Address: 0x102d5c0 */
-  actionwk->xposi.l += 262144; /* Line 910, Address: 0x102d5cc */
+  actionwk->xposi.l += 0x40000; /* Line 910, Address: 0x102d5cc */
   if (actionwk->xposi.w.h < ((short*)actionwk)[25]) return; /* Line 911, Address: 0x102d5e0 */
 
   frameout(actionwk); /* Line 913, Address: 0x102d60c */
@@ -993,7 +993,7 @@ void egg3cannon_01(sprite_status* actionwk) { /* Line 977, Address: 0x102d8b0 */
     a1->actno = 62; /* Line 993, Address: 0x102d964 */
     a1->xposi.w.h = actionwk->xposi.w.h; /* Line 994, Address: 0x102d970 */
     a1->yposi.w.h = actionwk->yposi.w.h + 8; /* Line 995, Address: 0x102d980 */
-    d0 = sRandom() & 524287; /* Line 996, Address: 0x102d9a4 */
+    d0 = sRandom() & 0x7FFFF; /* Line 996, Address: 0x102d9a4 */
     d0 %= 1024; /* Line 997, Address: 0x102d9bc */
     d1 = 12; /* Line 998, Address: 0x102d9dc */
     if (actionwk->patcnt == 0) /* Line 999, Address: 0x102d9e8 */

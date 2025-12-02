@@ -350,7 +350,7 @@ static void p_init(sprite_status* pActwk) { /* Line 339, Address: 0x1020aa0 */
   if (pActwk->userflag.b.h >= 0) /* Line 350, Address: 0x1020b14 */
   {
     ((int*)pActwk)[12] = 65536; /* Line 352, Address: 0x1020b2c */
-    ((int*)pActwk)[13] = -262144; /* Line 353, Address: 0x1020b38 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 353, Address: 0x1020b38 */
   } /* Line 354, Address: 0x1020b44 */
   else
   {
@@ -376,7 +376,7 @@ static void p_move(sprite_status* pActwk) { /* Line 364, Address: 0x1020b80 */
   {
     pActwk->r_no0 += 2; /* Line 377, Address: 0x1020c20 */
     pActwk->yposi.w.h += temp; /* Line 378, Address: 0x1020c30 */
-    ((int*)pActwk)[13] = -262144; /* Line 379, Address: 0x1020c40 */
+    ((int*)pActwk)[13] = -0x40000; /* Line 379, Address: 0x1020c40 */
   }
   actionsub(pActwk); /* Line 381, Address: 0x1020c4c */
   frameout_s(pActwk); /* Line 382, Address: 0x1020c58 */
