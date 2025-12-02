@@ -594,12 +594,6 @@ int SDL_main(const int argc, char** const argv)
 
 										switch (event.key.keysym.scancode)
 										{
-											case SDL_SCANCODE_SPACE:
-												swdata &= ~0x1000;
-												if (pressed)
-													swdata |= 0x1000;
-												break;
-
 											case SDL_SCANCODE_UP:
 												swdata &= ~0x100;
 												if (pressed)
@@ -622,6 +616,31 @@ int SDL_main(const int argc, char** const argv)
 												swdata &= ~0x800;
 												if (pressed)
 													swdata |= 0x800;
+												break;
+
+											case SDL_SCANCODE_SPACE:
+											case SDL_SCANCODE_Z:
+												swdata &= ~0x1000;
+												if (pressed)
+													swdata |= 0x1000;
+												break;
+
+											case SDL_SCANCODE_X:
+												swdata &= ~0x2000;
+												if (pressed)
+													swdata |= 0x2000;
+												break;
+
+											case SDL_SCANCODE_C:
+												swdata &= ~0x4000;
+												if (pressed)
+													swdata |= 0x4000;
+												break;
+
+											case SDL_SCANCODE_ESCAPE:
+												swdata &= ~0x8000;
+												if (pressed)
+													swdata |= 0x8000;
 												break;
 										}
 
