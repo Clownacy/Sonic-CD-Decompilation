@@ -399,7 +399,7 @@ static void DrawTileLineWhole(unsigned char* const output, const unsigned long i
 	DrawTileLine(output, input, x_flip, palette_line, 0, TILE_WIDTH);
 }
 
-static void DrawPlanes(void)
+static void DrawPlanes(const bool target_priority)
 {
 	const unsigned long vscroll = ExportedFunctions.Get_vscroll();
 	unsigned int vscrolls[2];
@@ -441,6 +441,10 @@ static void DrawPlanes(void)
 				const bool y_flip = (tile_metadata & 0x1000) != 0;
 				const unsigned int tile_line_y = ((vscrolls[plane] + y) % 8) ^ (y_flip ? 7 : 0);
 				const unsigned int palette_line = (tile_metadata >> 13) & 3;
+				const bool priority = (tile_metadata & 0x8000) != 0;
+
+				if (priority != target_priority)
+					continue;
 
 				if (tile_x == 0)
 					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, x_offset, TILE_WIDTH);
@@ -453,11 +457,16 @@ static void DrawPlanes(void)
 	}
 }
 
-static void DrawSprites(void)
+static void DrawSprites(const bool target_priority)
 {
-	while (sprite_queue_index != 0)
+	for (unsigned int i = sprite_queue_index; i-- != 0; )
 	{
-		const SpriteQueueSlot* const sprite = &sprite_queue[--sprite_queue_index];
+		const SpriteQueueSlot* const sprite = &sprite_queue[i];
+
+		const bool priority = (sprite->flip & 0x8000) != 0;
+
+		if (priority != target_priority)
+			continue;
 
 		const unsigned int x_flip = (sprite->flip >> 0) & 1;
 		const unsigned int y_flip = (sprite->flip >> 1) & 1;
@@ -653,8 +662,11 @@ int SDL_main(const int argc, char** const argv)
 							// Clear framebuffer.
 							SDL_FillRect(framebuffer, NULL, 0);
 
-							DrawPlanes();
-							DrawSprites();
+							DrawPlanes(false);
+							DrawSprites(false);
+							DrawPlanes(true);
+							DrawSprites(true);
+							sprite_queue_index = 0;
 
 							// Update the colour palette.
 							for (unsigned int i = 0; i < COUNT_OF(raw_palettes[1]); ++i)
