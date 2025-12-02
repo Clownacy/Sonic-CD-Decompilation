@@ -45,7 +45,7 @@
 
 
 
-void kaiten0() { /* Line 48, Address: 0x1004620 */
+void kaiten0(void) { /* Line 48, Address: 0x1004620 */
   zoomwk.az = playwk.k_kaku; /* Line 49, Address: 0x1004628 */
   zoomwk.x = playwk.x_posi.w.h; /* Line 50, Address: 0x1004638 */
   zoomwk.y = playwk.y_posi.w.h; /* Line 51, Address: 0x1004648 */
@@ -68,7 +68,7 @@ void kaiten0() { /* Line 48, Address: 0x1004620 */
 
 
 
-void kaiten_init() {} /* Line 71, Address: 0x1004680 */
+void kaiten_init(void) {} /* Line 71, Address: 0x1004680 */
 
 
 
@@ -105,7 +105,7 @@ void kaiten_init() {} /* Line 71, Address: 0x1004680 */
 
 
 
-void k_3d() { /* Line 108, Address: 0x1004690 */
+void k_3d(void) { /* Line 108, Address: 0x1004690 */
   int_union lD0, lD1;
   short i;
   short* ptv_adr;
@@ -176,8 +176,8 @@ void k_3d() { /* Line 108, Address: 0x1004690 */
   lD0.l = k_wk.k_sin << 7; /* Line 176, Address: 0x10049cc */
   lD0.l >>= 8; /* Line 177, Address: 0x10049e4 */
 
-  lD0.w.l += k_wk.k_xt_c; /* Line 179, Address: 0x10049f0 */
-  k_wk.k_msx = lD0.w.l; /* Line 180, Address: 0x1004a0c */
+  lD0.w.l += k_wk.k_yt_c; /* Line 179, Address: 0x10049f0 */
+  k_wk.k_msy = lD0.w.l; /* Line 180, Address: 0x1004a0c */
 
 
   k_wk.k_x_rx = zoomwk.x - k_wk.k_rx; /* Line 183, Address: 0x1004a18 */
@@ -211,7 +211,7 @@ void k_3d() { /* Line 108, Address: 0x1004690 */
 
 
 
-int calc_xt_r() { /* Line 214, Address: 0x1004b60 */
+int calc_xt_r(void) { /* Line 214, Address: 0x1004b60 */
   int_union lD0, lD1, lD2;
 
 
@@ -272,7 +272,7 @@ int calc_xt_s(int scale) { /* Line 244, Address: 0x1004c60 */
 
 
 
-int calc_yt_r() { /* Line 275, Address: 0x1004d60 */
+int calc_yt_r(void) { /* Line 275, Address: 0x1004d60 */
   int_union lD0, lD1, lD2;
 
 

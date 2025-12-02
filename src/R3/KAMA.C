@@ -8,6 +8,14 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R31A) || defined(R31B) || defined(R32A)
+  #define SPRITE_KAMA_BASE 465
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_KAMA_BASE 469
+#else
+  #define SPRITE_KAMA_BASE 418
+#endif
+
 static unsigned char bCarry;
 static unsigned char jmp_flg;
 void(*kama_tbl[7])(sprite_status*) = { &kama_init, &kama_fall, &kama_wait, &kama_atck, &kama_pati, &kama_move, &kama_reve };
@@ -18,42 +26,34 @@ unsigned char kama_pchg2[4] = { 7, 0, 4, 255 };
 unsigned char kama_pchg3[4] = { 7, 7, 4, 255 };
 unsigned char kama_pchg4[3] = { 7, 0, 255 };
 unsigned char* kama_pchg[5] = { kama_pchg0, kama_pchg1, kama_pchg2, kama_pchg3, kama_pchg4 };
-sprite_pattern kama_patA = { 3, { { -18, -20, 0, 471 }, { -12, -4, 0, 472 }, { -2, 4, 0, 473 } } };
-sprite_pattern kama_patB = { 3, { { -18, -19, 0, 474 }, { -12, -3, 0, 475 }, { -2, 4, 0, 476 } } };
-sprite_pattern kama_patC = { 3, { { -18, -20, 0, 477 }, { -12, -4, 0, 478 }, { -2, 4, 0, 479 } } };
-sprite_pattern kama_patD = { 3, { { -18, -19, 0, 480 }, { -12, -3, 0, 481 }, { -2, 4, 0, 482 } } };
-sprite_pattern kama_patE = { 3, { { -18, -19, 0, 483 }, { -12, -3, 0, 484 }, { -2, 4, 0, 485 } } };
-sprite_pattern kama_patF = { 4, { { -18, -19, 0, 486 }, { -24, -12, 0, 487 }, { -12, -4, 0, 488 }, { -2, 4, 0, 489 } } };
-sprite_pattern kama_patG = { 3, { { -18, -19, 0, 490 }, { -24, -11, 0, 491 }, { -12, -3, 0, 492 }, { -2, 4, 0, 493 } } };
-sprite_pattern kama_patH = { 3, { { -18, -20, 0, 494 }, { -12, -4, 0, 495 }, { -2, 4, 0, 496 } } };
+sprite_pattern kama_patA = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 6 }, { -12, -4, 0, SPRITE_KAMA_BASE + 7 }, { -2, 4, 0, SPRITE_KAMA_BASE + 8 } } };
+sprite_pattern kama_patB = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 9 }, { -12, -3, 0, SPRITE_KAMA_BASE + 10 }, { -2, 4, 0, SPRITE_KAMA_BASE + 11 } } };
+sprite_pattern kama_patC = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 12 }, { -12, -4, 0, SPRITE_KAMA_BASE + 13 }, { -2, 4, 0, SPRITE_KAMA_BASE + 14 } } };
+sprite_pattern kama_patD = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 15 }, { -12, -3, 0, SPRITE_KAMA_BASE + 16 }, { -2, 4, 0, SPRITE_KAMA_BASE + 17 } } };
+sprite_pattern kama_patE = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 18 }, { -12, -3, 0, SPRITE_KAMA_BASE + 19 }, { -2, 4, 0, SPRITE_KAMA_BASE + 20 } } };
+sprite_pattern kama_patF = { 4, { { -18, -19, 0, SPRITE_KAMA_BASE + 21 }, { -24, -12, 0, SPRITE_KAMA_BASE + 22 }, { -12, -4, 0, SPRITE_KAMA_BASE + 23 }, { -2, 4, 0, SPRITE_KAMA_BASE + 24 } } };
+sprite_pattern kama_patG = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 25 }, { -24, -11, 0, SPRITE_KAMA_BASE + 26 }, { -12, -3, 0, SPRITE_KAMA_BASE + 27 }, { -2, 4, 0, SPRITE_KAMA_BASE + 28 } } };
+sprite_pattern kama_patH = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 29 }, { -12, -4, 0, SPRITE_KAMA_BASE + 30 }, { -2, 4, 0, SPRITE_KAMA_BASE + 31 } } };
 sprite_pattern* kamapat[8] = { &kama_patA, &kama_patB, &kama_patC, &kama_patD, &kama_patE, &kama_patF, &kama_patG, &kama_patH };
-sprite_pattern bkama_patA = { 3, { { -18, -20, 0, 497 }, { -12, -4, 0, 498 }, { -2, 4, 0, 499 } } };
-sprite_pattern bkama_patB = { 3, { { -18, -19, 0, 500 }, { -12, -3, 0, 501 }, { -2, 4, 0, 502 } } };
-sprite_pattern bkama_patC = { 3, { { -18, -20, 0, 503 }, { -12, -4, 0, 504 }, { -2, 4, 0, 505 } } };
-sprite_pattern bkama_patD = { 3, { { -18, -19, 0, 506 }, { -12, -3, 0, 507 }, { -2, 4, 0, 508 } } };
-sprite_pattern bkama_patE = { 3, { { -18, -19, 0, 509 }, { -12, -3, 0, 510 }, { -2, 4, 0, 511 } } };
-sprite_pattern bkama_patF = { 3, { { -18, -20, 0, 512 }, { -12, -4, 0, 513 }, { -2, 4, 0, 514 } } };
-sprite_pattern bkama_patG = { 3, { { -18, -19, 0, 515 }, { -12, -3, 0, 516 }, { -2, 4, 0, 517 } } };
-sprite_pattern bkama_patH = { 3, { { -18, -20, 0, 518 }, { -12, -4, 0, 519 }, { -2, 4, 0, 520 } } };
+sprite_pattern bkama_patA = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 32 }, { -12, -4, 0, SPRITE_KAMA_BASE + 33 }, { -2, 4, 0, SPRITE_KAMA_BASE + 34 } } };
+sprite_pattern bkama_patB = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 35 }, { -12, -3, 0, SPRITE_KAMA_BASE + 36 }, { -2, 4, 0, SPRITE_KAMA_BASE + 37 } } };
+sprite_pattern bkama_patC = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 38 }, { -12, -4, 0, SPRITE_KAMA_BASE + 39 }, { -2, 4, 0, SPRITE_KAMA_BASE + 40 } } };
+sprite_pattern bkama_patD = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 41 }, { -12, -3, 0, SPRITE_KAMA_BASE + 42 }, { -2, 4, 0, SPRITE_KAMA_BASE + 43 } } };
+sprite_pattern bkama_patE = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 44 }, { -12, -3, 0, SPRITE_KAMA_BASE + 45 }, { -2, 4, 0, SPRITE_KAMA_BASE + 46 } } };
+sprite_pattern bkama_patF = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 47 }, { -12, -4, 0, SPRITE_KAMA_BASE + 48 }, { -2, 4, 0, SPRITE_KAMA_BASE + 49 } } };
+sprite_pattern bkama_patG = { 3, { { -18, -19, 0, SPRITE_KAMA_BASE + 50 }, { -12, -3, 0, SPRITE_KAMA_BASE + 51 }, { -2, 4, 0, SPRITE_KAMA_BASE + 52 } } };
+sprite_pattern bkama_patH = { 3, { { -18, -20, 0, SPRITE_KAMA_BASE + 53 }, { -12, -4, 0, SPRITE_KAMA_BASE + 54 }, { -2, 4, 0, SPRITE_KAMA_BASE + 55 } } };
 sprite_pattern* bkamapat[8] = { &bkama_patA, &bkama_patB, &bkama_patC, &bkama_patD, &bkama_patE, &bkama_patF, &bkama_patG, &bkama_patH };
 unsigned char wpkama_pchg0[8] = { 3, 0, 1, 2, 3, 4, 5, 255 };
 unsigned char wpkama_pchg1[8] = { 0, 0, 1, 2, 3, 4, 5, 255 };
 unsigned char* wpkama_pchg[2] = { wpkama_pchg0, wpkama_pchg1 };
-sprite_pattern bu0 = { 1, { { -8, -8, 0, 465 } } };
-sprite_pattern bu1 = { 1, { { -8, -8, 0, 466 } } };
-sprite_pattern bu2 = { 1, { { -8, -8, 0, 467 } } };
-sprite_pattern bu3 = { 1, { { -8, -8, 0, 468 } } };
-sprite_pattern bu4 = { 1, { { -8, -8, 0, 469 } } };
-sprite_pattern bu5 = { 1, { { -8, -8, 0, 470 } } };
+sprite_pattern bu0 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE } } };
+sprite_pattern bu1 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE + 1 } } };
+sprite_pattern bu2 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE + 2 } } };
+sprite_pattern bu3 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE + 3 } } };
+sprite_pattern bu4 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE + 4 } } };
+sprite_pattern bu5 = { 1, { { -8, -8, 0, SPRITE_KAMA_BASE + 5 } } };
 sprite_pattern* wpkamapat[6] = { &bu0, &bu1, &bu2, &bu3, &bu4, &bu5 };
-
-
-
-
-
-
-
-
 
 
 

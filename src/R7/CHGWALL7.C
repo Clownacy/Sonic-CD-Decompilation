@@ -4,21 +4,21 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_CHGWALL7_BASE 452
+#else
+  #define SPRITE_CHGWALL7_BASE 403
+#endif
+
 sprite_pattern pat00;
 sprite_pattern pat01 = {
   1,
-  { { -32, -16, 0, 452 } }
+  { { -32, -16, 0, SPRITE_CHGWALL7_BASE } }
 };
 sprite_pattern* pat_chgwall7[2] = {
   &pat00,
   &pat01
 };
-
-
-
-
-
-
 
 
 

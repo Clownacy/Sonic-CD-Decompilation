@@ -1,5 +1,5 @@
 void ReadDIB(char* fileName);
-void FreeDIB();
-void AVIOpeningMove();
-void AVIEnd();
+void FreeDIB(void);
+void AVIOpeningMove(void);
+void AVIEnd(void);
 void AVIPaint(unsigned int hdc);

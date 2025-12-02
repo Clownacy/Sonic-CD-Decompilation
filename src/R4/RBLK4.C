@@ -6,6 +6,12 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R42B)
+  #define SPRITE_RBLK4_BASE 494
+#else
+  #define SPRITE_RBLK4_BASE 506
+#endif
+
 static void rblk4_init(sprite_status* pActwk);
 static void rblk4_wait(sprite_status* pActwk);
 static void rblk4_move(sprite_status* pActwk);
@@ -17,70 +23,70 @@ static sprite_pattern pat00 =
 {
   2,
   {
-    { -8, -8, 0, 506 },
-    { -48, -48, 0, 507 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE },
+    { -48, -48, 0, SPRITE_RBLK4_BASE + 1 }
   }
 };
 static sprite_pattern pat01 =
 {
   2,
   {
-    { -8, -8, 0, 508 },
-    { -48, -16, 0, 509 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 2 },
+    { -48, -16, 0, SPRITE_RBLK4_BASE + 3 }
   }
 };
 static sprite_pattern pat02 =
 {
   2,
   {
-    { -8, -8, 0, 510 },
-    { -16, -16, 0, 511 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 4 },
+    { -16, -16, 0, SPRITE_RBLK4_BASE + 5 }
   }
 };
 static sprite_pattern pat03 =
 {
   2,
   {
-    { -8, -8, 0, 512 },
-    { -16, -48, 0, 513 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 6 },
+    { -16, -48, 0, SPRITE_RBLK4_BASE + 7 }
   }
 };
 static sprite_pattern pat04 =
 {
   2,
   {
-    { -8, -8, 0, 514 },
-    { -48, -48, 0, 515 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 8 },
+    { -48, -48, 0, SPRITE_RBLK4_BASE + 9 }
   }
 };
 static sprite_pattern pat05 =
 {
   2,
   {
-    { -8, -8, 0, 516 },
-    { -48, -24, 0, 517 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 10 },
+    { -48, -24, 0, SPRITE_RBLK4_BASE + 11 }
   }
 };
 static sprite_pattern pat06 =
 {
   2,
   {
-    { -8, -8, 0, 518 },
-    { -24, -48, 0, 519 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 12 },
+    { -24, -48, 0, SPRITE_RBLK4_BASE + 13 }
   }
 };
 static sprite_pattern pat07 =
 {
   2,
   {
-    { -8, -8, 0, 520 },
-    { -48, -48, 0, 521 }
+    { -8, -8, 0, SPRITE_RBLK4_BASE + 14 },
+    { -48, -48, 0, SPRITE_RBLK4_BASE + 15 }
   }
 };
 static sprite_pattern pat08 =
 {
   1,
-  { { -32, -32, 0, 522 } }
+  { { -32, -32, 0, SPRITE_RBLK4_BASE + 16 } }
 };
 sprite_pattern* rblk4pat[9] =
 {
@@ -94,12 +100,6 @@ sprite_pattern* rblk4pat[9] =
   &pat07,
   &pat08
 };
-
-
-
-
-
-
 
 
 

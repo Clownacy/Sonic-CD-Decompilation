@@ -138,13 +138,13 @@ int OEGridCreate(unsigned short indx) { /* Line 36, Address: 0x1003370 */
       } /* Line 138, Address: 0x1003b5c */
     } /* Line 139, Address: 0x1003b74 */
   }
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   return 0; /* Line 148, Address: 0x1003b8c */
 } /* Line 149, Address: 0x1003b90 */
 
@@ -212,7 +212,7 @@ void OEGridDelete(unsigned short indx) { /* Line 153, Address: 0x1003bb0 */
 
 
 
-void OEAllGridDelete() { /* Line 215, Address: 0x1003f00 */
+void OEAllGridDelete(void) { /* Line 215, Address: 0x1003f00 */
 
   OEGridDelete(0); /* Line 217, Address: 0x1003f08 */
   OEGridDelete(1); /* Line 218, Address: 0x1003f14 */

@@ -6,6 +6,22 @@
 #include "..\SUICIDE.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A)
+  #define SPRITE_TONBO_BASE 473
+#elif defined(R41B)
+  #define SPRITE_TONBO_BASE 434
+#elif defined(R41C)
+  #define SPRITE_TONBO_BASE 451
+#elif defined(R42A)
+  #define SPRITE_TONBO_BASE 479
+#elif defined(R42B)
+  #define SPRITE_TONBO_BASE 432
+#elif defined(R43C) || defined(R43D)
+  #define SPRITE_TONBO_BASE 429
+#else
+  #define SPRITE_TONBO_BASE 436
+#endif
+
 static void act_init(sprite_status* pActwk);
 static void act_lr(sprite_status* pActwk);
 
@@ -19,32 +35,32 @@ static unsigned char* pchg[2] =
 static sprite_pattern spr_tonbo_e_00 =
 {
   1,
-  { { -29, -17, 0, 476 } }
+  { { -29, -17, 0, SPRITE_TONBO_BASE + 3 } }
 };
 static sprite_pattern spr_tonbo_e_01 =
 {
   1,
-  { { -29, -13, 0, 477 } }
+  { { -29, -13, 0, SPRITE_TONBO_BASE + 4 } }
 };
 static sprite_pattern spr_tonbo_e_02 =
 {
   1,
-  { { -29, -17, 0, 478 } }
+  { { -29, -17, 0, SPRITE_TONBO_BASE + 5 } }
 };
 static sprite_pattern spr_tonbo_b_00 =
 {
   1,
-  { { -29, -17, 0, 473 } }
+  { { -29, -17, 0, SPRITE_TONBO_BASE } }
 };
 static sprite_pattern spr_tonbo_b_01 =
 {
   1,
-  { { -29, -13, 0, 474 } }
+  { { -29, -13, 0, SPRITE_TONBO_BASE + 1 } }
 };
 static sprite_pattern spr_tonbo_b_02 =
 {
   1,
-  { { -29, -17, 0, 475 } }
+  { { -29, -17, 0, SPRITE_TONBO_BASE + 2 } }
 };
 sprite_pattern* pat_tonbo_e[3] =
 {
@@ -58,22 +74,6 @@ sprite_pattern* pat_tonbo_b[3] =
   &spr_tonbo_b_01,
   &spr_tonbo_b_02
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

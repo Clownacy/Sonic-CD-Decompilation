@@ -9,7 +9,7 @@
 #include "..\SCORE.H"
 
 extern void colchg_boss8(unsigned char* a3, unsigned char* a4);
-extern void fadein_boss8();
+extern void fadein_boss8(void);
 extern void colorset2(int ColorNo);
 
 typedef struct {

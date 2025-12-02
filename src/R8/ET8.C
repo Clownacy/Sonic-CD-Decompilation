@@ -7,18 +7,24 @@
 #include "..\RIDECHK.H"
 #include "..\SCORE.H"
 
+#if defined(R82)
+  #define SPRITE_ET8_BASE 443
+#else
+  #define SPRITE_ET8_BASE 481
+#endif
+
 static void m_init(sprite_status* actionwk);
 static void m_wait(sprite_status* actionwk);
 
 static sprite_pattern tpat00 =
 {
   1,
-  { { -40, 15, 0, 443 } }
+  { { -40, 15, 0, SPRITE_ET8_BASE } }
 };
 static sprite_pattern tpat01 =
 {
   1,
-  { { -40, 16, 0, 444 } }
+  { { -40, 16, 0, SPRITE_ET8_BASE + 1 } }
 };
 static sprite_pattern tpat07 =
 {
@@ -29,37 +35,37 @@ static sprite_pattern tpat02 =
 {
   2,
   {
-    { -24, -32, 0, 450 },
-    { -40, -32, 0, 451 }
+    { -24, -32, 0, SPRITE_ET8_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET8_BASE + 8 }
   }
 };
 static sprite_pattern tpat03 =
 {
   3,
   {
-    { -22, -8, 0, 452 },
-    { -24, -32, 0, 450 },
-    { -40, -32, 0, 451 }
+    { -22, -8, 0, SPRITE_ET8_BASE + 9 },
+    { -24, -32, 0, SPRITE_ET8_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET8_BASE + 8 }
   }
 };
 static sprite_pattern tpat04 =
 {
   4,
   {
-    { -22, -8, 0, 453 },
-    { -24, -32, 0, 456 },
-    { -24, -32, 0, 450 },
-    { -40, -32, 0, 451 }
+    { -22, -8, 0, SPRITE_ET8_BASE + 10 },
+    { -24, -32, 0, SPRITE_ET8_BASE + 13 },
+    { -24, -32, 0, SPRITE_ET8_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET8_BASE + 8 }
   }
 };
 static sprite_pattern tpat05 =
 {
   4,
   {
-    { -22, -8, 0, 454 },
-    { -24, -32, 0, 457 },
-    { -24, -32, 0, 450 },
-    { -40, -32, 0, 451 }
+    { -22, -8, 0, SPRITE_ET8_BASE + 11 },
+    { -24, -32, 0, SPRITE_ET8_BASE + 14 },
+    { -24, -32, 0, SPRITE_ET8_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET8_BASE + 8 }
   }
 };
 static sprite_pattern tpat06 =
@@ -68,8 +74,8 @@ static sprite_pattern tpat06 =
   {
     { -22, -8, 0, 455 },
     { -24, -32, 0, 458 },
-    { -24, -32, 0, 450 },
-    { -40, -32, 0, 451 }
+    { -24, -32, 0, SPRITE_ET8_BASE + 7 },
+    { -40, -32, 0, SPRITE_ET8_BASE + 8 }
   }
 };
 sprite_pattern* pat_et[8] =
@@ -116,12 +122,6 @@ static char tbl0[64] =
 };
 static char pchg0[6] = { 3, 3, 4, 5, 6, -1 };
 static char* pchg[1] = { pchg0 };
-
-
-
-
-
-
 
 
 

@@ -1,9 +1,9 @@
-void playsp();
-void boyo();
+void playsp(void);
+void boyo(void);
 char bycol_sub0(short cal_x, short cal_y);
 void bob(short i, short cal_x, short cal_y, short block_back);
 void bob_s(short i, short cal_x, short cal_y, short block_back);
-void bob_j();
+void bob_j(void);
 void bob0(short i, short cal_x, short cal_y, short block_back);
 void bob1(short i, short cal_x, short cal_y, short block_back);
 void bob_s0(short i, short cal_x, short cal_y, short block_back);

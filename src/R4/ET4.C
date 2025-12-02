@@ -1,5 +1,20 @@
 #include "..\EQU.H"
 #include "ET4.H"
+#include "..\ACTION.H"
+#include "..\ACTSET.H"
+#include "..\LOADER2.H"
+#include "..\SCORE.H"
+#include "PLAYSUB4.H"
+
+extern int hitchk(sprite_status* pActwk, sprite_status* pPlayerwk);
+
+#if defined(R41B)
+  #define SPRITE_ET4_BASE 459
+#elif defined(R42B)
+  #define SPRITE_ET4_BASE 473
+#else
+  #define SPRITE_ET4_BASE 431
+#endif
 
 static void m_init(sprite_status* pActwk);
 static void m_wait(sprite_status* pActwk);
@@ -11,31 +26,31 @@ static char p_a[6] = { 3, 3, 4, 5, 6, -1 };
 static char* pchg[1] = { p_a };
 static sprite_pattern et_pat00 = {
   1,
-  { { -40, 16, 0, 431 } }
+  { { -40, 16, 0, SPRITE_ET4_BASE } }
 };
 static sprite_pattern et_pat01 = {
   1,
-  { { -40, 16, 0, 432 } }
+  { { -40, 16, 0, SPRITE_ET4_BASE + 1 } }
 };
 static sprite_pattern et_pat02 = {
   1,
-  { { -40, -32, 0, 433 } }
+  { { -40, -32, 0, SPRITE_ET4_BASE + 2 } }
 };
 static sprite_pattern et_pat03 = {
   1,
-  { { -40, -32, 0, 434 } }
+  { { -40, -32, 0, SPRITE_ET4_BASE + 3 } }
 };
 static sprite_pattern et_pat04 = {
   1,
-  { { -40, -32, 0, 435 } }
+  { { -40, -32, 0, SPRITE_ET4_BASE + 4 } }
 };
 static sprite_pattern et_pat05 = {
   1,
-  { { -40, -32, 0, 436 } }
+  { { -40, -32, 0, SPRITE_ET4_BASE + 5 } }
 };
 static sprite_pattern et_pat06 = {
   1,
-  { { -40, -32, 0, 437 } }
+  { { -40, -32, 0, SPRITE_ET4_BASE + 6 } }
 };
 static sprite_pattern et_pat07;
 sprite_pattern* pat_et[8] = {
@@ -64,21 +79,6 @@ static char tbl0[64] = {
    30,  10,  20,  32, -10,   2,  34,  30,
    -8,  35,  13, -10,  40, -10,  10,  -1
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -286,7 +286,7 @@ static void m_wait(sprite_status* pActwk) { /* Line 271, Address: 0x1021de0 */
       return; /* Line 286, Address: 0x1021eac */
     }
     hitchk(pActwk, &actwk[0]); /* Line 288, Address: 0x1021eb4 */
-    patchg(pActwk, pchg); /* Line 289, Address: 0x1021ec8 */
+    patchg(pActwk, (unsigned char**)pchg); /* Line 289, Address: 0x1021ec8 */
   }
 
 

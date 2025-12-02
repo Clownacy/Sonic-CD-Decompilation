@@ -152,7 +152,7 @@ void beem6_posiset(sprite_status* actionwk) { /* Line 149, Address: 0x1018c00 */
 } /* Line 152, Address: 0x1018c28 */
 
 
-void beem6_actsch() { /* Line 155, Address: 0x1018c40 */
+void beem6_actsch(void) { /* Line 155, Address: 0x1018c40 */
   sprite_status* a1;
   short d0;
 
@@ -171,7 +171,7 @@ void beem6_actsch() { /* Line 155, Address: 0x1018c40 */
 } /* Line 171, Address: 0x1018d04 */
 
 
-void clrset0() { /* Line 174, Address: 0x1018d20 */
+void clrset0(void) { /* Line 174, Address: 0x1018d20 */
   PALETTEENTRY *lpPe_a2, *lpPe_a3;
   PALETTEENTRY dummy;
   short d0, d2;
@@ -205,7 +205,7 @@ label1:
   *lpPe_a3++ = dummy; /* Line 205, Address: 0x1018efc */
 } /* Line 206, Address: 0x1018f28 */
 
-void clrset0_2() { /* Line 208, Address: 0x1018f50 */
+void clrset0_2(void) { /* Line 208, Address: 0x1018f50 */
   PALETTEENTRY *lpPe_a2, *lpPe_a3;
   PALETTEENTRY dummy;
   short d0, d2;

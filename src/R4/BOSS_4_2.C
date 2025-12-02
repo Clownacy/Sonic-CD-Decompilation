@@ -442,7 +442,7 @@ static unsigned int egg4_scrset(sprite_status* pActwk) { /* Line 412, Address: 0
 static unsigned int egg4_scrreset(sprite_status* pActwk) { /* Line 442, Address: 0x1022670 */
   short *pScrdir, sLeft, sRight, sUp, sDown, BgmNo;
 
-  pScrdir = (short*)scr_dir_tbl; /* Line 445, Address: 0x1022694 */
+  pScrdir = (short*)&scr_dir_tbl[1]; /* Line 445, Address: 0x1022694 */
   sLeft = *pScrdir++; /* Line 446, Address: 0x102269c */
   sRight = *pScrdir++; /* Line 447, Address: 0x10226b0 */
   sUp = *pScrdir++; /* Line 448, Address: 0x10226c4 */

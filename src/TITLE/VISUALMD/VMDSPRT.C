@@ -98,7 +98,7 @@ void DeleteCharSprt(int nMenuNum, int colom) { /* Line 85, Address: 0x1003780 */
 
 
 
-void DeleteAllCharSprt() { /* Line 101, Address: 0x1003960 */
+void DeleteAllCharSprt(void) { /* Line 101, Address: 0x1003960 */
   int n, m;
 
   for (n = 0; n < 5; ++n) /* Line 104, Address: 0x1003970 */

@@ -6,6 +6,12 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_MINOMUSI_BASE 451
+#else
+  #define SPRITE_MINOMUSI_BASE 457
+#endif
+
 static short act_check(sprite_status* actionwk, sprite_status* pw);
 
 static sprite_pattern nullpat =
@@ -16,79 +22,73 @@ static sprite_pattern nullpat =
 static sprite_pattern ito01 =
 {
   1,
-  { { -4, -12, 0, 451 } }
+  { { -4, -12, 0, SPRITE_MINOMUSI_BASE } }
 };
 static sprite_pattern ito02 =
 {
   1,
-  { { -4, -16, 0, 452 } }
+  { { -4, -16, 0, SPRITE_MINOMUSI_BASE + 1 } }
 };
 static sprite_pattern ito03 =
 {
   1,
-  { { -4, -20, 0, 453 } }
+  { { -4, -20, 0, SPRITE_MINOMUSI_BASE + 2 } }
 };
 static sprite_pattern ito04 =
 {
   1,
-  { { -4, -24, 0, 454 } }
+  { { -4, -24, 0, SPRITE_MINOMUSI_BASE + 3 } }
 };
 static sprite_pattern ito05 =
 {
   1,
-  { { -4, -28, 0, 455 } }
+  { { -4, -28, 0, SPRITE_MINOMUSI_BASE + 4 } }
 };
 static sprite_pattern ito06 =
 {
   1,
-  { { -4, -32, 0, 456 } }
+  { { -4, -32, 0, SPRITE_MINOMUSI_BASE + 5 } }
 };
 static sprite_pattern ito07 =
 {
   1,
-  { { -4, -36, 0, 457 } }
+  { { -4, -36, 0, SPRITE_MINOMUSI_BASE + 6 } }
 };
 static sprite_pattern ito08 =
 {
   1,
-  { { -4, -40, 0, 458 } }
+  { { -4, -40, 0, SPRITE_MINOMUSI_BASE + 7 } }
 };
 static sprite_pattern mino1 =
 {
   1,
-  { { -8, -16, 0, 459 } }
+  { { -8, -16, 0, SPRITE_MINOMUSI_BASE + 8 } }
 };
 static sprite_pattern mino2 =
 {
   1,
-  { { -12, -16, 0, 460 } }
+  { { -12, -16, 0, SPRITE_MINOMUSI_BASE + 9 } }
 };
 static sprite_pattern mino3 =
 {
   1,
-  { { -16, -16, 0, 461 } }
+  { { -16, -16, 0, SPRITE_MINOMUSI_BASE + 10 } }
 };
 static sprite_pattern mino4 =
 {
   1,
-  { { -8, -16, 0, 462 } }
+  { { -8, -16, 0, SPRITE_MINOMUSI_BASE + 11 } }
 };
 static sprite_pattern mino5 =
 {
   1,
-  { { -8, -16, 0, 463 } }
+  { { -8, -16, 0, SPRITE_MINOMUSI_BASE + 12 } }
 };
 sprite_pattern* pat_minomusi_e[12] = { &nullpat, &ito01, &ito02, &ito03, &ito04, &ito05, &ito06, &ito07, &ito08, &mino1, &mino2, &mino3 };
 sprite_pattern* pat_minomusi_b[11] = { &nullpat, &ito01, &ito02, &ito03, &ito04, &ito05, &ito06, &ito07, &ito08, &mino4, &mino5 };
 static char pchg0[36] = { 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 11, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, -1 };
 static char pchg1[4] = { 9, 9, 10, -1 };
 char* pchg[2] = { pchg0, pchg1 };
-
-
-
-
-
-
 
 
 

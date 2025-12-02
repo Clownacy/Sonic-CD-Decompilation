@@ -34,7 +34,7 @@ extern sprite_status_thanks actwk[66];
 
 
 
-void sprinit() { /* Line 37, Address: 0x1001100 */
+void sprinit(void) { /* Line 37, Address: 0x1001100 */
   short *a1, *a2;
   int ld0;
   short d0, d1, d5;
@@ -63,7 +63,7 @@ void sprinit() { /* Line 37, Address: 0x1001100 */
     900, 1500
   };
 
-  void(*sprinit_tbl[8])() = /* Line 66, Address: 0x1001188 */
+  void(*sprinit_tbl[8])(void) = /* Line 66, Address: 0x1001188 */
   {
     &flick_set,
     &inco_set,
@@ -115,14 +115,14 @@ label1:
 
 
 
-void sonic_set() {
+void sonic_set(void) {
   actwk[0].ACT_NO = 1; /* Line 119, Address: 0x1001350 */
 } /* Line 120, Address: 0x100135c */
 
 
 
 
-void flick_set() { /* Line 125, Address: 0x1001370 */
+void flick_set(void) { /* Line 125, Address: 0x1001370 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 128, Address: 0x1001378 */
@@ -134,7 +134,7 @@ void flick_set() { /* Line 125, Address: 0x1001370 */
 
 
 
-void pocky_set() { /* Line 137, Address: 0x10013b0 */
+void pocky_set(void) { /* Line 137, Address: 0x10013b0 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 140, Address: 0x10013b8 */
@@ -146,7 +146,7 @@ void pocky_set() { /* Line 137, Address: 0x10013b0 */
 
 
 
-void pecky_set() { /* Line 149, Address: 0x10013f0 */
+void pecky_set(void) { /* Line 149, Address: 0x10013f0 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 152, Address: 0x10013f8 */
@@ -158,7 +158,7 @@ void pecky_set() { /* Line 149, Address: 0x10013f0 */
 
 
 
-void ricky_set() { /* Line 161, Address: 0x1001430 */
+void ricky_set(void) { /* Line 161, Address: 0x1001430 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 164, Address: 0x1001438 */
@@ -170,7 +170,7 @@ void ricky_set() { /* Line 161, Address: 0x1001430 */
 
 
 
-void inco_set() { /* Line 173, Address: 0x1001470 */
+void inco_set(void) { /* Line 173, Address: 0x1001470 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 176, Address: 0x1001478 */
@@ -182,7 +182,7 @@ void inco_set() { /* Line 173, Address: 0x1001470 */
 
 
 
-void hato_set() { /* Line 185, Address: 0x10014b0 */
+void hato_set(void) { /* Line 185, Address: 0x10014b0 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 188, Address: 0x10014b8 */
@@ -194,7 +194,7 @@ void hato_set() { /* Line 185, Address: 0x10014b0 */
 
 
 
-void sheep_set() { /* Line 197, Address: 0x10014f0 */
+void sheep_set(void) { /* Line 197, Address: 0x10014f0 */
   sprite_status_thanks* pNewActwk;
 
   if (get_actwk(&pNewActwk) == 0) /* Line 200, Address: 0x10014f8 */

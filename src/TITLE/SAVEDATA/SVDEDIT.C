@@ -49,7 +49,7 @@ extern int nSelectFileNumber;
 
 
 
-int Edit() { /* Line 52, Address: 0x1000c50 */
+int Edit(void) { /* Line 52, Address: 0x1000c50 */
   int posi;
 
   bEditMode = 1; /* Line 55, Address: 0x1000c64 */
@@ -221,7 +221,7 @@ void DispSaveData(int indx) { /* Line 154, Address: 0x1001150 */
 
 
 
-void DispAll() { /* Line 224, Address: 0x1001420 */
+void DispAll(void) { /* Line 224, Address: 0x1001420 */
   int i;
 
   DefaultMessage(); /* Line 227, Address: 0x100142c */

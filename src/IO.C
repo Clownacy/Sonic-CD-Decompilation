@@ -18,7 +18,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 12, Address: 0x1002
 
 
 
-int random() { /* Line 21, Address: 0x1002340 */
+int random(void) { /* Line 21, Address: 0x1002340 */
   int_union lD0, lD1;
   unsigned short w;
 
@@ -59,7 +59,7 @@ int random() { /* Line 21, Address: 0x1002340 */
 } /* Line 59, Address: 0x1002470 */
 
 
-void scrinit() {
+void scrinit(void) {
   vscroll.l = 0; /* Line 63, Address: 0x1002480 */
   hscroll.l = 0; /* Line 64, Address: 0x1002488 */
 } /* Line 65, Address: 0x1002490 */

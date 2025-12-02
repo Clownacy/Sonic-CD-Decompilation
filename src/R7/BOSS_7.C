@@ -74,15 +74,15 @@ static void egg7_goal0(sprite_status* pActwk);
 static void egg7_goal1(sprite_status* pActwk);
 static void egg7_goal2(sprite_status* pActwk);
 static void egg7_goal3(sprite_status* pActwk);
-static void emie7clrset();
+static void emie7clrset(void);
 static void egg7_spdset(sprite_status* pActwk);
 static void egg7_maxspdset(sprite_status* pActwk, short d1);
 static void egg_beamchk(sprite_status* pActwk);
 static void egg7_hscr(sprite_status* pActwk);
-static void egg7_hscr_pat0();
-static void egg7_hscr_pat1();
-static void egg7_hscr_pat2();
-static void egg7_hscr_pat3();
+static void egg7_hscr_pat0(void);
+static void egg7_hscr_pat1(void);
+static void egg7_hscr_pat2(void);
+static void egg7_hscr_pat3(void);
 static void egg_hight(sprite_status* pActwk);
 static void msnc_hight(sprite_status* pActwk);
 static void hight_set2(sprite_status* pActwk);
@@ -1846,7 +1846,7 @@ static void egg7_goal3(sprite_status* pActwk) { /* Line 1828, Address: 0x102b7c0
 } /* Line 1846, Address: 0x102b844 */
 
 
-static void emie7clrset() { /* Line 1849, Address: 0x102b860 */
+static void emie7clrset(void) { /* Line 1849, Address: 0x102b860 */
   short i;
   PALETTEENTRY *a3, *a4, *a5;
 
@@ -1977,7 +1977,7 @@ static void egg_beamchk(sprite_status* pActwk) { /* Line 1961, Address: 0x102bc6
 
 
 static void egg7_hscr(sprite_status* pActwk) { /* Line 1979, Address: 0x102bd40 */
-  void(*rlim_jmpd0[4])() = /* Line 1980, Address: 0x102bd50 */
+  void(*rlim_jmpd0[4])(void) = /* Line 1980, Address: 0x102bd50 */
   {
     &egg7_hscr_pat0,
     &egg7_hscr_pat1,
@@ -2013,10 +2013,10 @@ static void egg7_hscr(sprite_status* pActwk) { /* Line 1979, Address: 0x102bd40 
 
 
 
-static void egg7_hscr_pat0() {} /* Line 2016, Address: 0x102be90 */
+static void egg7_hscr_pat0(void) {} /* Line 2016, Address: 0x102be90 */
 
 
-static void egg7_hscr_pat1() { /* Line 2019, Address: 0x102bea0 */
+static void egg7_hscr_pat1(void) { /* Line 2019, Address: 0x102bea0 */
   short d0;
 
   d0 = 2880; /* Line 2022, Address: 0x102bea8 */
@@ -2025,7 +2025,7 @@ static void egg7_hscr_pat1() { /* Line 2019, Address: 0x102bea0 */
 } /* Line 2025, Address: 0x102bec4 */
 
 
-static void egg7_hscr_pat2() { /* Line 2028, Address: 0x102bee0 */
+static void egg7_hscr_pat2(void) { /* Line 2028, Address: 0x102bee0 */
   short d0;
 
   d0 = 15776; /* Line 2031, Address: 0x102bee8 */
@@ -2034,7 +2034,7 @@ static void egg7_hscr_pat2() { /* Line 2028, Address: 0x102bee0 */
 } /* Line 2034, Address: 0x102bf04 */
 
 
-static void egg7_hscr_pat3() {
+static void egg7_hscr_pat3(void) {
   scralim_right = scr_dir_tbl[2]; /* Line 2038, Address: 0x102bf20 */
   scralim_n_right = scr_dir_tbl[2]; /* Line 2039, Address: 0x102bf30 */
 } /* Line 2040, Address: 0x102bf40 */

@@ -37,7 +37,7 @@ static unsigned char byMskwk;
 
 
 
-void clwout() {
+void clwout(void) {
   clfflg = 1; /* Line 41, Address: 0x1004b60 */
   *lpFadeFlag = 2; /* Line 42, Address: 0x1004b6c */
   FadeCount = 8; /* Line 43, Address: 0x1004b7c */
@@ -45,7 +45,7 @@ void clwout() {
 } /* Line 45, Address: 0x1004b90 */
 
 
-void clwout_new() { /* Line 48, Address: 0x1004ba0 */
+void clwout_new(void) { /* Line 48, Address: 0x1004ba0 */
   if (wColwk >= 3) /* Line 49, Address: 0x1004ba8 */
   {
     *lpFadeFlag = 0; /* Line 51, Address: 0x1004bc0 */
@@ -112,7 +112,7 @@ void woutcolor(unsigned short wD1) { /* Line 75, Address: 0x1004c50 */
 
 
 
-void clwin_init() { /* Line 115, Address: 0x1004d50 */
+void clwin_init(void) { /* Line 115, Address: 0x1004d50 */
   short i;
   PALETTEENTRY* lpColwk;
   PALETTEENTRY* lpSavewk;
@@ -137,7 +137,7 @@ void clwin_init() { /* Line 115, Address: 0x1004d50 */
 
 
 
-void clwin() {
+void clwin(void) {
   *lpFadeFlag = 1; /* Line 141, Address: 0x1004e20 */
   FadeCount = 8; /* Line 142, Address: 0x1004e30 */
   wColwk = 0; /* Line 143, Address: 0x1004e3c */
@@ -145,7 +145,7 @@ void clwin() {
 } /* Line 145, Address: 0x1004e50 */
 
 
-void clwin_new() { /* Line 148, Address: 0x1004e60 */
+void clwin_new(void) { /* Line 148, Address: 0x1004e60 */
   if (wColwk >= 3) /* Line 149, Address: 0x1004e68 */
   {
     *lpFadeFlag = 0; /* Line 151, Address: 0x1004e80 */
@@ -219,7 +219,7 @@ void wincolor(unsigned char byD0, unsigned short wD1) { /* Line 177, Address: 0x
 
 
 
-int FadeProc() { /* Line 222, Address: 0x10050a0 */
+int FadeProc(void) { /* Line 222, Address: 0x10050a0 */
   switch (*lpFadeFlag) /* Line 223, Address: 0x10050a8 */
   {
     case 1:

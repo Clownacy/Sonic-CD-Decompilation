@@ -6,7 +6,7 @@
 #include "STGENTRY.H"
 #include "STGSPRT.H"
 
-static void UpdateMenu();
+static void UpdateMenu(void);
 
 extern unsigned short nSequenceNum;
 extern stgitem menuTbl[];
@@ -43,7 +43,7 @@ extern int nTimerCunt;
 
 
 
-void STGDraw() { /* Line 46, Address: 0x1000900 */
+void STGDraw(void) { /* Line 46, Address: 0x1000900 */
   if (nSequenceNum > 1) /* Line 47, Address: 0x1000908 */
   {
     srfDraw(); /* Line 49, Address: 0x1000920 */
@@ -53,14 +53,14 @@ void STGDraw() { /* Line 46, Address: 0x1000900 */
 
 
 
-static void UpdateMenu() { /* Line 56, Address: 0x1000940 */
+static void UpdateMenu(void) { /* Line 56, Address: 0x1000940 */
   StrMenu(menuTbl[nMenuIndx].str); /* Line 57, Address: 0x1000948 */
 } /* Line 58, Address: 0x100096c */
 
 
 
 
-void STGStart() { /* Line 63, Address: 0x1000980 */
+void STGStart(void) { /* Line 63, Address: 0x1000980 */
   int n;
 
   OEGridCreate(0); /* Line 66, Address: 0x100098c */
@@ -80,7 +80,7 @@ void STGStart() { /* Line 63, Address: 0x1000980 */
 
 
 
-void STGMenu() { /* Line 83, Address: 0x1000a20 */
+void STGMenu(void) { /* Line 83, Address: 0x1000a20 */
   if (swData1 & 256) /* Line 84, Address: 0x1000a28 */
   {
     if (nMenuIndx == 0) nMenuIndx = MENUITEMMAX - 1; /* Line 86, Address: 0x1000a40 */
@@ -110,7 +110,7 @@ void STGMenu() { /* Line 83, Address: 0x1000a20 */
 
 
 
-int STGEnd() { /* Line 113, Address: 0x1000b60 */
+int STGEnd(void) { /* Line 113, Address: 0x1000b60 */
   int ret = 0; /* Line 114, Address: 0x1000b68 */
 
   if (nTimerCunt == 0) /* Line 116, Address: 0x1000b6c */
@@ -121,7 +121,7 @@ int STGEnd() { /* Line 113, Address: 0x1000b60 */
   return ret; /* Line 121, Address: 0x1000bac */
 } /* Line 122, Address: 0x1000bb0 */
 
-int STGEnd2() { /* Line 124, Address: 0x1000bc0 */
+int STGEnd2(void) { /* Line 124, Address: 0x1000bc0 */
   int ret = 0; /* Line 125, Address: 0x1000bc8 */
 
   if (nTimerCunt == 0) /* Line 127, Address: 0x1000bcc */

@@ -420,7 +420,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 420, Address: 0x1020dbc */
 
 
-    case 2:
+    case 5:
       pActwk->mstno.b.h = 0; /* Line 424, Address: 0x1020dc4 */
       pActwk->yposi.l += ((int*)pActwk)[16]; /* Line 425, Address: 0x1020dcc */
 
@@ -439,7 +439,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 439, Address: 0x1020e68 */
 
 
-    case 3:
+    case 6:
       pActwk->mstno.b.h = 2; /* Line 443, Address: 0x1020e70 */
       pActwk->cddat |= 1; /* Line 444, Address: 0x1020e7c */
 
@@ -469,7 +469,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 469, Address: 0x1020f58 */
 
 
-    case 4:
+    case 7:
       pActwk->mstno.b.h = 2; /* Line 473, Address: 0x1020f60 */
       pActwk->cddat &= 254; /* Line 474, Address: 0x1020f6c */
 
@@ -499,7 +499,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 499, Address: 0x1021048 */
 
 
-    case 5:
+    case 2:
       pActwk->mstno.b.h = 0; /* Line 503, Address: 0x1021050 */
       pActwk->yposi.l -= ((int*)pActwk)[16]; /* Line 504, Address: 0x1021058 */
 
@@ -518,7 +518,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 518, Address: 0x10210f4 */
 
 
-    case 6:
+    case 3:
       pActwk->mstno.b.h = 2; /* Line 522, Address: 0x10210fc */
       pActwk->cddat |= 1; /* Line 523, Address: 0x1021108 */
 
@@ -548,7 +548,7 @@ static unsigned int egg4air_01(sprite_status* pActwk) { /* Line 373, Address: 0x
       break; /* Line 548, Address: 0x10211e4 */
 
 
-    case 7:
+    case 4:
       flg = 0; /* Line 552, Address: 0x10211ec */
 
       spdwk = ((int*)pActwk)[16]; /* Line 554, Address: 0x10211f0 */
@@ -592,7 +592,7 @@ static void egg4air_01_next(sprite_status* pActwk, E4A* pEscRoot) { /* Line 589,
   if (!pEscRoot->E4A_ETC || pActwk->colicnt) { /* Line 592, Address: 0x1021310 */
 
     ++pActwk->r_no1; /* Line 594, Address: 0x1021330 */
-    if ((pActwk->r_no1 & 63) > 18) { /* Line 595, Address: 0x1021340 */
+    if ((pActwk->r_no1 & 63) >= 19) { /* Line 595, Address: 0x1021340 */
       pActwk->r_no1 &= 192; /* Line 596, Address: 0x102135c */
     }
   } /* Line 598, Address: 0x102136c */

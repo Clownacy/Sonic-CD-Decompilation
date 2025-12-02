@@ -5,28 +5,28 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41C)
+  #define SPRITE_RENKETU4_BASE 445
+#elif defined(R41D)
+  #define SPRITE_RENKETU4_BASE 431
+#elif defined(R42C) || defined(R42D)
+  #define SPRITE_RENKETU4_BASE 512
+#else
+  #define SPRITE_RENKETU4_BASE 496
+#endif
+
 sprite_pattern renketu4_pat0 = {
   1,
-  { { -32, -8, 0, 496 } }
+  { { -32, -8, 0, SPRITE_RENKETU4_BASE } }
 };
 sprite_pattern renketu4_pat1 = {
   1,
-  { { -8, -8, 0, 497 } }
+  { { -8, -8, 0, SPRITE_RENKETU4_BASE + 1 } }
 };
 sprite_pattern* renketu4pat[2] = {
   &renketu4_pat0,
   &renketu4_pat1
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -37,7 +37,7 @@ extern bmp_info SprBmp[700];
 
 
 
-void action() { /* Line 40, Address: 0x1001260 */
+void action(void) { /* Line 40, Address: 0x1001260 */
   sprite_status* pActwk;
   int i;
 
@@ -195,7 +195,7 @@ void frameout(sprite_status* pActwk) { /* Line 185, Address: 0x1001820 */
 
 
 
-void patset() { /* Line 198, Address: 0x1001860 */
+void patset(void) { /* Line 198, Address: 0x1001860 */
   sprite_status* pActwk;
   unsigned char flag;
   short i;

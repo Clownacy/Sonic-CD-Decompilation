@@ -1,9 +1,9 @@
-void enecginit();
+void enecginit(void);
 void divdevset();
-sprite_status* main_chk();
-void scr_set();
-void scroll();
-void scrollwrt();
+sprite_status* main_chk(void);
+void scr_set(void);
+void scroll(void);
+void scrollwrt(void);
 void scrollwrtb(unsigned char* pScrFlag, unsigned char* pMapWk, int VramBase);
 void hblockwrt(POINT* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt);
 void hblockwrt1(POINT* pTilePoint, int VramBase, unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int lpcnt);
@@ -20,9 +20,9 @@ void vramadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned shor
 void vramadrset0(unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
 void vramadrset2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
 void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, POINT* lpTilePoint);
-void mapwrt();
+void mapwrt(void);
 void mapwrt2(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pMapWk, int VramBase);
 void mapwrt3(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pMapWk, int VramBase, unsigned short wD4, unsigned short wD6);
 void mapwrt_z11c(unsigned char* pMapWk, int VramBase);
 void mapwrt_sub(unsigned char* pWrttbl, unsigned short wD0, unsigned short wD4, unsigned char* pMapWk, int VramBase);
-void mapinit();
+void mapinit(void);

@@ -4,29 +4,35 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_WALL7_BASE 411
+#else
+  #define SPRITE_WALL7_BASE 428
+#endif
+
 static sprite_pattern wall7_pat0 = {
   1,
-  { { -16, -16, 0, 411 } }
+  { { -16, -16, 0, SPRITE_WALL7_BASE } }
 };
 static sprite_pattern wall7_pat1 = {
   1,
-  { { -32, -16, 0, 412 } }
+  { { -32, -16, 0, SPRITE_WALL7_BASE + 1 } }
 };
 static sprite_pattern wall7_pat2 = {
   1,
-  { { -48, -16, 0, 413 } }
+  { { -48, -16, 0, SPRITE_WALL7_BASE + 2 } }
 };
 static sprite_pattern wall7_pat3 = {
   1,
-  { { -64, -16, 0, 414 } }
+  { { -64, -16, 0, SPRITE_WALL7_BASE + 3 } }
 };
 static sprite_pattern wall7_pat4 = {
   1,
-  { { -16, -32, 0, 415 } }
+  { { -16, -32, 0, SPRITE_WALL7_BASE + 4 } }
 };
 static sprite_pattern wall7_pat5 = {
   1,
-  { { -16, -48, 0, 416 } }
+  { { -16, -48, 0, SPRITE_WALL7_BASE + 5 } }
 };
 sprite_pattern* pat_wall7[6] = {
   &wall7_pat0,
@@ -36,12 +42,6 @@ sprite_pattern* pat_wall7[6] = {
   &wall7_pat4,
   &wall7_pat5
 };
-
-
-
-
-
-
 
 
 

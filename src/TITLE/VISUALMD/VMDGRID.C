@@ -94,6 +94,6 @@ void OEGridDelete(unsigned short indx) { /* Line 75, Address: 0x1000f80 */
 
 
 
-void OEAllGridDelete() { /* Line 97, Address: 0x10010b0 */
+void OEAllGridDelete(void) { /* Line 97, Address: 0x10010b0 */
   OEGridDelete(0); /* Line 98, Address: 0x10010b8 */
 } /* Line 99, Address: 0x10010c4 */

@@ -81,7 +81,7 @@ static unsigned int CreateCharSprt(int colom, char code) { /* Line 51, Address: 
 
 
 
-void DeleteAllCharSprt() { /* Line 84, Address: 0x1001000 */
+void DeleteAllCharSprt(void) { /* Line 84, Address: 0x1001000 */
   int m;
 
   for (m = 0; m < 12; ++m) /* Line 87, Address: 0x100100c */

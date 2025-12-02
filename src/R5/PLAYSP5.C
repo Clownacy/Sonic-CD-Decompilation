@@ -75,7 +75,7 @@ short* belt_tbl[4] = {
 
 
 
-void playsp() { /* Line 78, Address: 0x1017d60 */
+void playsp(void) { /* Line 78, Address: 0x1017d60 */
   belt(); /* Line 79, Address: 0x1017d68 */
 } /* Line 80, Address: 0x1017d70 */
 
@@ -83,7 +83,7 @@ void playsp() { /* Line 78, Address: 0x1017d60 */
 
 
 
-void belt() { /* Line 86, Address: 0x1017d80 */
+void belt(void) { /* Line 86, Address: 0x1017d80 */
   short wD0, wD2, wD3;
 
   if (bossflag) return; /* Line 89, Address: 0x1017d94 */
@@ -104,7 +104,7 @@ void belt() { /* Line 86, Address: 0x1017d80 */
 
 
 
-void belt_effect() { /* Line 107, Address: 0x1017f20 */
+void belt_effect(void) { /* Line 107, Address: 0x1017f20 */
   int lD0;
   char bD1;
   short wD1;

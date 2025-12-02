@@ -106,7 +106,7 @@ static sprite_pattern tbl26 = {
 };
 static sprite_pattern tbl27 = {
   1,
-  { { -30, -20, 0, 27 } }
+  { { -20, -48, 0, 27 } }
 };
 static sprite_pattern tbl28 = {
   1,
@@ -511,12 +511,12 @@ static sprite_patterns_sp table30 = {
 };
 static sprite_patterns_sp table31 = {
   1,
-  255,
+  -1,
   { &tbl48 }
 };
 static sprite_patterns_sp table32 = {
   1,
-  255,
+  -1,
   { &tbl49 }
 };
 static sprite_patterns_sp table33 = {
@@ -530,7 +530,7 @@ static sprite_patterns_sp table33 = {
 };
 static sprite_patterns_sp table34 = {
   1,
-  255,
+  -1,
   { &tbl54 }
 };
 static sprite_patterns_sp table35 = {
@@ -540,42 +540,42 @@ static sprite_patterns_sp table35 = {
 };
 static sprite_patterns_sp table36 = {
   1,
-  255,
+  -1,
   { &tbl56 }
 };
 static sprite_patterns_sp table37 = {
   1,
-  255,
+  -1,
   { &tbl57 }
 };
 static sprite_patterns_sp table38 = {
   1,
-  255,
+  -1,
   { &tbl58 }
 };
 static sprite_patterns_sp table39 = {
   1,
-  255,
+  -1,
   { &tbl59 }
 };
 static sprite_patterns_sp table40 = {
   1,
-  255,
+  -1,
   { &tbl60 }
 };
 static sprite_patterns_sp table41 = {
   1,
-  255,
+  -1,
   { &tbl61 }
 };
 static sprite_patterns_sp table42 = {
   1,
-  255,
+  -1,
   { &tbl62 }
 };
 static sprite_patterns_sp table43 = {
   1,
-  255,
+  -1,
   { &tbl63 }
 };
 static sprite_patterns_sp table44 = {
@@ -635,7 +635,7 @@ static sprite_pattern kag00 = {
 };
 static sprite_pattern kag01 = {
   1,
-  { { -40, -35, 0, 72 } }
+  { { -35, -8, 0, 72 } }
 };
 static sprite_pattern kag02 = {
   1,
@@ -671,52 +671,52 @@ static sprite_pattern kag09 = {
 };
 static sprite_patterns_sp kag_tbl00 = {
   1,
-  255,
+  -1,
   { &kag00 }
 };
 static sprite_patterns_sp kag_tbl01 = {
   1,
-  255,
+  -1,
   { &kag01 }
 };
 static sprite_patterns_sp kag_tbl02 = {
   1,
-  255,
+  -1,
   { &kag02 }
 };
 static sprite_patterns_sp kag_tbl03 = {
   1,
-  255,
+  -1,
   { &kag03 }
 };
 static sprite_patterns_sp kag_tbl04 = {
   1,
-  255,
+  -1,
   { &kag04 }
 };
 static sprite_patterns_sp kag_tbl05 = {
   1,
-  255,
+  -1,
   { &kag05 }
 };
 static sprite_patterns_sp kag_tbl06 = {
   1,
-  255,
+  -1,
   { &kag06 }
 };
 static sprite_patterns_sp kag_tbl07 = {
   1,
-  255,
+  -1,
   { &kag07 }
 };
 static sprite_patterns_sp kag_tbl08 = {
   1,
-  255,
+  -1,
   { &kag08 }
 };
 static sprite_patterns_sp kag_tbl09 = {
   1,
-  255,
+  -1,
   { &kag09 }
 };
 sprite_patterns_sp* mpkage[10] = {
@@ -749,7 +749,7 @@ static sprite_pattern uft05 = {
 };
 static sprite_pattern uft06 = {
   1,
-  { { -15, -28, 0, 87 } }
+  { { -15, -24, 0, 87 } }
 };
 static sprite_pattern uft07 = {
   1,
@@ -765,52 +765,52 @@ static sprite_pattern uft09 = {
 };
 static sprite_patterns_sp uft_tbl00 = {
   1,
-  255,
+  -1,
   { &uft00 }
 };
 static sprite_patterns_sp uft_tbl01 = {
   1,
-  255,
+  -1,
   { &uft01 }
 };
 static sprite_patterns_sp uft_tbl02 = {
   1,
-  255,
+  -1,
   { &uft02 }
 };
 static sprite_patterns_sp uft_tbl03 = {
   1,
-  255,
+  -1,
   { &uft03 }
 };
 static sprite_patterns_sp uft_tbl04 = {
   1,
-  255,
+  -1,
   { &uft04 }
 };
 static sprite_patterns_sp uft_tbl05 = {
   1,
-  255,
+  -1,
   { &uft05 }
 };
 static sprite_patterns_sp uft_tbl06 = {
   1,
-  255,
+  -1,
   { &uft06 }
 };
 static sprite_patterns_sp uft_tbl07 = {
   1,
-  255,
+  -1,
   { &uft07 }
 };
 static sprite_patterns_sp uft_tbl08 = {
   1,
-  255,
+  -1,
   { &uft08 }
 };
 static sprite_patterns_sp uft_tbl09 = {
   1,
-  255,
+  -1,
   { &uft09 }
 };
 sprite_patterns_sp* mptufo[10] = {
@@ -859,52 +859,52 @@ static sprite_pattern ufx09 = {
 };
 static sprite_patterns_sp ufx_tbl00 = {
   1,
-  255,
+  -1,
   { &ufx00 }
 };
 static sprite_patterns_sp ufx_tbl01 = {
   1,
-  255,
+  -1,
   { &ufx01 }
 };
 static sprite_patterns_sp ufx_tbl02 = {
   1,
-  255,
+  -1,
   { &ufx02 }
 };
 static sprite_patterns_sp ufx_tbl03 = {
   1,
-  255,
+  -1,
   { &ufx03 }
 };
 static sprite_patterns_sp ufx_tbl04 = {
   1,
-  255,
+  -1,
   { &ufx04 }
 };
 static sprite_patterns_sp ufx_tbl05 = {
   1,
-  255,
+  -1,
   { &ufx05 }
 };
 static sprite_patterns_sp ufx_tbl06 = {
   1,
-  255,
+  -1,
   { &ufx06 }
 };
 static sprite_patterns_sp ufx_tbl07 = {
   1,
-  255,
+  -1,
   { &ufx07 }
 };
 static sprite_patterns_sp ufx_tbl08 = {
   1,
-  255,
+  -1,
   { &ufx08 }
 };
 static sprite_patterns_sp ufx_tbl09 = {
   1,
-  255,
+  -1,
   { &ufx09 }
 };
 sprite_patterns_sp* mpufox[10] = {
@@ -953,52 +953,52 @@ static sprite_pattern ufy09 = {
 };
 static sprite_patterns_sp ufy_tbl00 = {
   1,
-  255,
+  -1,
   { &ufy00 }
 };
 static sprite_patterns_sp ufy_tbl01 = {
   1,
-  255,
+  -1,
   { &ufy01 }
 };
 static sprite_patterns_sp ufy_tbl02 = {
   1,
-  255,
+  -1,
   { &ufy02 }
 };
 static sprite_patterns_sp ufy_tbl03 = {
   1,
-  255,
+  -1,
   { &ufy03 }
 };
 static sprite_patterns_sp ufy_tbl04 = {
   1,
-  255,
+  -1,
   { &ufy04 }
 };
 static sprite_patterns_sp ufy_tbl05 = {
   1,
-  255,
+  -1,
   { &ufy05 }
 };
 static sprite_patterns_sp ufy_tbl06 = {
   1,
-  255,
+  -1,
   { &ufy06 }
 };
 static sprite_patterns_sp ufy_tbl07 = {
   1,
-  255,
+  -1,
   { &ufy07 }
 };
 static sprite_patterns_sp ufy_tbl08 = {
   1,
-  255,
+  -1,
   { &ufy08 }
 };
 static sprite_patterns_sp ufy_tbl09 = {
   1,
-  255,
+  -1,
   { &ufy09 }
 };
 sprite_patterns_sp* mpufoy[10] = {

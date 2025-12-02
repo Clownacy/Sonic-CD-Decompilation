@@ -4,6 +4,12 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R82)
+  #define SPRITE_OKUSIESO_BASE 411
+#else
+  #define SPRITE_OKUSIESO_BASE 414
+#endif
+
 static void okusieso_init(sprite_status* pActwk);
 static void okusieso_move(sprite_status* pActwk);
 static void ball_move(sprite_status* pActwk);
@@ -13,52 +19,52 @@ static sprite_pattern spr_sieso_00 =
 {
   2,
   {
-    { -40, -56, 0, 411 },
-    { -32, -24, 0, 420 }
+    { -40, -56, 0, SPRITE_OKUSIESO_BASE },
+    { -32, -24, 0, SPRITE_OKUSIESO_BASE + 9 }
   }
 };
 static sprite_pattern spr_sieso_01 =
 {
   2,
   {
-    { -24, -24, 0, 421 },
-    { -40, -40, 0, 412 }
+    { -24, -24, 0, SPRITE_OKUSIESO_BASE + 10 },
+    { -40, -40, 0, SPRITE_OKUSIESO_BASE + 1 }
   }
 };
 static sprite_pattern spr_sieso_02 =
 {
   1,
-  { { -24, -24, 0, 413 } }
+  { { -24, -24, 0, SPRITE_OKUSIESO_BASE + 2 } }
 };
 static sprite_pattern spr_sieso_03 =
 {
   1,
-  { { -40, -32, 0, 414 } }
+  { { -40, -32, 0, SPRITE_OKUSIESO_BASE + 3 } }
 };
 static sprite_pattern spr_sieso_04 =
 {
   1,
-  { { -40, -40, 0, 415 } }
+  { { -40, -40, 0, SPRITE_OKUSIESO_BASE + 4 } }
 };
 static sprite_pattern spr_ball_00 =
 {
   1,
-  { { -16, -16, 0, 416 } }
+  { { -16, -16, 0, SPRITE_OKUSIESO_BASE + 5 } }
 };
 static sprite_pattern spr_ball_01 =
 {
   1,
-  { { -24, -24, 0, 417 } }
+  { { -24, -24, 0, SPRITE_OKUSIESO_BASE + 6 } }
 };
 static sprite_pattern spr_ball_02 =
 {
   1,
-  { { -32, -32, 0, 418 } }
+  { { -32, -32, 0, SPRITE_OKUSIESO_BASE + 7 } }
 };
 static sprite_pattern spr_dai_00 =
 {
   1,
-  { { -40, -12, 0, 419 } }
+  { { -40, -12, 0, SPRITE_OKUSIESO_BASE + 8 } }
 };
 sprite_pattern* okusiesopat[9] =
 {
@@ -72,12 +78,6 @@ sprite_pattern* okusiesopat[9] =
   &spr_ball_02,
   &spr_dai_00
 };
-
-
-
-
-
-
 
 
 

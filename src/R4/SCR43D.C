@@ -126,7 +126,7 @@ extern map_init_data mapinittbl;
 
 
 
-void enecginit() {} /* Line 129, Address: 0x1027410 */
+void enecginit(void) {} /* Line 129, Address: 0x1027410 */
 
 
 
@@ -177,7 +177,7 @@ void divdevset() {} /* Line 133, Address: 0x1027420 */
 
 
 
-sprite_status* main_chk() {
+sprite_status* main_chk(void) {
   if (!main_play) return &actwk[0]; /* Line 181, Address: 0x1027430 */
   else return &actwk[1]; /* Line 182, Address: 0x1027450 */
 } /* Line 183, Address: 0x1027458 */
@@ -187,7 +187,7 @@ sprite_status* main_chk() {
 
 
 
-void scr_set() { /* Line 190, Address: 0x1027460 */
+void scr_set(void) { /* Line 190, Address: 0x1027460 */
   int i;
 
 
@@ -221,7 +221,7 @@ void scr_set() { /* Line 190, Address: 0x1027460 */
 
 
 
-void playposiset() { /* Line 224, Address: 0x1027670 */
+void playposiset(void) { /* Line 224, Address: 0x1027670 */
   unsigned short endplpositbl[16] = { /* Line 225, Address: 0x1027684 */
       80,  944,
     3744, 1132,
@@ -333,7 +333,7 @@ void scrbinit(short yWk) { /* Line 312, Address: 0x1027990 */
 
 
 
-void scroll() { /* Line 336, Address: 0x1027a70 */
+void scroll(void) { /* Line 336, Address: 0x1027a70 */
   uint_union data;
   int_union temp1, temp2;
   int hsCount;
@@ -485,7 +485,7 @@ static void zonescrsetsub0(short HPosi, short VPosi, unsigned short offs) { /* L
 
 
 
-void scroll_h() { /* Line 488, Address: 0x1027f50 */
+void scroll_h(void) { /* Line 488, Address: 0x1027f50 */
   unsigned short wD4;
 
   wD4 = scra_h_posit.w.h; /* Line 491, Address: 0x1027f5c */
@@ -504,7 +504,7 @@ void scroll_h() { /* Line 488, Address: 0x1027f50 */
 
 } /* Line 505, Address: 0x1028014 */
 
-void scrh_move() { /* Line 507, Address: 0x1028030 */
+void scrh_move(void) { /* Line 507, Address: 0x1028030 */
   unsigned short wD0;
 
   wD0 = actwk[0].xposi.w.h; /* Line 510, Address: 0x102803c */
@@ -582,7 +582,7 @@ void left_check(unsigned short wD0) { /* Line 548, Address: 0x10281e0 */
 
 
 
-void scroll_v() { /* Line 585, Address: 0x10282e0 */
+void scroll_v(void) { /* Line 585, Address: 0x10282e0 */
   unsigned short wD0;
 
   wD0 = actwk[0].yposi.w.h - scra_v_posit.w.h; /* Line 588, Address: 0x10282ec */
@@ -694,7 +694,7 @@ void sv_move_main2(unsigned short wD0) { /* Line 682, Address: 0x1028640 */
 } /* Line 694, Address: 0x10286c0 */
 
 
-void sv_move_sub2() { /* Line 697, Address: 0x10286d0 */
+void sv_move_sub2(void) { /* Line 697, Address: 0x10286d0 */
   limmoveflag = 0; /* Line 698, Address: 0x10286d8 */
   sv_move_sub(0); /* Line 699, Address: 0x10286e0 */
 } /* Line 700, Address: 0x10286ec */
@@ -999,7 +999,7 @@ void scrollz_h(int lD4, int flagz) { /* Line 961, Address: 0x1028fe0 */
 
 
 
-void scrollwrtadva() { /* Line 1002, Address: 0x10290f0 */
+void scrollwrtadva(void) { /* Line 1002, Address: 0x10290f0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   unsigned char* pScrFlag;
@@ -1030,7 +1030,7 @@ void scrollwrtadva() { /* Line 1002, Address: 0x10290f0 */
 
 
 
-void scrollwrt() { /* Line 1033, Address: 0x10291a0 */
+void scrollwrt(void) { /* Line 1033, Address: 0x10291a0 */
   unsigned short wH_posiw, wV_posiw;
   int VramBase;
   POINT TilePoint;
@@ -1133,7 +1133,7 @@ void scrollwrtb(unsigned char* pScrFlag, unsigned char* pMapWk, int VramBase, un
 
   if (*pScrFlag) { /* Line 1134, Address: 0x1029480 */
     if (*pScrFlag & 1) { /* Line 1135, Address: 0x1029490 */
-      *pScrFlag &= 254;; /* Line 1136, Address: 0x10294a8 */
+      *pScrFlag &= 254; /* Line 1136, Address: 0x10294a8 */
 
       lD4.l = -16; /* Line 1138, Address: 0x10294bc */
       wD5 = 65520; /* Line 1139, Address: 0x10294c4 */
@@ -1195,12 +1195,12 @@ void scrollwrtb(unsigned char* pScrFlag, unsigned char* pMapWk, int VramBase, un
 
 
 
-void scrollwrtc() {} /* Line 1198, Address: 0x10296d0 */
+void scrollwrtc(void) {} /* Line 1198, Address: 0x10296d0 */
 
 
 
 
-void scrollwrtz() {} /* Line 1203, Address: 0x10296e0 */
+void scrollwrtz(void) {} /* Line 1203, Address: 0x10296e0 */
 
 
 
@@ -1377,12 +1377,12 @@ void blockwrt(int VramBase, POINT* pTilePoint, int BlkIndex) { /* Line 1315, Add
 
 
 int mapadrset(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1379, Address: 0x1029ba0 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1380, Address: 0x1029bc0 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1380, Address: 0x1029bc0 */
 } /* Line 1381, Address: 0x1029be0 */
 
 int mapadrset1(unsigned short wH_posiw, unsigned short wV_posiw, unsigned short xOffs, unsigned short yOffs, unsigned char* pMapWk, int* pIndex) { /* Line 1383, Address: 0x1029bf0 */
   wH_posiw = 0; /* Line 1384, Address: 0x1029c10 */
-  mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1385, Address: 0x1029c14 */
+  return mapadrset99(wH_posiw, wV_posiw, xOffs, yOffs, pMapWk, pIndex); /* Line 1385, Address: 0x1029c14 */
 } /* Line 1386, Address: 0x1029c34 */
 
 
@@ -1626,7 +1626,7 @@ void vramadrset99(unsigned short wH_posiw, unsigned short wV_posiw, unsigned sho
 
 
 
-void mapwrt() { /* Line 1629, Address: 0x102a470 */
+void mapwrt(void) { /* Line 1629, Address: 0x102a470 */
   int VramBase;
   unsigned short wH_posiw, wV_posiw;
   unsigned char* pMapWk;
@@ -1779,7 +1779,7 @@ void mapwrt3(unsigned short wH_posiw, unsigned short wV_posiw, unsigned char* pM
 
 
 
-void mapinit() { /* Line 1782, Address: 0x102a620 */
+void mapinit(void) { /* Line 1782, Address: 0x102a620 */
 
   colorset2(mapinittbl.colorno2); /* Line 1784, Address: 0x102a628 */
   colorset(mapinittbl.colorno2); /* Line 1785, Address: 0x102a63c */
@@ -1797,4 +1797,4 @@ void mapinit() { /* Line 1782, Address: 0x102a620 */
 
 
 
-void mapset() {} /* Line 1800, Address: 0x102a680 */
+void mapset(void) {} /* Line 1800, Address: 0x102a680 */

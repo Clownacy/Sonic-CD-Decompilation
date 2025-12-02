@@ -35,7 +35,7 @@ extern unsigned char dummyarea[];
 
 
 
-void flagwkclr() { /* Line 38, Address: 0x1000000 */
+void flagwkclr(void) { /* Line 38, Address: 0x1000000 */
   flagworkcnt = flagworkcnt2 = 1; /* Line 39, Address: 0x1000008 */
   sMemSet(flagwork, 0, sizeof(flagwork)); /* Line 40, Address: 0x1000020 */
 } /* Line 41, Address: 0x1000040 */
@@ -44,7 +44,7 @@ void flagwkclr() { /* Line 38, Address: 0x1000000 */
 
 
 
-void actsetchk() { /* Line 47, Address: 0x1000050 */
+void actsetchk(void) { /* Line 47, Address: 0x1000050 */
   if (actset_rno.w == 0) actsetinit(); /* Line 48, Address: 0x1000058 */
   else actset(); /* Line 49, Address: 0x1000080 */
 } /* Line 50, Address: 0x1000088 */
@@ -53,7 +53,7 @@ void actsetchk() { /* Line 47, Address: 0x1000050 */
 
 
 
-void actsetinit() { /* Line 56, Address: 0x10000a0 */
+void actsetinit(void) { /* Line 56, Address: 0x10000a0 */
   short scra_h;
   unsigned char cnt;
 
@@ -108,7 +108,7 @@ void actsetinit() { /* Line 56, Address: 0x10000a0 */
 
 
 
-void actset() { /* Line 111, Address: 0x10002f0 */
+void actset(void) { /* Line 111, Address: 0x10002f0 */
   short scra_h;
   unsigned short index;
   unsigned char cnt;

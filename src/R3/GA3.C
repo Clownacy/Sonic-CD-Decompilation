@@ -5,45 +5,53 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R31A) || defined(R31B) || defined(R32A)
+  #define SPRITE_GA3_BASE 529
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_GA3_BASE 533
+#else
+  #define SPRITE_GA3_BASE 482
+#endif
+
 static void m_init(sprite_status* actionwk);
 static void m_wait(sprite_status* actionwk);
 static void s_init(sprite_status* actionwk);
 
 static sprite_pattern spat_b3 = {
   1,
-  { { -16, -10, 0, 529 } }
+  { { -16, -10, 0, SPRITE_GA3_BASE } }
 };
 static sprite_pattern spat_b4 = {
   1,
-  { { -16, -8, 0, 530 } }
+  { { -16, -8, 0, SPRITE_GA3_BASE + 1 } }
 };
 static sprite_pattern spat_b5 = {
   1,
-  { { -16, -10, 0, 531 } }
+  { { -16, -10, 0, SPRITE_GA3_BASE + 2 } }
 };
 static sprite_pattern spat_e3 = {
   1,
-  { { -16, -12, 0, 532 } }
+  { { -16, -12, 0, SPRITE_GA3_BASE + 3 } }
 };
 static sprite_pattern spat_e4 = {
   1,
-  { { -16, -8, 0, 533 } }
+  { { -16, -8, 0, SPRITE_GA3_BASE + 4 } }
 };
 static sprite_pattern spat_e5 = {
   1,
-  { { -16, -8, 0, 534 } }
+  { { -16, -8, 0, SPRITE_GA3_BASE + 5 } }
 };
 static sprite_pattern spat_0 = {
   1,
-  { { -12, -12, 0, 535 } }
+  { { -12, -12, 0, SPRITE_GA3_BASE + 6 } }
 };
 static sprite_pattern spat_1 = {
   1,
-  { { -12, -12, 0, 536 } }
+  { { -12, -12, 0, SPRITE_GA3_BASE + 7 } }
 };
 static sprite_pattern spat_2 = {
   1,
-  { { -12, -16, 0, 537 } }
+  { { -12, -16, 0, SPRITE_GA3_BASE + 8 } }
 };
 sprite_pattern* pat_b_ga[6] = {
   &spat_0,
@@ -72,14 +80,6 @@ static char* pchg[3] = {
 static char ringchg0[6] = { 5, 4, 5, 6, 7, -1 };
 static char* ringchg[1] = { ringchg0 };
 extern sprite_pattern* ringpat[];
-
-
-
-
-
-
-
-
 
 
 

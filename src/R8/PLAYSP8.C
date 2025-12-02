@@ -41,7 +41,7 @@ static void chibi_move(sprite_status* smallwk) { /* Line 38, Address: 0x1026190 
 
 
 
-void playsp() { /* Line 44, Address: 0x10261c0 */
+void playsp(void) { /* Line 44, Address: 0x10261c0 */
   short block_no, block_tmp, x_add;
 
   if (stageno.b.l == 2) return; /* Line 47, Address: 0x10261d4 */

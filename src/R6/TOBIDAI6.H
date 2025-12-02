@@ -5,7 +5,7 @@ void tobidai6_move0(sprite_status* actionwk);
 void tobidai6_move1(sprite_status* actionwk);
 void tobidai6_move2(sprite_status* actionwk);
 void tobidai6_speedset(sprite_status* actionwk);
-int yuka_chk();
+int yuka_chk(void);
 void yuka_ridechk(sprite_status* actionwk);
 void chk(sprite_status* actionwk, sprite_status* pw);
 void yuka_ride_on(sprite_status* actionwk, sprite_status* pw);

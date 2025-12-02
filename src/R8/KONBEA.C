@@ -661,7 +661,7 @@ static void a_init(sprite_status* pActwk) { /* Line 650, Address: 0x101fd30 */
 
     if (actwkchk(&pNewact) != 0) { /* Line 662, Address: 0x101fdc4 */
       frameout(pActwk); /* Line 663, Address: 0x101fdd8 */
-      return; /* Line 664, Address: 0x101fde4 */
+      break; /* Line 664, Address: 0x101fde4 */
     }
 
 

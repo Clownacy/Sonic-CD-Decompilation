@@ -4,25 +4,37 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_WALLS_BASE 446
+#elif defined(R41B)
+  #define SPRITE_WALLS_BASE 466
+#elif defined(R42B)
+  #define SPRITE_WALLS_BASE 462
+#elif defined(R42C) || defined(R42D)
+  #define SPRITE_WALLS_BASE 461
+#else
+  #define SPRITE_WALLS_BASE 477
+#endif
+
 static void main_init(sprite_status* pActwk);
 static void main_move(sprite_status* pActwk);
 static void opt_check(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   1,
-  { { -16, -16, 0, 446 } }
+  { { -16, -16, 0, SPRITE_WALLS_BASE } }
 };
 static sprite_pattern pat01 = {
   1,
-  { { -32, -16, 0, 447 } }
+  { { -32, -16, 0, SPRITE_WALLS_BASE + 1 } }
 };
 static sprite_pattern pat02 = {
   1,
-  { { -48, -16, 0, 448 } }
+  { { -48, -16, 0, SPRITE_WALLS_BASE + 2 } }
 };
 static sprite_pattern pat03 = {
   1,
-  { { -64, -16, 0, 449 } }
+  { { -64, -16, 0, SPRITE_WALLS_BASE + 3 } }
 };
 static sprite_pattern pat04;
 sprite_pattern* pat_walls[5] = {
@@ -47,18 +59,6 @@ static int data_tbl[8] = {
   60, 0,  48, 131072,
   60, 0, 192, -32768
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

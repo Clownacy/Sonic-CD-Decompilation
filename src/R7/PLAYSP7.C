@@ -37,7 +37,7 @@ short* playsp_tbl[4] =
 
 
 
-void playsp() { /* Line 40, Address: 0x101e000 */
+void playsp(void) { /* Line 40, Address: 0x101e000 */
   int i;
   short wD0, wD1, wD2, wD3;
   short* pPlaysptbl;

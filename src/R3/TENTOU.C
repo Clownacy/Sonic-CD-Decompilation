@@ -8,6 +8,14 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R31A) || defined(R31B) || defined(R32A)
+  #define SPRITE_TENTOU_BASE 521
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_TENTOU_BASE 525
+#else
+  #define SPRITE_TENTOU_BASE 474
+#endif
+
 static unsigned char bCarry;
 void(*tentou_tbl[6])(sprite_status*) = {
   &ten_a_init,
@@ -28,15 +36,15 @@ unsigned char pchg0_0[5] = { 3, 0, 1, 2, 255 };
 unsigned char* pchg0[1] = { pchg0_0 };
 sprite_pattern ten_b_tentou0 = {
   1,
-  { { -24, -24, 0, 521 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE } }
 };
 sprite_pattern ten_b_tentou1 = {
   1,
-  { { -24, -24, 0, 522 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE + 1 } }
 };
 sprite_pattern ten_b_tentou2 = {
   1,
-  { { -24, -24, 0, 523 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE + 2 } }
 };
 sprite_pattern* pat_ten_b_tentou[3] = {
   &ten_b_tentou0,
@@ -45,15 +53,15 @@ sprite_pattern* pat_ten_b_tentou[3] = {
 };
 sprite_pattern e_tentou0 = {
   1,
-  { { -24, -24, 0, 524 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE + 3 } }
 };
 sprite_pattern e_tentou1 = {
   1,
-  { { -24, -24, 0, 525 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE + 4 } }
 };
 sprite_pattern e_tentou2 = {
   1,
-  { { -24, -24, 0, 526 } }
+  { { -24, -24, 0, SPRITE_TENTOU_BASE + 5 } }
 };
 sprite_pattern* pat_e_tentou[3] = {
   &e_tentou0,
@@ -64,24 +72,16 @@ unsigned char pchg1_0[4] = { 1, 0, 1, 255 };
 unsigned char* pchg1[1] = { pchg1_0 };
 sprite_pattern bomten_b_0 = {
   1,
-  { { -8, -8, 0, 527 } }
+  { { -8, -8, 0, SPRITE_TENTOU_BASE + 6 } }
 };
 sprite_pattern bomten_b_1 = {
   1,
-  { { -8, -8, 0, 528 } }
+  { { -8, -8, 0, SPRITE_TENTOU_BASE + 7 } }
 };
 sprite_pattern* tentou_bomten_b_pat[2] = {
   &bomten_b_0,
   &bomten_b_1
 };
-
-
-
-
-
-
-
-
 
 
 

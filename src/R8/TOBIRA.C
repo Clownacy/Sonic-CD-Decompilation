@@ -5,32 +5,40 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 
+#if defined(R82)
+  #define SPRITE_TOBIRA_BASE 432
+#elif defined(R83)
+  #define SPRITE_TOBIRA_BASE 500
+#else
+  #define SPRITE_TOBIRA_BASE 464
+#endif
+
 static char pchg00[4] = { 2, 0, 1, -1 };
 static char* pchg[1] = { pchg00 };
 static sprite_pattern pat00 =
 {
   1,
-  { { -8, -16, 0, 500 } }
+  { { -8, -16, 0, SPRITE_TOBIRA_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -8, -16, 0, 501 } }
+  { { -8, -16, 0, SPRITE_TOBIRA_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -8, -16, 0, 502 } }
+  { { -8, -16, 0, SPRITE_TOBIRA_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -16, -16, 0, 503 } }
+  { { -16, -16, 0, SPRITE_TOBIRA_BASE + 3 } }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -16, -16, 0, 504 } }
+  { { -16, -16, 0, SPRITE_TOBIRA_BASE + 4 } }
 };
 sprite_pattern* pat_tobira0[2] =
 {
@@ -47,14 +55,6 @@ sprite_pattern* pat_tobira2[2] =
   &pat03,
   &pat04
 };
-
-
-
-
-
-
-
-
 
 
 

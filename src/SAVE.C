@@ -11,7 +11,7 @@
 
 
 
-void playloadb() { /* Line 14, Address: 0x1005e30 */
+void playloadb(void) { /* Line 14, Address: 0x1005e30 */
   sprite_status* pActwk;
 
   pActwk = &actwk[0]; /* Line 17, Address: 0x1005e38 */
@@ -51,7 +51,7 @@ void playloadb() { /* Line 14, Address: 0x1005e30 */
 } /* Line 51, Address: 0x1006058 */
 
 
-void playload() { /* Line 54, Address: 0x1006070 */
+void playload(void) { /* Line 54, Address: 0x1006070 */
   sprite_status* pActwk;
   pActwk = &actwk[0]; /* Line 56, Address: 0x100607c */
 

@@ -36,7 +36,7 @@ void(*CDPlay)(short);
 char*(*sStrncpy)(char*, char*, int);
 int(*sStrncmp)(char*, char*, int);
 draw_context* s_ctx;
-draw_context*(*get_draw_context_module)();
+draw_context*(*get_draw_context_module)(void);
 int* lpFadeFlag;
 int_union* lphscrollbuff;
 PALETTEENTRY* lpcolorwk4;
@@ -64,7 +64,7 @@ hmx_bitmap*(*hmx_bitmap_create_module)(hmx_environment*, int, int);
 void(*hmx_background_set_background_module)(hmx_background*, int);
 void*(*ld_load_cmpfile_module)(hmx_environment*, char*);
 void(*ld_bitmap_4to8_module)(void*, void*, int, int, int, int, int);
-void(*FlipToScreen_module)();
+void(*FlipToScreen_module)(void);
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
 int(*sOpenFile)(char*);
@@ -74,7 +74,7 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -154,7 +154,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 146, Address: 0x100
 
 
 
-unsigned int SpecialPlayChk() {
+unsigned int SpecialPlayChk(void) {
   if (lpScoreData->total < 109269 && lpScoreData->roundNo >= 7) { /* Line 158, Address: 0x1000030 */
 
     return 1; /* Line 160, Address: 0x1000068 */
@@ -164,7 +164,7 @@ unsigned int SpecialPlayChk() {
 } /* Line 164, Address: 0x1000078 */
 
 
-int GetPlayRound() { /* Line 167, Address: 0x1000080 */
+int GetPlayRound(void) { /* Line 167, Address: 0x1000080 */
   int ret;
 
   ret = 1; /* Line 170, Address: 0x1000088 */
@@ -193,7 +193,7 @@ int GetPlayRound() { /* Line 167, Address: 0x1000080 */
 
 
 
-int game() { /* Line 196, Address: 0x10000e0 */
+int game(void) { /* Line 196, Address: 0x10000e0 */
   char c;
   int index;
 
@@ -439,7 +439,7 @@ int game() { /* Line 196, Address: 0x10000e0 */
 
 
 
-void game_init() { /* Line 442, Address: 0x1000cf0 */
+void game_init(void) { /* Line 442, Address: 0x1000cf0 */
   int i, j, k, l;
   int round;
   int zone;
@@ -643,4 +643,4 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 559, Address: 0x100
 
 
 
-void DLL_memfree() {} /* Line 646, Address: 0x1001900 */
+void DLL_memfree(void) {} /* Line 646, Address: 0x1001900 */

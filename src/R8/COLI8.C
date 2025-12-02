@@ -416,7 +416,7 @@ short pcolnomal(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 343, 
 
 short pcolplay2(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 417, Address: 0x101b880 */
   pColliAct->cddat |= 128; /* Line 418, Address: 0x101b890 */
-  pcolplay(pActwk, pColliAct); /* Line 419, Address: 0x101b8a0 */
+  return pcolplay(pActwk, pColliAct); /* Line 419, Address: 0x101b8a0 */
 } /* Line 420, Address: 0x101b8b0 */
 
 
@@ -551,7 +551,7 @@ short playdamageset(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 5
     playdamagechk(pActwk, pColliAct); /* Line 551, Address: 0x101bbcc */
     return -1; /* Line 552, Address: 0x101bbdc */
   }
-  playdieset(pActwk); /* Line 554, Address: 0x101bbe8 */
+  return playdieset(pActwk); /* Line 554, Address: 0x101bbe8 */
 } /* Line 555, Address: 0x101bbf4 */
 
 
@@ -732,8 +732,8 @@ short pcolspecial(sprite_status* pActwk, sprite_status* pColliAct, short iXposi,
           ++pColliAct->colicnt; /* Line 732, Address: 0x101c138 */
           break;
       }
+      break;
   }
-
   return -1; /* Line 737, Address: 0x101c148 */
 } /* Line 738, Address: 0x101c14c */
 

@@ -102,4 +102,4 @@ int egg1leg3_05(sprite_status* pActwk);
 void leg3_set(sprite_status* pActwk);
 int egg1leg3_06(sprite_status* pActwk);
 void bom_set(sprite_status* pActwk);
-void tenmetu();
+void tenmetu(void);

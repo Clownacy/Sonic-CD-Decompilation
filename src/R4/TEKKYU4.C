@@ -4,21 +4,21 @@
 #include "..\ACTSET.H"
 #include "..\ETC.H"
 
+#if defined(R41C)
+  #define SPRITE_TEKKYU4_BASE 449
+#elif defined(R41D)
+  #define SPRITE_TEKKYU4_BASE 435
+#elif defined(R42A)
+  #define SPRITE_TEKKYU4_BASE 469
+#else
+  #define SPRITE_TEKKYU4_BASE 474
+#endif
+
 sprite_pattern tekkyu4_pat0 = {
   1,
-  { { -16, -16, 0, 469 } }
+  { { -16, -16, 0, SPRITE_TEKKYU4_BASE } }
 };
 sprite_pattern* pat_tekkyu4[1] = { &tekkyu4_pat0 };
-
-
-
-
-
-
-
-
-
-
 
 
 

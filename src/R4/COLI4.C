@@ -400,7 +400,7 @@ short pcolnomal(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 323, 
 
 short pcolplay2(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 401, Address: 0x1016180 */
   pColliAct->cddat |= 128; /* Line 402, Address: 0x1016190 */
-  pcolplay(pActwk, pColliAct); /* Line 403, Address: 0x10161a0 */
+  return pcolplay(pActwk, pColliAct); /* Line 403, Address: 0x10161a0 */
 } /* Line 404, Address: 0x10161b0 */
 
 
@@ -527,7 +527,7 @@ short playdamageset(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 5
     playdamagechk(pActwk, pColliAct); /* Line 527, Address: 0x1016480 */
     return -1; /* Line 528, Address: 0x1016490 */
   }
-  playdieset(pActwk); /* Line 530, Address: 0x101649c */
+  return playdieset(pActwk); /* Line 530, Address: 0x101649c */
 } /* Line 531, Address: 0x10164a8 */
 
 

@@ -6,6 +6,12 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_MOVIE7_BASE 441
+#else
+  #define SPRITE_MOVIE7_BASE 462
+#endif
+
 static void die(sprite_status* pActwk);
 static void m_init(sprite_status* pActwk);
 static void m_wait(sprite_status* pActwk);
@@ -31,27 +37,27 @@ unsigned char* movie1_pchg[2] = {
 };
 sprite_pattern spr_movie1 = {
   1,
-  { { -12, -12, 0, 447 } }
+  { { -12, -12, 0, SPRITE_MOVIE7_BASE } }
 };
 sprite_pattern spr_movie2 = {
   1,
-  { { -8, -4, 0, 448 } }
+  { { -8, -4, 0, SPRITE_MOVIE7_BASE + 1 } }
 };
 sprite_pattern spr_movie3 = {
   1,
-  { { -8, -4, 0, 449 } }
+  { { -8, -4, 0, SPRITE_MOVIE7_BASE + 2 } }
 };
 sprite_pattern spr_movie4 = {
   1,
-  { { -20, -24, 0, 450 } }
+  { { -20, -24, 0, SPRITE_MOVIE7_BASE + 3 } }
 };
 sprite_pattern spr_movie5 = {
   1,
-  { { -20, -24, 0, 451 } }
+  { { -20, -24, 0, SPRITE_MOVIE7_BASE + 4 } }
 };
 sprite_pattern spr_movie0 = {
   0,
-  { { -20, -24, 0, 451 } }
+  { { -20, -24, 0, SPRITE_MOVIE7_BASE + 4 } }
 };
 sprite_pattern* pat_movie[6] = {
   &spr_movie1,
@@ -67,12 +73,6 @@ char tbl0[37] = {
   -10,  28,  -3, -25,  30, 10, 20, 32, -10, 2,
    35,  13, -10,  40, -10, 10, -1
 };
-
-
-
-
-
-
 
 
 

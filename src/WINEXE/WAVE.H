@@ -4,14 +4,14 @@
 #include <windows.h>
 
 int openWaveOut(HWND hWnd);
-void closeWaveOut();
+void closeWaveOut(void);
 int loadPcmFile(char* path);
-void freeWaveMemory();
+void freeWaveMemory(void);
 int FUN_0040dac4(int waveInfoIndex, int ReqNo, HWND hWnd, BOOL bUnknown);
-void WaveAllStop();
+void WaveAllStop(void);
 int FUN_0040dd16(HWAVEOUT hWaveout, LPWAVEHDR pWaveHdr);
-int getFreeWaveInfoIndex();
+int getFreeWaveInfoIndex(void);
 int collectWaveInfoUnknown44(int* array);
-int areWaveInfosFree();
+int areWaveInfosFree(void);
 
 #endif

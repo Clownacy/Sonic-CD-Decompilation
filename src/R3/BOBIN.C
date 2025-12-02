@@ -8,29 +8,39 @@
 #include "..\RIDECHK.H"
 #include "..\SCORE.H"
 
+#if defined(R31A)
+  #define SPRITE_BOBIN_BASE 550
+#elif defined(R31B) || defined(R32A)
+  #define SPRITE_BOBIN_BASE 544
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_BOBIN_BASE 548
+#else
+  #define SPRITE_BOBIN_BASE 497
+#endif
+
 static sprite_pattern bobinsp0 = {
   1,
-  { { -16, -16, 0, 550 } }
+  { { -16, -16, 0, SPRITE_BOBIN_BASE } }
 };
 static sprite_pattern bobinsp1 = {
   1,
-  { { -12, -12, 0, 551 } }
+  { { -12, -12, 0, SPRITE_BOBIN_BASE + 1 } }
 };
 static sprite_pattern bobinsp2 = {
   1,
-  { { -24, -20, 0, 552 } }
+  { { -24, -20, 0, SPRITE_BOBIN_BASE + 2 } }
 };
 static sprite_pattern fripsp0 = {
   1,
-  { { -32, -12, 0, 553 } }
+  { { -32, -12, 0, SPRITE_BOBIN_BASE + 3 } }
 };
 static sprite_pattern fripsp1 = {
   1,
-  { { -32, -12, 0, 554 } }
+  { { -32, -12, 0, SPRITE_BOBIN_BASE + 4 } }
 };
 static sprite_pattern fripsp2 = {
   1,
-  { { -32, -20, 0, 554 } }
+  { { -32, -20, 0, SPRITE_BOBIN_BASE + 4 } }
 };
 sprite_pattern* bobinpat[3] = { &bobinsp0, &bobinsp1, &bobinsp2 };
 sprite_pattern* frippat[3] = { &fripsp0, &fripsp1, &fripsp2 };
@@ -76,16 +86,6 @@ char frip_posi_r[64] = {
   11, 11, 10, 10,
    9,  8,  6,  4
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

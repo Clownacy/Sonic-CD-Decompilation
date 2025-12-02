@@ -912,7 +912,7 @@ void goal_move3(sprite_status* pActwk) { /* Line 900, Address: 0x1010ce0 */
 
 
 
-void genecolor() { /* Line 915, Address: 0x1010d10 */
+void genecolor(void) { /* Line 915, Address: 0x1010d10 */
   PALETTEENTRY colortbl[16] = { /* Line 916, Address: 0x1010d20 */
     {  32,  32, 160, 1 }, {   0,   0,   0, 1 }, {  64,  64,  96, 1 }, {  96,  96, 160, 1 },
     { 128, 128, 192, 1 }, { 160, 160, 224, 1 }, { 224, 224, 224, 1 }, { 128, 224, 160, 1 },

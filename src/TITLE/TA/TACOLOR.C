@@ -145,7 +145,7 @@ unsigned short cntplus(unsigned short* work, unsigned short plus_data, unsigned 
 
 
 
-void TAColorChgSP6() { /* Line 148, Address: 0x1002080 */
+void TAColorChgSP6(void) { /* Line 148, Address: 0x1002080 */
   unsigned short d0, d5, d6, d7;
   PALETTEENTRY* lpPeDest;
   short i;

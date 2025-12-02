@@ -66,7 +66,7 @@ int get_actwk(sprite_status_lpl** ppFreeAct) { /* Line 46, Address: 0x1000000 */
 
 
 
-int chk_actwk() { /* Line 69, Address: 0x1000070 */
+int chk_actwk(void) { /* Line 69, Address: 0x1000070 */
   int i;
   sprite_status_lpl* pChkAct;
 
@@ -125,7 +125,7 @@ int chk_actwk() { /* Line 69, Address: 0x1000070 */
 
 
 
-void action() { /* Line 128, Address: 0x10000d0 */
+void action(void) { /* Line 128, Address: 0x10000d0 */
   unsigned short i;
 
   sprinit(); /* Line 131, Address: 0x10000dc */
@@ -167,7 +167,7 @@ static void dummy(sprite_status_lpl* pActwk) { /* Line 158, Address: 0x1000250 *
 
 
 
-void spr_set() { /* Line 170, Address: 0x1000290 */
+void spr_set(void) { /* Line 170, Address: 0x1000290 */
   int i, j;
   sprite_status_lpl* pActwk;
   sprite_patterns_title* pPatTbl;

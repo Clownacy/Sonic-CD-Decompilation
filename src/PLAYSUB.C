@@ -233,7 +233,7 @@ void marker_move2(sprite_status* markerwk) { /* Line 227, Address: 0x1015a10 */
 
 
 
-void plairset() {} /* Line 236, Address: 0x1015a40 */
+void plairset(void) {} /* Line 236, Address: 0x1015a40 */
 
 
 
@@ -451,8 +451,8 @@ void flow_init(sprite_status* flowerwk) { /* Line 428, Address: 0x1016040 */
 
 
 void flow_move0(sprite_status* flowerwk) { /* Line 453, Address: 0x1016170 */
- short y_move = 0, flower_index = 0; /* Line 454, Address: 0x1016188 */
- unsigned char* fwcnt_adr;
+  short y_move = 0, flower_index = 0; /* Line 454, Address: 0x1016188 */
+  unsigned char* fwcnt_adr;
 
   y_move = emycol_d(flowerwk); /* Line 457, Address: 0x1016190 */
   if (y_move < 0) { /* Line 458, Address: 0x10161a4 */
@@ -888,7 +888,7 @@ label1:
 } /* Line 888, Address: 0x101765c */
 
 
-void ball_ball() {
+void ball_ball(void) {
   if (actwk[0].cddat & 4) return; /* Line 892, Address: 0x1017680 */
   actwk[0].cddat |= 4; /* Line 893, Address: 0x1017698 */
   actwk[0].sprvsize = 14; /* Line 894, Address: 0x10176ac */

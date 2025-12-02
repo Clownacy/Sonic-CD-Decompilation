@@ -1,26 +1,26 @@
 #include "..\TYPES.H"
 
-sprite_pattern* harir4pat[];
-sprite_pattern* renketu4pat[];
-sprite_pattern* pat_tekkyu4[];
-sprite_pattern* pat_screw0[];
-sprite_pattern* pat_screw1[];
-sprite_pattern* awapat[];
-sprite_pattern* springpat[];
-sprite_pattern* spring90pat[];
-sprite_pattern* pat_wall1[];
-sprite_pattern* pat_tonbo_e[];
-sprite_pattern* pat_tonbo_b[];
-sprite_pattern* pat_amenbo_e[];
-sprite_pattern* pat_amenbo_b[];
-sprite_pattern* pat_tagameb_e[];
-sprite_pattern* pat_tagameb_b[];
-sprite_pattern* pat_yago_e[];
-sprite_pattern* pat_yago_b[];
-sprite_pattern* pat_friend0[];
-sprite_pattern* pat_friend1[];
-sprite_pattern* itempat[];
-sprite_pattern* boupat[];
+extern sprite_pattern* harir4pat[];
+extern sprite_pattern* renketu4pat[];
+extern sprite_pattern* pat_tekkyu4[];
+extern sprite_pattern* pat_screw0[];
+extern sprite_pattern* pat_screw1[];
+extern sprite_pattern* awapat[];
+extern sprite_pattern* springpat[];
+extern sprite_pattern* spring90pat[];
+extern sprite_pattern* pat_wall1[];
+extern sprite_pattern* pat_tonbo_e[];
+extern sprite_pattern* pat_tonbo_b[];
+extern sprite_pattern* pat_amenbo_e[];
+extern sprite_pattern* pat_amenbo_b[];
+extern sprite_pattern* pat_tagameb_e[];
+extern sprite_pattern* pat_tagameb_b[];
+extern sprite_pattern* pat_yago_e[];
+extern sprite_pattern* pat_yago_b[];
+extern sprite_pattern* pat_friend0[];
+extern sprite_pattern* pat_friend1[];
+extern sprite_pattern* itempat[];
+extern sprite_pattern* boupat[];
 
 edit_data edit_tbl = {
   25,

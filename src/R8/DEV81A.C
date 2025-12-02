@@ -248,7 +248,7 @@ static tile_changes tbl_bal = {
 
 
 
-void cg_change() { /* Line 251, Address: 0x101d710 */
+void cg_change(void) { /* Line 251, Address: 0x101d710 */
   unsigned char *pcgchgtim, *pcgchgcnt;
   int i, playsubdma[16], top;
 

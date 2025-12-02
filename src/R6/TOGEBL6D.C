@@ -4,25 +4,25 @@
 #include "..\ACTSET.H"
 #include "..\ETC.H"
 
+#if defined(R63C) || defined(R63D)
+  #define SPRITE_TOGEBL6D_BASE 460
+#else
+  #define SPRITE_TOGEBL6D_BASE 497
+#endif
+
 static void act_init(sprite_status* actionwk);
 static void act_move(sprite_status* actionwk);
 
 static sprite_pattern spat_chg0 = {
   1,
-  { { -8, -8, 0, 497 } }
+  { { -8, -8, 0, SPRITE_TOGEBL6D_BASE } }
 };
 static sprite_pattern spat_chg1 = {
   1,
-  { { -8, -8, 0, 498 } }
+  { { -8, -8, 0, SPRITE_TOGEBL6D_BASE + 1 } }
 };
 sprite_pattern* pat_chg[1] = { &spat_chg0 };
 sprite_pattern* pat_togeball[1] = { &spat_chg1 };
-
-
-
-
-
-
 
 
 
@@ -73,7 +73,7 @@ void togeball_main(sprite_status* actionwk) { /* Line 62, Address: 0x1027410 */
   frameout_s(actionwk); /* Line 73, Address: 0x1027470 */
 } /* Line 74, Address: 0x102747c */
 
-void act_init(sprite_status* actionwk) { /* Line 76, Address: 0x1027490 */
+static void act_init(sprite_status* actionwk) { /* Line 76, Address: 0x1027490 */
   sprite_status* a1;
 
   actionwk->r_no0 += 2; /* Line 79, Address: 0x102749c */
@@ -161,7 +161,7 @@ void act_init(sprite_status* actionwk) { /* Line 76, Address: 0x1027490 */
   a1->sprvsize = 8; /* Line 161, Address: 0x10279e8 */
 } /* Line 162, Address: 0x10279f4 */
 
-void act_move(sprite_status* actionwk) { /* Line 164, Address: 0x1027a10 */
+static void act_move(sprite_status* actionwk) { /* Line 164, Address: 0x1027a10 */
   short d0, ano;
   unsigned short sin, cos;
   int d0l, d1l, d2l, d3l, d4l, d5l;

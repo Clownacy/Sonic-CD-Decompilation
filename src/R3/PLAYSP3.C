@@ -15,13 +15,13 @@ static unsigned char bump_sound_off;
 
 
 
-void playsp() { /* Line 18, Address: 0x101e0b0 */
+void playsp(void) { /* Line 18, Address: 0x101e0b0 */
   if (actwk[0].mstno.b.h != 43) boyo(); /* Line 19, Address: 0x101e0b8 */
 } /* Line 20, Address: 0x101e0dc */
 
 
 
-void boyo() { /* Line 24, Address: 0x101e0f0 */
+void boyo(void) { /* Line 24, Address: 0x101e0f0 */
   unsigned char direc_speed;
 
   direc_speed = (char)atan_sonic(actwk[0].xspeed.w, actwk[0].yspeed.w); /* Line 27, Address: 0x101e0fc */
@@ -167,7 +167,7 @@ void bob_s(short i, short cal_x, short cal_y, short block_back) { /* Line 153, A
 } /* Line 167, Address: 0x101ebcc */
 
 
-void bob_j() {
+void bob_j(void) {
   actwk[0].cddat |= 2; /* Line 171, Address: 0x101ebf0 */
   actwk[0].cddat &= 207; /* Line 172, Address: 0x101ec04 */
   actwk[0].actfree[18] = 0; /* Line 173, Address: 0x101ec18 */

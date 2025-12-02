@@ -16,18 +16,18 @@ extern PALETTEENTRY tblPal3[];
 extern PALETTEENTRY tblPal2[];
 extern PALETTEENTRY tblPal1[];
 draw_context* s_ctx;
-draw_context*(*get_draw_context_module)();
+draw_context*(*get_draw_context_module)(void);
 unsigned short* lpUserKey;
 unsigned int bFirstTitle;
 unsigned int(*WriteIndx)(int, unsigned int);
 int(*ReadIndx)(unsigned int);
-unsigned int(*CreateScore)();
+unsigned int(*CreateScore)(void);
 unsigned int(*CloseScore)(unsigned int);
 unsigned int(*OpenScore)(int);
 unsigned int(*WriteScore)(int, char*, unsigned int);
 unsigned int(*ReadScore)(int, char*, unsigned int);
 void(*WaveRequest)(short);
-void(*CDPause)();
+void(*CDPause)(void);
 void(*CDPlay)(short);
 unsigned int selectIndx;
 void(*sMemCpy)(void*, void*, int);
@@ -61,7 +61,7 @@ hmx_bitmap*(*hmx_bitmap_create_module)(hmx_environment*, int, int);
 void(*hmx_background_set_background_module)(hmx_background*, int);
 void*(*ld_load_cmpfile_module)(hmx_environment*, char*);
 void(*ld_bitmap_4to8_module)(void*, void*, int, int, int, int, int);
-void(*FlipToScreen_module)();
+void(*FlipToScreen_module)(void);
 int(*sGetFileSize)(int);
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
@@ -73,10 +73,10 @@ void*(*sMemAlloc)(int);
 unsigned short swData2;
 unsigned short swData1;
 dlink_export ExportedFunctions = {
-  (void (*)())&DLLInit,
-  (void (*)())&DLLMain,
+  (void (*)(void))&DLLInit,
+  (void (*)(void))&DLLMain,
   (void (*)(char***, void**))&DLLEnd,
-  (void (*)())&SWdataSet,
+  (void (*)(void))&SWdataSet,
   0,
   0,
   0,
@@ -270,7 +270,7 @@ void DLLInit(engine_dll* lpDllIn, char*** pBufTbl, void** pFuncTbl) { /* Line 15
 
 
 
-void DLLEnd() { /* Line 273, Address: 0x10031a0 */
+void DLLEnd(void) { /* Line 273, Address: 0x10031a0 */
   OEDeleteEA(); /* Line 274, Address: 0x10031a8 */
 
 
@@ -303,7 +303,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 284, Address: 0x100
 
 
 
-int DLLMain() { /* Line 306, Address: 0x10031f0 */
+int DLLMain(void) { /* Line 306, Address: 0x10031f0 */
   int ret = 0; /* Line 307, Address: 0x10031fc */
 
   switch (nSequenceNum) { /* Line 309, Address: 0x1003200 */

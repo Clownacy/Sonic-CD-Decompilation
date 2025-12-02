@@ -19,6 +19,18 @@
   #define SPRITE_MOVIE_BASE 543
 #endif
 
+#if defined(R11B)
+  #define SPRITE_MOVIE_BASE 528
+#elif defined(R11C) || defined(R11D)
+  #define SPRITE_MOVIE_BASE 509
+#elif defined(R12A) || defined(R12B)
+  #define SPRITE_MOVIE_BASE 519
+#elif defined(R12C) || defined(R12D)
+  #define SPRITE_MOVIE_BASE 510
+#else
+  #define SPRITE_MOVIE_BASE 543
+#endif
+
 unsigned char movie1_pchg00[6] = { 0, 2, 1, 3, 1, 255 };
 unsigned char movie1_pchg01[58] =
 {

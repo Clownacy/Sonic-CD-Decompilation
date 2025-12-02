@@ -4,7 +4,7 @@
 #include "HMX_OEEACTL.H"
 #include "..\..\IMPFUNCS.H"
 
-extern void(*FlipToScreen_module)();
+extern void(*FlipToScreen_module)(void);
 extern void(*hmx_renderer_context_draw_module)(hmx_renderer_context*, hmx_surface*);
 extern draw_context* s_ctx;
 extern void(*hmx_renderer_context_add_module)(hmx_renderer_context*, int, hmx_renderer_base*);
@@ -90,7 +90,7 @@ void EAError(int ret, int line, char* str) { /* Line 70, Address: 0x10010e0 */
 } /* Line 90, Address: 0x10010e4 */
 
 
-void srfDraw() { /* Line 93, Address: 0x10010f0 */
+void srfDraw(void) { /* Line 93, Address: 0x10010f0 */
   int i;
   if (s_ctx->context != 0) { /* Line 95, Address: 0x10010fc */
 
@@ -745,7 +745,7 @@ int ld_load_grid2(hmx_environment* buffer, char* file, hmx_environment* env, hmx
 
 
 
-int OEGridBmpCreate() { /* Line 748, Address: 0x10025d0 */
+int OEGridBmpCreate(void) { /* Line 748, Address: 0x10025d0 */
   int i, count;
 
   s_ctx->grd_bitmap_count = 0; /* Line 751, Address: 0x10025e0 */
@@ -771,7 +771,7 @@ int OEGridBmpCreate() { /* Line 748, Address: 0x10025d0 */
 
 
 
-void OEGridBmpDelete() { /* Line 774, Address: 0x1002690 */
+void OEGridBmpDelete(void) { /* Line 774, Address: 0x1002690 */
   int i, n;
 
   for (i = 0; i < NUM_GRIDBMP; ++i) { /* Line 777, Address: 0x10026a0 */
@@ -808,7 +808,7 @@ void OEGridBmpDelete() { /* Line 774, Address: 0x1002690 */
 
 
 
-int OESprBmpCreate() { /* Line 811, Address: 0x10027f0 */
+int OESprBmpCreate(void) { /* Line 811, Address: 0x10027f0 */
   int i;
   int count;
 
@@ -848,7 +848,7 @@ int OESprBmpCreate() { /* Line 811, Address: 0x10027f0 */
 
 
 
-void OESprBmpDelete() { /* Line 851, Address: 0x1002910 */
+void OESprBmpDelete(void) { /* Line 851, Address: 0x1002910 */
   int i;
 
   s_ctx->spr_bitmap_count = 0; /* Line 854, Address: 0x100291c */
@@ -992,7 +992,7 @@ void OESprDeleteIndx(int indx) { /* Line 967, Address: 0x1002f10 */
 
 
 
-void OEAllSprDelete() { /* Line 995, Address: 0x1003050 */
+void OEAllSprDelete(void) { /* Line 995, Address: 0x1003050 */
   int i;
 
   for (i = 0; i < NUM_BMP; ++i) { /* Line 998, Address: 0x100305c */
@@ -1009,7 +1009,7 @@ void OEAllSprDelete() { /* Line 995, Address: 0x1003050 */
 } /* Line 1009, Address: 0x1003190 */
 
 
-int OEGridDeleteAll() { /* Line 1012, Address: 0x10031b0 */
+int OEGridDeleteAll(void) { /* Line 1012, Address: 0x10031b0 */
   int i;
   for (i = 0; i < 3; ++i) { /* Line 1014, Address: 0x10031bc */
     hmx_grid_release_module(g_env_module, s_ctx->grids[i]); /* Line 1015, Address: 0x10031c8 */
@@ -1022,7 +1022,7 @@ int OEGridDeleteAll() { /* Line 1012, Address: 0x10031b0 */
 
 
 
-int OECreateEA() { /* Line 1025, Address: 0x1003230 */
+int OECreateEA(void) { /* Line 1025, Address: 0x1003230 */
   int i;
   for (i = 0; i < 512; ++i) /* Line 1027, Address: 0x100323c */
     sprIdx[i] = 0; /* Line 1028, Address: 0x1003248 */
@@ -1037,7 +1037,7 @@ int OECreateEA() { /* Line 1025, Address: 0x1003230 */
 
 
 
-void OEDeleteEA() { /* Line 1040, Address: 0x10032d0 */
+void OEDeleteEA(void) { /* Line 1040, Address: 0x10032d0 */
   int i;
   OESprBmpDelete(); /* Line 1042, Address: 0x10032dc */
   OEAllSprDelete(); /* Line 1043, Address: 0x10032e4 */

@@ -1,7 +1,7 @@
-void flagwkclr();
-void actsetchk();
-void actsetinit();
-void actset();
+void flagwkclr(void);
+void actsetchk(void);
+void actsetinit(void);
+void actset(void);
 int tm_setchk(unsigned char cnt, unsigned short* pIndex);
 int actnoset(unsigned char cnt, unsigned short* pIndex);
 int actwkchk(sprite_status** ppActwk);

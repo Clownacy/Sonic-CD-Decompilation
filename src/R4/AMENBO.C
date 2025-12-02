@@ -6,6 +6,22 @@
 #include "..\SUICIDE.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A)
+  #define SPRITE_AMENBO_BASE 479
+#elif defined(R41B)
+  #define SPRITE_AMENBO_BASE 440
+#elif defined(R41C)
+  #define SPRITE_AMENBO_BASE 457
+#elif defined(R41D)
+  #define SPRITE_AMENBO_BASE 447
+#elif defined(R42A)
+  #define SPRITE_AMENBO_BASE 485
+#elif defined(R42B)
+  #define SPRITE_AMENBO_BASE 438
+#else
+  #define SPRITE_AMENBO_BASE 442
+#endif
+
 static void act_init(sprite_status* pActwk);
 static void act_accel(sprite_status* pActwk);
 static void act_decel(sprite_status* pActwk);
@@ -28,42 +44,42 @@ static sprite_pattern spr_amenbo_b_00 =
 {
   1,
   {
-    { -20, -12, 0, 479 }
+    { -20, -12, 0, SPRITE_AMENBO_BASE }
   }
 };
 static sprite_pattern spr_amenbo_b_01 =
 {
   1,
   {
-    { -20, -12, 0, 480 }
+    { -20, -12, 0, SPRITE_AMENBO_BASE + 1 }
   }
 };
 static sprite_pattern spr_amenbo_e_00 =
 {
   1,
   {
-    { -20, -12, 0, 481 }
+    { -20, -12, 0, SPRITE_AMENBO_BASE + 2 }
   }
 };
 static sprite_pattern spr_amenbo_e_01 =
 {
   1,
   {
-    { -20, -12, 0, 482 }
+    { -20, -12, 0, SPRITE_AMENBO_BASE + 3 }
   }
 };
 static sprite_pattern spr_amenbo_e_02 =
 {
   1,
   {
-    { -4, -4, 0, 483 }
+    { -4, -4, 0, SPRITE_AMENBO_BASE + 4 }
   }
 };
 static sprite_pattern spr_amenbo_e_03 =
 {
   1,
   {
-    { -4, -4, 0, 484 }
+    { -4, -4, 0, SPRITE_AMENBO_BASE + 5 }
   }
 };
 sprite_pattern* pat_amenbo_b[2] =
@@ -78,22 +94,6 @@ sprite_pattern* pat_amenbo_e[4] =
   &spr_amenbo_e_02,
   &spr_amenbo_e_03
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -22,16 +22,16 @@ static sprite_patterns_sp kemuri00 = { 3, 1, { &kem00, &kem01, &kem02 } };
 static sprite_patterns_sp* mpkemuri[1] = { &kemuri00 };
 static sprite_pattern stn00 = { 1, { { -10, -24, 0, 114 } } };
 static sprite_pattern stn01 = { 1, { { -10, -24, 0, 115 } } };
-static sprite_pattern stn02 = { 1, { { -10, -24, 8, 116 } } };
-static sprite_pattern stn03 = { 1, { { -10, -24, 0, 117 } } };
-static sprite_pattern stn04 = { 1, { { -12, -24, 0, 118 } } };
-static sprite_pattern stn05 = { 1, { { -12, -24, 16, 118 } } };
-static sprite_pattern stn06 = { 1, { { -12, -24, 24, 118 } } };
-static sprite_pattern stn07 = { 1, { { -12, -24, 8, 118 } } };
-static sprite_pattern stn08 = { 1, { { -8, -16, 0, 119 } } };
-static sprite_pattern stn09 = { 1, { { -8, -16, 16, 119 } } };
-static sprite_pattern stn0a = { 1, { { -8, -16, 24, 119 } } };
-static sprite_pattern stn0b = { 1, { { -8, -16, 8, 119 } } };
+static sprite_pattern stn02 = { 1, { { -10, -24, 8, 115 } } };
+static sprite_pattern stn03 = { 1, { { -10, -24, 0, 116 } } };
+static sprite_pattern stn04 = { 1, { { -12, -24, 0, 117 } } };
+static sprite_pattern stn05 = { 1, { { -12, -24, 16, 117 } } };
+static sprite_pattern stn06 = { 1, { { -12, -24, 24, 117 } } };
+static sprite_pattern stn07 = { 1, { { -12, -24, 8, 117 } } };
+static sprite_pattern stn08 = { 1, { { -8, -16, 0, 118 } } };
+static sprite_pattern stn09 = { 1, { { -8, -16, 16, 118 } } };
+static sprite_pattern stn0a = { 1, { { -8, -16, 24, 118 } } };
+static sprite_pattern stn0b = { 1, { { -8, -16, 8, 118 } } };
 static sprite_patterns_sp stone00 = { 4, 3, { &stn00, &stn01, &stn03, &stn02 } };
 static sprite_patterns_sp stone01 = { 4, 1, { &stn04, &stn05, &stn06, &stn07 } };
 static sprite_patterns_sp stone02 = { 4, 1, { &stn0b, &stn0a, &stn09, &stn08 } };
@@ -355,7 +355,7 @@ void init_xyget(sprite_status_sp* plwk) { /* Line 337, Address: 0x100ad50 */
 
 
 
-void clear_chk() {
+void clear_chk(void) {
   if (ufoleft != 0) return; /* Line 359, Address: 0x100ae20 */
   actwk[0].exeno = 8; /* Line 360, Address: 0x100ae34 */
   if (actwk[39].actno != 0) actwk[39].actflg |= 1; /* Line 361, Address: 0x100ae40 */
@@ -865,7 +865,7 @@ void sibuki2(sprite_status_sp* sibukiwk) { /* Line 862, Address: 0x100c480 */
 } /* Line 865, Address: 0x100c4d8 */
 
 
-void sibuki_clr() {
+void sibuki_clr(void) {
   if (actwk[2].actno != 0) actwk[2].actflg |= 1; /* Line 869, Address: 0x100c4f0 */
 } /* Line 870, Address: 0x100c518 */
 

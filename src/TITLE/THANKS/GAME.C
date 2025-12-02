@@ -43,14 +43,14 @@ int(*sOpenFile)(char*);
 void(*sOutputDebugString)(char*);
 void(*sPrintf)(char*, char*);
 char*(*sStrcpy)(char*, char*);
-int(*sRandom)();
+int(*sRandom)(void);
 int(*sMemCmp)(void*, void*, int);
 void(*sMemCpy)(void*, void*, int);
 void(*sMemSet)(void*, unsigned char, int);
 void(*ChangeTileBmp)(int, int);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int, int);
 extern short_union swdata2;
@@ -72,7 +72,7 @@ extern sprite_status_thanks actwk[66];
 extern unsigned short* asc_maptbl[];
 dlink_export ExportedFunctions = {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -170,7 +170,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 117, Address: 0x100
 
 
 
-void DLL_memfree() {} /* Line 173, Address: 0x10020f0 */
+void DLL_memfree(void) {} /* Line 173, Address: 0x10020f0 */
 
 
 
@@ -189,7 +189,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 181, Address: 0x100
 
 
 
-void game_init() { /* Line 192, Address: 0x1002130 */
+void game_init(void) { /* Line 192, Address: 0x1002130 */
   WorkRamClear(); /* Line 193, Address: 0x1002138 */
 
   swdata1.w = -4096; /* Line 195, Address: 0x1002140 */
@@ -217,7 +217,7 @@ void game_init() { /* Line 192, Address: 0x1002130 */
 
 
 
-int game() { /* Line 220, Address: 0x10021d0 */
+int game(void) { /* Line 220, Address: 0x10021d0 */
 
 
   if (EndingMes() != 0) return 0; /* Line 223, Address: 0x10021d8 */
@@ -235,7 +235,7 @@ int game() { /* Line 220, Address: 0x10021d0 */
 
 
 
-void cgmwrt_a() { /* Line 238, Address: 0x1002260 */
+void cgmwrt_a(void) { /* Line 238, Address: 0x1002260 */
   int x, y, TileNo;
   short aMap[2048], *pMap;
   unsigned int hf;
@@ -264,7 +264,7 @@ void cgmwrt_a() { /* Line 238, Address: 0x1002260 */
   } /* Line 264, Address: 0x10023a4 */
 } /* Line 265, Address: 0x10023b4 */
 
-void cgmwrt_b() { /* Line 267, Address: 0x10023e0 */
+void cgmwrt_b(void) { /* Line 267, Address: 0x10023e0 */
   int x, y, TileNo;
   short bMap[2048], *pMap;
   unsigned int hf;
@@ -296,7 +296,7 @@ void cgmwrt_b() { /* Line 267, Address: 0x10023e0 */
 
 
 
-void v_int() { /* Line 299, Address: 0x1002560 */
+void v_int(void) { /* Line 299, Address: 0x1002560 */
   PALETTEENTRY *lpDst, *lpSpr;
   int_union ld0;
   short i;
@@ -419,7 +419,7 @@ void soundset(short ReqNo) { /* Line 398, Address: 0x1002a30 */
 
 
 
-void EndingMesColor() { /* Line 422, Address: 0x1002ab0 */
+void EndingMesColor(void) { /* Line 422, Address: 0x1002ab0 */
   PALETTEENTRY *lpPeSrc, *lpPeDest;
   int i;
 
@@ -430,7 +430,7 @@ void EndingMesColor() { /* Line 422, Address: 0x1002ab0 */
   } /* Line 430, Address: 0x1002b0c */
 } /* Line 431, Address: 0x1002b1c */
 
-int EndingMes() { /* Line 433, Address: 0x1002b40 */
+int EndingMes(void) { /* Line 433, Address: 0x1002b40 */
   int i;
 
   ++gEndingMesTimer; /* Line 436, Address: 0x1002b4c */

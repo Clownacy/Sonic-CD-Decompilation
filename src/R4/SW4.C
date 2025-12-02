@@ -5,6 +5,20 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_SW4_BASE 438
+#elif defined(R41B)
+  #define SPRITE_SW4_BASE 492
+#elif defined(R41C) || defined(R41D)
+  #define SPRITE_SW4_BASE 476
+#elif defined(R42B)
+  #define SPRITE_SW4_BASE 489
+#elif defined(R42C) || defined(R42D)
+  #define SPRITE_SW4_BASE 486
+#else
+  #define SPRITE_SW4_BASE 472
+#endif
+
 static void act_init(sprite_status* pActwk);
 static void act_move(sprite_status* pActwk);
 static short hosei(sprite_status* pActwk, sprite_status* pActwk2);
@@ -12,32 +26,18 @@ static short hosei(sprite_status* pActwk, sprite_status* pActwk2);
 static sprite_pattern pat00 =
 {
   1,
-  { { -16, -8, 0, 438 } }
+  { { -16, -8, 0, SPRITE_SW4_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -16, -4, 0, 439 } }
+  { { -16, -4, 0, SPRITE_SW4_BASE + 1 } }
 };
 sprite_pattern* pat_sw[2] =
 {
   &pat00,
   &pat01
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

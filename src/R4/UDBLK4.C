@@ -5,6 +5,18 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R41B)
+  #define SPRITE_UDBLK4_BASE 523
+#elif defined(R41C)
+  #define SPRITE_UDBLK4_BASE 494
+#elif defined(R41D)
+  #define SPRITE_UDBLK4_BASE 485
+#elif defined(R42B)
+  #define SPRITE_UDBLK4_BASE 511
+#else
+  #define SPRITE_UDBLK4_BASE 514
+#endif
+
 typedef struct {
   unsigned char kakudo;
   char xofst;
@@ -57,42 +69,42 @@ static void typeB_move(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   1,
-  { { -16, -64, 0, 523 } }
+  { { -16, -64, 0, SPRITE_UDBLK4_BASE } }
 };
 static sprite_pattern pat01 =
 {
   1,
-  { { -32, -96, 0, 524 } }
+  { { -32, -96, 0, SPRITE_UDBLK4_BASE + 1 } }
 };
 static sprite_pattern pat02 =
 {
   1,
-  { { -16, -48, 0, 525 } }
+  { { -16, -48, 0, SPRITE_UDBLK4_BASE + 2 } }
 };
 static sprite_pattern pat03 =
 {
   1,
-  { { -16, -64, 0, 526 } }
+  { { -16, -64, 0, SPRITE_UDBLK4_BASE + 3 } }
 };
 static sprite_pattern pat04 =
 {
   1,
-  { { -16, -32, 0, 527 } }
+  { { -16, -32, 0, SPRITE_UDBLK4_BASE + 4 } }
 };
 static sprite_pattern pat05 =
 {
   1,
-  { { -16, -96, 0, 528 } }
+  { { -16, -96, 0, SPRITE_UDBLK4_BASE + 5 } }
 };
 static sprite_pattern pat06 =
 {
   1,
-  { { -32, -48, 0, 529 } }
+  { { -32, -48, 0, SPRITE_UDBLK4_BASE + 6 } }
 };
 static sprite_pattern pat07 =
 {
   1,
-  { { -16, -16, 0, 530 } }
+  { { -16, -16, 0, SPRITE_UDBLK4_BASE + 7 } }
 };
 sprite_pattern* udblk4pat1[1] = { &pat00 };
 sprite_pattern* udblk4pat3[1] = { &pat01 };
@@ -111,18 +123,6 @@ sprite_pattern* udblk4pat9[2] =
   &pat06
 };
 sprite_pattern* udblk4patA[1] = { &pat07 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

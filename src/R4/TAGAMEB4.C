@@ -6,6 +6,22 @@
 #include "..\SUICIDE.H"
 #include "PLAYSUB4.H"
 
+#if defined(R41A)
+  #define SPRITE_TAGAMEB4_BASE 485
+#elif defined(R41B)
+  #define SPRITE_TAGAMEB4_BASE 446
+#elif defined(R41C)
+  #define SPRITE_TAGAMEB4_BASE 463
+#elif defined(R41D)
+  #define SPRITE_TAGAMEB4_BASE 453
+#elif defined(R41A)
+  #define SPRITE_TAGAMEB4_BASE 491
+#elif defined(R41B)
+  #define SPRITE_TAGAMEB4_BASE 444
+#else
+  #define SPRITE_TAGAMEB4_BASE 448
+#endif
+
 static void tagameb0(sprite_status* pActwk);
 static void a_init(sprite_status* pActwk);
 static void make_toge(sprite_status* pActwk);
@@ -25,27 +41,27 @@ static unsigned char* pchg[1] = { pchg0 };
 static sprite_pattern spr_tagame_b_00 =
 {
   1,
-  { { -20, -12, 0, 485 } }
+  { { -20, -12, 0, SPRITE_TAGAMEB4_BASE } }
 };
 static sprite_pattern spr_tagame_b_01 =
 {
   1,
-  { { -20, -12, 0, 486 } }
+  { { -20, -12, 0, SPRITE_TAGAMEB4_BASE + 1 } }
 };
 static sprite_pattern spr_tagame_e_00 =
 {
   1,
-  { { -20, -12, 0, 487 } }
+  { { -20, -12, 0, SPRITE_TAGAMEB4_BASE + 2 } }
 };
 static sprite_pattern spr_tagame_e_01 =
 {
   1,
-  { { -20, -12, 0, 488 } }
+  { { -20, -12, 0, SPRITE_TAGAMEB4_BASE + 3 } }
 };
 static sprite_pattern spr_tagame_99 =
 {
   1,
-  { { 0, 0, 0, 489 } }
+  { { 0, 0, 0, SPRITE_TAGAMEB4_BASE + 4 } }
 };
 sprite_pattern* pat_tagameb_b[2] =
 {
@@ -58,22 +74,6 @@ sprite_pattern* pat_tagameb_e[2] =
   &spr_tagame_e_01
 };
 static sprite_pattern* pat[1] = { &spr_tagame_99 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

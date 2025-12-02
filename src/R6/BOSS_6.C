@@ -416,7 +416,7 @@ void egg6_coliset(sprite_status* pActwk) { /* Line 399, Address: 0x1028100 */
 
 
 
-void egg6_beam_ctrl() { /* Line 419, Address: 0x1028170 */
+void egg6_beam_ctrl(void) { /* Line 419, Address: 0x1028170 */
   unsigned char byD0;
 
   byD0 = get_beam_pos(); /* Line 422, Address: 0x102817c */
@@ -1016,7 +1016,7 @@ void enkei_out(sprite_status* pActwk) { /* Line 999, Address: 0x10290f0 */
 
 
 
-void egg6_flashout() { /* Line 1019, Address: 0x1029150 */
+void egg6_flashout(void) { /* Line 1019, Address: 0x1029150 */
   colchg_stop(); /* Line 1020, Address: 0x1029158 */
   flashout(); /* Line 1021, Address: 0x1029160 */
 } /* Line 1022, Address: 0x1029168 */
@@ -1031,7 +1031,7 @@ void egg6_flashout() { /* Line 1019, Address: 0x1029150 */
 
 
 
-void egg6_flashin() { /* Line 1034, Address: 0x1029180 */
+void egg6_flashin(void) { /* Line 1034, Address: 0x1029180 */
   colchg_stop(); /* Line 1035, Address: 0x1029188 */
   flashin_boss6(); /* Line 1036, Address: 0x1029190 */
 } /* Line 1037, Address: 0x1029198 */
@@ -1182,7 +1182,7 @@ void genecolor_setchk(sprite_status* pActwk) { /* Line 1165, Address: 0x1029420 
 
 
 
-void dead_snc_pos2() {
+void dead_snc_pos2(void) {
   actwk[0].xspeed.w = 0; /* Line 1186, Address: 0x1029490 */
   actwk[0].mspeed.w = 0; /* Line 1187, Address: 0x1029498 */
   actwk[0].xposi.w.h = 2752; /* Line 1188, Address: 0x10294a0 */
@@ -1198,7 +1198,7 @@ void dead_snc_pos2() {
 
 
 
-void dead_snc_pos() {
+void dead_snc_pos(void) {
   if (actwk[0].cddat & 128) return; /* Line 1202, Address: 0x10294c0 */
 
 
@@ -2803,7 +2803,7 @@ void frameout_chk(sprite_status* pActwk) { /* Line 2789, Address: 0x102c230 */
 
 
 
-short get_snc_floor() {
+short get_snc_floor(void) {
   if (actwk[0].yposi.w.h <= 664) /* Line 2807, Address: 0x102c280 */
     return 2; /* Line 2808, Address: 0x102c29c */
   if (actwk[0].yposi.w.h <= 1176) /* Line 2809, Address: 0x102c2a8 */
@@ -2822,7 +2822,7 @@ short get_snc_floor() {
 
 
 
-short get_beam_pos() {
+short get_beam_pos(void) {
   if (actwk[0].yposi.w.h <= 864) /* Line 2826, Address: 0x102c2e0 */
     return 7; /* Line 2827, Address: 0x102c2fc */
   if (actwk[0].yposi.w.h <= 1376) /* Line 2828, Address: 0x102c308 */
@@ -2884,10 +2884,10 @@ void colchg_set(unsigned char byD0) { /* Line 2879, Address: 0x102c3e0 */
   } /* Line 2884, Address: 0x102c414 */
 } /* Line 2885, Address: 0x102c434 */
 
-void colchg_stop() { /* Line 2887, Address: 0x102c450 */
+void colchg_stop(void) { /* Line 2887, Address: 0x102c450 */
   colchg_set(128); /* Line 2888, Address: 0x102c458 */
 } /* Line 2889, Address: 0x102c464 */
 
-void colchg_start() { /* Line 2891, Address: 0x102c480 */
+void colchg_start(void) { /* Line 2891, Address: 0x102c480 */
   colchg_set(0); /* Line 2892, Address: 0x102c488 */
 } /* Line 2893, Address: 0x102c494 */

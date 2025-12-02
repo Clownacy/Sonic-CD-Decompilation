@@ -5,6 +5,12 @@
 #include "..\DIRCOL.H"
 #include "..\SUICIDE.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_BATTA_BASE 477
+#else
+  #define SPRITE_BATTA_BASE 483
+#endif
+
 void(*batta_tbl[4])(sprite_status*) =
 {
   &batta_init,
@@ -15,12 +21,12 @@ void(*batta_tbl[4])(sprite_status*) =
 sprite_pattern ep_batta0 =
 {
   1,
-  { { -16, -18, 0, 477 } }
+  { { -16, -18, 0, SPRITE_BATTA_BASE } }
 };
 sprite_pattern ep_batta1 =
 {
   1,
-  { { -16, -29, 0, 478 } }
+  { { -16, -29, 0, SPRITE_BATTA_BASE + 1 } }
 };
 sprite_pattern* pat_batta_e[2] =
 {
@@ -30,24 +36,18 @@ sprite_pattern* pat_batta_e[2] =
 sprite_pattern bp_batta0 =
 {
   1,
-  { { -16, -18, 0, 479 } }
+  { { -16, -18, 0, SPRITE_BATTA_BASE + 2 } }
 };
 sprite_pattern bp_batta1 =
 {
   1,
-  { { -16, -29, 0, 480 } }
+  { { -16, -29, 0, SPRITE_BATTA_BASE + 3 } }
 };
 sprite_pattern* pat_batta_b[2] =
 {
   &bp_batta0,
   &bp_batta1
 };
-
-
-
-
-
-
 
 
 

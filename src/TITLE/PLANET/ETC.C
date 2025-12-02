@@ -25,14 +25,14 @@
 
 
 
-void sync() {} /* Line 28, Address: 0x10032e0 */
+void sync(void) {} /* Line 28, Address: 0x10032e0 */
 
 
 
 
 
 
-void swclear() {
+void swclear(void) {
   swdata1.w = 65280; /* Line 36, Address: 0x10032f0 */
 } /* Line 37, Address: 0x10032fc */
 
@@ -41,7 +41,7 @@ void swclear() {
 
 
 
-int random() { /* Line 44, Address: 0x1003310 */
+int random(void) { /* Line 44, Address: 0x1003310 */
   int_union lD0, lD1;
 
   if ((lD1.l = ranum) == 0) lD1.l = 711800410; /* Line 47, Address: 0x1003314 */

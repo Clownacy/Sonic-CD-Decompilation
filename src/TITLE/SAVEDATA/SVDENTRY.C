@@ -8,7 +8,7 @@
 #include "SVDDO.H"
 #include "SVDSPRT.H"
 
-static void SDWait();
+static void SDWait(void);
 
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
@@ -24,11 +24,11 @@ extern PALETTEENTRY tblPal3[];
 extern PALETTEENTRY tblPal2[];
 extern PALETTEENTRY tblPal1[];
 draw_context* s_ctx;
-draw_context*(*get_draw_context_module)();
+draw_context*(*get_draw_context_module)(void);
 void(*WaveRequest)(short);
 unsigned int(*WriteIndx)(int, unsigned int);
 int(*ReadIndx)(unsigned int);
-unsigned int(*CreateScore)();
+unsigned int(*CreateScore)(void);
 unsigned int(*CloseScore)(unsigned int);
 unsigned int(*OpenScore)(int);
 unsigned int(*WriteScore)(int, char*, unsigned int);
@@ -63,7 +63,7 @@ hmx_bitmap*(*hmx_bitmap_create_module)(hmx_environment*, int, int);
 void(*hmx_background_set_background_module)(hmx_background*, int);
 void*(*ld_load_cmpfile_module)(hmx_environment*, char*);
 void(*ld_bitmap_4to8_module)(void*, void*, int, int, int, int, int);
-void(*FlipToScreen_module)();
+void(*FlipToScreen_module)(void);
 int(*sGetFileSize)(int);
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
@@ -76,10 +76,10 @@ void(*sMemFree)(void*);
 void*(*sMemAlloc)(int);
 unsigned short swData2;
 dlink_export ExportedFunctions = {
-  (void (*)())&DLLInit,
-  (void (*)())&DLLMain,
+  (void (*)(void))&DLLInit,
+  (void (*)(void))&DLLMain,
   (void (*)(char***, void**))&DLLEnd,
-  (void (*)())&SWdataSet,
+  (void (*)(void))&SWdataSet,
   0,
   0,
   0,
@@ -137,7 +137,7 @@ void OESetSequenceNum(unsigned short num) { /* Line 132, Address: 0x10014d0 */
 
 
 
-void KeyWait() { /* Line 140, Address: 0x1001500 */
+void KeyWait(void) { /* Line 140, Address: 0x1001500 */
   nSaveSequenceNum = nSequenceNum; /* Line 141, Address: 0x1001508 */
   nWaitTime = 6; /* Line 142, Address: 0x1001518 */
   OESetSequenceNum(3); /* Line 143, Address: 0x1001524 */
@@ -146,7 +146,7 @@ void KeyWait() { /* Line 140, Address: 0x1001500 */
 
 
 
-void WaitKeyOff() { /* Line 149, Address: 0x1001540 */
+void WaitKeyOff(void) { /* Line 149, Address: 0x1001540 */
   nSaveSequenceNum = nSequenceNum; /* Line 150, Address: 0x1001548 */
   bWaitKeyOff = 1; /* Line 151, Address: 0x1001558 */
   nWaitTime = 0; /* Line 152, Address: 0x1001564 */
@@ -177,7 +177,7 @@ void WaitAndDfltMsg(int time) { /* Line 169, Address: 0x10015e0 */
 
 
 
-static void SDWait() { /* Line 180, Address: 0x1001640 */
+static void SDWait(void) { /* Line 180, Address: 0x1001640 */
   if (bWaitKeyOff == 0 && nTimerCunt > nWaitTime) /* Line 181, Address: 0x1001648 */
   {
     OESetSequenceNum(nSaveSequenceNum); /* Line 183, Address: 0x1001674 */
@@ -302,7 +302,7 @@ void DLLInit(engine_dll* lpDllIn, char*** pBufTbl, void** pFuncTbl) { /* Line 19
 
 
 
-void DLLEnd() { /* Line 305, Address: 0x1001d60 */
+void DLLEnd(void) { /* Line 305, Address: 0x1001d60 */
   OEDeleteEA(); /* Line 306, Address: 0x1001d68 */
   DeleteAllCharSprt(); /* Line 307, Address: 0x1001d70 */
 
@@ -327,7 +327,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 315, Address: 0x100
 
 
 
-int DLLMain() { /* Line 330, Address: 0x1001dc0 */
+int DLLMain(void) { /* Line 330, Address: 0x1001dc0 */
   int ret = 0; /* Line 331, Address: 0x1001dcc */
 
   switch (nSequenceNum) /* Line 333, Address: 0x1001dd0 */

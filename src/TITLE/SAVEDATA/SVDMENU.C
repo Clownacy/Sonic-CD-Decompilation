@@ -77,7 +77,7 @@ unsigned int SDFileSelect(int* pFileNumber) { /* Line 60, Address: 0x10024f0 */
   } /* Line 77, Address: 0x10025f8 */
   else if (swData1 & 256) { /* Line 78, Address: 0x1002600 */
 
-    oldNumber = *pFileNumber;; /* Line 80, Address: 0x1002618 */
+    oldNumber = *pFileNumber; /* Line 80, Address: 0x1002618 */
     *pFileNumber = *pFileNumber - 1 > 0 ? *pFileNumber - 1 : 0; /* Line 81, Address: 0x1002620 */
     if (oldNumber != *pFileNumber) { /* Line 82, Address: 0x1002654 */
 
@@ -110,7 +110,7 @@ unsigned int SDFileSelect(int* pFileNumber) { /* Line 60, Address: 0x10024f0 */
 
 
 
-void SDMenuSelect() { /* Line 113, Address: 0x1002820 */
+void SDMenuSelect(void) { /* Line 113, Address: 0x1002820 */
   POINT point;
   static unsigned int yesNoDialogOn;
 
@@ -172,7 +172,7 @@ void SDMenuSelect() { /* Line 113, Address: 0x1002820 */
 
 
 
-void SDMenuCopy() { /* Line 175, Address: 0x1002a30 */
+void SDMenuCopy(void) { /* Line 175, Address: 0x1002a30 */
   POINT point;
   static unsigned int yesNoDialogOn;
 
@@ -248,7 +248,7 @@ void SDMenuCopy() { /* Line 175, Address: 0x1002a30 */
 
 
 
-void SDMenuRename() { /* Line 251, Address: 0x1002da0 */
+void SDMenuRename(void) { /* Line 251, Address: 0x1002da0 */
   int ret;
   POINT point;
   static unsigned int editMode;
@@ -325,7 +325,7 @@ void SDMenuRename() { /* Line 251, Address: 0x1002da0 */
 
 
 
-void SDMenuDelete() { /* Line 328, Address: 0x1003040 */
+void SDMenuDelete(void) { /* Line 328, Address: 0x1003040 */
   POINT point;
   int i;
   static unsigned int yesNoDialogOn;
@@ -397,6 +397,6 @@ void SDMenuDelete() { /* Line 328, Address: 0x1003040 */
 
 
 
-void SDMenuExit() { /* Line 400, Address: 0x1003320 */
+void SDMenuExit(void) { /* Line 400, Address: 0x1003320 */
   OESetSequenceNum(999); /* Line 401, Address: 0x1003328 */
 } /* Line 402, Address: 0x1003334 */

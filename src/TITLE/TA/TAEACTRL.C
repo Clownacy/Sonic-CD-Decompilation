@@ -215,7 +215,7 @@ static unsigned short MapRecRound[7][4][18] = {
   }
 };
 static char ErrBuf[250];
-extern void(*FlipToScreen_module)();
+extern void(*FlipToScreen_module)(void);
 extern void(*hmx_renderer_context_draw_module)(hmx_renderer_context*, hmx_surface*);
 extern draw_context* s_ctx;
 extern void(*hmx_renderer_context_add_module)(hmx_renderer_context*, int, hmx_renderer_base*);
@@ -522,7 +522,7 @@ void EAError(int ret, int line, char* str) { /* Line 503, Address: 0x10021a0 */
 } /* Line 522, Address: 0x100232c */
 
 
-void srfDraw() { /* Line 525, Address: 0x1002340 */
+void srfDraw(void) { /* Line 525, Address: 0x1002340 */
   if (s_ctx->context != 0) { /* Line 526, Address: 0x100234c */
     int i;
 
@@ -646,7 +646,7 @@ int ld_load_grid_module(hmx_environment* buffer, char* file, hmx_environment* en
 } /* Line 646, Address: 0x1002770 */
 
 
-int TAGridBmpCreate() { /* Line 649, Address: 0x10027b0 */
+int TAGridBmpCreate(void) { /* Line 649, Address: 0x10027b0 */
   int i, count;
 
   s_ctx->grd_bitmap_count = 0; /* Line 652, Address: 0x10027c0 */
@@ -676,7 +676,7 @@ int TAGridBmpCreate() { /* Line 649, Address: 0x10027b0 */
 } /* Line 676, Address: 0x100285c */
 
 
-int TAGridCreate() { /* Line 679, Address: 0x1002880 */
+int TAGridCreate(void) { /* Line 679, Address: 0x1002880 */
   POINT pt;
   int i;
 
@@ -767,7 +767,7 @@ int GridInitSub(char* path, map_info* pInfo) { /* Line 706, Address: 0x1002ad0 *
 
 
 
-int TAGridInit() { /* Line 770, Address: 0x1002eb0 */
+int TAGridInit(void) { /* Line 770, Address: 0x1002eb0 */
   int i, cntInfo;
   map_info* pInfo;
   char* Path = "TITLE\\BMP\\TA\\BG\\"; /* Line 773, Address: 0x1002ec8 */
@@ -788,28 +788,28 @@ int TAGridInit() { /* Line 770, Address: 0x1002eb0 */
 
 
 
-int BkgBmpCreate_TA() {
+int BkgBmpCreate_TA(void) {
   return 0; /* Line 792, Address: 0x1002f40 */
 } /* Line 793, Address: 0x1002f44 */
 
 
-int BkgBmpDelete_TA() {
+int BkgBmpDelete_TA(void) {
   return 0; /* Line 797, Address: 0x1002f50 */
 } /* Line 798, Address: 0x1002f54 */
 
 
-int BkgCreate_TA() { /* Line 801, Address: 0x1002f60 */
+int BkgCreate_TA(void) { /* Line 801, Address: 0x1002f60 */
   hmx_background_set_background_module(s_ctx->background, 16); /* Line 802, Address: 0x1002f68 */
   return 0; /* Line 803, Address: 0x1002f88 */
 } /* Line 804, Address: 0x1002f8c */
 
 
-int BkgDelete_TA() {
+int BkgDelete_TA(void) {
   return 0; /* Line 808, Address: 0x1002fa0 */
 } /* Line 809, Address: 0x1002fa4 */
 
 
-int LoadPicBmp() { /* Line 812, Address: 0x1002fb0 */
+int LoadPicBmp(void) { /* Line 812, Address: 0x1002fb0 */
   int i;
   int mode, round;
   bmp_header* hdr;
@@ -848,7 +848,7 @@ int LoadPicBmp() { /* Line 812, Address: 0x1002fb0 */
 
 
 
-unsigned int CreatePic() { /* Line 851, Address: 0x10030f0 */
+unsigned int CreatePic(void) { /* Line 851, Address: 0x10030f0 */
   unsigned int mask[4] = { 0, 0, 0, 0 }; /* Line 852, Address: 0x1003100 */
   POINTL pt = { 0, 0 }; /* Line 853, Address: 0x1003130 */
   int i;
@@ -967,7 +967,7 @@ void SetPic(int mode, int round, int zurasi) { /* Line 918, Address: 0x10033f0 *
 
 
 
-unsigned int TA_EACreate() { /* Line 970, Address: 0x10036d0 */
+unsigned int TA_EACreate(void) { /* Line 970, Address: 0x10036d0 */
   int i;
   int j;
 
@@ -1032,7 +1032,7 @@ unsigned int TA_EACreate() { /* Line 970, Address: 0x10036d0 */
 
 
 
-void DeleteEA() { /* Line 1035, Address: 0x1003a80 */
+void DeleteEA(void) { /* Line 1035, Address: 0x1003a80 */
   int i, j;
 
   BkgBmpDelete_TA(); /* Line 1038, Address: 0x1003a90 */
@@ -1095,7 +1095,7 @@ void DeleteEA() { /* Line 1035, Address: 0x1003a80 */
 } /* Line 1095, Address: 0x1003d9c */
 
 
-void DrawTA() { /* Line 1098, Address: 0x1003dc0 */
+void DrawTA(void) { /* Line 1098, Address: 0x1003dc0 */
   int i;
 
   GridRect[1].x = GridRect[3].x; /* Line 1101, Address: 0x1003dcc */
@@ -1536,7 +1536,7 @@ void PrintRankName(int mode, int ranky, int rankx, char c, unsigned int b) { /* 
 
 
 
-void Tenmetu() { /* Line 1539, Address: 0x10059d0 */
+void Tenmetu(void) { /* Line 1539, Address: 0x10059d0 */
   char c;
 
   if (gTimer % 30 == 0) { /* Line 1542, Address: 0x10059dc */
@@ -1595,7 +1595,7 @@ void Tenmetu() { /* Line 1539, Address: 0x10059d0 */
 
 
 
-int TAMove() { /* Line 1598, Address: 0x1005d70 */
+int TAMove(void) { /* Line 1598, Address: 0x1005d70 */
   char c;
 
   switch (gMove & -32769) { /* Line 1601, Address: 0x1005d7c */

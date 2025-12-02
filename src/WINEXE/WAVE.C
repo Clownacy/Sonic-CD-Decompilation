@@ -99,7 +99,7 @@ int openWaveOut(HWND hWnd) {
 
 
 // 0040d6d3
-void closeWaveOut() {
+void closeWaveOut(void) {
   waveInfo *pWaveInfo;
   int i;
   MMRESULT result;
@@ -174,7 +174,7 @@ int loadPcmFile(char* path) {
 
 
 // 0040d912
-void freeWaveMemory() {
+void freeWaveMemory(void) {
   if (gpPcmData != 0) {
     freeLockedMemory(gpPcmData);
     gpPcmData = 0;
@@ -187,7 +187,7 @@ void freeWaveMemory() {
 
 
 // 0040d967
-int getPcmDataChunkCount() {
+int getPcmDataChunkCount(void) {
   return gPcmDataChunkCnt;
 }
 
@@ -275,7 +275,7 @@ int waveStop(int index) {
 
 
 // 0040dc02
-void WaveAllStop() {
+void WaveAllStop(void) {
   int i;
   for (i = 0; i < gWaveDeviceCnt2; ++i) {
     waveStop(i);
@@ -339,7 +339,7 @@ int FUN_0040dd16(HWAVEOUT hWaveout, LPWAVEHDR pWaveHdr) {
 
 
 // 0040dde6
-int getFreeWaveInfoIndex() {
+int getFreeWaveInfoIndex(void) {
   int i;
   for (i = 0; i < gWaveDeviceCnt1; ++i) {
     if (gWaveInfos[i].busy == FALSE) break;
@@ -364,7 +364,7 @@ int collectWaveInfoUnknown44(int* array) {
 
 
 // 0040deaa
-int areWaveInfosFree() {
+int areWaveInfosFree(void) {
   int i;
   for (i = 0; i < gWaveDeviceCnt1; ++i) {
     if (gWaveInfos[i].arraySize > 0) {

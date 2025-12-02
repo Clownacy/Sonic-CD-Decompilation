@@ -6,20 +6,20 @@
 #include "..\LOADER2.H"
 #include "..\RIDECHK.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_TOBIDAI6_BASE 476
+#elif defined(R63C) || defined(R63D)
+  #define SPRITE_TOBIDAI6_BASE 449
+#else
+  #define SPRITE_TOBIDAI6_BASE 482
+#endif
+
 static sprite_pattern tobidai6pat0 =
 {
   1,
-  { { -32, -16, 0, 449 } }
+  { { -32, -16, 0, SPRITE_TOBIDAI6_BASE } }
 };
 sprite_pattern* tobidai6pat[1] = { &tobidai6pat0 };
-
-
-
-
-
-
-
-
 
 
 
@@ -163,7 +163,7 @@ void tobidai6_speedset(sprite_status* actionwk) { /* Line 151, Address: 0x101f4c
 
 
 
-int yuka_chk() { /* Line 166, Address: 0x101f570 */
+int yuka_chk(void) { /* Line 166, Address: 0x101f570 */
   unsigned char d0;
 
   if (time_flag < 2) /* Line 169, Address: 0x101f578 */

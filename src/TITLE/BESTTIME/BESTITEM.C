@@ -35,4 +35,4 @@ bestitem menuTbl[32] = {
   { 0, "                         " },
   { 0, "  " }
 };
-int MENUITEMMAX = 64;
+int MENUITEMMAX = 32;

@@ -74,7 +74,7 @@ extern unsigned short swData2;
 
 
 
-void SDDraw() { /* Line 77, Address: 0x1000000 */
+void SDDraw(void) { /* Line 77, Address: 0x1000000 */
   if (nSequenceNum > 1) { /* Line 78, Address: 0x1000008 */
 
     srfDraw(); /* Line 80, Address: 0x1000020 */
@@ -84,7 +84,7 @@ void SDDraw() { /* Line 77, Address: 0x1000000 */
 
 
 
-void SDStart() { /* Line 87, Address: 0x1000040 */
+void SDStart(void) { /* Line 87, Address: 0x1000040 */
   int n;
   POINT point;
 
@@ -117,7 +117,7 @@ static void UpdateMenu(unsigned short nMenuKind, unsigned short nMenuKindOld) { 
 
 
 
-void DeleteFileSelect() { /* Line 120, Address: 0x1000190 */
+void DeleteFileSelect(void) { /* Line 120, Address: 0x1000190 */
 
   OESprDeleteIndx(192); /* Line 122, Address: 0x1000198 */
 } /* Line 123, Address: 0x10001a4 */
@@ -186,13 +186,13 @@ void UpdateMessage(char* msg) { /* Line 181, Address: 0x10003b0 */
 
 
 
-void DefaultMessage() { /* Line 189, Address: 0x1000400 */
+void DefaultMessage(void) { /* Line 189, Address: 0x1000400 */
   UpdateMessage("SONIC CD DATA-FILES"); /* Line 190, Address: 0x1000408 */
 } /* Line 191, Address: 0x1000418 */
 
 
 
-unsigned int ChkSaveFile() { /* Line 195, Address: 0x1000430 */
+unsigned int ChkSaveFile(void) { /* Line 195, Address: 0x1000430 */
   int i;
   for (i = 0; i < 6; ++i) { /* Line 197, Address: 0x1000438 */
     if (saveData[i].saved != 0) /* Line 198, Address: 0x1000444 */
@@ -203,7 +203,7 @@ unsigned int ChkSaveFile() { /* Line 195, Address: 0x1000430 */
 
 
 
-void SDMenu() { /* Line 206, Address: 0x10004a0 */
+void SDMenu(void) { /* Line 206, Address: 0x10004a0 */
   unsigned short nMenuKindOld;
   POINT point;
 
@@ -321,7 +321,7 @@ void SDMenu() { /* Line 206, Address: 0x10004a0 */
 
 
 
-int SDEnd() { /* Line 324, Address: 0x1000b60 */
+int SDEnd(void) { /* Line 324, Address: 0x1000b60 */
   int ret = 0; /* Line 325, Address: 0x1000b6c */
 
   if (nTimerCunt == 0) { /* Line 327, Address: 0x1000b70 */
@@ -336,7 +336,7 @@ int SDEnd() { /* Line 324, Address: 0x1000b60 */
 
 
 
-int CheckAutoEnd() { /* Line 339, Address: 0x1000bb0 */
+int CheckAutoEnd(void) { /* Line 339, Address: 0x1000bb0 */
   static int inputKeyTime;
   int ret = 0; /* Line 341, Address: 0x1000bb8 */
 

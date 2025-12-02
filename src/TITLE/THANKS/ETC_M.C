@@ -23,7 +23,7 @@ extern int ranum;
 
 
 
-int random() { /* Line 26, Address: 0x1001530 */
+int random(void) { /* Line 26, Address: 0x1001530 */
   int_union d0, d1;
   short tmp;
 

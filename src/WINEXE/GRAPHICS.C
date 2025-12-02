@@ -602,7 +602,7 @@ int FUN_00402136(HFILE hFile, char* pOutput, int* pNumber) {
 
 
 // 00402341
-int SpriteBMPCreate() {
+int SpriteBMPCreate(void) {
   int local_c = 0;
   int local_8 = 0;
   int local_70 = 0;
@@ -748,7 +748,7 @@ int SpriteBMPCreate() {
 
 
 // 004029f3
-int SpriteBMPDelete() {
+int SpriteBMPDelete(void) {
   if (DAT_0041dd50 != 0) {
     freeBmpHandlesDupe(DAT_0041dd50, DAT_0041dd64.l);
     DAT_0041dd64.l = 0;
@@ -760,7 +760,7 @@ int SpriteBMPDelete() {
 
 
 // 00402a3a
-int SpriteCreate() {
+int SpriteCreate(void) {
   int local_c = 0;
   int local_8 = 0;
   int local_1c = 0;
@@ -789,7 +789,7 @@ int SpriteCreate() {
 
 
 // 00402b76
-int SpriteDelete() {
+int SpriteDelete(void) {
   int i;
 
   for (i = 0; i < 80; ++i) {
@@ -807,7 +807,7 @@ int SpriteDelete() {
 
 
 // 00402bfe
-int BackgroundBMPCreate() {
+int BackgroundBMPCreate(void) {
   int local_34 = 0;
   int local_30 = 0;
   int local_2c = 0;
@@ -843,7 +843,7 @@ int BackgroundBMPCreate() {
 
 
 // 00402d12
-int BackgroundBMPDelete() {
+int BackgroundBMPDelete(void) {
   if (gpScreenBmp != 0) {
     gSurfFuncRet = _hbmpDelete(gpScreenBmp);
     gpScreenBmp = 0;
@@ -854,7 +854,7 @@ int BackgroundBMPDelete() {
 
 
 // 00402d4c
-int BackgroundCreate() {
+int BackgroundCreate(void) {
   gSurfFuncRet = _bkgCreate(&gpBackground);
   gSurfFuncRet = _bkgSetData(gpBackground, gpScreenBmp);
   gSurfFuncRet = _objSetDestination(gpBackground, ghSurf);
@@ -866,7 +866,7 @@ int BackgroundCreate() {
 
 
 // 00402ddb
-int BackgroundDelete() {
+int BackgroundDelete(void) {
   if (gpBackground != 0) {
     gSurfFuncRet = _bkgDelete(gpBackground);
     gpBackground = 0;
@@ -876,7 +876,7 @@ int BackgroundDelete() {
 
 
 // 00402e15
-int RotateBmpTileCreate() {
+int RotateBmpTileCreate(void) {
   char buffer[80];
   int local_ac;
   int err;
@@ -900,7 +900,7 @@ int RotateBmpTileCreate() {
 
 
 // 00402ec9
-int RotateGridCreate() {
+int RotateGridCreate(void) {
   int i;
   POINT point;
   point.x = 0;
@@ -948,7 +948,7 @@ int RotateGridCreate() {
 
 
 // 004031b7
-int RotateGridSetup() {
+int RotateGridSetup(void) {
   unsigned short* pSm_adr0 = gKeepWork.sm_adr0;
   int y;
   myPoint local_8;
@@ -1029,7 +1029,7 @@ int RotateGridSetup() {
 
 
 // 004034d1
-int GridBMPCreate() {
+int GridBMPCreate(void) {
   char fileName[80];
   char buffer[80];
   int local_b0;
@@ -1075,7 +1075,7 @@ int GridBMPCreate() {
 
 
 // 0040369e
-int GridBMPDelete() {
+int GridBMPDelete(void) {
   if (DAT_0041dd60 != 0) {
     freeBmpHandles(DAT_0041dd60, DAT_0041a0f8.l);
     DAT_0041dd60 = 0;
@@ -1086,7 +1086,7 @@ int GridBMPDelete() {
 
 
 // 004036db
-int FUN_004036db() {
+int FUN_004036db(void) {
   int i;
 
   for (i = 0; i < 1640; ++i) {
@@ -1140,7 +1140,7 @@ void FUN_00403773(void** param_1, void** param_2, int cnt) {
 
 
 // 00403964
-int freeGrid() {
+int freeGrid(void) {
   if (gpGrid != 0);
   if (DAT_004320c0 != 0) {
     GlobalUnlock(GlobalHandle(DAT_004320c0));
@@ -1157,7 +1157,7 @@ int freeGrid() {
 
 
 // 004039e8
-int FUN_004039e8() {
+int FUN_004039e8(void) {
   int i;
   POINT point;
   FUN_00403773(DAT_0041a340, DAT_0041dd60, DAT_0041a0f8.l);
@@ -1181,7 +1181,7 @@ int FUN_004039e8() {
 
 
 // 00403b47
-int FUN_00403b47() {
+int FUN_00403b47(void) {
   POINT point;
   int i;
   FUN_00403773(DAT_0041a340, DAT_0041dd60, DAT_0041a0f8.l);
@@ -1201,7 +1201,7 @@ int FUN_00403b47() {
 
 
 // 00403c78
-int GridCreate() {
+int GridCreate(void) {
   if (gbSpecialStageLoaded && gKeepWork.SPEMode == 0) {
     return FUN_004039e8();
   }
@@ -1212,7 +1212,7 @@ int GridCreate() {
 
 
 // 00403cb6
-int GridDelete() {
+int GridDelete(void) {
   int i;
 
   for (i = 0; i < 8; ++i) {
@@ -1297,7 +1297,7 @@ int initGraphics(HWND hWnd) {
 
 
 // 00403ffb
-int freeGraphics() {
+int freeGraphics(void) {
   if (ghSurf != 0) {
     gSurfFuncRet = _srfDelete(ghSurf);
     ghSurf = 0;
@@ -1393,7 +1393,7 @@ int FUN_00404072(char* path, tileInfo* info) {
 
 
 // 004043d1
-int SpecialGridSetup() {
+int SpecialGridSetup(void) {
   char* pPath = DAT_00432c24;
   tileInfo* pInfo;
   int cnt;
@@ -1424,7 +1424,7 @@ int SpecialGridSetup() {
 
 
 // 004044ac
-int FUN_004044ac() {
+int FUN_004044ac(void) {
   char* pPath = DAT_00432c38;
   FUN_00404072(pPath, &DAT_00432868[0]);
   FUN_00404072(pPath, &DAT_00432868[1]);
@@ -1631,7 +1631,7 @@ int __stdcall FUN_004044ee(int param_1, int* param_2, unsigned int param_3, void
 
 
 // 004049eb
-BOOL EACreate() {
+BOOL EACreate(void) {
   int i;
   unsigned int byteCnt;
   char msg[80];
@@ -1822,7 +1822,7 @@ BOOL EACreate() {
 
 
 // 00405106
-int EADelete() {
+int EADelete(void) {
   if (DAT_004320c4) {
     DAT_004320c4 = FALSE;
   }
@@ -1847,7 +1847,7 @@ int EADelete() {
 
 
 // 004051ab
-void FUN_004051ab() {
+void FUN_004051ab(void) {
   if (gpBackground == 0) {
     BackgroundBMPCreate();
     BackgroundCreate();
@@ -1918,7 +1918,7 @@ int mapinit(short scrahposiw_h, short vscroll_h, short scrbhposiw_h, short vscro
 
 
 // 004054ee
-int FUN_004054ee() {
+int FUN_004054ee(void) {
   uint_union i;
   short* ptv_adr;
   int_union* pHscrollbuff;
@@ -2050,7 +2050,7 @@ int FUN_004054ee() {
 
 
 // 00405c75
-int FUN_00405c75() {
+int FUN_00405c75(void) {
   uint_union i;
   short* ptv_adr;
   makePalette2();
@@ -2077,7 +2077,7 @@ int FUN_00405c75() {
 
 
 // 00405dbd
-int FUN_00405dbd() {
+int FUN_00405dbd(void) {
   uint_union i;
   makePalette2();
 
@@ -2103,7 +2103,7 @@ int getPaletteEntryCount(HPALETTE hPalette) {
 
 
 // 00405e75
-int makePalette() {
+int makePalette(void) {
   int err = 0;
   HDC hDc;
   int caps;
@@ -2172,7 +2172,7 @@ int makePalette() {
 
 
 // 004060c8
-void makeFullScreenPalette() {
+void makeFullScreenPalette(void) {
   PALETTEENTRY palette[256];
   int i;
   _devGetPalette(256, 0, palette);
@@ -2204,7 +2204,7 @@ void makeFullScreenPalette() {
 
 
 // 00406255
-void makePalette2() {
+void makePalette2(void) {
   LOGPALETTE* pLogPalette;
   PALETTEENTRY *lpPe;
   short i;
@@ -2428,7 +2428,7 @@ void FUN_004069b7(int param_1, int line, char* param_3) {
 
 
 // 00406ac0
-int GridPtnchgBMPCreate() {
+int GridPtnchgBMPCreate(void) {
   int stage;
   char buffer[80];
   char path[80];
@@ -2479,7 +2479,7 @@ void __stdcall ChangeTileBmp(int TileStart, int BmpNo) {
 
 
 // 00406cfc
-int FUN_00406cfc() {
+int FUN_00406cfc(void) {
   if (gpBmpArray != 0) {
     freeBmpHandles(gpBmpArray, DAT_00415184);
     gpBmpArray = 0;
@@ -2490,7 +2490,7 @@ int FUN_00406cfc() {
 
 
 // 00406d39
-void FUN_00406d39() {
+void FUN_00406d39(void) {
   int entryCnt;
   HGLOBAL hMemory;
   PALETTEENTRY* lpPe;

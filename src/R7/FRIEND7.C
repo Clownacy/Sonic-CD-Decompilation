@@ -7,6 +7,12 @@
 #include "..\PLAYSUB.H"
 #include "..\SUICIDE.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_FRIEND7_BASE 441
+#else
+  #define SPRITE_FRIEND7_BASE 462
+#endif
+
 static void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk);
 static void rev_h(sprite_status* pActwk);
 static void set_sproffset(sprite_status* pActwk);
@@ -43,37 +49,37 @@ unsigned char* pchg1[1] = { pchg10 };
 sprite_pattern spr_flicky1 =
 {
   1,
-  { { -8, -8, 0, 441 } }
+  { { -8, -8, 0, SPRITE_FRIEND7_BASE } }
 };
 sprite_pattern spr_flicky2 =
 {
   1,
-  { { -8, -8, 0, 442 } }
+  { { -8, -8, 0, SPRITE_FRIEND7_BASE + 1 } }
 };
 sprite_pattern spr_ricky1 =
 {
   1,
-  { { -8, -12, 0, 443 } }
+  { { -8, -12, 0, SPRITE_FRIEND7_BASE + 2 } }
 };
 sprite_pattern spr_ricky2 =
 {
   1,
-  { { -8, -12, 0, 444 } }
+  { { -8, -12, 0, SPRITE_FRIEND7_BASE + 3 } }
 };
 sprite_pattern spr_ricky3 =
 {
   1,
-  { { -8, -12, 0, 445 } }
+  { { -8, -12, 0, SPRITE_FRIEND7_BASE + 4 } }
 };
 sprite_pattern spr_ricky4 =
 {
   1,
-  { { -8, -4, 0, 446 } }
+  { { -8, -4, 0, SPRITE_FRIEND7_BASE + 5 } }
 };
 sprite_pattern spr_friend0 =
 {
   0,
-  { { -8, -4, 0, 446 } }
+  { { -8, -4, 0, SPRITE_FRIEND7_BASE + 5 } }
 };
 sprite_pattern* pat_friend0[3] =
 {
@@ -95,12 +101,6 @@ unsigned short tbl0sproffset[11] =
   918, 918, 918, 0,
     0,   0, 918
 };
-
-
-
-
-
-
 
 
 

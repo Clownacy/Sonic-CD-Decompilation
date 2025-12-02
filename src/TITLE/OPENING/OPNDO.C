@@ -8,14 +8,14 @@
 #include "..\..\IMPFUNCS.H"
 #include "OPNENTRY.H"
 
-static void OEUpdateHand();
-static void OEUpdateMayu();
-static void OEUpdatePlanet();
-static void OEUpdateMizu();
-static void OEUpdateKumo();
+static void OEUpdateHand(void);
+static void OEUpdateMayu(void);
+static void OEUpdatePlanet(void);
+static void OEUpdateMizu(void);
+static void OEUpdateKumo(void);
 static void GetEnabeMenu(unsigned int* menuTable);
 static int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext);
-static void OEUpdateMsg();
+static void OEUpdateMsg(void);
 
 typedef struct {
   unsigned short wrap;
@@ -177,7 +177,7 @@ static char KeyState[256];
 
 
 
-void OEDraw() { /* Line 180, Address: 0x1000000 */
+void OEDraw(void) { /* Line 180, Address: 0x1000000 */
   if (nSequenceNum > 1 && bDrawDisable == 0) { /* Line 181, Address: 0x1000008 */
 
     srfDraw(); /* Line 183, Address: 0x1000030 */
@@ -187,7 +187,7 @@ void OEDraw() { /* Line 180, Address: 0x1000000 */
 
 
 
-static void OEUpdateHand() { /* Line 190, Address: 0x1000050 */
+static void OEUpdateHand(void) { /* Line 190, Address: 0x1000050 */
   static int num;
 
   if (nTimerCunt == 0) { /* Line 193, Address: 0x1000058 */
@@ -210,7 +210,7 @@ static void OEUpdateHand() { /* Line 190, Address: 0x1000050 */
 
 
 
-static void OEUpdateMayu() { /* Line 213, Address: 0x1000180 */
+static void OEUpdateMayu(void) { /* Line 213, Address: 0x1000180 */
   static int num;
 
   if (nTimerCunt == 0) { /* Line 216, Address: 0x1000188 */
@@ -231,7 +231,7 @@ static void OEUpdateMayu() { /* Line 213, Address: 0x1000180 */
 
 
 
-static void OEUpdatePlanet() { /* Line 234, Address: 0x1000290 */
+static void OEUpdatePlanet(void) { /* Line 234, Address: 0x1000290 */
   static int num;
   static int staTime;
 
@@ -246,8 +246,8 @@ static void OEUpdatePlanet() { /* Line 234, Address: 0x1000290 */
     hmx_sprite_set_position_module(s_ctx->sprites[14], ptPlnt[num].point.x, ptPlnt[num].point.y); /* Line 246, Address: 0x10002cc */
     if (ptPlnt[num].time == nTimerCunt - staTime) { /* Line 247, Address: 0x1000334 */
 
-      if ((unsigned int)++num > 7) /* Line 249, Address: 0x1000374 */
-      {
+      if ((unsigned int)++num > 7) { /* Line 249, Address: 0x1000374 */
+
         num = 0; /* Line 251, Address: 0x1000394 */
       }
     } /* Line 253, Address: 0x100039c */
@@ -263,7 +263,7 @@ static void OEUpdatePlanet() { /* Line 234, Address: 0x1000290 */
 
 
 
-static void OEUpdateMizu() { /* Line 266, Address: 0x1000470 */
+static void OEUpdateMizu(void) { /* Line 266, Address: 0x1000470 */
   int inc;
   int i;
   static int nHorizShearArray[64], fHorizShearArray[64];
@@ -303,7 +303,7 @@ static void OEUpdateMizu() { /* Line 266, Address: 0x1000470 */
 
 
 
-static void OEUpdateKumo() { /* Line 306, Address: 0x1000640 */
+static void OEUpdateKumo(void) { /* Line 306, Address: 0x1000640 */
   int i;
   static unsigned short incY;
   static smorph_data RotateMorphValues[128];
@@ -471,7 +471,7 @@ static int GetNextMenu(unsigned int* menuTable, int kind, unsigned int bNext) { 
 } /* Line 471, Address: 0x1000bfc */
 
 
-unsigned int ChkNewSlot() { /* Line 474, Address: 0x1000c10 */
+unsigned int ChkNewSlot(void) { /* Line 474, Address: 0x1000c10 */
   int i;
   score_data dummyData;
 
@@ -501,7 +501,7 @@ unsigned int ChkNewSlot() { /* Line 474, Address: 0x1000c10 */
 
 
 
-static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
+static void OEUpdateMsg(void) { /* Line 504, Address: 0x1000ca0 */
   POINT arrowPoint;
   unsigned int kPosi;
   unsigned int lPosi;
@@ -682,7 +682,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
     if (point.x >= infoSprtBmp[kind].point.x) { /* Line 682, Address: 0x1001660 */
 
       if (GetNextMenu(menuEnable, kind - 25, 0) + 25 < kind) LArrow = 1; /* Line 684, Address: 0x1001690 */
-      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 < kind) RArrow = 1; /* Line 685, Address: 0x10016d4 */
+      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 > kind) RArrow = 1; /* Line 685, Address: 0x10016d4 */
       point = infoSprtBmp[kind].point; /* Line 686, Address: 0x1001718 */
       OEClrset(tblPal2, 1); /* Line 687, Address: 0x100174c */
       nSeqNo = 6; /* Line 688, Address: 0x1001768 */
@@ -712,7 +712,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
     if (point.x < infoSprtBmp[kind].point.x) { /* Line 712, Address: 0x1001904 */
 
       if (GetNextMenu(menuEnable, kind - 25, 0) + 25 < kind) LArrow = 1; /* Line 714, Address: 0x1001934 */
-      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 < kind) RArrow = 1; /* Line 715, Address: 0x100197c */
+      if (GetNextMenu(menuEnable, kind - 25, 1) + 25 > kind) RArrow = 1; /* Line 715, Address: 0x100197c */
       point = infoSprtBmp[kind].point; /* Line 716, Address: 0x10019c0 */
       OEClrset(tblPal2, 1); /* Line 717, Address: 0x10019f4 */
       nSeqNo = 6; /* Line 718, Address: 0x1001a0c */
@@ -790,7 +790,7 @@ static void OEUpdateMsg() { /* Line 504, Address: 0x1000ca0 */
 
 
 
-void OETitleSta() { /* Line 793, Address: 0x1001eb0 */
+void OETitleSta(void) { /* Line 793, Address: 0x1001eb0 */
   OEAllSprDelete(); /* Line 794, Address: 0x1001eb8 */
   if (nTimerCunt == 0) { /* Line 795, Address: 0x1001ec0 */
 
@@ -809,7 +809,7 @@ void OETitleSta() { /* Line 793, Address: 0x1001eb0 */
 
 
 
-void OETitle() { /* Line 812, Address: 0x1001f50 */
+void OETitle(void) { /* Line 812, Address: 0x1001f50 */
   OEAllSprDelete(); /* Line 813, Address: 0x1001f58 */
   OESprCreate(7); /* Line 814, Address: 0x1001f60 */
   if (nTimerCunt == 0) { /* Line 815, Address: 0x1001f6c */
@@ -828,7 +828,7 @@ void OETitle() { /* Line 812, Address: 0x1001f50 */
 
 
 
-void OEFadeOut() { /* Line 831, Address: 0x1001fd0 */
+void OEFadeOut(void) { /* Line 831, Address: 0x1001fd0 */
   int i, j;
   static int colorNum;
 
@@ -890,7 +890,7 @@ void OEFadeOut() { /* Line 831, Address: 0x1001fd0 */
 
 
 
-void OEFadeIn() { /* Line 893, Address: 0x1002360 */
+void OEFadeIn(void) { /* Line 893, Address: 0x1002360 */
   int n, j;
   PALETTEENTRY* lpPal;
 
@@ -939,7 +939,7 @@ void OEFadeIn() { /* Line 893, Address: 0x1002360 */
 
 
 
-void OEOpenSta() { /* Line 942, Address: 0x1002750 */
+void OEOpenSta(void) { /* Line 942, Address: 0x1002750 */
   if (nTimerCunt == 0) { /* Line 943, Address: 0x1002758 */
 
     OEGridCreate(0); /* Line 945, Address: 0x1002768 */
@@ -954,7 +954,7 @@ void OEOpenSta() { /* Line 942, Address: 0x1002750 */
 
 
 
-void OESegaLogo() { /* Line 957, Address: 0x10027c0 */
+void OESegaLogo(void) { /* Line 957, Address: 0x10027c0 */
   OEAllSprDelete(); /* Line 958, Address: 0x10027c8 */
   if (nTimerCunt == 0) { /* Line 959, Address: 0x10027d0 */
 
@@ -973,7 +973,7 @@ void OESegaLogo() { /* Line 957, Address: 0x10027c0 */
 
 
 
-void OEDark() { /* Line 976, Address: 0x1002860 */
+void OEDark(void) { /* Line 976, Address: 0x1002860 */
   if (nTimerCunt == 30) { /* Line 977, Address: 0x1002868 */
 
     OESetSequenceNum(5); /* Line 979, Address: 0x100287c */
@@ -984,7 +984,7 @@ void OEDark() { /* Line 976, Address: 0x1002860 */
 
 
 
-void OESonic() { /* Line 987, Address: 0x10028a0 */
+void OESonic(void) { /* Line 987, Address: 0x10028a0 */
   OEAllSprDelete(); /* Line 988, Address: 0x10028a8 */
   if (nTimerCunt == 0) { /* Line 989, Address: 0x10028b0 */
     CDPlay(26); /* Line 990, Address: 0x10028c0 */
@@ -1014,7 +1014,7 @@ void OESonic() { /* Line 987, Address: 0x10028a0 */
 
 
 
-int OEEnd() { /* Line 1017, Address: 0x10029a0 */
+int OEEnd(void) { /* Line 1017, Address: 0x10029a0 */
   int ret = 0; /* Line 1018, Address: 0x10029ac */
 
   if (nTimerCunt == 0) { /* Line 1020, Address: 0x10029b0 */

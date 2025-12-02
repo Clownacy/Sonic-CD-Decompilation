@@ -4,20 +4,20 @@
 #include "..\ACTSET.H"
 #include "..\RIDECHK.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_UDBLK6_BASE 475
+#elif defined(R63C) || defined(R63D)
+  #define SPRITE_UDBLK6_BASE 448
+#else
+  #define SPRITE_UDBLK6_BASE 481
+#endif
+
 static sprite_pattern udblk6pat0 =
 {
   1,
-  { { -48, -80, 0, 448 } }
+  { { -48, -80, 0, SPRITE_UDBLK6_BASE } }
 };
 sprite_pattern* udblk6pat[1] = { &udblk6pat0 };
-
-
-
-
-
-
-
-
 
 
 

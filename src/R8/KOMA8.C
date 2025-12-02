@@ -5,6 +5,14 @@
 #include "..\DIRCOL.H"
 #include "..\PLAYSUB.H"
 
+#if defined(R82)
+  #define SPRITE_KOMA8_BASE 313
+#elif defined(R83)
+  #define SPRITE_KOMA8_BASE 306
+#else
+  #define SPRITE_KOMA8_BASE 304
+#endif
+
 static void koma_init(sprite_status* komawk);
 static void koma_move(sprite_status* komawk);
 static void koma_move2(sprite_status* komawk);
@@ -13,24 +21,16 @@ static unsigned char komachg0[4] = { 8, 0, 1, 255 };
 static unsigned char* komachg[1] = { komachg0 };
 static sprite_pattern kom00 = {
   1,
-  { { -8, -8, 0, 306 } }
+  { { -8, -8, 0, SPRITE_KOMA8_BASE } }
 };
 static sprite_pattern kom01 = {
   1,
-  { { -8, -8, 0, 307 } }
+  { { -8, -8, 0, SPRITE_KOMA8_BASE + 1 } }
 };
 sprite_pattern* koma8pat[2] = {
   &kom00,
   &kom01
 };
-
-
-
-
-
-
-
-
 
 
 

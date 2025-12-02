@@ -23,7 +23,7 @@
 
 
 
-void scrchk() { /* Line 26, Address: 0x101c090 */
+void scrchk(void) { /* Line 26, Address: 0x101c090 */
   short wD1;
   int_union temp1, temp2;
 
@@ -59,8 +59,8 @@ void scrchk() { /* Line 26, Address: 0x101c090 */
 
 
 
-void zone4chk() { /* Line 62, Address: 0x101c220 */
-  void(*tbl[3])() = /* Line 63, Address: 0x101c228 */
+void zone4chk(void) { /* Line 62, Address: 0x101c220 */
+  void(*tbl[3])(void) = /* Line 63, Address: 0x101c228 */
   {
     &zone41chk,
     &zone42chk,
@@ -72,12 +72,12 @@ void zone4chk() { /* Line 62, Address: 0x101c220 */
 
 
 
-void zone41chk() {
+void zone41chk(void) {
   scralim_n_down = 1296; /* Line 76, Address: 0x101c280 */
 } /* Line 77, Address: 0x101c28c */
 
 
-void zone42chk() { /* Line 80, Address: 0x101c2a0 */
+void zone42chk(void) { /* Line 80, Address: 0x101c2a0 */
   int_union temp;
 
   if (actwk[0].mstno.b.h != 43) /* Line 83, Address: 0x101c2a4 */
@@ -97,7 +97,7 @@ void zone42chk() { /* Line 80, Address: 0x101c2a0 */
 } /* Line 97, Address: 0x101c328 */
 
 
-void zone43chk() { /* Line 100, Address: 0x101c340 */
+void zone43chk(void) { /* Line 100, Address: 0x101c340 */
   if (bossclr_scr(2808, 1216) == 0) /* Line 101, Address: 0x101c348 */
   {
     if (bossflag) /* Line 103, Address: 0x101c360 */
@@ -135,7 +135,7 @@ int bossclr_scrset(short DownLim) { /* Line 122, Address: 0x101c410 */
   {
     if (temp > scralim_right) /* Line 136, Address: 0x101c4cc */
       temp = scralim_right; /* Line 137, Address: 0x101c4f0 */
-    
+
     scralim_left = temp; /* Line 139, Address: 0x101c500 */
     scralim_n_left = temp; /* Line 140, Address: 0x101c508 */
   }

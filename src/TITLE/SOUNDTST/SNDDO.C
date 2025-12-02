@@ -8,7 +8,7 @@
 #include "SNDENTRY.H"
 #include "SNDSPRT.H"
 
-static void UpdateMenu();
+static void UpdateMenu(void);
 
 static unsigned char tblPCM[80] = {
    0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
@@ -89,7 +89,7 @@ static char ErrBuf[250];
 
 
 
-void SNDDraw() { /* Line 92, Address: 0x10009b0 */
+void SNDDraw(void) { /* Line 92, Address: 0x10009b0 */
   if (nSequenceNum > 1) { /* Line 93, Address: 0x10009b8 */
 
     srfDraw(); /* Line 95, Address: 0x10009d0 */
@@ -99,7 +99,7 @@ void SNDDraw() { /* Line 92, Address: 0x10009b0 */
 
 
 
-static void UpdateMenu() { /* Line 102, Address: 0x10009f0 */
+static void UpdateMenu(void) { /* Line 102, Address: 0x10009f0 */
   if (nMenuKind == 1) StrPCM(2); /* Line 103, Address: 0x10009f8 */
   else StrPCM(1); /* Line 104, Address: 0x1000a24 */
   if (nMenuKind == 2) StrDA(2); /* Line 105, Address: 0x1000a30 */
@@ -109,7 +109,7 @@ static void UpdateMenu() { /* Line 102, Address: 0x10009f0 */
 
 
 
-void SNDStart() { /* Line 112, Address: 0x1000a80 */
+void SNDStart(void) { /* Line 112, Address: 0x1000a80 */
   int n;
 
   OEGridCreate(0); /* Line 115, Address: 0x1000a8c */
@@ -132,7 +132,7 @@ void SNDStart() { /* Line 112, Address: 0x1000a80 */
 
 
 
-void SNDMenu() { /* Line 135, Address: 0x1000b60 */
+void SNDMenu(void) { /* Line 135, Address: 0x1000b60 */
   unsigned short nMenuKindOld;
 
   if (swData1 & 2048) { /* Line 138, Address: 0x1000b74 */
@@ -275,7 +275,7 @@ void SNDMenu() { /* Line 135, Address: 0x1000b60 */
 
 
 
-int SNDEnd() { /* Line 278, Address: 0x1001300 */
+int SNDEnd(void) { /* Line 278, Address: 0x1001300 */
   int ret = 0; /* Line 279, Address: 0x1001308 */
 
   if (nTimerCunt == 0) { /* Line 281, Address: 0x100130c */
@@ -285,7 +285,7 @@ int SNDEnd() { /* Line 278, Address: 0x1001300 */
   return ret; /* Line 285, Address: 0x1001320 */
 } /* Line 286, Address: 0x1001324 */
 
-int SNDEnd2() { /* Line 288, Address: 0x1001340 */
+int SNDEnd2(void) { /* Line 288, Address: 0x1001340 */
   int ret = 0; /* Line 289, Address: 0x1001348 */
 
   if (nTimerCunt == 0) { /* Line 291, Address: 0x100134c */
@@ -295,7 +295,7 @@ int SNDEnd2() { /* Line 288, Address: 0x1001340 */
   return ret; /* Line 295, Address: 0x1001360 */
 } /* Line 296, Address: 0x1001364 */
 
-int SNDEnd3() { /* Line 298, Address: 0x1001380 */
+int SNDEnd3(void) { /* Line 298, Address: 0x1001380 */
   int ret = 0; /* Line 299, Address: 0x1001388 */
 
   if (nTimerCunt == 0) { /* Line 301, Address: 0x100138c */
@@ -454,7 +454,7 @@ int MC_SONICCreate(short cgno) { /* Line 360, Address: 0x10013c0 */
 
 
 
-int MC_SONICDelete() { /* Line 457, Address: 0x10017f0 */
+int MC_SONICDelete(void) { /* Line 457, Address: 0x10017f0 */
   hmx_bitmap_release_module(g_env_module, s_ctx->spr_bitmaps[0]); /* Line 458, Address: 0x10017f8 */
   s_ctx->spr_bitmaps[0] = 0; /* Line 459, Address: 0x100181c */
   s_ctx->spr_level[0] = 0; /* Line 460, Address: 0x1001828 */
@@ -463,7 +463,7 @@ int MC_SONICDelete() { /* Line 457, Address: 0x10017f0 */
   return 0; /* Line 463, Address: 0x1001834 */
 } /* Line 464, Address: 0x1001838 */
 
-void SNDKakusi() { /* Line 466, Address: 0x1001850 */
+void SNDKakusi(void) { /* Line 466, Address: 0x1001850 */
   if (!(swData1 & 16384)) bKakusi |= 4; /* Line 467, Address: 0x1001858 */
   if (bKakusi & 4 && (swData1 & 16384 || swData1 & 4096)) { /* Line 468, Address: 0x1001884 */
     if ((bKakusi & 3) == 2) OESetSequenceNum(7); /* Line 469, Address: 0x10018c8 */
@@ -472,7 +472,7 @@ void SNDKakusi() { /* Line 466, Address: 0x1001850 */
 
 } /* Line 473, Address: 0x1001910 */
 
-void SNDSpecialMes() { /* Line 475, Address: 0x1001920 */
+void SNDSpecialMes(void) { /* Line 475, Address: 0x1001920 */
   if (!(swData1 & 16384)) bKakusi |= 4; /* Line 476, Address: 0x1001928 */
   if (bKakusi & 4 && (swData1 & 16384 || swData1 & 4096)) { /* Line 477, Address: 0x1001954 */
     DeleteCharMes(); /* Line 478, Address: 0x1001998 */

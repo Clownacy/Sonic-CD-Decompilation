@@ -3,17 +3,17 @@
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
 
+#if defined (R42A)
+  #define SPRITE_TEKKYU1_BASE 532
+#else
+  #define SPRITE_TEKKYU1_BASE 505
+#endif
+
 static sprite_pattern pat0 = {
   1,
   { { -16, -16, 0, 532 } }
 };
 static sprite_pattern* pat_tekkyu1[1] = { &pat0 };
-
-
-
-
-
-
 
 
 

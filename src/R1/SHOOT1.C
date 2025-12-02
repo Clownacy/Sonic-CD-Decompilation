@@ -271,7 +271,7 @@ void shooter(sprite_status* shootwk) { /* Line 262, Address: 0x101d5d0 */
   flagwork[flag_no + addition] &= 127; /* Line 271, Address: 0x101d6c0 */
 label1:
   if (actwk[0].mstno.b.h != 43) { /* Line 273, Address: 0x101d6ec */
-    if (actwk[0].cddat < 6) { /* Line 274, Address: 0x101d708 */
+    if (actwk[0].r_no0 < 6) { /* Line 274, Address: 0x101d708 */
       switch (shootwk->r_no0) { /* Line 275, Address: 0x101d720 */
         case 0:
           shooterinit(shootwk); /* Line 277, Address: 0x101d760 */
@@ -322,8 +322,8 @@ void shootermove(sprite_status* shootwk) { /* Line 317, Address: 0x101d8c0 */
   cal_position = actwk[0].yposi.w.h - shootwk->yposi.w.h + 16; /* Line 322, Address: 0x101d934 */
   if (cal_position >= 32 || cal_position < 0) return; /* Line 323, Address: 0x101d96c */
   if (actwk[0].actfree[2] != 0) return; /* Line 324, Address: 0x101d998 */
-  if (actwk[0].cddat == 4) { /* Line 325, Address: 0x101d9ac */
-    actwk[0].cddat -= 2; /* Line 326, Address: 0x101d9c4 */
+  if (actwk[0].r_no0 == 4) { /* Line 325, Address: 0x101d9ac */
+    actwk[0].r_no0 -= 2; /* Line 326, Address: 0x101d9c4 */
     *(short*)&actwk[0].actfree[6] = 120; /* Line 327, Address: 0x101d9d8 */
   }
   shootwk->r_no0 += 2; /* Line 329, Address: 0x101d9e4 */

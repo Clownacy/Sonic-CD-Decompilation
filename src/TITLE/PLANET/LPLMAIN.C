@@ -8,22 +8,22 @@
 #include "KAITEN.H"
 #include "PLS.H"
 
-static void ram_clear();
-static void cgdata_unlze();
-static void kaiten_req();
-static void m2copy();
-static void cgchange_chk();
-static void lp_makeup();
-static int init_dsp();
-static void end_proc();
-static void prg_init();
-static void patchg_init();
-static void prgend_chk();
-static void cgdata_change();
-static void SubCpuMain();
-static void cgmwrt_a();
-static void cgmwrt_b();
-static void cd_call();
+static void ram_clear(void);
+static void cgdata_unlze(void);
+static void kaiten_req(void);
+static void m2copy(void);
+static void cgchange_chk(void);
+static void lp_makeup(void);
+static int init_dsp(void);
+static void end_proc(void);
+static void prg_init(void);
+static void patchg_init(void);
+static void prgend_chk(void);
+static void cgdata_change(void);
+static void SubCpuMain(void);
+static void cgmwrt_a(void);
+static void cgmwrt_b(void);
+static void cd_call(void);
 
 static char* ScrAMapFileName[3] =
 {
@@ -41,15 +41,15 @@ static int MakeupMode;
 pad_status*(*sPeriPadGet)(unsigned int);
 void(*sOutputDebugString)(char*);
 void(*sPrintf)(char*, char*);
-int(*sRandom)();
+int(*sRandom)(void);
 void(*sMemCpy)(void*, void*, int);
 void(*sMemSet)(void*, unsigned char, int);
 void(*sMemFree)(void*);
-void(*WaveAllStop)();
+void(*WaveAllStop)(void);
 void(*ChangeTileBmp)(int, int);
 void(*CDPlay)(short);
 void(*WaveRequest)(short);
-void(*ClrSpriteDebug)();
+void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int, int);
 static char ScrBMapFileName[26] = "TITLE\\PLANET\\MAP\\LPBS.MAP";
@@ -73,7 +73,7 @@ static short DATable[39] =
 dlink_export ExportedFunctions =
 {
   &game_init,
-  (void (*)())&game,
+  (void (*)(void))&game,
   &DLL_meminit,
   &DLL_memfree,
   (void (*)(short, short))&SWdataSet,
@@ -288,7 +288,7 @@ void DLL_meminit(char*** pBufTbl, void** pFuncTbl) { /* Line 178, Address: 0x100
 
 
 
-void DLL_memfree() { /* Line 291, Address: 0x1005540 */
+void DLL_memfree(void) { /* Line 291, Address: 0x1005540 */
 
 
 
@@ -317,7 +317,7 @@ void SWdataSet(ushort_union sw1, ushort_union sw2) { /* Line 307, Address: 0x100
 
 
 
-void game_init() { /* Line 320, Address: 0x10055c0 */
+void game_init(void) { /* Line 320, Address: 0x10055c0 */
   PALETTEENTRY *lpSrc, *lpDst;
   int i;
   unsigned int ProcEnd;
@@ -416,7 +416,7 @@ void game_init() { /* Line 320, Address: 0x10055c0 */
 
 
 
-int game() { /* Line 419, Address: 0x1005870 */
+int game(void) { /* Line 419, Address: 0x1005870 */
   int RetMode;
 
   RetMode = 0; /* Line 422, Address: 0x100587c */
@@ -496,21 +496,21 @@ int game() { /* Line 419, Address: 0x1005870 */
 
 
 
-static void ram_clear() {} /* Line 499, Address: 0x1005af0 */
+static void ram_clear(void) {} /* Line 499, Address: 0x1005af0 */
 
 
 
-static void cgdata_unlze() {} /* Line 503, Address: 0x1005b00 */
+static void cgdata_unlze(void) {} /* Line 503, Address: 0x1005b00 */
 
 
 
-static void kaiten_req() {} /* Line 507, Address: 0x1005b10 */
+static void kaiten_req(void) {} /* Line 507, Address: 0x1005b10 */
 
 
 
-static void m2copy() {} /* Line 511, Address: 0x1005b20 */
+static void m2copy(void) {} /* Line 511, Address: 0x1005b20 */
 
-static void cgchange_chk() { /* Line 513, Address: 0x1005b30 */
+static void cgchange_chk(void) { /* Line 513, Address: 0x1005b30 */
   short fPatnoWk, *pMaptbl, *pWkadr, wk, funka_off;
   int i, j;
 
@@ -550,7 +550,7 @@ static void cgchange_chk() { /* Line 513, Address: 0x1005b30 */
 
 } /* Line 551, Address: 0x1005d0c */
 
-static void lp_makeup() { /* Line 553, Address: 0x1005d40 */
+static void lp_makeup(void) { /* Line 553, Address: 0x1005d40 */
   switch (MakeupMode) /* Line 554, Address: 0x1005d48 */
   {
     case 0:
@@ -639,7 +639,7 @@ static void lp_makeup() { /* Line 553, Address: 0x1005d40 */
 
 } /* Line 640, Address: 0x1006028 */
 
-static int init_dsp() { /* Line 642, Address: 0x1006040 */
+static int init_dsp(void) { /* Line 642, Address: 0x1006040 */
   switch (InitMode) /* Line 643, Address: 0x1006048 */
   {
     case 0:
@@ -674,12 +674,12 @@ static int init_dsp() { /* Line 642, Address: 0x1006040 */
   return 0; /* Line 674, Address: 0x10061a0 */
 } /* Line 675, Address: 0x10061a4 */
 
-static void end_proc() { /* Line 677, Address: 0x10061c0 */
+static void end_proc(void) { /* Line 677, Address: 0x10061c0 */
   flash_flg = 1; /* Line 678, Address: 0x10061c8 */
   fadeout(); /* Line 679, Address: 0x10061d4 */
 } /* Line 680, Address: 0x10061dc */
 
-static void prg_init() { /* Line 682, Address: 0x10061f0 */
+static void prg_init(void) { /* Line 682, Address: 0x10061f0 */
   PALETTEENTRY *lpPlCol, *lpBkgCol, *lpDst;
   int i;
 
@@ -695,7 +695,7 @@ static void prg_init() { /* Line 682, Address: 0x10061f0 */
   patchg_init(); /* Line 695, Address: 0x10063ac */
 } /* Line 696, Address: 0x10063b4 */
 
-static void patchg_init() { /* Line 698, Address: 0x10063e0 */
+static void patchg_init(void) { /* Line 698, Address: 0x10063e0 */
   short *pMapwk, *pMapadr, funka_off;
   int i, wk;
 
@@ -735,14 +735,14 @@ static void patchg_init() { /* Line 698, Address: 0x10063e0 */
   spr_colno = 0; /* Line 735, Address: 0x100657c */
 } /* Line 736, Address: 0x1006584 */
 
-static void prgend_chk() { /* Line 738, Address: 0x10065b0 */
+static void prgend_chk(void) { /* Line 738, Address: 0x10065b0 */
   flash_flg = 1; /* Line 739, Address: 0x10065b8 */
   fadeout(); /* Line 740, Address: 0x10065c4 */
 
 
 } /* Line 743, Address: 0x10065cc */
 
-static void cgdata_change() { /* Line 745, Address: 0x10065e0 */
+static void cgdata_change(void) { /* Line 745, Address: 0x10065e0 */
   unsigned short *pA0, *pA1, *pA2, *pSmap, s, offs;
   int i, j, x, y;
   unsigned int hf;
@@ -828,7 +828,7 @@ static void cgdata_change() { /* Line 745, Address: 0x10065e0 */
 
 } /* Line 829, Address: 0x1006914 */
 
-static void SubCpuMain() { /* Line 831, Address: 0x1006950 */
+static void SubCpuMain(void) { /* Line 831, Address: 0x1006950 */
   if (bGameInit == 0) player(); /* Line 832, Address: 0x1006958 */
 
   if (comflag_s & 16) /* Line 834, Address: 0x1006970 */
@@ -844,7 +844,7 @@ static void SubCpuMain() { /* Line 831, Address: 0x1006950 */
 
 } /* Line 845, Address: 0x1006a10 */
 
-void v_int() { /* Line 847, Address: 0x1006a20 */
+void v_int(void) { /* Line 847, Address: 0x1006a20 */
   PALETTEENTRY *lpPlanet, *lpBkg, *lpDst, *lpSpr;
   int i;
 
@@ -896,7 +896,7 @@ void v_int() { /* Line 847, Address: 0x1006a20 */
   ++gmtime1; /* Line 896, Address: 0x1006d94 */
 } /* Line 897, Address: 0x1006da8 */
 
-static void cgmwrt_a() { /* Line 899, Address: 0x1006dd0 */
+static void cgmwrt_a(void) { /* Line 899, Address: 0x1006dd0 */
   int x, y;
 
   for (y = 0; y < 3; ++y) /* Line 902, Address: 0x1006de0 */
@@ -916,7 +916,7 @@ static void cgmwrt_a() { /* Line 899, Address: 0x1006dd0 */
 
 } /* Line 917, Address: 0x1006e98 */
 
-static void cgmwrt_b() { /* Line 919, Address: 0x1006eb0 */
+static void cgmwrt_b(void) { /* Line 919, Address: 0x1006eb0 */
   short* pA1;
   int x, y, i;
 
@@ -995,6 +995,6 @@ static void cgmwrt_b() { /* Line 919, Address: 0x1006eb0 */
 
 
 
-static void cd_call() { /* Line 998, Address: 0x1007070 */
+static void cd_call(void) { /* Line 998, Address: 0x1007070 */
   CDPlay(DATable[comdata_m4]); /* Line 999, Address: 0x1007078 */
 } /* Line 1000, Address: 0x10070a8 */

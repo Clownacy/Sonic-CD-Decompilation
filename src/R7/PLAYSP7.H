@@ -1,1 +1,1 @@
-void playsp();
+void playsp(void);

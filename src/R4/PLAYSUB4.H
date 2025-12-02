@@ -34,7 +34,7 @@ void test_act(sprite_status* testwk);
 void mizukiri(sprite_status* mizukiwk);
 void futa(sprite_status* futawk);
 void exit2_set(sprite_status* testwk);
-void plairset();
+void plairset(void);
 void plawamaster(sprite_status* pActwk);
 void plawamaster_jump0(sprite_status* pActwk);
 void plawamaster_jump(sprite_status* pActwk);

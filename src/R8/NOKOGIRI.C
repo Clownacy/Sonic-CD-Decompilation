@@ -5,6 +5,12 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 
+#if defined(R83)
+  #define SPRITE_NOKOGIRI_BASE 404
+#else
+  #define SPRITE_NOKOGIRI_BASE 425
+#endif
+
 static char p00[4] = { 1, 0, 1, -1 };
 static char p01[4] = { 1, 2, 3, -1 };
 static char p02[4] = { 1, 4, 5, -1 };
@@ -27,24 +33,24 @@ static char* pchg[10] =
   p08,
   p08
 };
-static sprite_pattern pat00 = { 1, { { -32, -34, 0, 404 } } };
-static sprite_pattern pat01 = { 1, { { -32, -34, 0, 405 } } };
-static sprite_pattern pat02 = { 1, { { -43, -43, 0, 406 } } };
-static sprite_pattern pat03 = { 1, { { -43, -43, 0, 407 } } };
-static sprite_pattern pat04 = { 1, { { -52, -54, 0, 408 } } };
-static sprite_pattern pat05 = { 1, { { -52, -54, 0, 409 } } };
-static sprite_pattern pat06 = { 1, { { -63, -63, 0, 410 } } };
-static sprite_pattern pat07 = { 1, { { -63, -63, 0, 411 } } };
-static sprite_pattern pat08 = { 1, { { -72, -74, 0, 412 } } };
-static sprite_pattern pat09 = { 1, { { -72, -74, 0, 413 } } };
-static sprite_pattern pat10 = { 1, { { -83, -83, 0, 414 } } };
-static sprite_pattern pat11 = { 1, { { -83, -83, 0, 415 } } };
-static sprite_pattern pat12 = { 1, { { -92, -94, 0, 416 } } };
-static sprite_pattern pat13 = { 1, { { -92, -94, 0, 417 } } };
-static sprite_pattern pat14 = { 1, { { -103, -103, 0, 418 } } };
-static sprite_pattern pat15 = { 1, { { -103, -103, 0, 419 } } };
-static sprite_pattern pat16 = { 1, { { -112, -114, 0, 420 } } };
-static sprite_pattern pat17 = { 1, { { -112, -114, 0, 421 } } };
+static sprite_pattern pat00 = { 1, { { -32, -34, 0, SPRITE_NOKOGIRI_BASE } } };
+static sprite_pattern pat01 = { 1, { { -32, -34, 0, SPRITE_NOKOGIRI_BASE + 1 } } };
+static sprite_pattern pat02 = { 1, { { -43, -43, 0, SPRITE_NOKOGIRI_BASE + 2 } } };
+static sprite_pattern pat03 = { 1, { { -43, -43, 0, SPRITE_NOKOGIRI_BASE + 3 } } };
+static sprite_pattern pat04 = { 1, { { -52, -54, 0, SPRITE_NOKOGIRI_BASE + 4 } } };
+static sprite_pattern pat05 = { 1, { { -52, -54, 0, SPRITE_NOKOGIRI_BASE + 5 } } };
+static sprite_pattern pat06 = { 1, { { -63, -63, 0, SPRITE_NOKOGIRI_BASE + 6 } } };
+static sprite_pattern pat07 = { 1, { { -63, -63, 0, SPRITE_NOKOGIRI_BASE + 7 } } };
+static sprite_pattern pat08 = { 1, { { -72, -74, 0, SPRITE_NOKOGIRI_BASE + 8 } } };
+static sprite_pattern pat09 = { 1, { { -72, -74, 0, SPRITE_NOKOGIRI_BASE + 9 } } };
+static sprite_pattern pat10 = { 1, { { -83, -83, 0, SPRITE_NOKOGIRI_BASE + 10 } } };
+static sprite_pattern pat11 = { 1, { { -83, -83, 0, SPRITE_NOKOGIRI_BASE + 11 } } };
+static sprite_pattern pat12 = { 1, { { -92, -94, 0, SPRITE_NOKOGIRI_BASE + 12 } } };
+static sprite_pattern pat13 = { 1, { { -92, -94, 0, SPRITE_NOKOGIRI_BASE + 13 } } };
+static sprite_pattern pat14 = { 1, { { -103, -103, 0, SPRITE_NOKOGIRI_BASE + 14 } } };
+static sprite_pattern pat15 = { 1, { { -103, -103, 0, SPRITE_NOKOGIRI_BASE + 15 } } };
+static sprite_pattern pat16 = { 1, { { -112, -114, 0, SPRITE_NOKOGIRI_BASE + 16 } } };
+static sprite_pattern pat17 = { 1, { { -112, -114, 0, SPRITE_NOKOGIRI_BASE + 17 } } };
 sprite_pattern* pat_nokogiri[20] =
 {
   &pat00,
@@ -66,14 +72,8 @@ sprite_pattern* pat_nokogiri[20] =
   &pat16,
   &pat17
 };
-static sprite_pattern pat_bar0 = { 1, { { -41, -43, 0, 422 } } };
+static sprite_pattern pat_bar0 = { 1, { { -41, -43, 0, SPRITE_NOKOGIRI_BASE + 18 } } };
 sprite_pattern* pat_bar[1] = { &pat_bar0 };
-
-
-
-
-
-
 
 
 

@@ -68,7 +68,7 @@ static void belt_sncspd(int wD6, sprite_status* pActwk);
 static void belt_sncxmax(short subact);
 static void belt_anime(sprite_status* pActwk);
 static void set_belt_col(sprite_status* pActwk);
-static int chk_belt_on();
+static int chk_belt_on(void);
 static int egg5bakuha_ini(sprite_status* pActwk);
 static int egg5bakuha_1(sprite_status* pActwk);
 static int frameout_sp4(sprite_status* pActwk);
@@ -2246,7 +2246,7 @@ static void set_belt_col(sprite_status* pActwk) { /* Line 2196, Address: 0x10275
 
 
 
-static int chk_belt_on() {
+static int chk_belt_on(void) {
   if (actwk[0].mstno.b.h != 26) /* Line 2250, Address: 0x1027830 */
   {
     if (actwk[0].mstno.b.h != 25) /* Line 2252, Address: 0x102784c */
@@ -2319,7 +2319,7 @@ static int frameout_sp4(sprite_status* pActwk) { /* Line 2312, Address: 0x1027a5
 
 
 
-void make_hibana1() { /* Line 2322, Address: 0x1027a70 */
+void make_hibana1(void) { /* Line 2322, Address: 0x1027a70 */
   sprite_status* ppActwk;
 
   if (actwkchk(&ppActwk) == 0) /* Line 2325, Address: 0x1027a78 */

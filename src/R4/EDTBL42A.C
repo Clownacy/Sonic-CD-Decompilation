@@ -19,7 +19,6 @@ extern sprite_pattern* pat_ukidai[];
 extern sprite_pattern* pat_wall42[];
 extern sprite_pattern* springpat[];
 extern sprite_pattern* spring90pat[];
-extern sprite_pattern* pat_tekkyu1[];
 extern sprite_pattern* pat_wall1[];
 extern sprite_pattern* pat_tonbo_e[];
 extern sprite_pattern* pat_tonbo_b[];

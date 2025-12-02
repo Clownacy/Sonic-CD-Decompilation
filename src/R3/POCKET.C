@@ -6,6 +6,16 @@
 #include "..\PLAYSUB.H"
 #include "..\SCORE.H"
 
+#if defined(R31A)
+  #define SPRITE_POCKET_BASE 558
+#elif defined(R31B) || defined(R32A)
+  #define SPRITE_POCKET_BASE 552
+#elif defined(R33C) || defined(R33D)
+  #define SPRITE_POCKET_BASE 556
+#else
+  #define SPRITE_POCKET_BASE 505
+#endif
+
 static sprite_pattern pat_pocket1 =
 {
   1,
@@ -14,22 +24,22 @@ static sprite_pattern pat_pocket1 =
 static sprite_pattern pat_pocket2 =
 {
   1,
-  { { -24, -8, 0, 558 } }
+  { { -24, -8, 0, SPRITE_POCKET_BASE } }
 };
 static sprite_pattern pat_pocket3 =
 {
   1,
-  { { -16, -24, 0, 559 } }
+  { { -16, -24, 0, SPRITE_POCKET_BASE + 1 } }
 };
 static sprite_pattern pat_pocket4 =
 {
   1,
-  { { -8, -16, 0, 560 } }
+  { { -8, -16, 0, SPRITE_POCKET_BASE + 2 } }
 };
 static sprite_pattern pat_pocket5 =
 {
   1,
-  { { -24, -8, 0, 561 } }
+  { { -24, -8, 0, SPRITE_POCKET_BASE + 3 } }
 };
 sprite_pattern* pat[4] =
 {
@@ -59,16 +69,6 @@ void(*pocket_move_tbl[11])(sprite_status*) =
   &a_move7,
   &a_move8
 };
-
-
-
-
-
-
-
-
-
-
 
 
 

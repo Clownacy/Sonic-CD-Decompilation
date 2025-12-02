@@ -256,7 +256,7 @@ void DeleteStringSprt(int strLength, int nBlockNo, int nStartSprNum) { /* Line 2
 
 
 
-void DeleteAllCharSprt() { /* Line 259, Address: 0x10040e0 */
+void DeleteAllCharSprt(void) { /* Line 259, Address: 0x10040e0 */
   int n;
 
   DeleteStringSprt(27, 1, 0); /* Line 262, Address: 0x10040ec */
@@ -267,7 +267,7 @@ void DeleteAllCharSprt() { /* Line 259, Address: 0x10040e0 */
 
 
 
-int GetCursolPositon() {
+int GetCursolPositon(void) {
   return cursolPosiIndxX; /* Line 271, Address: 0x1004150 */
 } /* Line 272, Address: 0x1004158 */
 
@@ -287,7 +287,7 @@ void MovCursol(int x) { /* Line 277, Address: 0x1004160 */
 
 
 
-void DispCursol() { /* Line 290, Address: 0x1004200 */
+void DispCursol(void) { /* Line 290, Address: 0x1004200 */
   OESprCreateIndx(191); /* Line 291, Address: 0x1004208 */
   MovCursol(cursolPosiIndxX); /* Line 292, Address: 0x1004214 */
 } /* Line 293, Address: 0x1004224 */
@@ -295,7 +295,7 @@ void DispCursol() { /* Line 290, Address: 0x1004200 */
 
 
 
-void HideCursol() { /* Line 298, Address: 0x1004240 */
+void HideCursol(void) { /* Line 298, Address: 0x1004240 */
   OESprDeleteIndx(191); /* Line 299, Address: 0x1004248 */
 } /* Line 300, Address: 0x1004254 */
 
@@ -310,7 +310,7 @@ void HideCursol() { /* Line 298, Address: 0x1004240 */
 
 
 
-void HideSonicCursol() { /* Line 313, Address: 0x1004270 */
+void HideSonicCursol(void) { /* Line 313, Address: 0x1004270 */
   OESprDeleteIndx(nSonicKind); /* Line 314, Address: 0x1004278 */
 } /* Line 315, Address: 0x1004288 */
 
@@ -417,7 +417,7 @@ label1:
 
 
 
-void UpdateSonicCursol() { /* Line 420, Address: 0x1004890 */
+void UpdateSonicCursol(void) { /* Line 420, Address: 0x1004890 */
   if (nSonicMode == 1) /* Line 421, Address: 0x1004898 */
   {
     if (nTimerCunt % 20 != 0) return; /* Line 423, Address: 0x10048ac */

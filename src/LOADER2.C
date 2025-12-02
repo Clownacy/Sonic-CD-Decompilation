@@ -56,7 +56,7 @@ void GetRoundStr(unsigned short StageNo, unsigned char Time_Flag, char* buf) { /
 } /* Line 56, Address: 0x1013814 */
 
 
-void ReadBlockMap() { /* Line 59, Address: 0x1013830 */
+void ReadBlockMap(void) { /* Line 59, Address: 0x1013830 */
   int hf;
   char buf[80];
   char fn[80];
@@ -92,7 +92,7 @@ void ReadBlockMap() { /* Line 59, Address: 0x1013830 */
 
 
 
-void ReadScrolMap() { /* Line 95, Address: 0x1013990 */
+void ReadScrolMap(void) { /* Line 95, Address: 0x1013990 */
   int hf;
   unsigned short* p;
   int i;

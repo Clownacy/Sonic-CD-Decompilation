@@ -526,7 +526,7 @@ short playdamageset(sprite_status* pActwk, sprite_status* pColliAct) { /* Line 5
     playdamagechk(pActwk, pColliAct); /* Line 526, Address: 0x101c304 */
     return -1; /* Line 527, Address: 0x101c314 */
   }
-  playdieset(pActwk); /* Line 529, Address: 0x101c320 */
+  return playdieset(pActwk); /* Line 529, Address: 0x101c320 */
 } /* Line 530, Address: 0x101c32c */
 
 

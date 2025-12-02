@@ -6,6 +6,14 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 
+#if defined(R61B) || defined(R62B)
+  #define SPRITE_SEESAW6_BASE 481
+#elif defined(R63C) || defined(R63D)
+  #define SPRITE_SEESAW6_BASE 450
+#else
+  #define SPRITE_SEESAW6_BASE 487
+#endif
+
 void(*seesaw6_tbl[3])(sprite_status*) = {
   &m_init,
   &m_move,
@@ -26,16 +34,16 @@ unsigned char* seesaw_pchg[6] =
   seesaw_pat_04,
   seesaw_pat_05
 };
-sprite_pattern seesawPat00 = { 1, { { -24, -24, 0, 450 } } };
-sprite_pattern seesawPat01 = { 1, { { -24, -24, 0, 451 } } };
-sprite_pattern seesawPat02 = { 1, { { -24, -24, 0, 452 } } };
-sprite_pattern seesawPat03 = { 1, { { -24, -24, 0, 453 } } };
-sprite_pattern seesawPat04 = { 1, { { -24, -24, 0, 454 } } };
-sprite_pattern seesawPat05 = { 1, { { -24, -24, 0, 455 } } };
-sprite_pattern seesawPat06 = { 1, { { -24, -24, 0, 456 } } };
-sprite_pattern seesawPat07 = { 1, { { -24, -24, 0, 457 } } };
-sprite_pattern seesawPat08 = { 1, { { -24, -8, 0, 458 } } };
-sprite_pattern seesawPat09 = { 1, { { -16, -7, 0, 459 } } };
+sprite_pattern seesawPat00 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE } } };
+sprite_pattern seesawPat01 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 1 } } };
+sprite_pattern seesawPat02 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 2 } } };
+sprite_pattern seesawPat03 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 3 } } };
+sprite_pattern seesawPat04 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 4 } } };
+sprite_pattern seesawPat05 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 5 } } };
+sprite_pattern seesawPat06 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 6 } } };
+sprite_pattern seesawPat07 = { 1, { { -24, -24, 0, SPRITE_SEESAW6_BASE + 7 } } };
+sprite_pattern seesawPat08 = { 1, { { -24, -8, 0, SPRITE_SEESAW6_BASE + 8 } } };
+sprite_pattern seesawPat09 = { 1, { { -16, -7, 0, SPRITE_SEESAW6_BASE + 9 } } };
 sprite_pattern* pat_seesaw6[10] = {
   &seesawPat00,
   &seesawPat01,
@@ -48,14 +56,6 @@ sprite_pattern* pat_seesaw6[10] = {
   &seesawPat08,
   &seesawPat09
 };
-
-
-
-
-
-
-
-
 
 
 

@@ -6,6 +6,12 @@
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
 
+#if defined(R33C) || defined(R33D)
+  #define SPRITE_MOVIE3_BASE 320
+#else
+  #define SPRITE_MOVIE3_BASE 316
+#endif
+
 static void die(sprite_status* moviewk);
 static void m_init(sprite_status* moviewk);
 static void m_wait(sprite_status* moviewk);
@@ -17,24 +23,17 @@ static void s_init(sprite_status* moviewk);
 static void s_move(sprite_status* moviewk);
 
 static unsigned char pchg00[6] = { 0, 2, 1, 3, 1, 255 };
-static unsigned char pchg01[58] = {
-  0, 4, 4, 1, 4, 4, 1, 4, 4, 1,
-  4, 4, 1, 4, 4, 1, 1, 4, 4, 1,
-  1, 4, 4, 1, 1, 4, 4, 1, 1, 5,
-  5, 1, 5, 5, 1, 5, 5, 1, 5, 5,
-  1, 5, 5, 1, 1, 5, 5, 1, 1, 5,
-  5, 1, 1, 5, 5, 1, 1, 255
-};
+static unsigned char pchg01[58] = { 0, 4, 4, 1, 4, 4, 1, 4, 4, 1, 4, 4, 1, 4, 4, 1, 1, 4, 4, 1, 1, 4, 4, 1, 1, 4, 4, 1, 1, 5, 5, 1, 5, 5, 1, 5, 5, 1, 5, 5, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 5, 5, 1, 1, 255 };
 static unsigned char* pchg[2] = {
   pchg00,
   pchg01
 };
-static sprite_pattern mov00 = { 1, { { -12, -12, 0, 316 } } };
+static sprite_pattern mov00 = { 1, { { -12, -12, 0, SPRITE_MOVIE3_BASE } } };
 static sprite_pattern pat00 = { 1, { { -16, -20, 0, 0 } } };
-static sprite_pattern mov01 = { 1, { { -8, -4, 0, 317 } } };
-static sprite_pattern mov02 = { 1, { { -8, -4, 0, 318 } } };
-static sprite_pattern mov03 = { 1, { { -20, -24, 0, 319 } } };
-static sprite_pattern mov04 = { 1, { { -20, -24, 0, 320 } } };
+static sprite_pattern mov01 = { 1, { { -8, -4, 0, SPRITE_MOVIE3_BASE + 1 } } };
+static sprite_pattern mov02 = { 1, { { -8, -4, 0, SPRITE_MOVIE3_BASE + 2 } } };
+static sprite_pattern mov03 = { 1, { { -20, -24, 0, SPRITE_MOVIE3_BASE + 3 } } };
+static sprite_pattern mov04 = { 1, { { -20, -24, 0, SPRITE_MOVIE3_BASE + 4 } } };
 sprite_pattern* pat_movie[6] = { &mov00, &pat00, &mov01, &mov02, &mov03, &mov04 };
 static char tbl0[37] = {
     1,   0,   0,
@@ -51,6 +50,7 @@ static char tbl0[37] = {
    40, -10,  10,
    -1
 };
+
 
 void movie(sprite_status* moviewk) { /* Line 55, Address: 0x102e7e0 */
   void(*act_tbl[5])(sprite_status*) = { &m_init, &m_wait, &m_die, &m_baku, &m1wait }; /* Line 56, Address: 0x102e7ec */

@@ -5,6 +5,12 @@
 #include "..\ETC.H"
 #include "..\RIDECHK.H"
 
+#if defined(R73C) || defined(R73D)
+  #define SPRITE_BRANKO7_BASE 403
+#else
+  #define SPRITE_BRANKO7_BASE 404
+#endif
+
 static void branko7_ridechk(sprite_status* pActwk);
 static void branko7_init(sprite_status* pActwk);
 static void branko7_move(sprite_status* pActwk);
@@ -23,15 +29,15 @@ static short branko7_initbl[32] = {
 };
 static sprite_pattern pat0 = {
   1,
-  { { -8, -8, 0, 403 } }
+  { { -8, -8, 0, SPRITE_BRANKO7_BASE } }
 };
 static sprite_pattern pat1 = {
   1,
-  { { -32, -8, 0, 404 } }
+  { { -32, -8, 0, SPRITE_BRANKO7_BASE + 1 } }
 };
 static sprite_pattern pat2 = {
   1,
-  { { -8, -8, 0, 405 } }
+  { { -8, -8, 0, SPRITE_BRANKO7_BASE + 2 } }
 };
 sprite_pattern* branko7pat[3] = {
   &pat0,
@@ -42,12 +48,6 @@ static void(*branko7_act_tbl[2])(sprite_status*) = {
   &branko7_init,
   &branko7_move
 };
-
-
-
-
-
-
 
 
 

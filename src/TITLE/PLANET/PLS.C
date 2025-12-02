@@ -4,7 +4,7 @@
 #include "SPS_EQU.H"
 #include "PLS.H"
 
-void(*player_acttbl[3])() =
+void(*player_acttbl[3])(void) =
 {
   &play0,
   &play1,
@@ -48,7 +48,7 @@ extern pad_status*(*sPeriPadGet)(unsigned int);
 
 
 
-void player() { /* Line 51, Address: 0x1008570 */
+void player(void) { /* Line 51, Address: 0x1008570 */
   player_acttbl[playwk.ACT_NO](); /* Line 52, Address: 0x1008578 */
 } /* Line 53, Address: 0x10085a0 */
 
@@ -62,7 +62,7 @@ void player() { /* Line 51, Address: 0x1008570 */
 
 
 
-void play0() {
+void play0(void) {
   playwk.x_posi.w.h = -40; /* Line 66, Address: 0x10085b0 */
   playwk.y_posi.w.h = 24; /* Line 67, Address: 0x10085bc */
   playwk.z_posi.w.h = 64; /* Line 68, Address: 0x10085c8 */
@@ -88,7 +88,7 @@ void play0() {
 
 
 
-void play1() { /* Line 91, Address: 0x1008640 */
+void play1(void) { /* Line 91, Address: 0x1008640 */
   short iD0;
   short iD5;
   short iD6;
@@ -185,7 +185,7 @@ void play1() { /* Line 91, Address: 0x1008640 */
 
 
 
-void check_Bbtn() {
+void check_Bbtn(void) {
   if (keyBuf[88] == 0) /* Line 189, Address: 0x1008a10 */
   {
     push_flg_s &= 239; /* Line 191, Address: 0x1008a24 */
@@ -223,7 +223,7 @@ label1:
 
 
 
-void check_Cbtn() {
+void check_Cbtn(void) {
   if (keyBuf[67] == 0) /* Line 227, Address: 0x1008b50 */
   {
     push_flg_s &= 223; /* Line 229, Address: 0x1008b64 */
@@ -269,7 +269,7 @@ label1:
 
 
 
-void play2() {
+void play2(void) {
   if (swdata1.b.h & 16) /* Line 273, Address: 0x1008c80 */
   {
     comflag_s |= 64; /* Line 275, Address: 0x1008c98 */

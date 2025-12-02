@@ -16,11 +16,11 @@ static void setdirect(sprite_status* pEmiewk, sprite_status* pSonicwk);
 static void speedset(sprite_status* pActwk);
 static void speedsetx(sprite_status* pActwk);
 static void speedsety(sprite_status* pActwk);
-static void jumpchk_d();
-static void pljumpset();
+static void jumpchk_d(void);
+static void pljumpset(void);
 static void dakicheck(sprite_status* pActwk);
 static void empatchg(sprite_status* pActwk, char** pPattbl);
-static void emie1clrset();
+static void emie1clrset(void);
 static void emie1clrsetx(PALETTEENTRY* pPalet);
 static void heartset(sprite_status* pActwk);
 static void heart1_init(sprite_status* pActwk);
@@ -545,7 +545,7 @@ static void speedsety(sprite_status* pActwk) { /* Line 533, Address: 0x1006060 *
 
 
 
-static void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
+static void jumpchk_d(void) { /* Line 548, Address: 0x10060a0 */
 
   if (!(swdata.b.h & 112)) return; /* Line 550, Address: 0x10060a8 */
 
@@ -556,7 +556,7 @@ static void jumpchk_d() { /* Line 548, Address: 0x10060a0 */
 } /* Line 556, Address: 0x10060c8 */
 
 
-static void pljumpset() { /* Line 559, Address: 0x10060e0 */
+static void pljumpset(void) { /* Line 559, Address: 0x10060e0 */
   short sinwk, coswk;
 
   actwk[0].actfree[2] = 0; /* Line 562, Address: 0x10060e8 */
@@ -741,7 +741,7 @@ static void empatchg(sprite_status* pActwk, char** pPattbl) { /* Line 690, Addre
 
 
 
-static void emie1clrset() { /* Line 744, Address: 0x1006770 */
+static void emie1clrset(void) { /* Line 744, Address: 0x1006770 */
   emie1clrsetx(emie1_clr); /* Line 745, Address: 0x1006778 */
 } /* Line 746, Address: 0x1006788 */
 

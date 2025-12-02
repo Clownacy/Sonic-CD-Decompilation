@@ -30,7 +30,7 @@ extern score_data* lpCrntScorData;
 
 
 
-void ReadDataFile() { /* Line 33, Address: 0x1001ed0 */
+void ReadDataFile(void) { /* Line 33, Address: 0x1001ed0 */
   int n;
   int indx;
   unsigned int hFile;
@@ -53,7 +53,7 @@ void ReadDataFile() { /* Line 33, Address: 0x1001ed0 */
 
 
 
-void WriteDataFile() { /* Line 56, Address: 0x1001fc0 */
+void WriteDataFile(void) { /* Line 56, Address: 0x1001fc0 */
   int n;
   unsigned int hFile;
 

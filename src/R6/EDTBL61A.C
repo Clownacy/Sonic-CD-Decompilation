@@ -43,7 +43,7 @@ edit_data edit_tbl = {
     { 40, 1, kdai6pat,       17258, 3, 0, 0, 0 },
     { 39, 1, optbr6pat,      17424 },
     { 35, 1, tobidai6pat,    17384 },
-    { 36, 1, pat0_sw6,         922, 1, 0, 0, 0 },
+    { 36, 1, pat_sw6,          922, 1, 0, 0, 0 },
     { 37, 1, tobira6pat,       928, 1, 0, 0, 0 },
     { 33, 1, beem6pat,       25432 },
     { 32, 1, piston6pat,       832 },

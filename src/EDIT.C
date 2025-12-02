@@ -101,7 +101,7 @@ void edit(sprite_status* pActwk) { /* Line 27, Address: 0x100edd0 */
 
   CKey = 0; /* Line 102, Address: 0x100f110 */
   if (CKey & 128) /* Line 103, Address: 0x100f114 */
-  {  /* Unreachable code. */
+  { /* Unreachable code. */
     CKey &= 1; /* Line 105, Address: 0x100f120 */
     if (CKeyTogle != CKey) { /* Line 106, Address: 0x100f124 */
       if (actwkchk(&pActwk2) == 0) /* Line 107, Address: 0x100f134 */

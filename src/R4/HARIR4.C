@@ -6,28 +6,28 @@
 #include "..\RIDECHK.H"
 #include "COLI4.H"
 
+#if defined(R41A) || defined(R42A)
+  #define SPRITE_HARIR4_BASE 443
+#elif defined(R41B) || defined(R41C)
+  #define SPRITE_HARIR4_BASE 431
+#elif defined(R41D)
+  #define SPRITE_HARIR4_BASE 466
+#else
+  #define SPRITE_HARIR4_BASE 429
+#endif
+
 sprite_pattern harir4_pat0 = {
   1,
-  { { -16, -16, 0, 443 } }
+  { { -16, -16, 0, SPRITE_HARIR4_BASE } }
 };
 sprite_pattern harir4_pat1 = {
   1,
-  { { -16, -16, 0, 444 } }
+  { { -16, -16, 0, SPRITE_HARIR4_BASE + 1 } }
 };
 sprite_pattern* harir4pat[2] = {
   &harir4_pat0,
   &harir4_pat1
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
