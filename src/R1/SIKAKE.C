@@ -9,7 +9,7 @@
 
 #if defined(R11A)
   #define SPRITE_SIKAKE_BASE 488
-#elif
+#else
   #define SPRITE_SIKAKE_BASE 471
 #endif
 
