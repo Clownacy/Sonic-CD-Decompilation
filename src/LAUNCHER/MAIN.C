@@ -580,6 +580,7 @@ int SDL_main(const int argc, char** const argv)
 						ExportedFunctions.game_init();
 
 						bool alive = true;
+						Uint32 next_ticks = SDL_GetTicks();
 						while (alive)
 						{
 							buttons_pressed = buttons_held;
@@ -672,8 +673,12 @@ int SDL_main(const int argc, char** const argv)
 								fputs("Failed to blit to window surface.\n", stderr);
 
 							SDL_UpdateWindowSurface(window);
+
+							const Uint32 current_ticks = SDL_GetTicks();
+							if (next_ticks > current_ticks)
+								SDL_Delay(next_ticks - current_ticks);
 							const int frames_per_second = 60;
-							SDL_Delay((1000 + (frames_per_second / 2)) / frames_per_second);
+							next_ticks += (1000 + (frames_per_second / 2)) / frames_per_second;
 						}
 					}
 				}
