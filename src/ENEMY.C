@@ -20,36 +20,44 @@ static sprite_pattern ari0 =
 {
   3,
   {
+  {
     { -12, -19, 0, 370 },
     {  -8,   4, 0, 371 },
     {  14,  -4, 0, 372 }
+  }
   }
 };
 static sprite_pattern ari1 =
 {
   3,
   {
+  {
     { -12, -20, 0, 373 },
     {  -8,   4, 0, 374 },
     {  18,  -4, 0, 375 }
+  }
   }
 };
 static sprite_pattern ari2 =
 {
   3,
   {
+  {
     { -12, -19, 0, 376 },
     {  -8,   4, 0, 377 },
     {  14,  -4, 0, 378 }
+  }
   }
 };
 static sprite_pattern ari3 =
 {
   3,
   {
+  {
     { -12, -20, 0, 379 },
     {  -8,   4, 0, 380 },
     {  18,  -4, 0, 381 }
+  }
   }
 };
 sprite_pattern* ari_pat[4] =
@@ -321,16 +329,20 @@ static sprite_pattern tagame_pat00 =
 {
   2,
   {
+  {
     { -16, -10, 0, 418 },
     { -16, -22, 0, 419 }
+  }
   }
 };
 static sprite_pattern tagame_pat01 =
 {
   2,
   {
+  {
     { -16, -10, 0, 420 },
     { -16, -22, 0, 421 }
+  }
   }
 };
 static sprite_pattern tagame_pat02 =
@@ -347,16 +359,20 @@ static sprite_pattern tagame_pat04e =
 {
   2,
   {
+  {
     { -16, -22, 0, 424 },
     { -16, -2, 0, 425 }
+  }
   }
 };
 static sprite_pattern tagame_pat05e =
 {
   2,
   {
+  {
     { -16, -22, 0, 426 },
     { -16, -2, 0, 427 }
+  }
   }
 };
 static sprite_pattern tagame_pat03b =
@@ -368,16 +384,20 @@ static sprite_pattern tagame_pat04b =
 {
   2,
   {
+  {
     { -16, -22, 0, 429 },
     { -16, -2, 0, 430 }
+  }
   }
 };
 static sprite_pattern tagame_pat05b =
 {
   2,
   {
+  {
     { -16, -22, 0, 431 },
     { -16, -2, 0, 432 }
+  }
   }
 };
 static sprite_pattern tagame_pat06 =
