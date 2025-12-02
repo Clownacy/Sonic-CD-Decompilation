@@ -70,5 +70,7 @@ set_target_properties(game PROPERTIES
 	C_STANDARD 99
 )
 
+target_compile_definitions(game PRIVATE R1 R11 R11B)
+
 find_package(SDL2 REQUIRED)
 target_link_libraries(game PRIVATE SDL2::SDL2main SDL2::SDL2)
