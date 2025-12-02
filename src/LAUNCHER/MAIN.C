@@ -18,6 +18,12 @@
 #define TILE_WIDTH (1 << TILE_WIDTH_SHIFT)
 #define TILE_HEIGHT 8
 
+typedef struct SpriteQueueSlot
+{
+	short x, y;
+	unsigned short index, link_data, flip;
+} SpriteQueueSlot;
+
 extern dlink_export ExportedFunctions;
 
 static unsigned char buffers[10][1024*1024*10];
@@ -41,6 +47,9 @@ typedef unsigned short Block;
 
 static Block planes[2][32][64];
 
+static SpriteQueueSlot sprite_queue[80];
+static unsigned int sprite_queue_index;
+
 static int SetGrid(const int plane, const int x, const int y, const int block, const int flip)
 {
 	// TODO: Flip.
@@ -50,17 +59,15 @@ static int SetGrid(const int plane, const int x, const int y, const int block, c
 
 static void EAsprset(const short x, const short y, const unsigned short index, const unsigned short link_data, const unsigned short flip)
 {
-	const unsigned int x_flip = (flip >> 0) & 1;
-	const unsigned int y_flip = (flip >> 1) & 1;
+	if (sprite_queue_index == COUNT_OF(sprite_queue))
+		return;
 
-	SDL_Rect destination_rectangle;
-	destination_rectangle.x = x - 0x80;
-	destination_rectangle.y = y - 0x80;
-	destination_rectangle.w = 0;
-	destination_rectangle.h = 0;
-
-	if (SDL_BlitSurface(sprites[index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
-		fputs("Failed to bit to framebuffer surface.\n", stderr);
+	sprite_queue[sprite_queue_index].x = x;
+	sprite_queue[sprite_queue_index].y = y;
+	sprite_queue[sprite_queue_index].index = index;
+	sprite_queue[sprite_queue_index].link_data = link_data;
+	sprite_queue[sprite_queue_index].flip = flip;
+	++sprite_queue_index;
 }
 
 static void ClrSpriteDebug()
@@ -444,6 +451,26 @@ static void DrawPlanes(void)
 	}
 }
 
+static void DrawSprites(void)
+{
+	while (sprite_queue_index-- != 0)
+	{
+		const SpriteQueueSlot* const sprite = &sprite_queue[sprite_queue_index];
+
+		const unsigned int x_flip = (sprite->flip >> 0) & 1;
+		const unsigned int y_flip = (sprite->flip >> 1) & 1;
+
+		SDL_Rect destination_rectangle;
+		destination_rectangle.x = sprite->x - 0x80;
+		destination_rectangle.y = sprite->y - 0x80;
+		destination_rectangle.w = 0;
+		destination_rectangle.h = 0;
+
+		if (SDL_BlitSurface(sprites[sprite->index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
+			fputs("Failed to bit to framebuffer surface.\n", stderr);
+	}
+}
+
 int SDL_main(const int argc, char** const argv)
 {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
@@ -569,12 +596,13 @@ int SDL_main(const int argc, char** const argv)
 								swdata |= 0x800;
 							ExportedFunctions.SWdataSet(swdata, 0);
 
+							ExportedFunctions.game();
+
 							// Clear framebuffer.
 							SDL_FillRect(framebuffer, NULL, 0);
 
 							DrawPlanes();
-
-							ExportedFunctions.game();
+							DrawSprites();
 
 							// Update the colour palette.
 							for (unsigned int i = 0; i < COUNT_OF(raw_palettes[1]); ++i)
