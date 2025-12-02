@@ -50,6 +50,8 @@ static Block planes[2][32][64];
 static SpriteQueueSlot sprite_queue[80];
 static unsigned int sprite_queue_index;
 
+static unsigned char buttons_held, buttons_pressed;
+
 static int SetGrid(const int plane, const int x, const int y, const int block, const int flip)
 {
 	// TODO: Flip.
@@ -471,6 +473,15 @@ static void DrawSprites(void)
 	}
 }
 
+static void DoButton(const bool pressed, const unsigned char index)
+{
+	const unsigned int mask = 1 << index;
+
+	buttons_held &= ~mask;
+	if (pressed)
+		buttons_held |= mask;
+}
+
 int SDL_main(const int argc, char** const argv)
 {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
@@ -569,11 +580,9 @@ int SDL_main(const int argc, char** const argv)
 						ExportedFunctions.game_init();
 
 						bool alive = true;
-						unsigned short swdata = 0;
 						while (alive)
 						{
-							swdata >>= 8;
-							swdata |= swdata << 8;
+							buttons_pressed = buttons_held;
 
 							SDL_Event event;
 							while (SDL_PollEvent(&event))
@@ -595,52 +604,36 @@ int SDL_main(const int argc, char** const argv)
 										switch (event.key.keysym.scancode)
 										{
 											case SDL_SCANCODE_UP:
-												swdata &= ~0x100;
-												if (pressed)
-													swdata |= 0x100;
+												DoButton(pressed, 0);
 												break;
 
 											case SDL_SCANCODE_DOWN:
-												swdata &= ~0x200;
-												if (pressed)
-													swdata |= 0x200;
+												DoButton(pressed, 1);
 												break;
 
 											case SDL_SCANCODE_LEFT:
-												swdata &= ~0x400;
-												if (pressed)
-													swdata |= 0x400;
+												DoButton(pressed, 2);
 												break;
 
 											case SDL_SCANCODE_RIGHT:
-												swdata &= ~0x800;
-												if (pressed)
-													swdata |= 0x800;
+												DoButton(pressed, 3);
 												break;
 
 											case SDL_SCANCODE_SPACE:
 											case SDL_SCANCODE_Z:
-												swdata &= ~0x1000;
-												if (pressed)
-													swdata |= 0x1000;
+												DoButton(pressed, 4);
 												break;
 
 											case SDL_SCANCODE_X:
-												swdata &= ~0x2000;
-												if (pressed)
-													swdata |= 0x2000;
+												DoButton(pressed, 5);
 												break;
 
 											case SDL_SCANCODE_C:
-												swdata &= ~0x4000;
-												if (pressed)
-													swdata |= 0x4000;
+												DoButton(pressed, 6);
 												break;
 
 											case SDL_SCANCODE_ESCAPE:
-												swdata &= ~0x8000;
-												if (pressed)
-													swdata |= 0x8000;
+												DoButton(pressed, 7);
 												break;
 										}
 
@@ -649,9 +642,10 @@ int SDL_main(const int argc, char** const argv)
 								}
 							}
 
-							swdata = swdata & 0xFF00 | (((swdata ^ (swdata << 8)) & swdata) >> 8 & 0xFF);
+							buttons_pressed ^= buttons_held;
+							buttons_pressed &= buttons_held;
 
-							ExportedFunctions.SWdataSet(swdata, 0);
+							ExportedFunctions.SWdataSet(buttons_held << 8 | buttons_pressed << 0, 0);
 
 							ExportedFunctions.game();
 
