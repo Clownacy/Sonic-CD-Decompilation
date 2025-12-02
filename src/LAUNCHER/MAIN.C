@@ -102,19 +102,49 @@ static void WaveAllStop()
 	
 }
 
+static void* sMemAlloc(const int size)
+{
+	return malloc(size);
+}
+
+static void sMemFree(void* const buffer)
+{
+	free(buffer);
+}
+
 static void sMemSet(void* const buffer, const unsigned char value, const int size)
 {
 	memset(buffer, value, size);
 }
 
-static void sMemCpy(void* const destination, void* const source, const int size)
+static void sMemCpy(void* const destination, const void* const source, const int size)
 {
 	memcpy(destination, source, size);
+}
+
+static int sMemCmp(const void* const lhs, const void* const rhs, const int size)
+{
+	return memcmp(lhs, rhs, size);
 }
 
 static int sRandom()
 {
 	return rand();
+}
+
+static char* sStrcpy(char* const destination, const char* const source)
+{
+	return strcpy(destination, source);
+}
+
+static char* sStrncpy(char* const destination, const char* const source, const int size)
+{
+	return strncpy(destination, source, size);
+}
+
+static int sStrncmp(const char* const lhs, const char* const rhs, const int size)
+{
+	return strncmp(lhs, rhs, size);
 }
 
 static void sPrintf(char* const buffer, const char* fmt, ...)
@@ -556,15 +586,15 @@ int SDL_main(const int argc, char** const argv)
 					NULL, // SetScoreDate
 					WaveAllStop,
 
-					NULL, // sMemAlloc
-					NULL, // sMemFree
+					sMemAlloc,
+					sMemFree,
 					sMemSet,
 					sMemCpy,
-					NULL, // sMemCmp
+					sMemCmp,
 					sRandom,
-					NULL, // sStrcpy
-					NULL, // sStrncpy
-					NULL, // sStrncmp
+					sStrcpy,
+					sStrncpy,
+					sStrncmp,
 					sPrintf,
 					sOutputDebugString,
 					sOpenFile,
