@@ -423,7 +423,7 @@ static void DrawPlanes(void)
 			const unsigned int screen_width_in_tiles = DIVIDE_CEILING(SCREEN_WIDTH + (TILE_WIDTH - 1), TILE_WIDTH);
 			for (unsigned int tile_x = 0; tile_x < screen_width_in_tiles; ++tile_x)
 			{
-				const unsigned int hscroll = plane == 0 ?hscrolls[plane] : -hscroll_buffer[y][plane ^ 1];
+				const unsigned int hscroll = plane == 0 ? hscrolls[plane] : -hscroll_buffer[y][plane ^ 1];
 
 				const unsigned int x_offset = hscroll % TILE_WIDTH;
 				unsigned char* const framebuffer_tile_line_pixels = &framebuffer_line_pixels[tile_x * TILE_WIDTH - x_offset];
@@ -469,7 +469,7 @@ static void DrawSprites(void)
 		destination_rectangle.h = 0;
 
 		if (SDL_BlitSurface(sprites[sprite->index][y_flip][x_flip], NULL, framebuffer, &destination_rectangle) == -1)
-			fputs("Failed to bit to framebuffer surface.\n", stderr);
+			fputs("Failed to blit to framebuffer surface.\n", stderr);
 	}
 }
 
