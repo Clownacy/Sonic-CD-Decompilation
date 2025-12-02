@@ -455,9 +455,9 @@ static void DrawPlanes(void)
 
 static void DrawSprites(void)
 {
-	while (sprite_queue_index-- != 0)
+	while (sprite_queue_index != 0)
 	{
-		const SpriteQueueSlot* const sprite = &sprite_queue[sprite_queue_index];
+		const SpriteQueueSlot* const sprite = &sprite_queue[--sprite_queue_index];
 
 		const unsigned int x_flip = (sprite->flip >> 0) & 1;
 		const unsigned int y_flip = (sprite->flip >> 1) & 1;
