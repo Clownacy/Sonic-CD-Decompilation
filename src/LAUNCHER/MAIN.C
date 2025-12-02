@@ -600,7 +600,7 @@ int SDL_main(const int argc, char** const argv)
 					sOpenFile,
 					sReadFile,
 					sCloseFile,
-					NULL,
+					NULL, // enableSubMenuItem?
 					// TODO: Little Planet uses WAY more functions than just these,
 					// including a mysterious 'read peripheral pad' function.
 				};
