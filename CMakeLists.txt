@@ -88,6 +88,6 @@ make_level(1 1 A
 make_level(1 1 B
 )
 
-#make_level(1 2 A
-#	"src/BRANKO1.C"
-#)
+make_level(1 2 A
+	"src/BRANKO1.C"
+)

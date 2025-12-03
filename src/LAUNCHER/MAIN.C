@@ -577,6 +577,8 @@ int SDL_main(const int argc, char** const argv)
 
 				buffer_pointers[7] = &state;
 
+				state.stageno.w = LEVEL_ZONE - 1;
+
 				switch (STRINGIFY(LEVEL_TIME)[0])
 				{
 					default:
