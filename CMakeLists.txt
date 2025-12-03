@@ -44,11 +44,8 @@ function(make_level ROUND ZONE TIME)
 		"src/R${ROUND}/COL${ROUND}${TIME}.C"
 		"src/R${ROUND}/COLI${ROUND}.C"
 		"src/R${ROUND}/DEV${ROUND}${ZONE}${TIME}.C"
-		"src/R${ROUND}/EDTBL${ROUND}${ZONE}${TIME}.C"
 		"src/R${ROUND}/FRIEND${ROUND}.C"
 		"src/R${ROUND}/KOWASI${ROUND}.C"
-		"src/R${ROUND}/KUZURE.C"
-		"src/R${ROUND}/KUZUR${ROUND}${ZONE}${TIME}.C"
 		"src/R${ROUND}/MOVIE${ROUND}.C"
 		"src/R${ROUND}/SCR${ROUND}${ZONE}${TIME}.C"
 		"src/R${ROUND}/SIKAKE.C"
@@ -86,18 +83,72 @@ make_level(1 1 A
 	"src/EMIE1.C"
 	"src/EMIE1CG.C"
 	"src/R1/ACT11A.C"
+	"src/R1/EDTBL11A.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR11A.C"
 )
 
 make_level(1 1 B
 	"src/R1/ACT11B.C"
+	"src/R1/EDTBL11B.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR11B.C"
+)
+
+make_level(1 1 C
+	"src/R1/ACT11B.C"
+	"src/R1/EDTBL11C.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR11C.C"
+)
+
+make_level(1 1 D
+	"src/R1/ACT11B.C"
+	"src/R1/EDTBL11D.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR11D.C"
 )
 
 make_level(1 2 A
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
+	"src/R1/EDTBL12A.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR12A.C"
 )
 
 make_level(1 2 B
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
+	"src/R1/EDTBL12B.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR12B.C"
+)
+
+make_level(1 2 C
+	"src/BRANKO1.C"
+	"src/R1/ACT12A.C"
+	"src/R1/EDTBL12C.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR12C.C"
+)
+
+make_level(1 2 D
+	"src/BRANKO1.C"
+	"src/R1/ACT12A.C"
+	"src/R1/EDTBL12D.C"
+	"src/R1/KUZURE.C"
+	"src/R1/KUZUR12D.C"
+)
+
+make_level(1 3 C
+	"src/R1/ACT13C.C"
+	"src/R1/BOSS_1.C"
+	"src/R1/EDTBL13C.C"
+)
+
+make_level(1 3 D
+	"src/R1/ACT13C.C"
+	"src/R1/BOSS_1.C"
+	"src/R1/EDTBL13C.C"
 )

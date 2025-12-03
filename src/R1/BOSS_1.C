@@ -9,6 +9,7 @@
 #include "..\PLAYSUB.H"
 #include "..\SCORE.H"
 #include "COL1C.H"
+#include "SCR13C.H"
 
 unsigned char egg1_pchg0[3] = { 59, 0, 255 };
 unsigned char egg1_pchg1[4] = { 7, 2, 3, 255 };
@@ -96,8 +97,10 @@ sprite_pattern spr_egg1body_pat0 =
 {
   2,
   {
+  {
     {   0,   8, 0, 511 },
     { -36, -31, 0, 498 }
+  }
   }
 };
 sprite_pattern* egg1body_pat[1] = { &spr_egg1body_pat0 };
@@ -135,24 +138,30 @@ sprite_pattern spr_egg1arm3_pat10 =
 {
   2,
   {
+  {
     { -14, -8, 0, 504 },
     {  10, -8, 0, 523 }
+  }
   }
 };
 sprite_pattern spr_egg1arm3_pat11 =
 {
   2,
   {
+  {
     {  -6, -8, 0, 505 },
     {  10, -8, 0, 523 }
+  }
   }
 };
 sprite_pattern spr_egg1arm3_pat12 =
 {
   2,
   {
+  {
     {  2, -8, 0, 506 },
     { 10, -8, 0, 523 }
+  }
   }
 };
 sprite_pattern* egg1arm3_pat1[3] =

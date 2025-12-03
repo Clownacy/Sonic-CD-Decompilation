@@ -607,9 +607,10 @@ int SDL_main(const int argc, char** const argv)
 									break;
 								case 'C':
 									state.time_flag = 2;
+									state.generate_flag = 1;
 									break;
 								case 'D':
-									state.time_flag = 3;
+									state.time_flag = 2;
 									break;
 							}
 
