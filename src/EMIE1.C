@@ -13,7 +13,7 @@ static void emie1_tobii(sprite_status* pActwk);
 static void emie1_tobim(sprite_status* pActwk);
 static void emie_play(sprite_status* pEmiewk, sprite_status* pSonicwk);
 static void setdirect(sprite_status* pEmiewk, sprite_status* pSonicwk);
-static void speedset(sprite_status* pActwk);
+static void speedset_emie(sprite_status* pActwk);
 static void speedsetx(sprite_status* pActwk);
 static void speedsety(sprite_status* pActwk);
 static void jumpchk_d(void);

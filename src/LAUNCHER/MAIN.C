@@ -18,6 +18,12 @@
 #define TILE_WIDTH (1 << TILE_WIDTH_SHIFT)
 #define TILE_HEIGHT 8
 
+#define STRINGIFY2(X) #X
+#define STRINGIFY(X) STRINGIFY2(X)
+
+#define ROUND_IDENTIFIER "R"STRINGIFY(LEVEL_ROUND)
+#define LEVEL_IDENTIFIER STRINGIFY(LEVEL_ROUND)STRINGIFY(LEVEL_ZONE)STRINGIFY(LEVEL_TIME)
+
 typedef struct SpriteQueueSlot
 {
 	short x, y;
@@ -571,7 +577,24 @@ int SDL_main(const int argc, char** const argv)
 
 				buffer_pointers[7] = &state;
 
-				state.time_flag = 0; // Past?
+				switch (STRINGIFY(LEVEL_TIME)[0])
+				{
+					default:
+						fputs("Bad level time.\n", stderr);
+						/* Fallthrough */
+					case 'A':
+						state.time_flag = 1;
+						break;
+					case 'B':
+						state.time_flag = 0;
+						break;
+					case 'C':
+						state.time_flag = 2;
+						break;
+					case 'D':
+						state.time_flag = 3;
+						break;
+				}
 
 				static void* const function_pointers[] = {
 					SetGrid,
@@ -607,13 +630,13 @@ int SDL_main(const int argc, char** const argv)
 
 				ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
 
-				if (!LoadSprites("R1/11B/SCMP11B.CMP"))
+				if (!LoadSprites(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/SCMP"LEVEL_IDENTIFIER".CMP"))
 				{
 					fputs("Failed to load sprites.\n", stderr);
 				}
 				else
 				{
-					if (!LoadTiles("R1/11B/TCMP11B.CMP"))
+					if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CMP"))
 					{
 						fputs("Failed to load sprites.\n", stderr);
 					}
