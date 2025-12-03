@@ -8,8 +8,9 @@
 
 #include "../TYPES.H"
 
-#define COUNT_OF(x) (sizeof(x) / sizeof(x[0]))
-#define DIVIDE_CEILING(dividant, divisor) ((dividant + (divisor - 1)) / divisor)
+#include "COMMON.H"
+#include "IO.H"
+#include "SZDD.H"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 224
@@ -186,88 +187,6 @@ static void sCloseFile(const int file_handle)
 	fclose(files[file_handle]);
 }
 
-static unsigned long ReadUnsignedLE(FILE* const file, const unsigned int total_bytes)
-{
-	unsigned char bytes[4];
-	fread(bytes, 1, total_bytes, file);
-
-	unsigned long result = 0;
-	for (unsigned int i = 0; i < total_bytes; ++i)
-		result |= bytes[i] << i * 8;
-	return result;
-}
-
-static unsigned long ReadUnsignedBE(FILE* const file, const unsigned int total_bytes)
-{
-	unsigned char bytes[4];
-	fread(bytes, 1, total_bytes, file);
-
-	unsigned long result = 0;
-	for (unsigned int i = 0; i < total_bytes; ++i)
-	{
-		result <<= 8;
-		result |= bytes[i];
-	}
-	return result;
-}
-
-static unsigned long ReadU32LE(FILE* const file)
-{
-	return ReadUnsignedLE(file, 4);
-}
-
-static unsigned long ReadU16LE(FILE* const file)
-{
-	return ReadUnsignedLE(file, 2);
-}
-
-static unsigned long ReadU32BE(FILE* const file)
-{
-	return ReadUnsignedBE(file, 4);
-}
-
-static unsigned long ReadU16BE(FILE* const file)
-{
-	return ReadUnsignedBE(file, 2);
-}
-
-static signed long ReadSigned(const unsigned long unsigned_value, const unsigned int total_bytes)
-{
-	const unsigned char negate = (unsigned_value >> (total_bytes * 8 - 1)) & 1;
-
-	return (signed long)(unsigned_value ^ (0UL - negate)) + negate;
-}
-
-static signed long ReadSignedLE(FILE* const file, const unsigned int total_bytes)
-{
-	return ReadSigned(ReadUnsignedLE(file, total_bytes), total_bytes);
-}
-
-static signed long ReadS32LE(FILE* const file)
-{
-	return ReadSignedLE(file, 4);
-}
-
-static signed long ReadS16LE(FILE* const file)
-{
-	return ReadSignedLE(file, 2);
-}
-
-static signed long ReadSignedBE(FILE* const file, const unsigned int total_bytes)
-{
-	return ReadSigned(ReadUnsignedBE(file, total_bytes), total_bytes);
-}
-
-static signed long ReadS32BE(FILE* const file)
-{
-	return ReadSignedBE(file, 4);
-}
-
-static signed long ReadS16BE(FILE* const file)
-{
-	return ReadSignedBE(file, 2);
-}
-
 static SDL_Surface* CreateSpriteSurface(const int width, const int height)
 {
 	SDL_Surface* const surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 0, SDL_PIXELFORMAT_INDEX8);
@@ -290,39 +209,99 @@ static SDL_Surface* CreateSpriteSurface(const int width, const int height)
 	return surface;
 }
 
+static unsigned long ReadUnsignedLEP(const unsigned char** const pointer, const unsigned int total_bytes)
+{
+	unsigned int i;
+	unsigned long value = 0;
+
+	for (i = 0; i < total_bytes; ++i)
+		value |= (unsigned long)(*pointer)[i] << (i * 8);
+
+	*pointer += total_bytes;
+
+	return value;
+}
+
+static unsigned long ReadUnsignedBEP(const unsigned char** const pointer, const unsigned int total_bytes)
+{
+	unsigned int i;
+	unsigned long value = 0;
+
+	for (i = 0; i < total_bytes; ++i)
+	{
+		value <<= 8;
+		value |= (*pointer)[i];
+	}
+
+	*pointer += total_bytes;
+
+	return value;
+}
+
+static unsigned long ReadU16LEP(const unsigned char** const pointer)
+{
+	return ReadUnsignedLEP(pointer, 2);
+}
+
+static unsigned long ReadU32LEP(const unsigned char** const pointer)
+{
+	return ReadUnsignedLEP(pointer, 4);
+}
+
+static unsigned long ReadU32BEP(const unsigned char** const pointer)
+{
+	return ReadUnsignedBEP(pointer, 4);
+}
+
+static signed long ReadSignedLEP(const unsigned char** const pointer, const unsigned int total_bytes)
+{
+	return ReadSigned(ReadUnsignedLEP(pointer, total_bytes), total_bytes);
+}
+
+static signed long ReadS16LEP(const unsigned char** const pointer)
+{
+	return ReadSignedLEP(pointer, 2);
+}
+
+static signed long ReadS32LEP(const unsigned char** const pointer)
+{
+	return ReadSignedLEP(pointer, 4);
+}
+
 static bool LoadSprites(const char* const path)
 {
-	FILE *file = fopen(path, "rb");
-
-	if (file == NULL)
+	unsigned char* const buffer;
+	size_t buffer_size;
+	if (!SZDD_Expand(path, (void**)&buffer, &buffer_size))
 		return false;
 
-	fseek(file, 8, SEEK_SET);
+	const unsigned char *pointer;
 
-	const unsigned long total_sprites = ReadU32LE(file);
-	const unsigned long sprite_offset = ReadU32LE(file);
+	pointer = buffer + 8;
 
-	fseek(file, sprite_offset, SEEK_SET);
+	const unsigned long total_sprites = ReadU32LEP(&pointer);
+	const unsigned long sprite_offset = ReadU32LEP(&pointer);
+
+	pointer = buffer + sprite_offset;
 
 	for (unsigned long i = 0; i < total_sprites; ++i)
 	{
-		fpos_t previous_position;
-		fgetpos(file, &previous_position);
+		const unsigned char* const previous_pointer = pointer;
 
-		fseek(file, 0x10 + i * 0xC, SEEK_SET);
+		pointer = buffer + 0x10 + i * 0xC;
 
-		ReadS16LE(file);
-		ReadS16LE(file);
-		const unsigned int width = ReadU16LE(file);
+		ReadS16LEP(&pointer);
+		ReadS16LEP(&pointer);
+		const unsigned int width = ReadU16LEP(&pointer);
 		const unsigned int padded_width = (width + 7) & ~7U;
-		const unsigned int height = ReadU16LE(file);
-		const unsigned int palette_offset = ReadU16LE(file) - 16;
-		ReadU16LE(file);
+		const unsigned int height = ReadU16LEP(&pointer);
+		const unsigned int palette_offset = ReadU16LEP(&pointer) - 16;
+		ReadU16LEP(&pointer);
 
 		state.pSprBmp[i].xs = padded_width;
 		state.pSprBmp[i].ys = height;
 
-		fseek(file, previous_position, SEEK_SET);
+		pointer = previous_pointer;
 
 		const int total_pixel_bytes = padded_width * height / 2;
 
@@ -340,7 +319,7 @@ static bool LoadSprites(const char* const path)
 					{
 						for (int j = 0; j < total_pixel_bytes; ++j)
 						{
-							const unsigned char packed_pixels = fgetc(file);
+							const unsigned char packed_pixels = *pointer++;
 
 							// Redirect all transparent pixels to colour 0.
 							*pixels = palette_offset + (packed_pixels >> 4);
@@ -383,35 +362,35 @@ static bool LoadSprites(const char* const path)
 			}
 		}
 
-
-		fsetpos(file, &previous_position);
-		fseek(file, total_pixel_bytes, SEEK_CUR);
+		pointer = previous_pointer + total_pixel_bytes;
 	}
 
-	fclose(file);
+	free(buffer);
 
 	return true;
 }
 
 static bool LoadTiles(const char* const path)
 {
-	FILE *file = fopen(path, "rb");
-
-	if (file == NULL)
+	unsigned char* const buffer;
+	size_t buffer_size;
+	if (!SZDD_Expand(path, (void**)&buffer, &buffer_size))
 		return false;
 
-	fseek(file, 8, SEEK_SET);
+	const unsigned char *pointer;
 
-	const unsigned long total_tiles = ReadU32LE(file);
-	const unsigned long tiles_offset = ReadU32LE(file);
+	pointer = buffer + 8;
 
-	fseek(file, tiles_offset, SEEK_SET);
+	const unsigned long total_tiles = ReadU32LEP(&pointer);
+	const unsigned long tiles_offset = ReadU32LEP(&pointer);
+
+	pointer = buffer + tiles_offset;
 
 	for (unsigned long i = 0; i < total_tiles; ++i)
 		for (int j = 0; j < TILE_HEIGHT; ++j)
-			tile_lines[i][j] = ReadU32BE(file);
+			tile_lines[i][j] = ReadU32BEP(&pointer);
 
-	fclose(file);
+	free(buffer);
 
 	return true;
 }
@@ -632,13 +611,13 @@ int SDL_main(const int argc, char** const argv)
 
 				ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
 
-				if (!LoadSprites(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/SCMP"LEVEL_IDENTIFIER".CMP"))
+				if (!LoadSprites(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/SCMP"LEVEL_IDENTIFIER".CM_"))
 				{
 					fputs("Failed to load sprites.\n", stderr);
 				}
 				else
 				{
-					if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CMP"))
+					if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_"))
 					{
 						fputs("Failed to load sprites.\n", stderr);
 					}

@@ -56,6 +56,9 @@ function(make_level ROUND ZONE TIME)
 		"src/R${ROUND}/Z${ROUND}${ZONE}ACT.C"
 		"src/R${ROUND}/Z${ROUND}${ZONE}${TIME}TBL.C"
 		"src/LAUNCHER/MAIN.C"
+		"src/LAUNCHER/IO.C"
+		"src/LAUNCHER/LZSS.C"
+		"src/LAUNCHER/SZDD.C"
 		${ARGN}
 	)
 
