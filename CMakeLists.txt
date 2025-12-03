@@ -41,7 +41,6 @@ function(make_level ROUND ZONE TIME)
 		"src/TREE.C"
 		"src/ZONE.C"
 		"src/ZONETBL1.C"
-		"src/R${ROUND}/ACT${ROUND}${ZONE}${TIME}.C"
 		"src/R${ROUND}/COL${ROUND}${TIME}.C"
 		"src/R${ROUND}/COLI${ROUND}.C"
 		"src/R${ROUND}/DEV${ROUND}${ZONE}${TIME}.C"
@@ -83,11 +82,19 @@ find_package(SDL2 REQUIRED)
 make_level(1 1 A
 	"src/EMIE1.C"
 	"src/EMIE1CG.C"
+	"src/R1/ACT11A.C"
 )
 
 make_level(1 1 B
+	"src/R1/ACT11B.C"
 )
 
 make_level(1 2 A
 	"src/BRANKO1.C"
+	"src/R1/ACT12A.C"
+)
+
+make_level(1 2 B
+	"src/BRANKO1.C"
+	"src/R1/ACT12A.C"
 )
