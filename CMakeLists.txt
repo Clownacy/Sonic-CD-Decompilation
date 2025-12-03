@@ -45,11 +45,8 @@ function(make_level ROUND ZONE TIME)
 		"src/R${ROUND}/COLI${ROUND}.C"
 		"src/R${ROUND}/DEV${ROUND}${ZONE}${TIME}.C"
 		"src/R${ROUND}/FRIEND${ROUND}.C"
-		"src/R${ROUND}/KOWASI${ROUND}.C"
 		"src/R${ROUND}/MOVIE${ROUND}.C"
 		"src/R${ROUND}/SCR${ROUND}${ZONE}${TIME}.C"
-		"src/R${ROUND}/SIKAKE.C"
-		"src/R${ROUND}/SHOOT${ROUND}.C"
 		"src/R${ROUND}/Z${ROUND}${ZONE}ACT.C"
 		"src/R${ROUND}/Z${ROUND}${ZONE}${TIME}TBL.C"
 		"src/LAUNCHER/MAIN.C"
@@ -84,71 +81,118 @@ make_level(1 1 A
 	"src/EMIE1CG.C"
 	"src/R1/ACT11A.C"
 	"src/R1/EDTBL11A.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR11A.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 1 B
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11B.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR11B.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 1 C
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11C.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR11C.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 1 D
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11D.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR11D.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 2 A
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12A.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR12A.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 2 B
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12B.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR12B.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 2 C
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12C.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR12C.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 2 D
 	"src/BRANKO1.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12D.C"
+	"src/R1/KOWASI1.C"
 	"src/R1/KUZURE.C"
 	"src/R1/KUZUR12D.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 3 C
 	"src/R1/ACT13C.C"
 	"src/R1/BOSS_1.C"
 	"src/R1/EDTBL13C.C"
+	"src/R1/KOWASI1.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
 )
 
 make_level(1 3 D
 	"src/R1/ACT13C.C"
 	"src/R1/BOSS_1.C"
 	"src/R1/EDTBL13C.C"
+	"src/R1/KOWASI1.C"
+	"src/R1/SHOOT1.C"
+	"src/R1/SIKAKE.C"
+)
+
+make_level(3 1 A
+	"src/R3/ACT31A.C"
+	"src/R3/BANPA.C"
+	"src/R3/BOBIN.C"
+	"src/R3/BOBINB.C"
+	"src/R3/EDTBL31A.C"
+	"src/R3/GA3.C"
+	"src/R3/KAMA.C"
+	"src/R3/MECASNC.C"
+	"src/R3/MIRACLE.C"
+	"src/R3/MSNCCG.C"
+	"src/R3/POCKET.C"
+	"src/R3/TENTOU.C"
+	"src/R3/TOGEBL3A.C"
+	"src/R3/TRAP_R3.C"
 )

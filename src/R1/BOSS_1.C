@@ -625,15 +625,6 @@ extern short scr_dir_tbl[6];
 
 
 
-
-
-
-
-
-
-
-
-
 void egg1(sprite_status* pActwk) { /* Line 628, Address: 0x1027730 */
   int(*tbl[8])(sprite_status*) = /* Line 629, Address: 0x102773c */
   {

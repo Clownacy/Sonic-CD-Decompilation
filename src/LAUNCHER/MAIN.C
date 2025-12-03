@@ -277,6 +277,8 @@ static signed long ReadS32LEP(const unsigned char** const pointer)
 
 static bool LoadSprites(const char* const path)
 {
+	bool success = false;
+
 	unsigned char* const buffer;
 	size_t buffer_size;
 	if (!SZDD_Expand(path, (void**)&buffer, &buffer_size))
@@ -287,98 +289,110 @@ static bool LoadSprites(const char* const path)
 	pointer = buffer + 8;
 
 	const unsigned long total_sprites = ReadU32LEP(&pointer);
-	const unsigned long sprite_offset = ReadU32LEP(&pointer);
 
-	pointer = buffer + sprite_offset;
-
-	for (unsigned long i = 0; i < total_sprites; ++i)
+	if (total_sprites > COUNT_OF(sprites))
 	{
-		const unsigned char* const previous_pointer = pointer;
+		fputs("Too many sprites.\n", stderr);
+	}
+	else
+	{
+		const unsigned long sprite_offset = ReadU32LEP(&pointer);
 
-		pointer = buffer + 0x10 + i * 0xC;
+		pointer = buffer + sprite_offset;
 
-		ReadS16LEP(&pointer);
-		ReadS16LEP(&pointer);
-		const unsigned int width = ReadU16LEP(&pointer);
-		const unsigned int padded_width = (width + 7) & ~7U;
-		const unsigned int height = ReadU16LEP(&pointer);
-		const unsigned int palette_offset = ReadU16LEP(&pointer) - 16;
-		ReadU16LEP(&pointer);
-
-		state.pSprBmp[i].xs = padded_width;
-		state.pSprBmp[i].ys = height;
-
-		pointer = previous_pointer;
-
-		const int total_pixel_bytes = padded_width * height / 2;
-
-		for (unsigned int y_flip = 0; y_flip < 2; ++y_flip)
+		for (unsigned long i = 0; i < total_sprites; ++i)
 		{
-			for (unsigned int x_flip = 0; x_flip < 2; ++x_flip)
+			const unsigned char* const previous_pointer = pointer;
+
+			pointer = buffer + 0x10 + i * 0xC;
+
+			ReadS16LEP(&pointer);
+			ReadS16LEP(&pointer);
+			const unsigned int width = ReadU16LEP(&pointer);
+			const unsigned int padded_width = (width + 7) & ~7U;
+			const unsigned int height = ReadU16LEP(&pointer);
+			const unsigned int palette_offset = ReadU16LEP(&pointer) - 16;
+			ReadU16LEP(&pointer);
+
+			state.pSprBmp[i].xs = padded_width;
+			state.pSprBmp[i].ys = height;
+
+			pointer = previous_pointer;
+
+			const int total_pixel_bytes = padded_width * height / 2;
+
+			for (unsigned int y_flip = 0; y_flip < 2; ++y_flip)
 			{
-				SDL_Surface* const sprite = CreateSpriteSurface(padded_width, height);
-
-				if (sprite != NULL)
+				for (unsigned int x_flip = 0; x_flip < 2; ++x_flip)
 				{
-					unsigned char *pixels = sprite->pixels;
+					SDL_Surface* const sprite = CreateSpriteSurface(padded_width, height);
 
-					if (x_flip == 0 && y_flip == 0)
+					if (sprite != NULL)
 					{
-						for (int j = 0; j < total_pixel_bytes; ++j)
+						unsigned char *pixels = sprite->pixels;
+
+						if (x_flip == 0 && y_flip == 0)
 						{
-							const unsigned char packed_pixels = *pointer++;
-
-							// Redirect all transparent pixels to colour 0.
-							*pixels = palette_offset + (packed_pixels >> 4);
-							*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-							++pixels;
-
-							*pixels = palette_offset + (packed_pixels & 0xF);
-							*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
-							++pixels;
-						}
-					}
-					else
-					{
-						unsigned char* const base_pixels = sprites[i][0][0]->pixels;
-
-						for (int y = 0; y < height; ++y)
-						{
-							const int base_y = y_flip != 0 ? height - y - 1 : y;
-							unsigned char* const line = pixels + y * padded_width;
-							unsigned char* const base_line = base_pixels + base_y * padded_width;
-
-							if (x_flip != 0)
+							for (int j = 0; j < total_pixel_bytes; ++j)
 							{
-								for (int x = 0; x < padded_width; ++x)
-								{
-									const int base_x = padded_width - x - 1;
+								const unsigned char packed_pixels = *pointer++;
 
-									line[x] = base_line[base_x];
+								// Redirect all transparent pixels to colour 0.
+								*pixels = palette_offset + (packed_pixels >> 4);
+								*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
+								++pixels;
+
+								*pixels = palette_offset + (packed_pixels & 0xF);
+								*pixels = *pixels % 0x10 == 0 ? 0 : *pixels;
+								++pixels;
+							}
+						}
+						else
+						{
+							unsigned char* const base_pixels = sprites[i][0][0]->pixels;
+
+							for (int y = 0; y < height; ++y)
+							{
+								const int base_y = y_flip != 0 ? height - y - 1 : y;
+								unsigned char* const line = pixels + y * padded_width;
+								unsigned char* const base_line = base_pixels + base_y * padded_width;
+
+								if (x_flip != 0)
+								{
+									for (int x = 0; x < padded_width; ++x)
+									{
+										const int base_x = padded_width - x - 1;
+
+										line[x] = base_line[base_x];
+									}
+								}
+								else
+								{
+									memcpy(line, base_line, padded_width);
 								}
 							}
-							else
-							{
-								memcpy(line, base_line, padded_width);
-							}
 						}
 					}
-				}
 
-				sprites[i][y_flip][x_flip] = sprite;
+					sprites[i][y_flip][x_flip] = sprite;
+				}
 			}
+
+			pointer = previous_pointer + total_pixel_bytes;
 		}
 
-		pointer = previous_pointer + total_pixel_bytes;
+		success = true;
 	}
 
 	free(buffer);
 
-	return true;
+	return success;
 }
 
 static bool LoadTiles(const char* const path)
 {
+	bool success = false;
+
 	unsigned char* const buffer;
 	size_t buffer_size;
 	if (!SZDD_Expand(path, (void**)&buffer, &buffer_size))
@@ -389,17 +403,27 @@ static bool LoadTiles(const char* const path)
 	pointer = buffer + 8;
 
 	const unsigned long total_tiles = ReadU32LEP(&pointer);
-	const unsigned long tiles_offset = ReadU32LEP(&pointer);
 
-	pointer = buffer + tiles_offset;
+	if (total_tiles > COUNT_OF(tile_lines))
+	{
+		fputs("Too many tiles.\n", stderr);
+	}
+	else
+	{
+		const unsigned long tiles_offset = ReadU32LEP(&pointer);
 
-	for (unsigned long i = 0; i < total_tiles; ++i)
-		for (int j = 0; j < TILE_HEIGHT; ++j)
-			tile_lines[i][j] = ReadU32BEP(&pointer);
+		pointer = buffer + tiles_offset;
+
+		for (unsigned long i = 0; i < total_tiles; ++i)
+			for (int j = 0; j < TILE_HEIGHT; ++j)
+				tile_lines[i][j] = ReadU32BEP(&pointer);
+
+		success = true;
+	}
 
 	free(buffer);
 
-	return true;
+	return success;
 }
 
 static void DrawTileLine(unsigned char* const output, const unsigned long input, const bool x_flip, const unsigned int palette_line, const unsigned int min, const unsigned int max)
@@ -592,7 +616,8 @@ int SDL_main(const int argc, char** const argv)
 
 							buffer_pointers[7] = &state;
 
-							state.stageno.w = LEVEL_ZONE - 1;
+							state.stageno.b.h = LEVEL_ROUND - 1;
+							state.stageno.b.l = LEVEL_ZONE - 1;
 
 							switch (STRINGIFY(LEVEL_TIME)[0])
 							{

@@ -5,6 +5,7 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
+#include "SCR31A.H"
 
 #if defined(R33C) || defined(R33D)
   #define SPRITE_MOVIE3_BASE 320
@@ -50,7 +51,6 @@ static char tbl0[37] = {
    40, -10,  10,
    -1
 };
-
 
 void movie(sprite_status* moviewk) { /* Line 55, Address: 0x102e7e0 */
   void(*act_tbl[5])(sprite_status*) = { &m_init, &m_wait, &m_die, &m_baku, &m1wait }; /* Line 56, Address: 0x102e7ec */
