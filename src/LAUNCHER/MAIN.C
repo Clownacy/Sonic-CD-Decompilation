@@ -515,9 +515,11 @@ static void DoButton(const bool pressed, const unsigned char index)
 
 int SDL_main(const int argc, char** const argv)
 {
+	SDL_SetHint(SDL_HINT_WINDOWS_DPI_SCALING, "1");
+
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
 
-	window = SDL_CreateWindow("Sonic CD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH * WINDOW_SCALE, SCREEN_HEIGHT * WINDOW_SCALE, 0);
+	window = SDL_CreateWindow("Sonic CD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH * WINDOW_SCALE, SCREEN_HEIGHT * WINDOW_SCALE, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
 	if (window == NULL)
 	{
@@ -533,6 +535,9 @@ int SDL_main(const int argc, char** const argv)
 		}
 		else
 		{
+			SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+			//SDL_RenderSetIntegerScale(renderer, SDL_TRUE);
+
 			texture = SDL_CreateTexture(renderer, TEXTURE_FORMAT, SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 			if (texture == NULL)
