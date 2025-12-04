@@ -625,7 +625,7 @@ static void GameMain(void)
 	}
 	else if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_"))
 	{
-		fputs("Failed to load sprites.\n", stderr);
+		fputs("Failed to load tiles.\n", stderr);
 	}
 	else
 	{
