@@ -619,6 +619,10 @@ int SDL_main(const int argc, char** const argv)
 							state.stageno.b.h = LEVEL_ROUND - 1;
 							state.stageno.b.l = LEVEL_ZONE - 1;
 
+							/* R2 is skipped. */
+							if (state.stageno.b.h > 1)
+								--state.stageno.b.h;
+
 							switch (STRINGIFY(LEVEL_TIME)[0])
 							{
 								default:
