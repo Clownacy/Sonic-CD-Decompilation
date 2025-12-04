@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT31A.H"
+#include "..\ACTION.H"
 #include "..\BLOCK.H"
 #include "..\GOAL.H"
 #include "..\ITEM.H"
@@ -91,7 +92,6 @@ void(*act_tbl[63])(sprite_status*) = {
   &punchbom,
   &gate
 };
-
 
 
 

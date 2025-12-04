@@ -125,42 +125,42 @@ static sprite_pattern segg3_22 =
 static sprite_pattern segg3_23 =
 {
   2,
-  {
+  { {
     { -24, -16, 0, 613 },
     { -24, -16, 0, 614 }
-  }
+  } }
 };
 static sprite_pattern segg3_24 =
 {
   2,
-  {
+  { {
     { -24, -16, 0, 613 },
     { -24, -16, 0, 615 }
-  }
+  } }
 };
 static sprite_pattern segg3_25 =
 {
   2,
-  {
+  { {
     { -24, -16, 0, 613 },
     { -24, -24, 0, 616 }
-  }
+  } }
 };
 static sprite_pattern segg3_26 =
 {
   2,
-  {
+  { {
     { -24, -16, 0, 613 },
     { -24, -16, 0, 617 }
-  }
+  } }
 };
 static sprite_pattern segg3_27 =
 {
   2,
-  {
+  { {
     { -24, -16, 0, 613 },
     { -24, -24, 0, 618 }
-  }
+  } }
 };
 static sprite_pattern segg3_28 =
 {
@@ -175,50 +175,50 @@ static sprite_pattern segg3_29 =
 static sprite_pattern segg3_B1 =
 {
   2,
-  {
+  { {
     { -64, -48, 0, 601 },
     { -48, -32, 0, 600 }
-  }
+  } }
 };
 static sprite_pattern segg3_B2 =
 {
   2,
-  {
+  { {
     { -64, -48, 0, 603 },
     { -48, -32, 0, 602 }
-  }
+  } }
 };
 static sprite_pattern segg3_B3 =
 {
   2,
-  {
+  { {
     { -64, -16, 0, 605 },
     { -48, -32, 0, 604 }
-  }
+  } }
 };
 static sprite_pattern segg3_B4 =
 {
   2,
-  {
+  { {
     { -64, -16, 0, 607 },
     { -48, -32, 0, 606 }
-  }
+  } }
 };
 static sprite_pattern segg3_B5 =
 {
   2,
-  {
+  { {
     { -64, -16, 0, 609 },
     { -48, -32, 0, 608 }
-  }
+  } }
 };
 static sprite_pattern segg3_B6 =
 {
   2,
-  {
+  { {
     { -64, -16, 0, 611 },
     { -48, -32, 0, 610 }
-  }
+  } }
 };
 static sprite_pattern segg3_B7 =
 {
