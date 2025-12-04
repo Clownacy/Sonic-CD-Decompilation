@@ -1,6 +1,9 @@
 #include "..\EQU.H"
 #include "SCR82C.H"
 #include "..\IMPFUNCS.H"
+#include "..\SAVE.H"
+#include "COL8C.H"
+#include "SCRCHK8.H"
 
 static void playposiset(void);
 static void scrbinit(short sXpos, short sYpos);
@@ -66,9 +69,6 @@ unsigned char playmapnotbl[4] = { 127, 127, 127, 127 };
 extern unsigned char mapwka[8][64];
 extern unsigned char mapwkb[8][64];
 extern map_init_data mapinittbl;
-
-
-
 
 
 

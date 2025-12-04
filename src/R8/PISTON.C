@@ -24,11 +24,11 @@ static sprite_pattern pis00 = {
 };
 static sprite_pattern pis01 = {
   3,
-  {
+  { {
     { -32, -95, 0, SPRITE_PISTON_BASE },
     { -32, -31, 0, SPRITE_PISTON_BASE },
     { -32, 33, 0, SPRITE_PISTON_BASE }
-  }
+  } }
 };
 static sprite_pattern pis02 = {
   1,

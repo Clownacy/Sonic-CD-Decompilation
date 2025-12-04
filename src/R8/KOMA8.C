@@ -3,6 +3,7 @@
 #include "..\ACTION.H"
 #include "..\ACTSET.H"
 #include "..\DIRCOL.H"
+#include "..\DUMMY.H"
 #include "..\PLAYSUB.H"
 
 #if defined(R82)
@@ -31,7 +32,6 @@ sprite_pattern* koma8pat[2] = {
   &kom00,
   &kom01
 };
-
 
 
 

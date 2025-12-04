@@ -126,31 +126,31 @@ static unsigned char p01[4] = { 2, 2, 3, 255 };
 static unsigned char* pchg[2] = { p00, p01 };
 static sprite_pattern hea00 = {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_KABUTO8_BASE + 2 },
     { -12, -16, 0, SPRITE_KABUTO8_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern hea01 = {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_KABUTO8_BASE + 2 },
     { -12, -17, 16, SPRITE_KABUTO8_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern hea02 = {
   2,
-  {
+  { {
     { -4, -2, 0, SPRITE_KABUTO8_BASE + 3 },
     { -12, -16, 0, SPRITE_KABUTO8_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern hea03 = {
   2,
-  {
+  { {
     { -4, -2, 0, SPRITE_KABUTO8_BASE + 3 },
     { -12, -17, 16, SPRITE_KABUTO8_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern* pat[4] = { &hea00, &hea01, &hea02, &hea03 };
 

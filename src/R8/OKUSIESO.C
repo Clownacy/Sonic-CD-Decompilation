@@ -18,18 +18,18 @@ static void dai_move(sprite_status* pActwk);
 static sprite_pattern spr_sieso_00 =
 {
   2,
-  {
+  { {
     { -40, -56, 0, SPRITE_OKUSIESO_BASE },
     { -32, -24, 0, SPRITE_OKUSIESO_BASE + 9 }
-  }
+  } }
 };
 static sprite_pattern spr_sieso_01 =
 {
   2,
-  {
+  { {
     { -24, -24, 0, SPRITE_OKUSIESO_BASE + 10 },
     { -40, -40, 0, SPRITE_OKUSIESO_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern spr_sieso_02 =
 {

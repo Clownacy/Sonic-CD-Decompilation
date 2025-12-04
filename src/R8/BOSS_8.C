@@ -119,14 +119,14 @@ static unsigned char* egg8_pchg[6] = {
   egg8_pchg4,
   egg8_pchg5
 };
-static sprite_pattern egg8_pat0 = { 2, { { -12, -28, 0, 451 }, { -24, -28, 0, 443 } } };
-static sprite_pattern egg8_pat1 = { 2, { { -12, -28, 0, 451 }, { -24, -28, 0, 444 } } };
-static sprite_pattern egg8_pat2 = { 2, { { -12, -28, 0, 451 }, { -24, -28, 0, 445 } } };
-static sprite_pattern egg8_pat3 = { 2, { { -12, -28, 0, 451 }, { -24, -28, 0, 446 } } };
+static sprite_pattern egg8_pat0 = { 2, { { { -12, -28, 0, 451 }, { -24, -28, 0, 443 } } } };
+static sprite_pattern egg8_pat1 = { 2, { { { -12, -28, 0, 451 }, { -24, -28, 0, 444 } } } };
+static sprite_pattern egg8_pat2 = { 2, { { { -12, -28, 0, 451 }, { -24, -28, 0, 445 } } } };
+static sprite_pattern egg8_pat3 = { 2, { { { -12, -28, 0, 451 }, { -24, -28, 0, 446 } } } };
 static sprite_pattern egg8_pat4 = { 1, { { -24, -28, 0, 447 } } };
-static sprite_pattern egg8_pat5 = { 2, { { -12, -28, 0, 451 }, { -24, -28, 0, 448 } } };
-static sprite_pattern egg8_pat6 = { 2, { { -12, -28, 0, 451 }, { -24, -44, 0, 449 } } };
-static sprite_pattern egg8_pat7 = { 2, { { -12, -28, 0, 451 }, { -24, -44, 0, 450 } } };
+static sprite_pattern egg8_pat5 = { 2, { { { -12, -28, 0, 451 }, { -24, -28, 0, 448 } } } };
+static sprite_pattern egg8_pat6 = { 2, { { { -12, -28, 0, 451 }, { -24, -44, 0, 449 } } } };
+static sprite_pattern egg8_pat7 = { 2, { { { -12, -28, 0, 451 }, { -24, -44, 0, 450 } } } };
 static sprite_pattern egg8_pat8 = { 1, { { -12, -28, 0, 451 } } };
 sprite_pattern* egg8_pat[9] = {
   &egg8_pat0,
@@ -2885,9 +2885,9 @@ static void futa_roll(sprite_status* pActwk) { /* Line 2748, Address: 0x1020100 
 
 
 static sprite_pattern hane0_1_pat00 = { 1, { { -24, -24, 0, 456 } } };
-static sprite_pattern hane0_1_pat01 = { 2, { { -30, -34, 0, 457 }, { -30, -2, 0, 458 } } };
-static sprite_pattern hane0_1_pat02 = { 2, { { -32, -32, 0, 459 }, { -32, 0, 0, 460 } } };
-static sprite_pattern hane0_1_pat03 = { 2, { { -32, -36, 0, 461 }, { -16, -4, 0, 462 } } };
+static sprite_pattern hane0_1_pat01 = { 2, { { { -30, -34, 0, 457 }, { -30, -2, 0, 458 } } } };
+static sprite_pattern hane0_1_pat02 = { 2, { { { -32, -32, 0, 459 }, { -32, 0, 0, 460 } } } };
+static sprite_pattern hane0_1_pat03 = { 2, { { { -32, -36, 0, 461 }, { -16, -4, 0, 462 } } } };
 static sprite_pattern hane0_1_pat04 = { 1, { { -16, -24, 0, 463 } } };
 sprite_pattern* egg8hane0_pat1[16] = {
   &hane0_1_pat00,
@@ -2930,11 +2930,11 @@ sprite_pattern* egg8hane0_pat2[16] = {
   &hane0_2_pat02,
   &hane0_2_pat01
 };
-static sprite_pattern hane0_3_pat00 = { 2, { { -8, 32, 0, 470 }, { -24, -24, 0, 469 } } };
-static sprite_pattern hane0_3_pat01 = { 2, { { -26, 28, 0, 470 }, { -30, -34, 0, 471 } } };
-static sprite_pattern hane0_3_pat02 = { 2, { { -39, 24, 0, 470 }, { -32, -32, 0, 472 } } };
-static sprite_pattern hane0_3_pat03 = { 2, { { -46, 8, 0, 470 }, { -40, -36, 0, 473 } } };
-static sprite_pattern hane0_3_pat04 = { 2, { { -48, -8, 0, 470 }, { -40, -24, 0, 474 } } };
+static sprite_pattern hane0_3_pat00 = { 2, { { { -8, 32, 0, 470 }, { -24, -24, 0, 469 } } } };
+static sprite_pattern hane0_3_pat01 = { 2, { { { -26, 28, 0, 470 }, { -30, -34, 0, 471 } } } };
+static sprite_pattern hane0_3_pat02 = { 2, { { { -39, 24, 0, 470 }, { -32, -32, 0, 472 } } } };
+static sprite_pattern hane0_3_pat03 = { 2, { { { -46, 8, 0, 470 }, { -40, -36, 0, 473 } } } };
+static sprite_pattern hane0_3_pat04 = { 2, { { { -48, -8, 0, 470 }, { -40, -24, 0, 474 } } } };
 sprite_pattern* egg8hane0_pat3[16] = {
   &hane0_3_pat00,
   &hane0_3_pat01,

@@ -63,44 +63,44 @@ static unsigned char togeita_data1[12] = { 3, 0, 24, 8, 3, 224, 24, 8, 3, 32, 24
 static unsigned char togeita_data2[12] = { 2, 52, 28, 8, 5, 36, 44, 8, 4, 68, 12, 8 };
 static sprite_pattern tog00 = {
   6,
-  {
+  { {
     { -80, -12, 0, 289 },
     { -56, -12, 0, 288 },
     { -24, -12, 0, 290 },
     { 0, -12, 0, 290 },
     { 24, -12, 0, 288 },
     { 56, -12, 0, 288 }
-  }
+  } }
 };
 static sprite_pattern tog01 = {
   2,
-  {
+  { {
     { -28, -8, 0, 289 },
     { -4, -8, 0, 288 }
-  }
+  } }
 };
 static sprite_pattern tog02 = {
   2,
-  {
+  { {
     { -28, -8, 0, 288 },
     { 4, -8, 0, 289 }
-  }
+  } }
 };
 static sprite_pattern tog03 = {
   2,
-  {
+  { {
     { -24, -8, 0, 290 },
     { 0, -8, 0, 290 }
-  }
+  } }
 };
 static sprite_pattern tog04 = { 1, { { -12, -8, 0, 289 } } };
 static sprite_pattern tog05 = {
   3,
-  {
+  { {
     { -44, -8, 0, 288 },
     { -12, -8, 0, 288 },
     { 20, -8, 0, 289 }
-  }
+  } }
 };
 static sprite_pattern tog06 = { 1, { { -16, -20, 0, 0 } } };
 sprite_pattern* togeitapat[7] = {

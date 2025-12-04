@@ -26,10 +26,10 @@ static void slave(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   2,
-  {
+  { {
     { -4, -4, 0, 463 },
     { -24, -40, 0, 464 }
-  }
+  } }
 };
 static sprite_pattern pat01 =
 {

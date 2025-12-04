@@ -259,10 +259,10 @@ static sprite_pattern anar7 = { 1, { { -32, -8, 8, 297 } } };
 static sprite_pattern ana00 = { 1, { { -16, -20, 0, 0 } } };
 static sprite_pattern ana01 = {
   2,
-  {
+  { {
     { -64, -8, 0, 297 },
     { 0, -8, 8, 297 }
-  }
+  } }
 };
 sprite_pattern* anar8pat[18] = {
   &anal0,
@@ -424,7 +424,7 @@ static unsigned char futagor8_pchg[48] = {
 };
 static sprite_pattern fut00 = {
   7,
-  {
+  { {
     { -8, -56, 0, 299 },
     { -8, -40, 0, 299 },
     { -8, -24, 0, 299 },
@@ -432,48 +432,48 @@ static sprite_pattern fut00 = {
     { -8, 8, 0, 299 },
     { -8, 24, 0, 299 },
     { -8, 40, 0, 299 }
-  }
+  } }
 };
 static sprite_pattern fut01 = {
   5,
-  {
+  { {
     { -8, -40, 0, 299 },
     { -8, -24, 0, 299 },
     { -8, -8, 0, 298 },
     { -8, 8, 0, 299 },
     { -8, 24, 0, 299 }
-  }
+  } }
 };
 static sprite_pattern fut02 = {
   3,
-  {
+  { {
     { -8, -24, 0, 299 },
     { -8, -8, 0, 298 },
     { -8, 8, 0, 299 }
-  }
+  } }
 };
 static sprite_pattern fut03 = { 1, { { -8, -8, 0, 298 } } };
 static sprite_pattern fut04 = {
   3,
-  {
+  { {
     { -24, -8, 0, 299 },
     { -8, -8, 0, 298 },
     { 8, -8, 0, 299 }
-  }
+  } }
 };
 static sprite_pattern fut05 = {
   5,
-  {
+  { {
     { -40, -8, 0, 299 },
     { -24, -8, 0, 299 },
     { -8, -8, 0, 298 },
     { 8, -8, 0, 299 },
     { 24, -8, 0, 299 }
-  }
+  } }
 };
 static sprite_pattern fut06 = {
   7,
-  {
+  { {
     { -56, -8, 0, 299 },
     { -40, -8, 0, 299 },
     { -24, -8, 0, 299 },
@@ -481,7 +481,7 @@ static sprite_pattern fut06 = {
     { 8, -8, 0, 299 },
     { 24, -8, 0, 299 },
     { 40, -8, 0, 299 }
-  }
+  } }
 };
 sprite_pattern* futagor8pat[7] = { &fut00, &fut01, &fut02, &fut03, &fut04, &fut05, &fut06 };
 

@@ -26,11 +26,11 @@ static void kaiten_bou1(sprite_status* loopwk);
 
 static unsigned char kaitenchg0[4] = { 2, 0, 1, 255 };
 static unsigned char* kaitenchg[1] = { kaitenchg0 };
-static sprite_pattern shu00 = { 6, { { -8, -96, 8, SPRITE_SHUT_BASE + 4 }, { -8, -64, 8, SPRITE_SHUT_BASE + 4 }, { -8, -32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 0, 8, SPRITE_SHUT_BASE + 4 }, { -8, 32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 64, 8, SPRITE_SHUT_BASE + 4 } } };
+static sprite_pattern shu00 = { 6, { { { -8, -96, 8, SPRITE_SHUT_BASE + 4 }, { -8, -64, 8, SPRITE_SHUT_BASE + 4 }, { -8, -32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 0, 8, SPRITE_SHUT_BASE + 4 }, { -8, 32, 8, SPRITE_SHUT_BASE + 4 }, { -8, 64, 8, SPRITE_SHUT_BASE + 4 } } } };
 sprite_pattern* shutpat[1] = { &shu00 };
-static sprite_pattern kai00 = { 3, { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 0, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } };
-static sprite_pattern kai01 = { 3, { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 8, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } };
-static sprite_pattern kai02 = { 5, { { -4, -80, 0, SPRITE_SHUT_BASE + 3 }, { -4, -48, 0, SPRITE_SHUT_BASE + 3 }, { -4, -16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 48, 0, SPRITE_SHUT_BASE + 3 } } };
+static sprite_pattern kai00 = { 3, { { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 0, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } } };
+static sprite_pattern kai01 = { 3, { { { -40, -8, 0, SPRITE_SHUT_BASE }, { -24, -8, 8, SPRITE_SHUT_BASE + 1 }, { 8, -8, 0, SPRITE_SHUT_BASE + 2 } } } };
+static sprite_pattern kai02 = { 5, { { { -4, -80, 0, SPRITE_SHUT_BASE + 3 }, { -4, -48, 0, SPRITE_SHUT_BASE + 3 }, { -4, -16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 16, 0, SPRITE_SHUT_BASE + 3 }, { -4, 48, 0, SPRITE_SHUT_BASE + 3 } } } };
 sprite_pattern* kaitenpat[3] = {
   &kai00,
   &kai01,

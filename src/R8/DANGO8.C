@@ -60,17 +60,17 @@ static sprite_pattern spr_dango_e_01 = {
 };
 static sprite_pattern spr_dango_e_02 = {
   2,
-  {
+  { {
     { -5, -12, 0, 471 },
     { -16, -16, 0, 474 }
-  }
+  } }
 };
 static sprite_pattern spr_dango_e_03 = {
   2,
-  {
+  { {
     { -4, -12, 0, 471 },
     { -16, -16, 0, 474 }
-  }
+  } }
 };
 static sprite_pattern spr_dango_e_04 = {
   1,
@@ -102,10 +102,10 @@ static sprite_pattern spr_dango_b_02 = {
 };
 static sprite_pattern spr_dango_b_03 = {
   2,
-  {
+  { {
     { -4, -12, 0, 471 },
     { -16, -16, 0, 474 }
-  }
+  } }
 };
 static sprite_pattern spr_dango_b_04 = {
   1,

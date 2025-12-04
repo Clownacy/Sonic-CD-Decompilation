@@ -18,17 +18,17 @@ static void act_move(sprite_status* swwk);
 
 static sprite_pattern sw00 = {
   2,
-  {
+  { {
     { -16, -8, 0, SPRITE_SW8_BASE },
     { 0, -8, 8, SPRITE_SW8_BASE }
-  }
+  } }
 };
 static sprite_pattern sw01 = {
   2,
-  {
+  { {
     { -16, -4, 0, SPRITE_SW8_BASE + 1 },
     { 0, -4, 8, SPRITE_SW8_BASE + 1 }
-  }
+  } }
 };
 sprite_pattern* pat_sw[2] = {
   &sw00,
