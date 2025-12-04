@@ -537,6 +537,219 @@ static void DoButton(const bool pressed, const unsigned char index)
 		buttons_held |= mask;
 }
 
+static void GameMain(void)
+{
+	static void *buffer_pointers2[COUNT_OF(buffers)];
+	for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
+		buffer_pointers2[i] = &buffers[i];
+
+	buffer_pointers2[1] = &raw_palettes[0];
+	buffer_pointers2[2] = &raw_palettes[1];
+	buffer_pointers2[3] = &raw_palettes[2];
+	buffer_pointers2[4] = &raw_palettes[3];
+	buffer_pointers2[5] = &hscroll_buffer;
+
+	static void *buffer_pointers[COUNT_OF(buffers)];
+	for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
+		buffer_pointers[i] = &buffer_pointers2[i];
+
+	for (unsigned int i = 6; i < COUNT_OF(buffers); ++i)
+		buffer_pointers[i] = &buffers[i];
+
+	buffer_pointers[7] = &state;
+
+	state.stageno.b.h = LEVEL_ROUND - 1;
+	state.stageno.b.l = LEVEL_ZONE - 1;
+
+	/* R2 is skipped. */
+	if (state.stageno.b.h > 1)
+		--state.stageno.b.h;
+
+	switch (STRINGIFY(LEVEL_TIME)[0])
+	{
+		default:
+			fputs("Bad level time.\n", stderr);
+			/* Fallthrough */
+		case 'A':
+			state.time_flag = 1;
+			break;
+		case 'B':
+			state.time_flag = 0;
+			break;
+		case 'C':
+			state.time_flag = 2;
+			state.generate_flag = 1;
+			break;
+		case 'D':
+			state.time_flag = 2;
+			break;
+	}
+
+	static void* const function_pointers[] = {
+		SetGrid,
+		EAsprset,
+		ClrSpriteDebug,
+		WaveRequest,
+		CDPlay,
+		CDPause,
+		ChangeTileBmp,
+		NULL, // ReadScoreIndx
+		NULL, // WriteScoreData
+		NULL, // SetScoreDate
+		WaveAllStop,
+
+		sMemAlloc,
+		sMemFree,
+		sMemSet,
+		sMemCpy,
+		sMemCmp,
+		sRandom,
+		sStrcpy,
+		sStrncpy,
+		sStrncmp,
+		sPrintf,
+		sOutputDebugString,
+		sOpenFile,
+		sReadFile,
+		sCloseFile,
+		NULL, // enableSubMenuItem?
+		// TODO: Little Planet uses WAY more functions than just these,
+		// including a mysterious 'read peripheral pad' function.
+	};
+
+	ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
+
+	if (!LoadSprites(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/SCMP"LEVEL_IDENTIFIER".CM_"))
+	{
+		fputs("Failed to load sprites.\n", stderr);
+	}
+	else if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_"))
+	{
+		fputs("Failed to load sprites.\n", stderr);
+	}
+	else
+	{
+		ExportedFunctions.game_init();
+
+		bool alive = true;
+		Uint32 next_ticks = SDL_GetTicks();
+		while (alive)
+		{
+			buttons_pressed = buttons_held;
+
+			SDL_Event event;
+			while (SDL_PollEvent(&event))
+			{
+				switch (event.type)
+				{
+					case SDL_QUIT:
+						alive = false;
+						break;
+
+					case SDL_KEYDOWN:
+					case SDL_KEYUP:
+					{
+						if (event.key.repeat)
+							break;
+
+						const bool pressed = event.key.state == SDL_PRESSED;
+
+						switch (event.key.keysym.scancode)
+						{
+							case SDL_SCANCODE_UP:
+								DoButton(pressed, 0);
+								break;
+
+							case SDL_SCANCODE_DOWN:
+								DoButton(pressed, 1);
+								break;
+
+							case SDL_SCANCODE_LEFT:
+								DoButton(pressed, 2);
+								break;
+
+							case SDL_SCANCODE_RIGHT:
+								DoButton(pressed, 3);
+								break;
+
+							case SDL_SCANCODE_SPACE:
+							case SDL_SCANCODE_Z:
+								DoButton(pressed, 4);
+								break;
+
+							case SDL_SCANCODE_X:
+								DoButton(pressed, 5);
+								break;
+
+							case SDL_SCANCODE_C:
+								DoButton(pressed, 6);
+								break;
+
+							case SDL_SCANCODE_ESCAPE:
+								DoButton(pressed, 7);
+								break;
+						}
+
+						break;
+					}
+				}
+			}
+
+			buttons_pressed ^= buttons_held;
+			buttons_pressed &= buttons_held;
+
+			ExportedFunctions.SWdataSet(buttons_held << 8 | buttons_pressed << 0, 0);
+
+			ExportedFunctions.game();
+
+			// Clear framebuffer.
+			SDL_FillRect(framebuffer, NULL, 0);
+
+			DrawPlanes(false);
+			DrawSprites(false);
+			DrawPlanes(true);
+			DrawSprites(true);
+			sprite_queue_index = 0;
+
+			// Update the colour palette.
+			for (unsigned int i = 0; i < COUNT_OF(raw_palettes[1]); ++i)
+			{
+				SDL_Color colour;
+				colour.r = raw_palettes[1][i].peRed;
+				colour.g = raw_palettes[1][i].peGreen;
+				colour.b = raw_palettes[1][i].peBlue;
+				colour.a = 0xFF;
+
+				if (SDL_SetPaletteColors(palette, &colour, i, 1) < 0)
+					fputs("Failed to set framebuffer palette colour.\n", stderr);
+			}
+
+			if (SDL_LockTexture(texture, NULL, &surface->pixels, &surface->pitch) < 0)
+			{
+				fputs("Failed to lock texture surface.\n", stderr);
+			}
+			else
+			{
+				if (SDL_BlitScaled(framebuffer, NULL, surface, NULL) == -1)
+					fputs("Failed to blit to window surface.\n", stderr);
+
+				SDL_UnlockTexture(texture);
+
+				SDL_RenderCopy(renderer, texture, NULL, NULL);
+				SDL_RenderPresent(renderer);
+			}
+
+			const Uint32 current_ticks = SDL_GetTicks();
+			if (next_ticks > current_ticks)
+				SDL_Delay(next_ticks - current_ticks);
+			const int frames_per_second = 60;
+			next_ticks += (1000 + (frames_per_second / 2)) / frames_per_second;
+		}
+	}
+
+	ExportedFunctions.dll_memfree();
+}
+
 int main(const int argc, char** const argv)
 {
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_SCALING, "1");
@@ -597,218 +810,8 @@ int main(const int argc, char** const argv)
 							if (SDL_SetSurfacePalette(framebuffer, palette) < 0)
 								fputs("Failed to set framebuffer palette.\n", stderr);
 
-							static void *buffer_pointers2[COUNT_OF(buffers)];
-							for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-								buffer_pointers2[i] = &buffers[i];
+							GameMain();
 
-							buffer_pointers2[1] = &raw_palettes[0];
-							buffer_pointers2[2] = &raw_palettes[1];
-							buffer_pointers2[3] = &raw_palettes[2];
-							buffer_pointers2[4] = &raw_palettes[3];
-							buffer_pointers2[5] = &hscroll_buffer;
-
-							static void *buffer_pointers[COUNT_OF(buffers)];
-							for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-								buffer_pointers[i] = &buffer_pointers2[i];
-
-							for (unsigned int i = 6; i < COUNT_OF(buffers); ++i)
-								buffer_pointers[i] = &buffers[i];
-
-							buffer_pointers[7] = &state;
-
-							state.stageno.b.h = LEVEL_ROUND - 1;
-							state.stageno.b.l = LEVEL_ZONE - 1;
-
-							/* R2 is skipped. */
-							if (state.stageno.b.h > 1)
-								--state.stageno.b.h;
-
-							switch (STRINGIFY(LEVEL_TIME)[0])
-							{
-								default:
-									fputs("Bad level time.\n", stderr);
-									/* Fallthrough */
-								case 'A':
-									state.time_flag = 1;
-									break;
-								case 'B':
-									state.time_flag = 0;
-									break;
-								case 'C':
-									state.time_flag = 2;
-									state.generate_flag = 1;
-									break;
-								case 'D':
-									state.time_flag = 2;
-									break;
-							}
-
-							static void* const function_pointers[] = {
-								SetGrid,
-								EAsprset,
-								ClrSpriteDebug,
-								WaveRequest,
-								CDPlay,
-								CDPause,
-								ChangeTileBmp,
-								NULL, // ReadScoreIndx
-								NULL, // WriteScoreData
-								NULL, // SetScoreDate
-								WaveAllStop,
-
-								sMemAlloc,
-								sMemFree,
-								sMemSet,
-								sMemCpy,
-								sMemCmp,
-								sRandom,
-								sStrcpy,
-								sStrncpy,
-								sStrncmp,
-								sPrintf,
-								sOutputDebugString,
-								sOpenFile,
-								sReadFile,
-								sCloseFile,
-								NULL, // enableSubMenuItem?
-								// TODO: Little Planet uses WAY more functions than just these,
-								// including a mysterious 'read peripheral pad' function.
-							};
-
-							ExportedFunctions.dll_meminit((char***)buffer_pointers, (void**)function_pointers);
-
-							if (!LoadSprites(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/SCMP"LEVEL_IDENTIFIER".CM_"))
-							{
-								fputs("Failed to load sprites.\n", stderr);
-							}
-							else
-							{
-								if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_"))
-								{
-									fputs("Failed to load sprites.\n", stderr);
-								}
-								else
-								{
-									ExportedFunctions.game_init();
-
-									bool alive = true;
-									Uint32 next_ticks = SDL_GetTicks();
-									while (alive)
-									{
-										buttons_pressed = buttons_held;
-
-										SDL_Event event;
-										while (SDL_PollEvent(&event))
-										{
-											switch (event.type)
-											{
-												case SDL_QUIT:
-													alive = false;
-													break;
-
-												case SDL_KEYDOWN:
-												case SDL_KEYUP:
-												{
-													if (event.key.repeat)
-														break;
-
-													const bool pressed = event.key.state == SDL_PRESSED;
-
-													switch (event.key.keysym.scancode)
-													{
-														case SDL_SCANCODE_UP:
-															DoButton(pressed, 0);
-															break;
-
-														case SDL_SCANCODE_DOWN:
-															DoButton(pressed, 1);
-															break;
-
-														case SDL_SCANCODE_LEFT:
-															DoButton(pressed, 2);
-															break;
-
-														case SDL_SCANCODE_RIGHT:
-															DoButton(pressed, 3);
-															break;
-
-														case SDL_SCANCODE_SPACE:
-														case SDL_SCANCODE_Z:
-															DoButton(pressed, 4);
-															break;
-
-														case SDL_SCANCODE_X:
-															DoButton(pressed, 5);
-															break;
-
-														case SDL_SCANCODE_C:
-															DoButton(pressed, 6);
-															break;
-
-														case SDL_SCANCODE_ESCAPE:
-															DoButton(pressed, 7);
-															break;
-													}
-
-													break;
-												}
-											}
-										}
-
-										buttons_pressed ^= buttons_held;
-										buttons_pressed &= buttons_held;
-
-										ExportedFunctions.SWdataSet(buttons_held << 8 | buttons_pressed << 0, 0);
-
-										ExportedFunctions.game();
-
-										// Clear framebuffer.
-										SDL_FillRect(framebuffer, NULL, 0);
-
-										DrawPlanes(false);
-										DrawSprites(false);
-										DrawPlanes(true);
-										DrawSprites(true);
-										sprite_queue_index = 0;
-
-										// Update the colour palette.
-										for (unsigned int i = 0; i < COUNT_OF(raw_palettes[1]); ++i)
-										{
-											SDL_Color colour;
-											colour.r = raw_palettes[1][i].peRed;
-											colour.g = raw_palettes[1][i].peGreen;
-											colour.b = raw_palettes[1][i].peBlue;
-											colour.a = 0xFF;
-
-											if (SDL_SetPaletteColors(palette, &colour, i, 1) < 0)
-												fputs("Failed to set framebuffer palette colour.\n", stderr);
-										}
-
-										if (SDL_LockTexture(texture, NULL, &surface->pixels, &surface->pitch) < 0)
-										{
-											fputs("Failed to lock texture surface.\n", stderr);
-										}
-										else
-										{
-											if (SDL_BlitScaled(framebuffer, NULL, surface, NULL) == -1)
-												fputs("Failed to blit to window surface.\n", stderr);
-
-											SDL_UnlockTexture(texture);
-
-											SDL_RenderCopy(renderer, texture, NULL, NULL);
-											SDL_RenderPresent(renderer);
-										}
-
-										const Uint32 current_ticks = SDL_GetTicks();
-										if (next_ticks > current_ticks)
-											SDL_Delay(next_ticks - current_ticks);
-										const int frames_per_second = 60;
-										next_ticks += (1000 + (frames_per_second / 2)) / frames_per_second;
-									}
-								}
-							}
-
-							ExportedFunctions.dll_memfree();
 							SDL_FreeSurface(framebuffer);
 						}
 
