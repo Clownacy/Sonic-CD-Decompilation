@@ -18,7 +18,6 @@ function(make_level ROUND ZONE TIME)
 		"src/ET1.C"
 		"src/ETC.C"
 		"src/FCOL.C"
-		"src/GAME.C"
 		"src/GOAL.C"
 		"src/IO.C"
 		"src/ITEM.C"
@@ -78,6 +77,7 @@ find_package(SDL2 REQUIRED)
 make_level(1 1 A
 	"src/EMIE1.C"
 	"src/EMIE1CG.C"
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11A.C"
 	"src/R1/EDTBL11A.C"
@@ -89,6 +89,7 @@ make_level(1 1 A
 )
 
 make_level(1 1 B
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11B.C"
@@ -100,6 +101,7 @@ make_level(1 1 B
 )
 
 make_level(1 1 C
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11C.C"
@@ -111,6 +113,7 @@ make_level(1 1 C
 )
 
 make_level(1 1 D
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
 	"src/R1/EDTBL11D.C"
@@ -123,6 +126,7 @@ make_level(1 1 D
 
 make_level(1 2 A
 	"src/BRANKO1.C"
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12A.C"
@@ -135,6 +139,7 @@ make_level(1 2 A
 
 make_level(1 2 B
 	"src/BRANKO1.C"
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12B.C"
@@ -147,6 +152,7 @@ make_level(1 2 B
 
 make_level(1 2 C
 	"src/BRANKO1.C"
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12C.C"
@@ -159,6 +165,7 @@ make_level(1 2 C
 
 make_level(1 2 D
 	"src/BRANKO1.C"
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT12A.C"
 	"src/R1/EDTBL12D.C"
@@ -170,6 +177,7 @@ make_level(1 2 D
 )
 
 make_level(1 3 C
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT13C.C"
 	"src/R1/BOSS_1.C"
@@ -180,6 +188,7 @@ make_level(1 3 C
 )
 
 make_level(1 3 D
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT13C.C"
 	"src/R1/BOSS_1.C"
@@ -190,6 +199,7 @@ make_level(1 3 D
 )
 
 make_level(3 1 A
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31A.C"
 	"src/R3/BANPA.C"
@@ -208,6 +218,7 @@ make_level(3 1 A
 )
 
 make_level(3 1 B
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
 	"src/R3/BANPA.C"
@@ -225,6 +236,7 @@ make_level(3 1 B
 )
 
 make_level(3 1 C
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
 	"src/R3/BANPA.C"
@@ -242,6 +254,7 @@ make_level(3 1 C
 )
 
 make_level(3 1 D
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
 	"src/R3/BANPA.C"
@@ -259,6 +272,7 @@ make_level(3 1 D
 )
 
 make_level(3 2 A
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
 	"src/R3/BANPA.C"
@@ -277,6 +291,7 @@ make_level(3 2 A
 )
 
 make_level(3 2 B
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
 	"src/R3/BANPA.C"
@@ -294,6 +309,7 @@ make_level(3 2 B
 )
 
 make_level(3 2 C
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
 	"src/R3/BANPA.C"
@@ -311,6 +327,7 @@ make_level(3 2 C
 )
 
 make_level(3 2 D
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
 	"src/R3/BANPA.C"
@@ -328,6 +345,7 @@ make_level(3 2 D
 )
 
 make_level(3 3 C
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT33C.C"
 	"src/R3/BANPA.C"
@@ -351,6 +369,7 @@ make_level(3 3 C
 )
 
 make_level(3 3 D
+	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT33C.C"
 	"src/R3/BANPA.C"
@@ -381,6 +400,7 @@ make_level(4 1 A
 	"src/R4/EDTBL41A.C"
 	"src/R4/ESCAL4.C"
 	"src/R4/FUNSUI4.C"
+	"src/R4/GAME4.C"
 	"src/R4/HARID4.C"
 	"src/R4/HARIR4.C"
 	"src/R4/KUZURE4.C"
@@ -394,5 +414,6 @@ make_level(4 1 A
 	"src/R4/TONBO.C"
 	"src/R4/WALL1.C"
 	"src/R4/WALLS.C"
+	"src/R4/WTBL41A.C"
 	"src/R4/YAGO.C"
 )
