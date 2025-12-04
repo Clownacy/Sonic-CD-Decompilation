@@ -23,10 +23,10 @@ static void act_stop(sprite_status* pActwk);
 
 static sprite_pattern pat00 = {
   2,
-  {
+  { {
     { -16, -64, 0, SPRITE_HARID4_BASE + 1 },
     { -16, 32, 0, SPRITE_HARID4_BASE }
-  }
+  } }
 };
 static sprite_pattern pat01;
 sprite_pattern* pat_harid4[2] = {

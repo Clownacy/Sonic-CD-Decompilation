@@ -21,42 +21,42 @@ unsigned char* funsui4pchg[2] =
 static sprite_pattern pat0 =
 {
   2,
-  {
+  { {
     { -56, -80, 0, 498 },
     { -32, -64, 0, 503 }
-  }
+  } }
 };
 static sprite_pattern pat1 =
 {
   2,
-  {
+  { {
     { -56, -80, 0, 499 },
     { -32, -64, 0, 504 }
-  }
+  } }
 };
 static sprite_pattern pat2 =
 {
   2,
-  {
+  { {
     { -56, -80, 0, 500 },
     { -32, -64, 0, 505 }
-  }
+  } }
 };
 static sprite_pattern pat3 =
 {
   2,
-  {
+  { {
     { -56, -80, 0, 501 },
     { -32, -64, 0, 506 }
-  }
+  } }
 };
 static sprite_pattern pat4 =
 {
   2,
-  {
+  { {
     { -56, -80, 0, 502 },
     { -32, -64, 0, 507 }
-  }
+  } }
 };
 static sprite_pattern pat5 =
 {
