@@ -12,11 +12,11 @@ static void m_down(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   3,
-  {
+  { {
     { -16, -32, 0, 509 },
     { -16, 24, 0, 510 },
     { -16, -48, 0, 511 }
-  }
+  } }
 };
 static sprite_pattern pat01 =
 {

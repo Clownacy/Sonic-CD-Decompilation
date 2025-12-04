@@ -36,10 +36,10 @@ static sprite_pattern pat00 =
 static sprite_pattern pat01 =
 {
   2,
-  {
+  { {
     { -16, -16, 0, SPRITE_DAIRD5_BASE + 1 },
     { -16, -16, 0, SPRITE_DAIRD5_BASE + 2 }
-  }
+  } }
 };
 static sprite_pattern pat02 =
 {
@@ -49,10 +49,10 @@ static sprite_pattern pat02 =
 static sprite_pattern pat03 =
 {
   2,
-  {
+  { {
     { -32, -16, 0, SPRITE_DAIRD5_BASE + 4 },
     { -32, -16, 0, SPRITE_DAIRD5_BASE + 5 }
-  }
+  } }
 };
 static sprite_pattern pat04 =
 {
@@ -62,10 +62,10 @@ static sprite_pattern pat04 =
 static sprite_pattern pat05 =
 {
   2,
-  {
+  { {
     { -48, -16, 0, SPRITE_DAIRD5_BASE + 7 },
     { -48, -16, 0, SPRITE_DAIRD5_BASE + 8 }
-  }
+  } }
 };
 sprite_pattern* dair5pat[6] =
 {

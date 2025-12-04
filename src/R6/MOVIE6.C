@@ -5,6 +5,7 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
+#include "SCR61A.H"
 
 static void die(sprite_status* moviewk);
 static void m_init(sprite_status* moviewk);
@@ -41,7 +42,6 @@ static char tbl0[37] = {
    40, -10,  10,
    -1
 };
-
 
 
 

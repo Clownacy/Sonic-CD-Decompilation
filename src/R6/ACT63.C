@@ -1,5 +1,6 @@
 #include "..\EQU.H"
 #include "ACT61A.H"
+#include "..\ACTION.H"
 #include "..\GOAL.H"
 #include "..\ITEM.H"
 #include "..\PLAYER6.H"
@@ -93,7 +94,6 @@ void(*act_tbl[64])(sprite_status*) = {
   &egg6bakuha,
   &egg6beam
 };
-
 
 
 

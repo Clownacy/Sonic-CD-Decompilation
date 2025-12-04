@@ -1,4 +1,5 @@
 #include "..\TYPES.H"
+#include "SW6.H"
 
 extern sprite_pattern* optbr6pat[];
 extern sprite_pattern* itempat[];

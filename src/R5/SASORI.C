@@ -23,38 +23,38 @@ static void body_waitd1(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   3,
-  {
+  { {
     { -21, -3, 0, 493 },
     { -24, -16, 0, 494 },
     { -32, -4, 0, 495 }
-  }
+  } }
 };
 static sprite_pattern pat01 =
 {
   3,
-  {
+  { {
     { -25, -3, 0, 496 },
     { -24, -16, 0, 497 },
     { -28, -4, 0, 498 }
-  }
+  } }
 };
 static sprite_pattern pat02 =
 {
   3,
-  {
+  { {
     { -23, -3, 0, 499 },
     { -24, -16, 0, 500 },
     { -31, -4, 0, 501 }
-  }
+  } }
 };
 static sprite_pattern pat03 =
 {
   3,
-  {
+  { {
     { -24, -3, 0, 502 },
     { -24, -16, 0, 503 },
     { -30, -4, 0, 504 }
-  }
+  } }
 };
 static sprite_pattern pat04 =
 {

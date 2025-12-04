@@ -125,10 +125,10 @@ sprite_pattern* egg6beam3_pat[5] = { &e6beam3_pat00, &e6beam3_pat01, &e6beam3_pa
 sprite_pattern e6yuka_pat00 =
 {
   2,
-  {
+  { {
     { -16, -16, 0, 507 },
     { -16, 0, 0, 508 }
-  }
+  } }
 };
 sprite_pattern* egg6yuka_pat[1] = { &e6yuka_pat00 };
 sprite_pattern e6beamer_pat00 = { 1, { { -8, -16, 0, 497 } } };

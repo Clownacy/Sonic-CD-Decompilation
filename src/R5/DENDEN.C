@@ -21,27 +21,27 @@ static sprite_pattern pat00 =
 static sprite_pattern pat01 =
 {
   2,
-  {
+  { {
     { -16, -8, 0, 457 },
     { -16, -24, 0, 458 }
-  }
+  } }
 };
 static sprite_pattern pat02 =
 {
   2,
-  {
+  { {
     { -16, -24, 0, 459 },
     { -16, -8, 0, 460 }
-  }
+  } }
 };
 static sprite_pattern pat03 =
 {
   3,
-  {
+  { {
     { -16, -24, 0, 461 },
     { -16, -8, 0, 462 },
     { -16, -8, 0, 463 }
-  }
+  } }
 };
 static sprite_pattern pat04 =
 {
@@ -51,10 +51,10 @@ static sprite_pattern pat04 =
 static sprite_pattern pat05 =
 {
   2,
-  {
+  { {
     { -16, -8, 0, 465 },
     { -16, -16, 0, 466 }
-  }
+  } }
 };
 static sprite_pattern pat06 =
 {
