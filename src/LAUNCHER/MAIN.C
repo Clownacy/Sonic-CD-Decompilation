@@ -7,6 +7,7 @@
 #include "SDL.h"
 
 #include "../TYPES.H"
+#include "../TITLE/COMMON/SCORE_DATA_TYPES.H"
 
 #include "COMMON.H"
 #include "IO.H"
@@ -47,10 +48,10 @@ typedef struct Tile
 
 extern dlink_export ExportedFunctions;
 
-static unsigned char buffers[10][1024*1024*10];
-
+static unsigned char map_buffer[0x10000];
 static PALETTEENTRY raw_palettes[4][64];
 static short hscroll_buffer[SCREEN_HEIGHT + 0x10][2];
+static score_data score_buffer;
 
 static SDL_Window *window;
 static SDL_Renderer *renderer;
@@ -590,25 +591,31 @@ static void DoButton(const bool pressed, const unsigned char index)
 
 static void GameMain(void)
 {
-	static void *buffer_pointers2[COUNT_OF(buffers)];
-	for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-		buffer_pointers2[i] = &buffers[i];
+	unsigned int hsurf = 0, hwnd = 0;
 
-	buffer_pointers2[1] = &raw_palettes[0];
-	buffer_pointers2[2] = &raw_palettes[1];
-	buffer_pointers2[3] = &raw_palettes[2];
-	buffer_pointers2[4] = &raw_palettes[3];
-	buffer_pointers2[5] = &hscroll_buffer;
-	buffer_pointers2[6] = &fade_flag;
+	/* Apparently, WinAPI memory handles are stupid meta-pointers. */
+	void *buffer_metapointers[6] = {
+		&map_buffer,
+		&raw_palettes[0],
+		&raw_palettes[1],
+		&raw_palettes[2],
+		&raw_palettes[3],
+		&hscroll_buffer,
+	};
 
-	static void *buffer_pointers[COUNT_OF(buffers)];
-	for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
-		buffer_pointers[i] = &buffer_pointers2[i];
-
-	for (unsigned int i = 7; i < COUNT_OF(buffers); ++i)
-		buffer_pointers[i] = &buffers[i];
-
-	buffer_pointers[7] = &state;
+	void *buffer_pointers[11] = {
+		&buffer_metapointers[0],
+		&buffer_metapointers[1],
+		&buffer_metapointers[2],
+		&buffer_metapointers[3],
+		&buffer_metapointers[4],
+		&buffer_metapointers[5],
+		&fade_flag,
+		&state,
+		&hsurf, /* Unused in Gems. */
+		&hwnd,  /* Unused in Gems. */
+		&score_buffer,
+	};
 
 	state.stageno.b.h = LEVEL_ROUND - 1;
 	state.stageno.b.l = LEVEL_ZONE - 1;
