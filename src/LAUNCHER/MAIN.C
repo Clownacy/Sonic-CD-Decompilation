@@ -76,6 +76,8 @@ static unsigned int sprite_queue_index;
 
 static unsigned char buttons_held, buttons_pressed;
 
+static int fade_flag = 1;
+
 static int SetGrid(const int plane, const int x, const int y, const int block, const int flip)
 {
 	// TODO: Flip.
@@ -597,12 +599,13 @@ static void GameMain(void)
 	buffer_pointers2[3] = &raw_palettes[2];
 	buffer_pointers2[4] = &raw_palettes[3];
 	buffer_pointers2[5] = &hscroll_buffer;
+	buffer_pointers2[6] = &fade_flag;
 
 	static void *buffer_pointers[COUNT_OF(buffers)];
 	for (unsigned int i = 0; i < COUNT_OF(buffers); ++i)
 		buffer_pointers[i] = &buffer_pointers2[i];
 
-	for (unsigned int i = 6; i < COUNT_OF(buffers); ++i)
+	for (unsigned int i = 7; i < COUNT_OF(buffers); ++i)
 		buffer_pointers[i] = &buffers[i];
 
 	buffer_pointers[7] = &state;
@@ -749,7 +752,15 @@ static void GameMain(void)
 
 			ExportedFunctions.SWdataSet(buttons_held << 8 | buttons_pressed << 0, 0);
 
-			ExportedFunctions.game();
+			if (fade_flag)
+			{
+				if (ExportedFunctions.FadeProc() != 0)
+					fade_flag = 0;
+			}
+			else
+			{
+				ExportedFunctions.game();
+			}
 
 			// Clear framebuffer.
 			SDL_FillRect(framebuffer, NULL, 0);
@@ -761,12 +772,12 @@ static void GameMain(void)
 			sprite_queue_index = 0;
 
 			// Update the colour palette.
-			for (unsigned int i = 0; i < COUNT_OF(raw_palettes[1]); ++i)
+			for (unsigned int i = 0; i < COUNT_OF(raw_palettes[0]); ++i)
 			{
 				SDL_Color colour;
-				colour.r = raw_palettes[1][i].peRed;
-				colour.g = raw_palettes[1][i].peGreen;
-				colour.b = raw_palettes[1][i].peBlue;
+				colour.r = raw_palettes[0][i].peRed;
+				colour.g = raw_palettes[0][i].peGreen;
+				colour.b = raw_palettes[0][i].peBlue;
 				colour.a = 0xFF;
 
 				if (SDL_SetPaletteColors(palette, &colour, i, 1) < 0)
