@@ -35,6 +35,16 @@ typedef struct SpriteQueueSlot
 	unsigned short index, link_data, flip;
 } SpriteQueueSlot;
 
+typedef struct TileRow
+{
+	unsigned char pixels[TILE_WIDTH];
+} TileRow;
+
+typedef struct Tile
+{
+	TileRow rows[TILE_HEIGHT];
+} Tile;
+
 extern dlink_export ExportedFunctions;
 
 static unsigned char buffers[10][1024*1024*10];
@@ -53,7 +63,7 @@ static SDL_Surface *framebuffer;
 static SDL_Surface *sprites[700][2][2];
 
 // TODO: Dynamically allocate based on what the file says the number of tiles are?
-static unsigned long tile_lines[0x800][TILE_HEIGHT];
+static Tile tile_lines[0x800];
 
 static game_info state;
 
@@ -433,8 +443,19 @@ static bool LoadTiles(const char* const path)
 		pointer = buffer + tiles_offset;
 
 		for (unsigned long i = 0; i < total_tiles; ++i)
+		{
 			for (int j = 0; j < TILE_HEIGHT; ++j)
-				tile_lines[i][j] = ReadU32BEP(&pointer);
+			{
+				const unsigned long row = ReadU32BEP(&pointer);
+
+				for (int k = 0; k < TILE_WIDTH; ++k)
+				{
+					const unsigned int value = (row >> (4 * k)) & 0xF;
+
+					tile_lines[i].rows[j].pixels[k] = value == 0 ? 0 : value;
+				}
+			}
+		}
 
 		success = true;
 	}
@@ -444,21 +465,21 @@ static bool LoadTiles(const char* const path)
 	return success;
 }
 
-static void DrawTileLine(unsigned char* const output, const unsigned long input, const bool x_flip, const unsigned int palette_line, const unsigned int min, const unsigned int max)
+static void DrawTileLine(unsigned char* const output, const TileRow* const input, const bool x_flip, const unsigned int palette_line, const unsigned int min, const unsigned int max)
 {
 	for (unsigned int i = min; i < max; ++i)
 	{
 		const unsigned int source_i = i ^ (x_flip ? 0 : 7);
 		const unsigned int destination_i = i;
 
-		const unsigned int value = (input >> (4 * source_i)) & 0xF;
+		const unsigned int value = input->pixels[source_i];
 
 		if (value != 0)
 			output[destination_i] = palette_line * 0x10 + value;
 	}
 }
 
-static void DrawTileLineWhole(unsigned char* const output, const unsigned long input, const bool x_flip, const unsigned int palette_line)
+static void DrawTileLineWhole(unsigned char* const output, const TileRow* const input, const bool x_flip, const unsigned int palette_line)
 {
 	DrawTileLine(output, input, x_flip, palette_line, 0, TILE_WIDTH);
 }
@@ -500,7 +521,7 @@ static void DrawPlanes(const bool target_priority)
 				//if (tile_index == 0)
 				//	continue;
 
-				unsigned long* const tile = tile_lines[tile_index];
+				const Tile* const tile = &tile_lines[tile_index];
 				const bool x_flip = (tile_metadata & 0x800) != 0;
 				const bool y_flip = (tile_metadata & 0x1000) != 0;
 				const unsigned int tile_line_y = ((vscrolls[plane] + y) % 8) ^ (y_flip ? 7 : 0);
@@ -511,11 +532,11 @@ static void DrawPlanes(const bool target_priority)
 					continue;
 
 				if (tile_x == 0)
-					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, x_offset, TILE_WIDTH);
+					DrawTileLine(framebuffer_tile_line_pixels, &tile->rows[tile_line_y], x_flip, palette_line, x_offset, TILE_WIDTH);
 				else if (tile_x >= screen_width_in_tiles - 1)
-					DrawTileLine(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line, 0, x_offset);
+					DrawTileLine(framebuffer_tile_line_pixels, &tile->rows[tile_line_y], x_flip, palette_line, 0, x_offset);
 				else
-					DrawTileLineWhole(framebuffer_tile_line_pixels, tile[tile_line_y], x_flip, palette_line);
+					DrawTileLineWhole(framebuffer_tile_line_pixels, &tile->rows[tile_line_y], x_flip, palette_line);
 			}
 		}
 	}
