@@ -440,10 +440,20 @@ static bool LoadTiles(const char* const path)
 	{
 		const unsigned long tiles_offset = ReadU32LEP(&pointer);
 
+		const unsigned char *palette_count_pointer = pointer;
+		unsigned int palette_counter = 0;
+		unsigned int palette_line = -1;
+
 		pointer = buffer + tiles_offset;
 
 		for (unsigned long i = 0; i < total_tiles; ++i)
 		{
+			if (palette_counter == 0)
+			{
+				palette_counter = ReadU16LEP(&palette_count_pointer);
+				++palette_line;
+			}
+
 			for (int j = 0; j < TILE_HEIGHT; ++j)
 			{
 				const unsigned long row = ReadU32BEP(&pointer);
@@ -452,7 +462,7 @@ static bool LoadTiles(const char* const path)
 				{
 					const unsigned int value = (row >> (4 * k)) & 0xF;
 
-					tile_lines[i].rows[j].pixels[k] = value == 0 ? 0 : value;
+					tile_lines[i].rows[j].pixels[k] = value == 0 ? 0 : palette_line * 0x10 + value;
 				}
 			}
 		}
