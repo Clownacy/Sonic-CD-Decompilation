@@ -175,13 +175,30 @@ static void sOutputDebugString(char* const string)
 }
 
 static FILE *files[0x10];
-static unsigned int files_index;
 
 static int sOpenFile(char* const filename)
 {
-	files_index = (files_index + 1) % COUNT_OF(files);
-	files[files_index] = fopen(filename, "rb");
-	return files[files_index] == NULL ? -1 : files_index;
+	int i;
+
+	for (i = 0; i < COUNT_OF(files); ++i)
+	{
+		if (files[i] == NULL)
+		{
+			files[i] = fopen(filename, "rb");
+
+			if (files[i] == NULL)
+			{
+				fprintf(stderr, "Failed to open file '%s'.\n", filename);
+				return -1;
+			}
+
+			return i;
+		}
+	}
+
+	fputs("Too many files open.\n", stderr);
+
+	return -1;
 }
 
 static int sReadFile(const int file_handle, void* const buffer, const int size)
@@ -192,6 +209,7 @@ static int sReadFile(const int file_handle, void* const buffer, const int size)
 static void sCloseFile(const int file_handle)
 {
 	fclose(files[file_handle]);
+	files[file_handle] = NULL;
 }
 
 static SDL_Surface* CreateSpriteSurface(const int width, const int height)
