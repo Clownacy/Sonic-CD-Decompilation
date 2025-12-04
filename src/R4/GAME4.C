@@ -8,6 +8,7 @@
 #include "..\LOADER2.H"
 #include "..\SCORE.H"
 #include "COL4A.H"
+#include "DEV41A.H"
 
 extern void scr_set(void);
 extern void scroll(void);
@@ -55,7 +56,6 @@ dlink_export ExportedFunctions = {
   0
 };
 int(*sGetFileSize)(int);
-
 
 
 

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(SonicCD LANGUAGES C)
 
-function(make_level ROUND ZONE TIME)
+function(make_level ROUND ZONE TIME CG_CHANGE)
 	set(SOURCES
 		"src/ACTION.C"
 		"src/ACTSET.C"
@@ -69,12 +69,16 @@ function(make_level ROUND ZONE TIME)
 	target_compile_definitions(${EXECUTABLE_NAME} PRIVATE R${ROUND} R${ROUND}${ZONE} R${ROUND}${ZONE}${TIME})
 	target_compile_definitions(${EXECUTABLE_NAME} PRIVATE LEVEL_ROUND=${ROUND} LEVEL_ZONE=${ZONE} LEVEL_TIME=${TIME})
 
+	if (CG_CHANGE)
+		target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CG_CHANGE)
+	endif()
+
 	target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2)
 endfunction()
 
 find_package(SDL2 REQUIRED)
 
-make_level(1 1 A
+make_level(1 1 A OFF
 	"src/EMIE1.C"
 	"src/EMIE1CG.C"
 	"src/GAME.C"
@@ -88,7 +92,7 @@ make_level(1 1 A
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 1 B
+make_level(1 1 B OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
@@ -100,7 +104,7 @@ make_level(1 1 B
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 1 C
+make_level(1 1 C OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
@@ -112,7 +116,7 @@ make_level(1 1 C
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 1 D
+make_level(1 1 D OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT11B.C"
@@ -124,7 +128,7 @@ make_level(1 1 D
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 2 A
+make_level(1 2 A OFF
 	"src/BRANKO1.C"
 	"src/GAME.C"
 	"src/PLAYSUB.C"
@@ -137,7 +141,7 @@ make_level(1 2 A
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 2 B
+make_level(1 2 B OFF
 	"src/BRANKO1.C"
 	"src/GAME.C"
 	"src/PLAYSUB.C"
@@ -150,7 +154,7 @@ make_level(1 2 B
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 2 C
+make_level(1 2 C OFF
 	"src/BRANKO1.C"
 	"src/GAME.C"
 	"src/PLAYSUB.C"
@@ -163,7 +167,7 @@ make_level(1 2 C
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 2 D
+make_level(1 2 D OFF
 	"src/BRANKO1.C"
 	"src/GAME.C"
 	"src/PLAYSUB.C"
@@ -176,7 +180,7 @@ make_level(1 2 D
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 3 C
+make_level(1 3 C OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT13C.C"
@@ -187,7 +191,7 @@ make_level(1 3 C
 	"src/R1/SIKAKE.C"
 )
 
-make_level(1 3 D
+make_level(1 3 D OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R1/ACT13C.C"
@@ -198,7 +202,7 @@ make_level(1 3 D
 	"src/R1/SIKAKE.C"
 )
 
-make_level(3 1 A
+make_level(3 1 A OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31A.C"
@@ -217,7 +221,7 @@ make_level(3 1 A
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 1 B
+make_level(3 1 B OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
@@ -235,7 +239,7 @@ make_level(3 1 B
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 1 C
+make_level(3 1 C OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
@@ -253,7 +257,7 @@ make_level(3 1 C
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 1 D
+make_level(3 1 D OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT31B.C"
@@ -271,7 +275,7 @@ make_level(3 1 D
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 2 A
+make_level(3 2 A ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
@@ -290,7 +294,7 @@ make_level(3 2 A
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 2 B
+make_level(3 2 B OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
@@ -308,7 +312,7 @@ make_level(3 2 B
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 2 C
+make_level(3 2 C ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
@@ -326,7 +330,7 @@ make_level(3 2 C
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 2 D
+make_level(3 2 D ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT32A.C"
@@ -344,7 +348,7 @@ make_level(3 2 D
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 3 C
+make_level(3 3 C OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT33C.C"
@@ -368,7 +372,7 @@ make_level(3 3 C
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(3 3 D
+make_level(3 3 D OFF
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/R3/ACT33C.C"
@@ -392,7 +396,7 @@ make_level(3 3 D
 	"src/R3/TRAP_R3.C"
 )
 
-make_level(4 1 A
+make_level(4 1 A ON
 	"src/R4/ACT41A.C"
 	"src/R4/AMENBO.C"
 	"src/R4/AWA.C"
