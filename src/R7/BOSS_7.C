@@ -10,6 +10,7 @@
 #include "..\SCORE.H"
 #include "COL7A.H"
 #include "COLI7.H"
+#include "SCR71A.H"
 
 static void msnc_ini(sprite_status* pActwk);
 static void msnc_demo1(sprite_status* pActwk);
@@ -121,12 +122,12 @@ static sprite_pattern egg7_pat00 = {
 };
 static sprite_pattern egg7_pat01 = {
   4,
-  {
+  { {
     { 22, 15, 0, 467 },
     { -24, -21, 0, 468 },
     { -32, -4, 0, 469 },
     { -40, -36, 0, 470 }
-  }
+  } }
 };
 sprite_pattern* egg7_pat[2] = {
   &egg7_pat00,
@@ -244,17 +245,17 @@ static sprite_pattern msnc_pat06 = {
 };
 static sprite_pattern msnc_pat07 = {
   2,
-  {
+  { {
     { -16, -16, 0, 486 },
     { -16, 4, 0, 487 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat08 = {
   2,
-  {
+  { {
     { -16, -16, 0, 488 },
     { -16, 4, 0, 489 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat09 = {
   1,
@@ -262,17 +263,17 @@ static sprite_pattern msnc_pat09 = {
 };
 static sprite_pattern msnc_pat10 = {
   2,
-  {
+  { {
     { -20, -24, 0, 491 },
     { -16, -4, 0, 492 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat11 = {
   2,
-  {
+  { {
     { -20, -24, 0, 493 },
     { -20, -8, 0, 494 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat12 = {
   1,
@@ -280,17 +281,17 @@ static sprite_pattern msnc_pat12 = {
 };
 static sprite_pattern msnc_pat13 = {
   2,
-  {
+  { {
     { -20, -24, 0, 496 },
     { -20, -8, 0, 497 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat14 = {
   2,
-  {
+  { {
     { -20, -24, 0, 498 },
     { -24, -12, 0, 499 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat15 = {
   1,
@@ -298,17 +299,17 @@ static sprite_pattern msnc_pat15 = {
 };
 static sprite_pattern msnc_pat16 = {
   2,
-  {
+  { {
     { -4, -8, 0, 501 },
     { -20, -24, 0, 502 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat17 = {
   2,
-  {
+  { {
     { -4, -8, 0, 503 },
     { -20, -24, 0, 504 }
-  }
+  } }
 };
 static sprite_pattern msnc_pat18 = {
   1,
@@ -428,7 +429,6 @@ short GL_d5;
 sprite_status* pMsnc;
 extern unsigned short scr_dir_tbl[];
 extern sprite_pattern* bakupat[7];
-
 
 
 

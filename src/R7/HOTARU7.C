@@ -65,17 +65,17 @@ static sprite_pattern pat_e02 = {
 };
 static sprite_pattern pat_e03 = {
   2,
-  {
+  { {
     { -12, -20, 32, 511 },
     { -11, -7, 32, 521 }
-  }
+  } }
 };
 static sprite_pattern pat_e04 = {
   2,
-  {
+  { {
     { -12, -20, 32, 512 },
     { -11, -7, 32, 521 }
-  }
+  } }
 };
 sprite_pattern* pat_hotaru7_e[5] = {
   &pat_e00,
@@ -98,17 +98,17 @@ static sprite_pattern pat_b02 = {
 };
 static sprite_pattern pat_b03 = {
   2,
-  {
+  { {
     { -12, -20, 32, 516 },
     { -11, -7, 32, 521 }
-  }
+  } }
 };
 static sprite_pattern pat_b04 = {
   2,
-  {
+  { {
     { -12, -20, 32, 517 },
     { -11, -7, 32, 521 }
-  }
+  } }
 };
 sprite_pattern* pat_hotaru7_b[5] = {
   &pat_b00,

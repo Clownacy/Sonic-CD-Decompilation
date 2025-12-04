@@ -100,95 +100,95 @@ static unsigned char* pchg[9] = {
 };
 static sprite_pattern pat00 = {
   2,
-  {
+  { {
     { -8, -8, 0, 468 },
     { -8, -6, 0, 481 }
-  }
+  } }
 };
 static sprite_pattern pat01 = {
   2,
-  {
+  { {
     { -8, -8, 0, 469 },
     { -8, -6, 0, 482 }
-  }
+  } }
 };
 static sprite_pattern pat02 = {
   2,
-  {
+  { {
     { -8, -8, 0, 470 },
     { -12, -6, 0, 483 }
-  }
+  } }
 };
 static sprite_pattern pat03 = {
   2,
-  {
+  { {
     { -8, -8, 0, 471 },
     { -12, -6, 0, 484 }
-  }
+  } }
 };
 static sprite_pattern pat04 = {
   2,
-  {
+  { {
     { -10, -5, 0, 485 },
     { -8, -8, 0, 472 }
-  }
+  } }
 };
 static sprite_pattern pat05 = {
   2,
-  {
+  { {
     { -10, -5, 0, 486 },
     { -8, -8, 0, 473 }
-  }
+  } }
 };
 static sprite_pattern pat06 = {
   2,
-  {
+  { {
     { -12, -6, 0, 487 },
     { -8, -8, 0, 474 }
-  }
+  } }
 };
 static sprite_pattern pat07 = {
   2,
-  {
+  { {
     { -12, -6, 0, 488 },
     { -8, -8, 0, 475 }
-  }
+  } }
 };
 static sprite_pattern pat08 = {
   2,
-  {
+  { {
     { -8, -6, 0, 489 },
     { -8, -8, 0, 476 }
-  }
+  } }
 };
 static sprite_pattern pat09 = {
   2,
-  {
+  { {
     { -8, -6, 0, 490 },
     { -8, -8, 0, 477 }
-  }
+  } }
 };
 static sprite_pattern pat0a = {
   2,
-  {
+  { {
     { -1, -5, 0, 491 },
     { -8, -8, 0, 478 }
-  }
+  } }
 };
 static sprite_pattern pat0b = {
   2,
-  {
+  { {
     { -1, -5, 0, 492 },
     { -8, -8, 0, 479 }
-  }
+  } }
 };
 static sprite_pattern pat0c;
 static sprite_pattern pat0d = {
   2,
-  {
+  { {
     { -10, -5, 0, 493 },
     { -8, -8, 0, 480 }
-  }
+  } }
 };
 sprite_pattern* pat_kabasira[14] = {
   &pat00,

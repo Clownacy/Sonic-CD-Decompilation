@@ -23,10 +23,10 @@ static sprite_pattern slight_pat1 = {
 };
 static sprite_pattern slight_pat2 = {
   2,
-  {
+  { {
     { -8, -112, 0, 436 },
     { -64, 0, 0, 437 }
-  }
+  } }
 };
 static sprite_pattern slight_pat3;
 static sprite_pattern slight_pat4 = {
@@ -39,10 +39,10 @@ static sprite_pattern slight_pat5 = {
 };
 static sprite_pattern slight_pat6 = {
   2,
-  {
+  { {
     { -8, -112, 0, 440 },
     { -64, 0, 0, 441 }
-  }
+  } }
 };
 sprite_pattern* slight7pat[4] = {
   &slight_pat0,

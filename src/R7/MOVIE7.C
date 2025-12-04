@@ -5,6 +5,7 @@
 #include "..\LOADER2.H"
 #include "..\PLAYSUB.H"
 #include "..\RIDECHK.H"
+#include "SCR71A.H"
 
 #if defined(R73C) || defined(R73D)
   #define SPRITE_MOVIE7_BASE 441
@@ -73,7 +74,6 @@ char tbl0[37] = {
   -10,  28,  -3, -25,  30, 10, 20, 32, -10, 2,
    35,  13, -10,  40, -10, 10, -1
 };
-
 
 
 
