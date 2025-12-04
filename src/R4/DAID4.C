@@ -15,18 +15,18 @@ static void a_on1(sprite_status* pActwk);
 static sprite_pattern pat0 =
 {
   2,
-  {
+  { {
     { -32, -32, 0, 501 },
     { -32, 16, 0, 503 }
-  }
+  } }
 };
 static sprite_pattern pat1 =
 {
   2,
-  {
+  { {
     { -32, -34, 0, 502 },
     { -32, 14, 0, 504 }
-  }
+  } }
 };
 sprite_pattern* pat_daid4[2] =
 {
