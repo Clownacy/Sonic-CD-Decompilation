@@ -196,3 +196,35 @@ make_level(3 1 A
 	"src/R3/TOGEBL3A.C"
 	"src/R3/TRAP_R3.C"
 )
+
+make_level(3 1 B
+	"src/R3/ACT31B.C"
+	"src/R3/BANPA.C"
+	"src/R3/BOBIN.C"
+	"src/R3/BOBINB.C"
+	"src/R3/EDTBL31B.C"
+	"src/R3/GA3.C"
+	"src/R3/KAMA.C"
+	"src/R3/MIRACLE.C"
+	"src/R3/MSNCCG.C"
+	"src/R3/POCKET.C"
+	"src/R3/TENTOU.C"
+	"src/R3/TOGEBL3B.C"
+	"src/R3/TRAP_R3.C"
+)
+
+make_level(3 1 C
+	"src/R3/ACT31B.C"
+	"src/R3/BANPA.C"
+	"src/R3/BOBIN.C"
+	"src/R3/BOBINB.C"
+	"src/R3/EDTBL31C.C"
+	"src/R3/GA3.C"
+	"src/R3/KAMA.C"
+	"src/R3/MIRACLE.C"
+	"src/R3/MSNCCG.C"
+	"src/R3/POCKET.C"
+	"src/R3/TENTOU.C"
+	"src/R3/TOGEBL3D.C"
+	"src/R3/TRAP_R3.C"
+)
