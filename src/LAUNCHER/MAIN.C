@@ -537,7 +537,7 @@ static void DoButton(const bool pressed, const unsigned char index)
 		buttons_held |= mask;
 }
 
-int SDL_main(const int argc, char** const argv)
+int main(const int argc, char** const argv)
 {
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_SCALING, "1");
 
