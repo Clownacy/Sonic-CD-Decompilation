@@ -22,66 +22,66 @@ static void rblk4_ract_move(sprite_status* pActwk);
 static sprite_pattern pat00 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE },
     { -48, -48, 0, SPRITE_RBLK4_BASE + 1 }
-  }
+  } }
 };
 static sprite_pattern pat01 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 2 },
     { -48, -16, 0, SPRITE_RBLK4_BASE + 3 }
-  }
+  } }
 };
 static sprite_pattern pat02 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 4 },
     { -16, -16, 0, SPRITE_RBLK4_BASE + 5 }
-  }
+  } }
 };
 static sprite_pattern pat03 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 6 },
     { -16, -48, 0, SPRITE_RBLK4_BASE + 7 }
-  }
+  } }
 };
 static sprite_pattern pat04 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 8 },
     { -48, -48, 0, SPRITE_RBLK4_BASE + 9 }
-  }
+  } }
 };
 static sprite_pattern pat05 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 10 },
     { -48, -24, 0, SPRITE_RBLK4_BASE + 11 }
-  }
+  } }
 };
 static sprite_pattern pat06 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 12 },
     { -24, -48, 0, SPRITE_RBLK4_BASE + 13 }
-  }
+  } }
 };
 static sprite_pattern pat07 =
 {
   2,
-  {
+  { {
     { -8, -8, 0, SPRITE_RBLK4_BASE + 14 },
     { -48, -48, 0, SPRITE_RBLK4_BASE + 15 }
-  }
+  } }
 };
 static sprite_pattern pat08 =
 {
