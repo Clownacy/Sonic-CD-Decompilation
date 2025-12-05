@@ -452,11 +452,12 @@ static bool LoadTiles(const char* const path, Tile* const tiles)
 
 		for (unsigned long i = 0; i < total_tiles; ++i)
 		{
-			if (palette_counter == 0)
+			while (palette_counter == 0)
 			{
 				palette_counter = ReadU16LEP(&palette_count_pointer);
 				++palette_line;
 			}
+			--palette_counter;
 
 			for (int j = 0; j < TILE_HEIGHT; ++j)
 			{
@@ -489,7 +490,7 @@ static void DrawTileLine(unsigned char* const output, const TileRow* const input
 		const unsigned int value = input->pixels[source_i];
 
 		if (value != 0)
-			output[destination_i] = palette_line * 0x10 + value;
+			output[destination_i] = /*palette_line * 0x10 +*/ value; /* Yes, the palette line really is ignored in this port! */
 	}
 }
 
