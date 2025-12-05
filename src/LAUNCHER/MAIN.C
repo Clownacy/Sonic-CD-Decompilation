@@ -64,7 +64,7 @@ static SDL_Surface *framebuffer;
 static SDL_Surface *sprites[700][2][2];
 
 // TODO: Dynamically allocate based on what the file says the number of tiles are?
-static Tile tile_lines[0x800];
+static Tile tiles[0x800];
 
 static game_info state;
 
@@ -435,7 +435,7 @@ static bool LoadTiles(const char* const path)
 
 	const unsigned long total_tiles = ReadU32LEP(&pointer);
 
-	if (total_tiles > COUNT_OF(tile_lines))
+	if (total_tiles > COUNT_OF(tiles))
 	{
 		fputs("Too many tiles.\n", stderr);
 	}
@@ -465,7 +465,7 @@ static bool LoadTiles(const char* const path)
 				{
 					const unsigned int value = (row >> (4 * k)) & 0xF;
 
-					tile_lines[i].rows[j].pixels[k] = value == 0 ? 0 : palette_line * 0x10 + value;
+					tiles[i].rows[j].pixels[k] = value == 0 ? 0 : palette_line * 0x10 + value;
 				}
 			}
 		}
@@ -534,7 +534,7 @@ static void DrawPlanes(const bool target_priority)
 				//if (tile_index == 0)
 				//	continue;
 
-				const Tile* const tile = &tile_lines[tile_index];
+				const Tile* const tile = &tiles[tile_index];
 				const bool x_flip = (tile_metadata & 0x800) != 0;
 				const bool y_flip = (tile_metadata & 0x1000) != 0;
 				const unsigned int tile_line_y = ((vscrolls[plane] + y) % 8) ^ (y_flip ? 7 : 0);
