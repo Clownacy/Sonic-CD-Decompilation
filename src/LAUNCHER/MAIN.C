@@ -108,9 +108,9 @@ static void ClrSpriteDebug()
 	
 }
 
-static void WaveRequest(short)
+static void WaveRequest(const short sound_index)
 {
-	
+	Sound_PlaySound(sound_index);
 }
 
 static void CDPlay(const short music_index)
@@ -118,7 +118,7 @@ static void CDPlay(const short music_index)
 	const cc_bool loop = music_index != 2 && music_index != 28 && music_index != 29 && music_index != 30 && music_index != 31;
 
 	SDL_LockAudioDevice(audio_device_id);
-	Sound_PlayMusic("BGM_JP.AFS", music_index, loop);
+	Sound_PlayMusic("BGM_JP.AFS", music_index, loop); /* TODO: US soundtrack. */
 	SDL_UnlockAudioDevice(audio_device_id);
 }
 
@@ -837,13 +837,11 @@ static void GameMain(void)
 
 static void AudioCallback(void* const userdata, Uint8* const stream, const int len)
 {
-	size_t bytes_read;
 	const size_t size_of_frame = SOUND_CHANNELS * sizeof(Uint16);
 
 	(void)userdata;
 
-	bytes_read = Sound_ReadMusic(stream, len / size_of_frame) * size_of_frame;
-	memset(stream + bytes_read, 0, len - bytes_read);
+	Sound_ReadFrames(stream, len / size_of_frame);
 }
 
 int main(const int argc, char** const argv)
@@ -916,7 +914,7 @@ int main(const int argc, char** const argv)
 								else
 								{
 									SDL_AudioSpec spec;
-									spec.freq = 48000; /* TODO: Change this? */
+									spec.freq = 12000; /* TODO: Change this? */
 									spec.format = AUDIO_S16;
 									spec.channels = SOUND_CHANNELS;
 									spec.samples = spec.freq / 100; /* 10ms */
