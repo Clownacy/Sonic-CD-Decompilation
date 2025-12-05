@@ -64,7 +64,8 @@ static SDL_Surface *framebuffer;
 static SDL_Surface *sprites[700][2][2];
 
 // TODO: Dynamically allocate based on what the file says the number of tiles are?
-static Tile tiles[0x800];
+static Tile tiles[0x800], change_tiles[0x800];
+static Tile *tile_list[0xE80];
 
 static game_info state;
 
@@ -119,9 +120,9 @@ static void CDPause(short)
 	
 }
 
-static void ChangeTileBmp(int, int)
+static void ChangeTileBmp(const int list_index, const int tile_index)
 {
-	
+	tile_list[list_index] = &change_tiles[tile_index];
 }
 
 static void WaveAllStop()
@@ -420,7 +421,7 @@ static bool LoadSprites(const char* const path)
 	return success;
 }
 
-static bool LoadTiles(const char* const path)
+static bool LoadTiles(const char* const path, Tile* const tiles)
 {
 	bool success = false;
 
@@ -435,7 +436,7 @@ static bool LoadTiles(const char* const path)
 
 	const unsigned long total_tiles = ReadU32LEP(&pointer);
 
-	if (total_tiles > COUNT_OF(tiles))
+	if (total_tiles > COUNT_OF(change_tiles))
 	{
 		fputs("Too many tiles.\n", stderr);
 	}
@@ -534,7 +535,11 @@ static void DrawPlanes(const bool target_priority)
 				//if (tile_index == 0)
 				//	continue;
 
-				const Tile* const tile = &tiles[tile_index];
+				const Tile* const tile = tile_list[tile_index];
+
+				if (tile == NULL)
+					continue;
+
 				const bool x_flip = (tile_metadata & 0x800) != 0;
 				const bool y_flip = (tile_metadata & 0x1000) != 0;
 				const unsigned int tile_line_y = ((vscrolls[plane] + y) % 8) ^ (y_flip ? 7 : 0);
@@ -682,12 +687,17 @@ static void GameMain(void)
 	{
 		fputs("Failed to load sprites.\n", stderr);
 	}
-	else if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_"))
+	else if (!LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCMP"LEVEL_IDENTIFIER".CM_", tiles))
 	{
 		fputs("Failed to load tiles.\n", stderr);
 	}
 	else
 	{
+		LoadTiles(ROUND_IDENTIFIER"/"LEVEL_IDENTIFIER"/TCHG"LEVEL_IDENTIFIER".CM_", change_tiles);
+
+		for (unsigned int i = 0; i < COUNT_OF(tiles); ++i)
+			tile_list[i] = &tiles[i];
+
 		ExportedFunctions.game_init();
 
 		bool alive = true;
