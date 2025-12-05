@@ -13,7 +13,7 @@ typedef struct Sound
 } Sound;
 
 static libvgmstream_t* state;
-static cc_bool music_playing;
+static cc_bool music_playing, ring_flip_flop;
 
 static Sound sounds[0x80];
 
@@ -101,8 +101,16 @@ cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, c
 	return cc_false;
 }
 
-void Sound_PlaySound(const unsigned int index)
+void Sound_PlaySound(unsigned int index)
 {
+	if (index == 5)
+	{
+		if (ring_flip_flop)
+			index = 22;
+
+		ring_flip_flop = !ring_flip_flop;
+	}
+
 	Sound* const sound = &sounds[index];
 
 	if (sound->buffer != NULL)
