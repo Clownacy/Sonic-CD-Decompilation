@@ -1254,7 +1254,7 @@ make_level(5 3 D OFF
 	"src/R5/SCR53D.C"
 )
 
-make_level(6 1 A OFF
+make_level(6 1 A ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1287,7 +1287,7 @@ make_level(6 1 A OFF
 	"src/R6/TOGEBL6A.C"
 )
 
-make_level(6 1 B OFF
+make_level(6 1 B ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1320,7 +1320,7 @@ make_level(6 1 B OFF
 	"src/R6/TOGEBL6B.C"
 )
 
-make_level(6 1 C OFF
+make_level(6 1 C ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1352,7 +1352,7 @@ make_level(6 1 C OFF
 	"src/R6/SCR61C.C"
 )
 
-make_level(6 1 D OFF
+make_level(6 1 D ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1385,7 +1385,7 @@ make_level(6 1 D OFF
 	"src/R6/TOGEBL6D.C"
 )
 
-make_level(6 2 A OFF
+make_level(6 2 A ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1418,7 +1418,7 @@ make_level(6 2 A OFF
 	"src/R6/TOGEBL6A.C"
 )
 
-make_level(6 2 B OFF
+make_level(6 2 B ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1451,7 +1451,7 @@ make_level(6 2 B OFF
 	"src/R6/TOGEBL6B.C"
 )
 
-make_level(6 2 C OFF
+make_level(6 2 C ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1484,7 +1484,7 @@ make_level(6 2 C OFF
 	"src/R6/TOGEBL6D.C"
 )
 
-make_level(6 2 D OFF
+make_level(6 2 D ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1517,7 +1517,7 @@ make_level(6 2 D OFF
 	"src/R6/TOGEBL6D.C"
 )
 
-make_level(6 3 C OFF
+make_level(6 3 C ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1551,7 +1551,7 @@ make_level(6 3 C OFF
 	"src/R6/TOGEBL6D.C"
 )
 
-make_level(6 3 D OFF
+make_level(6 3 D ON
 	"src/GAME.C"
 	"src/PLAYSP.C"
 	"src/PLAYSUB.C"
@@ -1857,7 +1857,7 @@ make_level(7 3 D OFF
 	"src/R7/WALL73.C"
 )
 
-make_level(8 1 A OFF
+make_level(8 1 A ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -1933,7 +1933,7 @@ make_level(8 1 B OFF
 	"src/R8/TRAP_R81.C"
 )
 
-make_level(8 1 C OFF
+make_level(8 1 C ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -1971,7 +1971,7 @@ make_level(8 1 C OFF
 	"src/R8/TRAP_R81.C"
 )
 
-make_level(8 1 D OFF
+make_level(8 1 D ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2009,7 +2009,7 @@ make_level(8 1 D OFF
 	"src/R8/TRAP_R81.C"
 )
 
-make_level(8 2 A OFF
+make_level(8 2 A ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2047,7 +2047,7 @@ make_level(8 2 A OFF
 	"src/R8/TRAP_R82.C"
 )
 
-make_level(8 2 B OFF
+make_level(8 2 B ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2085,7 +2085,7 @@ make_level(8 2 B OFF
 	"src/R8/TRAP_R82.C"
 )
 
-make_level(8 2 C OFF
+make_level(8 2 C ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2123,7 +2123,7 @@ make_level(8 2 C OFF
 	"src/R8/TRAP_R82.C"
 )
 
-make_level(8 2 D OFF
+make_level(8 2 D ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2161,7 +2161,7 @@ make_level(8 2 D OFF
 	"src/R8/TRAP_R82.C"
 )
 
-make_level(8 3 C OFF
+make_level(8 3 C ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
@@ -2202,7 +2202,7 @@ make_level(8 3 C OFF
 	"src/R8/TRAP_R83.C"
 )
 
-make_level(8 3 D OFF
+make_level(8 3 D ON
 	"src/GAME.C"
 	"src/PLAYSUB.C"
 	"src/ZONETBL1.C"
