@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "SDL.h"
+
 #include "vgmstream/src/libvgmstream.h"
 
 typedef struct Sound
@@ -33,8 +35,6 @@ cc_bool Sound_Initialise(void)
 
 			if (file != NULL)
 			{
-				libvgmstream_close_stream(state);
-
 				libvgmstream_config_t config = {};
 				config.auto_downmix_channels = SOUND_CHANNELS;
 				config.force_sfmt = LIBVGMSTREAM_SFMT_PCM16;
@@ -45,18 +45,36 @@ cc_bool Sound_Initialise(void)
 
 				if (result >= 0)
 				{
-					sounds[i].buffer = (int16_t*)malloc(state->format->stream_samples * state->format->sample_size * state->format->channels);
+					SDL_AudioStream* const converter = SDL_NewAudioStream(AUDIO_S16,
+						state->format->channels,
+						state->format->sample_rate,
+						AUDIO_S16,
+						SOUND_CHANNELS,
+						SOUND_SAMPLE_RATE);
+
+					while (!state->decoder->done)
+					{
+						libvgmstream_render(state);
+						SDL_AudioStreamPut(converter, state->decoder->buf, state->decoder->buf_bytes);
+					}
+
+					libvgmstream_close_stream(state);
+					SDL_AudioStreamFlush(converter);
+
+					const int total_bytes = SDL_AudioStreamAvailable(converter);
+
+					sounds[i].buffer = (int16_t*)malloc(total_bytes);
 
 					if (sounds[i].buffer != NULL)
 					{
-						sounds[i].length = state->format->stream_samples;
+						sounds[i].length = total_bytes / sizeof(int16_t);
 						sounds[i].position = 0;
 
-						libvgmstream_fill(state, sounds[i].buffer, sounds[i].length);
+						SDL_AudioStreamGet(converter, sounds[i].buffer, total_bytes);
 					}
-				}
 
-				libvgmstream_close_stream(state);
+					SDL_FreeAudioStream(converter);
+				}
 			}
 		}
 
@@ -125,9 +143,9 @@ void Sound_ReadFrames(void* const buffer_void, const size_t frames_to_read)
 	int16_t* const buffer = (int16_t*)buffer_void;
 
 	/* TODO: Handle return value. */
-//	if (music_playing)
-//		libvgmstream_fill(state, buffer, frames_to_read);
-//	else
+	if (music_playing)
+		libvgmstream_fill(state, buffer, frames_to_read);
+	else
 		memset(buffer, 0, frames_to_read * SOUND_CHANNELS * sizeof(int16_t));
 
 	for (size_t sound_index = 0; sound_index < COUNT_OF(sounds); ++sound_index)
@@ -136,16 +154,12 @@ void Sound_ReadFrames(void* const buffer_void, const size_t frames_to_read)
 
 		if (sound->playing)
 		{
-			const size_t frames_to_do = CC_MIN(frames_to_read, sound->length - sound->position);
+			const size_t samples_to_do = CC_MIN(frames_to_read * SOUND_CHANNELS, sound->length - sound->position);
 
-			for (size_t frame_index = 0; frame_index < frames_to_do; ++frame_index)
-			{
-				const int16_t sample = sound->buffer[sound->position + frame_index];
-				buffer[frame_index * 2 + 0] += sample;
-				buffer[frame_index * 2 + 1] += sample;
-			}
+			for (size_t sample_index = 0; sample_index < samples_to_do; ++sample_index)
+				buffer[sample_index] += sound->buffer[sound->position + sample_index];
 
-			sound->position += frames_to_do;
+			sound->position += samples_to_do;
 
 			if (sound->position == sound->length)
 				sound->playing = cc_false;

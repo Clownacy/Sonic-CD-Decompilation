@@ -5,6 +5,7 @@
 
 #include "COMMON.H"
 
+#define SOUND_SAMPLE_RATE 48000
 #define SOUND_CHANNELS 2
 
 cc_bool Sound_Initialise(void);

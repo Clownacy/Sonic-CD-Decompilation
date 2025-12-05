@@ -914,7 +914,7 @@ int main(const int argc, char** const argv)
 								else
 								{
 									SDL_AudioSpec spec;
-									spec.freq = 12000; /* TODO: Change this? */
+									spec.freq = SOUND_SAMPLE_RATE; /* TODO: Change this? */
 									spec.format = AUDIO_S16;
 									spec.channels = SOUND_CHANNELS;
 									spec.samples = spec.freq / 100; /* 10ms */
