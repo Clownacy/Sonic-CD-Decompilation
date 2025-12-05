@@ -11,6 +11,7 @@
 
 #include "COMMON.H"
 #include "IO.H"
+#include "SOUND.H"
 #include "SZDD.H"
 
 #define SCREEN_WIDTH 320
@@ -80,6 +81,8 @@ static unsigned char buttons_held, buttons_pressed;
 
 static int fade_flag = 1;
 
+static SDL_AudioDeviceID audio_device_id;
+
 static int SetGrid(const int plane, const int x, const int y, const int block, const int flip)
 {
 	// TODO: Flip.
@@ -110,9 +113,13 @@ static void WaveRequest(short)
 	
 }
 
-static void CDPlay(short)
+static void CDPlay(const short music_index)
 {
-	
+	const cc_bool loop = music_index != 2 && music_index != 28 && music_index != 29 && music_index != 30 && music_index != 31;
+
+	SDL_LockAudioDevice(audio_device_id);
+	Sound_PlayMusic("BGM_JP.AFS", music_index, loop);
+	SDL_UnlockAudioDevice(audio_device_id);
 }
 
 static void CDPause(short)
@@ -828,11 +835,22 @@ static void GameMain(void)
 	ExportedFunctions.dll_memfree();
 }
 
+static void AudioCallback(void* const userdata, Uint8* const stream, const int len)
+{
+	size_t bytes_read;
+	const size_t size_of_frame = SOUND_CHANNELS * sizeof(Uint16);
+
+	(void)userdata;
+
+	bytes_read = Sound_ReadMusic(stream, len / size_of_frame) * size_of_frame;
+	memset(stream + bytes_read, 0, len - bytes_read);
+}
+
 int main(const int argc, char** const argv)
 {
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_SCALING, "1");
 
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO);
 
 	window = SDL_CreateWindow("Sonic CD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH * WINDOW_SCALE, SCREEN_HEIGHT * WINDOW_SCALE, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
@@ -886,9 +904,43 @@ int main(const int argc, char** const argv)
 						else
 						{
 							if (SDL_SetSurfacePalette(framebuffer, palette) < 0)
+							{
 								fputs("Failed to set framebuffer palette.\n", stderr);
+							}
+							else
+							{
+								if (!Sound_Initialise())
+								{
+									fputs("Failed to initialise audio decoder.\n", stderr);
+								}
+								else
+								{
+									SDL_AudioSpec spec;
+									spec.freq = 48000; /* TODO: Change this? */
+									spec.format = AUDIO_S16;
+									spec.channels = SOUND_CHANNELS;
+									spec.samples = spec.freq / 100; /* 10ms */
+									spec.callback = AudioCallback;
+									spec.userdata = NULL;
 
-							GameMain();
+									audio_device_id = SDL_OpenAudioDevice(NULL, 0, &spec, NULL, SDL_AUDIO_ALLOW_SAMPLES_CHANGE);
+
+									if (audio_device_id == 0)
+									{
+										fputs("Failed to initialise audio device.\n", stderr);
+									}
+									else
+									{
+										SDL_PauseAudioDevice(audio_device_id, SDL_FALSE);
+
+										GameMain();
+
+										SDL_CloseAudioDevice(audio_device_id);
+									}
+
+									Sound_Deinitialise();
+								}
+							}
 
 							SDL_FreeSurface(framebuffer);
 						}

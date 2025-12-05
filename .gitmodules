@@ -1,0 +1,3 @@
+[submodule "src/LAUNCHER/vgmstream"]
+	path = src/LAUNCHER/vgmstream
+	url = https://github.com/vgmstream/vgmstream

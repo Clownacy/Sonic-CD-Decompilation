@@ -2,6 +2,24 @@ cmake_minimum_required(VERSION 3.20)
 
 project(SonicCD LANGUAGES C)
 
+find_package(SDL2 REQUIRED)
+
+set(USE_MPEG OFF)
+set(USE_VORBIS OFF)
+set(USE_FFMPEG OFF)
+set(USE_G7221 OFF)
+set(USE_G719 OFF)
+set(USE_ATRAC9 OFF)
+set(USE_CELT OFF)
+set(USE_SPEEX OFF)
+set(BUILD_CLI OFF)
+set(BUILD_FB2K OFF)
+set(BUILD_WINAMP OFF)
+set(BUILD_XMPLAY OFF)
+set(BUILD_V123 OFF)
+set(BUILD_AUDACIOUS OFF)
+add_subdirectory("src/LAUNCHER/vgmstream" EXCLUDE_FROM_ALL)
+
 function(make_level ROUND ZONE TIME CG_CHANGE)
 	set(SOURCES
 		"src/ACTION.C"
@@ -43,6 +61,7 @@ function(make_level ROUND ZONE TIME CG_CHANGE)
 		"src/LAUNCHER/MAIN.C"
 		"src/LAUNCHER/IO.C"
 		"src/LAUNCHER/LZSS.C"
+		"src/LAUNCHER/SOUND.C"
 		"src/LAUNCHER/SZDD.C"
 		${ARGN}
 	)
@@ -67,9 +86,12 @@ function(make_level ROUND ZONE TIME CG_CHANGE)
 	endif()
 
 	target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2)
+	if(BUILD_SHARED_LIBS)
+		target_link_libraries(${EXECUTABLE_NAME} PRIVATE libvgmstream_shared)
+	else()
+		target_link_libraries(${EXECUTABLE_NAME} PRIVATE libvgmstream)
+	endif()
 endfunction()
-
-find_package(SDL2 REQUIRED)
 
 make_level(1 1 A OFF
 	"src/EMIE1.C"
