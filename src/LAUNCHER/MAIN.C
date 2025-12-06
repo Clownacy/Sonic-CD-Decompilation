@@ -915,7 +915,7 @@ int main(const int argc, char** const argv)
 								{
 									SDL_AudioSpec spec;
 									spec.freq = SOUND_SAMPLE_RATE; /* TODO: Change this? */
-									spec.format = AUDIO_S16;
+									spec.format = AUDIO_S16SYS;
 									spec.channels = SOUND_CHANNELS;
 									spec.samples = spec.freq / 100; /* 10ms */
 									spec.callback = AudioCallback;

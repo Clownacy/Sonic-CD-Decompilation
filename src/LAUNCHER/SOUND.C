@@ -21,19 +21,15 @@ static Sound sounds[0x80];
 
 cc_bool Sound_Initialise(void)
 {
-	cc_bool success = cc_false;
-
 	state = libvgmstream_init();
 
 	if (state != NULL)
 	{
-		size_t i;
+		libstreamfile_t* const file = libstreamfile_open_from_stdio("SE.ACX");
 
-		for (i = 0; i < COUNT_OF(sounds); ++i)
+		if (file != NULL)
 		{
-			libstreamfile_t* const file = libstreamfile_open_from_stdio("SE.ACX");
-
-			if (file != NULL)
+			for (size_t i = 0; i < COUNT_OF(sounds); ++i)
 			{
 				libvgmstream_config_t config = {};
 				config.auto_downmix_channels = SOUND_CHANNELS;
@@ -41,53 +37,58 @@ cc_bool Sound_Initialise(void)
 				libvgmstream_setup(state, &config);
 
 				const int result = libvgmstream_open_stream(state, file, i + 1);
-				libstreamfile_close(file);
 
 				if (result >= 0)
 				{
-					SDL_AudioStream* const converter = SDL_NewAudioStream(AUDIO_S16,
-						state->format->channels,
-						state->format->sample_rate,
-						AUDIO_S16,
-						SOUND_CHANNELS,
-						SOUND_SAMPLE_RATE);
+					SDL_AudioStream* const converter = SDL_NewAudioStream(
+						AUDIO_S16SYS, state->format->channels, state->format->sample_rate,
+						AUDIO_S16SYS, SOUND_CHANNELS, SOUND_SAMPLE_RATE);
 
-					while (!state->decoder->done)
+					if (converter != NULL)
 					{
-						libvgmstream_render(state);
-						SDL_AudioStreamPut(converter, state->decoder->buf, state->decoder->buf_bytes);
+						while (!state->decoder->done)
+						{
+							libvgmstream_render(state);
+							SDL_AudioStreamPut(converter, state->decoder->buf, state->decoder->buf_bytes);
+						}
+
+						libvgmstream_close_stream(state);
+						SDL_AudioStreamFlush(converter);
+
+						const int total_bytes = SDL_AudioStreamAvailable(converter);
+
+						sounds[i].buffer = (int16_t*)malloc(total_bytes);
+
+						if (sounds[i].buffer != NULL)
+						{
+							sounds[i].length = total_bytes / sizeof(int16_t);
+							sounds[i].position = 0;
+
+							SDL_AudioStreamGet(converter, sounds[i].buffer, total_bytes);
+						}
+
+						SDL_FreeAudioStream(converter);
 					}
-
-					libvgmstream_close_stream(state);
-					SDL_AudioStreamFlush(converter);
-
-					const int total_bytes = SDL_AudioStreamAvailable(converter);
-
-					sounds[i].buffer = (int16_t*)malloc(total_bytes);
-
-					if (sounds[i].buffer != NULL)
-					{
-						sounds[i].length = total_bytes / sizeof(int16_t);
-						sounds[i].position = 0;
-
-						SDL_AudioStreamGet(converter, sounds[i].buffer, total_bytes);
-					}
-
-					SDL_FreeAudioStream(converter);
 				}
 			}
+
+			libstreamfile_close(file);
+
+			return cc_true;
 		}
 
-		success = cc_true;
+		libvgmstream_free(state);
 	}
 
-	return success;
+	return cc_false;
 }
 
 void Sound_Deinitialise(void)
 {
+	for (size_t i = 0; i < COUNT_OF(sounds); ++i)
+		free(sounds[i].buffer);
+
 	libvgmstream_free(state);
-	state = NULL;
 }
 
 cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, const cc_bool loop)
