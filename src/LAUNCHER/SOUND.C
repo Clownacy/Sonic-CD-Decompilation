@@ -9,7 +9,7 @@
 
 typedef struct Sound
 {
-	int16_t *buffer;
+	float *buffer;
 	size_t length, position;
 	cc_bool playing;
 } Sound;
@@ -33,7 +33,7 @@ cc_bool Sound_Initialise(void)
 			{
 				libvgmstream_config_t config = {};
 				config.auto_downmix_channels = SOUND_CHANNELS;
-				config.force_sfmt = LIBVGMSTREAM_SFMT_PCM16;
+				config.force_sfmt = LIBVGMSTREAM_SFMT_FLOAT;
 				libvgmstream_setup(state, &config);
 
 				const int result = libvgmstream_open_stream(state, file, i + 1);
@@ -41,8 +41,8 @@ cc_bool Sound_Initialise(void)
 				if (result >= 0)
 				{
 					SDL_AudioStream* const converter = SDL_NewAudioStream(
-						AUDIO_S16SYS, state->format->channels, state->format->sample_rate,
-						AUDIO_S16SYS, SOUND_CHANNELS, SOUND_SAMPLE_RATE);
+						AUDIO_F32SYS, state->format->channels, state->format->sample_rate,
+						AUDIO_F32SYS, SOUND_CHANNELS, SOUND_SAMPLE_RATE);
 
 					if (converter != NULL)
 					{
@@ -57,11 +57,11 @@ cc_bool Sound_Initialise(void)
 
 						const int total_bytes = SDL_AudioStreamAvailable(converter);
 
-						sounds[i].buffer = (int16_t*)malloc(total_bytes);
+						sounds[i].buffer = (float*)malloc(total_bytes);
 
 						if (sounds[i].buffer != NULL)
 						{
-							sounds[i].length = total_bytes / sizeof(int16_t);
+							sounds[i].length = total_bytes / sizeof(float);
 							sounds[i].position = 0;
 
 							SDL_AudioStreamGet(converter, sounds[i].buffer, total_bytes);
@@ -104,7 +104,7 @@ cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, c
 		config.play_forever = true;
 		config.force_loop = loop;
 		config.auto_downmix_channels = SOUND_CHANNELS;
-		config.force_sfmt = LIBVGMSTREAM_SFMT_PCM16;
+		config.force_sfmt = LIBVGMSTREAM_SFMT_FLOAT;
 		libvgmstream_setup(state, &config);
 
 		const int result = libvgmstream_open_stream(state, file, index - 1);
@@ -141,13 +141,18 @@ void Sound_PlaySound(unsigned int index)
 
 void Sound_ReadFrames(void* const buffer_void, const size_t frames_to_read)
 {
-	int16_t* const buffer = (int16_t*)buffer_void;
+	float* const buffer = (float*)buffer_void;
 
 	/* TODO: Handle return value. */
 	if (music_playing)
+	{
 		libvgmstream_fill(state, buffer, frames_to_read);
+	}
 	else
-		memset(buffer, 0, frames_to_read * SOUND_CHANNELS * sizeof(int16_t));
+	{
+		for (size_t i = 0; i < frames_to_read * SOUND_CHANNELS; ++i)
+			buffer[i] = 0.0f;
+	}
 
 	for (size_t sound_index = 0; sound_index < COUNT_OF(sounds); ++sound_index)
 	{

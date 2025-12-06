@@ -837,7 +837,7 @@ static void GameMain(void)
 
 static void AudioCallback(void* const userdata, Uint8* const stream, const int len)
 {
-	const size_t size_of_frame = SOUND_CHANNELS * sizeof(Uint16);
+	const size_t size_of_frame = SOUND_CHANNELS * sizeof(float);
 
 	(void)userdata;
 
@@ -915,7 +915,7 @@ int main(const int argc, char** const argv)
 								{
 									SDL_AudioSpec spec;
 									spec.freq = SOUND_SAMPLE_RATE; /* TODO: Change this? */
-									spec.format = AUDIO_S16SYS;
+									spec.format = AUDIO_F32SYS;
 									spec.channels = SOUND_CHANNELS;
 									spec.samples = spec.freq / 100; /* 10ms */
 									spec.callback = AudioCallback;
