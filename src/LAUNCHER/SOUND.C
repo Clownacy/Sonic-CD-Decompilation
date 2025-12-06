@@ -146,16 +146,11 @@ void Sound_ReadFrames(void* const buffer_void, const size_t frames_to_read)
 {
 	float* const buffer = (float*)buffer_void;
 
-	/* TODO: Handle return value. */
+	for (size_t i = 0; i < frames_to_read * SOUND_CHANNELS; ++i)
+		buffer[i] = 0.0f;
+
 	if (SDL_AtomicGet(&music_playing))
-	{
 		libvgmstream_fill(state, buffer, frames_to_read);
-	}
-	else
-	{
-		for (size_t i = 0; i < frames_to_read * SOUND_CHANNELS; ++i)
-			buffer[i] = 0.0f;
-	}
 
 	for (size_t sound_index = 0; sound_index < COUNT_OF(sounds); ++sound_index)
 	{

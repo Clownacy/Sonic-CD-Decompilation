@@ -110,7 +110,9 @@ static void ClrSpriteDebug()
 
 static void WaveRequest(const short sound_index)
 {
+	SDL_LockAudioDevice(audio_device_id);
 	Sound_PlaySound(sound_index);
+	SDL_UnlockAudioDevice(audio_device_id);
 }
 
 static void CDPlay(const short music_index)
