@@ -117,9 +117,7 @@ static void CDPlay(const short music_index)
 {
 	const cc_bool loop = music_index != 2 && music_index != 28 && music_index != 29 && music_index != 30 && music_index != 31;
 
-	SDL_LockAudioDevice(audio_device_id);
 	Sound_PlayMusic("BGM_JP.AFS", music_index, loop); /* TODO: US soundtrack. */
-	SDL_UnlockAudioDevice(audio_device_id);
 }
 
 static void CDPause(short)

@@ -15,7 +15,8 @@ typedef struct Sound
 } Sound;
 
 static libvgmstream_t* state;
-static cc_bool music_playing, ring_flip_flop;
+static SDL_atomic_t music_playing;
+static cc_bool ring_flip_flop;
 
 static Sound sounds[0x80];
 
@@ -93,6 +94,8 @@ void Sound_Deinitialise(void)
 
 cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, const cc_bool loop)
 {
+	SDL_AtomicSet(&music_playing, cc_false);
+
 	libstreamfile_t* const file = libstreamfile_open_from_stdio(file_path);
 
 	if (file != NULL)
@@ -112,7 +115,7 @@ cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, c
 
 		if (result >= 0)
 		{
-			music_playing = cc_true;
+			SDL_AtomicSet(&music_playing, cc_true);
 			return cc_true;
 		}
 	}
@@ -144,7 +147,7 @@ void Sound_ReadFrames(void* const buffer_void, const size_t frames_to_read)
 	float* const buffer = (float*)buffer_void;
 
 	/* TODO: Handle return value. */
-	if (music_playing)
+	if (SDL_AtomicGet(&music_playing))
 	{
 		libvgmstream_fill(state, buffer, frames_to_read);
 	}
