@@ -122,9 +122,9 @@ static void CDPlay(const short music_index)
 	Sound_PlayMusic("BGM_JP.AFS", music_index, loop); /* TODO: US soundtrack. */
 }
 
-static void CDPause(short)
+static void CDPause(const short unknown)
 {
-	
+	/* TODO: This. */
 }
 
 static void ChangeTileBmp(const int list_index, const int tile_index)

@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 3.20)
 
 project(SonicCD LANGUAGES C)
 
-find_package(SDL2 REQUIRED)
+find_package(SDL2)
+if(NOT SDL2_FOUND)
+	add_subdirectory("src/LAUNCHER/SDL" EXCLUDE_FROM_ALL)
+endif()
 
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(USE_MPEG OFF)
 set(USE_VORBIS OFF)
 set(USE_FFMPEG OFF)
@@ -85,7 +89,12 @@ function(make_level ROUND ZONE TIME CG_CHANGE)
 		target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CG_CHANGE)
 	endif()
 
-	target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2)
+	if(SDL_STATIC)
+		target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2-static)
+	else()
+		target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2)
+	endif()
+
 	if(BUILD_SHARED_LIBS)
 		target_link_libraries(${EXECUTABLE_NAME} PRIVATE libvgmstream_shared)
 	else()

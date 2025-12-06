@@ -32,7 +32,7 @@ cc_bool Sound_Initialise(void)
 		{
 			for (size_t i = 0; i < COUNT_OF(sounds); ++i)
 			{
-				libvgmstream_config_t config = {};
+				libvgmstream_config_t config = {0};
 				config.auto_downmix_channels = SOUND_CHANNELS;
 				config.force_sfmt = LIBVGMSTREAM_SFMT_FLOAT;
 				libvgmstream_setup(state, &config);
@@ -102,7 +102,7 @@ cc_bool Sound_PlayMusic(const char* const file_path, const unsigned int index, c
 	{
 		libvgmstream_close_stream(state);
 
-		libvgmstream_config_t config = {};
+		libvgmstream_config_t config = {0};
 		config.allow_play_forever = true;
 		config.play_forever = true;
 		config.force_loop = loop;
