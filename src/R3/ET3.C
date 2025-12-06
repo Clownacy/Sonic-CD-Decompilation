@@ -43,41 +43,41 @@ static sprite_pattern tpat02 =
 static sprite_pattern tpat03 =
 {
   3,
-  {
+  { {
     { -22, -8, 0, SPRITE_ET_BASE + 9 },
     { -24, -32, 0, SPRITE_ET_BASE + 7 },
     { -40, -32, 0, SPRITE_ET_BASE + 8 }
-  }
+  } }
 };
 static sprite_pattern tpat04 =
 {
   4,
-  {
+  { {
     { -22, -8, 0, SPRITE_ET_BASE + 10 },
     { -24, -32, 0, SPRITE_ET_BASE + 13 },
     { -24, -32, 0, SPRITE_ET_BASE + 7 },
     { -40, -32, 0, SPRITE_ET_BASE + 8 }
-  }
+  } }
 };
 static sprite_pattern tpat05 =
 {
   4,
-  {
+  { {
     { -22, -8, 0, SPRITE_ET_BASE + 11 },
     { -24, -32, 0, SPRITE_ET_BASE + 14 },
     { -24, -32, 0, SPRITE_ET_BASE + 7 },
     { -40, -32, 0, SPRITE_ET_BASE + 8 }
-  }
+  } }
 };
 static sprite_pattern tpat06 =
 {
   4,
-  {
+  { {
     { -22, -8, 0, SPRITE_ET_BASE + 12 },
     { -24, -32, 0, SPRITE_ET_BASE + 15 },
     { -24, -32, 0, SPRITE_ET_BASE + 7 },
     { -40, -32, 0, SPRITE_ET_BASE + 8 }
-  }
+  } }
 };
 sprite_pattern* pat_et[8] =
 {
