@@ -170,7 +170,7 @@ void mizuki_set(void) { /* Line 146, Address: 0x1020cc0 */
 
 
 
-
+#ifndef PORTABLE
 unsigned int mapno_chk(short d2, short d3) { /* Line 174, Address: 0x1020e40 */
   unsigned int d1;
 
@@ -178,8 +178,12 @@ unsigned int mapno_chk(short d2, short d3) { /* Line 174, Address: 0x1020e40 */
   d1 += mapwka[d2 >> 8][d3 >> 8]; /* Line 178, Address: 0x1020e54 */
   return d1; /* Line 179, Address: 0x1020e94 */
 } /* Line 180, Address: 0x1020e98 */
-
-
+#else
+/* More accurate to the original 68k assembly, and avoids an out-of-bound array access. */
+unsigned int mapno_chk(short d2, short d3) {
+  return mapwka[(d2 >> 8) & 7][(d3 >> 8) & 0x7F] & 0x7F;
+}
+#endif
 
 void kuru2(void) { /* Line 184, Address: 0x1020eb0 */
   unsigned short tmp_xposi;
