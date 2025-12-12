@@ -89,6 +89,11 @@ function(make_level ROUND ZONE TIME CG_CHANGE)
 		target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CG_CHANGE)
 	endif()
 
+	find_library(LIBM_LIBRARIES m)
+	if(LIBM_LIBRARIES)
+		target_link_libraries(${EXECUTABLE_NAME} PRIVATE ${LIBM_LIBRARIES})
+	endif()
+
 	if(SDL_STATIC)
 		target_link_libraries(${EXECUTABLE_NAME} PRIVATE SDL2::SDL2main SDL2::SDL2-static)
 	else()
