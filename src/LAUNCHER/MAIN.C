@@ -51,7 +51,10 @@ extern dlink_export ExportedFunctions;
 
 static unsigned char map_buffer[0x10000];
 static PALETTEENTRY raw_palettes[4][64];
-static short hscroll_buffer[SCREEN_HEIGHT + 0x10][2];
+/* The first '+ 0x10' is because some code assumes that the screen is 240 pixels tall. */
+/* The second '+ 0x10' is because some code overflows the buffer. */
+/* The results in the buffer being the same size as in the Win95 EXE. */
+static short hscroll_buffer[SCREEN_HEIGHT + 0x10 + 0x10][2];
 static score_data score_buffer;
 
 static SDL_Window *window;
