@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TRAP_R82.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../RIDECHK.H"
 #include "COLI8.H"
 
 static void tr8_fout(sprite_status* trapwk);

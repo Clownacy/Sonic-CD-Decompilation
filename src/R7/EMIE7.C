@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "EMIE7.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\ETC.H"
-#include "..\GOAL.H"
-#include "..\LOADER2.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../ETC.H"
+#include "../GOAL.H"
+#include "../LOADER2.H"
 
 void actionsub(sprite_status* pActwk);
 void frameout(sprite_status* pActwk);

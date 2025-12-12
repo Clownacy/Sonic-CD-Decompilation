@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* bariapat[];
 extern sprite_pattern* kdai6pat[];

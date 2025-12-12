@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "MOVIE3.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 #include "SCR31A.H"
 
 #if defined(R33C) || defined(R33D)

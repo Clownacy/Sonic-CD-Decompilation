@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TEKKYU4.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
 
 #if defined(R41C)
   #define SPRITE_TEKKYU4_BASE 449

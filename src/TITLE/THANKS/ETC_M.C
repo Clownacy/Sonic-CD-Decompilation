@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "ETC_M.H"
 
 extern int ranum;

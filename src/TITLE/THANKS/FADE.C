@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "FADE.H"
 #include "GAME.H"
 

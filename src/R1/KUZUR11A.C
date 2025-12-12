@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 static sprite_pattern pata00 = {
   1,

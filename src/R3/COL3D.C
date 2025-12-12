@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COL3D.H"
 
 static void fadein1(void);

@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BANPA.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
 
 static void act_init(sprite_status* bumperwk);
 static void act_move(sprite_status* bumperwk);

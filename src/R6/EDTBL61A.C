@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 #include "SW6.H"
 
 extern sprite_pattern* optbr6pat[];

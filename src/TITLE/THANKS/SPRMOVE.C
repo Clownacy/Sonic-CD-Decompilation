@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "THANKS_TYPES.H"
 #include "SPRMOVE.H"
 #include "ACT.H"

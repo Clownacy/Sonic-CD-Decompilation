@@ -1,8 +1,8 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "SVDBMP.H"
 #include "SVDSPRT.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/HMX_OEEACTL.H"
 
 static int GetMarkfontIndx(char c, int kind);
 static void MovSonicCursol(POINT point);

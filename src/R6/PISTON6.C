@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PISTON6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
 
 #if defined(R61B) || defined(R62B)
   #define SPRITE_PISTON6_BASE 464

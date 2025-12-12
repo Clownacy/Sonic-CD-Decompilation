@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "GATE.H"
-#include "..\ACTION.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 static void act_init(sprite_status* actionwk);
 static void act_open(sprite_status* actionwk);

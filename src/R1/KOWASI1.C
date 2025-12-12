@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KOWASI1.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../RIDECHK.H"
 
 sprite_pattern spr_kowasi00 =
 {

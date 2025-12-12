@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOBIRA.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 #if defined(R82)
   #define SPRITE_TOBIRA_BASE 432

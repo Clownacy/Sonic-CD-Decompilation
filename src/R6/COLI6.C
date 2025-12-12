@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COLI6.H"
-#include "..\ACTSET.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYER6.H"
-#include "..\SCORE.H"
+#include "../ACTSET.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYER6.H"
+#include "../SCORE.H"
 
 static unsigned char bCarry;
 unsigned char colitbl[64][2] =

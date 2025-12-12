@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SEMI.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 #if defined(R61B) || defined(R62B)
   #define SPRITE_SEMI_BASE 465

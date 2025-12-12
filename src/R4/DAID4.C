@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "DAID4.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../RIDECHK.H"
 
 static void a_ini(sprite_status* pActwk);
 static void a_born(sprite_status* pActwk);

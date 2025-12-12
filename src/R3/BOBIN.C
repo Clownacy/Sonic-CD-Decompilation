@@ -1,12 +1,12 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BOBIN.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
-#include "..\SCORE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
+#include "../SCORE.H"
 
 #if defined(R31A)
   #define SPRITE_BOBIN_BASE 550

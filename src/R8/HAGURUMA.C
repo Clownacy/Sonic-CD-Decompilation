@@ -1,6 +1,6 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "HAGURUMA.H"
-#include "..\ACTSET.H"
+#include "../ACTSET.H"
 
 static void hagurumainit(sprite_status* wheelwk);
 static void hagurumamove(sprite_status* wheelwk);

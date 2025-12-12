@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PLAYSP5.H"
-#include "..\DIRCOL.H"
-#include "..\FCOL.H"
+#include "../DIRCOL.H"
+#include "../FCOL.H"
 
 short belt_a[51] = {
    44,   1,   2,   3,   4,   5,   6,   7,   8,   9,

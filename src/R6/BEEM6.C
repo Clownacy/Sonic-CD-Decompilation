@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BEEM6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
 
 static sprite_pattern beem6pat0 = {
   1,

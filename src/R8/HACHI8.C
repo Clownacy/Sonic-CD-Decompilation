@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "HACHI8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../SUICIDE.H"
 
 extern void patchg(sprite_status* patchgwk, unsigned char** pat_dat);
 

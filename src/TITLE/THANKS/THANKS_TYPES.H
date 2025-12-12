@@ -1,4 +1,4 @@
-#include "..\COMMON\SPRITE_PATTERN_TYPES.H"
+#include "../COMMON/SPRITE_PATTERN_TYPES.H"
 
 typedef struct {
   unsigned short ACT_NO;

@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* pat_chgwall7[];
 extern sprite_pattern* emie7pat[];

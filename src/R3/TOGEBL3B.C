@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOGEBL3A.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
 
 #if defined (R32B)
   #define SPRITE_TOGEBL3B_BASE 503

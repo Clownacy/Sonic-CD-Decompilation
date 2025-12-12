@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "OKUSIESO.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
 
 #if defined(R82)
   #define SPRITE_OKUSIESO_BASE 411

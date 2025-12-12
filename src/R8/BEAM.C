@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BEAM.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
 
 static void beam_init(sprite_status* beamwk);
 static void beam_mast(sprite_status* beamwk);

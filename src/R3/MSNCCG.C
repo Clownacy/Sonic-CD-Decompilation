@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 sprite_pattern msnc3_pat0 = {
   1,

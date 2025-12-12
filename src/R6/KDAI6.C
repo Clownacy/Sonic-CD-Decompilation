@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KDAI6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 void(*kdai6_tbl[2])(sprite_status*) =
 {

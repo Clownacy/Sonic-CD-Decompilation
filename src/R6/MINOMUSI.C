@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "MINOMUSI.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 #if defined(R61B) || defined(R62B)
   #define SPRITE_MINOMUSI_BASE 451

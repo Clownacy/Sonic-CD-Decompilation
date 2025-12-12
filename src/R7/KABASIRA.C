@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KABASIRA.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void act_init(sprite_status* pActwk);
 static void act_init_sub(sprite_status* pActwk);

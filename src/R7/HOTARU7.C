@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "HOTARU7.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void a_init(sprite_status* pActwk);
 static void a_wait(sprite_status* pActwk);

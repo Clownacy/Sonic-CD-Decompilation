@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "WARP.H"
-#include "..\ACTION.H"
-#include "..\IO.H"
+#include "../ACTION.H"
+#include "../IO.H"
 
 static unsigned short clchg_cnt[2] = {
   65535, 0

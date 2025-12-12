@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PROPERA8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../PLAYSUB.H"
 
 static void propera0(sprite_status* actionwk);
 static void a_init(sprite_status* actionwk);

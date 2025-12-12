@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "RBLK4.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
+#include "../RIDECHK.H"
 
 #if defined(R42B)
   #define SPRITE_RBLK4_BASE 494

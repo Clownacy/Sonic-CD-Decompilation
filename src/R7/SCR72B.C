@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCR71A.H"
-#include "..\ETC.H"
-#include "..\IMPFUNCS.H"
-#include "..\SAVE.H"
-#include "..\SCRCHK.H"
+#include "../ETC.H"
+#include "../IMPFUNCS.H"
+#include "../SAVE.H"
+#include "../SCRCHK.H"
 #include "COL7A.H"
 
 static int z71aline(int hsCount);

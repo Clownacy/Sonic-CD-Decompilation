@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KUMO.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void kumo_init(sprite_status* pActwk);
 static void kumo_jump(sprite_status* pActwk);

@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KOMA8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\DUMMY.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../DUMMY.H"
+#include "../PLAYSUB.H"
 
 #if defined(R82)
   #define SPRITE_KOMA8_BASE 313

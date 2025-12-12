@@ -1,5 +1,5 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\PALT.H"
+#include "../../TYPES.H"
+#include "../COMMON/PALT.H"
 
 PALETTEENTRY tblPal1[16] = {
   {   0,   0,   0, 1 }, {  64,  64, 128, 1 },

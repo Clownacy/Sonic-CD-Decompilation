@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCR11B.H"
-#include "..\IMPFUNCS.H"
-#include "..\SAVE.H"
-#include "..\SCRCHK.H"
+#include "../IMPFUNCS.H"
+#include "../SAVE.H"
+#include "../SCRCHK.H"
 #include "COL1B.H"
 
 static unsigned char z11bwrttbl[33] = {

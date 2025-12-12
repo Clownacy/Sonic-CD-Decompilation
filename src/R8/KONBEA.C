@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KONBEA.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
+#include "../PLAYSUB.H"
 
 static void a_init(sprite_status* pActwk);
 static void a_init_sub(sprite_status* pActwk, sprite_status* pNewact);

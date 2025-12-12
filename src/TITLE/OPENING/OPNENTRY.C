@@ -1,10 +1,10 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\SCORE_DATA_TYPES.H"
-#include "..\COMMON\ENGINE_DLL.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/SCORE_DATA_TYPES.H"
+#include "../COMMON/ENGINE_DLL.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "OPNENTRY.H"
-#include "..\COMMON\HMX_OEEACTL.H"
-#include "..\COMMON\PALT.H"
+#include "../COMMON/HMX_OEEACTL.H"
+#include "../COMMON/PALT.H"
 #include "OPNDO.H"
 
 hmx_environment* g_env_module;

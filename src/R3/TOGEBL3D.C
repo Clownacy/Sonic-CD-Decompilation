@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOGEBL3A.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
 
 #if defined(R33C) || defined(R33D)
   #define SPRITE_TOGEBL3D_BASE 554

@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "EGG6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 static void act_init(sprite_status* eggwk);
 static void act_check(sprite_status* eggwk);

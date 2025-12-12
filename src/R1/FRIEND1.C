@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "FRIEND1.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\ETC.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../ETC.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void t_roll(int cos_shift, int sin_shift, sprite_status* pActwk);
 static void rev_h(sprite_status* pActwk);

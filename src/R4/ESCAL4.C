@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "ESCAL4.H"
-#include "..\ACTION.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../RIDECHK.H"
 
 sprite_pattern escal4_pat0 = {
   1,

@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "EMIE8.H"
-#include "..\ACTION.H"
-#include "..\IMPFUNCS.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../IMPFUNCS.H"
+#include "../PLAYSUB.H"
 
 static void emie8_ini(sprite_status* pActwk);
 static void emie8_wait(sprite_status* pActwk);

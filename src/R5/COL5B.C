@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COL5A.H"
 
 typedef struct {

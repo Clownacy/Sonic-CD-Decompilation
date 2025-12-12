@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "OSUMIZU.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
 #include "PLAYSUB4.H"
 
 sprite_pattern osumizu_pat0 = {

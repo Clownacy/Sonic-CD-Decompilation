@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "BESTITEM.H"
 
 bestitem menuTbl[32] = {

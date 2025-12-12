@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PLAYSP7.H"
-#include "..\ACTSET.H"
-#include "..\FCOL.H"
+#include "../ACTSET.H"
+#include "../FCOL.H"
 
 short playsp_tbla[7] = { 10, 190, 334, 335, 344, 345, -1 };
 short playsp_tblb[11] = { 10, 190, 334, 335, 344, 345, 154, 155, 164, 165, -1 };

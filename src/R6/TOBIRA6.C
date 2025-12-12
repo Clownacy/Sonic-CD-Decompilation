@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOBIRA6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
 
 void(*tobira_tbl[4])(sprite_status*) =
 {

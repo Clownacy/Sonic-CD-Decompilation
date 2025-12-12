@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SEESAW6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 #if defined(R61B) || defined(R62B)
   #define SPRITE_SEESAW6_BASE 481

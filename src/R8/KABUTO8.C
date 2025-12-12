@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KABUTO8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void kabuto0(sprite_status* kabutowk); static void a_init(sprite_status* kabutowk); static void a_fall(sprite_status* kabutowk); static void a_move(sprite_status* kabutowk);
 static void kabuto1(sprite_status* tunowk); static void b_init(sprite_status* tunowk); static void b_move(sprite_status* tunowk);

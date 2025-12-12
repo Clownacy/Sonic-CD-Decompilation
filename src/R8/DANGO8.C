@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "DANGO8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\ETC.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../ETC.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void a_init(sprite_status* pActwk);
 static void a_fall(sprite_status* pActwk);

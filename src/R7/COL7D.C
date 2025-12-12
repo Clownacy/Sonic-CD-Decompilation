@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COL7A.H"
 
 static void clchg_sub0(unsigned char** ppChgTim, unsigned char** ppChgCnt, char* pCnttbl, PALETTEENTRY* pPlttbl);

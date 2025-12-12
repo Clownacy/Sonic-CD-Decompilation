@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "TACOLOR.H"
 
 PALETTEENTRY tacolor[64] = {

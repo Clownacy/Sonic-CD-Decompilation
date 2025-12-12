@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "ROLLPLAT.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
 
 static void act_init(sprite_status* banwk);
 static void act_move(sprite_status* banwk);

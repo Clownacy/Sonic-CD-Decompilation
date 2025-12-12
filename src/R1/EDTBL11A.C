@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* vfutapat[];
 extern sprite_pattern* emie1pat[];

@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOGEBL6A.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
 
 static void act_init(sprite_status* actionwk);
 static void act_move(sprite_status* actionwk);

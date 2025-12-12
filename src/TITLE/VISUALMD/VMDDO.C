@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "VMDDO.H"
-#include "..\COMMON\GRID.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/GRID.H"
+#include "../COMMON/HMX_OEEACTL.H"
 #include "VMDENTRY.H"
 #include "VMDSPRT.H"
 

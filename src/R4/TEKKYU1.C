@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TEKKYU1.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
 
 #if defined (R42A)
   #define SPRITE_TEKKYU1_BASE 532

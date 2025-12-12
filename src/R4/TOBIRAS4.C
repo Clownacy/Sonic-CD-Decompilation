@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TOBIRAS4.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\IMPFUNCS.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../IMPFUNCS.H"
+#include "../RIDECHK.H"
 
 #if defined(R42A)
   #define SPRITE_TOBIRAS4_BASE 516

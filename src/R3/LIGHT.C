@@ -1,6 +1,6 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "LIGHT.H"
-#include "..\ACTION.H"
+#include "../ACTION.H"
 
 static void act_init(sprite_status* actionwk);
 

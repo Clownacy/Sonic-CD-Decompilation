@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "POCKET.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SCORE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SCORE.H"
 
 #if defined(R31A)
   #define SPRITE_POCKET_BASE 558

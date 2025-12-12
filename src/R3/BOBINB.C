@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BOBINB.H"
-#include "..\ACTION.H"
-#include "..\PLAYSUB.H"
-#include "..\SCORE.H"
+#include "../ACTION.H"
+#include "../PLAYSUB.H"
+#include "../SCORE.H"
 
 static void a_init(sprite_status* bobinwk);
 static void a_move(sprite_status* bobinwk);

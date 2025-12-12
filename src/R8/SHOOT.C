@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SHOOT.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
 
 static void shoot_init(sprite_status* shootwk); static void shoot_move1(sprite_status* shootwk);
 

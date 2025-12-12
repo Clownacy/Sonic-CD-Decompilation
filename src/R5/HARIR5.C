@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "HARIR5.H"
-#include "..\ACTION.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../RIDECHK.H"
 #include "COLI5.H"
 
 static void harir3_init(sprite_status* pActwk);

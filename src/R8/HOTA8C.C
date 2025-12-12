@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "HOTA8C.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../PLAYSUB.H"
 
 static void hotaru8_initx(sprite_status* hotaru, unsigned char pr_data);
 static void hotaru8_init(sprite_status* hotaru);

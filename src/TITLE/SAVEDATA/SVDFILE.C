@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\SCORE_DATA_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/SCORE_DATA_TYPES.H"
 #include "SVDFILE.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 
 score_data saveData[6];
 extern int nSelectFileNumber;

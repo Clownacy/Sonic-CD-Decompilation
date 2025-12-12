@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "FRIEND6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\ETC.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../ETC.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 static void t_init(sprite_status* actionwk);
 static void t_move(sprite_status* actionwk);

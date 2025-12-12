@@ -1,12 +1,12 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCARAB.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
+#include "../SUICIDE.H"
 
 static void c_init(sprite_status* pActwk);
 static void c_wait(sprite_status* pActwk);

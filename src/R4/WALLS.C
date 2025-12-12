@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "WALLS.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
 
 #if defined(R41A) || defined(R42A)
   #define SPRITE_WALLS_BASE 446

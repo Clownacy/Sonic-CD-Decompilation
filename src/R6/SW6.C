@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SW6.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
+#include "../RIDECHK.H"
 
 sprite_pattern pat0_sw6 =
 {

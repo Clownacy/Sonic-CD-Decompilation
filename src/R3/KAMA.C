@@ -1,12 +1,12 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KAMA.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 #if defined(R31A) || defined(R31B) || defined(R32A)
   #define SPRITE_KAMA_BASE 465

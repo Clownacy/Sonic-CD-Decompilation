@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "ET8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
-#include "..\SCORE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
+#include "../SCORE.H"
 
 #if defined(R82)
   #define SPRITE_ET8_BASE 443

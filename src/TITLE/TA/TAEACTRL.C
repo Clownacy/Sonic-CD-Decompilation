@@ -1,10 +1,10 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\SCORE_DATA_TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
-#include "..\COMMON\LD_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/SCORE_DATA_TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
+#include "../COMMON/LD_TYPES.H"
 #include "TA_TYPES.H"
 #include "TAEACTRL.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 #include "TACOLOR.H"
 
 static int TileCnt;

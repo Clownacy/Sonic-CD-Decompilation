@@ -1,11 +1,11 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SIKAKE.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 #include "COLI1.H"
-#include "..\DUMMY.H"
+#include "../DUMMY.H"
 
 #if defined(R11A)
   #define SPRITE_SIKAKE_BASE 488

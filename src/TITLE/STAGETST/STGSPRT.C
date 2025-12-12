@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "STGSPRT.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/HMX_OEEACTL.H"
 
 static void DeleteCharSprt(int colom);
 static unsigned int CreateCharSprt(int colom, char code);

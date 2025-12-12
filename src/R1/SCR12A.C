@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCR12A.H"
-#include "..\IMPFUNCS.H"
-#include "..\SAVE.H"
-#include "..\SCRCHK.H"
+#include "../IMPFUNCS.H"
+#include "../SAVE.H"
+#include "../SCRCHK.H"
 #include "COL1A.H"
 
 static unsigned char z12awrttbl[33] = {

@@ -1,11 +1,11 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\SCORE_DATA_TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/SCORE_DATA_TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "OPNDO.H"
-#include "..\COMMON\GRID.H"
-#include "..\COMMON\PALT.H"
-#include "..\COMMON\HMX_OEEACTL.H"
-#include "..\..\IMPFUNCS.H"
+#include "../COMMON/GRID.H"
+#include "../COMMON/PALT.H"
+#include "../COMMON/HMX_OEEACTL.H"
+#include "../../IMPFUNCS.H"
 #include "OPNENTRY.H"
 
 static void OEUpdateHand(void);

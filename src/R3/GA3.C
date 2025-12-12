@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "GA3.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
+#include "../SUICIDE.H"
 
 #if defined(R31A) || defined(R31B) || defined(R32A)
   #define SPRITE_GA3_BASE 529

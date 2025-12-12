@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 #include "COMMON.H"
 #include "SPS_EQU.H"
 #include "PLS.H"

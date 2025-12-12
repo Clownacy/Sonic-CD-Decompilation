@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PIPE8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\PLAYSUB.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../PLAYSUB.H"
+#include "../RIDECHK.H"
 
 static char p00[5] = { 0, 1, 3, 5, -1 };
 static char p01[6] = { 0, 4, 3, 2, 1, -1 };

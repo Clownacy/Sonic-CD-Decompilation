@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCR82C.H"
-#include "..\IMPFUNCS.H"
-#include "..\SAVE.H"
+#include "../IMPFUNCS.H"
+#include "../SAVE.H"
 #include "COL8C.H"
 #include "SCRCHK8.H"
 

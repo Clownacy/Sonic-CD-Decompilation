@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "TEKKYU7J.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
 
 #if defined(R73C) || defined(R73D)
   #define SPRITE_TEKKYU7J_BASE 406

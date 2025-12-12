@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "LPL_TYPES.H"
 
 sprite_pattern_mappings_title fspr00 = {

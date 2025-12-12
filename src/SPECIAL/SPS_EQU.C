@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 unsigned char plcgwk[1024];
 unsigned char rlscrflg;

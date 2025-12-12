@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "IWA5ROLL.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../RIDECHK.H"
 
 static void iwa5roll_init(sprite_status* pActwk);
 static void iwa5roll_move(sprite_status* pActwk);

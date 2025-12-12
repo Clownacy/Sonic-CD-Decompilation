@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PLAYSP3.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
 #include "SCR31A.H"
 
 static short fcol3a[17] = { 15, 316, 326, 411, 430, 131, 132, 137, 138, 119, 118, 128, 127, 126, 125, 124, 130 };

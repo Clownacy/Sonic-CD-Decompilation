@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 #if defined(R33C) || defined(R33D)
   #define SPRITE_TITLE_BASE 364

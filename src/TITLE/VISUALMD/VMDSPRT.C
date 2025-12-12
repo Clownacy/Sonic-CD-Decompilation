@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "VMDSPRT.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/HMX_OEEACTL.H"
 
 static int nMenuPosiY[5] = { 112, 128, 144, 160, 176 };
 extern draw_context* s_ctx;

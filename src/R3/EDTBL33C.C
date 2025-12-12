@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* kaitenban_pat[];
 extern sprite_pattern* harir3pat[];

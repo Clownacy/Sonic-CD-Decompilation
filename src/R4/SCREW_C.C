@@ -1,6 +1,6 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCREW_A.H"
-#include "..\ACTION.H"
+#include "../ACTION.H"
 
 #if defined(R41C)
   #define SPRITE_SCREWC_BASE 441

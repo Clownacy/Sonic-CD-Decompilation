@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COL1A.H"
 
 static int fadein0_new(void);

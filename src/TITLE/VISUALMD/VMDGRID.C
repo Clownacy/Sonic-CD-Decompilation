@@ -1,6 +1,6 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
-#include "..\COMMON\GRID.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
+#include "../COMMON/GRID.H"
 
 extern void(*hmx_grid_set_view_module)(hmx_grid*, int, int, int, int);
 extern draw_context* s_ctx;

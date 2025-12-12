@@ -1,9 +1,9 @@
-#include "..\EQU.H"
-#include "..\DIRCOL.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
-#include "..\RIDECHK.H"
+#include "../EQU.H"
+#include "../DIRCOL.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
+#include "../RIDECHK.H"
 
 typedef struct {
   short dx;

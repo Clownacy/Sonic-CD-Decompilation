@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "LPL_TYPES.H"
 #include "SPM_EQU.H"
 #include "FLASH.H"

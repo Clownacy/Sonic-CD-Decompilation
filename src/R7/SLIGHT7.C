@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SLIGHT7.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
 
 static void slight7_init(sprite_status* pActwk);
 static void slight7_move(sprite_status* pActwk);

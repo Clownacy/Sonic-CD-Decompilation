@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 unsigned int extra_score;
 unsigned char markerno;

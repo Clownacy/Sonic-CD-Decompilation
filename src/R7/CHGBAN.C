@@ -1,10 +1,10 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "CHGBAN.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
 
 #if defined(R73C) || defined(R73D)
   #define SPRITE_CHGBAN_BASE 453

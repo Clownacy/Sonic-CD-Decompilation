@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "AVIGODDO.H"
 #include "AVIGODEN.H"
 

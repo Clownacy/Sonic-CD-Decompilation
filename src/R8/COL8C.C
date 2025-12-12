@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COL8C.H"
 
 static void fadein1(void); static void fadein2(PALETTEENTRY* lpPeDest, PALETTEENTRY* lpPeSrc);

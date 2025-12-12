@@ -1,4 +1,4 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SCRCHK8.H"
 
 static void zone8chk(void);

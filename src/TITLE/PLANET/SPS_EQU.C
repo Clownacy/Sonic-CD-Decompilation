@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "LPL_TYPES.H"
 
 zoom_info_lpl zoomwk;

@@ -1,5 +1,5 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "SVDBMP.H"
 
 char* SprCmpFileName = "TITLE\\BMP\\SAVEDATS.CM_";

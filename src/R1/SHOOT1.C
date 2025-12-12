@@ -1,8 +1,8 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "SHOOT1.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\LOADER2.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../LOADER2.H"
 
 static sprite_pattern eda00 = { 1, { { -16, -12, 0, 288 } } };
 static sprite_pattern eda01 = { 1, { { -20, -16, 0, 289 } } };

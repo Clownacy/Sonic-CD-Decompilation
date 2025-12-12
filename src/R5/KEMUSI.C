@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "KEMUSI.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\SUICIDE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../SUICIDE.H"
 
 static void kemusi_init(sprite_status* pActwk);
 static void kemusi_com(sprite_status* pActwk, sprite_status* pNewactwk);

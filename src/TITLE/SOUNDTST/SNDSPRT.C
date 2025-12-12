@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "SNDSPRT.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/HMX_OEEACTL.H"
 
 static void DeleteCharSprt(int nMenuNum, int colom);
 static unsigned int CreateCharSprt(int nMenuNum, int colom, char code, int color);

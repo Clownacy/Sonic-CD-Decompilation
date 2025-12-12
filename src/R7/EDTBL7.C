@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* slight7pat[];
 extern sprite_pattern* branko7pat[];

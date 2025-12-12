@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PLAYSP8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\FCOL.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../FCOL.H"
+#include "../RIDECHK.H"
 
 static void chibi_init(sprite_status* smallwk);
 static void chibi_move(sprite_status* smallwk);

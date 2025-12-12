@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "WALL4.H"
-#include "..\ACTION.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../RIDECHK.H"
 
 #if defined(R42A)
   #define SPRITE_WALL4_BASE 470

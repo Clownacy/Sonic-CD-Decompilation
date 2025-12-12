@@ -1,6 +1,6 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "LPL_TYPES.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 
 unsigned short comdata_s7;
 unsigned short comdata_s6;

@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 unsigned char dummyarea[16] = {
   1, 0, 0, 0,

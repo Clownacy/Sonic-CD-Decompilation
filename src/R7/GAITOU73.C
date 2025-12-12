@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "GAITOU73.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
 
 static void gaitou73_ini(sprite_status* pActwk);
 static void gaitou73_01(sprite_status* pActwk);

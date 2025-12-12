@@ -1,8 +1,8 @@
-#include "..\EQU.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\RIDECHK.H"
+#include "../EQU.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../RIDECHK.H"
 
 static void a_init(sprite_status* pActwk);
 static void a_move(sprite_status* pActwk);

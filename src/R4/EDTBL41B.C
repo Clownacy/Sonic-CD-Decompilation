@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* pat_movie[];
 extern sprite_pattern* pat_et[];

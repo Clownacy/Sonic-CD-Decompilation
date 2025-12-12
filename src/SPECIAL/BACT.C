@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 #include "SPS_EQU.H"
 
 static unsigned short stage_table_damage[8] = { 364, 428, 492, 460, 432, 364, 420, 364 };

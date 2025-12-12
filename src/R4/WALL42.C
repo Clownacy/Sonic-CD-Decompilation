@@ -1,7 +1,7 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "WALL42.H"
-#include "..\ACTION.H"
-#include "..\RIDECHK.H"
+#include "../ACTION.H"
+#include "../RIDECHK.H"
 
 static void act_init(sprite_status* pActwk);
 static void act_wait(sprite_status* pActwk);

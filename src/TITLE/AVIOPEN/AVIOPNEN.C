@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\SCORE_DATA_TYPES.H"
-#include "..\COMMON\ENGINE_DLL.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/SCORE_DATA_TYPES.H"
+#include "../COMMON/ENGINE_DLL.H"
+#include "../COMMON/HMX_TYPES.H"
 #include "AVIOPNEN.H"
 #include "AVIOPNDO.H"
 

@@ -1,8 +1,8 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "HMX_TYPES.H"
 #include "LD_TYPES.H"
 #include "HMX_OEEACTL.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 
 extern void(*FlipToScreen_module)(void);
 extern void(*hmx_renderer_context_draw_module)(hmx_renderer_context*, hmx_surface*);

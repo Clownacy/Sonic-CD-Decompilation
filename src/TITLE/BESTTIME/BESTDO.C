@@ -1,8 +1,8 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "BESTITEM.H"
-#include "..\COMMON\GRID.H"
-#include "..\COMMON\HMX_OEEACTL.H"
-#include "..\..\IMPFUNCS.H"
+#include "../COMMON/GRID.H"
+#include "../COMMON/HMX_OEEACTL.H"
+#include "../../IMPFUNCS.H"
 #include "BESENTRY.H"
 #include "BESTSPRT.H"
 

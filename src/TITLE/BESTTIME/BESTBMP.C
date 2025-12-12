@@ -1,5 +1,5 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
 
 char* SprCmpFileName = "TITLE\\BMP\\BESTTIME.CM_";
 char* TileCmpFileName = "TITLE\\BMP\\sndtestt.CM_";

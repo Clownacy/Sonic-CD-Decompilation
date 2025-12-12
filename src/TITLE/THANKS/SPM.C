@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "THANKS_TYPES.H"
 #include "SPM.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 
 unsigned short comdata_s7;
 unsigned short comdata_s6;

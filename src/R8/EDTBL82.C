@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* pat_kuzure_a[];
 extern sprite_pattern* koma8pat[];

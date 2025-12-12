@@ -1,7 +1,7 @@
-#include "..\EQU.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\RIDECHK.H"
+#include "../EQU.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../RIDECHK.H"
 #include "BANEIWA.H"
 
 typedef struct {

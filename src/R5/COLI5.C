@@ -1,9 +1,9 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "COLI5.H"
-#include "..\FCOL.H"
-#include "..\LOADER2.H"
-#include "..\PLAYER.H"
-#include "..\SCORE.H"
+#include "../FCOL.H"
+#include "../LOADER2.H"
+#include "../PLAYER.H"
+#include "../SCORE.H"
 
 extern short actwkchk(sprite_status** ppActwk);
 

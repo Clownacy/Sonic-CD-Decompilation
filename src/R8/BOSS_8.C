@@ -1,12 +1,12 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "BOSS_8.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\ETC.H"
-#include "..\IO.H"
-#include "..\LOADER2.H"
-#include "..\PLAYSUB.H"
-#include "..\SCORE.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../ETC.H"
+#include "../IO.H"
+#include "../LOADER2.H"
+#include "../PLAYSUB.H"
+#include "../SCORE.H"
 
 extern void colchg_boss8(unsigned char* a3, unsigned char* a4);
 extern void fadein_boss8(void);

@@ -1,7 +1,7 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "THANKS_TYPES.H"
 #include "ACT.H"
-#include "..\..\IMPFUNCS.H"
+#include "../../IMPFUNCS.H"
 #include "SPRMOVE.H"
 
 static void actloop(short id);

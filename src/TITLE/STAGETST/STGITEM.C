@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "STGITEM.H"
 
 stgitem menuTbl[70] = {

@@ -1,4 +1,4 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "FADEIN.H"
 
 static unsigned short code_tbl[3] = { 1, 5, 9 };

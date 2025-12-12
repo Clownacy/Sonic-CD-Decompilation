@@ -1,8 +1,8 @@
-#include "..\..\TYPES.H"
+#include "../../TYPES.H"
 #include "STGITEM.H"
 #include "STGDO.H"
-#include "..\COMMON\GRID.H"
-#include "..\COMMON\HMX_OEEACTL.H"
+#include "../COMMON/GRID.H"
+#include "../COMMON/HMX_OEEACTL.H"
 #include "STGENTRY.H"
 #include "STGSPRT.H"
 

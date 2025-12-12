@@ -1,8 +1,8 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 #include "SPS_EQU.H"
 #include "ACT_S.H"
 #include "ENS.H"
-#include "..\IMPFUNCS.H"
+#include "../IMPFUNCS.H"
 #include "PLS.H"
 
 static void(*act_tbl[16])(sprite_status_sp*) = {

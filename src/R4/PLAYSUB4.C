@@ -1,13 +1,13 @@
-#include "..\EQU.H"
+#include "../EQU.H"
 #include "PLAYSUB4.H"
-#include "..\ACTION.H"
-#include "..\ACTSET.H"
-#include "..\DIRCOL.H"
-#include "..\DUMMY.H"
-#include "..\ETC.H"
-#include "..\IO.H"
-#include "..\LOADER2.H"
-#include "..\PLAYER.H"
+#include "../ACTION.H"
+#include "../ACTSET.H"
+#include "../DIRCOL.H"
+#include "../DUMMY.H"
+#include "../ETC.H"
+#include "../IO.H"
+#include "../LOADER2.H"
+#include "../PLAYER.H"
 
 extern sprite_pattern* markerpat[]; extern unsigned char* markerchg[]; extern sprite_pattern* bakupat[]; extern unsigned char* bakuchg[]; extern sprite_pattern* exit2pat[]; extern unsigned char* exit2chg[]; extern sprite_pattern* bariapat[]; extern unsigned char* bariachg[]; extern unsigned char awasintbl[];
 sprite_pattern boupat0 = { 1, { { -4, -46, 0, 423 } } }, boupat1 = { 1, { { -4, -46, 0, 424 } } };

@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* springpat[];
 extern sprite_pattern* spring90pat[];

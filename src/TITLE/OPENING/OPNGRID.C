@@ -1,6 +1,6 @@
-#include "..\..\TYPES.H"
-#include "..\COMMON\HMX_TYPES.H"
-#include "..\COMMON\GRID.H"
+#include "../../TYPES.H"
+#include "../COMMON/HMX_TYPES.H"
+#include "../COMMON/GRID.H"
 
 extern void(*hmx_ddagrid_set_tile_module)(hmx_ddagrid*, int, int, hmx_bitmap*, int);
 extern grid_bmp infoGridBmp[];

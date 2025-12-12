@@ -1,4 +1,4 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 extern sprite_pattern* boupat[];
 extern sprite_pattern* pat_tobiras4[];

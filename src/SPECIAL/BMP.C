@@ -1,3 +1,3 @@
-#include "..\TYPES.H"
+#include "../TYPES.H"
 
 bmp_info SprBmp[700];
