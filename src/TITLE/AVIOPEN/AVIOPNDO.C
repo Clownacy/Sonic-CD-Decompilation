@@ -1,10 +1,10 @@
 #include "AVIOPNDO.H"
 
 #if defined(AVIOPEN)
-static char szAVIFile[18] = "title\\avi\\opn.avi";
+static char szAVIFile[18] = "title" PATH_SEPARATOR "avi" PATH_SEPARATOR "opn.avi";
 #endif
 #if defined(AVIPEN)
-static char szAVIFile[21] = "title\\avi\\pencil.avi";
+static char szAVIFile[21] = "title" PATH_SEPARATOR "avi" PATH_SEPARATOR "pencil.avi";
 #endif
 static unsigned int bAVIStart;
 extern int(*sMoviePlay)(int);

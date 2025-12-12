@@ -412,12 +412,12 @@ int ld_load_sprite2(hmx_environment* buffer, char* file, hmx_environment* env, h
       else if (i == 24) /* Line 412, Address: 0x1001e90 */
         ld_bitmap_4to8_2(hmx_bitmap_get_scan0_module(bmp), pixbuf, wx, wy, infoSprtBmp[i].palOff, 1, flag4); /* Line 413, Address: 0x1001e9c */
       else if (i == 31) /* Line 414, Address: 0x1001ef0 */
-        ld_bitmap_file("TITLE\\OPENING\\EXIT.BMP" , hmx_bitmap_get_scan0_module(bmp), 40, 16, infoSprtBmp[i].palOff, 1); /* Line 415, Address: 0x1001efc */
+        ld_bitmap_file("TITLE" PATH_SEPARATOR "OPENING" PATH_SEPARATOR "EXIT.BMP" , hmx_bitmap_get_scan0_module(bmp), 40, 16, infoSprtBmp[i].palOff, 1); /* Line 415, Address: 0x1001efc */
       else
 
 
 
-        ld_bitmap_file("TITLE\\OPENING\\1996SEGA.BMP", hmx_bitmap_get_scan0_module(bmp), 248, 8, 0, 1); /* Line 420, Address: 0x1001f50 */
+        ld_bitmap_file("TITLE" PATH_SEPARATOR "OPENING" PATH_SEPARATOR "1996SEGA.BMP", hmx_bitmap_get_scan0_module(bmp), 248, 8, 0, 1); /* Line 420, Address: 0x1001f50 */
 
 
 

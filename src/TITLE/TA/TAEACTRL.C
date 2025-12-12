@@ -654,7 +654,7 @@ int TAGridBmpCreate(void) { /* Line 649, Address: 0x10027b0 */
     s_ctx->grd_bitmaps[i] = 0; /* Line 654, Address: 0x10027d8 */
   } /* Line 655, Address: 0x10027ec */
 
-  count = ld_load_grid_module(g_loader_module, "TITLE\\BMP\\TCMPTA.CM_", g_env_module, s_ctx->grd_bitmaps, 2048); /* Line 657, Address: 0x10027fc */
+  count = ld_load_grid_module(g_loader_module, "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "TCMPTA.CM_", g_env_module, s_ctx->grd_bitmaps, 2048); /* Line 657, Address: 0x10027fc */
 
 
 
@@ -770,7 +770,7 @@ int GridInitSub(char* path, map_info* pInfo) { /* Line 706, Address: 0x1002ad0 *
 int TAGridInit(void) { /* Line 770, Address: 0x1002eb0 */
   int i, cntInfo;
   map_info* pInfo;
-  char* Path = "TITLE\\BMP\\TA\\BG\\"; /* Line 773, Address: 0x1002ec8 */
+  char* Path = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "TA" PATH_SEPARATOR "BG" PATH_SEPARATOR ""; /* Line 773, Address: 0x1002ec8 */
 
   pInfo = MapInfoTbl->info; /* Line 775, Address: 0x1002ed0 */
   cntInfo = MapInfoTbl->cnt; /* Line 776, Address: 0x1002ed8 */
@@ -821,7 +821,7 @@ int LoadPicBmp(void) { /* Line 812, Address: 0x1002fb0 */
 
 
 
-  expbuf = ld_load_cmpfile_module(g_loader_module, "TITLE\\BMP\\SCMPTA.CM_"); /* Line 824, Address: 0x1002fd8 */
+  expbuf = ld_load_cmpfile_module(g_loader_module, "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "SCMPTA.CM_"); /* Line 824, Address: 0x1002fd8 */
   if (expbuf != 0) { /* Line 825, Address: 0x1002ffc */
     hdr = expbuf; /* Line 826, Address: 0x1003004 */
     p = (unsigned char*)expbuf + hdr->dwOff; /* Line 827, Address: 0x1003008 */

@@ -84,6 +84,7 @@ function(make_level ROUND ZONE TIME CG_CHANGE)
 
 	target_compile_definitions(${EXECUTABLE_NAME} PRIVATE R${ROUND} R${ROUND}${ZONE} R${ROUND}${ZONE}${TIME})
 	target_compile_definitions(${EXECUTABLE_NAME} PRIVATE LEVEL_ROUND=${ROUND} LEVEL_ZONE=${ZONE} LEVEL_TIME=${TIME})
+	target_compile_definitions(${EXECUTABLE_NAME} PRIVATE PORTABLE)
 
 	if (CG_CHANGE)
 		target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CG_CHANGE)

@@ -27,9 +27,9 @@ static void cd_call(void);
 
 static char* ScrAMapFileName[3] =
 {
-  "TITLE\\PLANET\\MAP\\LP.MAP",
-  "TITLE\\PLANET\\MAP\\LPG.MAP",
-  "TITLE\\PLANET\\MAP\\LPB.MAP"
+  "TITLE" PATH_SEPARATOR "PLANET" PATH_SEPARATOR "MAP" PATH_SEPARATOR "LP.MAP",
+  "TITLE" PATH_SEPARATOR "PLANET" PATH_SEPARATOR "MAP" PATH_SEPARATOR "LPG.MAP",
+  "TITLE" PATH_SEPARATOR "PLANET" PATH_SEPARATOR "MAP" PATH_SEPARATOR "LPB.MAP"
 };
 void(*sCloseFile)(int);
 int(*sReadFile)(int, void*, int);
@@ -52,7 +52,7 @@ void(*WaveRequest)(short);
 void(*ClrSpriteDebug)(void);
 void(*EAsprset)(short, short, unsigned short, unsigned short, unsigned short);
 int(*SetGrid)(int, int, int, int, int);
-static char ScrBMapFileName[26] = "TITLE\\PLANET\\MAP\\LPBS.MAP";
+static char ScrBMapFileName[26] = "TITLE" PATH_SEPARATOR "PLANET" PATH_SEPARATOR "MAP" PATH_SEPARATOR "LPBS.MAP";
 static unsigned int bGameInit = 1;
 extern PALETTEENTRY init_col[];
 static short ScrBMap[704];

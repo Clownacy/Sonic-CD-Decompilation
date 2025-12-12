@@ -241,7 +241,7 @@ void cgmwrt_a(void) { /* Line 238, Address: 0x1002260 */
   unsigned int hf;
 
   sMemSet(aMap, 0, sizeof(aMap)); /* Line 243, Address: 0x100227c */
-  if ((hf = sOpenFile("TITLE\\THANKS\\MAP\\VA_MAP.BIN")) == -1) { /* Line 244, Address: 0x1002298 */
+  if ((hf = sOpenFile("TITLE" PATH_SEPARATOR "THANKS" PATH_SEPARATOR "MAP" PATH_SEPARATOR "VA_MAP.BIN")) == -1) { /* Line 244, Address: 0x1002298 */
 
     sOutputDebugString("Map Load Error [va_map.bin]\n"); /* Line 246, Address: 0x10022c0 */
   } /* Line 247, Address: 0x10022d8 */
@@ -270,7 +270,7 @@ void cgmwrt_b(void) { /* Line 267, Address: 0x10023e0 */
   unsigned int hf;
 
   sMemSet(bMap, 0, sizeof(bMap)); /* Line 272, Address: 0x10023fc */
-  if ((hf = sOpenFile("TITLE\\THANKS\\MAP\\VB_MAP.BIN")) == -1) { /* Line 273, Address: 0x1002418 */
+  if ((hf = sOpenFile("TITLE" PATH_SEPARATOR "THANKS" PATH_SEPARATOR "MAP" PATH_SEPARATOR "VB_MAP.BIN")) == -1) { /* Line 273, Address: 0x1002418 */
 
     sOutputDebugString("Map Load Error [vb_map.bin]\n"); /* Line 275, Address: 0x1002440 */
   } /* Line 276, Address: 0x1002458 */

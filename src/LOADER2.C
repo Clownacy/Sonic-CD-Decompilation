@@ -65,7 +65,7 @@ void ReadBlockMap(void) { /* Line 59, Address: 0x1013830 */
 
 
 
-  sPrintf(fn, "R%c\\%3s\\T%3s.MAP", buf[0], buf, buf); /* Line 68, Address: 0x101385c */
+  sPrintf(fn, "R%c" PATH_SEPARATOR "%3s" PATH_SEPARATOR "T%3s.MAP", buf[0], buf, buf); /* Line 68, Address: 0x101385c */
 
 
 
@@ -104,7 +104,7 @@ void ReadScrolMap(void) { /* Line 95, Address: 0x1013990 */
 
 
 
-  sPrintf(fn, "R%c\\%3s\\MAP%3s.BIN", buf[0], buf, buf); /* Line 107, Address: 0x10139c4 */
+  sPrintf(fn, "R%c" PATH_SEPARATOR "%3s" PATH_SEPARATOR "MAP%3s.BIN", buf[0], buf, buf); /* Line 107, Address: 0x10139c4 */
 
 
 

@@ -1,8 +1,8 @@
 #include "../../TYPES.H"
 #include "../COMMON/HMX_TYPES.H"
 
-char* SprCmpFileName = "TITLE\\BMP\\STAGES.CM_";
-char* TileCmpFileName = "TITLE\\BMP\\sndtestt.CM_";
+char* SprCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "STAGES.CM_";
+char* TileCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "sndtestt.CM_";
 static unsigned int hSprBG[16];
 static unsigned int hSprTitle[11];
 static unsigned int hSprDummy;

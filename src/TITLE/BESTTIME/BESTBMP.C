@@ -1,8 +1,8 @@
 #include "../../TYPES.H"
 #include "../COMMON/HMX_TYPES.H"
 
-char* SprCmpFileName = "TITLE\\BMP\\BESTTIME.CM_";
-char* TileCmpFileName = "TITLE\\BMP\\sndtestt.CM_";
+char* SprCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "BESTTIME.CM_";
+char* TileCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "sndtestt.CM_";
 static unsigned int hGridBack;
 static unsigned int hTileBack[1];
 static unsigned int* hBmpBack[1];

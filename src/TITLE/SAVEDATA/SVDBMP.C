@@ -2,8 +2,8 @@
 #include "../COMMON/HMX_TYPES.H"
 #include "SVDBMP.H"
 
-char* SprCmpFileName = "TITLE\\BMP\\SAVEDATS.CM_";
-char* TileCmpFileName = "TITLE\\BMP\\SAVEDATT.CM_";
+char* SprCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "SAVEDATS.CM_";
+char* TileCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "SAVEDATT.CM_";
 int nPosiXSprMes[27] = {
    96, 104, 112, 120, 128, 136, 144, 152, 160,
   168, 176, 184, 192, 200, 208, 216, 224, 232,

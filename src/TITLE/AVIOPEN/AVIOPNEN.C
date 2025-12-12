@@ -8,10 +8,10 @@
 hmx_environment* g_env_module;
 hmx_environment* g_loader_module;
 #if defined(AVIOPEN)
-char fileName[26] = "title\\bmp\\opnavi\\opwp.bmp";
+char fileName[26] = "title" PATH_SEPARATOR "bmp" PATH_SEPARATOR "opnavi" PATH_SEPARATOR "opwp.bmp";
 #endif
 #if defined(AVIPEN)
-char fileName[27] = "title\\bmp\\opnavi\\penbg.bmp";
+char fileName[27] = "title" PATH_SEPARATOR "bmp" PATH_SEPARATOR "opnavi" PATH_SEPARATOR "penbg.bmp";
 #endif
 int nTimerCunt;
 unsigned short nSequenceNum;

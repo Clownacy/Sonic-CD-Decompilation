@@ -406,3 +406,9 @@ typedef struct {
   unsigned short wReserved2;
 }
 game_info;
+
+#ifdef PORTABLE
+#define PATH_SEPARATOR "/"
+#else
+#define PATH_SEPARATOR "\\"
+#endif

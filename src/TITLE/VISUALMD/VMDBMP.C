@@ -1,8 +1,8 @@
 #include "../../TYPES.H"
 #include "../COMMON/HMX_TYPES.H"
 
-char* SprCmpFileName = "TITLE\\BMP\\VISUALS.CM_";
-char* TileCmpFileName = "TITLE\\BMP\\VISUALT.CM_";
+char* SprCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "VISUALS.CM_";
+char* TileCmpFileName = "TITLE" PATH_SEPARATOR "BMP" PATH_SEPARATOR "VISUALT.CM_";
 static unsigned int hSprBG[16];
 static unsigned int hSprDummy;
 sprite_bmp infoSprtBmp[68] = {
