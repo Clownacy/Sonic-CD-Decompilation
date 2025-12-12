@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "EQU.H"
 #include "ITEM.H"
 #include "ACTION.H"
@@ -144,7 +145,6 @@ static sprite_pattern cor0f = {
   1, { { -4, -40, 0, 284 } }
 };
 sprite_pattern* corepat[16] = { &cor00, &cor01, &cor02, &cor03, &cor04, &cor05, &cor06, &cor07, &cor08, &cor09, &cor0a, &cor0b, &cor0c, &cor0d, &cor0e, &cor0f };
-
 
 
 
@@ -631,7 +631,7 @@ void error_item(sprite_status* itemwk) { /* Line 627, Address: 0x1012300 */
 
 
 
-  (unsigned int)((int)itemwk->patbase ^ (int)corepat) < 1; /* Line 634, Address: 0x1012308 */
+  (uintptr_t)((intptr_t)itemwk->patbase ^ (intptr_t)corepat) < 1; /* Line 634, Address: 0x1012308 */
 
 
 
